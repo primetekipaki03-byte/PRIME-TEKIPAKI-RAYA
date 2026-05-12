@@ -158,7 +158,7 @@ section{padding:90px 0}
 .contact-item-text strong{display:block;font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:2px}
 .contact-item-text span{font-size:14px;color:var(--ink)}
 .social-links{display:flex;gap:10px;margin-top:28px}
-.social-btn{width:38px;height:38px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;text-decoration:none;transition:background .2s}
+.social-btn{width:38px;height:38px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;text-decoration:none;transition:background .2s;flex-shrink:0}
 .social-btn:hover{background:var(--navy2)}
 
 /* ===== CTA BANNER ===== */
@@ -504,10 +504,10 @@ footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
           <div style="display:flex;flex-direction:column;gap:14px">
             <input type="text" placeholder="Nama Lengkap" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none">
             <input type="text" placeholder="Nomor WhatsApp" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none">
-            <select style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none;appearance:none">
-              <option value="">Pilih Program yang Diminati</option>
-              <option>Tokutei Ginou (特定技能)</option>
-              <option>Jisshusei (技能実習生)</option>
+            <select id="contactProgram" style="background:#1a3a5c;border:1px solid rgba(255,255,255,.35);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none;appearance:none;cursor:pointer">
+              <option value="" style="background:#1a3a5c;color:#fff">Pilih Program yang Diminati</option>
+              <option value="tokutei" style="background:#1a3a5c;color:#fff">Tokutei Ginou (特定技能)</option>
+              <option value="jisshusei" style="background:#1a3a5c;color:#fff">Jisshusei (技能実習生)</option>
             </select>
             <textarea placeholder="Pertanyaan atau pesan Anda..." rows="4" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none;resize:vertical"></textarea>
             <button class="btn-primary" style="justify-content:center"><i class="fas fa-paper-plane"></i> Kirim Pesan</button>
@@ -554,10 +554,10 @@ footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
         <a href="#">+62 xxx xxxx xxxx</a>
         <a href="#">info@primetekipakiraya.com</a>
         <a href="#">Jl. Tekipaki No. 1</a>
-        <div style="margin-top:16px;display:flex;gap:8px">
-          <a href="#" class="social-btn" style="width:32px;height:32px;font-size:13px"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-btn" style="width:32px;height:32px;font-size:13px"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-btn" style="width:32px;height:32px;font-size:13px"><i class="fab fa-whatsapp"></i></a>
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+          <a href="#" class="social-btn" style="width:32px;height:32px;font-size:13px;display:flex;align-items:center;justify-content:center"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn" style="width:32px;height:32px;font-size:13px;display:flex;align-items:center;justify-content:center"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn" style="width:32px;height:32px;font-size:13px;display:flex;align-items:center;justify-content:center"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
     </div>
