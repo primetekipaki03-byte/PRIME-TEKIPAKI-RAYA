@@ -278,6 +278,48 @@ textarea{resize:vertical;min-height:80px}
               <option value="">Pilih Level</option><option>N5 (Pemula)</option><option>N4</option><option>N3</option><option>N2</option><option>N1 (Mahir)</option><option>JFT Basic A2</option><option>Belum ada sertifikat</option>
             </select>
           </div>
+
+          <!-- SSW TYPE - hanya muncul jika Tokutei Ginou dipilih -->
+          <div id="sswSection" style="display:none;margin-top:16px">
+            <div style="background:var(--navy-light);border:1px solid rgba(26,58,92,.2);border-radius:10px;padding:18px">
+              <p style="font-size:12px;font-weight:700;color:var(--navy);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px"><i class="fas fa-id-card" style="margin-right:6px"></i>Jenis SSW (Specified Skilled Worker)</p>
+              <div class="grid-2" style="gap:10px">
+                <label id="ssw1-lbl" style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;background:#fff;transition:all .2s">
+                  <input type="radio" name="sswType" id="ssw1" value="SSW1" style="accent-color:var(--navy);width:15px;height:15px;flex-shrink:0;margin-top:2px">
+                  <span>
+                    <strong style="display:block;font-size:13px;font-weight:700;color:var(--ink)">SSW 1 – Specified Skilled Worker Type 1</strong>
+                    <span style="font-size:11px;color:var(--ink3);line-height:1.5;display:block;margin-top:2px">特定技能1号 · Kontrak maks. 5 tahun, tidak bisa bawa keluarga. Harus lulus uji keterampilan & bahasa Jepang.</span>
+                  </span>
+                </label>
+                <label id="ssw2-lbl" style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;background:#fff;transition:all .2s">
+                  <input type="radio" name="sswType" id="ssw2" value="SSW2" style="accent-color:var(--navy);width:15px;height:15px;flex-shrink:0;margin-top:2px">
+                  <span>
+                    <strong style="display:block;font-size:13px;font-weight:700;color:var(--ink)">SSW 2 – Specified Skilled Worker Type 2</strong>
+                    <span style="font-size:11px;color:var(--ink3);line-height:1.5;display:block;margin-top:2px">特定技能2号 · Kontrak dapat diperbarui tanpa batas, boleh membawa keluarga. Harus sudah melewati SSW1.</span>
+                  </span>
+                </label>
+              </div>
+              <div class="form-group" style="margin-top:14px">
+                <label>Bidang / Sektor Kerja SSW <span class="req">*</span></label>
+                <select id="sswBidang">
+                  <option value="">Pilih Sektor</option>
+                  <option>Perawatan (介護 – Nursing Care)</option>
+                  <option>Bangunan / Kebersihan (ビルクリーニング – Building Cleaning)</option>
+                  <option>Pengolahan Bahan Industri (素形材・産業機械)</option>
+                  <option>Manufaktur Elektronik (電気電子情報関連産業)</option>
+                  <option>Konstruksi (建設 – Construction)</option>
+                  <option>Perkapalan / Shipbuilding (造船・舶用工業)</option>
+                  <option>Otomotif / Kendaraan (自動車整備 – Car Maintenance)</option>
+                  <option>Penerbangan (航空 – Aviation)</option>
+                  <option>Akomodasi / Hotel (宿泊 – Accommodation)</option>
+                  <option>Pertanian (農業 – Agriculture)</option>
+                  <option>Perikanan / Peternakan Ikan (漁業 – Fishery)</option>
+                  <option>Pengolahan Makanan & Minuman (飲食料品製造業)</option>
+                  <option>Restoran / Food Service (外食業 – Food Service)</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -480,6 +522,8 @@ function collectData(){
   });
   return{
     program:document.querySelector('input[name="program"]:checked')?.value||'',
+    sswType:document.querySelector('input[name="sswType"]:checked')?.value||'',
+    sswBidang:el('sswBidang')?.value||'',
     namaRomaji:el('namaRomaji').value,jenisKelamin:el('jenisKelamin').value,
     statusMenikah:el('statusMenikah').value,golDarah:el('golDarah').value,
     kewarganegaraan:el('kewarganegaraan').value,tanggalLahir:el('tanggalLahir').value,
@@ -551,7 +595,12 @@ function generatePDF(){
 
   y=48;
   secHead('Data Pribadi');
-  row('Program',d.program);row('Nama Lengkap',d.namaRomaji);
+  row('Program',d.program);
+  if(d.program==='Tokutei Ginou'&&d.sswType){
+    row('Jenis SSW',d.sswType==='SSW1'?'SSW 1 – Specified Skilled Worker Type 1 (特定技能1号)':'SSW 2 – Specified Skilled Worker Type 2 (特定技能2号)');
+    if(d.sswBidang)row('Sektor SSW',d.sswBidang);
+  }
+  row('Nama Lengkap',d.namaRomaji);
   twoRows([['Jenis Kelamin',d.jenisKelamin],['Status Menikah',d.statusMenikah]]);
   twoRows([['Golongan Darah',d.golDarah],['Kewarganegaraan',d.kewarganegaraan]]);
   twoRows([['Tanggal Lahir',d.tanggalLahir],['Agama',d.agama]]);
@@ -667,6 +716,19 @@ document.addEventListener('DOMContentLoaded',()=>{
       document.querySelectorAll('.prog-label').forEach(l=>{l.style.borderColor='var(--border)';l.style.background=''});
       r.closest('.prog-label').style.borderColor='var(--navy)';
       r.closest('.prog-label').style.background='var(--navy-light)';
+      // Tampilkan/sembunyikan SSW section
+      el('sswSection').style.display=r.value==='Tokutei Ginou'?'block':'none';
+    });
+  });
+
+  // SSW radio toggle highlight
+  document.querySelectorAll('input[name="sswType"]').forEach(r=>{
+    r.addEventListener('change',()=>{
+      document.querySelectorAll('[id^="ssw"][id$="-lbl"]').forEach(l=>{
+        l.style.borderColor='var(--border)';l.style.background='#fff';
+      });
+      const lbl=document.getElementById(r.id+'-lbl')||r.closest('label');
+      if(lbl){lbl.style.borderColor='var(--navy)';lbl.style.background='var(--navy-light)'}
     });
   });
 
@@ -680,7 +742,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     el('pendidikanContainer').innerHTML='';el('kerjaContainer').innerHTML='';
     el('keluargaContainer').innerHTML='';el('fotoPreview').innerHTML='';
     fotoDataURL=null;
+    el('sswSection').style.display='none';
     document.querySelectorAll('.prog-label').forEach(l=>{l.style.borderColor='var(--border)';l.style.background=''});
+    document.querySelectorAll('[id^="ssw"][id$="-lbl"]').forEach(l=>{l.style.borderColor='var(--border)';l.style.background='#fff'});
     addPendidikan();addKeluarga('Ayah');addKeluarga('Ibu');
   };
 });
