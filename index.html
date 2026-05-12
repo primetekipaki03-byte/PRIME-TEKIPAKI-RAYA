@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prime Tekipaki Raya – 日本就労支援</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
@@ -90,7 +89,6 @@ section{padding:90px 0}
 #about{background:var(--surface)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
 .about-img-stack{position:relative;height:420px}
-.about-img{border-radius:12px;object-fit:cover;width:100%;height:100%;background:var(--navy-light)}
 .about-img-placeholder{width:100%;height:100%;border-radius:12px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:48px}
 .about-img-placeholder span{font-size:13px;margin-top:12px;letter-spacing:1px}
 .about-badge{position:absolute;bottom:24px;right:-20px;background:#fff;border-radius:12px;padding:16px 20px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:flex;align-items:center;gap:12px;min-width:180px}
@@ -147,13 +145,7 @@ section{padding:90px 0}
 .gallery-item:hover .gallery-item-overlay{opacity:1}
 .gallery-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--navy-mid)}
 .gallery-placeholder span{font-size:12px;opacity:.6}
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  inset: 0;
-}
+.gallery-item img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 
 /* ===== KONTAK ===== */
 #contact{background:var(--surface)}
@@ -169,44 +161,12 @@ section{padding:90px 0}
 .social-btn{width:38px;height:38px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;text-decoration:none;transition:background .2s}
 .social-btn:hover{background:var(--navy2)}
 
-/* ===== FORMULIR ===== */
-#pendaftaran{background:#fff}
-.form-wrap{max-width:820px;margin:0 auto}
-
-/* FORM CARDS */
-.card{background:#fff;border-radius:12px;border:1px solid var(--border);margin-bottom:20px;overflow:hidden}
-.card-head{display:flex;align-items:center;gap:12px;padding:16px 24px;background:var(--surface);border-bottom:1px solid var(--border)}
-.card-head .icon{width:34px;height:34px;background:var(--navy-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:14px;flex-shrink:0}
-.card-head h3{font-size:14px;font-weight:600;color:var(--ink)}
-.card-body{padding:24px}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
-.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
-.form-group{display:flex;flex-direction:column;gap:5px}
-.form-group label{font-size:12px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:.5px}
-.form-group label .req{color:#c0392b}
-input[type=text],input[type=date],input[type=number],input[type=month],select,textarea{width:100%;padding:10px 13px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:14px;color:var(--ink);background:#fff;transition:border-color .2s,box-shadow .2s;outline:none;appearance:none}
-input:focus,select:focus,textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(26,58,92,.1)}
-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23777'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;cursor:pointer}
-textarea{resize:vertical;min-height:80px}
-.entry-block{border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px;position:relative;background:var(--surface)}
-.entry-block .entry-label{font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px}
-.btn-remove{position:absolute;top:12px;right:12px;background:none;border:1px solid #eee;border-radius:50%;width:28px;height:28px;cursor:pointer;color:var(--ink3);font-size:13px;display:flex;align-items:center;justify-content:center;transition:.15s}
-.btn-remove:hover{background:var(--navy-light);color:var(--navy);border-color:var(--navy)}
-.btn-add{display:inline-flex;align-items:center;gap:8px;margin-top:4px;background:none;border:1.5px dashed var(--navy);border-radius:8px;color:var(--navy);padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;font-family:inherit}
-.btn-add:hover{background:var(--navy-light)}
-.foto-zone{border:2px dashed var(--border);border-radius:8px;padding:24px;text-align:center;cursor:pointer;transition:.2s;position:relative}
-.foto-zone:hover{border-color:var(--navy);background:var(--navy-light)}
-.foto-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
-.foto-zone .fz-icon{font-size:28px;color:var(--ink3);margin-bottom:8px}
-.foto-zone p{font-size:13px;color:var(--ink3)}
-.foto-zone p strong{color:var(--navy)}
-#fotoPreview img{max-height:160px;border-radius:8px;margin-top:14px;border:1px solid var(--border)}
-.form-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:8px}
-.btn-submit{display:inline-flex;align-items:center;gap:9px;background:var(--navy);color:#fff;border:none;border-radius:8px;padding:13px 30px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;font-family:inherit}
-.btn-submit:hover{background:var(--navy2);transform:translateY(-1px)}
-.btn-reset{display:inline-flex;align-items:center;gap:8px;background:none;color:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:13px 22px;font-size:14px;font-weight:500;cursor:pointer;transition:.2s;font-family:inherit}
-.btn-reset:hover{background:#f0f0f0}
+/* ===== CTA BANNER ===== */
+.cta-banner{background:linear-gradient(135deg,var(--navy3),var(--navy-mid));padding:80px 0;text-align:center}
+.cta-banner h2{font-family:'Noto Serif JP',serif;font-size:36px;color:#fff;margin-bottom:14px}
+.cta-banner h2 em{font-style:normal;color:var(--gold)}
+.cta-banner p{color:rgba(255,255,255,.7);font-size:16px;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.8}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 
 /* ===== FOOTER ===== */
 footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
@@ -221,11 +181,6 @@ footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center}
 .footer-bottom p{font-size:13px}
 
-/* ===== TOAST ===== */
-#toast{position:fixed;bottom:30px;right:30px;background:#1a7a4f;color:#fff;padding:14px 22px;border-radius:10px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:10px;box-shadow:0 4px 24px rgba(0,0,0,.2);transform:translateY(80px);opacity:0;transition:.35s ease;z-index:9999}
-#toast.show{transform:translateY(0);opacity:1}
-
-/* ===== RESPONSIVE ===== */
 @media(max-width:900px){
   .hero-inner{grid-template-columns:1fr;gap:40px}
   .hero h1{font-size:34px}
@@ -243,7 +198,6 @@ footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
   .nav-hamburger{display:flex}
   .bidang-grid{grid-template-columns:repeat(2,1fr)}
   .stats-grid{grid-template-columns:1fr 1fr}
-  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
   .gallery-grid{grid-template-columns:1fr}
   section{padding:60px 0}
 }
@@ -268,7 +222,7 @@ footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
       <li><a href="#bidang">Bidang Kerja</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#contact">Kontak</a></li>
-      <li><a href="#pendaftaran" class="nav-cta">Daftar Sekarang</a></li>
+      <li><a href="pendaftaran.html" class="nav-cta">Daftar Sekarang</a></li>
     </ul>
     <div class="nav-hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
@@ -287,7 +241,7 @@ footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
       <h1>Wujudkan Impianmu <em>Bekerja di Jepang</em></h1>
       <p>Prime Tekipaki Raya hadir sebagai mitra terpercaya untuk membuka peluang karier di Jepang melalui program Tokutei Ginou dan Jisshusei dengan pendampingan profesional.</p>
       <div class="hero-btns">
-        <a href="#pendaftaran" class="btn-primary"><i class="fas fa-pen-to-square"></i> Daftar Sekarang</a>
+        <a href="pendaftaran.html" class="btn-primary"><i class="fas fa-pen-to-square"></i> Daftar Sekarang</a>
         <a href="#about" class="btn-outline"><i class="fas fa-circle-info"></i> Pelajari Lebih</a>
       </div>
       <div class="hero-stats">
@@ -489,11 +443,8 @@ footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
         <div class="gallery-item-overlay"><p>Sesi Pelatihan Bahasa Jepang</p></div>
       </div>
       <div class="gallery-item" style="background:linear-gradient(135deg,#2e5480,#1d4e7a)">
-       <div class="gallery-item" style="background-image:url('galery.jpeg'); background-size:cover; background-position:center;">
-       <div class="gallery-item-overlay">
-       <p>Keberangkatan Peserta</p>
-       </div>
-     </div>
+        <div class="gallery-placeholder"><i class="fas fa-plane"></i><span>Foto Kegiatan</span></div>
+        <div class="gallery-item-overlay"><p>Keberangkatan Peserta</p></div>
       </div>
       <div class="gallery-item" style="background:linear-gradient(135deg,#0f2440,#1a3a5c)">
         <div class="gallery-placeholder"><i class="fas fa-graduation-cap"></i><span>Foto Kegiatan</span></div>
@@ -551,14 +502,14 @@ footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
           <h3 style="font-family:'Noto Serif JP',serif;font-size:20px;margin-bottom:8px">お気軽にお問い合わせください</h3>
           <p style="opacity:.7;font-size:14px;margin-bottom:28px">Konsultasi gratis, tanpa biaya apapun</p>
           <div style="display:flex;flex-direction:column;gap:14px">
-            <input type="text" placeholder="Nama Lengkap" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff">
-            <input type="text" placeholder="Nomor WhatsApp" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff">
-            <select style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff">
+            <input type="text" placeholder="Nama Lengkap" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none">
+            <input type="text" placeholder="Nomor WhatsApp" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none">
+            <select style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none;appearance:none">
               <option value="">Pilih Program yang Diminati</option>
               <option>Tokutei Ginou (特定技能)</option>
               <option>Jisshusei (技能実習生)</option>
             </select>
-            <textarea placeholder="Pertanyaan atau pesan Anda..." rows="4" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff"></textarea>
+            <textarea placeholder="Pertanyaan atau pesan Anda..." rows="4" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none;resize:vertical"></textarea>
             <button class="btn-primary" style="justify-content:center"><i class="fas fa-paper-plane"></i> Kirim Pesan</button>
           </div>
         </div>
@@ -567,174 +518,17 @@ footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
   </div>
 </section>
 
-<!-- ===== FORMULIR PENDAFTARAN ===== -->
-<section id="pendaftaran" style="background:var(--surface)">
+<!-- ===== CTA BANNER ===== -->
+<div class="cta-banner">
   <div class="container">
-    <div class="section-head center">
-      <div class="section-label">Formulir Pendaftaran</div>
-      <h2 class="section-title">Isi Data <em>Lengkap Kamu</em></h2>
-      <p class="section-sub">Lengkapi formulir di bawah ini dengan data yang benar. Data akan diunduh sebagai PDF siap cetak dan dikirim ke tim kami.</p>
-    </div>
-    <div class="form-wrap">
-    <form id="mainForm">
-
-      <!-- DATA PRIBADI -->
-      <div class="card">
-        <div class="card-head"><div class="icon"><i class="fas fa-user"></i></div><h3>Data Pribadi</h3></div>
-        <div class="card-body">
-          <div class="form-group" style="margin-bottom:16px">
-            <label>Program <span class="req">*</span></label>
-            <div style="display:flex;gap:12px;margin-top:6px">
-              <label class="prog-label" id="lbl-toku" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:12px 18px;border:1.5px solid var(--border);border-radius:8px;flex:1;transition:border-color .2s,background .2s">
-                <input type="radio" name="program" id="prog-toku" value="Tokutei Ginou" style="accent-color:var(--navy);width:16px;height:16px;flex-shrink:0">
-                <span><strong style="display:block;font-size:14px;font-weight:600">Tokutei Ginou</strong><span style="font-size:11px;color:var(--ink3)">特定技能</span></span>
-              </label>
-              <label class="prog-label" id="lbl-jiss" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:12px 18px;border:1.5px solid var(--border);border-radius:8px;flex:1;transition:border-color .2s,background .2s">
-                <input type="radio" name="program" id="prog-jiss" value="Jisshusei" style="accent-color:var(--navy);width:16px;height:16px;flex-shrink:0">
-                <span><strong style="display:block;font-size:14px;font-weight:600">Jisshusei</strong><span style="font-size:11px;color:var(--ink3)">技能実習生</span></span>
-              </label>
-            </div>
-          </div>
-          <div class="form-group" style="margin-bottom:16px">
-            <label>Nama Lengkap <span class="req">*</span></label>
-            <input type="text" id="namaRomaji" placeholder="Nama lengkap sesuai KTP">
-          </div>
-          <div class="grid-3" style="margin-bottom:16px">
-            <div class="form-group">
-              <label>Jenis Kelamin <span class="req">*</span></label>
-              <select id="jenisKelamin">
-                <option value="">Pilih</option><option>Laki-laki</option><option>Perempuan</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Status Menikah</label>
-              <select id="statusMenikah">
-                <option value="">Pilih</option><option>Belum Menikah</option><option>Menikah</option><option>Cerai</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Golongan Darah</label>
-              <select id="golDarah">
-                <option value="">Pilih</option><option>A</option><option>B</option><option>O</option><option>AB</option>
-              </select>
-            </div>
-          </div>
-          <div class="grid-3" style="margin-bottom:16px">
-            <div class="form-group">
-              <label>Kewarganegaraan <span class="req">*</span></label>
-              <input type="text" id="kewarganegaraan" value="Indonesia">
-            </div>
-            <div class="form-group">
-              <label>Tanggal Lahir <span class="req">*</span></label>
-              <input type="date" id="tanggalLahir">
-            </div>
-            <div class="form-group">
-              <label>Agama</label>
-              <select id="agama">
-                <option value="">Pilih</option><option>Islam</option><option>Kristen</option><option>Katolik</option><option>Hindu</option><option>Buddha</option><option>Konghucu</option>
-              </select>
-            </div>
-          </div>
-          <div class="grid-4" style="margin-bottom:16px">
-            <div class="form-group"><label>Tinggi (cm)</label><input type="number" id="tinggiBadan" placeholder="170"></div>
-            <div class="form-group"><label>Berat (kg)</label><input type="number" id="beratBadan" placeholder="65"></div>
-            <div class="form-group"><label>Penglihatan Kiri</label><input type="text" id="matKiri" placeholder="1.0"></div>
-            <div class="form-group"><label>Penglihatan Kanan</label><input type="text" id="matKanan" placeholder="1.0"></div>
-          </div>
-          <div class="form-group">
-            <label>Kemampuan Bahasa Jepang</label>
-            <select id="kemampuanJepang">
-              <option value="">Pilih Level</option><option>N5 (Pemula)</option><option>N4</option><option>N3</option><option>N2</option><option>N1 (Mahir)</option><option>Belum ada sertifikat</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- ALAMAT -->
-      <div class="card">
-        <div class="card-head"><div class="icon"><i class="fas fa-map-marker-alt"></i></div><h3>Alamat</h3></div>
-        <div class="card-body">
-          <div class="form-group" style="margin-bottom:16px">
-            <label>Tempat Lahir <span class="req">*</span></label>
-            <input type="text" id="tempatLahir" placeholder="Kota/Kabupaten tempat lahir">
-          </div>
-          <div class="form-group">
-            <label>Alamat Lengkap <span class="req">*</span></label>
-            <textarea id="alamatLengkap" rows="3" placeholder="Jl. ..., RT/RW, Kelurahan, Kecamatan, Kota, Provinsi"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <!-- PENDIDIKAN -->
-      <div class="card">
-        <div class="card-head"><div class="icon"><i class="fas fa-graduation-cap"></i></div><h3>Riwayat Pendidikan</h3></div>
-        <div class="card-body">
-          <div id="pendidikanContainer"></div>
-          <button type="button" class="btn-add" id="tambahPendidikan"><i class="fas fa-plus"></i> Tambah Riwayat Pendidikan</button>
-        </div>
-      </div>
-
-      <!-- KERJA -->
-      <div class="card">
-        <div class="card-head"><div class="icon"><i class="fas fa-briefcase"></i></div><h3>Pengalaman Kerja</h3></div>
-        <div class="card-body">
-          <div id="kerjaContainer"></div>
-          <button type="button" class="btn-add" id="tambahKerja"><i class="fas fa-plus"></i> Tambah Pengalaman Kerja</button>
-        </div>
-      </div>
-
-      <!-- KELUARGA -->
-      <div class="card">
-        <div class="card-head"><div class="icon"><i class="fas fa-users"></i></div><h3>Data Keluarga</h3></div>
-        <div class="card-body">
-          <div id="keluargaContainer"></div>
-          <button type="button" class="btn-add" id="tambahKeluarga"><i class="fas fa-plus"></i> Tambah Anggota Keluarga</button>
-        </div>
-      </div>
-
-      <!-- FOTO -->
-      <div class="card">
-        <div class="card-head"><div class="icon"><i class="fas fa-camera"></i></div><h3>Foto</h3></div>
-        <div class="card-body">
-          <div class="foto-zone">
-            <input type="file" id="fotoInput" accept="image/*">
-            <div class="fz-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-            <p><strong>Klik untuk upload foto</strong> atau drag & drop</p>
-            <p style="font-size:12px;margin-top:4px">Format: JPG, PNG — Ukuran pas foto 3×4 disarankan</p>
-            <div id="fotoPreview"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAMBAHAN -->
-      <div class="card">
-        <div class="card-head"><div class="icon"><i class="fas fa-star"></i></div><h3>Informasi Tambahan</h3></div>
-        <div class="card-body">
-          <div class="grid-2" style="margin-bottom:16px">
-            <div class="form-group"><label>Hobi</label><input type="text" id="hobi" placeholder="Membaca, olahraga, memasak..."></div>
-            <div class="form-group"><label>Target Gaji (¥/bulan)</label><input type="text" id="targetGaji" placeholder="200,000"></div>
-          </div>
-          <div class="form-group" style="margin-bottom:16px">
-            <label>Catatan Tambahan</label>
-            <textarea id="catatan" rows="2" placeholder="Informasi lain yang ingin disampaikan..."></textarea>
-          </div>
-          <div class="form-group">
-            <label>Self PR (Deskripsi Diri)</label>
-            <textarea id="selfPR" rows="5" placeholder="Ceritakan tentang diri Anda, kelebihan, pengalaman, dan motivasi bekerja di Jepang..."></textarea>
-          </div>
-        </div>
-      </div>
-
-      <!-- ACTIONS -->
-      <div class="form-actions">
-        <button type="button" class="btn-reset" id="btnReset"><i class="fas fa-undo"></i> Reset Form</button>
-        <button type="button" class="btn-submit" id="btnPDF"><i class="fas fa-file-pdf"></i> Generate & Download PDF</button>
-      </div>
-
-    </form>
+    <h2>Siap Mulai Perjalananmu <em>ke Jepang?</em></h2>
+    <p>Bergabunglah dengan ratusan alumni kami yang kini berkarier sukses di Jepang. Daftarkan diri sekarang dan wujudkan impianmu bersama Prime Tekipaki Raya.</p>
+    <div class="cta-btns">
+      <a href="pendaftaran.html" class="btn-primary"><i class="fas fa-pen-to-square"></i> Isi Formulir Pendaftaran</a>
+      <a href="#contact" class="btn-outline"><i class="fas fa-phone"></i> Konsultasi Gratis</a>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ===== FOOTER ===== -->
 <footer>
@@ -753,6 +547,7 @@ footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
         <a href="#bidang">Bidang Kerja</a>
         <a href="#gallery">Gallery</a>
         <a href="#contact">Kontak</a>
+        <a href="pendaftaran.html" style="color:var(--gold);font-weight:600">Formulir Pendaftaran</a>
       </div>
       <div class="footer-col">
         <h4>Kontak</h4>
@@ -773,23 +568,19 @@ footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
   </div>
 </footer>
 
-<!-- TOAST -->
-<div id="toast"><i class="fas fa-check-circle"></i> PDF berhasil diunduh!</div>
-
 <script>
-function el(id){return document.getElementById(id)}
-
-// Mobile menu
 function toggleMenu(){
   const links=document.querySelector('.nav-links');
-  links.style.display=links.style.display==='flex'?'none':'flex';
-  links.style.flexDirection='column';
-  links.style.position='absolute';
-  links.style.top='64px';links.style.left='0';links.style.right='0';
-  links.style.background='rgba(10,26,48,.97)';links.style.padding='16px 28px';
+  const isOpen=links.style.display==='flex';
+  links.style.display=isOpen?'none':'flex';
+  if(!isOpen){
+    links.style.flexDirection='column';
+    links.style.position='absolute';
+    links.style.top='64px';links.style.left='0';links.style.right='0';
+    links.style.background='rgba(10,26,48,.97)';links.style.padding='16px 28px';
+  }
 }
 
-// Nav active on scroll
 window.addEventListener('scroll',()=>{
   const sections=document.querySelectorAll('section[id]');
   const scrollY=window.scrollY+80;
@@ -797,13 +588,12 @@ window.addEventListener('scroll',()=>{
     const top=s.offsetTop,h=s.offsetHeight,id=s.getAttribute('id');
     const link=document.querySelector(`.nav-links a[href="#${id}"]`);
     if(link){
-      if(scrollY>=top&&scrollY<top+h){link.classList.add('active')}
-      else{link.classList.remove('active')}
+      if(scrollY>=top&&scrollY<top+h)link.classList.add('active');
+      else link.classList.remove('active');
     }
   });
 });
 
-// Counter animation
 function animateCounters(){
   document.querySelectorAll('[data-target]').forEach(el=>{
     const target=+el.dataset.target;
@@ -812,7 +602,7 @@ function animateCounters(){
     const timer=setInterval(()=>{
       current+=step;
       if(current>=target){el.textContent=target+(target===98?'%':'+');clearInterval(timer)}
-      else{el.textContent=Math.floor(current)+(target===98?'%':'+')}
+      else el.textContent=Math.floor(current)+(target===98?'%':'+');
     },25);
   });
 }
@@ -821,296 +611,6 @@ const statsObserver=new IntersectionObserver(entries=>{
 },{threshold:.3});
 const statsEl=document.querySelector('.stats-section');
 if(statsEl)statsObserver.observe(statsEl);
-
-// ========== FORM ==========
-function addBlock(containerId,html,label){
-  const c=el(containerId);
-  const d=document.createElement('div');
-  d.className='entry-block';
-  d.innerHTML=`<div class="entry-label">${label}</div>`+html+`<button type="button" class="btn-remove" title="Hapus"><i class="fas fa-times"></i></button>`;
-  d.querySelector('.btn-remove').onclick=()=>d.remove();
-  c.appendChild(d);return d;
-}
-
-function addPendidikan(){
-  const n=el('pendidikanContainer').children.length+1;
-  addBlock('pendidikanContainer',`
-    <div class="grid-2" style="margin-bottom:10px">
-      <div class="form-group"><label>Dari (Bulan/Tahun)</label><input type="month" class="pDari"></div>
-      <div class="form-group"><label>Sampai (Bulan/Tahun)</label><input type="month" class="pSampai"></div>
-    </div>
-    <div class="grid-3">
-      <div class="form-group" style="grid-column:span 1">
-        <label>Nama Sekolah / Institusi</label><input type="text" class="pNama" placeholder="SMA Negeri 1 Jakarta">
-      </div>
-      <div class="form-group"><label>Jenjang</label>
-        <select class="pJenjang"><option value="">Pilih</option><option>SD</option><option>SMP</option><option>SMA/SMK</option><option>D3</option><option>S1</option><option>S2</option></select>
-      </div>
-    </div>
-    <div class="form-group" style="margin-top:10px"><label>Jurusan</label><input type="text" class="pJurusan" placeholder="Teknik Informatika"></div>`,`Pendidikan #${n}`);
-}
-
-function addKerja(){
-  const n=el('kerjaContainer').children.length+1;
-  addBlock('kerjaContainer',`
-    <div class="grid-2" style="margin-bottom:10px">
-      <div class="form-group"><label>Dari</label><input type="month" class="kDari"></div>
-      <div class="form-group"><label>Sampai</label><input type="month" class="kSampai"></div>
-    </div>
-    <div class="grid-2" style="margin-bottom:10px">
-      <div class="form-group"><label>Nama Perusahaan</label><input type="text" class="kPerusahaan" placeholder="PT. Maju Bersama"></div>
-      <div class="form-group"><label>Bidang Kerja</label><input type="text" class="kBidang" placeholder="Manufaktur, IT..."></div>
-    </div>
-    <div class="grid-2">
-      <div class="form-group"><label>Jabatan</label><input type="text" class="kJabatan" placeholder="Staff Produksi"></div>
-      <div class="form-group"><label>Lama Kerja</label><input type="text" class="kLama" placeholder="2 tahun 3 bulan"></div>
-    </div>`,`Pengalaman Kerja #${n}`);
-}
-
-function addKeluarga(hubungan='',nama='',umur='',pekerjaan='',gaji=''){
-  const n=el('keluargaContainer').children.length+1;
-  addBlock('keluargaContainer',`
-    <div class="grid-2" style="margin-bottom:10px">
-      <div class="form-group"><label>Hubungan</label>
-        <select class="kHub">
-          <option value="">Pilih</option>
-          <option ${hubungan=='Ayah'?'selected':''}>Ayah</option>
-          <option ${hubungan=='Ibu'?'selected':''}>Ibu</option>
-          <option>Suami</option><option>Istri</option><option>Kakak</option><option>Adik</option><option>Anak</option><option>Lainnya</option>
-        </select>
-      </div>
-      <div class="form-group"><label>Nama Lengkap</label><input type="text" class="kNama" value="${nama}" placeholder="Nama anggota keluarga"></div>
-    </div>
-    <div class="grid-3">
-      <div class="form-group"><label>Umur</label><input type="number" class="kUmur" value="${umur}" placeholder="45"></div>
-      <div class="form-group"><label>Pekerjaan</label><input type="text" class="kPekerjaan" value="${pekerjaan}" placeholder="Wiraswasta"></div>
-      <div class="form-group"><label>Penghasilan (Rp)</label><input type="text" class="kGaji" value="${gaji}" placeholder="5.000.000"></div>
-    </div>`,`Anggota Keluarga #${n}`);
-}
-
-let fotoDataURL=null;
-el('fotoInput').addEventListener('change',function(){
-  const file=this.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=e=>{fotoDataURL=e.target.result;el('fotoPreview').innerHTML=`<img src="${fotoDataURL}" alt="Preview">`};
-  reader.readAsDataURL(file);
-});
-
-function collectData(){
-  const pendidikan=[],kerja=[],keluarga=[];
-  el('pendidikanContainer').querySelectorAll('.entry-block').forEach(b=>{
-    pendidikan.push({dari:b.querySelector('.pDari')?.value,sampai:b.querySelector('.pSampai')?.value,nama:b.querySelector('.pNama')?.value,jenjang:b.querySelector('.pJenjang')?.value,jurusan:b.querySelector('.pJurusan')?.value});
-  });
-  el('kerjaContainer').querySelectorAll('.entry-block').forEach(b=>{
-    kerja.push({dari:b.querySelector('.kDari')?.value,sampai:b.querySelector('.kSampai')?.value,perusahaan:b.querySelector('.kPerusahaan')?.value,bidang:b.querySelector('.kBidang')?.value,jabatan:b.querySelector('.kJabatan')?.value,lama:b.querySelector('.kLama')?.value});
-  });
-  el('keluargaContainer').querySelectorAll('.entry-block').forEach(b=>{
-    keluarga.push({hubungan:b.querySelector('.kHub')?.value,nama:b.querySelector('.kNama')?.value,umur:b.querySelector('.kUmur')?.value,pekerjaan:b.querySelector('.kPekerjaan')?.value,gaji:b.querySelector('.kGaji')?.value});
-  });
-  return{
-    program:document.querySelector('input[name="program"]:checked')?.value||'',
-    namaRomaji:el('namaRomaji').value,jenisKelamin:el('jenisKelamin').value,
-    statusMenikah:el('statusMenikah').value,golDarah:el('golDarah').value,
-    kewarganegaraan:el('kewarganegaraan').value,tanggalLahir:el('tanggalLahir').value,
-    agama:el('agama').value,tinggiBadan:el('tinggiBadan').value,beratBadan:el('beratBadan').value,
-    matKiri:el('matKiri').value,matKanan:el('matKanan').value,
-    kemampuanJepang:el('kemampuanJepang').value,tempatLahir:el('tempatLahir').value,
-    alamatLengkap:el('alamatLengkap').value,hobi:el('hobi').value,
-    targetGaji:el('targetGaji').value,catatan:el('catatan').value,selfPR:el('selfPR').value,
-    pendidikan,kerja,keluarga
-  };
-}
-
-function generatePDF(){
-  const d=collectData();
-  const{jsPDF}=window.jspdf;
-  const doc=new jsPDF({unit:'mm',format:'a4'});
-  const W=210,M=15,lineW=W-M*2;let y=0;
-  const NAVY=[26,58,92],DARK=[26,26,26],GRAY=[100,100,100],LGRAY=[220,220,220],SURF=[250,250,250];
-
-  function newPage(){doc.addPage();y=18}
-  function checkY(n=10){if(y+n>275)newPage()}
-  function ln(x1,y1,x2,y2,c=LGRAY,lw=0.3){doc.setDrawColor(...c);doc.setLineWidth(lw);doc.line(x1,y1,x2,y2)}
-  function secHead(t){
-    checkY(14);doc.setFillColor(...NAVY);doc.rect(M,y,lineW,8,'F');
-    doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(255,255,255);
-    doc.text(t.toUpperCase(),M+4,y+5.5);y+=11;doc.setTextColor(...DARK);
-  }
-  function row(label,value){
-    checkY(8);doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(...GRAY);
-    doc.text(label,M+2,y+4);doc.setTextColor(...DARK);doc.setFont('helvetica','bold');
-    const valX=M+lineW*0.38;const lines=doc.splitTextToSize(value||'—',lineW-(valX-M)-4);
-    doc.text(lines,valX,y+4);ln(M,y,M+lineW,y,LGRAY,.2);y+=lines.length>1?5.5*lines.length:7;
-  }
-  function twoRows(pairs){
-    const hw=lineW/2;
-    doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(...GRAY);
-    doc.text(pairs[0][0],M+2,y+4);doc.text(pairs[1][0],M+hw+4,y+4);
-    doc.setTextColor(...DARK);doc.setFont('helvetica','bold');
-    doc.text(pairs[0][1]||'—',M+hw*0.42,y+4);doc.text(pairs[1][1]||'—',M+hw+hw*0.42,y+4);
-    ln(M,y,M+hw,y,LGRAY,.2);ln(M+hw,y,M+lineW,y,LGRAY,.2);y+=7;
-  }
-  function wrappedRow(label,value){
-    if(!value)return;checkY(12);
-    doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(...GRAY);
-    doc.text(label,M+2,y+5);y+=7;
-    doc.setTextColor(...DARK);
-    const lines=doc.splitTextToSize(value,lineW-4);
-    lines.forEach(l=>{checkY(6);doc.text(l,M+2,y+4);y+=5.5});y+=2;
-  }
-
-  // HEADER
-  doc.setFillColor(...NAVY);doc.rect(0,0,W,40,'F');
-  doc.setFont('helvetica','bold');doc.setFontSize(18);doc.setTextColor(255,255,255);
-  doc.text('FORMULIR PENDAFTARAN',M,17);
-  doc.setFontSize(11);doc.setFont('helvetica','normal');doc.setTextColor(200,220,240);
-  doc.text('Prime Tekipaki Raya  |  日本就労支援機関',M,25);
-  doc.setFontSize(8.5);doc.text('Form Pendaftaran Kerja Jepang',M,32);
-  doc.setTextColor(255,255,255);doc.setFontSize(8);
-  const today=new Date().toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'});
-  doc.text('Tanggal: '+today,W-M,32,{align:'right'});
-
-  const pX=W-M-30,pY=4,pW=25,pH=32;
-  if(fotoDataURL){
-    try{const fmt=fotoDataURL.substring(11,fotoDataURL.indexOf(';')).toUpperCase();doc.addImage(fotoDataURL,fmt,pX,pY,pW,pH);doc.setDrawColor(255,255,255);doc.setLineWidth(.8);doc.rect(pX,pY,pW,pH)}catch(e){}
-  }else{
-    doc.setFillColor(10,30,60);doc.rect(pX,pY,pW,pH,'F');
-    doc.setTextColor(255,255,255);doc.setFontSize(7);doc.text('Pas Foto',pX+pW/2,pY+pH/2,{align:'center'});
-  }
-
-  y=48;
-  secHead('Data Pribadi');
-  row('Program',d.program);row('Nama Lengkap',d.namaRomaji);
-  twoRows([['Jenis Kelamin',d.jenisKelamin],['Status Menikah',d.statusMenikah]]);
-  twoRows([['Golongan Darah',d.golDarah],['Kewarganegaraan',d.kewarganegaraan]]);
-  twoRows([['Tanggal Lahir',d.tanggalLahir],['Agama',d.agama]]);
-  twoRows([['Tinggi Badan',d.tinggiBadan?d.tinggiBadan+' cm':''],['Berat Badan',d.beratBadan?d.beratBadan+' kg':'']]);
-  twoRows([['Penglihatan Kiri',d.matKiri],['Penglihatan Kanan',d.matKanan]]);
-  row('Kemampuan Bahasa Jepang',d.kemampuanJepang);
-
-  y+=3;secHead('Alamat');
-  row('Tempat Lahir',d.tempatLahir);row('Alamat Lengkap',d.alamatLengkap);
-
-  if(d.pendidikan.length>0){
-    y+=3;secHead('Riwayat Pendidikan');
-    doc.setFillColor(...SURF);doc.rect(M,y,lineW,7,'F');
-    ln(M,y,M+lineW,y,LGRAY,.3);
-    doc.setFont('helvetica','bold');doc.setFontSize(7.5);doc.setTextColor(...GRAY);
-    const pCols=[M+2,M+32,M+82,M+120];
-    ['Periode','Jenjang','Nama Sekolah','Jurusan'].forEach((h,i)=>doc.text(h,pCols[i],y+4.5));
-    y+=7;
-    d.pendidikan.forEach(p=>{
-      checkY(8);ln(M,y,M+lineW,y,LGRAY,.15);
-      doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(...DARK);
-      const per=[p.dari,p.sampai].filter(Boolean).join(' – ')||'—';
-      const nm=doc.splitTextToSize(p.nama||'—',48);
-      doc.text(per,pCols[0],y+5);doc.text(p.jenjang||'—',pCols[1],y+5);
-      doc.text(nm,pCols[2],y+5);doc.text(p.jurusan||'—',pCols[3],y+5);
-      y+=Math.max(7,nm.length*5.5);
-    });
-    ln(M,y,M+lineW,y,LGRAY,.3);
-  }
-
-  if(d.kerja.length>0){
-    y+=6;secHead('Pengalaman Kerja');
-    d.kerja.forEach((k,i)=>{
-      checkY(28);const bH=22;
-      doc.setFillColor(...SURF);doc.rect(M,y,lineW,bH,'F');
-      ln(M,y,M,y+bH,NAVY,1.5);ln(M,y,M+lineW,y,LGRAY,.2);
-      doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.setTextColor(...DARK);
-      doc.text(`${i+1}. ${k.perusahaan||'(Nama Perusahaan)'}`,M+4,y+5);
-      doc.setFont('helvetica','normal');doc.setTextColor(...GRAY);doc.setFontSize(7.5);
-      doc.text([k.dari,k.sampai].filter(Boolean).join(' – ')||'—',M+4,y+10);
-      doc.text(`Bidang: ${k.bidang||'—'}`,M+4,y+14.5);
-      doc.text(`Jabatan: ${k.jabatan||'—'}`,M+80,y+14.5);
-      doc.text(`Lama: ${k.lama||'—'}`,M+4,y+19);
-      y+=bH+3;
-    });
-  }
-
-  if(d.keluarga.length>0){
-    y+=3;secHead('Data Keluarga');
-    doc.setFillColor(...SURF);doc.rect(M,y,lineW,7,'F');
-    ln(M,y,M+lineW,y,LGRAY,.3);
-    doc.setFont('helvetica','bold');doc.setFontSize(7.5);doc.setTextColor(...GRAY);
-    const kCols=[M+2,M+28,M+90,M+120,M+155];
-    ['Hubungan','Nama','Umur','Pekerjaan','Penghasilan'].forEach((h,i)=>doc.text(h,kCols[i],y+4.5));
-    y+=7;
-    d.keluarga.forEach(k=>{
-      checkY(8);ln(M,y,M+lineW,y,LGRAY,.15);
-      doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(...DARK);
-      const nm=doc.splitTextToSize(k.nama||'—',58);
-      doc.text(k.hubungan||'—',kCols[0],y+5);doc.text(nm,kCols[1],y+5);
-      doc.text(k.umur?k.umur+' th':'—',kCols[2],y+5);
-      doc.text(k.pekerjaan||'—',kCols[3],y+5);
-      doc.text(k.gaji?'Rp '+k.gaji:'—',kCols[4],y+5);
-      y+=Math.max(7,nm.length*5.5);
-    });
-    ln(M,y,M+lineW,y,LGRAY,.3);
-  }
-
-  y+=6;secHead('Informasi Tambahan');
-  twoRows([['Hobi',d.hobi],['Target Gaji',d.targetGaji?'¥ '+d.targetGaji+' / bulan':'']]);
-  wrappedRow('Catatan',d.catatan);
-
-  if(d.selfPR){
-    y+=3;secHead('Self PR');
-    doc.setFillColor(240,245,252);
-    const prLines=doc.splitTextToSize(d.selfPR,lineW-8);
-    const prH=prLines.length*5+8;checkY(prH);
-    doc.rect(M,y,lineW,prH,'F');ln(M,y,M,y+prH,NAVY,2);
-    doc.setFont('helvetica','italic');doc.setFontSize(8.5);doc.setTextColor(...DARK);
-    prLines.forEach((l,i)=>doc.text(l,M+6,y+6+i*5));
-    y+=prH+4;
-  }
-
-  checkY(30);y+=8;
-  ln(M,y,M+lineW,y,LGRAY,.3);y+=6;
-  doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(...GRAY);
-  doc.text('Dengan ini saya menyatakan bahwa data yang tercantum di atas adalah benar dan dapat dipertanggungjawabkan.',M,y);
-  y+=16;doc.text('Jakarta, '+today,W-M-35,y);
-  y+=20;doc.text('(                                    )',W-M-47,y);
-  y+=5;doc.text(d.namaRomaji||'Nama Peserta',W-M-37,y,{align:'center'});
-
-  const pc=doc.getNumberOfPages();
-  for(let i=1;i<=pc;i++){
-    doc.setPage(i);doc.setFillColor(...NAVY);doc.rect(0,290,W,7,'F');
-    doc.setFont('helvetica','normal');doc.setFontSize(7);doc.setTextColor(255,255,255);
-    doc.text('Prime Tekipaki Raya  |  Formulir Pendaftaran Jepang',M,294.5);
-    doc.text(`Halaman ${i} dari ${pc}`,W-M,294.5,{align:'right'});
-  }
-
-  const safeName=(d.namaRomaji||'peserta').replace(/\s+/g,'_').toLowerCase();
-  doc.save(`pendaftaran_${safeName}.pdf`);
-  const t=el('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);
-}
-
-// ===== INIT =====
-document.addEventListener('DOMContentLoaded',()=>{
-  addPendidikan();
-  addKeluarga('Ayah');
-  addKeluarga('Ibu');
-
-  document.querySelectorAll('input[name="program"]').forEach(r=>{
-    r.addEventListener('change',()=>{
-      document.querySelectorAll('.prog-label').forEach(l=>{l.style.borderColor='var(--border)';l.style.background=''});
-      r.closest('.prog-label').style.borderColor='var(--navy)';
-      r.closest('.prog-label').style.background='var(--navy-light)';
-    });
-  });
-
-  el('tambahPendidikan').onclick=addPendidikan;
-  el('tambahKerja').onclick=addKerja;
-  el('tambahKeluarga').onclick=()=>addKeluarga();
-  el('btnPDF').onclick=generatePDF;
-  el('btnReset').onclick=()=>{
-    if(!confirm('Reset semua data form?'))return;
-    el('mainForm').reset();
-    el('pendidikanContainer').innerHTML='';el('kerjaContainer').innerHTML='';
-    el('keluargaContainer').innerHTML='';el('fotoPreview').innerHTML='';
-    fotoDataURL=null;addPendidikan();addKeluarga('Ayah');addKeluarga('Ibu');
-  };
-});
 </script>
 </body>
 </html>
