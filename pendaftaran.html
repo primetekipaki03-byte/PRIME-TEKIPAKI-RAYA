@@ -406,7 +406,7 @@ textarea{resize:vertical;min-height:80px}
         <div class="card-body">
           <div class="grid-2" style="margin-bottom:16px">
             <div class="form-group"><label>Hobi</label><input type="text" id="hobi" placeholder="Membaca, olahraga, memasak..."></div>
-            <div class="form-group"><label>Target Gaji (¥/bulan)</label><input type="text" id="targetGaji" placeholder="200,000"></div>
+            <div class="form-group"><label>Target Nabung (¥/bulan)</label><input type="text" id="targetGaji" placeholder="200,000"></div>
           </div>
           <div class="form-group" style="margin-bottom:16px">
             <label>Catatan Tambahan</label>
@@ -717,7 +717,7 @@ function generatePDF(){
   }
 
   y+=6;secHead('Informasi Tambahan');
-  twoRows([['Hobi',d.hobi],['Target Gaji',d.targetGaji?'Rp '+d.targetGaji+' / bulan':'']]);
+  twoRows([['Hobi',d.hobi],['Target Nabung',d.targetGaji?'Rp '+d.targetGaji+' / bulan':'']]);
   wrappedRow('Catatan',d.catatan);
 
   if(d.selfPR){
