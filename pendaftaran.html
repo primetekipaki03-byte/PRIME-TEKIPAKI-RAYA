@@ -628,7 +628,7 @@ function generatePDF(){
   doc.setFontSize(8);
   doc.setFont('helvetica','normal');
   doc.setTextColor(180,200,220);
-  doc.text('Tanggal: '+today,M,32);
+  doc.text(today,M,32);
 
   // Garis emas dekoratif
   doc.setDrawColor(201,168,76);
@@ -759,7 +759,7 @@ function generatePDF(){
   doc.setFont('helvetica','normal');
   doc.setFontSize(8.5);
   doc.setTextColor(...DARK);
-  doc.text('Jakarta, ' + today, M, y);
+  doc.text(today, M, y);
 
   // Kanan: label "Hormat Saya"
   const ttdBlockX = W - M - 55; // x mulai blok ttd (lebar 55mm)
