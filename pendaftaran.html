@@ -77,6 +77,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--surface);color:
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
 .grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
+.grid-5{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:12px}
 .form-group{display:flex;flex-direction:column;gap:5px}
 .form-group label{font-size:12px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:.5px}
 .form-group label .req{color:#c0392b}
@@ -84,6 +85,22 @@ input[type=text],input[type=date],input[type=number],input[type=month],select,te
 input:focus,select:focus,textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(26,58,92,.1)}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23777'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;cursor:pointer}
 textarea{resize:vertical;min-height:80px}
+
+/* YES/NO TOGGLE BUTTON GROUP */
+.yn-group{display:flex;gap:8px;margin-top:2px}
+.yn-btn{flex:1;padding:9px 12px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:all .18s;background:#fff;color:var(--ink2);font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px}
+.yn-btn.active-yes{background:#e8f5e9;border-color:#2e7d32;color:#1b5e20}
+.yn-btn.active-no{background:#fce4ec;border-color:#c62828;color:#b71c1c}
+.yn-btn:hover:not(.active-yes):not(.active-no){background:var(--navy-light);border-color:var(--navy);color:var(--navy)}
+
+/* RIWAYAT PENYAKIT DETAIL */
+.penyakit-detail{display:none;margin-top:10px;animation:fadeIn .2s ease}
+.penyakit-detail.show{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
+/* JEPANG DETAIL */
+.jepang-detail{display:none;margin-top:10px;animation:fadeIn .2s ease}
+.jepang-detail.show{display:block}
 
 /* PROGRAM SELECTOR */
 .prog-select{display:flex;gap:12px;margin-top:6px}
@@ -119,6 +136,9 @@ textarea{resize:vertical;min-height:80px}
 .btn-back-link{display:inline-flex;align-items:center;gap:8px;background:none;color:var(--navy);border:1px solid var(--navy);border-radius:8px;padding:13px 22px;font-size:14px;font-weight:500;cursor:pointer;transition:.2s;font-family:inherit;text-decoration:none}
 .btn-back-link:hover{background:var(--navy-light)}
 
+/* DIVIDER */
+.section-divider{height:1px;background:var(--border);margin:20px 0}
+
 /* TOAST */
 #toast{position:fixed;bottom:30px;right:30px;background:#1a7a4f;color:#fff;padding:14px 22px;border-radius:10px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:10px;box-shadow:0 4px 24px rgba(0,0,0,.2);transform:translateY(80px);opacity:0;transition:.35s ease;z-index:9999}
 #toast.show{transform:translateY(0);opacity:1}
@@ -128,10 +148,13 @@ textarea{resize:vertical;min-height:80px}
 .info-box i{color:var(--gold);margin-top:2px;flex-shrink:0}
 .info-box p{font-size:13px;color:var(--ink2);line-height:1.65}
 
+/* KONDISI LABEL */
+.kondisi-label{font-size:11px;font-weight:700;color:var(--ink2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;display:block}
+
 @media(max-width:600px){
   .nav-page-title{display:none}
   .page-header h1{font-size:26px}
-  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .grid-2,.grid-3,.grid-4,.grid-5{grid-template-columns:1fr}
   .prog-select{flex-direction:column}
   .progress-bar{display:none}
   .form-actions{justify-content:stretch}
@@ -272,15 +295,123 @@ textarea{resize:vertical;min-height:80px}
             <div class="form-group"><label>Penglihatan Kiri</label><input type="text" id="matKiri" placeholder="1.0"></div>
             <div class="form-group"><label>Penglihatan Kanan</label><input type="text" id="matKanan" placeholder="1.0"></div>
           </div>
-          <div class="form-group">
+          <div class="form-group" style="margin-bottom:20px">
             <label>Kemampuan Bahasa Jepang</label>
             <select id="kemampuanJepang">
               <option value="">Pilih Level</option><option>N5 (Pemula)</option><option>N4</option><option>N3</option><option>N2</option><option>N1 (Mahir)</option><option>JFT Basic A2</option><option>Belum ada sertifikat</option>
             </select>
           </div>
 
+          <!-- ===== 5 KOLOM TAMBAHAN ===== -->
+          <div class="section-divider"></div>
+          <p style="font-size:12px;font-weight:700;color:var(--navy);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px"><i class="fas fa-clipboard-list" style="margin-right:6px"></i>Kondisi & Riwayat</p>
+
+          <!-- Merokok & Alkohol -->
+          <div class="grid-2" style="margin-bottom:16px">
+            <!-- MEROKOK -->
+            <div class="form-group">
+              <label>Merokok <span class="req">*</span></label>
+              <div class="yn-group">
+                <button type="button" class="yn-btn" id="merokokYa" onclick="setYN('merokok','Ya')">
+                  <i class="fas fa-smoking"></i> Ya
+                </button>
+                <button type="button" class="yn-btn" id="merokokTidak" onclick="setYN('merokok','Tidak')">
+                  <i class="fas fa-ban"></i> Tidak
+                </button>
+              </div>
+              <input type="hidden" id="merokok" value="">
+            </div>
+            <!-- ALKOHOL -->
+            <div class="form-group">
+              <label>Minum Alkohol <span class="req">*</span></label>
+              <div class="yn-group">
+                <button type="button" class="yn-btn" id="alkoholYa" onclick="setYN('alkohol','Ya')">
+                  <i class="fas fa-wine-glass"></i> Ya
+                </button>
+                <button type="button" class="yn-btn" id="alkoholTidak" onclick="setYN('alkohol','Tidak')">
+                  <i class="fas fa-ban"></i> Tidak
+                </button>
+              </div>
+              <input type="hidden" id="alkohol" value="">
+            </div>
+          </div>
+
+          <!-- Tato -->
+          <div class="form-group" style="margin-bottom:16px">
+            <label>Memiliki Tato <span class="req">*</span></label>
+            <div class="yn-group" style="max-width:300px">
+              <button type="button" class="yn-btn" id="tatoYa" onclick="setYN('tato','Ya')">
+                <i class="fas fa-pen-nib"></i> Ya, ada tato
+              </button>
+              <button type="button" class="yn-btn" id="tatoTidak" onclick="setYN('tato','Tidak')">
+                <i class="fas fa-ban"></i> Tidak ada
+              </button>
+            </div>
+            <input type="hidden" id="tato" value="">
+          </div>
+
+          <!-- Riwayat Penyakit -->
+          <div class="form-group" style="margin-bottom:16px">
+            <label>Riwayat Penyakit <span class="req">*</span></label>
+            <div class="yn-group" style="max-width:300px">
+              <button type="button" class="yn-btn" id="penyakitYa" onclick="setYN('penyakit','Ya');toggleDetail('penyakit-detail',true)">
+                <i class="fas fa-notes-medical"></i> Ada
+              </button>
+              <button type="button" class="yn-btn" id="penyakitTidak" onclick="setYN('penyakit','Tidak');toggleDetail('penyakit-detail',false)">
+                <i class="fas fa-check-circle"></i> Tidak Ada
+              </button>
+            </div>
+            <input type="hidden" id="penyakit" value="">
+            <div class="penyakit-detail" id="penyakit-detail">
+              <div class="form-group" style="margin-top:10px">
+                <label>Keterangan Riwayat Penyakit</label>
+                <textarea id="penyakitDetail" rows="2" placeholder="Contoh: Asma, Diabetes, Hipertensi, dll. Tuliskan riwayat penyakit yang pernah atau sedang diderita..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Riwayat ke Jepang -->
+          <div class="form-group">
+            <label>Riwayat Pernah ke Jepang <span class="req">*</span></label>
+            <div class="yn-group" style="max-width:300px">
+              <button type="button" class="yn-btn" id="jepangYa" onclick="setYN('jepang','Ya');toggleDetail('jepang-detail',true)">
+                <i class="fas fa-torii-gate"></i> Pernah
+              </button>
+              <button type="button" class="yn-btn" id="jepangTidak" onclick="setYN('jepang','Tidak');toggleDetail('jepang-detail',false)">
+                <i class="fas fa-times-circle"></i> Belum Pernah
+              </button>
+            </div>
+            <input type="hidden" id="jepang" value="">
+            <div class="jepang-detail" id="jepang-detail">
+              <div class="grid-2" style="margin-top:10px">
+                <div class="form-group">
+                  <label>Tujuan ke Jepang Sebelumnya</label>
+                  <select id="jepangTujuan">
+                    <option value="">Pilih Tujuan</option>
+                    <option>Tokutei Ginou (SSW)</option>
+                    <option>Jisshusei (Technical Intern)</option>
+                    <option>Wisata / Liburan</option>
+                    <option>Studi / Pelajar</option>
+                    <option>Bisnis</option>
+                    <option>Lainnya</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Tahun Keberangkatan</label>
+                  <input type="text" id="jepangTahun" placeholder="Contoh: 2019 - 2022">
+                </div>
+              </div>
+              <div class="form-group" style="margin-top:10px">
+                <label>Keterangan Tambahan Riwayat Jepang</label>
+                <input type="text" id="jepangKet" placeholder="Nama perusahaan / institusi saat di Jepang (opsional)">
+              </div>
+            </div>
+          </div>
+          <!-- ===== END 5 KOLOM TAMBAHAN ===== -->
+
           <!-- SSW TYPE -->
-          <div id="sswSection" style="display:none;margin-top:16px">
+          <div id="sswSection" style="display:none;margin-top:20px">
+            <div class="section-divider"></div>
             <div style="background:var(--navy-light);border:1px solid rgba(26,58,92,.2);border-radius:10px;padding:18px">
               <p style="font-size:12px;font-weight:700;color:var(--navy);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px"><i class="fas fa-id-card" style="margin-right:6px"></i>Jenis SSW (Specified Skilled Worker)</p>
               <div class="grid-2" style="gap:10px">
@@ -288,14 +419,14 @@ textarea{resize:vertical;min-height:80px}
                   <input type="radio" name="sswType" id="ssw1" value="SSW1" style="accent-color:var(--navy);width:15px;height:15px;flex-shrink:0;margin-top:2px">
                   <span>
                     <strong style="display:block;font-size:13px;font-weight:700;color:var(--ink)">SSW 1 – Specified Skilled Worker Type 1</strong>
-                    <span style="font-size:11px;color:var(--ink3);line-height:1.5;display:block;margin-top:2px">特定技能1号 · Kontrak maks. 5 tahun, tidak bisa bawa keluarga. Harus lulus uji keterampilan & bahasa Jepang.</span>
+                    <span style="font-size:11px;color:var(--ink3);line-height:1.5;display:block;margin-top:2px">特定技能1号 · Kontrak maks. 5 tahun, tidak bisa bawa keluarga.</span>
                   </span>
                 </label>
                 <label id="ssw2-lbl" style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;background:#fff;transition:all .2s">
                   <input type="radio" name="sswType" id="ssw2" value="SSW2" style="accent-color:var(--navy);width:15px;height:15px;flex-shrink:0;margin-top:2px">
                   <span>
                     <strong style="display:block;font-size:13px;font-weight:700;color:var(--ink)">SSW 2 – Specified Skilled Worker Type 2</strong>
-                    <span style="font-size:11px;color:var(--ink3);line-height:1.5;display:block;margin-top:2px">特定技能2号 · Kontrak dapat diperbarui tanpa batas, boleh membawa keluarga. Harus sudah melewati SSW1.</span>
+                    <span style="font-size:11px;color:var(--ink3);line-height:1.5;display:block;margin-top:2px">特定技能2号 · Kontrak dapat diperbarui, boleh membawa keluarga.</span>
                   </span>
                 </label>
               </div>
@@ -436,6 +567,30 @@ textarea{resize:vertical;min-height:80px}
 <script>
 function el(id){return document.getElementById(id)}
 
+// ===== YES/NO TOGGLE =====
+function setYN(field, val){
+  el(field).value = val;
+  const yaBtn  = el(field+'Ya');
+  const tidakBtn = el(field+'Tidak');
+  yaBtn.classList.remove('active-yes','active-no');
+  tidakBtn.classList.remove('active-yes','active-no');
+  if(val==='Ya'){
+    yaBtn.classList.add('active-yes');
+  } else {
+    tidakBtn.classList.add('active-no');
+  }
+}
+
+function toggleDetail(detailId, show){
+  const el2 = document.getElementById(detailId);
+  if(!el2) return;
+  if(show){
+    el2.classList.add('show');
+  } else {
+    el2.classList.remove('show');
+  }
+}
+
 function addBlock(containerId,html,label){
   const c=el(containerId);
   const d=document.createElement('div');
@@ -532,6 +687,16 @@ function collectData(){
     kemampuanJepang:el('kemampuanJepang').value,tempatLahir:el('tempatLahir').value,
     alamatLengkap:el('alamatLengkap').value,hobi:el('hobi').value,
     targetGaji:el('targetGaji').value,catatan:el('catatan').value,selfPR:el('selfPR').value,
+    // 5 KOLOM BARU
+    merokok:el('merokok').value,
+    alkohol:el('alkohol').value,
+    tato:el('tato').value,
+    penyakit:el('penyakit').value,
+    penyakitDetail:el('penyakitDetail').value,
+    jepang:el('jepang').value,
+    jepangTujuan:el('jepangTujuan').value,
+    jepangTahun:el('jepangTahun').value,
+    jepangKet:el('jepangKet').value,
     pendidikan,kerja,keluarga
   };
 }
@@ -574,72 +739,39 @@ function generatePDF(){
     lines.forEach(l=>{checkY(6);doc.text(l,M+2,y+4);y+=5.5});y+=2;
   }
 
-  // ============================================================
-  // FIX 1: HEADER — teks literal, tanpa unicode escape
-  // FIX 2: FOTO PAS — diletakkan di kanan atas TERPISAH dari teks
-  //         Header teks dibatasi agar tidak overlap dengan foto
-  // ============================================================
-
-  // Header tinggi 52mm — cukup untuk foto 3x4 + margin
+  // HEADER
   const HEADER_H = 52;
   doc.setFillColor(...NAVY);
   doc.rect(0, 0, W, HEADER_H, 'F');
 
-  // --- Foto pas: pojok kanan, mulai y=10, ukuran 25x34mm ---
-  // Foto berakhir di y = 10+34 = 44, masih dalam header 52mm
   const pW=25, pH=34, pX=W-M-pW, pY=9;
-
   if(fotoDataURL){
     try{
       const fmt=fotoDataURL.substring(11,fotoDataURL.indexOf(';')).toUpperCase();
       doc.addImage(fotoDataURL,fmt,pX,pY,pW,pH);
-      doc.setDrawColor(201,168,76);
-      doc.setLineWidth(0.8);
-      doc.rect(pX,pY,pW,pH);
+      doc.setDrawColor(201,168,76);doc.setLineWidth(0.8);doc.rect(pX,pY,pW,pH);
     }catch(e){}
   }else{
-    doc.setFillColor(10,30,60);
-    doc.rect(pX,pY,pW,pH,'F');
-    doc.setDrawColor(201,168,76);
-    doc.setLineWidth(0.6);
-    doc.rect(pX,pY,pW,pH);
-    doc.setTextColor(180,200,220);
-    doc.setFont('helvetica','normal');
-    doc.setFontSize(7);
+    doc.setFillColor(10,30,60);doc.rect(pX,pY,pW,pH,'F');
+    doc.setDrawColor(201,168,76);doc.setLineWidth(0.6);doc.rect(pX,pY,pW,pH);
+    doc.setTextColor(180,200,220);doc.setFont('helvetica','normal');doc.setFontSize(7);
     doc.text('PAS FOTO',pX+pW/2,pY+pH/2-3,{align:'center'});
     doc.text('3x4',pX+pW/2,pY+pH/2+3,{align:'center'});
   }
 
-  // --- Teks header (kiri saja, dibatasi agar tidak masuk area foto) ---
-  // Batas kanan teks = pX - 5mm gap
   const txtMaxX = pX - 5;
-
-  doc.setFont('helvetica','bold');
-  doc.setFontSize(16);
-  doc.setTextColor(255,255,255);
+  doc.setFont('helvetica','bold');doc.setFontSize(16);doc.setTextColor(255,255,255);
   doc.text('FORMULIR PENDAFTARAN',M,16);
-
-  doc.setFontSize(9);
-  doc.setTextColor(160,190,220);
+  doc.setFontSize(9);doc.setTextColor(160,190,220);
   doc.text('Form Pendaftaran Kerja Jepang',M,24);
-
-  // Tanggal — di bawah subtitle, jauh dari foto (foto mulai y=9, teks tanggal y=32)
   const today=new Date().toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'});
-  doc.setFontSize(8);
-  doc.setFont('helvetica','normal');
-  doc.setTextColor(180,200,220);
+  doc.setFontSize(8);doc.setFont('helvetica','normal');doc.setTextColor(180,200,220);
   doc.text(today,M,32);
-
-  // Garis emas dekoratif
-  doc.setDrawColor(201,168,76);
-  doc.setLineWidth(1.2);
+  doc.setDrawColor(201,168,76);doc.setLineWidth(1.2);
   doc.line(M,HEADER_H-4,txtMaxX,HEADER_H-4);
-
   y = HEADER_H + 6;
 
-  // ============================================================
   // DATA PRIBADI
-  // ============================================================
   secHead('Data Pribadi');
   row('Program',d.program);
   if(d.program==='Tokutei Ginou'&&d.sswType){
@@ -653,6 +785,21 @@ function generatePDF(){
   twoRows([['Tinggi Badan',d.tinggiBadan?d.tinggiBadan+' cm':''],['Berat Badan',d.beratBadan?d.beratBadan+' kg':'']]);
   twoRows([['Penglihatan Kiri',d.matKiri],['Penglihatan Kanan',d.matKanan]]);
   row('Kemampuan Bahasa Jepang',d.kemampuanJepang);
+
+  // ===== 5 KOLOM BARU DI PDF =====
+  y+=3;secHead('Kondisi & Riwayat');
+  twoRows([['Merokok',d.merokok||'—'],['Minum Alkohol',d.alkohol||'—']]);
+  row('Memiliki Tato',d.tato||'—');
+  row('Riwayat Penyakit',d.penyakit||'—');
+  if(d.penyakit==='Ya'&&d.penyakitDetail){
+    wrappedRow('Keterangan Penyakit',d.penyakitDetail);
+  }
+  row('Pernah ke Jepang',d.jepang||'—');
+  if(d.jepang==='Ya'){
+    twoRows([['Tujuan ke Jepang',d.jepangTujuan||'—'],['Tahun di Jepang',d.jepangTahun||'—']]);
+    if(d.jepangKet) row('Keterangan Jepang',d.jepangKet);
+  }
+  // ===== END 5 KOLOM BARU =====
 
   y+=3;secHead('Alamat');
   row('Tempat Lahir',d.tempatLahir);
@@ -731,74 +878,33 @@ function generatePDF(){
     y+=prH+4;
   }
 
-  // ============================================================
-  // FIX 3: TANDA TANGAN — layout rapi dengan posisi terstruktur
-  // ============================================================
-  // Butuh minimal 45mm untuk blok tanda tangan
-  checkY(45);
-  y += 6;
-
-  // Garis tipis pembatas sebelum bagian pernyataan
-  doc.setDrawColor(...LGRAY);
-  doc.setLineWidth(0.3);
-  doc.line(M, y, M+lineW, y);
-  y += 6;
-
-  // Teks pernyataan
-  doc.setFont('helvetica','normal');
-  doc.setFontSize(8);
-  doc.setTextColor(...GRAY);
+  // TANDA TANGAN
+  checkY(45);y += 6;
+  doc.setDrawColor(...LGRAY);doc.setLineWidth(0.3);doc.line(M, y, M+lineW, y);y += 6;
+  doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(...GRAY);
   const statement = 'Dengan ini saya menyatakan bahwa data yang tercantum di atas adalah benar dan dapat dipertanggungjawabkan.';
   const stLines = doc.splitTextToSize(statement, lineW);
   stLines.forEach(l => { doc.text(l, M, y); y += 5; });
-
   y += 6;
-
-  // Blok tanda tangan: kota + tanggal di kiri, ttd di kanan
-  // Kiri: kota dan tanggal
-  doc.setFont('helvetica','normal');
-  doc.setFontSize(8.5);
-  doc.setTextColor(...DARK);
+  doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(...DARK);
   doc.text(today, M, y);
-
-  // Kanan: label "Hormat Saya"
-  const ttdBlockX = W - M - 55; // x mulai blok ttd (lebar 55mm)
+  const ttdBlockX = W - M - 55;
   doc.text('Hormat Saya,', ttdBlockX, y);
-
-  y += 28; // ruang tanda tangan (28mm kosong untuk TTD)
-
-  // Garis tanda tangan di kanan
-  doc.setDrawColor(...DARK);
-  doc.setLineWidth(0.5);
-  doc.line(ttdBlockX, y, ttdBlockX + 50, y);
-
+  y += 28;
+  doc.setDrawColor(...DARK);doc.setLineWidth(0.5);doc.line(ttdBlockX, y, ttdBlockX + 50, y);
   y += 5;
-
-  // Nama peserta di bawah garis
-  doc.setFont('helvetica','bold');
-  doc.setFontSize(8.5);
-  doc.setTextColor(...DARK);
-  const namaForTtd = d.namaRomaji || 'Nama Peserta';
-  // Tengahkan nama di dalam blok 50mm
-  doc.text(namaForTtd, ttdBlockX + 25, y, {align:'center'});
-
+  doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.setTextColor(...DARK);
+  doc.text(d.namaRomaji || 'Nama Peserta', ttdBlockX + 25, y, {align:'center'});
   y += 4;
-  doc.setFont('helvetica','normal');
-  doc.setFontSize(7.5);
-  doc.setTextColor(...GRAY);
+  doc.setFont('helvetica','normal');doc.setFontSize(7.5);doc.setTextColor(...GRAY);
   doc.text('(Tanda Tangan)', ttdBlockX + 25, y, {align:'center'});
 
-  // ============================================================
-  // FOOTER setiap halaman
-  // ============================================================
+  // FOOTER
   const pc=doc.getNumberOfPages();
   for(let i=1;i<=pc;i++){
     doc.setPage(i);
-    doc.setFillColor(...NAVY);
-    doc.rect(0,290,W,7,'F');
-    doc.setFont('helvetica','normal');
-    doc.setFontSize(7);
-    doc.setTextColor(255,255,255);
+    doc.setFillColor(...NAVY);doc.rect(0,290,W,7,'F');
+    doc.setFont('helvetica','normal');doc.setFontSize(7);doc.setTextColor(255,255,255);
     doc.text('Prime Tekipaki Raya  |  Formulir Pendaftaran Jepang',M,294.5);
     doc.text(`Halaman ${i} dari ${pc}`,W-M,294.5,{align:'right'});
   }
@@ -843,6 +949,14 @@ document.addEventListener('DOMContentLoaded',()=>{
     el('pendidikanContainer').innerHTML='';el('kerjaContainer').innerHTML='';
     el('keluargaContainer').innerHTML='';el('fotoPreview').innerHTML='';
     fotoDataURL=null;
+    // Reset YN buttons
+    ['merokok','alkohol','tato','penyakit','jepang'].forEach(f=>{
+      el(f).value='';
+      el(f+'Ya').classList.remove('active-yes','active-no');
+      el(f+'Tidak').classList.remove('active-yes','active-no');
+    });
+    document.getElementById('penyakit-detail').classList.remove('show');
+    document.getElementById('jepang-detail').classList.remove('show');
     el('sswSection').style.display='none';
     document.querySelectorAll('.prog-label').forEach(l=>{l.style.borderColor='var(--border)';l.style.background=''});
     document.querySelectorAll('[id^="ssw"][id$="-lbl"]').forEach(l=>{l.style.borderColor='var(--border)';l.style.background='#fff'});
