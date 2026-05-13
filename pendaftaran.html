@@ -1,968 +1,250 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formulir Pendaftaran – Prime Tekipaki Raya</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
-
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-
-:root{
-  --navy:#1a3a5c;
-  --navy2:#0f2440;
-  --navy3:#0a1a30;
-  --navy-light:#e8eef5;
-  --navy-mid:#2e5480;
-  --gold:#c9a84c;
-  --ink:#1a1a1a;
-  --ink2:#444;
-  --ink3:#777;
-  --border:#ddd;
-  --surface:#f8f9fb;
-  --radius:8px;
-}
-
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--surface);color:var(--ink);font-size:15px;line-height:1.65;overflow-x:hidden}
-
-/* ===== NAVBAR ===== */
-.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,26,48,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:64px}
-.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.nav-logo-icon{width:40px;height:40px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy3);font-size:17px;font-weight:700}
-.nav-logo-text{line-height:1.2}
-.nav-logo-text strong{display:block;font-size:15px;font-weight:700;color:#fff;letter-spacing:.3px}
-.nav-logo-text span{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:1.5px}
-.nav-back{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);text-decoration:none;font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:6px;transition:all .2s;border:1px solid rgba(255,255,255,.15)}
-.nav-back:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3)}
-.nav-page-title{color:var(--gold);font-size:13px;font-weight:600;letter-spacing:.5px}
-
-/* ===== PAGE HEADER ===== */
-.page-header{background:linear-gradient(135deg,var(--navy3) 0%,var(--navy) 60%,var(--navy-mid) 100%);padding:100px 0 56px;position:relative;overflow:hidden}
-.page-header::before{content:'';position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(255,255,255,1) 40px,rgba(255,255,255,1) 41px),repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(255,255,255,1) 40px,rgba(255,255,255,1) 41px)}
-.page-header-inner{max-width:860px;margin:0 auto;padding:0 28px;position:relative;z-index:1;text-align:center}
-.page-header-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);border-radius:999px;padding:6px 16px;font-size:12px;color:var(--gold);font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-bottom:20px}
-.page-header h1{font-family:'Noto Serif JP',serif;font-size:38px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:14px}
-.page-header h1 em{font-style:normal;color:var(--gold)}
-.page-header p{color:rgba(255,255,255,.65);font-size:15px;line-height:1.8;max-width:560px;margin:0 auto}
-
-/* ===== FORM CONTAINER ===== */
-.form-page{padding:48px 0 80px}
-.form-wrap{max-width:820px;margin:0 auto;padding:0 28px}
-
-/* ===== PROGRESS INDICATOR ===== */
-.progress-bar{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px 28px;margin-bottom:28px;display:flex;align-items:center;gap:0}
-.prog-step{display:flex;align-items:center;gap:8px;flex:1}
-.prog-step:last-child{flex:0}
-.prog-dot{width:28px;height:28px;border-radius:50%;background:var(--navy-light);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--ink3);flex-shrink:0;transition:.2s}
-.prog-dot.done{background:var(--navy);border-color:var(--navy);color:#fff}
-.prog-label{font-size:11px;color:var(--ink3);font-weight:500;white-space:nowrap}
-.prog-line{flex:1;height:2px;background:var(--border);margin:0 6px}
-.prog-line.done{background:var(--navy)}
-
-/* ===== CARDS ===== */
-.card{background:#fff;border-radius:12px;border:1px solid var(--border);margin-bottom:20px;overflow:hidden;transition:box-shadow .2s}
-.card:hover{box-shadow:0 4px 20px rgba(26,58,92,.07)}
-.card-head{display:flex;align-items:center;gap:12px;padding:16px 24px;background:var(--surface);border-bottom:1px solid var(--border)}
-.card-head .icon{width:34px;height:34px;background:var(--navy-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:14px;flex-shrink:0}
-.card-head h3{font-size:14px;font-weight:600;color:var(--ink)}
-.card-head .badge{margin-left:auto;background:var(--navy-light);color:var(--navy);font-size:10px;font-weight:700;letter-spacing:.8px;padding:3px 9px;border-radius:999px;text-transform:uppercase}
-.card-body{padding:24px}
-
-/* ===== FORM ELEMENTS ===== */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
-.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
-.grid-5{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:12px}
-.form-group{display:flex;flex-direction:column;gap:5px}
-.form-group label{font-size:12px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:.5px}
-.form-group label .req{color:#c0392b}
-input[type=text],input[type=date],input[type=number],input[type=month],select,textarea{width:100%;padding:10px 13px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:14px;color:var(--ink);background:#fff;transition:border-color .2s,box-shadow .2s;outline:none;appearance:none}
-input:focus,select:focus,textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(26,58,92,.1)}
-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23777'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;cursor:pointer}
-textarea{resize:vertical;min-height:80px}
-
-/* YES/NO TOGGLE BUTTON GROUP */
-.yn-group{display:flex;gap:8px;margin-top:2px}
-.yn-btn{flex:1;padding:9px 12px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:all .18s;background:#fff;color:var(--ink2);font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px}
-.yn-btn.active-yes{background:#e8f5e9;border-color:#2e7d32;color:#1b5e20}
-.yn-btn.active-no{background:#fce4ec;border-color:#c62828;color:#b71c1c}
-.yn-btn:hover:not(.active-yes):not(.active-no){background:var(--navy-light);border-color:var(--navy);color:var(--navy)}
-
-/* RIWAYAT PENYAKIT DETAIL */
-.penyakit-detail{display:none;margin-top:10px;animation:fadeIn .2s ease}
-.penyakit-detail.show{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
-
-/* JEPANG DETAIL */
-.jepang-detail{display:none;margin-top:10px;animation:fadeIn .2s ease}
-.jepang-detail.show{display:block}
-
-/* PROGRAM SELECTOR */
-.prog-select{display:flex;gap:12px;margin-top:6px}
-.prog-label{display:flex;align-items:center;gap:10px;cursor:pointer;padding:12px 18px;border:1.5px solid var(--border);border-radius:8px;flex:1;transition:border-color .2s,background .2s}
-.prog-label:hover{border-color:var(--navy);background:var(--navy-light)}
-.prog-label input[type=radio]{accent-color:var(--navy);width:16px;height:16px;flex-shrink:0}
-.prog-label strong{display:block;font-size:14px;font-weight:600}
-.prog-label .sub{font-size:11px;color:var(--ink3)}
-
-/* ENTRY BLOCKS */
-.entry-block{border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px;position:relative;background:var(--surface)}
-.entry-block .entry-label{font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px}
-.btn-remove{position:absolute;top:12px;right:12px;background:none;border:1px solid #eee;border-radius:50%;width:28px;height:28px;cursor:pointer;color:var(--ink3);font-size:13px;display:flex;align-items:center;justify-content:center;transition:.15s}
-.btn-remove:hover{background:var(--navy-light);color:var(--navy);border-color:var(--navy)}
-.btn-add{display:inline-flex;align-items:center;gap:8px;margin-top:4px;background:none;border:1.5px dashed var(--navy);border-radius:8px;color:var(--navy);padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;font-family:inherit}
-.btn-add:hover{background:var(--navy-light)}
-
-/* FOTO */
-.foto-zone{border:2px dashed var(--border);border-radius:8px;padding:28px;text-align:center;cursor:pointer;transition:.2s;position:relative}
-.foto-zone:hover{border-color:var(--navy);background:var(--navy-light)}
-.foto-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.foto-zone .fz-icon{font-size:32px;color:var(--ink3);margin-bottom:10px}
-.foto-zone p{font-size:13px;color:var(--ink3)}
-.foto-zone p strong{color:var(--navy)}
-#fotoPreview img{max-height:160px;border-radius:8px;margin-top:14px;border:1px solid var(--border)}
-
-/* ACTIONS */
-.form-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:8px;flex-wrap:wrap}
-.btn-submit{display:inline-flex;align-items:center;gap:9px;background:var(--navy);color:#fff;border:none;border-radius:8px;padding:14px 32px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;font-family:inherit}
-.btn-submit:hover{background:var(--navy2);transform:translateY(-1px)}
-.btn-reset{display:inline-flex;align-items:center;gap:8px;background:none;color:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:13px 22px;font-size:14px;font-weight:500;cursor:pointer;transition:.2s;font-family:inherit}
-.btn-reset:hover{background:#f0f0f0}
-.btn-back-link{display:inline-flex;align-items:center;gap:8px;background:none;color:var(--navy);border:1px solid var(--navy);border-radius:8px;padding:13px 22px;font-size:14px;font-weight:500;cursor:pointer;transition:.2s;font-family:inherit;text-decoration:none}
-.btn-back-link:hover{background:var(--navy-light)}
-
-/* DIVIDER */
-.section-divider{height:1px;background:var(--border);margin:20px 0}
-
-/* TOAST */
-#toast{position:fixed;bottom:30px;right:30px;background:#1a7a4f;color:#fff;padding:14px 22px;border-radius:10px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:10px;box-shadow:0 4px 24px rgba(0,0,0,.2);transform:translateY(80px);opacity:0;transition:.35s ease;z-index:9999}
-#toast.show{transform:translateY(0);opacity:1}
-
-/* INFO BOX */
-.info-box{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:14px 18px;margin-bottom:24px;display:flex;align-items:flex-start;gap:12px}
-.info-box i{color:var(--gold);margin-top:2px;flex-shrink:0}
-.info-box p{font-size:13px;color:var(--ink2);line-height:1.65}
-
-/* KONDISI LABEL */
-.kondisi-label{font-size:11px;font-weight:700;color:var(--ink2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;display:block}
-
-@media(max-width:600px){
-  .nav-page-title{display:none}
-  .page-header h1{font-size:26px}
-  .grid-2,.grid-3,.grid-4,.grid-5{grid-template-columns:1fr}
-  .prog-select{flex-direction:column}
-  .progress-bar{display:none}
-  .form-actions{justify-content:stretch}
-  .btn-submit,.btn-reset,.btn-back-link{flex:1;justify-content:center}
-}
-</style>
-</head>
-<body>
-
-<!-- ===== NAVBAR ===== -->
-<nav class="navbar">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <div class="nav-logo-icon">P</div>
-      <div class="nav-logo-text">
-        <strong>Prime Tekipaki Raya</strong>
-        <span>日本就労支援機関</span>
-      </div>
-    </a>
-    <span class="nav-page-title"><i class="fas fa-pen-to-square" style="margin-right:6px"></i>Formulir Pendaftaran</span>
-    <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+<!-- ================= DATA PRIBADI ================= -->
+<div class="card">
+  <div class="card-head">
+    <div class="icon"><i class="fas fa-user"></i></div>
+    <h3>Data Pribadi</h3>
+    <span class="badge">Step 1</span>
   </div>
-</nav>
 
-<!-- ===== PAGE HEADER ===== -->
-<div class="page-header">
-  <div class="page-header-inner">
-    <div class="page-header-badge"><i class="fas fa-pen-to-square"></i> Formulir Pendaftaran Resmi</div>
-    <h1>Isi Data <em>Lengkap Kamu</em></h1>
-    <p>Lengkapi formulir di bawah ini dengan data yang benar dan sesuai dokumen identitas. Data akan diunduh sebagai PDF siap cetak.</p>
-  </div>
-</div>
+  <div class="card-body">
 
-<!-- ===== FORM PAGE ===== -->
-<div class="form-page">
-  <div class="form-wrap">
+    <div class="form-group" style="margin-bottom:16px">
+      <label>Program yang Dipilih <span class="req">*</span></label>
 
-    <!-- PROGRESS -->
-    <div class="progress-bar">
-      <div class="prog-step">
-        <div class="prog-dot done">1</div>
-        <span class="prog-label">Data Pribadi</span>
-      </div>
-      <div class="prog-line done"></div>
-      <div class="prog-step">
-        <div class="prog-dot done">2</div>
-        <span class="prog-label">Alamat</span>
-      </div>
-      <div class="prog-line done"></div>
-      <div class="prog-step">
-        <div class="prog-dot done">3</div>
-        <span class="prog-label">Pendidikan</span>
-      </div>
-      <div class="prog-line done"></div>
-      <div class="prog-step">
-        <div class="prog-dot done">4</div>
-        <span class="prog-label">Keluarga</span>
-      </div>
-      <div class="prog-line done"></div>
-      <div class="prog-step">
-        <div class="prog-dot done">5</div>
-        <span class="prog-label">Generate PDF</span>
+      <div class="prog-select">
+        <label class="prog-label" id="lbl-toku">
+          <input type="radio" name="program" id="prog-toku" value="Tokutei Ginou">
+          <span>
+            <strong>Tokutei Ginou</strong>
+            <span class="sub">特定技能 — Specified Skilled Worker</span>
+          </span>
+        </label>
+
+        <label class="prog-label" id="lbl-jiss">
+          <input type="radio" name="program" id="prog-jiss" value="Jisshusei">
+          <span>
+            <strong>Jisshusei</strong>
+            <span class="sub">技能実習生 — Technical Intern</span>
+          </span>
+        </label>
       </div>
     </div>
 
-    <!-- INFO -->
-    <div class="info-box">
-      <i class="fas fa-circle-info"></i>
-      <p>Pastikan semua data diisi dengan benar sesuai <strong>KTP / ijazah / dokumen resmi</strong>. Data yang tidak benar dapat menyebabkan penolakan berkas. Tanda <span style="color:#c0392b;font-weight:700">*</span> wajib diisi.</p>
+    <div class="form-group" style="margin-bottom:16px">
+      <label>Nama Lengkap <span class="req">*</span></label>
+      <input type="text" id="namaRomaji" placeholder="Nama lengkap sesuai KTP / dokumen resmi">
     </div>
 
-    <form id="mainForm">
-
-      <!-- DATA PRIBADI -->
-      <div class="card">
-        <div class="card-head">
-          <div class="icon"><i class="fas fa-user"></i></div>
-          <h3>Data Pribadi</h3>
-          <span class="badge">Step 1</span>
-        </div>
-        <div class="card-body">
-          <div class="form-group" style="margin-bottom:16px">
-            <label>Program yang Dipilih <span class="req">*</span></label>
-            <div class="prog-select">
-              <label class="prog-label" id="lbl-toku">
-                <input type="radio" name="program" id="prog-toku" value="Tokutei Ginou">
-                <span><strong>Tokutei Ginou</strong><span class="sub">特定技能 — Specified Skilled Worker</span></span>
-              </label>
-              <label class="prog-label" id="lbl-jiss">
-                <input type="radio" name="program" id="prog-jiss" value="Jisshusei">
-                <span><strong>Jisshusei</strong><span class="sub">技能実習生 — Technical Intern</span></span>
-              </label>
-            </div>
-          </div>
-          <div class="form-group" style="margin-bottom:16px">
-            <label>Nama Lengkap <span class="req">*</span></label>
-            <input type="text" id="namaRomaji" placeholder="Nama lengkap sesuai KTP / dokumen resmi">
-          </div>
-          <div class="grid-3" style="margin-bottom:16px">
-            <div class="form-group">
-              <label>Jenis Kelamin <span class="req">*</span></label>
-              <select id="jenisKelamin">
-                <option value="">Pilih</option><option>Laki-laki</option><option>Perempuan</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Status Menikah</label>
-              <select id="statusMenikah">
-                <option value="">Pilih</option><option>Belum Menikah</option><option>Menikah</option><option>Cerai</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Golongan Darah</label>
-              <select id="golDarah">
-                <option value="">Pilih</option><option>A</option><option>B</option><option>O</option><option>AB</option>
-              </select>
-            </div>
-          </div>
-          <div class="grid-3" style="margin-bottom:16px">
-            <div class="form-group">
-              <label>Kewarganegaraan <span class="req">*</span></label>
-              <input type="text" id="kewarganegaraan" value="Indonesia">
-            </div>
-            <div class="form-group">
-              <label>Tanggal Lahir <span class="req">*</span></label>
-              <input type="date" id="tanggalLahir">
-            </div>
-            <div class="form-group">
-              <label>Agama</label>
-              <select id="agama">
-                <option value="">Pilih</option><option>Islam</option><option>Kristen</option><option>Katolik</option><option>Hindu</option><option>Buddha</option><option>Konghucu</option>
-              </select>
-            </div>
-          </div>
-          <div class="grid-4" style="margin-bottom:16px">
-            <div class="form-group"><label>Tinggi (cm)</label><input type="number" id="tinggiBadan" placeholder="170"></div>
-            <div class="form-group"><label>Berat (kg)</label><input type="number" id="beratBadan" placeholder="65"></div>
-            <div class="form-group"><label>Penglihatan Kiri</label><input type="text" id="matKiri" placeholder="1.0"></div>
-            <div class="form-group"><label>Penglihatan Kanan</label><input type="text" id="matKanan" placeholder="1.0"></div>
-          </div>
-          <div class="form-group" style="margin-bottom:20px">
-            <label>Kemampuan Bahasa Jepang</label>
-            <select id="kemampuanJepang">
-              <option value="">Pilih Level</option><option>N5 (Pemula)</option><option>N4</option><option>N3</option><option>N2</option><option>N1 (Mahir)</option><option>JFT Basic A2</option><option>Belum ada sertifikat</option>
-            </select>
-          </div>
-
-          <!-- ===== 5 KOLOM TAMBAHAN ===== -->
-          <div class="section-divider"></div>
-          <p style="font-size:12px;font-weight:700;color:var(--navy);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px"><i class="fas fa-clipboard-list" style="margin-right:6px"></i>Kondisi & Riwayat</p>
-
-          <!-- Merokok & Alkohol -->
-          <div class="grid-2" style="margin-bottom:16px">
-            <!-- MEROKOK -->
-            <div class="form-group">
-              <label>Merokok <span class="req">*</span></label>
-              <div class="yn-group">
-                <button type="button" class="yn-btn" id="merokokYa" onclick="setYN('merokok','Ya')">
-                  <i class="fas fa-smoking"></i> Ya
-                </button>
-                <button type="button" class="yn-btn" id="merokokTidak" onclick="setYN('merokok','Tidak')">
-                  <i class="fas fa-ban"></i> Tidak
-                </button>
-              </div>
-              <input type="hidden" id="merokok" value="">
-            </div>
-            <!-- ALKOHOL -->
-            <div class="form-group">
-              <label>Minum Alkohol <span class="req">*</span></label>
-              <div class="yn-group">
-                <button type="button" class="yn-btn" id="alkoholYa" onclick="setYN('alkohol','Ya')">
-                  <i class="fas fa-wine-glass"></i> Ya
-                </button>
-                <button type="button" class="yn-btn" id="alkoholTidak" onclick="setYN('alkohol','Tidak')">
-                  <i class="fas fa-ban"></i> Tidak
-                </button>
-              </div>
-              <input type="hidden" id="alkohol" value="">
-            </div>
-          </div>
-
-          <!-- Tato -->
-          <div class="form-group" style="margin-bottom:16px">
-            <label>Memiliki Tato <span class="req">*</span></label>
-            <div class="yn-group" style="max-width:300px">
-              <button type="button" class="yn-btn" id="tatoYa" onclick="setYN('tato','Ya')">
-                <i class="fas fa-pen-nib"></i> Ya, ada tato
-              </button>
-              <button type="button" class="yn-btn" id="tatoTidak" onclick="setYN('tato','Tidak')">
-                <i class="fas fa-ban"></i> Tidak ada
-              </button>
-            </div>
-            <input type="hidden" id="tato" value="">
-          </div>
-
-          <!-- Riwayat Penyakit -->
-          <div class="form-group" style="margin-bottom:16px">
-            <label>Riwayat Penyakit <span class="req">*</span></label>
-            <div class="yn-group" style="max-width:300px">
-              <button type="button" class="yn-btn" id="penyakitYa" onclick="setYN('penyakit','Ya');toggleDetail('penyakit-detail',true)">
-                <i class="fas fa-notes-medical"></i> Ada
-              </button>
-              <button type="button" class="yn-btn" id="penyakitTidak" onclick="setYN('penyakit','Tidak');toggleDetail('penyakit-detail',false)">
-                <i class="fas fa-check-circle"></i> Tidak Ada
-              </button>
-            </div>
-            <input type="hidden" id="penyakit" value="">
-            <div class="penyakit-detail" id="penyakit-detail">
-              <div class="form-group" style="margin-top:10px">
-                <label>Keterangan Riwayat Penyakit</label>
-                <textarea id="penyakitDetail" rows="2" placeholder="Contoh: Asma, Diabetes, Hipertensi, dll. Tuliskan riwayat penyakit yang pernah atau sedang diderita..."></textarea>
-              </div>
-            </div>
-          </div>
-
-          <!-- Riwayat ke Jepang -->
-          <div class="form-group">
-            <label>Riwayat Pernah ke Jepang <span class="req">*</span></label>
-            <div class="yn-group" style="max-width:300px">
-              <button type="button" class="yn-btn" id="jepangYa" onclick="setYN('jepang','Ya');toggleDetail('jepang-detail',true)">
-                <i class="fas fa-torii-gate"></i> Pernah
-              </button>
-              <button type="button" class="yn-btn" id="jepangTidak" onclick="setYN('jepang','Tidak');toggleDetail('jepang-detail',false)">
-                <i class="fas fa-times-circle"></i> Belum Pernah
-              </button>
-            </div>
-            <input type="hidden" id="jepang" value="">
-            <div class="jepang-detail" id="jepang-detail">
-              <div class="grid-2" style="margin-top:10px">
-                <div class="form-group">
-                  <label>Tujuan ke Jepang Sebelumnya</label>
-                  <select id="jepangTujuan">
-                    <option value="">Pilih Tujuan</option>
-                    <option>Tokutei Ginou (SSW)</option>
-                    <option>Jisshusei (Technical Intern)</option>
-                    <option>Wisata / Liburan</option>
-                    <option>Studi / Pelajar</option>
-                    <option>Bisnis</option>
-                    <option>Lainnya</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label>Tahun Keberangkatan</label>
-                  <input type="text" id="jepangTahun" placeholder="Contoh: 2019 - 2022">
-                </div>
-              </div>
-              <div class="form-group" style="margin-top:10px">
-                <label>Keterangan Tambahan Riwayat Jepang</label>
-                <input type="text" id="jepangKet" placeholder="Nama perusahaan / institusi saat di Jepang (opsional)">
-              </div>
-            </div>
-          </div>
-          <!-- ===== END 5 KOLOM TAMBAHAN ===== -->
-
-          <!-- SSW TYPE -->
-          <div id="sswSection" style="display:none;margin-top:20px">
-            <div class="section-divider"></div>
-            <div style="background:var(--navy-light);border:1px solid rgba(26,58,92,.2);border-radius:10px;padding:18px">
-              <p style="font-size:12px;font-weight:700;color:var(--navy);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px"><i class="fas fa-id-card" style="margin-right:6px"></i>Jenis SSW (Specified Skilled Worker)</p>
-              <div class="grid-2" style="gap:10px">
-                <label id="ssw1-lbl" style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;background:#fff;transition:all .2s">
-                  <input type="radio" name="sswType" id="ssw1" value="SSW1" style="accent-color:var(--navy);width:15px;height:15px;flex-shrink:0;margin-top:2px">
-                  <span>
-                    <strong style="display:block;font-size:13px;font-weight:700;color:var(--ink)">SSW 1 – Specified Skilled Worker Type 1</strong>
-                    <span style="font-size:11px;color:var(--ink3);line-height:1.5;display:block;margin-top:2px">特定技能1号 · Kontrak maks. 5 tahun, tidak bisa bawa keluarga.</span>
-                  </span>
-                </label>
-                <label id="ssw2-lbl" style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;background:#fff;transition:all .2s">
-                  <input type="radio" name="sswType" id="ssw2" value="SSW2" style="accent-color:var(--navy);width:15px;height:15px;flex-shrink:0;margin-top:2px">
-                  <span>
-                    <strong style="display:block;font-size:13px;font-weight:700;color:var(--ink)">SSW 2 – Specified Skilled Worker Type 2</strong>
-                    <span style="font-size:11px;color:var(--ink3);line-height:1.5;display:block;margin-top:2px">特定技能2号 · Kontrak dapat diperbarui, boleh membawa keluarga.</span>
-                  </span>
-                </label>
-              </div>
-              <div class="form-group" style="margin-top:14px">
-                <label>Bidang / Sektor Kerja SSW <span class="req">*</span></label>
-                <select id="sswBidang">
-                  <option value="">Pilih Sektor</option>
-                  <option>Perawatan (Nursing Care)</option>
-                  <option>Bangunan / Kebersihan (Building Cleaning)</option>
-                  <option>Pengolahan Bahan Industri</option>
-                  <option>Manufaktur Elektronik</option>
-                  <option>Konstruksi (Construction)</option>
-                  <option>Perkapalan / Shipbuilding</option>
-                  <option>Otomotif / Kendaraan (Car Maintenance)</option>
-                  <option>Penerbangan (Aviation)</option>
-                  <option>Akomodasi / Hotel (Accommodation)</option>
-                  <option>Pertanian (Agriculture)</option>
-                  <option>Perikanan / Peternakan Ikan (Fishery)</option>
-                  <option>Pengolahan Makanan & Minuman</option>
-                  <option>Restoran / Food Service</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ALAMAT -->
-      <div class="card">
-        <div class="card-head">
-          <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-          <h3>Alamat & Tempat Lahir</h3>
-          <span class="badge">Step 2</span>
-        </div>
-        <div class="card-body">
-          <div class="form-group" style="margin-bottom:16px">
-            <label>Tempat Lahir <span class="req">*</span></label>
-            <input type="text" id="tempatLahir" placeholder="Kota/Kabupaten tempat lahir">
-          </div>
-          <div class="form-group">
-            <label>Alamat Lengkap <span class="req">*</span></label>
-            <textarea id="alamatLengkap" rows="3" placeholder="Jl. ..., RT/RW, Kelurahan, Kecamatan, Kota, Provinsi, Kode Pos"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <!-- PENDIDIKAN -->
-      <div class="card">
-        <div class="card-head">
-          <div class="icon"><i class="fas fa-graduation-cap"></i></div>
-          <h3>Riwayat Pendidikan</h3>
-          <span class="badge">Step 3</span>
-        </div>
-        <div class="card-body">
-          <div id="pendidikanContainer"></div>
-          <button type="button" class="btn-add" id="tambahPendidikan"><i class="fas fa-plus"></i> Tambah Riwayat Pendidikan</button>
-        </div>
-      </div>
-
-      <!-- KERJA -->
-      <div class="card">
-        <div class="card-head">
-          <div class="icon"><i class="fas fa-briefcase"></i></div>
-          <h3>Pengalaman Kerja</h3>
-        </div>
-        <div class="card-body">
-          <div id="kerjaContainer"></div>
-          <button type="button" class="btn-add" id="tambahKerja"><i class="fas fa-plus"></i> Tambah Pengalaman Kerja</button>
-        </div>
-      </div>
-
-      <!-- KELUARGA -->
-      <div class="card">
-        <div class="card-head">
-          <div class="icon"><i class="fas fa-users"></i></div>
-          <h3>Data Keluarga</h3>
-          <span class="badge">Step 4</span>
-        </div>
-        <div class="card-body">
-          <div id="keluargaContainer"></div>
-          <button type="button" class="btn-add" id="tambahKeluarga"><i class="fas fa-plus"></i> Tambah Anggota Keluarga</button>
-        </div>
-      </div>
-
-      <!-- FOTO -->
-      <div class="card">
-        <div class="card-head">
-          <div class="icon"><i class="fas fa-camera"></i></div>
-          <h3>Foto Pas</h3>
-        </div>
-        <div class="card-body">
-          <div class="foto-zone">
-            <input type="file" id="fotoInput" accept="image/*">
-            <div class="fz-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-            <p><strong>Klik untuk upload foto</strong> atau drag &amp; drop</p>
-            <p style="font-size:12px;margin-top:4px">Format: JPG, PNG — Ukuran pas foto 3×4 atau 4×6 disarankan</p>
-            <div id="fotoPreview"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAMBAHAN -->
-      <div class="card">
-        <div class="card-head">
-          <div class="icon"><i class="fas fa-star"></i></div>
-          <h3>Informasi Tambahan &amp; Self PR</h3>
-        </div>
-        <div class="card-body">
-          <div class="grid-2" style="margin-bottom:16px">
-            <div class="form-group"><label>Hobi</label><input type="text" id="hobi" placeholder="Membaca, olahraga, memasak..."></div>
-            <div class="form-group"><label>Target Nabung</label><input type="text" id="targetGaji" placeholder="200,000"></div>
-          </div>
-          <div class="form-group" style="margin-bottom:16px">
-            <label>Catatan Tambahan</label>
-            <textarea id="catatan" rows="2" placeholder="Informasi lain yang ingin disampaikan..."></textarea>
-          </div>
-          <div class="form-group">
-            <label>Self PR (Deskripsi Diri)</label>
-            <textarea id="selfPR" rows="5" placeholder="Ceritakan tentang diri Anda, kelebihan, pengalaman, dan motivasi bekerja di Jepang..."></textarea>
-          </div>
-        </div>
-      </div>
-
-      <!-- ACTIONS -->
-      <div class="form-actions">
-        <a href="index.html" class="btn-back-link"><i class="fas fa-arrow-left"></i> Kembali</a>
-        <button type="button" class="btn-reset" id="btnReset"><i class="fas fa-undo"></i> Reset Form</button>
-        <button type="button" class="btn-submit" id="btnPDF"><i class="fas fa-file-pdf"></i> Generate &amp; Download PDF</button>
-      </div>
-
-    </form>
-  </div>
-</div>
-
-<!-- TOAST -->
-<div id="toast"><i class="fas fa-check-circle"></i> PDF berhasil diunduh!</div>
-
-<script>
-function el(id){return document.getElementById(id)}
-
-// ===== YES/NO TOGGLE =====
-function setYN(field, val){
-  el(field).value = val;
-  const yaBtn  = el(field+'Ya');
-  const tidakBtn = el(field+'Tidak');
-  yaBtn.classList.remove('active-yes','active-no');
-  tidakBtn.classList.remove('active-yes','active-no');
-  if(val==='Ya'){
-    yaBtn.classList.add('active-yes');
-  } else {
-    tidakBtn.classList.add('active-no');
-  }
-}
-
-function toggleDetail(detailId, show){
-  const el2 = document.getElementById(detailId);
-  if(!el2) return;
-  if(show){
-    el2.classList.add('show');
-  } else {
-    el2.classList.remove('show');
-  }
-}
-
-function addBlock(containerId,html,label){
-  const c=el(containerId);
-  const d=document.createElement('div');
-  d.className='entry-block';
-  d.innerHTML=`<div class="entry-label">${label}</div>`+html+`<button type="button" class="btn-remove" title="Hapus"><i class="fas fa-times"></i></button>`;
-  d.querySelector('.btn-remove').onclick=()=>d.remove();
-  c.appendChild(d);return d;
-}
-
-function addPendidikan(){
-  const n=el('pendidikanContainer').children.length+1;
-  addBlock('pendidikanContainer',`
-    <div class="grid-2" style="margin-bottom:10px">
-      <div class="form-group"><label>Dari (Bulan/Tahun)</label><input type="month" class="pDari"></div>
-      <div class="form-group"><label>Sampai (Bulan/Tahun)</label><input type="month" class="pSampai"></div>
-    </div>
-    <div class="grid-2" style="margin-bottom:10px">
+    <div class="grid-3" style="margin-bottom:16px">
       <div class="form-group">
-        <label>Nama Sekolah / Institusi</label><input type="text" class="pNama" placeholder="SMA Negeri 1 Jakarta">
-      </div>
-      <div class="form-group"><label>Jenjang</label>
-        <select class="pJenjang"><option value="">Pilih</option><option>SD</option><option>SMP</option><option>SMA/SMK</option><option>D3</option><option>S1</option><option>S2</option></select>
-      </div>
-    </div>
-    <div class="form-group"><label>Jurusan / Program Studi</label><input type="text" class="pJurusan" placeholder="Teknik Informatika / IPA / IPS"></div>`,`Pendidikan #${n}`);
-}
-
-function addKerja(){
-  const n=el('kerjaContainer').children.length+1;
-  addBlock('kerjaContainer',`
-    <div class="grid-2" style="margin-bottom:10px">
-      <div class="form-group"><label>Dari</label><input type="month" class="kDari"></div>
-      <div class="form-group"><label>Sampai</label><input type="month" class="kSampai"></div>
-    </div>
-    <div class="grid-2" style="margin-bottom:10px">
-      <div class="form-group"><label>Nama Perusahaan</label><input type="text" class="kPerusahaan" placeholder="PT. Maju Bersama"></div>
-      <div class="form-group"><label>Bidang Kerja</label><input type="text" class="kBidang" placeholder="Manufaktur, Pertanian, IT..."></div>
-    </div>
-    <div class="grid-2">
-      <div class="form-group"><label>Jabatan / Posisi</label><input type="text" class="kJabatan" placeholder="Staff Produksi"></div>
-      <div class="form-group"><label>Lama Bekerja</label><input type="text" class="kLama" placeholder="2 tahun 3 bulan"></div>
-    </div>`,`Pengalaman Kerja #${n}`);
-}
-
-function addKeluarga(hubungan='',nama='',umur='',pekerjaan='',gaji=''){
-  const n=el('keluargaContainer').children.length+1;
-  addBlock('keluargaContainer',`
-    <div class="grid-2" style="margin-bottom:10px">
-      <div class="form-group"><label>Hubungan</label>
-        <select class="kHub">
+        <label>Jenis Kelamin <span class="req">*</span></label>
+        <select id="jenisKelamin">
           <option value="">Pilih</option>
-          <option ${hubungan=='Ayah'?'selected':''}>Ayah</option>
-          <option ${hubungan=='Ibu'?'selected':''}>Ibu</option>
-          <option>Suami</option><option>Istri</option><option>Kakak</option><option>Adik</option><option>Anak</option><option>Lainnya</option>
+          <option>Laki-laki</option>
+          <option>Perempuan</option>
         </select>
       </div>
-      <div class="form-group"><label>Nama Lengkap</label><input type="text" class="kNama" value="${nama}" placeholder="Nama anggota keluarga"></div>
+
+      <div class="form-group">
+        <label>Status Menikah</label>
+        <select id="statusMenikah">
+          <option value="">Pilih</option>
+          <option>Belum Menikah</option>
+          <option>Menikah</option>
+          <option>Cerai</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Golongan Darah</label>
+        <select id="golDarah">
+          <option value="">Pilih</option>
+          <option>A</option>
+          <option>B</option>
+          <option>O</option>
+          <option>AB</option>
+        </select>
+      </div>
     </div>
+
+    <!-- TEMPAT LAHIR SUDAH DIPINDAH KE DATA PRIBADI -->
+    <div class="grid-4" style="margin-bottom:16px">
+
+      <div class="form-group">
+        <label>Kewarganegaraan <span class="req">*</span></label>
+        <input type="text" id="kewarganegaraan" value="Indonesia">
+      </div>
+
+      <div class="form-group">
+        <label>Tempat Lahir <span class="req">*</span></label>
+        <input type="text" id="tempatLahir" placeholder="Kota/Kabupaten tempat lahir">
+      </div>
+
+      <div class="form-group">
+        <label>Tanggal Lahir <span class="req">*</span></label>
+        <input type="date" id="tanggalLahir">
+      </div>
+
+      <div class="form-group">
+        <label>Agama</label>
+        <select id="agama">
+          <option value="">Pilih</option>
+          <option>Islam</option>
+          <option>Kristen</option>
+          <option>Katolik</option>
+          <option>Hindu</option>
+          <option>Buddha</option>
+          <option>Konghucu</option>
+        </select>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= ALAMAT ================= -->
+<div class="card">
+  <div class="card-head">
+    <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+    <h3>Alamat</h3>
+    <span class="badge">Step 2</span>
+  </div>
+
+  <div class="card-body">
+
+    <div class="form-group">
+      <label>Alamat Lengkap <span class="req">*</span></label>
+
+      <textarea id="alamatLengkap" rows="3"
+      placeholder="Jl. ..., RT/RW, Kelurahan, Kecamatan, Kota, Provinsi, Kode Pos"></textarea>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= TARGET NABUNG ================= -->
+<div class="grid-2" style="margin-bottom:16px">
+
+  <div class="form-group">
+    <label>Hobi</label>
+    <input type="text" id="hobi" placeholder="Membaca, olahraga, memasak...">
+  </div>
+
+  <div class="form-group">
+    <label>Target Nabung</label>
+    <input type="text" id="targetGaji" placeholder="5.000.000">
+  </div>
+
+</div>
+
+<script>
+
+// ================= FORMAT RUPIAH =================
+function formatRupiah(input){
+  if(!input) return;
+
+  input.addEventListener('input', function(){
+
+    let value = this.value.replace(/\D/g,'');
+
+    this.value = value.replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+
+  });
+}
+
+// ================= ADD KELUARGA =================
+function addKeluarga(
+  hubungan='',
+  nama='',
+  umur='',
+  pekerjaan='',
+  gaji=''
+){
+
+  const n = el('keluargaContainer').children.length + 1;
+
+  const block = addBlock('keluargaContainer',`
+
+    <div class="grid-2" style="margin-bottom:10px">
+
+      <div class="form-group">
+        <label>Hubungan</label>
+
+        <select class="kHub">
+          <option value="">Pilih</option>
+
+          <option ${hubungan=='Ayah'?'selected':''}>Ayah</option>
+          <option ${hubungan=='Ibu'?'selected':''}>Ibu</option>
+
+          <option>Suami</option>
+          <option>Istri</option>
+          <option>Kakak</option>
+          <option>Adik</option>
+          <option>Anak</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Nama Lengkap</label>
+
+        <input type="text"
+        class="kNama"
+        value="${nama}"
+        placeholder="Nama anggota keluarga">
+      </div>
+
+    </div>
+
     <div class="grid-3">
-      <div class="form-group"><label>Umur</label><input type="number" class="kUmur" value="${umur}" placeholder="45"></div>
-      <div class="form-group"><label>Pekerjaan</label><input type="text" class="kPekerjaan" value="${pekerjaan}" placeholder="Wiraswasta"></div>
-      <div class="form-group"><label>Penghasilan (Rp)</label><input type="text" class="kGaji" value="${gaji}" placeholder="5.000.000"></div>
-    </div>`,`Anggota Keluarga #${n}`);
+
+      <div class="form-group">
+        <label>Umur</label>
+
+        <input type="number"
+        class="kUmur"
+        value="${umur}"
+        placeholder="45">
+      </div>
+
+      <div class="form-group">
+        <label>Pekerjaan</label>
+
+        <input type="text"
+        class="kPekerjaan"
+        value="${pekerjaan}"
+        placeholder="Wiraswasta">
+      </div>
+
+      <div class="form-group">
+        <label>Penghasilan (Rp/Bulan)</label>
+
+        <input type="text"
+        class="kGaji"
+        value="${gaji}"
+        placeholder="5.000.000">
+      </div>
+
+    </div>
+
+  `,`Anggota Keluarga #${n}`);
+
+  // FORMAT RUPIAH OTOMATIS
+  formatRupiah(block.querySelector('.kGaji'));
 }
 
-let fotoDataURL=null;
-el('fotoInput').addEventListener('change',function(){
-  const file=this.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=e=>{fotoDataURL=e.target.result;el('fotoPreview').innerHTML=`<img src="${fotoDataURL}" alt="Preview Foto">`};
-  reader.readAsDataURL(file);
-});
-
-function collectData(){
-  const pendidikan=[],kerja=[],keluarga=[];
-  el('pendidikanContainer').querySelectorAll('.entry-block').forEach(b=>{
-    pendidikan.push({dari:b.querySelector('.pDari')?.value,sampai:b.querySelector('.pSampai')?.value,nama:b.querySelector('.pNama')?.value,jenjang:b.querySelector('.pJenjang')?.value,jurusan:b.querySelector('.pJurusan')?.value});
-  });
-  el('kerjaContainer').querySelectorAll('.entry-block').forEach(b=>{
-    kerja.push({dari:b.querySelector('.kDari')?.value,sampai:b.querySelector('.kSampai')?.value,perusahaan:b.querySelector('.kPerusahaan')?.value,bidang:b.querySelector('.kBidang')?.value,jabatan:b.querySelector('.kJabatan')?.value,lama:b.querySelector('.kLama')?.value});
-  });
-  el('keluargaContainer').querySelectorAll('.entry-block').forEach(b=>{
-    keluarga.push({hubungan:b.querySelector('.kHub')?.value,nama:b.querySelector('.kNama')?.value,umur:b.querySelector('.kUmur')?.value,pekerjaan:b.querySelector('.kPekerjaan')?.value,gaji:b.querySelector('.kGaji')?.value});
-  });
-  return{
-    program:document.querySelector('input[name="program"]:checked')?.value||'',
-    sswType:document.querySelector('input[name="sswType"]:checked')?.value||'',
-    sswBidang:el('sswBidang')?.value||'',
-    namaRomaji:el('namaRomaji').value,jenisKelamin:el('jenisKelamin').value,
-    statusMenikah:el('statusMenikah').value,golDarah:el('golDarah').value,
-    kewarganegaraan:el('kewarganegaraan').value,tanggalLahir:el('tanggalLahir').value,
-    agama:el('agama').value,tinggiBadan:el('tinggiBadan').value,beratBadan:el('beratBadan').value,
-    matKiri:el('matKiri').value,matKanan:el('matKanan').value,
-    kemampuanJepang:el('kemampuanJepang').value,tempatLahir:el('tempatLahir').value,
-    alamatLengkap:el('alamatLengkap').value,hobi:el('hobi').value,
-    targetGaji:el('targetGaji').value,catatan:el('catatan').value,selfPR:el('selfPR').value,
-    // 5 KOLOM BARU
-    merokok:el('merokok').value,
-    alkohol:el('alkohol').value,
-    tato:el('tato').value,
-    penyakit:el('penyakit').value,
-    penyakitDetail:el('penyakitDetail').value,
-    jepang:el('jepang').value,
-    jepangTujuan:el('jepangTujuan').value,
-    jepangTahun:el('jepangTahun').value,
-    jepangKet:el('jepangKet').value,
-    pendidikan,kerja,keluarga
-  };
-}
-
-function generatePDF(){
-  const d=collectData();
-  const{jsPDF}=window.jspdf;
-  const doc=new jsPDF({unit:'mm',format:'a4'});
-  const W=210,M=15,lineW=W-M*2;let y=0;
-  const NAVY=[26,58,92],DARK=[26,26,26],GRAY=[100,100,100],LGRAY=[220,220,220],SURF=[250,250,250];
-
-  function newPage(){doc.addPage();y=18}
-  function checkY(n=10){if(y+n>275)newPage()}
-  function ln(x1,y1,x2,y2,c=LGRAY,lw=0.3){doc.setDrawColor(...c);doc.setLineWidth(lw);doc.line(x1,y1,x2,y2)}
-  function secHead(t){
-    checkY(14);doc.setFillColor(...NAVY);doc.rect(M,y,lineW,8,'F');
-    doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(255,255,255);
-    doc.text(t.toUpperCase(),M+4,y+5.5);y+=11;doc.setTextColor(...DARK);
-  }
-  function row(label,value){
-    checkY(8);doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(...GRAY);
-    doc.text(label,M+2,y+4);doc.setTextColor(...DARK);doc.setFont('helvetica','bold');
-    const valX=M+lineW*0.38;const lines=doc.splitTextToSize(value||'—',lineW-(valX-M)-4);
-    doc.text(lines,valX,y+4);ln(M,y,M+lineW,y,LGRAY,.2);y+=lines.length>1?5.5*lines.length:7;
-  }
-  function twoRows(pairs){
-    const hw=lineW/2;
-    doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(...GRAY);
-    doc.text(pairs[0][0],M+2,y+4);doc.text(pairs[1][0],M+hw+4,y+4);
-    doc.setTextColor(...DARK);doc.setFont('helvetica','bold');
-    doc.text(pairs[0][1]||'—',M+hw*0.42,y+4);doc.text(pairs[1][1]||'—',M+hw+hw*0.42,y+4);
-    ln(M,y,M+hw,y,LGRAY,.2);ln(M+hw,y,M+lineW,y,LGRAY,.2);y+=7;
-  }
-  function wrappedRow(label,value){
-    if(!value)return;checkY(12);
-    doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(...GRAY);
-    doc.text(label,M+2,y+5);y+=7;
-    doc.setTextColor(...DARK);
-    const lines=doc.splitTextToSize(value,lineW-4);
-    lines.forEach(l=>{checkY(6);doc.text(l,M+2,y+4);y+=5.5});y+=2;
-  }
-
-  // HEADER
-  const HEADER_H = 52;
-  doc.setFillColor(...NAVY);
-  doc.rect(0, 0, W, HEADER_H, 'F');
-
-  const pW=25, pH=34, pX=W-M-pW, pY=9;
-  if(fotoDataURL){
-    try{
-      const fmt=fotoDataURL.substring(11,fotoDataURL.indexOf(';')).toUpperCase();
-      doc.addImage(fotoDataURL,fmt,pX,pY,pW,pH);
-      doc.setDrawColor(201,168,76);doc.setLineWidth(0.8);doc.rect(pX,pY,pW,pH);
-    }catch(e){}
-  }else{
-    doc.setFillColor(10,30,60);doc.rect(pX,pY,pW,pH,'F');
-    doc.setDrawColor(201,168,76);doc.setLineWidth(0.6);doc.rect(pX,pY,pW,pH);
-    doc.setTextColor(180,200,220);doc.setFont('helvetica','normal');doc.setFontSize(7);
-    doc.text('PAS FOTO',pX+pW/2,pY+pH/2-3,{align:'center'});
-    doc.text('3x4',pX+pW/2,pY+pH/2+3,{align:'center'});
-  }
-
-  const txtMaxX = pX - 5;
-  doc.setFont('helvetica','bold');doc.setFontSize(16);doc.setTextColor(255,255,255);
-  doc.text('FORMULIR PENDAFTARAN',M,16);
-  doc.setFontSize(9);doc.setTextColor(160,190,220);
-  doc.text('Form Pendaftaran Kerja Jepang',M,24);
-  const today=new Date().toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'});
-  doc.setFontSize(8);doc.setFont('helvetica','normal');doc.setTextColor(180,200,220);
-  doc.text(today,M,32);
-  doc.setDrawColor(201,168,76);doc.setLineWidth(1.2);
-  doc.line(M,HEADER_H-4,txtMaxX,HEADER_H-4);
-  y = HEADER_H + 6;
-
-  // DATA PRIBADI
-  secHead('Data Pribadi');
-  row('Program',d.program);
-  if(d.program==='Tokutei Ginou'&&d.sswType){
-    row('Jenis SSW',d.sswType==='SSW1'?'SSW 1 - Specified Skilled Worker Type 1':'SSW 2 - Specified Skilled Worker Type 2');
-    if(d.sswBidang)row('Sektor SSW',d.sswBidang);
-  }
-  row('Nama Lengkap',d.namaRomaji);
-  twoRows([['Jenis Kelamin',d.jenisKelamin],['Status Menikah',d.statusMenikah]]);
-  twoRows([['Golongan Darah',d.golDarah],['Kewarganegaraan',d.kewarganegaraan]]);
-  twoRows([['Tanggal Lahir',d.tanggalLahir],['Agama',d.agama]]);
-  twoRows([['Tinggi Badan',d.tinggiBadan?d.tinggiBadan+' cm':''],['Berat Badan',d.beratBadan?d.beratBadan+' kg':'']]);
-  twoRows([['Penglihatan Kiri',d.matKiri],['Penglihatan Kanan',d.matKanan]]);
-  row('Kemampuan Bahasa Jepang',d.kemampuanJepang);
-
-  // ===== 5 KOLOM BARU DI PDF =====
-  y+=3;secHead('Kondisi & Riwayat');
-  twoRows([['Merokok',d.merokok||'—'],['Minum Alkohol',d.alkohol||'—']]);
-  row('Memiliki Tato',d.tato||'—');
-  row('Riwayat Penyakit',d.penyakit||'—');
-  if(d.penyakit==='Ya'&&d.penyakitDetail){
-    wrappedRow('Keterangan Penyakit',d.penyakitDetail);
-  }
-  row('Pernah ke Jepang',d.jepang||'—');
-  if(d.jepang==='Ya'){
-    twoRows([['Tujuan ke Jepang',d.jepangTujuan||'—'],['Tahun di Jepang',d.jepangTahun||'—']]);
-    if(d.jepangKet) row('Keterangan Jepang',d.jepangKet);
-  }
-  // ===== END 5 KOLOM BARU =====
-
-  y+=3;secHead('Alamat');
-  row('Tempat Lahir',d.tempatLahir);
-  row('Alamat Lengkap',d.alamatLengkap);
-
-  if(d.pendidikan.length>0){
-    y+=3;secHead('Riwayat Pendidikan');
-    doc.setFillColor(...SURF);doc.rect(M,y,lineW,7,'F');
-    ln(M,y,M+lineW,y,LGRAY,.3);
-    doc.setFont('helvetica','bold');doc.setFontSize(7.5);doc.setTextColor(...GRAY);
-    const pCols=[M+2,M+32,M+82,M+120];
-    ['Periode','Jenjang','Nama Sekolah','Jurusan'].forEach((h,i)=>doc.text(h,pCols[i],y+4.5));
-    y+=7;
-    d.pendidikan.forEach(p=>{
-      checkY(8);ln(M,y,M+lineW,y,LGRAY,.15);
-      doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(...DARK);
-      const per=[p.dari,p.sampai].filter(Boolean).join(' - ')||'—';
-      const nm=doc.splitTextToSize(p.nama||'—',48);
-      doc.text(per,pCols[0],y+5);doc.text(p.jenjang||'—',pCols[1],y+5);
-      doc.text(nm,pCols[2],y+5);doc.text(p.jurusan||'—',pCols[3],y+5);
-      y+=Math.max(7,nm.length*5.5);
-    });
-    ln(M,y,M+lineW,y,LGRAY,.3);
-  }
-
-  if(d.kerja.length>0){
-    y+=6;secHead('Pengalaman Kerja');
-    d.kerja.forEach((k,i)=>{
-      checkY(28);const bH=22;
-      doc.setFillColor(...SURF);doc.rect(M,y,lineW,bH,'F');
-      ln(M,y,M,y+bH,NAVY,1.5);ln(M,y,M+lineW,y,LGRAY,.2);
-      doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.setTextColor(...DARK);
-      doc.text(`${i+1}. ${k.perusahaan||'(Nama Perusahaan)'}`,M+4,y+5);
-      doc.setFont('helvetica','normal');doc.setTextColor(...GRAY);doc.setFontSize(7.5);
-      doc.text([k.dari,k.sampai].filter(Boolean).join(' - ')||'—',M+4,y+10);
-      doc.text(`Bidang: ${k.bidang||'—'}`,M+4,y+14.5);
-      doc.text(`Jabatan: ${k.jabatan||'—'}`,M+80,y+14.5);
-      doc.text(`Lama: ${k.lama||'—'}`,M+4,y+19);
-      y+=bH+3;
-    });
-  }
-
-  if(d.keluarga.length>0){
-    y+=3;secHead('Data Keluarga');
-    doc.setFillColor(...SURF);doc.rect(M,y,lineW,7,'F');
-    ln(M,y,M+lineW,y,LGRAY,.3);
-    doc.setFont('helvetica','bold');doc.setFontSize(7.5);doc.setTextColor(...GRAY);
-    const kCols=[M+2,M+28,M+90,M+120,M+155];
-    ['Hubungan','Nama','Umur','Pekerjaan','Penghasilan'].forEach((h,i)=>doc.text(h,kCols[i],y+4.5));
-    y+=7;
-    d.keluarga.forEach(k=>{
-      checkY(8);ln(M,y,M+lineW,y,LGRAY,.15);
-      doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(...DARK);
-      const nm=doc.splitTextToSize(k.nama||'—',58);
-      doc.text(k.hubungan||'—',kCols[0],y+5);doc.text(nm,kCols[1],y+5);
-      doc.text(k.umur?k.umur+' th':'—',kCols[2],y+5);
-      doc.text(k.pekerjaan||'—',kCols[3],y+5);
-      doc.text(k.gaji?'Rp '+k.gaji:'—',kCols[4],y+5);
-      y+=Math.max(7,nm.length*5.5);
-    });
-    ln(M,y,M+lineW,y,LGRAY,.3);
-  }
-
-  y+=6;secHead('Informasi Tambahan');
-  twoRows([['Hobi',d.hobi],['Target Nabung',d.targetGaji||'']]);
-  wrappedRow('Catatan',d.catatan);
-
-  if(d.selfPR){
-    y+=3;secHead('Self PR');
-    doc.setFillColor(240,245,252);
-    const prLines=doc.splitTextToSize(d.selfPR,lineW-8);
-    const prH=prLines.length*5+8;checkY(prH);
-    doc.rect(M,y,lineW,prH,'F');ln(M,y,M,y+prH,NAVY,2);
-    doc.setFont('helvetica','italic');doc.setFontSize(8.5);doc.setTextColor(...DARK);
-    prLines.forEach((l,i)=>doc.text(l,M+6,y+6+i*5));
-    y+=prH+4;
-  }
-
-  // TANDA TANGAN
-  checkY(45);y += 6;
-  doc.setDrawColor(...LGRAY);doc.setLineWidth(0.3);doc.line(M, y, M+lineW, y);y += 6;
-  doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(...GRAY);
-  const statement = 'Dengan ini saya menyatakan bahwa data yang tercantum di atas adalah benar dan dapat dipertanggungjawabkan.';
-  const stLines = doc.splitTextToSize(statement, lineW);
-  stLines.forEach(l => { doc.text(l, M, y); y += 5; });
-  y += 6;
-  doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(...DARK);
-  doc.text(today, M, y);
-  const ttdBlockX = W - M - 55;
-  doc.text('Hormat Saya,', ttdBlockX, y);
-  y += 28;
-  doc.setDrawColor(...DARK);doc.setLineWidth(0.5);doc.line(ttdBlockX, y, ttdBlockX + 50, y);
-  y += 5;
-  doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.setTextColor(...DARK);
-  doc.text(d.namaRomaji || 'Nama Peserta', ttdBlockX + 25, y, {align:'center'});
-  y += 4;
-  doc.setFont('helvetica','normal');doc.setFontSize(7.5);doc.setTextColor(...GRAY);
-  doc.text('(Tanda Tangan)', ttdBlockX + 25, y, {align:'center'});
-
-  // FOOTER
-  const pc=doc.getNumberOfPages();
-  for(let i=1;i<=pc;i++){
-    doc.setPage(i);
-    doc.setFillColor(...NAVY);doc.rect(0,290,W,7,'F');
-    doc.setFont('helvetica','normal');doc.setFontSize(7);doc.setTextColor(255,255,255);
-    doc.text('Prime Tekipaki Raya  |  Formulir Pendaftaran Jepang',M,294.5);
-    doc.text(`Halaman ${i} dari ${pc}`,W-M,294.5,{align:'right'});
-  }
-
-  const safeName=(d.namaRomaji||'peserta').replace(/\s+/g,'_').toLowerCase();
-  doc.save(`pendaftaran_${safeName}.pdf`);
-  const t=el('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);
-}
-
-// INIT
+// ================= INIT =================
 document.addEventListener('DOMContentLoaded',()=>{
+
   addPendidikan();
+
   addKeluarga('Ayah');
   addKeluarga('Ibu');
 
-  document.querySelectorAll('input[name="program"]').forEach(r=>{
-    r.addEventListener('change',()=>{
-      document.querySelectorAll('.prog-label').forEach(l=>{l.style.borderColor='var(--border)';l.style.background=''});
-      r.closest('.prog-label').style.borderColor='var(--navy)';
-      r.closest('.prog-label').style.background='var(--navy-light)';
-      el('sswSection').style.display=r.value==='Tokutei Ginou'?'block':'none';
-    });
-  });
+  // TARGET NABUNG FORMAT RUPIAH
+  formatRupiah(el('targetGaji'));
 
-  document.querySelectorAll('input[name="sswType"]').forEach(r=>{
-    r.addEventListener('change',()=>{
-      document.querySelectorAll('[id^="ssw"][id$="-lbl"]').forEach(l=>{
-        l.style.borderColor='var(--border)';l.style.background='#fff';
-      });
-      const lbl=document.getElementById(r.id+'-lbl')||r.closest('label');
-      if(lbl){lbl.style.borderColor='var(--navy)';lbl.style.background='var(--navy-light)'}
-    });
-  });
-
-  el('tambahPendidikan').onclick=addPendidikan;
-  el('tambahKerja').onclick=addKerja;
-  el('tambahKeluarga').onclick=()=>addKeluarga();
-  el('btnPDF').onclick=generatePDF;
-  el('btnReset').onclick=()=>{
-    if(!confirm('Reset semua data form? Semua data yang diisi akan dihapus.'))return;
-    el('mainForm').reset();
-    el('pendidikanContainer').innerHTML='';el('kerjaContainer').innerHTML='';
-    el('keluargaContainer').innerHTML='';el('fotoPreview').innerHTML='';
-    fotoDataURL=null;
-    // Reset YN buttons
-    ['merokok','alkohol','tato','penyakit','jepang'].forEach(f=>{
-      el(f).value='';
-      el(f+'Ya').classList.remove('active-yes','active-no');
-      el(f+'Tidak').classList.remove('active-yes','active-no');
-    });
-    document.getElementById('penyakit-detail').classList.remove('show');
-    document.getElementById('jepang-detail').classList.remove('show');
-    el('sswSection').style.display='none';
-    document.querySelectorAll('.prog-label').forEach(l=>{l.style.borderColor='var(--border)';l.style.background=''});
-    document.querySelectorAll('[id^="ssw"][id$="-lbl"]').forEach(l=>{l.style.borderColor='var(--border)';l.style.background='#fff'});
-    addPendidikan();addKeluarga('Ayah');addKeluarga('Ibu');
-  };
 });
+
 </script>
-</body>
-</html>
