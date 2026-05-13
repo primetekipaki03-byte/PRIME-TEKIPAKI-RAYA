@@ -279,7 +279,7 @@ textarea{resize:vertical;min-height:80px}
             </select>
           </div>
 
-          <!-- SSW TYPE - hanya muncul jika Tokutei Ginou dipilih -->
+          <!-- SSW TYPE -->
           <div id="sswSection" style="display:none;margin-top:16px">
             <div style="background:var(--navy-light);border:1px solid rgba(26,58,92,.2);border-radius:10px;padding:18px">
               <p style="font-size:12px;font-weight:700;color:var(--navy);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px"><i class="fas fa-id-card" style="margin-right:6px"></i>Jenis SSW (Specified Skilled Worker)</p>
@@ -303,19 +303,19 @@ textarea{resize:vertical;min-height:80px}
                 <label>Bidang / Sektor Kerja SSW <span class="req">*</span></label>
                 <select id="sswBidang">
                   <option value="">Pilih Sektor</option>
-                  <option>Perawatan (介護 – Nursing Care)</option>
-                  <option>Bangunan / Kebersihan (ビルクリーニング – Building Cleaning)</option>
-                  <option>Pengolahan Bahan Industri (素形材・産業機械)</option>
-                  <option>Manufaktur Elektronik (電気電子情報関連産業)</option>
-                  <option>Konstruksi (建設 – Construction)</option>
-                  <option>Perkapalan / Shipbuilding (造船・舶用工業)</option>
-                  <option>Otomotif / Kendaraan (自動車整備 – Car Maintenance)</option>
-                  <option>Penerbangan (航空 – Aviation)</option>
-                  <option>Akomodasi / Hotel (宿泊 – Accommodation)</option>
-                  <option>Pertanian (農業 – Agriculture)</option>
-                  <option>Perikanan / Peternakan Ikan (漁業 – Fishery)</option>
-                  <option>Pengolahan Makanan & Minuman (飲食料品製造業)</option>
-                  <option>Restoran / Food Service (外食業 – Food Service)</option>
+                  <option>Perawatan (Nursing Care)</option>
+                  <option>Bangunan / Kebersihan (Building Cleaning)</option>
+                  <option>Pengolahan Bahan Industri</option>
+                  <option>Manufaktur Elektronik</option>
+                  <option>Konstruksi (Construction)</option>
+                  <option>Perkapalan / Shipbuilding</option>
+                  <option>Otomotif / Kendaraan (Car Maintenance)</option>
+                  <option>Penerbangan (Aviation)</option>
+                  <option>Akomodasi / Hotel (Accommodation)</option>
+                  <option>Pertanian (Agriculture)</option>
+                  <option>Perikanan / Peternakan Ikan (Fishery)</option>
+                  <option>Pengolahan Makanan & Minuman</option>
+                  <option>Restoran / Food Service</option>
                 </select>
               </div>
             </div>
@@ -574,30 +574,81 @@ function generatePDF(){
     lines.forEach(l=>{checkY(6);doc.text(l,M+2,y+4);y+=5.5});y+=2;
   }
 
-  // HEADER
-  doc.setFillColor(...NAVY);doc.rect(0,0,W,40,'F');
-  doc.setFont('helvetica','bold');doc.setFontSize(18);doc.setTextColor(255,255,255);
-  doc.text('FORMULIR PENDAFTARAN',M,17);
-  doc.setFontSize(11);doc.setFont('helvetica','normal');doc.setTextColor(200,220,240);
-  doc.text('Prime Tekipaki Raya  |  \u65E5\u672C\u5C31\u52B4\u652F\u63F4\u6A5F\u95A2',M,25);
-  doc.setFontSize(8.5);doc.text('Form Pendaftaran Kerja Jepang',M,32);
-  doc.setTextColor(255,255,255);doc.setFontSize(8);
-  const today=new Date().toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'});
-  doc.text('Tanggal: '+today,W-M,32,{align:'right'});
+  // ============================================================
+  // FIX 1: HEADER — teks literal, tanpa unicode escape
+  // FIX 2: FOTO PAS — diletakkan di kanan atas TERPISAH dari teks
+  //         Header teks dibatasi agar tidak overlap dengan foto
+  // ============================================================
 
-  const pX=W-M-30,pY=4,pW=25,pH=32;
+  // Area header: tinggi 46mm
+  const HEADER_H = 46;
+  doc.setFillColor(...NAVY);
+  doc.rect(0, 0, W, HEADER_H, 'F');
+
+  // --- Foto pas (pojok kanan atas, dengan margin) ---
+  // Ukuran foto: 25x32mm, posisi x dari kanan, y dari atas
+  const pW=25, pH=32, pX=W-M-pW, pY=7;
+
   if(fotoDataURL){
-    try{const fmt=fotoDataURL.substring(11,fotoDataURL.indexOf(';')).toUpperCase();doc.addImage(fotoDataURL,fmt,pX,pY,pW,pH);doc.setDrawColor(255,255,255);doc.setLineWidth(.8);doc.rect(pX,pY,pW,pH)}catch(e){}
+    try{
+      const fmt=fotoDataURL.substring(11,fotoDataURL.indexOf(';')).toUpperCase();
+      doc.addImage(fotoDataURL,fmt,pX,pY,pW,pH);
+      doc.setDrawColor(201,168,76); // border emas
+      doc.setLineWidth(0.8);
+      doc.rect(pX,pY,pW,pH);
+    }catch(e){}
   }else{
-    doc.setFillColor(10,30,60);doc.rect(pX,pY,pW,pH,'F');
-    doc.setTextColor(255,255,255);doc.setFontSize(7);doc.text('Pas Foto',pX+pW/2,pY+pH/2,{align:'center'});
+    doc.setFillColor(10,30,60);
+    doc.rect(pX,pY,pW,pH,'F');
+    doc.setDrawColor(201,168,76);
+    doc.setLineWidth(0.6);
+    doc.rect(pX,pY,pW,pH);
+    doc.setTextColor(180,200,220);
+    doc.setFont('helvetica','normal');
+    doc.setFontSize(7);
+    doc.text('PAS FOTO',pX+pW/2,pY+pH/2-3,{align:'center'});
+    doc.text('3x4',pX+pW/2,pY+pH/2+3,{align:'center'});
   }
 
-  y=48;
+  // --- Teks header (area kiri, dibatasi agar tidak overlap foto) ---
+  // Lebar teks = dari M sampai pX - 5mm gap
+  const txtAreaW = pX - M - 5;
+
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(16);
+  doc.setTextColor(255,255,255);
+  doc.text('FORMULIR PENDAFTARAN',M,16);
+
+  doc.setFontSize(10);
+  doc.setFont('helvetica','normal');
+  doc.setTextColor(200,220,240);
+  // FIX 1: Teks Jepang ditulis langsung sebagai literal string
+  doc.text('Prime Tekipaki Raya  |  Nihon Shuro Shien Kikan',M,24);
+
+  doc.setFontSize(8);
+  doc.setTextColor(160,190,220);
+  doc.text('Form Pendaftaran Kerja Jepang',M,31);
+
+  // Tanggal di bawah, masih di area kiri (tidak ke kanan karena ada foto)
+  const today=new Date().toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'});
+  doc.setFontSize(7.5);
+  doc.setTextColor(180,200,220);
+  doc.text('Tanggal: '+today,M,38);
+
+  // Garis emas dekoratif di bawah header
+  doc.setDrawColor(201,168,76);
+  doc.setLineWidth(1.2);
+  doc.line(M,HEADER_H-3,M+txtAreaW,HEADER_H-3);
+
+  y = HEADER_H + 6;
+
+  // ============================================================
+  // DATA PRIBADI
+  // ============================================================
   secHead('Data Pribadi');
   row('Program',d.program);
   if(d.program==='Tokutei Ginou'&&d.sswType){
-    row('Jenis SSW',d.sswType==='SSW1'?'SSW 1 – Specified Skilled Worker Type 1 (特定技能1号)':'SSW 2 – Specified Skilled Worker Type 2 (特定技能2号)');
+    row('Jenis SSW',d.sswType==='SSW1'?'SSW 1 - Specified Skilled Worker Type 1':'SSW 2 - Specified Skilled Worker Type 2');
     if(d.sswBidang)row('Sektor SSW',d.sswBidang);
   }
   row('Nama Lengkap',d.namaRomaji);
@@ -609,7 +660,8 @@ function generatePDF(){
   row('Kemampuan Bahasa Jepang',d.kemampuanJepang);
 
   y+=3;secHead('Alamat');
-  row('Tempat Lahir',d.tempatLahir);row('Alamat Lengkap',d.alamatLengkap);
+  row('Tempat Lahir',d.tempatLahir);
+  row('Alamat Lengkap',d.alamatLengkap);
 
   if(d.pendidikan.length>0){
     y+=3;secHead('Riwayat Pendidikan');
@@ -622,7 +674,7 @@ function generatePDF(){
     d.pendidikan.forEach(p=>{
       checkY(8);ln(M,y,M+lineW,y,LGRAY,.15);
       doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(...DARK);
-      const per=[p.dari,p.sampai].filter(Boolean).join(' – ')||'—';
+      const per=[p.dari,p.sampai].filter(Boolean).join(' - ')||'—';
       const nm=doc.splitTextToSize(p.nama||'—',48);
       doc.text(per,pCols[0],y+5);doc.text(p.jenjang||'—',pCols[1],y+5);
       doc.text(nm,pCols[2],y+5);doc.text(p.jurusan||'—',pCols[3],y+5);
@@ -640,7 +692,7 @@ function generatePDF(){
       doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.setTextColor(...DARK);
       doc.text(`${i+1}. ${k.perusahaan||'(Nama Perusahaan)'}`,M+4,y+5);
       doc.setFont('helvetica','normal');doc.setTextColor(...GRAY);doc.setFontSize(7.5);
-      doc.text([k.dari,k.sampai].filter(Boolean).join(' – ')||'—',M+4,y+10);
+      doc.text([k.dari,k.sampai].filter(Boolean).join(' - ')||'—',M+4,y+10);
       doc.text(`Bidang: ${k.bidang||'—'}`,M+4,y+14.5);
       doc.text(`Jabatan: ${k.jabatan||'—'}`,M+80,y+14.5);
       doc.text(`Lama: ${k.lama||'—'}`,M+4,y+19);
@@ -670,7 +722,7 @@ function generatePDF(){
   }
 
   y+=6;secHead('Informasi Tambahan');
-  twoRows([['Hobi',d.hobi],['Target Gaji',d.targetGaji?'\u00A5 '+d.targetGaji+' / bulan':'']]);
+  twoRows([['Hobi',d.hobi],['Target Gaji',d.targetGaji?'Rp '+d.targetGaji+' / bulan':'']]);
   wrappedRow('Catatan',d.catatan);
 
   if(d.selfPR){
@@ -684,18 +736,74 @@ function generatePDF(){
     y+=prH+4;
   }
 
-  checkY(30);y+=8;
-  ln(M,y,M+lineW,y,LGRAY,.3);y+=6;
-  doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(...GRAY);
-  doc.text('Dengan ini saya menyatakan bahwa data yang tercantum di atas adalah benar dan dapat dipertanggungjawabkan.',M,y);
-  y+=16;doc.text('Jakarta, '+today,W-M-35,y);
-  y+=20;doc.text('(                                    )',W-M-47,y);
-  y+=5;doc.text(d.namaRomaji||'Nama Peserta',W-M-37,y,{align:'center'});
+  // ============================================================
+  // FIX 3: TANDA TANGAN — layout rapi dengan posisi terstruktur
+  // ============================================================
+  // Butuh minimal 45mm untuk blok tanda tangan
+  checkY(45);
+  y += 6;
 
+  // Garis tipis pembatas sebelum bagian pernyataan
+  doc.setDrawColor(...LGRAY);
+  doc.setLineWidth(0.3);
+  doc.line(M, y, M+lineW, y);
+  y += 6;
+
+  // Teks pernyataan
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(8);
+  doc.setTextColor(...GRAY);
+  const statement = 'Dengan ini saya menyatakan bahwa data yang tercantum di atas adalah benar dan dapat dipertanggungjawabkan.';
+  const stLines = doc.splitTextToSize(statement, lineW);
+  stLines.forEach(l => { doc.text(l, M, y); y += 5; });
+
+  y += 6;
+
+  // Blok tanda tangan: kota + tanggal di kiri, ttd di kanan
+  // Kiri: kota dan tanggal
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(8.5);
+  doc.setTextColor(...DARK);
+  doc.text('Jakarta, ' + today, M, y);
+
+  // Kanan: label "Hormat Saya"
+  const ttdBlockX = W - M - 55; // x mulai blok ttd (lebar 55mm)
+  doc.text('Hormat Saya,', ttdBlockX, y);
+
+  y += 28; // ruang tanda tangan (28mm kosong untuk TTD)
+
+  // Garis tanda tangan di kanan
+  doc.setDrawColor(...DARK);
+  doc.setLineWidth(0.5);
+  doc.line(ttdBlockX, y, ttdBlockX + 50, y);
+
+  y += 5;
+
+  // Nama peserta di bawah garis
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(8.5);
+  doc.setTextColor(...DARK);
+  const namaForTtd = d.namaRomaji || 'Nama Peserta';
+  // Tengahkan nama di dalam blok 50mm
+  doc.text(namaForTtd, ttdBlockX + 25, y, {align:'center'});
+
+  y += 4;
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(7.5);
+  doc.setTextColor(...GRAY);
+  doc.text('(Tanda Tangan)', ttdBlockX + 25, y, {align:'center'});
+
+  // ============================================================
+  // FOOTER setiap halaman
+  // ============================================================
   const pc=doc.getNumberOfPages();
   for(let i=1;i<=pc;i++){
-    doc.setPage(i);doc.setFillColor(...NAVY);doc.rect(0,290,W,7,'F');
-    doc.setFont('helvetica','normal');doc.setFontSize(7);doc.setTextColor(255,255,255);
+    doc.setPage(i);
+    doc.setFillColor(...NAVY);
+    doc.rect(0,290,W,7,'F');
+    doc.setFont('helvetica','normal');
+    doc.setFontSize(7);
+    doc.setTextColor(255,255,255);
     doc.text('Prime Tekipaki Raya  |  Formulir Pendaftaran Jepang',M,294.5);
     doc.text(`Halaman ${i} dari ${pc}`,W-M,294.5,{align:'right'});
   }
@@ -716,12 +824,10 @@ document.addEventListener('DOMContentLoaded',()=>{
       document.querySelectorAll('.prog-label').forEach(l=>{l.style.borderColor='var(--border)';l.style.background=''});
       r.closest('.prog-label').style.borderColor='var(--navy)';
       r.closest('.prog-label').style.background='var(--navy-light)';
-      // Tampilkan/sembunyikan SSW section
       el('sswSection').style.display=r.value==='Tokutei Ginou'?'block':'none';
     });
   });
 
-  // SSW radio toggle highlight
   document.querySelectorAll('input[name="sswType"]').forEach(r=>{
     r.addEventListener('change',()=>{
       document.querySelectorAll('[id^="ssw"][id$="-lbl"]').forEach(l=>{
