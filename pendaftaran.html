@@ -580,20 +580,20 @@ function generatePDF(){
   //         Header teks dibatasi agar tidak overlap dengan foto
   // ============================================================
 
-  // Area header: tinggi 46mm
-  const HEADER_H = 46;
+  // Header tinggi 52mm — cukup untuk foto 3x4 + margin
+  const HEADER_H = 52;
   doc.setFillColor(...NAVY);
   doc.rect(0, 0, W, HEADER_H, 'F');
 
-  // --- Foto pas (pojok kanan atas, dengan margin) ---
-  // Ukuran foto: 25x32mm, posisi x dari kanan, y dari atas
-  const pW=25, pH=32, pX=W-M-pW, pY=7;
+  // --- Foto pas: pojok kanan, mulai y=10, ukuran 25x34mm ---
+  // Foto berakhir di y = 10+34 = 44, masih dalam header 52mm
+  const pW=25, pH=34, pX=W-M-pW, pY=9;
 
   if(fotoDataURL){
     try{
       const fmt=fotoDataURL.substring(11,fotoDataURL.indexOf(';')).toUpperCase();
       doc.addImage(fotoDataURL,fmt,pX,pY,pW,pH);
-      doc.setDrawColor(201,168,76); // border emas
+      doc.setDrawColor(201,168,76);
       doc.setLineWidth(0.8);
       doc.rect(pX,pY,pW,pH);
     }catch(e){}
@@ -610,35 +610,30 @@ function generatePDF(){
     doc.text('3x4',pX+pW/2,pY+pH/2+3,{align:'center'});
   }
 
-  // --- Teks header (area kiri, dibatasi agar tidak overlap foto) ---
-  // Lebar teks = dari M sampai pX - 5mm gap
-  const txtAreaW = pX - M - 5;
+  // --- Teks header (kiri saja, dibatasi agar tidak masuk area foto) ---
+  // Batas kanan teks = pX - 5mm gap
+  const txtMaxX = pX - 5;
 
   doc.setFont('helvetica','bold');
   doc.setFontSize(16);
   doc.setTextColor(255,255,255);
   doc.text('FORMULIR PENDAFTARAN',M,16);
 
-  doc.setFontSize(10);
-  doc.setFont('helvetica','normal');
-  doc.setTextColor(200,220,240);
-  // FIX 1: Teks Jepang ditulis langsung sebagai literal string
-  doc.text('Prime Tekipaki Raya  |  Nihon Shuro Shien Kikan',M,24);
-
-  doc.setFontSize(8);
+  doc.setFontSize(9);
   doc.setTextColor(160,190,220);
-  doc.text('Form Pendaftaran Kerja Jepang',M,31);
+  doc.text('Form Pendaftaran Kerja Jepang',M,24);
 
-  // Tanggal di bawah, masih di area kiri (tidak ke kanan karena ada foto)
+  // Tanggal — di bawah subtitle, jauh dari foto (foto mulai y=9, teks tanggal y=32)
   const today=new Date().toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'});
-  doc.setFontSize(7.5);
+  doc.setFontSize(8);
+  doc.setFont('helvetica','normal');
   doc.setTextColor(180,200,220);
-  doc.text('Tanggal: '+today,M,38);
+  doc.text('Tanggal: '+today,M,32);
 
-  // Garis emas dekoratif di bawah header
+  // Garis emas dekoratif
   doc.setDrawColor(201,168,76);
   doc.setLineWidth(1.2);
-  doc.line(M,HEADER_H-3,M+txtAreaW,HEADER_H-3);
+  doc.line(M,HEADER_H-4,txtMaxX,HEADER_H-4);
 
   y = HEADER_H + 6;
 
