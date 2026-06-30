@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title class="notranslate">Ujian JFT - Test 1</title>
+<style>
+  :root{
+    --bg:#001f3f;
+    --card:#002a54;
+    --accent:#facc15;
+    --accent2:#facc15;
+    --text:#ffd700;
+    --muted:#e0c200;
+    --ok:#22c55e;
+    --bad:#ef4444;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Segoe UI',Arial,sans-serif;
+    background:#001f3f;
+    color:var(--text);
+    min-height:100vh;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+  }
+  ::selection{background:transparent;}
+  header{
+    text-align:center;
+    padding:28px 16px 10px;
+  }
+  header h1{
+    margin:0;
+    font-size:1.6rem;
+    color:var(--accent2);
+  }
+  header p{color:var(--muted);margin:6px 0 0;font-size:.9rem;}
+  #navbar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:#001530;
+    border-bottom:1.5px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.4);
+  }
+  .navbar-inner{
+    max-width:900px;
+    margin:0 auto;
+    padding:10px 16px;
+    display:flex;
+    align-items:center;
+  }
+  .dropdown{
+    position:relative;
+    display:inline-block;
+  }
+  .dropdown-btn{
+    background:transparent;
+    color:var(--accent2);
+    border:1.5px solid var(--accent2);
+    border-radius:8px;
+    padding:9px 18px;
+    font-size:.85rem;
+    font-weight:800;
+    letter-spacing:.5px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    transition:.15s;
+  }
+  .dropdown-btn:hover{
+    background:var(--accent2);
+    color:#001f3f;
+  }
+  .caret{font-size:.7rem;transition:transform .15s;}
+  .dropdown.open .caret{transform:rotate(180deg);}
+  .dropdown-menu{
+    display:none;
+    flex-direction:column;
+    position:absolute;
+    top:calc(100% + 6px);
+    left:0;
+    min-width:230px;
+    background:#001530;
+    border:1.5px solid rgba(250,204,21,.3);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.5);
+    z-index:60;
+  }
+  .dropdown-menu.show{display:flex;}
+  .dropdown-menu a{
+    text-decoration:none;
+    color:var(--text);
+    padding:11px 16px;
+    font-size:.82rem;
+    font-weight:600;
+    border-bottom:1px solid rgba(250,204,21,.1);
+    transition:.15s;
+  }
+  .dropdown-menu a:last-child{border-bottom:none;}
+  .dropdown-menu a:hover{
+    background:var(--accent2);
+    color:#001f3f;
+  }
+  #app{
+    max-width:760px;
+    margin:0 auto;
+    padding:16px;
+  }
+  .card{
+    background:var(--card);
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:18px;
+    box-shadow:0 4px 18px rgba(0,0,0,.35);
+    border:1px solid rgba(255,255,255,.05);
+  }
+  .progress-wrap{
+    background:#0b1224;
+    border-radius:10px;
+    height:10px;
+    overflow:hidden;
+    margin-bottom:18px;
+  }
+  .timer-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:var(--card);
+    border:1.5px solid rgba(250,204,21,.3);
+    border-radius:12px;
+    padding:10px 16px;
+    margin-bottom:14px;
+    font-weight:800;
+    letter-spacing:.5px;
+  }
+  .timer-label{color:var(--muted);font-size:.85rem;font-weight:700;}
+  #timerText{
+    font-size:1.3rem;
+    color:var(--accent2);
+    font-variant-numeric:tabular-nums;
+  }
+  .timer-wrap.warning #timerText{color:var(--bad);animation:blink 1s infinite;}
+  @keyframes blink{50%{opacity:.3;}}
+  .progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    transition:width .25s ease;
+  }
+  .qnum{
+    font-size:.8rem;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .qtext{
+    font-size:1.15rem;
+    line-height:1.7;
+    margin-bottom:16px;
+    white-space:pre-line;
+  }
+  .options{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .opt{
+    background:#0b1224;
+    border:1.5px solid rgba(255,255,255,.08);
+    border-radius:10px;
+    padding:12px 14px;
+    cursor:pointer;
+    font-size:1rem;
+    transition:.15s;
+  }
+  .opt:hover{border-color:var(--accent2);}
+  .opt.selected{
+    border-color:var(--accent);
+    background:rgba(244,63,94,.12);
+  }
+  .navrow{
+    display:flex;
+    justify-content:space-between;
+    margin-top:18px;
+    gap:10px;
+  }
+  button{
+    cursor:pointer;
+    border:none;
+    border-radius:10px;
+    padding:11px 18px;
+    font-size:.95rem;
+    font-weight:700;
+    color:#001f3f;
+    background:var(--accent2);
+    transition:.15s;
+  }
+  button:disabled{opacity:.4;cursor:not-allowed;}
+  button.secondary{
+    background:transparent;
+    color:var(--text);
+    border:1.5px solid rgba(255,215,0,.4);
+  }
+  #grid{
+    display:grid;
+    grid-template-columns:repeat(10,1fr);
+    gap:6px;
+    margin-bottom:18px;
+  }
+  .gridbtn{
+    aspect-ratio:1/1;
+    background:#0b1224;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:6px;
+    font-size:.75rem;
+    color:var(--muted);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    padding:0;
+  }
+  .gridbtn.answered{background:rgba(34,197,94,.18);color:var(--ok);border-color:var(--ok);}
+  .gridbtn.current{border-color:var(--accent2);color:var(--accent2);}
+  #resultScreen{display:none;text-align:center;}
+  #resultScreen h2{color:var(--accent2);font-size:2rem;margin-bottom:4px;}
+  #resultScreen .score{font-size:3rem;font-weight:800;margin:10px 0;}
+  .reviewItem{
+    text-align:left;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:8px;
+    background:#0b1224;
+  }
+  .reviewItem.correct{border-left:4px solid var(--ok);}
+  .reviewItem.wrong{border-left:4px solid var(--bad);}
+  .reviewItem .small{color:var(--muted);font-size:.85rem;margin-top:4px;}
+  #startScreen{text-align:center;}
+  #startScreen ul{text-align:left;color:var(--muted);line-height:1.7;}
+  footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:.75rem;
+    padding:20px;
+  }
+  @media print{
+    body{display:none !important;}
+  }
+</style>
+</head>
+<body class="notranslate" translate="no">
+
+<nav id="navbar">
+  <div class="navbar-inner">
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown()">QUIZ <span class="caret">▾</span></button>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <a href="jft_a1_test1.html">SOAL JFT A - TEST 1</a>
+        <a href="jft_a1_test2.html">SOAL JFT A - TEST 2</a>
+        <a href="jft_a1_test3.html">SOAL JFT A - TEST 3</a>
+        <a href="jft_a1_test4.html">SOAL JFT A - TEST 4</a>
+        <a href="jft_a1_test5.html">SOAL JFT A - TEST 5</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <h1 class="notranslate" translate="no">JFT TEST 1</h1>
+  <p>Ujian Kemampuan Bahasa Jepang JFT — Test 1 (19 Soal)</p>
+</header>
+
+<div id="app">
+
+  <div class="card" id="startScreen">
+    <h2 style="margin-top:0;color:var(--accent2)">Petunjuk Ujian</h2>
+    <ul>
+      <li>Total 19 soal pilihan ganda (kosakata, gambar, kanji, dan tata bahasa/cloze).</li>
+      <li>Waktu pengerjaan 20 menit.</li>
+      <li>Pilih satu jawaban yang paling tepat untuk setiap soal.</li>
+      <li>Anda dapat berpindah antar soal menggunakan tombol navigasi atau peta nomor soal.</li>
+      <li>Skor dan pembahasan akan ditampilkan setelah ujian selesai.</li>
+    </ul>
+    <button onclick="startExam()">Mulai Ujian</button>
+  </div>
+
+  <div id="examScreen" style="display:none;">
+    <div class="timer-wrap">
+    <span class="timer-label">⏱ Sisa Waktu</span>
+    <span id="timerText">20:00</span>
+  </div>
+  <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <div id="grid"></div>
+    <div class="card">
+      <div class="qnum" id="qnum"></div>
+      <div class="qtext notranslate" translate="no" id="qtext"></div>
+      <div class="options" id="options"></div>
+      <div class="navrow">
+        <button class="secondary" onclick="prevQ()">← Sebelumnya</button>
+        <button id="nextBtn" onclick="nextQ()">Berikutnya →</button>
+      </div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <button onclick="finishExam()" style="background:var(--accent);color:#fff;">Selesaikan Ujian</button>
+    </div>
+  </div>
+
+  <div class="card" id="resultScreen">
+    <h2>Hasil Ujian</h2>
+    <div class="score" id="scoreText">0 / 50</div>
+    <p id="scorePct" style="color:var(--muted)"></p>
+    <button onclick="showReview()">Lihat Pembahasan</button>
+    <button class="secondary" onclick="location.reload()">Ulangi Ujian</button>
+    <div id="reviewList" style="margin-top:18px;display:none;"></div>
+  </div>
+
+</div>
+
+<footer>© Latihan Soal JFT-Basic A2 — Untuk keperluan belajar mandiri</footer>
+
+<script>
+// ====== DROPDOWN NAVBAR ======
+function toggleDropdown(){
+  const menu = document.getElementById('dropdownMenu');
+  const wrap = menu.closest('.dropdown');
+  menu.classList.toggle('show');
+  wrap.classList.toggle('open');
+}
+document.addEventListener('click', (e)=>{
+  const wrap = document.querySelector('.dropdown');
+  if(wrap && !wrap.contains(e.target)){
+    document.getElementById('dropdownMenu').classList.remove('show');
+    wrap.classList.remove('open');
+  }
+});
+
+// ====== PROTEKSI DASAR (anti copy / anti klik kanan / anti select) ======
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('dragstart', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  // blokir Ctrl+C, Ctrl+U, Ctrl+S, F12, Ctrl+Shift+I
+  if (
+    (e.ctrlKey && ['c','u','s','p'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase()))
+  ) {
+    e.preventDefault();
+  }
+});
+
+// ====== DATA SOAL (50 soal) ======
+const questions = [
+// --- BAGIAN 1: ぶんを かんせいしましょう (Lengkapi kalimat) ---
+{q:"毎日練習したので、明日の試合は＿＿＿＿＿勝てます。", o:["ぜんぜん（Tidak sama sekali）","きっと（Pasti）","すこし（Sedikit）"], a:1},
+{q:"大きな声で＿＿＿＿＿答えてください。", o:["はっきり（Jelas）","そんなに（Sebegitunya）","とくに（Terutama）"], a:0},
+{q:"あのスーパーの＿＿＿＿＿はせまくて危ないです。", o:["ちゅうしゃじょう（Lahan parkir）","うけつけ（Resepsionis）","ねだん（Harga）"], a:0},
+{q:"明日、めんせつがあるので、＿＿＿＿＿します。", o:["きんちょう（Gugup）","あんしん（Tenang）","びっくり（Terkejut）"], a:0},
+{q:"きのうは＿＿＿＿＿が悪かったので、買い物に行かなかった。", o:["雨（あめ＝Hujan）","天気（てんき＝Cuaca）","電気（でんき＝Listrik/lampu）"], a:1},
+
+// --- BAGIAN 2: えを みて、ただしい こたえを えらびましょう ---
+{q:"電車の中に人がたくさん立っている絵があります。これは何ですか？", o:["人が多い（Ada banyak orang）","道がこんでいる（Jalanan macet）","町がにぎやか（Kotanya ramai）"], a:0},
+{q:"男の人が咳をしている絵があります。彼はどうでしたか？", o:["せきがでる（Keluar batuk）","のどがいたい（Tenggorokannya sakit）","くちがいたい（Mulut sakit）"], a:0},
+{q:"女の人がベランダでのんびり座っている絵があります。彼女は何をしますか？", o:["留学します（Belajar di luar negeri）","進学します（Ke jenjang pendidikan selanjutnya）","のんびり暮らす（Hidup santai/tenang）"], a:2},
+{q:"男の人が消火器で火を消している絵があります。彼は何をしますか？", o:["火をつける（Menyalakan api）","火がきえる（Api padam）","火を消化する（Memadamkan api）"], a:2},
+
+// --- BAGIAN 3: かんじを えらびましょう ---
+{q:"このレストランは有名です。「有名」の読み方は？", o:["ゆめい","ゆうめ","ゆうめい"], a:2},
+{q:"日本の生活に、もうなれましたか。「生活」の読み方は？", o:["せかつ","せいかつ","せいけつ"], a:1},
+{q:"ボランティア教室では、むりょうで日本語を教えています。「むりょう」の漢字は？", o:["無料（むりょう＝Gratis）","資料（しりょう＝Dokumen/materi）","無駄（むだ＝Sia-sia）"], a:0},
+{q:"このあたりはちょっと不便ですね。「不便」の読み方は？", o:["ふうべん","ふべん","ふへん"], a:1},
+{q:"私は医者に「働きすぎないようにちゅういしてください」と言われました。「ちゅうい」の漢字は？", o:["注意","住意","主意"], a:0},
+
+// --- BAGIAN 4: くうらんを うめて ください ---
+{q:"しゅくだいを＿＿＿＿＿しまいました。", o:["わすれる","わせれた","わすれて"], a:2},
+{q:"LUKI：6月に日本に行ってみたいんですが。\nSHOMAD：6月は雨が多いので、できれば旅行しない＿＿＿＿＿＿。", o:["ほうがいいです（Lebih baik...memberi nasihat）","ことにします（Memutuskan atas kehendak sendiri）","つもりです（Berencana）"], a:0},
+{q:"JONI：この町には慣れましたか。\nLUKI：はい、おかげさまで。\nJONI：どうですか？この町は。\nLUKI：そうですねえ。にぎやかで、便利です。\nJONI：そうですか。\nLUKI：それに、＿＿＿＿＿＿。\nJONI：それはよかった。", o:["緑がちょっと少ないですね。","たべものが高いです。","けしきがきれいです。"], a:2},
+{q:"社長：会議室のエアコン、ついたままですよ。\nFERIAN：すみません。＿＿＿＿＿＿＿＿＿。", o:["まだ けしませんでしたね（Belum dimatikan ya..）","今、けします（Sekarang, akan dimatikan）","それは大変ですね（Kalau begitu sulit ya…）"], a:1},
+{q:"LUKI：このしゃしん、だれですか。\nNIKO：姉の子どもです。\nLUKI：かわいいですね。＿＿＿＿＿＿。\nNIKO：3歳です。", o:["お名前は？（Namanya?）","どこですか。（Di mana?）","おいくつですか。（Boleh tahu umurnya?）"], a:2}
+];
+
+let current = 0;
+let answers = new Array(questions.length).fill(null);
+
+function startExam(){
+  document.getElementById('startScreen').style.display='none';
+  document.getElementById('examScreen').style.display='block';
+  buildGrid();
+  renderQuestion();
+  startTimer(20*60); // 20 menit
+}
+
+function buildGrid(){
+  const grid = document.getElementById('grid');
+  grid.innerHTML='';
+  questions.forEach((q,i)=>{
+    const b=document.createElement('button');
+    b.className='gridbtn';
+    b.textContent=i+1;
+    b.onclick=()=>{current=i;renderQuestion();};
+    grid.appendChild(b);
+  });
+}
+
+function renderQuestion(){
+  const q = questions[current];
+  document.getElementById('qnum').textContent = `Soal ${current+1} dari ${questions.length}`;
+  document.getElementById('qtext').textContent = q.q;
+  const opts = document.getElementById('options');
+  opts.innerHTML='';
+  q.o.forEach((opt,i)=>{
+    const d=document.createElement('div');
+    d.className='opt notranslate';
+    d.setAttribute('translate','no');
+    d.textContent = String.fromCharCode(65+i) + '. ' + opt;
+    if(answers[current]===i) d.classList.add('selected');
+    d.onclick=()=>{
+      answers[current]=i;
+      renderQuestion();
+    };
+    opts.appendChild(d);
+  });
+  document.getElementById('nextBtn').textContent = current===questions.length-1 ? 'Selesai →' : 'Berikutnya →';
+  updateGrid();
+  updateProgress();
+}
+
+function updateGrid(){
+  const btns = document.querySelectorAll('.gridbtn');
+  btns.forEach((b,i)=>{
+    b.classList.toggle('answered', answers[i]!==null);
+    b.classList.toggle('current', i===current);
+  });
+}
+
+function updateProgress(){
+  const answeredCount = answers.filter(a=>a!==null).length;
+  const pct = Math.round((answeredCount/questions.length)*100);
+  document.getElementById('progressBar').style.width = pct+'%';
+}
+
+let timerInterval = null;
+let timeLeft = 0;
+
+function startTimer(seconds){
+  timeLeft = seconds;
+  updateTimerDisplay();
+  timerInterval = setInterval(()=>{
+    timeLeft--;
+    updateTimerDisplay();
+    if(timeLeft<=0){
+      clearInterval(timerInterval);
+      alert('Waktu habis! Ujian akan diselesaikan secara otomatis.');
+      finishExam(true);
+    }
+  },1000);
+}
+
+function updateTimerDisplay(){
+  const m = Math.floor(timeLeft/60).toString().padStart(2,'0');
+  const s = (timeLeft%60).toString().padStart(2,'0');
+  document.getElementById('timerText').textContent = `${m}:${s}`;
+  const wrap = document.querySelector('.timer-wrap');
+  if(timeLeft<=60){ wrap.classList.add('warning'); }
+  else{ wrap.classList.remove('warning'); }
+}
+
+function prevQ(){
+  if(current>0){current--;renderQuestion();}
+}
+function nextQ(){
+  if(current<questions.length-1){current++;renderQuestion();}
+  else finishExam();
+}
+
+function finishExam(auto){
+  if(!auto){
+    const unanswered = answers.filter(a=>a===null).length;
+    if(unanswered>0){
+      if(!confirm(`Masih ada ${unanswered} soal belum dijawab. Selesaikan ujian sekarang?`)) return;
+    }
+  }
+  clearInterval(timerInterval);
+  let score=0;
+  answers.forEach((a,i)=>{ if(a===questions[i].a) score++; });
+  document.getElementById('examScreen').style.display='none';
+  document.getElementById('resultScreen').style.display='block';
+  document.getElementById('scoreText').textContent = `${score} / ${questions.length}`;
+  document.getElementById('scorePct').textContent = `Nilai: ${Math.round((score/questions.length)*100)}%`;
+}
+
+function showReview(){
+  const list = document.getElementById('reviewList');
+  list.style.display='block';
+  list.innerHTML='';
+  questions.forEach((q,i)=>{
+    const correct = answers[i]===q.a;
+    const div=document.createElement('div');
+    div.className='reviewItem '+(correct?'correct':'wrong');
+    const userAns = answers[i]!==null ? q.o[answers[i]] : '(tidak dijawab)';
+    div.innerHTML = `
+      <div class="notranslate" translate="no"><b>${i+1}. ${q.q}</b></div>
+      <div class="small notranslate" translate="no">Jawaban Anda: ${userAns}</div>
+      <div class="small notranslate" translate="no">Jawaban benar: ${q.o[q.a]}</div>
+    `;
+    list.appendChild(div);
+  });
+}
+</script>
+</body>
+</html>
