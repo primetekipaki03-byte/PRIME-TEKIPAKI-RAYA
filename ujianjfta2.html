@@ -128,6 +128,27 @@
     overflow:hidden;
     margin-bottom:18px;
   }
+  .timer-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:var(--card);
+    border:1.5px solid rgba(250,204,21,.3);
+    border-radius:12px;
+    padding:10px 16px;
+    margin-bottom:14px;
+    font-weight:800;
+    letter-spacing:.5px;
+  }
+  .timer-label{color:var(--muted);font-size:.85rem;font-weight:700;}
+  #timerText{
+    font-size:1.3rem;
+    color:var(--accent2);
+    font-variant-numeric:tabular-nums;
+  }
+  .timer-wrap.warning #timerText{color:var(--bad);animation:blink 1s infinite;}
+  @keyframes blink{50%{opacity:.3;}}
   .progress-bar{
     height:100%;
     width:0%;
@@ -267,7 +288,11 @@
   </div>
 
   <div id="examScreen" style="display:none;">
-    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="timer-wrap">
+    <span class="timer-label">⏱ Sisa Waktu</span>
+    <span id="timerText">50:00</span>
+  </div>
+  <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
     <div id="grid"></div>
     <div class="card">
       <div class="qnum" id="qnum"></div>
@@ -391,6 +416,7 @@ function startExam(){
   document.getElementById('examScreen').style.display='block';
   buildGrid();
   renderQuestion();
+  startTimer(50*60); // 50 menit
 }
 
 function buildGrid(){
@@ -442,6 +468,32 @@ function updateProgress(){
   document.getElementById('progressBar').style.width = pct+'%';
 }
 
+let timerInterval = null;
+let timeLeft = 0;
+
+function startTimer(seconds){
+  timeLeft = seconds;
+  updateTimerDisplay();
+  timerInterval = setInterval(()=>{
+    timeLeft--;
+    updateTimerDisplay();
+    if(timeLeft<=0){
+      clearInterval(timerInterval);
+      alert('Waktu habis! Ujian akan diselesaikan secara otomatis.');
+      finishExam(true);
+    }
+  },1000);
+}
+
+function updateTimerDisplay(){
+  const m = Math.floor(timeLeft/60).toString().padStart(2,'0');
+  const s = (timeLeft%60).toString().padStart(2,'0');
+  document.getElementById('timerText').textContent = `${m}:${s}`;
+  const wrap = document.querySelector('.timer-wrap');
+  if(timeLeft<=60){ wrap.classList.add('warning'); }
+  else{ wrap.classList.remove('warning'); }
+}
+
 function prevQ(){
   if(current>0){current--;renderQuestion();}
 }
@@ -450,11 +502,14 @@ function nextQ(){
   else finishExam();
 }
 
-function finishExam(){
-  const unanswered = answers.filter(a=>a===null).length;
-  if(unanswered>0){
-    if(!confirm(`Masih ada ${unanswered} soal belum dijawab. Selesaikan ujian sekarang?`)) return;
+function finishExam(auto){
+  if(!auto){
+    const unanswered = answers.filter(a=>a===null).length;
+    if(unanswered>0){
+      if(!confirm(`Masih ada ${unanswered} soal belum dijawab. Selesaikan ujian sekarang?`)) return;
+    }
   }
+  clearInterval(timerInterval);
   let score=0;
   answers.forEach((a,i)=>{ if(a===questions[i].a) score++; });
   document.getElementById('examScreen').style.display='none';
