@@ -39,6 +39,75 @@
     color:var(--accent2);
   }
   header p{color:var(--muted);margin:6px 0 0;font-size:.9rem;}
+  #navbar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:#001530;
+    border-bottom:1.5px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.4);
+  }
+  .navbar-inner{
+    max-width:900px;
+    margin:0 auto;
+    padding:10px 16px;
+    display:flex;
+    align-items:center;
+  }
+  .dropdown{
+    position:relative;
+    display:inline-block;
+  }
+  .dropdown-btn{
+    background:transparent;
+    color:var(--accent2);
+    border:1.5px solid var(--accent2);
+    border-radius:8px;
+    padding:9px 18px;
+    font-size:.85rem;
+    font-weight:800;
+    letter-spacing:.5px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    transition:.15s;
+  }
+  .dropdown-btn:hover{
+    background:var(--accent2);
+    color:#001f3f;
+  }
+  .caret{font-size:.7rem;transition:transform .15s;}
+  .dropdown.open .caret{transform:rotate(180deg);}
+  .dropdown-menu{
+    display:none;
+    flex-direction:column;
+    position:absolute;
+    top:calc(100% + 6px);
+    left:0;
+    min-width:230px;
+    background:#001530;
+    border:1.5px solid rgba(250,204,21,.3);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.5);
+    z-index:60;
+  }
+  .dropdown-menu.show{display:flex;}
+  .dropdown-menu a{
+    text-decoration:none;
+    color:var(--text);
+    padding:11px 16px;
+    font-size:.82rem;
+    font-weight:600;
+    border-bottom:1px solid rgba(250,204,21,.1);
+    transition:.15s;
+  }
+  .dropdown-menu a:last-child{border-bottom:none;}
+  .dropdown-menu a:hover{
+    background:var(--accent2);
+    color:#001f3f;
+  }
   #app{
     max-width:760px;
     margin:0 auto;
@@ -164,6 +233,21 @@
 </head>
 <body class="notranslate" translate="no">
 
+<nav id="navbar">
+  <div class="navbar-inner">
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown()">QUIZ <span class="caret">▾</span></button>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <a href="jft_a1_test1.html">SOAL JFT A - TEST 1</a>
+        <a href="jft_a1_test2.html">SOAL JFT A - TEST 2</a>
+        <a href="jft_a1_test3.html">SOAL JFT A - TEST 3</a>
+        <a href="jft_a1_test4.html">SOAL JFT A - TEST 4</a>
+        <a href="jft_a1_test5.html">SOAL JFT A - TEST 5</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
 <header>
   <h1 class="notranslate" translate="no">JFTベーシック A2 模擬試験</h1>
   <p>Ujian Simulasi JFT-Basic A2 — 50 Soal</p>
@@ -213,6 +297,21 @@
 <footer>© Latihan Soal JFT-Basic A2 — Untuk keperluan belajar mandiri</footer>
 
 <script>
+// ====== DROPDOWN NAVBAR ======
+function toggleDropdown(){
+  const menu = document.getElementById('dropdownMenu');
+  const wrap = menu.closest('.dropdown');
+  menu.classList.toggle('show');
+  wrap.classList.toggle('open');
+}
+document.addEventListener('click', (e)=>{
+  const wrap = document.querySelector('.dropdown');
+  if(wrap && !wrap.contains(e.target)){
+    document.getElementById('dropdownMenu').classList.remove('show');
+    wrap.classList.remove('open');
+  }
+});
+
 // ====== PROTEKSI DASAR (anti copy / anti klik kanan / anti select) ======
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('copy', e => e.preventDefault());
