@@ -247,6 +247,7 @@ button {
     padding:11px 18px;font-size:.95rem;font-weight:700;
     color:#001f3f;background:var(--accent2);transition:.15s;
   }
+ 
   button:disabled{opacity:.4;cursor:not-allowed;}
   button.secondary{background:var(--gold);color:var(--navy);border:1.5px solid var(--gold);}
   #nextBtn{background:var(--gold);color:var(--navy);}
@@ -261,7 +262,7 @@ button {
   .reviewItem .small{color:var(--muted);font-size:.85rem;margin-top:4px;}
   #startScreen{text-align:center;}
   #startScreen ul{text-align:left;color:var(--muted);line-height:1.8;margin:0 auto;max-width:520px;}
-  <p id="scorePct" style="color:#ffffff;font-size:1.1rem;"></p>
+
 
   footer{text-align:center;color:var(--navy);font-size:.75rem;padding:20px;}
 
@@ -331,7 +332,7 @@ HOME
       <li>Gunakan peta nomor soal atau tombol navigasi untuk berpindah soal.</li>
       <li>Skor dan pembahasan ditampilkan setelah ujian selesai.</li>
     </ul>
-    <button onclick="startExam()" style="background:var(--gold);color:var(--navy);">▶ Mulai Ujian</button>
+     <button onclick="startExam()" style="background:var(--gold);color:var(--navy);margin-top:1.5rem;">▶ Mulai Ujian</button>
   </div>
 
   <!-- EXAM SCREEN -->
@@ -366,6 +367,7 @@ HOME
     <button onclick="showReview()">📋 Lihat Pembahasan</button>
     <button class="secondary" onclick="location.reload()">🔄 Ulangi Ujian</button>
     <div id="reviewList" style="margin-top:18px;display:none;"></div>
+     <p id="scorePct" style="color:#ffffff;font-size:1.1rem;"></p>
   </div>
 
 </div>
