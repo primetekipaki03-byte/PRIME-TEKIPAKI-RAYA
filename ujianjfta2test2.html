@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title class="notranslate">Ujian JFT - Test 1</title>
+<title class="notranslate">Ujian JFT - Test 2</title>
 <style>
   :root{
     --bg:#001f3f;
@@ -43,17 +43,52 @@
     position:sticky;
     top:0;
     z-index:50;
+    width:100%;
     background:#001530;
     border-bottom:1.5px solid rgba(250,204,21,.25);
     box-shadow:0 4px 14px rgba(0,0,0,.4);
   }
   .navbar-inner{
-    max-width:900px;
-    margin:0 auto;
-    padding:10px 16px;
+    max-width:100%;
+    width:100%;
+    margin:0;
+    padding:8px 20px;
     display:flex;
     align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    box-sizing:border-box;
   }
+  .nav-left{
+    display:flex;
+    align-items:center;
+    flex-shrink:0;
+  }
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    margin-left:auto;
+  }
+  .home-btn{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    text-decoration:none;
+    background:var(--accent2);
+    color:#001f3f;
+    border:none;
+    border-radius:8px;
+    padding:8px 14px;
+    font-size:.82rem;
+    font-weight:800;
+    letter-spacing:.3px;
+    transition:.15s;
+    cursor:pointer;
+  }
+  .home-btn:hover{opacity:.85;}
   .dropdown{
     position:relative;
     display:inline-block;
@@ -77,7 +112,27 @@
     background:var(--accent2);
     color:#001f3f;
   }
-  .caret{font-size:.7rem;transition:transform .15s;}
+  .nav-link-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    text-decoration:none;
+    background:transparent;
+    color:var(--accent2);
+    border:1.5px solid rgba(250,204,21,.5);
+    border-radius:8px;
+    padding:7px 12px;
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.3px;
+    white-space:nowrap;
+    cursor:pointer;
+    transition:.15s;
+  }
+  .nav-link-btn:hover{
+    background:var(--accent2);
+    color:#001f3f;
+  }
   .dropdown.open .caret{transform:rotate(180deg);}
   .dropdown-menu{
     display:none;
@@ -248,6 +303,12 @@
     font-size:.75rem;
     padding:20px;
   }
+  @media(max-width:600px){
+    .navbar-inner{flex-direction:column;align-items:flex-start;gap:8px;}
+    .nav-right{width:100%;}
+    .nav-link-btn,.dropdown-btn{font-size:.72rem;padding:6px 9px;}
+    .home-btn{font-size:.82rem;}
+  }
   @media print{
     body{display:none !important;}
   }
@@ -257,15 +318,40 @@
 
 <nav id="navbar">
   <div class="navbar-inner">
-    <div class="dropdown">
-      <button class="dropdown-btn" onclick="toggleDropdown()">QUIZ <span class="caret">▾</span></button>
-      <div class="dropdown-menu" id="dropdownMenu">
-        <a href="jft_a1_test1.html">SOAL JFT A - TEST 1</a>
-        <a href="jft_a1_test2.html">SOAL JFT A - TEST 2</a>
-        <a href="jft_a1_test3.html">SOAL JFT A - TEST 3</a>
-        <a href="jft_a1_test4.html">SOAL JFT A - TEST 4</a>
-        <a href="jft_a1_test5.html">SOAL JFT A - TEST 5</a>
+
+    <!-- KIRI: HOME -->
+    <div class="nav-left">
+      <a href="index.html" class="home-btn">HOME</a>
+    </div>
+
+    <!-- KANAN: QUIZ dropdown + Materi + Quiz JFT A2 + Quiz Kanji -->
+    <div class="nav-right">
+
+      <!-- QUIZ dropdown -->
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown('dropdownMenu')">QUIZ JFT A2 <span class="caret" id="caretQuiz">▾</span></button>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="ujianjfta2test1.html">SOAL JFT A - TEST 1</a>
+          <a href="ujianjfta2test2.html">SOAL JFT A - TEST 2</a>
+          <a href="ujianjfta2test3.html">SOAL JFT A - TEST 3</a>
+          <a href="ujianjfta2test4.html">SOAL JFT A - TEST 4</a>
+          <a href="ujianjfta2test5.html">SOAL JFT A - TEST 5</a>
+        </div>
       </div>
+
+      <!-- Materi dropdown -->
+      <div class="dropdown">
+        <button class="nav-link-btn" onclick="toggleDropdown('dropdownMateri')"> MATERI <span class="caret" id="caretMateri">▾</span></button>
+        <div class="dropdown-menu" id="dropdownMateri" style="right:0;left:auto;">
+          <a href="materi_kosakata.html">Kosakata JFT</a>
+          <a href="materi_tatabahasa.html">Tata Bahasa</a>
+          <a href="materi_kanji.html">Kanji Dasar</a>
+        </div>
+      </div>
+
+      <!-- Quiz Kanji -->
+      <a href="quiz_kanji.html" class="nav-link-btn">QUIZ KANJI</a>
+
     </div>
   </div>
 </nav>
@@ -325,17 +411,24 @@
 
 <script>
 // ====== DROPDOWN NAVBAR ======
-function toggleDropdown(){
-  const menu = document.getElementById('dropdownMenu');
+function toggleDropdown(id){
+  const menu = document.getElementById(id);
+  const allMenus = document.querySelectorAll('.dropdown-menu');
+  allMenus.forEach(m => {
+    if(m.id !== id){
+      m.classList.remove('show');
+      const wrap = m.closest('.dropdown');
+      if(wrap) wrap.classList.remove('open');
+    }
+  });
   const wrap = menu.closest('.dropdown');
   menu.classList.toggle('show');
   wrap.classList.toggle('open');
 }
 document.addEventListener('click', (e)=>{
-  const wrap = document.querySelector('.dropdown');
-  if(wrap && !wrap.contains(e.target)){
-    document.getElementById('dropdownMenu').classList.remove('show');
-    wrap.classList.remove('open');
+  if(!e.target.closest('.dropdown')){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>m.classList.remove('show'));
+    document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
   }
 });
 
