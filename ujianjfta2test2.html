@@ -4,102 +4,178 @@
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ujian JFT - Test 2</title>
+<title>Ujian JFT - Test 1</title>
 <style>
   :root{
-    --bg:#001f3f;
-    --card:#002a54;
-    --accent:#facc15;
-    --accent2:#facc15;
-    --text:#ffd700;
-    --muted:#e0c200;
-    --ok:#22c55e;
-    --bad:#ef4444;
-  }
-  *{box-sizing:border-box;}
-  body{
+    --navy:#001f3f;
+    --navy2:#001f3f;
+    --gold:#e0b52a;
+    --text:#001f3f;
+
+    /* ===== VARIABEL YANG SEBELUMNYA HILANG (penyebab soal tak terlihat) ===== */
+    --card:#001f3f;
+    --muted:#ececec;
+    --accent:#e0b52a;
+    --accent2:#c4b81f;
+    --text:#070d6d;
+    --ok:#e0b52a;
+    --bad:#e11d48;
+}
+
+*{
     margin:0;
-    font-family:'Segoe UI',Arial,sans-serif;
-    background:#001f3f;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
     color:var(--text);
-    min-height:100vh;
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
-  }
-  ::selection{background:transparent;}
-  header{text-align:center;padding:28px 16px 10px;}
-  header h1{margin:0;font-size:1.6rem;color:var(--accent2);}
-  header p{color:var(--muted);margin:6px 0 0;font-size:.9rem;}
+}
 
-  /* ===== NAVBAR ===== */
-  #navbar{
-    position:sticky;top:0;z-index:50;width:100%;
-    background:#001530;
-    border-bottom:1.5px solid rgba(250,204,21,.25);
-    box-shadow:0 4px 14px rgba(0,0,0,.4);
-  }
-  .navbar-inner{
-    width:100%;padding:8px 20px;
-    display:flex;align-items:center;
-    justify-content:space-between;gap:8px;box-sizing:border-box;
-  }
-  .nav-left{display:flex;align-items:center;flex-shrink:0;}
-  .nav-right{
-    display:flex;align-items:center;
-    gap:6px;flex-wrap:wrap;
-    justify-content:flex-end;margin-left:auto;
-  }
-  .home-btn{
-    display:flex;align-items:center;gap:6px;
-    text-decoration:none;
-    background:var(--accent2);color:#001f3f;
-    border:none;border-radius:8px;
-    padding:8px 14px;font-size:.82rem;font-weight:800;
-    letter-spacing:.3px;transition:.15s;cursor:pointer;
-  }
-  .home-btn:hover{opacity:.85;}
-  .dropdown{position:relative;display:inline-block;}
-  .dropdown-btn{
-    background:transparent;color:var(--accent2);
-    border:1.5px solid var(--accent2);border-radius:8px;
-    padding:8px 14px;font-size:.82rem;font-weight:800;
-    cursor:pointer;display:flex;align-items:center;gap:6px;transition:.15s;
-  }
-  .dropdown-btn:hover{background:var(--accent2);color:#001f3f;}
-  .nav-link-btn{
-    display:inline-flex;align-items:center;gap:5px;
-    text-decoration:none;background:transparent;color:var(--accent2);
-    border:1.5px solid rgba(250,204,21,.5);border-radius:8px;
-    padding:7px 12px;font-size:.78rem;font-weight:700;
-    white-space:nowrap;cursor:pointer;transition:.15s;
-  }
-  .nav-link-btn:hover{background:var(--accent2);color:#001f3f;}
-  .caret{font-size:.7rem;transition:transform .2s;}
-  .dropdown.open .caret{transform:rotate(180deg);}
-  .dropdown-menu{
-    display:none;flex-direction:column;
-    position:absolute;top:calc(100% + 6px);left:0;
-    min-width:230px;background:#001530;
-    border:1.5px solid rgba(250,204,21,.3);
-    border-radius:10px;overflow:hidden;
-    box-shadow:0 8px 20px rgba(0,0,0,.5);z-index:60;
-  }
-  .dropdown-menu.show{display:flex;}
-  .dropdown-menu a{
-    text-decoration:none;color:var(--text);
-    padding:11px 16px;font-size:.82rem;font-weight:600;
-    border-bottom:1px solid rgba(250,204,21,.1);transition:.15s;
-  }
-  .dropdown-menu a:last-child{border-bottom:none;}
-  .dropdown-menu a:hover{background:var(--accent2);color:#001f3f;}
+/* =======================
+        NAVBAR
+======================= */
 
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#022a5e;
+    border-bottom:2px solid rgba(224,181,42,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.home-btn{
+display:flex;
+align-items:center;
+gap:8px;
+background:var(--gold);
+color:#001530;
+text-decoration:none;
+padding:8px 14px;
+border-radius:10px;
+font-weight:bold;
+}
+
+.home-btn:hover{
+opacity:.85;
+}
+
+.home-icon{
+width:24px;
+height:24px;
+object-fit:cover;
+border-radius:4px;
+}
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-btn{
+background:none;
+border:2px solid var(--gold);
+color:var(--gold);
+padding:8px 14px;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.dropdown-btn:hover{
+background:var(--gold);
+color:#001530;
+}
+
+.dropdown-menu{
+display:none;
+position:absolute;
+top:45px;
+left:0;
+background:#022655;
+border-radius:10px;
+overflow:hidden;
+min-width:220px;
+box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+.dropdown-menu a{
+display:block;
+padding:12px 15px;
+color:#ffd700;
+text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+background:var(--gold);
+color:#001530;
+}
+
+.show{
+display:block;
+}
+
+.nav-link-btn{
+text-decoration:none;
+padding:8px 14px;
+border:2px solid var(--gold);
+color:var(--gold);
+border-radius:8px;
+font-weight:bold;
+}
+
+.nav-link-btn:hover{
+background:var(--gold);
+color:#001530;
+}
+
+  /* ===== HEADER (sebelumnya tidak punya style sama sekali) ===== */
+  header{
+    background:linear-gradient(135deg,var(--navy),#003366);
+    color:#fff;
+    text-align:center;
+    padding:22px 16px 26px;
+    border-bottom:3px solid var(--gold);
+  }
+  header h1{
+    color:var(--gold);
+    font-size:1.7rem;
+    letter-spacing:.5px;
+    margin-bottom:6px;
+  }
+  header p{
+    color:#cbd5e1;
+    font-size:.9rem;
+  }
+button {
+   background:#fff241
+   
+}
   /* ===== LAYOUT ===== */
   #app{max-width:760px;margin:0 auto;padding:16px;}
   .card{
     background:var(--card);border-radius:14px;
-    padding:20px;margin-bottom:18px;
+    padding:28px 26px;margin-bottom:18px;
     box-shadow:0 4px 18px rgba(0,0,0,.35);
     border:1px solid rgba(255,255,255,.05);
   }
@@ -107,17 +183,17 @@
   /* ===== TIMER ===== */
   .timer-wrap{
     display:flex;align-items:center;justify-content:center;gap:10px;
-    background:var(--card);border:1.5px solid rgba(250,204,21,.3);
+    background:var(--navy);border:1.5px solid rgba(224,181,42,.3);
     border-radius:12px;padding:10px 16px;margin-bottom:14px;
     font-weight:800;letter-spacing:.5px;
   }
-  .timer-label{color:var(--muted);font-size:.85rem;font-weight:700;}
-  #timerText{font-size:1.3rem;color:var(--accent2);font-variant-numeric:tabular-nums;}
+  .timer-label{color:#ffffff;font-size:.85rem;font-weight:700;}
+  #timerText{font-size:1.3rem;color:#ffffff;font-variant-numeric:tabular-nums;}
   .timer-wrap.warning #timerText{color:var(--bad);animation:blink 1s infinite;}
   @keyframes blink{50%{opacity:.3;}}
 
   /* ===== PROGRESS ===== */
-  .progress-wrap{background:#0b1224;border-radius:10px;height:10px;overflow:hidden;margin-bottom:18px;}
+  .progress-wrap{background:#002a54;border-radius:10px;height:10px;overflow:hidden;margin-bottom:18px;}
   .progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .25s ease;}
 
   /* ===== GRID NOMOR SOAL ===== */
@@ -127,38 +203,42 @@
     gap:6px;margin-bottom:18px;
   }
   .gridbtn{
-    aspect-ratio:1/1;background:#0b1224;
+    aspect-ratio:1/1;background:#002a54;
     border:1px solid rgba(255,255,255,.1);border-radius:6px;
-    font-size:.75rem;color:var(--muted);
+    font-size:.9rem;color:var(--muted);
     display:flex;align-items:center;justify-content:center;
     cursor:pointer;padding:0;
   }
-  .gridbtn.answered{background:rgba(34,197,94,.18);color:var(--ok);border-color:var(--ok);}
+  .gridbtn.answered{background:var(--gold);color:var(--navy);border-color:var(--gold);}
+  .gridbtn.answered:hover{background:#ffffff;color:var(--navy);border-color:var(--navy);}
   .gridbtn.current{border-color:var(--accent2);color:var(--accent2);}
+  .gridbtn.answered.current{color:var(--navy);border-color:var(--navy);}
 
   /* ===== SOAL ===== */
   .qnum{font-size:.8rem;color:var(--muted);margin-bottom:6px;}
   .section-label{
     font-size:.75rem;font-weight:800;letter-spacing:.5px;
-    color:var(--accent2);background:rgba(250,204,21,.1);
-    border:1px solid rgba(250,204,21,.25);
+    color:var(--accent2);background:rgba(224,181,42,.1);
+    border:1px solid rgba(224,181,42,.25);
     border-radius:6px;padding:4px 10px;
     display:inline-block;margin-bottom:10px;
   }
   .qtext{
     font-size:1.1rem;line-height:1.75;
     margin-bottom:16px;white-space:pre-line;
+    color:#eaf0fb;
   }
   .options{display:flex;flex-direction:column;gap:10px;}
   .opt{
-    background:#0b1224;
+    background:var(--navy);
     border:1.5px solid rgba(255,255,255,.08);
     border-radius:10px;padding:12px 16px;
     cursor:pointer;font-size:.97rem;
+    color:#e2e8f0;
     transition:.15s;white-space:pre-line;
   }
   .opt:hover{border-color:var(--accent2);}
-  .opt.selected{border-color:var(--accent);background:rgba(250,204,21,.08);}
+  .opt.selected{border-color:var(--gold);background:var(--gold);color:#fff;}
 
   /* ===== NAV SOAL ===== */
   .navrow{display:flex;justify-content:space-between;margin-top:18px;gap:10px;}
@@ -167,21 +247,24 @@
     padding:11px 18px;font-size:.95rem;font-weight:700;
     color:#001f3f;background:var(--accent2);transition:.15s;
   }
+ 
   button:disabled{opacity:.4;cursor:not-allowed;}
-  button.secondary{background:transparent;color:var(--text);border:1.5px solid rgba(255,215,0,.4);}
+  button.secondary{background:var(--gold);color:var(--navy);border:1.5px solid var(--gold);}
+  #nextBtn{background:var(--gold);color:var(--navy);}
 
   /* ===== RESULT ===== */
   #resultScreen{display:none;text-align:center;}
   #resultScreen h2{color:var(--accent2);font-size:2rem;margin-bottom:4px;}
-  #resultScreen .score{font-size:3rem;font-weight:800;margin:10px 0;}
-  .reviewItem{text-align:left;padding:12px;border-radius:10px;margin-bottom:8px;background:#0b1224;}
+  #resultScreen .score{font-size:3rem;font-weight:800;margin:10px 0;color:#ffffff;}
+  .reviewItem{text-align:left;padding:12px;border-radius:10px;margin-bottom:8px;background:#002a54;color:#e2e8f0;}
   .reviewItem.correct{border-left:4px solid var(--ok);}
   .reviewItem.wrong{border-left:4px solid var(--bad);}
   .reviewItem .small{color:var(--muted);font-size:.85rem;margin-top:4px;}
   #startScreen{text-align:center;}
-  #startScreen ul{text-align:left;color:var(--muted);line-height:1.8;}
+  #startScreen ul{text-align:left;color:var(--muted);line-height:1.8;margin:0 auto;max-width:520px;}
 
-  footer{text-align:center;color:var(--muted);font-size:.75rem;padding:20px;}
+
+  footer{text-align:center;color:var(--navy);font-size:.85rem;padding:20px;}
 
   @media(max-width:600px){
     .navbar-inner{flex-direction:column;align-items:flex-start;gap:8px;}
@@ -195,32 +278,40 @@
 
 <!-- ===== NAVBAR ===== -->
 <nav id="navbar">
-  <div class="navbar-inner">
-    <div class="nav-left">
-      <a href="index.html" class="home-btn">🏠 HOME</a>
-    </div>
-    <div class="nav-right">
-      <div class="dropdown">
-        <button class="dropdown-btn" onclick="toggleDropdown('ddQuiz')">QUIZ JFT A ▾</button>
-        <div class="dropdown-menu" id="ddQuiz">
-          <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
-          <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
-          <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
-          <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
-          <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="nav-link-btn" onclick="toggleDropdown('ddMateri')">MATERI ▾</button>
-        <div class="dropdown-menu" id="ddMateri" style="right:0;left:auto;">
-          <a href="materi_kosakata.html">Kosakata JFT</a>
-          <a href="materi_tatabahasa.html">Tata Bahasa</a>
-          <a href="materi_kanji.html">Kanji Dasar</a>
-        </div>
-      </div>
-      <a href="quiz_kanji.html" class="nav-link-btn"> QUIZ KANJI</a>
-    </div>
-  </div>
+<div class="navbar-inner">
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+<div class="dropdown-menu" id="quiz">
+<a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+<a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+<a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+<a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+<a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+</div>
+</div>
+
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+<div class="dropdown-menu" id="materi">
+<a href="materi_kosakata.html">Kosakata JFT</a>
+<a href="materi_tatabahasa.html">Tata Bahasa</a>
+<a href="kanjidasar.html">Kanji Flash Card</a>
+</div>
+</div>
+
+<a href="quiz_kanji.html" class="nav-link-btn">QUIZ KANJI</a>
+</div>
+</div>
 </nav>
 
 <!-- ===== HEADER ===== -->
@@ -241,7 +332,7 @@
       <li>Gunakan peta nomor soal atau tombol navigasi untuk berpindah soal.</li>
       <li>Skor dan pembahasan ditampilkan setelah ujian selesai.</li>
     </ul>
-    <button onclick="startExam()">▶ Mulai Ujian</button>
+     <button onclick="startExam()" style="background:var(--gold);color:var(--navy);margin-top:1.5rem;">▶ Mulai Ujian</button>
   </div>
 
   <!-- EXAM SCREEN -->
@@ -263,7 +354,7 @@
       </div>
     </div>
     <div class="card" style="text-align:center;">
-      <button onclick="finishExam(false)" style="background:var(--bad);color:#fff;">✔ Selesaikan Ujian</button>
+      <button onclick="finishExam(false)" style="background:#e11d48;color:#fff;">✔ Selesaikan Ujian</button>
     </div>
   </div>
 
@@ -276,6 +367,7 @@
     <button onclick="showReview()">📋 Lihat Pembahasan</button>
     <button class="secondary" onclick="location.reload()">🔄 Ulangi Ujian</button>
     <div id="reviewList" style="margin-top:18px;display:none;"></div>
+     <p id="scorePct" style="color:#ffffff;font-size:1.1rem;"></p>
   </div>
 
 </div>
@@ -318,8 +410,6 @@ document.addEventListener('click', e=>{
   }
 });
 
-// ==========================================
-// DATA SOAL — 19 SOAL
 // ==========================================
 const SECTIONS = [
   { label:'BAGIAN 1 · ぶんを かんせいしましょう！', range:[0,4]  },
@@ -441,9 +531,6 @@ const questions = [
   }
 
 ];
-// ==========================================
-// FUNGSI BANTU SECTION LABEL
-// ==========================================
 function getSectionLabel(idx){
   for(const s of SECTIONS){
     if(idx >= s.range[0] && idx <= s.range[1]) return s.label;
@@ -451,17 +538,11 @@ function getSectionLabel(idx){
   return '';
 }
 
-// ==========================================
-// STATE
-// ==========================================
 let current = 0;
 let answers = new Array(questions.length).fill(null);
 let timerInterval = null;
 let timeLeft = 0;
 
-// ==========================================
-// START
-// ==========================================
 function startExam(){
   document.getElementById('startScreen').style.display='none';
   document.getElementById('examScreen').style.display='block';
@@ -470,9 +551,6 @@ function startExam(){
   startTimer(20 * 60);
 }
 
-// ==========================================
-// GRID NOMOR SOAL
-// ==========================================
 function buildGrid(){
   const grid = document.getElementById('grid');
   grid.innerHTML = '';
@@ -492,9 +570,6 @@ function updateGrid(){
   });
 }
 
-// ==========================================
-// RENDER SOAL
-// ==========================================
 function renderQuestion(){
   const q = questions[current];
   document.getElementById('qnum').textContent        = `Soal ${current+1} dari ${questions.length}`;
@@ -527,18 +602,12 @@ function updateProgress(){
     Math.round((done / questions.length) * 100) + '%';
 }
 
-// ==========================================
-// NAVIGASI
-// ==========================================
 function prevQ(){ if(current > 0){ current--; renderQuestion(); } }
 function nextQ(){
   if(current < questions.length - 1){ current++; renderQuestion(); }
   else finishExam(false);
 }
 
-// ==========================================
-// TIMER
-// ==========================================
 function startTimer(secs){
   timeLeft = secs;
   updateTimerDisplay();
@@ -560,9 +629,6 @@ function updateTimerDisplay(){
   document.querySelector('.timer-wrap').classList.toggle('warning', timeLeft <= 60);
 }
 
-// ==========================================
-// SELESAI
-// ==========================================
 function finishExam(auto){
   if(!auto){
     const sisa = answers.filter(a => a === null).length;
@@ -584,9 +650,6 @@ function finishExam(auto){
                 '💪 Semangat! Coba lagi ya.';
 }
 
-// ==========================================
-// PEMBAHASAN
-// ==========================================
 function showReview(){
   const list = document.getElementById('reviewList');
   list.style.display = 'block';
