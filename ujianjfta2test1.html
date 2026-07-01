@@ -11,6 +11,14 @@
     --navy2:#002a54;
     --gold:#facc15;
     --text:#001f3f;
+
+    /* ===== VARIABEL YANG SEBELUMNYA HILANG (penyebab soal tak terlihat) ===== */
+    --card:#ffffff;
+    --muted:#8ea3c7;
+    --accent:#facc15;
+    --accent2:#ffd700;
+    --ok:#22c55e;
+    --bad:#ef4444;
 }
 
 *{
@@ -33,7 +41,7 @@ body{
     position:sticky;
     top:0;
     z-index:999;
-    background:#001530;
+    background:#022a5e;
     border-bottom:2px solid rgba(250,204,21,.25);
     box-shadow:0 4px 14px rgba(0,0,0,.35);
 }
@@ -57,145 +65,108 @@ body{
 }
 
 .home-btn{
-
 display:flex;
 align-items:center;
 gap:8px;
-
 background:var(--gold);
 color:#001530;
-
 text-decoration:none;
-
 padding:8px 14px;
-
 border-radius:10px;
-
 font-weight:bold;
-
 }
 
 .home-btn:hover{
-
 opacity:.85;
-
 }
 
 .home-icon{
-
 width:24px;
-
 height:24px;
-
 object-fit:cover;
-
 border-radius:4px;
-
 }
 
 .dropdown{
-
 position:relative;
-
 }
 
 .dropdown-btn{
-
 background:none;
-
 border:2px solid var(--gold);
-
 color:var(--gold);
-
 padding:8px 14px;
-
 border-radius:8px;
-
 font-weight:bold;
-
 cursor:pointer;
-
 }
 
 .dropdown-btn:hover{
-
 background:var(--gold);
-
 color:#001530;
-
 }
 
 .dropdown-menu{
-
 display:none;
-
 position:absolute;
-
 top:45px;
-
 left:0;
-
 background:#022655;
-
 border-radius:10px;
-
 overflow:hidden;
-
 min-width:220px;
-
 box-shadow:0 8px 20px rgba(0,0,0,.4);
-
 }
 
 .dropdown-menu a{
-
 display:block;
-
 padding:12px 15px;
-
 color:#ffd700;
-
 text-decoration:none;
-
 }
 
 .dropdown-menu a:hover{
-
 background:var(--gold);
-
 color:#001530;
-
 }
 
 .show{
-
 display:block;
-
 }
 
 .nav-link-btn{
-
 text-decoration:none;
-
 padding:8px 14px;
-
 border:2px solid var(--gold);
-
 color:var(--gold);
-
 border-radius:8px;
-
 font-weight:bold;
-
 }
 
 .nav-link-btn:hover{
-
 background:var(--gold);
-
 color:#001530;
-
 }
+
+  /* ===== HEADER (sebelumnya tidak punya style sama sekali) ===== */
+  header{
+    background:linear-gradient(135deg,var(--navy),var(--navy2));
+    color:#fff;
+    text-align:center;
+    padding:22px 16px 26px;
+    border-bottom:3px solid var(--gold);
+  }
+  header h1{
+    color:var(--gold);
+    font-size:1.7rem;
+    letter-spacing:.5px;
+    margin-bottom:6px;
+  }
+  header p{
+    color:#cbd5e1;
+    font-size:.9rem;
+  }
+
   /* ===== LAYOUT ===== */
   #app{max-width:760px;margin:0 auto;padding:16px;}
   .card{
@@ -218,7 +189,7 @@ color:#001530;
   @keyframes blink{50%{opacity:.3;}}
 
   /* ===== PROGRESS ===== */
-  .progress-wrap{background:#0b1224;border-radius:10px;height:10px;overflow:hidden;margin-bottom:18px;}
+  .progress-wrap{background:#002a54;border-radius:10px;height:10px;overflow:hidden;margin-bottom:18px;}
   .progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .25s ease;}
 
   /* ===== GRID NOMOR SOAL ===== */
@@ -228,13 +199,14 @@ color:#001530;
     gap:6px;margin-bottom:18px;
   }
   .gridbtn{
-    aspect-ratio:1/1;background:#0b1224;
+    aspect-ratio:1/1;background:#002a54;
     border:1px solid rgba(255,255,255,.1);border-radius:6px;
     font-size:.75rem;color:var(--muted);
     display:flex;align-items:center;justify-content:center;
     cursor:pointer;padding:0;
   }
   .gridbtn.answered{background:rgba(34,197,94,.18);color:var(--ok);border-color:var(--ok);}
+  .gridbtn.answered:hover{background:#ffffff;color:var(--navy);border-color:var(--navy);}
   .gridbtn.current{border-color:var(--accent2);color:var(--accent2);}
 
   /* ===== SOAL ===== */
@@ -249,17 +221,19 @@ color:#001530;
   .qtext{
     font-size:1.1rem;line-height:1.75;
     margin-bottom:16px;white-space:pre-line;
+    color:#eaf0fb;
   }
   .options{display:flex;flex-direction:column;gap:10px;}
   .opt{
-    background:#0b1224;
+    background:#002a54;
     border:1.5px solid rgba(255,255,255,.08);
     border-radius:10px;padding:12px 16px;
     cursor:pointer;font-size:.97rem;
+    color:#e2e8f0;
     transition:.15s;white-space:pre-line;
   }
   .opt:hover{border-color:var(--accent2);}
-  .opt.selected{border-color:var(--accent);background:rgba(250,204,21,.08);}
+  .opt.selected{border-color:var(--accent);background:rgba(250,204,21,.08);color:#fff;}
 
   /* ===== NAV SOAL ===== */
   .navrow{display:flex;justify-content:space-between;margin-top:18px;gap:10px;}
@@ -275,7 +249,7 @@ color:#001530;
   #resultScreen{display:none;text-align:center;}
   #resultScreen h2{color:var(--accent2);font-size:2rem;margin-bottom:4px;}
   #resultScreen .score{font-size:3rem;font-weight:800;margin:10px 0;}
-  .reviewItem{text-align:left;padding:12px;border-radius:10px;margin-bottom:8px;background:#0b1224;}
+  .reviewItem{text-align:left;padding:12px;border-radius:10px;margin-bottom:8px;background:#002a54;color:#e2e8f0;}
   .reviewItem.correct{border-left:4px solid var(--ok);}
   .reviewItem.wrong{border-left:4px solid var(--bad);}
   .reviewItem .small{color:var(--muted);font-size:.85rem;margin-top:4px;}
@@ -296,104 +270,40 @@ color:#001530;
 
 <!-- ===== NAVBAR ===== -->
 <nav id="navbar">
-
 <div class="navbar-inner">
-
 <div class="nav-left">
 <a href="index.html" class="home-btn">
-
-<svg class="home-icon" xmlns="http://www.w3.org/2000/svg"
-viewBox="0 0 24 24">
-
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
-
 </svg>
-
 HOME
-
 </a>
-
-</a>
-
 </div>
 
 <div class="nav-right">
-
 <div class="dropdown">
-
-<button class="dropdown-btn"
-onclick="toggleDropdown('quiz')">
-
-QUIZ JFT ▼
-
-</button>
-
-<div class="dropdown-menu"
-id="quiz">
-
-<a href="ujianjfta2test1.html">
-SOAL JFT A — TEST 1
-</a>
-
-<a href="ujianjfta2test2.html">
-SOAL JFT A — TEST 2
-</a>
-
-<a href="ujianjfta2test3.html">
-SOAL JFT A — TEST 3
-</a>
-
-<a href="ujianjfta2test4.html">
-SOAL JFT A — TEST 4
-</a>
-
-<a href="ujianjfta2test5.html">
-SOAL JFT A — TEST 5
-</a>
-
+<button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+<div class="dropdown-menu" id="quiz">
+<a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+<a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+<a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+<a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+<a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
 </div>
-
 </div>
 
 <div class="dropdown">
-
-<button class="dropdown-btn"
-onclick="toggleDropdown('materi')">
-
-MATERI ▼
-
-</button>
-
-<div class="dropdown-menu"
-id="materi">
-
-<a href="materi_kosakata.html">
-Kosakata JFT
-</a>
-
-<a href="materi_tatabahasa.html">
-Tata Bahasa
-</a>
-
-<a href="kanjidasar.html">
-Kanji Flash Card
-</a>
-
+<button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+<div class="dropdown-menu" id="materi">
+<a href="materi_kosakata.html">Kosakata JFT</a>
+<a href="materi_tatabahasa.html">Tata Bahasa</a>
+<a href="kanjidasar.html">Kanji Flash Card</a>
+</div>
 </div>
 
+<a href="quiz_kanji.html" class="nav-link-btn">QUIZ KANJI</a>
 </div>
-
-<a href="quiz_kanji.html"
-class="nav-link-btn">
-
-QUIZ KANJI
-
-</a>
-
 </div>
-
-</div>
-
 </nav>
 
 <!-- ===== HEADER ===== -->
@@ -502,120 +412,28 @@ const SECTIONS = [
 ];
 
 const questions = [
-
-  // ---- BAGIAN 1 ----
-  {
-    q: "NIKO   : 部屋は広いですか。\nRINGGA : …いいえ、（＿＿＿＿）。",
-    o:["きたないです","せまいです ","やすいです "],
-    a:1
-  },
-  {
-    q: "このトレーニングは＿＿＿＿＿ですが、やくにたちます。",
-    o:["さびしい","きびしい ","ただしい"],
-    a:1
-  },
-  {
-    q: "はしを＿＿＿＿＿まっすぐ行くと、左にあります。",
-    o:["わたって","まがって ","おして"],
-    a:0
-  },
-  {
-    q: "買いに行くときは＿＿＿＿＿を持っていくようにしましょう。",
-    o:["ふくろ","ガラス (Kaca)","かん "],
-    a:0
-  },
-  {
-    q: "暗いところを一人で歩くのは＿＿＿＿＿です。",
-    o:["けいけん ","きけん","かっこいい (Keren)"],
-    a:1
-  },
-
-  // ---- BAGIAN 2 ----
-  {
-    q: "【Gambar: Sekelompok orang duduk bersama di meja, menikmati makanan】\n彼らは何をしていますか？",
-    o:["おしゃべりをする","食事する","パーティーをする"],
-    a:1
-  },
-  {
-    q: "【Gambar: Bahan makanan berbentuk tepung/mie tipis berwarna coklat】\nこれは何ですか？",
-    o:["こむぎ・こむぎこ","らっかせい","そば・そばこ "],
-    a:2
-  },
-  {
-    q: "【Gambar: Seorang pria sedang mencukur janggut dengan silet】\n彼は何をしていますか？",
-    o:["はをみがきます","けしょうをします ","ひげをそります"],
-    a:2
-  },
-  {
-    q: "【Gambar: Kertas panjang berisi rincian harga barang belanjaan】\nこれは何ですか？",
-    o:["チラシ ","チケット","レシート "],
-    a:2
-  },
-  {
-    q: "【Gambar: Ruangan dengan kursi pangkas, cermin besar, dan alat cukur — khusus pria】\nこれは何ですか？",
-    o:["美容院 ","病院","理髪店"],
-    a:2
-  },
-
-  // ---- BAGIAN 3 ----
-  {
-    q: "この料理に、豚肉は入っていますか。\n「豚肉」の読み方は？",
-    o:["ぎゅうにく","とりにく","ぶたにく"],
-    a:2
-  },
-  {
-    q: "電池がなくなったんですが、あたらしいのがありますか。\n「電池」の読み方は？",
-    o:["でんし","でんき","でんち"],
-    a:2
-  },
-  {
-    q: "これからの町のさんぎょうについて話します。\n「さんぎょう」の漢字は？",
-    o:["産業","残業","工業"],
-    a:0
-  },
-  {
-    q: "これは父からもらったとくべつな時計です。\n「とくべつ」の漢字は？",
-    o:["待別","特別 ","別特"],
-    a:1
-  },
-  {
-    q: "母はぎゅうにゅうを買ってきました。\n「ぎゅうにゅう」の漢字は？",
-    o:["牛乳 ","牛肉","午乳"],
-    a:0
-  },
-
-  // ---- BAGIAN 4 ----
-  {
-    q: "SHOMAD : ここに＿＿＿＿＿が...\nJONI   : ああ、あの角を曲がったところです。",
-    o:["行っています","行きます","行きたいんです"],
-    a:2
-  },
-  {
-    q: "すみません。道に＿＿＿＿＿、ちょっと困っています。",
-    o:["まよって","まよいました ","まよう "],
-    a:0
-  },
-  {
-    q: "TRIANTO : この町は、しずかでいいですね。\nLUKI    : ああ、＿＿＿＿＿＿＿＿＿。",
-    o:["なんとか ","嫌になりますね ","たしかに"],
-    a:2
-  },
-  {
-    q: "FERIAN : このすいはんき、いいですね。これ＿＿＿＿＿？\nJONI   : そうですね。1,000円引きはどうですか。",
-    o:["安くなりますか","持ち帰りですか ","どのくらい貯まっていますか )"],
-    a:0
-  },
-  {
-    q: "このをまっすぐ行って、２つ目の信号を＿＿＿＿に曲がってください。",
-    o:["まっすぐ","みぎ ","もうすぐ"],
-    a:1
-  }
-
+  { q: "NIKO   : 部屋は広いですか。\nRINGGA : …いいえ、（＿＿＿＿）。", o:["きたないです","せまいです ","やすいです "], a:1 },
+  { q: "このトレーニングは＿＿＿＿＿ですが、やくにたちます。", o:["さびしい","きびしい ","ただしい"], a:1 },
+  { q: "はしを＿＿＿＿＿まっすぐ行くと、左にあります。", o:["わたって","まがって ","おして"], a:0 },
+  { q: "買いに行くときは＿＿＿＿＿を持っていくようにしましょう。", o:["ふくろ","ガラス (Kaca)","かん "], a:0 },
+  { q: "暗いところを一人で歩くのは＿＿＿＿＿です。", o:["けいけん ","きけん","かっこいい (Keren)"], a:1 },
+  { q: "【Gambar: Sekelompok orang duduk bersama di meja, menikmati makanan】\n彼らは何をしていますか？", o:["おしゃべりをする","食事する","パーティーをする"], a:1 },
+  { q: "【Gambar: Bahan makanan berbentuk tepung/mie tipis berwarna coklat】\nこれは何ですか？", o:["こむぎ・こむぎこ","らっかせい","そば・そばこ "], a:2 },
+  { q: "【Gambar: Seorang pria sedang mencukur janggut dengan silet】\n彼は何をしていますか？", o:["はをみがきます","けしょうをします ","ひげをそります"], a:2 },
+  { q: "【Gambar: Kertas panjang berisi rincian harga barang belanjaan】\nこれは何ですか？", o:["チラシ ","チケット","レシート "], a:2 },
+  { q: "【Gambar: Ruangan dengan kursi pangkas, cermin besar, dan alat cukur — khusus pria】\nこれは何ですか？", o:["美容院 ","病院","理髪店"], a:2 },
+  { q: "この料理に、豚肉は入っていますか。\n「豚肉」の読み方は？", o:["ぎゅうにく","とりにく","ぶたにく"], a:2 },
+  { q: "電池がなくなったんですが、あたらしいのがありますか。\n「電池」の読み方は？", o:["でんし","でんき","でんち"], a:2 },
+  { q: "これからの町のさんぎょうについて話します。\n「さんぎょう」の漢字は？", o:["産業","残業","工業"], a:0 },
+  { q: "これは父からもらったとくべつな時計です。\n「とくべつ」の漢字は？", o:["待別","特別 ","別特"], a:1 },
+  { q: "母はぎゅうにゅうを買ってきました。\n「ぎゅうにゅう」の漢字は？", o:["牛乳 ","牛肉","午乳"], a:0 },
+  { q: "SHOMAD : ここに＿＿＿＿＿が...\nJONI   : ああ、あの角を曲がったところです。", o:["行っています","行きます","行きたいんです"], a:2 },
+  { q: "すみません。道に＿＿＿＿＿、ちょっと困っています。", o:["まよって","まよいました ","まよう "], a:0 },
+  { q: "TRIANTO : この町は、しずかでいいですね。\nLUKI    : ああ、＿＿＿＿＿＿＿＿＿。", o:["なんとか ","嫌になりますね ","たしかに"], a:2 },
+  { q: "FERIAN : このすいはんき、いいですね。これ＿＿＿＿＿？\nJONI   : そうですね。1,000円引きはどうですか。", o:["安くなりますか","持ち帰りですか ","どのくらい貯まっていますか )"], a:0 },
+  { q: "このをまっすぐ行って、２つ目の信号を＿＿＿＿に曲がってください。", o:["まっすぐ","みぎ ","もうすぐ"], a:1 }
 ];
 
-// ==========================================
-// FUNGSI BANTU SECTION LABEL
-// ==========================================
 function getSectionLabel(idx){
   for(const s of SECTIONS){
     if(idx >= s.range[0] && idx <= s.range[1]) return s.label;
@@ -623,17 +441,11 @@ function getSectionLabel(idx){
   return '';
 }
 
-// ==========================================
-// STATE
-// ==========================================
 let current = 0;
 let answers = new Array(questions.length).fill(null);
 let timerInterval = null;
 let timeLeft = 0;
 
-// ==========================================
-// START
-// ==========================================
 function startExam(){
   document.getElementById('startScreen').style.display='none';
   document.getElementById('examScreen').style.display='block';
@@ -642,9 +454,6 @@ function startExam(){
   startTimer(20 * 60);
 }
 
-// ==========================================
-// GRID NOMOR SOAL
-// ==========================================
 function buildGrid(){
   const grid = document.getElementById('grid');
   grid.innerHTML = '';
@@ -664,9 +473,6 @@ function updateGrid(){
   });
 }
 
-// ==========================================
-// RENDER SOAL
-// ==========================================
 function renderQuestion(){
   const q = questions[current];
   document.getElementById('qnum').textContent        = `Soal ${current+1} dari ${questions.length}`;
@@ -699,18 +505,12 @@ function updateProgress(){
     Math.round((done / questions.length) * 100) + '%';
 }
 
-// ==========================================
-// NAVIGASI
-// ==========================================
 function prevQ(){ if(current > 0){ current--; renderQuestion(); } }
 function nextQ(){
   if(current < questions.length - 1){ current++; renderQuestion(); }
   else finishExam(false);
 }
 
-// ==========================================
-// TIMER
-// ==========================================
 function startTimer(secs){
   timeLeft = secs;
   updateTimerDisplay();
@@ -732,9 +532,6 @@ function updateTimerDisplay(){
   document.querySelector('.timer-wrap').classList.toggle('warning', timeLeft <= 60);
 }
 
-// ==========================================
-// SELESAI
-// ==========================================
 function finishExam(auto){
   if(!auto){
     const sisa = answers.filter(a => a === null).length;
@@ -756,9 +553,6 @@ function finishExam(auto){
                 '💪 Semangat! Coba lagi ya.';
 }
 
-// ==========================================
-// PEMBAHASAN
-// ==========================================
 function showReview(){
   const list = document.getElementById('reviewList');
   list.style.display = 'block';
@@ -776,36 +570,6 @@ function showReview(){
     list.appendChild(div);
   });
 }
-
-function toggleDropdown(id){
-
-    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
-
-        if(menu.id!=id){
-
-            menu.classList.remove("show");
-
-        }
-
-    });
-
-    document.getElementById(id).classList.toggle("show");
-
-}
-
-document.addEventListener("click",function(e){
-
-    if(!e.target.closest(".dropdown")){
-
-        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
-
-            menu.classList.remove("show");
-
-        });
-
-    }
-
-});
 </script>
 </body>
 </html>
