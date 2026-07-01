@@ -43,28 +43,34 @@
     position:sticky;
     top:0;
     z-index:50;
+    width:100%;
     background:#001530;
     border-bottom:1.5px solid rgba(250,204,21,.25);
     box-shadow:0 4px 14px rgba(0,0,0,.4);
   }
   .navbar-inner{
-    max-width:960px;
-    margin:0 auto;
-    padding:8px 16px;
+    max-width:100%;
+    width:100%;
+    margin:0;
+    padding:8px 20px;
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:8px;
+    box-sizing:border-box;
   }
   .nav-left{
     display:flex;
     align-items:center;
+    flex-shrink:0;
   }
   .nav-right{
     display:flex;
     align-items:center;
     gap:6px;
     flex-wrap:wrap;
+    justify-content:flex-end;
+    margin-left:auto;
   }
   .home-btn{
     display:flex;
@@ -315,7 +321,7 @@
 
     <!-- KIRI: HOME -->
     <div class="nav-left">
-      <a href="index.html" class="home-btn"> HOME</a>
+      <a href="index.html" class="home-btn">HOME</a>
     </div>
 
     <!-- KANAN: QUIZ dropdown + Materi + Quiz JFT A2 + Quiz Kanji -->
