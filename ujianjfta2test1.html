@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title class="notranslate">Ujian JFT-Basic A2 - 50 Soal</title>
+<title class="notranslate">Ujian JFT - Test 1</title>
 <style>
   :root{
     --bg:#001f3f;
@@ -48,12 +48,41 @@
     box-shadow:0 4px 14px rgba(0,0,0,.4);
   }
   .navbar-inner{
-    max-width:900px;
+    max-width:960px;
     margin:0 auto;
-    padding:10px 16px;
+    padding:8px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+  }
+  .nav-left{
     display:flex;
     align-items:center;
   }
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex-wrap:wrap;
+  }
+  .home-btn{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    text-decoration:none;
+    background:var(--accent2);
+    color:#001f3f;
+    border:none;
+    border-radius:8px;
+    padding:8px 14px;
+    font-size:.82rem;
+    font-weight:800;
+    letter-spacing:.3px;
+    transition:.15s;
+    cursor:pointer;
+  }
+  .home-btn:hover{opacity:.85;}
   .dropdown{
     position:relative;
     display:inline-block;
@@ -77,7 +106,27 @@
     background:var(--accent2);
     color:#001f3f;
   }
-  .caret{font-size:.7rem;transition:transform .15s;}
+  .nav-link-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    text-decoration:none;
+    background:transparent;
+    color:var(--accent2);
+    border:1.5px solid rgba(250,204,21,.5);
+    border-radius:8px;
+    padding:7px 12px;
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.3px;
+    white-space:nowrap;
+    cursor:pointer;
+    transition:.15s;
+  }
+  .nav-link-btn:hover{
+    background:var(--accent2);
+    color:#001f3f;
+  }
   .dropdown.open .caret{transform:rotate(180deg);}
   .dropdown-menu{
     display:none;
@@ -162,8 +211,9 @@
   }
   .qtext{
     font-size:1.15rem;
-    line-height:1.6;
+    line-height:1.7;
     margin-bottom:16px;
+    white-space:pre-line;
   }
   .options{
     display:flex;
@@ -247,6 +297,12 @@
     font-size:.75rem;
     padding:20px;
   }
+  @media(max-width:600px){
+    .navbar-inner{flex-direction:column;align-items:flex-start;gap:8px;}
+    .nav-right{width:100%;}
+    .nav-link-btn,.dropdown-btn{font-size:.72rem;padding:6px 9px;}
+    .home-btn{font-size:.82rem;}
+  }
   @media print{
     body{display:none !important;}
   }
@@ -256,22 +312,50 @@
 
 <nav id="navbar">
   <div class="navbar-inner">
-    <div class="dropdown">
-      <button class="dropdown-btn" onclick="toggleDropdown()">QUIZ <span class="caret">▾</span></button>
-      <div class="dropdown-menu" id="dropdownMenu">
-        <a href="ujianjfta2test1.html">SOAL JFT A - TEST 1</a>
-        <a href="ujianjfta2test2.html">SOAL JFT A - TEST 2</a>
-        <a href="jft_a1_test3.html">SOAL JFT A - TEST 3</a>
-        <a href="jft_a1_test4.html">SOAL JFT A - TEST 4</a>
-        <a href="jft_a1_test5.html">SOAL JFT A - TEST 5</a>
+
+    <!-- KIRI: HOME -->
+    <div class="nav-left">
+      <a href="index.html" class="home-btn"> HOME</a>
+    </div>
+
+    <!-- KANAN: QUIZ dropdown + Materi + Quiz JFT A2 + Quiz Kanji -->
+    <div class="nav-right">
+
+      <!-- QUIZ dropdown -->
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown('dropdownMenu')">QUIZ <span class="caret" id="caretQuiz">▾</span></button>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="jft_a1_test1.html">SOAL JFT A - TEST 1</a>
+          <a href="jft_a1_test2.html">SOAL JFT A - TEST 2</a>
+          <a href="jft_a1_test3.html">SOAL JFT A - TEST 3</a>
+          <a href="jft_a1_test4.html">SOAL JFT A - TEST 4</a>
+          <a href="jft_a1_test5.html">SOAL JFT A - TEST 5</a>
+        </div>
       </div>
+
+      <!-- Materi dropdown -->
+      <div class="dropdown">
+        <button class="nav-link-btn" onclick="toggleDropdown('dropdownMateri')"> MATERI <span class="caret" id="caretMateri">▾</span></button>
+        <div class="dropdown-menu" id="dropdownMateri" style="right:0;left:auto;">
+          <a href="materi_kosakata.html">Kosakata JFT</a>
+          <a href="materi_tatabahasa.html">Tata Bahasa</a>
+          <a href="materi_kanji.html">Kanji Dasar</a>
+        </div>
+      </div>
+
+      <!-- Quiz JFT A2 -->
+      <a href="ujian_jft_a2.html" class="nav-link-btn"> QUIZ JFT A2</a>
+
+      <!-- Quiz Kanji -->
+      <a href="quiz_kanji.html" class="nav-link-btn">QUIZ KANJI</a>
+
     </div>
   </div>
 </nav>
 
 <header>
-  <h1 class="notranslate" translate="no">JFTベーシック A2 模擬試験</h1>
-  <p>Ujian Simulasi JFT-Basic A2 — 50 Soal</p>
+  <h1 class="notranslate" translate="no">JFT TEST 1</h1>
+  <p>Ujian Kemampuan Bahasa Jepang JFT — Test 1 (19 Soal)</p>
 </header>
 
 <div id="app">
@@ -279,7 +363,8 @@
   <div class="card" id="startScreen">
     <h2 style="margin-top:0;color:var(--accent2)">Petunjuk Ujian</h2>
     <ul>
-      <li>Total 50 soal pilihan ganda (kosakata, tata bahasa, dan bacaan singkat).</li>
+      <li>Total 19 soal pilihan ganda (kosakata, gambar, kanji, dan tata bahasa/cloze).</li>
+      <li>Waktu pengerjaan 20 menit.</li>
       <li>Pilih satu jawaban yang paling tepat untuk setiap soal.</li>
       <li>Anda dapat berpindah antar soal menggunakan tombol navigasi atau peta nomor soal.</li>
       <li>Skor dan pembahasan akan ditampilkan setelah ujian selesai.</li>
@@ -290,7 +375,7 @@
   <div id="examScreen" style="display:none;">
     <div class="timer-wrap">
     <span class="timer-label">⏱ Sisa Waktu</span>
-    <span id="timerText">50:00</span>
+    <span id="timerText">20:00</span>
   </div>
   <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
     <div id="grid"></div>
@@ -323,17 +408,24 @@
 
 <script>
 // ====== DROPDOWN NAVBAR ======
-function toggleDropdown(){
-  const menu = document.getElementById('dropdownMenu');
+function toggleDropdown(id){
+  const menu = document.getElementById(id);
+  const allMenus = document.querySelectorAll('.dropdown-menu');
+  allMenus.forEach(m => {
+    if(m.id !== id){
+      m.classList.remove('show');
+      const wrap = m.closest('.dropdown');
+      if(wrap) wrap.classList.remove('open');
+    }
+  });
   const wrap = menu.closest('.dropdown');
   menu.classList.toggle('show');
   wrap.classList.toggle('open');
 }
 document.addEventListener('click', (e)=>{
-  const wrap = document.querySelector('.dropdown');
-  if(wrap && !wrap.contains(e.target)){
-    document.getElementById('dropdownMenu').classList.remove('show');
-    wrap.classList.remove('open');
+  if(!e.target.closest('.dropdown')){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>m.classList.remove('show'));
+    document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
   }
 });
 
@@ -356,56 +448,32 @@ document.addEventListener('keydown', e => {
 
 // ====== DATA SOAL (50 soal) ======
 const questions = [
-{q:"わたしは　まいあさ　しちじに　＿＿＿。", o:["おきます","ねます","たべます","のみます"], a:0},
-{q:"きのう　ともだちと　えいがを　＿＿＿。", o:["みました","みます","みません","みて"], a:0},
-{q:"あの　たてものは　なんですか。＿＿＿　ぎんこうです。", o:["あれは","あの","あそこ","あちら"], a:0},
-{q:"テーブルの　うえに　ねこが　＿＿＿。", o:["います","あります","います","いります"], a:0},
-{q:"きょうは　あめが　＿＿＿。", o:["ふっています","あけています","でています","きています"], a:0},
-{q:"これは　わたし＿＿＿　ほんです。", o:["の","に","を","へ"], a:0},
-{q:"すみません、トイレは　どこ＿＿＿か。", o:["です","ですか","ました","でした"], a:1},
-{q:"わたしは　にほんご＿＿＿　べんきょうします。", o:["を","が","に","で"], a:0},
-{q:"きょうしつ＿＿＿　がくせいが　たくさん　います。", o:["に","へ","から","まで"], a:0},
-{q:"あした　しごと＿＿＿　ありません。", o:["は","を","に","の"], a:0},
-{q:"でんしゃ＿＿＿　がっこうへ　いきます。", o:["で","を","が","と"], a:0},
-{q:"わたしは　まいにち　しんぶん＿＿＿　よみます。", o:["を","に","へ","で"], a:0},
-{q:"せんせいは　いま　しょくいんしつ＿＿＿　います。", o:["に","を","が","と"], a:0},
-{q:"この　かばんは　とても＿＿＿　です。", o:["たかい","たかく","たかいだ","たかかった"], a:0},
-{q:"きのうは　しごとが＿＿＿　たいへんでした。", o:["いそがしくて","いそがしい","いそがしいで","いそがしかった"], a:0},
-{q:"この　りょうりは　＿＿＿　おいしいです。", o:["とても","あまり","ぜんぜん","すこしも"], a:0},
-{q:"まどを　＿＿＿　ください。", o:["あけて","あける","あけます","あけた"], a:0},
-{q:"でんきを　＿＿＿　でかけました。", o:["けして","けします","けした","けす"], a:0},
-{q:"テストの　まえに　よく　＿＿＿　なければ　なりません。", o:["べんきょうし","べんきょうする","べんきょうして","べんきょう"], a:0},
-{q:"あした　あめが　ふる＿＿＿　しれません。", o:["かも","と","が","を"], a:0},
-{q:"この　みちを　まっすぐ　いくと、えきに　＿＿＿。", o:["つきます","つけます","つきました","つけました"], a:0},
-{q:"すみませんが、もう　いちど　いって＿＿＿　いただけますか。", o:["も","を","に","は"], a:0},
-{q:"くるまの　うんてんが　＿＿＿　できますか。", o:["できます","できる","でき","する"], a:1},
-{q:"これは　とても　たいせつな　しょるい＿＿＿、なくさないで　ください。", o:["ですから","ですが","ですけど","でしたら"], a:0},
-{q:"へやが　＿＿＿　です。そうじを　しましょう。", o:["きたない","きれい","あかるい","しずか"], a:0},
-{q:"つぎの　えきで　でんしゃを　＿＿＿　ください。", o:["のりかえて","のりかえる","のりかえます","のりかえた"], a:0},
-{q:"この　しごとは　あした＿＿＿　おわらせます。", o:["までに","まで","から","より"], a:0},
-{q:"かいぎは　なんじ＿＿＿　はじまりますか。", o:["から","まで","に","を"], a:0},
-{q:"わたしは　りょうりが　＿＿＿　じょうずでは　ありません。", o:["あまり","とても","ぜんぜん","すこし"], a:0},
-{q:"このボタンを　おす＿＿＿、ドアが　あきます。", o:["と","から","ので","のに"], a:0},
-{q:"A：「らいしゅう　パーティーが　あります。きませんか。」B：「はい、＿＿＿。」", o:["ぜひ　いきます","もう　いきました","いきません","いかないです"], a:0},
-{q:"あさ　はやく　おきる＿＿＿に、よる　はやく　ねます。", o:["よう","ため","のに","と"], a:0},
-{q:"だいじな　しょるいは　ロッカーに　＿＿＿　あります。", o:["しまって","しまい","しまった","しまう"], a:0},
-{q:"きょうは　あまり　げんきが＿＿＿。", o:["ありません","しません","いません","おりません"], a:0},
-{q:"えきまえに　あたらしい　みせが　＿＿＿。", o:["できました","しました","つくりました","なりました"], a:0},
-{q:"このしごとは　わたし＿＿＿　できません。だれか　てつだって　ください。", o:["だけでは","だけが","だけに","だけも"], a:0},
-{q:"てんいんさんに　みちを　＿＿＿。", o:["きかれました","きいてもらいました","きこえました","きかせました"], a:0},
-{q:"かさを　もって　いった＿＿＿に、あめは　ふりませんでした。", o:["のに","ので","から","のは"], a:0},
-{q:"しごとが　おわった＿＿＿、しょくじに　いきましょう。", o:["あとで","まえに","ときに","あいだに"], a:0},
-{q:"この　くすりは　しょくじの　あとで　＿＿＿　ください。", o:["のんで","のみ","のむ","のんだ"], a:0},
-{q:"らいねん　くにへ＿＿＿　つもりです。", o:["かえる","かえった","かえって","かえり"], a:0},
-{q:"かいしゃの　きそく＿＿＿、ちこくしては　いけません。", o:["によって","にとって","について","にたいして"], a:0},
-{q:"てんきが　＿＿＿　なれば、さんぽに　いきましょう。", o:["いい","よく","よくて","いいに"], a:0},
-{q:"この　もんだいは　むずかしすぎて　＿＿＿　わかりません。", o:["ぜんぜん","とても","だいたい","ちょっと"], a:0},
-{q:"きゃくが　くる＿＿＿に、へやを　きれいに　しました。", o:["まえ","あと","とき","うち"], a:0},
-{q:"せんせいに　しゅくだいを　＿＿＿。", o:["だされました","だしました","だせました","ださせました"], a:0},
-{q:"この　みせは　やすい＿＿＿、サービスも　いいです。", o:["うえに","のに","ために","ように"], a:0},
-{q:"あめが　ふって　いる＿＿＿、しあいは　ちゅうしに　なりました。", o:["ため","のに","と","なら"], a:0},
-{q:"へやの　でんきを　つけた＿＿＿、まだ　くらいです。", o:["のに","ので","から","し"], a:0},
-{q:"スーパーで　やさいや　くだもの＿＿＿　かいます。", o:["など","まで","だけ","しか"], a:0}
+// --- BAGIAN 1: ぶんを かんせいしましょう (Lengkapi kalimat) ---
+{q:"毎日練習したので、明日の試合は＿＿＿＿＿勝てます。", o:["ぜんぜん（Tidak sama sekali）","きっと（Pasti）","すこし（Sedikit）"], a:1},
+{q:"大きな声で＿＿＿＿＿答えてください。", o:["はっきり（Jelas）","そんなに（Sebegitunya）","とくに（Terutama）"], a:0},
+{q:"あのスーパーの＿＿＿＿＿はせまくて危ないです。", o:["ちゅうしゃじょう（Lahan parkir）","うけつけ（Resepsionis）","ねだん（Harga）"], a:0},
+{q:"明日、めんせつがあるので、＿＿＿＿＿します。", o:["きんちょう（Gugup）","あんしん（Tenang）","びっくり（Terkejut）"], a:0},
+{q:"きのうは＿＿＿＿＿が悪かったので、買い物に行かなかった。", o:["雨（あめ＝Hujan）","天気（てんき＝Cuaca）","電気（でんき＝Listrik/lampu）"], a:1},
+
+// --- BAGIAN 2: えを みて、ただしい こたえを えらびましょう ---
+{q:"電車の中に人がたくさん立っている絵があります。これは何ですか？", o:["人が多い（Ada banyak orang）","道がこんでいる（Jalanan macet）","町がにぎやか（Kotanya ramai）"], a:0},
+{q:"男の人が咳をしている絵があります。彼はどうでしたか？", o:["せきがでる（Keluar batuk）","のどがいたい（Tenggorokannya sakit）","くちがいたい（Mulut sakit）"], a:0},
+{q:"女の人がベランダでのんびり座っている絵があります。彼女は何をしますか？", o:["留学します（Belajar di luar negeri）","進学します（Ke jenjang pendidikan selanjutnya）","のんびり暮らす（Hidup santai/tenang）"], a:2},
+{q:"男の人が消火器で火を消している絵があります。彼は何をしますか？", o:["火をつける（Menyalakan api）","火がきえる（Api padam）","火を消化する（Memadamkan api）"], a:2},
+
+// --- BAGIAN 3: かんじを えらびましょう ---
+{q:"このレストランは有名です。「有名」の読み方は？", o:["ゆめい","ゆうめ","ゆうめい"], a:2},
+{q:"日本の生活に、もうなれましたか。「生活」の読み方は？", o:["せかつ","せいかつ","せいけつ"], a:1},
+{q:"ボランティア教室では、むりょうで日本語を教えています。「むりょう」の漢字は？", o:["無料（むりょう＝Gratis）","資料（しりょう＝Dokumen/materi）","無駄（むだ＝Sia-sia）"], a:0},
+{q:"このあたりはちょっと不便ですね。「不便」の読み方は？", o:["ふうべん","ふべん","ふへん"], a:1},
+{q:"私は医者に「働きすぎないようにちゅういしてください」と言われました。「ちゅうい」の漢字は？", o:["注意","住意","主意"], a:0},
+
+// --- BAGIAN 4: くうらんを うめて ください ---
+{q:"しゅくだいを＿＿＿＿＿しまいました。", o:["わすれる","わせれた","わすれて"], a:2},
+{q:"LUKI：6月に日本に行ってみたいんですが。\nSHOMAD：6月は雨が多いので、できれば旅行しない＿＿＿＿＿＿。", o:["ほうがいいです（Lebih baik...memberi nasihat）","ことにします（Memutuskan atas kehendak sendiri）","つもりです（Berencana）"], a:0},
+{q:"JONI：この町には慣れましたか。\nLUKI：はい、おかげさまで。\nJONI：どうですか？この町は。\nLUKI：そうですねえ。にぎやかで、便利です。\nJONI：そうですか。\nLUKI：それに、＿＿＿＿＿＿。\nJONI：それはよかった。", o:["緑がちょっと少ないですね。","たべものが高いです。","けしきがきれいです。"], a:2},
+{q:"社長：会議室のエアコン、ついたままですよ。\nFERIAN：すみません。＿＿＿＿＿＿＿＿＿。", o:["まだ けしませんでしたね（Belum dimatikan ya..）","今、けします（Sekarang, akan dimatikan）","それは大変ですね（Kalau begitu sulit ya…）"], a:1},
+{q:"LUKI：このしゃしん、だれですか。\nNIKO：姉の子どもです。\nLUKI：かわいいですね。＿＿＿＿＿＿。\nNIKO：3歳です。", o:["お名前は？（Namanya?）","どこですか。（Di mana?）","おいくつですか。（Boleh tahu umurnya?）"], a:2}
 ];
 
 let current = 0;
@@ -416,7 +484,7 @@ function startExam(){
   document.getElementById('examScreen').style.display='block';
   buildGrid();
   renderQuestion();
-  startTimer(50*60); // 50 menit
+  startTimer(20*60); // 20 menit
 }
 
 function buildGrid(){
