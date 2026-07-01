@@ -7,94 +7,195 @@
 <title>Ujian JFT - Test 1</title>
 <style>
   :root{
-    --bg:#001f3f;
-    --card:#002a54;
-    --accent:#facc15;
-    --accent2:#facc15;
-    --text:#ffd700;
-    --muted:#e0c200;
-    --ok:#22c55e;
-    --bad:#ef4444;
-  }
-  *{box-sizing:border-box;}
-  body{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --text:#001f3f;
+}
+
+*{
     margin:0;
-    font-family:'Segoe UI',Arial,sans-serif;
-    background:#001f3f;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
     color:var(--text);
-    min-height:100vh;
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
-  }
-  ::selection{background:transparent;}
-  header{text-align:center;padding:28px 16px 10px;}
-  header h1{margin:0;font-size:1.6rem;color:var(--accent2);}
-  header p{color:var(--muted);margin:6px 0 0;font-size:.9rem;}
+}
 
-  /* ===== NAVBAR ===== */
-  #navbar{
-    position:sticky;top:0;z-index:50;width:100%;
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
     background:#001530;
-    border-bottom:1.5px solid rgba(250,204,21,.25);
-    box-shadow:0 4px 14px rgba(0,0,0,.4);
-  }
-  .navbar-inner{
-    width:100%;padding:8px 20px;
-    display:flex;align-items:center;
-    justify-content:space-between;gap:8px;box-sizing:border-box;
-  }
-  .nav-left{display:flex;align-items:center;flex-shrink:0;}
-  .nav-right{
-    display:flex;align-items:center;
-    gap:6px;flex-wrap:wrap;
-    justify-content:flex-end;margin-left:auto;
-  }
-  .home-btn{
-    display:flex;align-items:center;gap:6px;
-    text-decoration:none;
-    background:var(--accent2);color:#001f3f;
-    border:none;border-radius:8px;
-    padding:8px 14px;font-size:.82rem;font-weight:800;
-    letter-spacing:.3px;transition:.15s;cursor:pointer;
-  }
-  .home-btn:hover{opacity:.85;}
-  .dropdown{position:relative;display:inline-block;}
-  .dropdown-btn{
-    background:transparent;color:var(--accent2);
-    border:1.5px solid var(--accent2);border-radius:8px;
-    padding:8px 14px;font-size:.82rem;font-weight:800;
-    cursor:pointer;display:flex;align-items:center;gap:6px;transition:.15s;
-  }
-  .dropdown-btn:hover{background:var(--accent2);color:#001f3f;}
-  .nav-link-btn{
-    display:inline-flex;align-items:center;gap:5px;
-    text-decoration:none;background:transparent;color:var(--accent2);
-    border:1.5px solid rgba(250,204,21,.5);border-radius:8px;
-    padding:7px 12px;font-size:.78rem;font-weight:700;
-    white-space:nowrap;cursor:pointer;transition:.15s;
-  }
-  .nav-link-btn:hover{background:var(--accent2);color:#001f3f;}
-  .caret{font-size:.7rem;transition:transform .2s;}
-  .dropdown.open .caret{transform:rotate(180deg);}
-  .dropdown-menu{
-    display:none;flex-direction:column;
-    position:absolute;top:calc(100% + 6px);left:0;
-    min-width:230px;background:#001530;
-    border:1.5px solid rgba(250,204,21,.3);
-    border-radius:10px;overflow:hidden;
-    box-shadow:0 8px 20px rgba(0,0,0,.5);z-index:60;
-  }
-  .dropdown-menu.show{display:flex;}
-  .dropdown-menu a{
-    text-decoration:none;color:var(--text);
-    padding:11px 16px;font-size:.82rem;font-weight:600;
-    border-bottom:1px solid rgba(250,204,21,.1);transition:.15s;
-  }
-  .dropdown-menu a:last-child{border-bottom:none;}
-  .dropdown-menu a:hover{background:var(--accent2);color:#001f3f;}
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
 
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.home-btn{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+background:var(--gold);
+color:#001530;
+
+text-decoration:none;
+
+padding:8px 14px;
+
+border-radius:10px;
+
+font-weight:bold;
+
+}
+
+.home-btn:hover{
+
+opacity:.85;
+
+}
+
+.home-icon{
+
+width:24px;
+
+height:24px;
+
+object-fit:cover;
+
+border-radius:4px;
+
+}
+
+.dropdown{
+
+position:relative;
+
+}
+
+.dropdown-btn{
+
+background:none;
+
+border:2px solid var(--gold);
+
+color:var(--gold);
+
+padding:8px 14px;
+
+border-radius:8px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+.dropdown-btn:hover{
+
+background:var(--gold);
+
+color:#001530;
+
+}
+
+.dropdown-menu{
+
+display:none;
+
+position:absolute;
+
+top:45px;
+
+left:0;
+
+background:#022655;
+
+border-radius:10px;
+
+overflow:hidden;
+
+min-width:220px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.4);
+
+}
+
+.dropdown-menu a{
+
+display:block;
+
+padding:12px 15px;
+
+color:#ffd700;
+
+text-decoration:none;
+
+}
+
+.dropdown-menu a:hover{
+
+background:var(--gold);
+
+color:#001530;
+
+}
+
+.show{
+
+display:block;
+
+}
+
+.nav-link-btn{
+
+text-decoration:none;
+
+padding:8px 14px;
+
+border:2px solid var(--gold);
+
+color:var(--gold);
+
+border-radius:8px;
+
+font-weight:bold;
+
+}
+
+.nav-link-btn:hover{
+
+background:var(--gold);
+
+color:#001530;
+
+}
   /* ===== LAYOUT ===== */
   #app{max-width:760px;margin:0 auto;padding:16px;}
   .card{
@@ -195,35 +296,104 @@
 
 <!-- ===== NAVBAR ===== -->
 <nav id="navbar">
-  <div class="navbar-inner">
-    <div class="nav-left">
-      <a href="index.html" class="home-btn">
-    <img src="home logo.jpg" alt="Home" class="home-icon">
-    HOME
+
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 24 24">
+
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+
+</svg>
+
+HOME
+
 </a>
-    </div>
-    <div class="nav-right">
-      <div class="dropdown">
-        <button class="dropdown-btn" onclick="toggleDropdown('ddQuiz')">QUIZ JFT A ▾</button>
-        <div class="dropdown-menu" id="ddQuiz">
-          <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
-          <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
-          <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
-          <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
-          <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="nav-link-btn" onclick="toggleDropdown('ddMateri')">MATERI ▾</button>
-        <div class="dropdown-menu" id="ddMateri" style="right:0;left:auto;">
-          <a href="materi_kosakata.html">Kosakata JFT</a>
-          <a href="materi_tatabahasa.html">Tata Bahasa</a>
-          <a href="kanjidasar.html">Kanji Dasar</a>
-        </div>
-      </div>
-      <a href="quiz_kanji.html" class="nav-link-btn"> QUIZ KANJI</a>
-    </div>
-  </div>
+
+</a>
+
+</div>
+
+<div class="nav-right">
+
+<div class="dropdown">
+
+<button class="dropdown-btn"
+onclick="toggleDropdown('quiz')">
+
+QUIZ JFT ▼
+
+</button>
+
+<div class="dropdown-menu"
+id="quiz">
+
+<a href="ujianjfta2test1.html">
+SOAL JFT A — TEST 1
+</a>
+
+<a href="ujianjfta2test2.html">
+SOAL JFT A — TEST 2
+</a>
+
+<a href="ujianjfta2test3.html">
+SOAL JFT A — TEST 3
+</a>
+
+<a href="ujianjfta2test4.html">
+SOAL JFT A — TEST 4
+</a>
+
+<a href="ujianjfta2test5.html">
+SOAL JFT A — TEST 5
+</a>
+
+</div>
+
+</div>
+
+<div class="dropdown">
+
+<button class="dropdown-btn"
+onclick="toggleDropdown('materi')">
+
+MATERI ▼
+
+</button>
+
+<div class="dropdown-menu"
+id="materi">
+
+<a href="materi_kosakata.html">
+Kosakata JFT
+</a>
+
+<a href="materi_tatabahasa.html">
+Tata Bahasa
+</a>
+
+<a href="kanjidasar.html">
+Kanji Flash Card
+</a>
+
+</div>
+
+</div>
+
+<a href="quiz_kanji.html"
+class="nav-link-btn">
+
+QUIZ KANJI
+
+</a>
+
+</div>
+
+</div>
+
 </nav>
 
 <!-- ===== HEADER ===== -->
@@ -606,6 +776,36 @@ function showReview(){
     list.appendChild(div);
   });
 }
+
+function toggleDropdown(id){
+
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+
+        if(menu.id!=id){
+
+            menu.classList.remove("show");
+
+        }
+
+    });
+
+    document.getElementById(id).classList.toggle("show");
+
+}
+
+document.addEventListener("click",function(e){
+
+    if(!e.target.closest(".dropdown")){
+
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+
+            menu.classList.remove("show");
+
+        });
+
+    }
+
+});
 </script>
 </body>
 </html>
