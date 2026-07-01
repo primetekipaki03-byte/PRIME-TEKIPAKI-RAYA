@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ujian JFT - Test 1</title>
+<title>Quiz Kanji - Test 1</title>
 <style>
   :root{
     --navy:#001f3f;
@@ -151,7 +151,7 @@ color:#001530;
 
   /* ===== HEADER (sebelumnya tidak punya style sama sekali) ===== */
   header{
-    background:linear-gradient(135deg,#38628b);
+    background:linear-gradient(135deg,#001f3f,#003366);
     color:#fff;
     text-align:center;
     padding:22px 16px 26px;
@@ -309,15 +309,24 @@ HOME
 </div>
 </div>
 
-<a href="quiz_kanji.html" class="nav-link-btn">QUIZ KANJI</a>
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+<div class="dropdown-menu" id="kanjiquiz">
+<a href="quizkanji1.html">QUIZ KANJI — TEST 1</a>
+<a href="quizkanji2.html">QUIZ KANJI — TEST 2</a>
+<a href="quizkanji3.html">QUIZ KANJI — TEST 3</a>
+<a href="quizkanji4.html">QUIZ KANJI — TEST 4</a>
+<a href="quizkanji5.html">QUIZ KANJI — TEST 5</a>
+</div>
+</div>
 </div>
 </div>
 </nav>
 
 <!-- ===== HEADER ===== -->
 <header>
-  <h1 translate="no">JFT TEST 2</h1>
-  <p>Ujian Kemampuan Bahasa Jepang JFT — Test 2 · 19 Soal · 20 Menit</p>
+  <h1 translate="no">QUIZ KANJI TEST 1</h1>
+  <p>Latihan Kanji JFT · 10 Soal · 20 Menit</p>
 </header>
 
 <div id="app">
@@ -326,7 +335,7 @@ HOME
   <div class="card" id="startScreen">
     <h2 style="margin-top:0;color:var(--accent2)">Petunjuk Ujian</h2>
     <ul>
-      <li>Total <b>19 soal</b> pilihan ganda (A / B / C).</li>
+      <li>Total <b>10 soal</b> pilihan ganda (A / B / C).</li>
       <li>Waktu pengerjaan <b>20 menit</b>.</li>
       <li>Pilih satu jawaban yang paling tepat untuk setiap soal.</li>
       <li>Gunakan peta nomor soal atau tombol navigasi untuk berpindah soal.</li>
@@ -362,12 +371,11 @@ HOME
   <div class="card" id="resultScreen">
     <h2>Hasil Ujian</h2>
     <div class="score" id="scoreText"></div>
-    <p id="scorePct" style="color:var(--muted);font-size:1.1rem;"></p>
+    <p id="scorePct" style="color:#ffffff;font-size:1.1rem;"></p>
     <p id="scoreMsg" style="font-size:1rem;margin-bottom:16px;"></p>
     <button onclick="showReview()">📋 Lihat Pembahasan</button>
     <button class="secondary" onclick="location.reload()">🔄 Ulangi Ujian</button>
     <div id="reviewList" style="margin-top:18px;display:none;"></div>
-     <p id="scorePct" style="color:#ffffff;font-size:1.1rem;"></p>
   </div>
 
 </div>
@@ -411,14 +419,13 @@ document.addEventListener('click', e=>{
 });
 
 // ==========================================
+// DATA SOAL — 10 SOAL KANJI
+// ==========================================
 const SECTIONS = [
-  { label:'BAGIAN 1 · ぶんを かんせいしましょう！', range:[0,4]  },
-  { label:'BAGIAN 2 · えを みて こたえを えらびましょう！', range:[5,9]  },
-  { label:'BAGIAN 3 · かんじを えらびましょう！',  range:[10,14] },
-  { label:'BAGIAN 4 · くうらんを うめて ください！', range:[15,18] },
+  { label:'かんじの もんだい', range:[0,9] },
 ];
 
-const kanjiQuestions = [
+const questions = [
   { q: "この書類にサインが必要です。\n「必要」の読み方は？", o:["ひつよう","ひつぼう","ひちよう"], a:0 },
   { q: "車の運転には注意してください。\n「注意」の読み方は？", o:["ちゅうい","ちゅうもく","じゅうい"], a:0 },
   { q: "約束の時間には必ず来てください。\n「必ず」の読み方は？", o:["かならず","かなず","ひっず"], a:0 },
@@ -429,8 +436,8 @@ const kanjiQuestions = [
   { q: "信号が赤になったら止まってください。\n「信号」の読み方は？", o:["しんごう","しんごお","しんこう"], a:0 },
   { q: "この部屋は広くてきれいです。\n「部屋」の読み方は？", o:["へや","ぶおく","ぶや"], a:0 },
   { q: "お金をおろしに銀行へ行きます。\n「銀行」の読み方は？", o:["ぎんこう","ぎんぎょう","きんこう"], a:0 }
-
 ];
+
 function getSectionLabel(idx){
   for(const s of SECTIONS){
     if(idx >= s.range[0] && idx <= s.range[1]) return s.label;
