@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kosakata Kanji</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Yu Gothic","Meiryo",sans-serif;
+}
+
+body{
+background:white;
+color:#0b2f6b;
+padding:40px;
+}
+
+h1{
+text-align:center;
+font-size:50px;
+margin-bottom:40px;
+letter-spacing:3px;
+}
+
+.viewer{
+width:100%;
+max-width:900px;
+margin:auto;
+height:350px;
+border:3px solid #0b2f6b;
+border-radius:20px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+margin-bottom:40px;
+transition:.3s;
+}
+
+#kanji{
+font-size:120px;
+font-weight:bold;
+}
+
+#hiragana{
+font-size:34px;
+margin-top:10px;
+}
+
+#arti{
+font-size:28px;
+margin-top:15px;
+color:#444;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:20px;
+max-width:1100px;
+margin:auto;
+}
+
+.card{
+border:2px solid #0b2f6b;
+border-radius:15px;
+padding:25px;
+cursor:pointer;
+transition:.25s;
+text-align:center;
+background:white;
+}
+
+.card:hover{
+background:#0b2f6b;
+color:white;
+transform:scale(1.05);
+}
+
+.card .j{
+font-size:42px;
+font-weight:bold;
+}
+
+.card .h{
+font-size:20px;
+margin-top:10px;
+}
+
+.big{
+animation:zoom .3s;
+}
+
+@keyframes zoom{
+
+0%{
+transform:scale(.4);
+opacity:0;
+}
+
+100%{
+transform:scale(1);
+opacity:1;
+}
+
+}
+
+@media(max-width:800px){
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+#kanji{
+font-size:80px;
+}
+
+.viewer{
+height:280px;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>漢字・語彙</h1>
+
+<div class="viewer">
+
+<div id="kanji" class="big">消火</div>
+
+<div id="hiragana">しょうか</div>
+
+<div id="arti">Memadamkan api</div>
+
+</div>
+
+<div class="grid">
+
+<div class="card" onclick="show('消火','しょうか','Memadamkan api')">
+<div class="j">消火</div>
+<div class="h">しょうか</div>
+</div>
+
+<div class="card" onclick="show('食事','しょくじ','Makan')">
+<div class="j">食事</div>
+<div class="h">しょくじ</div>
+</div>
+
+<div class="card" onclick="show('曲がる','まがる','Belok')">
+<div class="j">曲がる</div>
+<div class="h">まがる</div>
+</div>
+
+<div class="card" onclick="show('渡る','わたる','Menyeberang')">
+<div class="j">渡る</div>
+<div class="h">わたる</div>
+</div>
+
+<div class="card" onclick="show('迷う','まよう','Tersesat')">
+<div class="j">迷う</div>
+<div class="h">まよう</div>
+</div>
+
+<div class="card" onclick="show('入口','いりぐち','Pintu masuk')">
+<div class="j">入口</div>
+<div class="h">いりぐち</div>
+</div>
+
+<div class="card" onclick="show('直す','なおす','Memperbaiki')">
+<div class="j">直す</div>
+<div class="h">なおす</div>
+</div>
+
+<div class="card" onclick="show('病院','びょういん','Rumah sakit')">
+<div class="j">病院</div>
+<div class="h">びょういん</div>
+</div>
+
+<div class="card" onclick="show('出る','でる','Keluar')">
+<div class="j">出る</div>
+<div class="h">でる</div>
+</div>
+
+<div class="card" onclick="show('痛む','いたむ','Sakit / Nyeri')">
+<div class="j">痛む</div>
+<div class="h">いたむ</div>
+</div>
+
+</div>
+
+<script>
+
+function show(k,h,a){
+
+document.getElementById("kanji").innerHTML=k;
+document.getElementById("hiragana").innerHTML=h;
+document.getElementById("arti").innerHTML=a;
+
+let x=document.getElementById("kanji");
+
+x.classList.remove("big");
+
+void x.offsetWidth;
+
+x.classList.add("big");
+
+}
+
+</script>
+
+</body>
+</html>
