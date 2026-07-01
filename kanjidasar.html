@@ -206,6 +206,41 @@ text-align:center;
 color:#666;
 
 font-size:14px;
+.home-btn{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+color:white;
+text-decoration:none;
+font-weight:bold;
+font-size:16px;
+
+}
+
+.home-btn:hover{
+
+color:#facc15;
+
+}
+
+.home-icon{
+
+width:24px;
+height:24px;
+
+fill:white;
+
+transition:.3s;
+
+}
+
+.home-btn:hover .home-icon{
+
+fill:#facc15;
+
+}
 
 }
 
@@ -215,13 +250,14 @@ font-size:14px;
 
 <body>
 
-<nav id="navbar">
-
-<div class="navbar-inner">
-
 <a href="index.html" class="home-btn">
 
-<img src="gambar/home logo.jpg" class="home-icon">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 24 24">
+
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+
+</svg>
 
 HOME
 
