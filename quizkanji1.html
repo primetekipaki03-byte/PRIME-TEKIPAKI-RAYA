@@ -42,8 +42,8 @@ body{
     position:sticky;
     top:0;
     z-index:999;
-    background:#022a5e;
-    border-bottom:2px solid rgba(224,181,42,.25);
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
     box-shadow:0 4px 14px rgba(0,0,0,.35);
 }
 
@@ -290,6 +290,15 @@ HOME
 
 <div class="nav-right">
 <div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+<div class="dropdown-menu" id="materi">
+<a href="materi_kosakata.html">Kosakata JFT</a>
+<a href="materi_tatabahasa.html">Tata Bahasa</a>
+<a href="kanjidasar.html">Kanji Flash Card</a>
+</div>
+</div>
+
+<div class="dropdown">
 <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
 <div class="dropdown-menu" id="quiz">
 <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
@@ -297,15 +306,6 @@ HOME
 <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
 <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
 <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
-</div>
-</div>
-
-<div class="dropdown">
-<button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
-<div class="dropdown-menu" id="materi">
-<a href="materi_kosakata.html">Kosakata JFT</a>
-<a href="materi_tatabahasa.html">Tata Bahasa</a>
-<a href="kanjidasar.html">Kanji Flash Card</a>
 </div>
 </div>
 
