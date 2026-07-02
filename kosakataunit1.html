@@ -537,36 +537,32 @@ HOME
 
 <script>
 
-const vocab = [
+    const vocab = [
     { icon:"📋", word:"会議", reading:"かいぎ", meaning:"rapat / pertemuan",
       jp:"明日<b>会議</b>があります。", id:"Besok ada rapat." },
 
-    { icon:"💼", word:"出張", reading:"しゅっちょう", meaning:"perjalanan dinas",
-      jp:"来週大阪へ<b>出張</b>します。", id:"Minggu depan saya dinas ke Osaka." },
-
-    { icon:"⏰", word:"締め切り", reading:"しめきり", meaning:"tenggat waktu / deadline",
-      jp:"レポートの<b>締め切り</b>は金曜日です。", id:"Deadline laporan adalah hari Jumat." },
-
-    { icon:"🎯", word:"準備", reading:"じゅんび", meaning:"persiapan",
-      jp:"パーティーの<b>準備</b>をしています。", id:"Saya sedang mempersiapkan pesta." },
-
-    { icon:"💬", word:"相談", reading:"そうだん", meaning:"konsultasi / berdiskusi",
-      jp:"先生に<b>相談</b>しました。", id:"Saya sudah berkonsultasi dengan guru." },
-
-    { icon:"📅", word:"予約", reading:"よやく", meaning:"reservasi / pemesanan",
-      jp:"レストランを<b>予約</b>しました。", id:"Saya sudah reservasi restoran." },
-
-    { icon:"🌟", word:"経験", reading:"けいけん", meaning:"pengalaman",
-      jp:"彼はいい<b>経験</b>があります。", id:"Dia punya pengalaman yang bagus." },
-
-    { icon:"📖", word:"説明", reading:"せつめい", meaning:"penjelasan",
-      jp:"先生が問題を<b>説明</b>しました。", id:"Guru menjelaskan soal itu." },
-
-    { icon:"📞", word:"連絡", reading:"れんらく", meaning:"kontak / menghubungi",
-      jp:"後で<b>連絡</b>します。", id:"Nanti saya akan menghubungi." },
+    // ... (10 kata yang sudah ada) ...
 
     { icon:"✅", word:"確認", reading:"かくにん", meaning:"konfirmasi / memastikan",
-      jp:"予定を<b>確認</b>してください。", id:"Tolong konfirmasi jadwalnya." }
+      jp:"予定を<b>確認</b>してください。", id:"Tolong konfirmasi jadwalnya." },
+
+    // 👇 TAMBAHKAN 5 KATA BARU DI SINI (sebelum tanda kurung siku penutup ] )
+
+    { icon:"📝", word:"申し込み", reading:"もうしこみ", meaning:"pendaftaran",
+      jp:"セミナーの<b>申し込み</b>をしました。", id:"Saya sudah mendaftar seminar." },
+
+    { icon:"🖊️", word:"署名", reading:"しょめい", meaning:"tanda tangan",
+      jp:"ここに<b>署名</b>してください。", id:"Tolong tanda tangan di sini." },
+
+    { icon:"📊", word:"報告", reading:"ほうこく", meaning:"laporan",
+      jp:"毎週<b>報告</b>をします。", id:"Saya membuat laporan setiap minggu." },
+
+    { icon:"🤝", word:"契約", reading:"けいやく", meaning:"kontrak / perjanjian",
+      jp:"新しい<b>契約</b>を結びました。", id:"Kami membuat kontrak baru." },
+
+    { icon:"📦", word:"配送", reading:"はいそう", meaning:"pengiriman",
+      jp:"荷物の<b>配送</b>は明日です。", id:"Pengiriman barang besok." }
+
 ];
 
 let current = 0;
