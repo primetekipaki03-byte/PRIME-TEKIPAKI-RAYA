@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ujian JFT A2 - Test 2</title>
+<title>Ujian JFT JFT A2- Test 1</title>
 <style>
   :root{
     --navy:#001f3f;
@@ -32,6 +32,7 @@
 body{
     background:#ffffff;
     color:var(--text);
+    overflow-x:hidden;
 }
 
 /* =======================
@@ -42,8 +43,8 @@ body{
     position:sticky;
     top:0;
     z-index:999;
-    background:#022a5e;
-    border-bottom:2px solid rgba(224,181,42,.25);
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
     box-shadow:0 4px 14px rgba(0,0,0,.35);
 }
 
@@ -63,6 +64,8 @@ body{
     display:flex;
     gap:8px;
     align-items:center;
+    flex-wrap:wrap;
+    justify-content:flex-end;
 }
 
 .home-btn{
@@ -116,7 +119,14 @@ background:#022655;
 border-radius:10px;
 overflow:hidden;
 min-width:220px;
+max-width:90vw;
 box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+/* Dipakai lewat JS ketika menu akan melebihi tepi kanan layar/navbar */
+.dropdown-menu.align-right{
+left:auto;
+right:0;
 }
 
 .dropdown-menu a{
@@ -151,7 +161,7 @@ color:#001530;
 
   /* ===== HEADER (sebelumnya tidak punya style sama sekali) ===== */
   header{
-    background:linear-gradient(135deg,#38628b);
+    background:linear-gradient(135deg,var(--navy),#003366);
     color:#fff;
     text-align:center;
     padding:22px 16px 26px;
@@ -290,6 +300,15 @@ HOME
 
 <div class="nav-right">
 <div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+<div class="dropdown-menu" id="materi">
+<a href="daftarkosakata.html">Kosakata JFT</a>
+<a href="materi_tatabahasa.html">Tata Bahasa</a>
+<a href="kanjidasar.html">Kanji Flash Card</a>
+</div>
+</div>
+
+<div class="dropdown">
 <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
 <div class="dropdown-menu" id="quiz">
 <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
@@ -314,10 +333,11 @@ HOME
 </div>
 </nav>
 
+
 <!-- ===== HEADER ===== -->
 <header>
-  <h1 translate="no">JFT TEST 2</h1>
-  <p>Ujian Kemampuan Bahasa Jepang JFT A2 — Test 2 · 20 Soal · 20 Menit</p>
+  <h1 translate="no">JFT A2 TEST 1</h1>
+  <p>Ujian Kemampuan Bahasa Jepang JFT A2 — Test 1 · 19 Soal · 20 Menit</p>
 </header>
 
 <div id="app">
@@ -362,12 +382,11 @@ HOME
   <div class="card" id="resultScreen">
     <h2>Hasil Ujian</h2>
     <div class="score" id="scoreText"></div>
-    <p id="scorePct" style="color:var(--muted);font-size:1.1rem;"></p>
+    <p id="scorePct" style="color:#ffffff;font-size:1.1rem;"></p>
     <p id="scoreMsg" style="font-size:1rem;margin-bottom:16px;"></p>
     <button onclick="showReview()">📋 Lihat Pembahasan</button>
     <button class="secondary" onclick="location.reload()">🔄 Ulangi Ujian</button>
     <div id="reviewList" style="margin-top:18px;display:none;"></div>
-     <p id="scorePct" style="color:#ffffff;font-size:1.1rem;"></p>
   </div>
 
 </div>
@@ -396,20 +415,57 @@ document.addEventListener('keydown', e => {
 // ==========================================
 function toggleDropdown(id){
   document.querySelectorAll('.dropdown-menu').forEach(m=>{
-    if(m.id!==id){ m.classList.remove('show'); m.closest('.dropdown').classList.remove('open'); }
+    if(m.id!==id){
+      m.classList.remove('show');
+      m.classList.remove('align-right');
+      m.closest('.dropdown').classList.remove('open');
+    }
   });
   const menu = document.getElementById(id);
   const wrap = menu.closest('.dropdown');
+  const willShow = !menu.classList.contains('show');
+
   menu.classList.toggle('show');
   wrap.classList.toggle('open');
+
+  if(willShow){
+    menu.classList.remove('align-right');
+    const rect = menu.getBoundingClientRect();
+    if(rect.right > window.innerWidth - 8){
+      menu.classList.add('align-right');
+    }
+    const rect2 = menu.getBoundingClientRect();
+    if(rect2.left < 8){
+      menu.style.left = (8 - wrap.getBoundingClientRect().left) + 'px';
+      menu.style.right = 'auto';
+    }
+  }
 }
+
+window.addEventListener('resize', ()=>{
+  document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
+    m.classList.remove('show');
+    m.classList.remove('align-right');
+    m.style.left = '';
+    m.style.right = '';
+    m.closest('.dropdown').classList.remove('open');
+  });
+});
+
 document.addEventListener('click', e=>{
   if(!e.target.closest('.dropdown')){
-    document.querySelectorAll('.dropdown-menu').forEach(m=>m.classList.remove('show'));
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+      m.classList.remove('show');
+      m.classList.remove('align-right');
+      m.style.left = '';
+      m.style.right = '';
+    });
     document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
   }
 });
 
+// ==========================================
+// DATA SOAL — 19 SOAL
 // ==========================================
 const SECTIONS = [
   { label:'BAGIAN 1 · ぶんを かんせいしましょう！', range:[0,4]  },
@@ -529,8 +585,8 @@ const questions = [
     ],
     a:2
   }
-
 ];
+
 function getSectionLabel(idx){
   for(const s of SECTIONS){
     if(idx >= s.range[0] && idx <= s.range[1]) return s.label;
