@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tata Bahasa · JLPT N5 & N4</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy-deep:#001530;
+    --navy2:#022655;
+    --gold:#e0b52a;
+    --gold-bright:#facc15;
+    --paper:#fffdf7;
+    --ink:#001f3f;
+    --muted:#5b6b7d;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins","Segoe UI",Arial,sans-serif;}
+.jp{font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif;}
+body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
+
+/* =======================
+        NAVBAR
+======================= */
+#navbar{position:sticky;top:0;z-index:999;background:var(--navy-deep);
+    border-bottom:2px solid rgba(250,204,21,.25);box-shadow:0 4px 14px rgba(0,0,0,.35);}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;}
+.nav-left{display:flex;align-items:center;}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy-deep);
+    text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;}
+.home-btn:hover{opacity:.85;}
+.home-icon{width:24px;height:24px;object-fit:cover;border-radius:4px;}
+.dropdown{position:relative;}
+.dropdown-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;
+    border-radius:8px;font-weight:bold;cursor:pointer;}
+.dropdown-btn:hover{background:var(--gold);color:var(--navy-deep);}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:var(--navy2);border-radius:10px;
+    overflow:hidden;min-width:220px;max-width:90vw;box-shadow:0 8px 20px rgba(0,0,0,.4);}
+.dropdown-menu.align-right{left:auto;right:0;}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none;}
+.dropdown-menu a:hover{background:var(--gold);color:var(--navy-deep);}
+.show{display:block;}
+
+@media(max-width:600px){
+  .navbar-inner{flex-direction:column;align-items:flex-start;gap:8px;}
+  .nav-right{width:100%;}
+  .dropdown-btn{font-size:.72rem;padding:6px 9px;}
+}
+
+/* =======================
+        HERO
+======================= */
+.hero{
+  position:relative;
+  background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 55%,#003366 100%);
+  color:#fff;
+  padding:64px 20px 84px;
+  text-align:center;
+  overflow:hidden;
+}
+.hero .kanji-watermark{
+  position:absolute;
+  font-size:min(46vw,420px);
+  font-weight:900;
+  color:rgba(255,255,255,.04);
+  top:50%;left:50%;
+  transform:translate(-50%,-46%);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+  white-space:nowrap;
+}
+.hero-content{position:relative;z-index:2;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.4);
+  color:var(--gold-bright);font-size:12.5px;font-weight:700;letter-spacing:.14em;
+  padding:7px 16px;border-radius:999px;margin-bottom:20px;
+}
+.hero h1{
+  font-size:clamp(2rem,5vw,3rem);
+  letter-spacing:-.01em;
+  margin-bottom:10px;
+}
+.hero h1 .jp-big{
+  display:block;
+  font-size:clamp(2.4rem,7vw,3.8rem);
+  color:var(--gold-bright);
+  font-weight:900;
+  margin-bottom:6px;
+}
+.hero p{
+  color:#cdd8ea;
+  max-width:560px;
+  margin:0 auto;
+  font-size:15px;
+  line-height:1.7;
+}
+
+/* seigaiha wave strip */
+.wave-strip{
+  position:absolute;bottom:-2px;left:0;width:100%;height:60px;
+  background-image: radial-gradient(circle at 10px 0, transparent 12px, var(--paper-strip,#f6f5f1) 13px);
+  background-size:40px 30px;
+  background-position: 0 -15px;
+  opacity:.9;
+}
+
+/* =======================
+        LEVELS
+======================= */
+.levels-wrap{
+  max-width:980px;
+  margin:-52px auto 0;
+  padding:0 20px 70px;
+  position:relative;
+  z-index:3;
+}
+.levels-intro{
+  text-align:center;
+  margin-bottom:30px;
+}
+.levels-intro h2{
+  font-size:1.5rem;
+  color:var(--navy);
+  margin-bottom:6px;
+}
+.levels-intro p{color:var(--muted);font-size:14px;}
+
+.level-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:26px;
+}
+@media(max-width:760px){ .level-grid{grid-template-columns:1fr;} }
+
+.ticket{
+  position:relative;
+  display:flex;
+  background:var(--paper);
+  border-radius:20px;
+  overflow:hidden;
+  text-decoration:none;
+  color:var(--ink);
+  box-shadow:0 10px 0 rgba(0,31,63,.08), 0 18px 30px rgba(0,31,63,.12);
+  transition:transform .25s ease, box-shadow .25s ease;
+  min-height:230px;
+}
+.ticket:hover{
+  transform:translateY(-6px);
+  box-shadow:0 14px 0 rgba(0,31,63,.1), 0 26px 40px rgba(0,31,63,.18);
+}
+
+.ticket-stub{
+  width:104px;
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  position:relative;
+}
+.ticket-stub .lvl-tag{
+  font-size:11px;
+  letter-spacing:.18em;
+  opacity:.75;
+  margin-bottom:6px;
+}
+.ticket-stub .lvl-num{
+  font-size:2.6rem;
+  font-weight:900;
+  line-height:1;
+}
+.ticket-stub .lvl-jp{
+  margin-top:10px;
+  font-size:13px;
+  writing-mode:vertical-rl;
+  letter-spacing:.14em;
+  opacity:.85;
+}
+/* perforated divider */
+.ticket-stub::after{
+  content:"";
+  position:absolute;
+  right:0;top:8px;bottom:8px;
+  border-right:2px dashed rgba(255,255,255,.35);
+}
+
+.n5 .ticket-stub{background:linear-gradient(160deg,var(--gold) 0%,#c99a1b 100%);color:var(--navy-deep);}
+.n5 .ticket-stub::after{border-right-color:rgba(0,21,48,.35);}
+.n4 .ticket-stub{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);}
+
+.ticket-body{
+  flex:1;
+  padding:22px 24px;
+  display:flex;
+  flex-direction:column;
+}
+.ticket-body h3{
+  font-size:1.25rem;
+  color:var(--navy);
+  margin-bottom:6px;
+}
+.ticket-body .desc{
+  font-size:13.5px;
+  color:var(--muted);
+  line-height:1.6;
+  margin-bottom:14px;
+}
+.tag-row{
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-bottom:18px;
+}
+.tag-row span{
+  background:rgba(0,31,63,.06);
+  color:var(--navy);
+  font-size:11.5px;
+  font-weight:600;
+  padding:4px 10px;
+  border-radius:999px;
+}
+.ticket-body .cta{
+  margin-top:auto;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:700;
+  font-size:13.5px;
+  color:var(--navy);
+}
+.n5 .cta{color:#a4780a;}
+.n4 .cta{color:var(--navy);}
+.ticket-body .cta .arrow{
+  transition:transform .2s ease;
+}
+.ticket:hover .cta .arrow{transform:translateX(5px);}
+
+.stamp{
+  position:absolute;
+  top:16px;right:16px;
+  width:52px;height:52px;
+  border:2px solid rgba(225,29,72,.55);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(225,29,72,.65);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.05em;
+  transform:rotate(-14deg);
+  text-align:center;
+  line-height:1.15;
+  opacity:.85;
+}
+
+footer{text-align:center;color:var(--muted);font-size:13px;padding:20px 20px 40px;}
+
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+<div class="dropdown-menu" id="materi">
+<a href="daftarkosakata.html">Kosakata JFT</a>
+<a href="materi_tatabahasa.html">Tata Bahasa</a>
+<a href="kanjidasar.html">Kanji Flash Card</a>
+</div>
+</div>
+
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+<div class="dropdown-menu" id="quiz">
+<a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+<a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+<a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+<a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+<a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+</div>
+</div>
+
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+<div class="dropdown-menu" id="kanjiquiz">
+<a href="quizkanji1.html">QUIZ KANJI 1</a>
+<a href="quizkanji2.html">QUIZ KANJI 2</a>
+<a href="quizkanji3.html">QUIZ KANJI 3</a>
+<a href="quizkanji4.html">QUIZ KANJI 4</a>
+<a href="quizkanji5.html">QUIZ KANJI 5</a>
+</div>
+</div>
+</div>
+</div>
+</nav>
+
+<section class="hero">
+  <div class="kanji-watermark jp">文法</div>
+  <div class="hero-content">
+    <div class="eyebrow">📖 MATERI · TATA BAHASA</div>
+    <h1>
+      <span class="jp-big jp">文法</span>
+      Tata Bahasa Jepang
+    </h1>
+    <p>Pilih level sesuai kemampuanmu. Setiap pola kalimat disusun bertahap, lengkap dengan contoh supaya lebih mudah diingat.</p>
+  </div>
+  <div class="wave-strip"></div>
+</section>
+
+<div class="levels-wrap">
+  <div class="levels-intro">
+    <h2>Pilih Level Belajar</h2>
+    <p>Klik salah satu tiket di bawah untuk mulai belajar tata bahasa.</p>
+  </div>
+
+  <div class="level-grid">
+
+    <a href="tatabahasa_n5.html" class="ticket n5">
+      <div class="stamp jp">初級<br>合格</div>
+      <div class="ticket-stub">
+        <div class="lvl-tag">LEVEL</div>
+        <div class="lvl-num">N5</div>
+        <div class="lvl-jp jp">初級</div>
+      </div>
+      <div class="ticket-body">
+        <h3>JLPT N5 — Dasar</h3>
+        <p class="desc">Fondasi tata bahasa Jepang: pola kalimat sederhana, partikel dasar, dan ungkapan sehari-hari untuk pemula.</p>
+        <div class="tag-row">
+          <span>です / ます</span>
+          <span>partikel は・が・を</span>
+          <span>kata kerja dasar</span>
+        </div>
+        <div class="cta">Mulai belajar N5 <span class="arrow">→</span></div>
+      </div>
+    </a>
+
+    <a href="tatabahasa_n4.html" class="ticket n4">
+      <div class="stamp jp">中級<br>準備</div>
+      <div class="ticket-stub">
+        <div class="lvl-tag">LEVEL</div>
+        <div class="lvl-num" style="color:var(--gold-bright)">N4</div>
+        <div class="lvl-jp jp">初中級</div>
+      </div>
+      <div class="ticket-body">
+        <h3>JLPT N4 — Lanjutan</h3>
+        <p class="desc">Lanjutan dari N5: pola kalimat lebih kompleks, bentuk te, kondisional, dan ungkapan untuk percakapan yang lebih natural.</p>
+        <div class="tag-row">
+          <span>bentuk て</span>
+          <span>ば・たら</span>
+          <span>keigo dasar</span>
+        </div>
+        <div class="cta">Mulai belajar N4 <span class="arrow">→</span></div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>© 2026 Tekipaki Japanese Learning | Tata Bahasa JLPT N5 & N4</footer>
+
+<script>
+function toggleDropdown(id){
+  document.querySelectorAll('.dropdown-menu').forEach(m=>{
+    if(m.id!==id){
+      m.classList.remove('show');
+      m.classList.remove('align-right');
+      m.closest('.dropdown').classList.remove('open');
+    }
+  });
+  const menu = document.getElementById(id);
+  const wrap = menu.closest('.dropdown');
+  const willShow = !menu.classList.contains('show');
+
+  menu.classList.toggle('show');
+  wrap.classList.toggle('open');
+
+  if(willShow){
+    menu.classList.remove('align-right');
+    const rect = menu.getBoundingClientRect();
+    if(rect.right > window.innerWidth - 8){
+      menu.classList.add('align-right');
+    }
+    const rect2 = menu.getBoundingClientRect();
+    if(rect2.left < 8){
+      menu.style.left = (8 - wrap.getBoundingClientRect().left) + 'px';
+      menu.style.right = 'auto';
+    }
+  }
+}
+
+window.addEventListener('resize', ()=>{
+  document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
+    m.classList.remove('show');
+    m.classList.remove('align-right');
+    m.style.left = '';
+    m.style.right = '';
+    m.closest('.dropdown').classList.remove('open');
+  });
+});
+
+document.addEventListener('click', e=>{
+  if(!e.target.closest('.dropdown')){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+      m.classList.remove('show');
+      m.classList.remove('align-right');
+      m.style.left = '';
+      m.style.right = '';
+    });
+    document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
+  }
+});
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy',        e => e.preventDefault());
+document.addEventListener('cut',         e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('dragstart',   e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if(
+    (e.ctrlKey && ['c','u','s','p','a'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase()))
+  ){ e.preventDefault(); }
+});
+</script>
+
+</body>
+</html>
