@@ -400,85 +400,40 @@ viewBox="0 0 24 24">
 HOME
 
 </a>
-
 </div>
 
 <div class="nav-right">
 
-<div class="dropdown">
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="materi_kosakata.html">Kosakata JFT</a>
+      <a href="materi_tatabahasa.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+    </div>
+  </div>
 
-<button class="dropdown-btn"
-onclick="toggleDropdown('quiz')">
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
 
-QUIZ JFT ▼
-
-</button>
-
-<div class="dropdown-menu"
-id="quiz">
-
-<a href="ujianjfta2test1.html">
-SOAL JFT A — TEST 1
-</a>
-
-<a href="ujianjfta2test2.html">
-SOAL JFT A — TEST 2
-</a>
-
-<a href="ujianjfta2test3.html">
-SOAL JFT A — TEST 3
-</a>
-
-<a href="ujianjfta2test4.html">
-SOAL JFT A — TEST 4
-</a>
-
-<a href="ujianjfta2test5.html">
-SOAL JFT A — TEST 5
-</a>
-
-</div>
-
-</div>
-
-<div class="dropdown">
-
-<button class="dropdown-btn"
-onclick="toggleDropdown('materi')">
-
-MATERI ▼
-
-</button>
-
-<div class="dropdown-menu"
-id="materi">
-
-<a href="materi_kosakata.html">
-Kosakata JFT
-</a>
-
-<a href="materi_tatabahasa.html">
-Tata Bahasa
-</a>
-
-<a href="kanjidasar.html">
-Kanji Flash Card
-</a>
-
-</div>
-
-</div>
-
-<div class="dropdown">
-<button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
-<div class="dropdown-menu" id="kanjiquiz">
-<a href="quizkanji1.html">QUIZ KANJI 1</a>
-<a href="quizkanji2.html">QUIZ KANJI 2</a>
-<a href="quizkanji3.html">QUIZ KANJI 3</a>
-<a href="quizkanji4.html">QUIZ KANJI 4</a>
-<a href="quizkanji5.html">QUIZ KANJI 5</a>
-</div>
-</div>
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
 
 </div>
 
@@ -496,14 +451,6 @@ Kanji Flash Card
 <div class="viewer">
 
 <div id="kanji" class="big">
-
-消火
-
-</div>
-
-<div id="hiragana"></div>
-
-</div>
 
 
 <div class="grid">
@@ -555,8 +502,6 @@ Kanji Flash Card
         <div class="j">休む</div>
 
     </div>
-
-</div>
 </div>
 
 <footer style="text-align:center;padding:30px;color:#666;font-size:14px;">
