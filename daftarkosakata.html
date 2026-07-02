@@ -390,14 +390,24 @@ HOME
 <script>
 
 const TOTAL_UNITS = 37;
-const WORDS_PER_UNIT = 15;
+const WORDS_PER_UNIT = 10;
+
+// 👇 TAMBAHKAN INI: link khusus untuk unit tertentu (opsional)
+const customLinks = {
+    3: "kosakataunit.html",
+    10: "kosakata-unit10-revisi.html"
+
+};
 
 const list = document.getElementById("unitList");
 
 for(let i=1; i<=TOTAL_UNITS; i++){
     const n = String(i).padStart(2,"0");
     const a = document.createElement("a");
-    a.href = "kosakata_unit" + i + ".html";
+
+    // 👇 UBAH BARIS INI
+    a.href = customLinks[i] || ("kosakata_unit" + i + ".html");
+
     a.className = "unit-card";
     a.innerHTML = `
         <div class="unit-icon">${n}</div>
