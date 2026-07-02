@@ -375,41 +375,7 @@ grid-template-columns:repeat(2,1fr);
 font-size:90px;
 
 }
-.home-btn{
 
-display:flex;
-align-items:center;
-gap:8px;
-
-color:white;
-text-decoration:none;
-font-weight:bold;
-font-size:16px;
-
-}
-
-.home-btn:hover{
-
-color:#facc15;
-
-}
-
-.home-icon{
-
-width:24px;
-height:24px;
-
-fill:white;
-
-transition:.3s;
-
-}
-
-.home-btn:hover .home-icon{
-
-fill:#facc15;
-
-}
 }
 
 </style>
@@ -432,8 +398,6 @@ viewBox="0 0 24 24">
 </svg>
 
 HOME
-
-</a>
 
 </a>
 
@@ -505,12 +469,16 @@ Kanji Flash Card
 
 </div>
 
-<a href="quiz_kanji.html"
-class="nav-link-btn">
-
-QUIZ KANJI
-
-</a>
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+<div class="dropdown-menu" id="kanjiquiz">
+<a href="quizkanji1.html">QUIZ KANJI 1</a>
+<a href="quizkanji2.html">QUIZ KANJI 2</a>
+<a href="quizkanji3.html">QUIZ KANJI 3</a>
+<a href="quizkanji4.html">QUIZ KANJI 4</a>
+<a href="quizkanji5.html">QUIZ KANJI 5</a>
+</div>
+</div>
 
 </div>
 
@@ -533,57 +501,56 @@ QUIZ KANJI
 
 </div>
 
-
-</div>
+<div id="hiragana"></div>
 
 </div>
 
 <div class="grid">
-        <div class="card" onclick="show('消火')">
+        <div class="card" onclick="show('消火','しょうか')">
         <div class="j">消火</div>
      
     </div>
 
-    <div class="card" onclick="show('食事')">
+    <div class="card" onclick="show('食事','しょくじ')">
         <div class="j">食事</div>
     
     </div>
 
-    <div class="card" onclick="show('曲がる')">
+    <div class="card" onclick="show('曲がる','まがる')">
         <div class="j">曲がる</div>
     
     </div>
 
-    <div class="card" onclick="show('渡る')">
+    <div class="card" onclick="show('渡る','わたる')">
         <div class="j">渡る</div>
        
     </div>
 
-    <div class="card" onclick="show('迷う')">
+    <div class="card" onclick="show('迷う','まよう')">
         <div class="j">迷う</div>
      
     </div>
 
-    <div class="card" onclick="show('入口')">
+    <div class="card" onclick="show('入口','いりぐち')">
         <div class="j">入口</div>
     </div>
 
-    <div class="card" onclick="show('直す')">
+    <div class="card" onclick="show('直す','なおす')">
         <div class="j">直す</div>
 
     </div>
 
-    <div class="card" onclick="show('病院')">
+    <div class="card" onclick="show('病院','びょういん')">
         <div class="j">病院</div>
        
     </div>
 
-    <div class="card" onclick="show('出る')">
+    <div class="card" onclick="show('出る','でる')">
         <div class="j">出る</div>
     
     </div>
 
-    <div class="card" onclick="show('痛む')">
+    <div class="card" onclick="show('痛む','いたむ')">
         <div class="j">痛む</div>
 
     </div>
