@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Daftar Kanji JFT A2</title>
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --text:#001f3f;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:var(--text);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.home-btn{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+background:var(--gold);
+color:#001530;
+
+text-decoration:none;
+
+padding:8px 14px;
+
+border-radius:10px;
+
+font-weight:bold;
+
+}
+
+.home-btn:hover{
+
+opacity:.85;
+
+}
+
+.home-icon{
+
+width:24px;
+
+height:24px;
+
+object-fit:cover;
+
+border-radius:4px;
+
+}
+
+.dropdown{
+
+position:relative;
+
+}
+
+.dropdown-btn{
+
+background:none;
+
+border:2px solid var(--gold);
+
+color:var(--gold);
+
+padding:8px 14px;
+
+border-radius:8px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+.dropdown-btn:hover{
+
+background:var(--gold);
+
+color:#001530;
+
+}
+
+.dropdown-menu{
+
+display:none;
+
+position:absolute;
+
+top:45px;
+
+left:0;
+
+background:#022655;
+
+border-radius:10px;
+
+overflow:hidden;
+
+min-width:220px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.4);
+
+}
+
+.dropdown-menu a{
+
+display:block;
+
+padding:12px 15px;
+
+color:#ffd700;
+
+text-decoration:none;
+
+}
+
+.dropdown-menu a:hover{
+
+background:var(--gold);
+
+color:#001530;
+
+}
+
+.show{
+
+display:block;
+
+}
+
+.nav-link-btn{
+
+text-decoration:none;
+
+padding:8px 14px;
+
+border:2px solid var(--gold);
+
+color:var(--gold);
+
+border-radius:8px;
+
+font-weight:bold;
+
+}
+
+.nav-link-btn:hover{
+
+background:var(--gold);
+
+color:#001530;
+
+}
+
+/* ================= HEADER ================= */
+
+header{
+padding:45px 20px;
+text-align:center;
+}
+
+header h1{
+font-size:46px;
+margin-bottom:15px;
+}
+
+header p{
+font-size:18px;
+max-width:900px;
+margin:auto;
+line-height:1.8;
+color:#555;
+}
+
+/* ================= UNIT ================= */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+.unit-grid{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:20px;
+
+}
+
+.unit-card{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+height:95px;
+
+border:3px solid var(--navy);
+
+background:#fff;
+
+color:var(--navy);
+
+font-size:28px;
+
+font-weight:bold;
+
+text-decoration:none;
+
+transition:.25s;
+
+}
+
+.unit-card:hover{
+
+background:var(--navy);
+
+color:white;
+
+transform:translateY(-4px);
+
+box-shadow:0 8px 18px rgba(0,0,0,.2);
+
+}
+
+@media(max-width:900px){
+
+.unit-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:600px){
+
+.unit-grid{
+
+grid-template-columns:1fr;
+
+}
+
+header h1{
+
+font-size:34px;
+
+}
+
+.unit-card{
+
+font-size:24px;
+
+}
+
+}
+
+footer{
+
+margin-top:60px;
+
+padding:25px;
+
+text-align:center;
+
+color:#666;
+
+font-size:14px;
+
+}
+.nav-left{
+display:flex;
+align-items:center;
+}
+
+.nav-right{
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav id="navbar">
+
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 24 24">
+
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+
+</svg>
+
+HOME
+
+</a>
+
+</div>
+
+<div class="nav-right">
+
+<div class="dropdown">
+
+<button class="dropdown-btn"
+onclick="toggleDropdown('materi')">
+
+MATERI ▼
+
+</button>
+
+<div class="dropdown-menu"
+id="materi">
+
+<a href="daftarkosakata.html">
+Kosakata JFT
+</a>
+
+<a href="materi_tatabahasa.html">
+Tata Bahasa
+</a>
+
+<a href="kanjidasar.html">
+Kanji Flash Card
+</a>
+
+</div>
+
+</div>
+
+<div class="dropdown">
+
+<button class="dropdown-btn"
+onclick="toggleDropdown('quiz')">
+
+QUIZ JFT ▼
+
+</button>
+
+<div class="dropdown-menu"
+id="quiz">
+
+<a href="ujianjfta2test1.html">
+SOAL JFT A — TEST 1
+</a>
+
+<a href="ujianjfta2test2.html">
+SOAL JFT A — TEST 2
+</a>
+
+<a href="ujianjfta2test3.html">
+SOAL JFT A — TEST 3
+</a>
+
+<a href="ujianjfta2test4.html">
+SOAL JFT A — TEST 4
+</a>
+
+<a href="ujianjfta2test5.html">
+SOAL JFT A — TEST 5
+</a>
+
+</div>
+
+</div>
+
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+<div class="dropdown-menu" id="kanjiquiz">
+<a href="quizkanji1.html">QUIZ KANJI 1</a>
+<a href="quizkanji2.html">QUIZ KANJI 2</a>
+<a href="quizkanji3.html">QUIZ KANJI 3</a>
+<a href="quizkanji4.html">QUIZ KANJI 4</a>
+<a href="quizkanji5.html">QUIZ KANJI 5</a>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</nav>
+
+<header>
+
+<h1> DAFTAR KANJI JFT A2</h1>
+
+<p>
+
+Halaman ini berisi daftar materi Kanji JFT A2 yang dibagi menjadi 30 unit.
+Silakan pilih salah satu unit di bawah ini untuk mempelajari kosakata kanji
+melalui flashcard.
+
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="unit-grid">
+
+<a href="kanjiunit1.html" class="unit-card">UNIT 1</a>
+
+<a href="kanjiunit2.html" class="unit-card">UNIT 2</a>
+
+<a href="kanjiunit3.html" class="unit-card">UNIT 3</a>
+
+<a href="kanjiunit4.html" class="unit-card">UNIT 4</a>
+
+<a href="kanjiunit5.html" class="unit-card">UNIT 5</a>
+
+<a href="kanjiunit6.html" class="unit-card">UNIT 6</a>
+
+<a href="kanji_unit7.html" class="unit-card">UNIT 7</a>
+
+
+<a href="kanji_unit8.html" class="unit-card">UNIT 8</a>
+
+<a href="kanji_unit9.html" class="unit-card">UNIT 9</a>
+
+<a href="kanji_unit10.html" class="unit-card">UNIT 10</a>
+
+<a href="kanji_unit11.html" class="unit-card">UNIT 11</a>
+
+<a href="kanji_unit12.html" class="unit-card">UNIT 12</a>
+<a href="kanji_unit13.html" class="unit-card">UNIT 13</a>
+
+<a href="kanji_unit14.html" class="unit-card">UNIT 14</a>
+
+<a href="kanji_unit15.html" class="unit-card">UNIT 15</a>
+
+<a href="kanji_unit16.html" class="unit-card">UNIT 16</a>
+
+<a href="kanji_unit17.html" class="unit-card">UNIT 17</a>
+
+<a href="kanji_unit18.html" class="unit-card">UNIT 18</a>
+
+<a href="kanji_unit19.html" class="unit-card">UNIT 19</a>
+
+<a href="kanji_unit20.html" class="unit-card">UNIT 20</a>
+
+<a href="kanji_unit21.html" class="unit-card">UNIT 21</a>
+
+<a href="kanji_unit22.html" class="unit-card">UNIT 22</a>
+
+<a href="kanji_unit23.html" class="unit-card">UNIT 23</a>
+
+<a href="kanji_unit24.html" class="unit-card">UNIT 24</a>
+
+<a href="kanji_unit25.html" class="unit-card">UNIT 25</a>
+
+<a href="kanji_unit26.html" class="unit-card">UNIT 26</a>
+
+<a href="kanji_unit27.html" class="unit-card">UNIT 27</a>
+
+<a href="kanji_unit28.html" class="unit-card">UNIT 28</a>
+
+<a href="kanji_unit29.html" class="unit-card">UNIT 29</a>
+
+<a href="kanji_unit30.html" class="unit-card">UNIT 30</a>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 Tekipaki Japanese Learning | Daftar Kanji JFT A2
+
+</footer>
+
+<script>
+
+// Menonaktifkan klik kanan
+document.addEventListener("contextmenu",function(e){
+    e.preventDefault();
+});
+
+// Menonaktifkan drag
+document.addEventListener("dragstart",function(e){
+    e.preventDefault();
+});
+
+// Menonaktifkan seleksi teks
+document.addEventListener("selectstart",function(e){
+    e.preventDefault();
+});
+
+// Menonaktifkan copy
+document.addEventListener("copy",function(e){
+    e.preventDefault();
+});
+
+// Shortcut umum
+document.addEventListener("keydown",function(e){
+
+    if(
+        e.key==="F12" ||
+        (e.ctrlKey && e.shiftKey &&
+        ["I","J","C"].includes(e.key.toUpperCase())) ||
+        (e.ctrlKey &&
+        ["U","S"].includes(e.key.toUpperCase()))
+    ){
+        e.preventDefault();
+    }
+
+});
+function toggleDropdown(id){
+
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+
+        if(menu.id!=id){
+
+            menu.classList.remove("show");
+
+        }
+
+    });
+
+    document.getElementById(id).classList.toggle("show");
+
+}
+
+document.addEventListener("click",function(e){
+
+    if(!e.target.closest(".dropdown")){
+
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+
+            menu.classList.remove("show");
+
+        });
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
