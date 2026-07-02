@@ -266,14 +266,6 @@ font-weight:bold;
 
 }
 
-#hiragana{
-
-font-size:38px;
-
-margin-top:10px;
-
-}
-
 .big{
 
 animation:zoom .3s;
@@ -451,13 +443,13 @@ HOME
 <div class="viewer">
 
 <div id="kanji" class="big">
-消火
+
+必要
 
 </div>
 
-<div id="hiragana"></div>
-
 </div>
+
 
 <div class="grid">
         <div class="card" onclick="show('建物')">
@@ -508,6 +500,7 @@ HOME
         <div class="j">休む</div>
 
     </div>
+
 </div>
 
 <footer style="text-align:center;padding:30px;color:#666;font-size:14px;">
@@ -520,10 +513,9 @@ HOME
 // FLASH CARD
 //============================
 
-function show(kanji,hira){
+function show(kanji){
 
     document.getElementById("kanji").innerHTML=kanji;
-    document.getElementById("hiragana").innerHTML=hira;
 
     let x=document.getElementById("kanji");
 
