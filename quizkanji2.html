@@ -32,6 +32,7 @@
 body{
     background:#ffffff;
     color:var(--text);
+    overflow-x:hidden;
 }
 
 /* =======================
@@ -63,6 +64,8 @@ body{
     display:flex;
     gap:8px;
     align-items:center;
+    flex-wrap:wrap;
+    justify-content:flex-end;
 }
 
 .home-btn{
@@ -116,7 +119,14 @@ background:#022655;
 border-radius:10px;
 overflow:hidden;
 min-width:220px;
+max-width:90vw;
 box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+/* Dipakai lewat JS ketika menu akan melebihi tepi kanan layar/navbar */
+.dropdown-menu.align-right{
+left:auto;
+right:0;
 }
 
 .dropdown-menu a{
@@ -312,11 +322,11 @@ HOME
 <div class="dropdown">
 <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
 <div class="dropdown-menu" id="kanjiquiz">
-<a href="quizkanji1.html">QUIZ KANJI 1</a>
-<a href="quizkanji2.html">QUIZ KANJI 2</a>
-<a href="quizkanji3.html">QUIZ KANJI 3</a>
-<a href="quizkanji4.html">QUIZ KANJI 4</a>
-<a href="quizkanji5.html">QUIZ KANJI 5</a>
+<a href="quizkanji1.html">QUIZ KANJI — TEST 1</a>
+<a href="quizkanji2.html">QUIZ KANJI — TEST 2</a>
+<a href="quizkanji3.html">QUIZ KANJI — TEST 3</a>
+<a href="quizkanji4.html">QUIZ KANJI — TEST 4</a>
+<a href="quizkanji5.html">QUIZ KANJI — TEST 5</a>
 </div>
 </div>
 </div>
@@ -404,16 +414,54 @@ document.addEventListener('keydown', e => {
 // ==========================================
 function toggleDropdown(id){
   document.querySelectorAll('.dropdown-menu').forEach(m=>{
-    if(m.id!==id){ m.classList.remove('show'); m.closest('.dropdown').classList.remove('open'); }
+    if(m.id!==id){
+      m.classList.remove('show');
+      m.classList.remove('align-right');
+      m.closest('.dropdown').classList.remove('open');
+    }
   });
   const menu = document.getElementById(id);
   const wrap = menu.closest('.dropdown');
+  const willShow = !menu.classList.contains('show');
+
   menu.classList.toggle('show');
   wrap.classList.toggle('open');
+
+  if(willShow){
+    // reset dulu supaya pengukuran lebar akurat
+    menu.classList.remove('align-right');
+    const rect = menu.getBoundingClientRect();
+    // kalau tepi kanan menu melebihi lebar layar/navbar, geser ke kiri (align kanan tombol)
+    if(rect.right > window.innerWidth - 8){
+      menu.classList.add('align-right');
+    }
+    // jaga-jaga kalau setelah digeser malah keluar dari tepi kiri
+    const rect2 = menu.getBoundingClientRect();
+    if(rect2.left < 8){
+      menu.style.left = (8 - wrap.getBoundingClientRect().left) + 'px';
+      menu.style.right = 'auto';
+    }
+  }
 }
+
+window.addEventListener('resize', ()=>{
+  document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
+    m.classList.remove('show');
+    m.classList.remove('align-right');
+    m.style.left = '';
+    m.style.right = '';
+    m.closest('.dropdown').classList.remove('open');
+  });
+});
+
 document.addEventListener('click', e=>{
   if(!e.target.closest('.dropdown')){
-    document.querySelectorAll('.dropdown-menu').forEach(m=>m.classList.remove('show'));
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+      m.classList.remove('show');
+      m.classList.remove('align-right');
+      m.style.left = '';
+      m.style.right = '';
+    });
     document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
   }
 });
