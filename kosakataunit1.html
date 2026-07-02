@@ -536,49 +536,51 @@ HOME
 </footer>
 
 <script>
+const vocab = [
+    { icon:"📚", word:"あります", reading:"あります", meaning:"ada (benda)",
+      jp:"本が机の上に<b>あります</b>。", id:"Buku ada di atas meja." },
 
-    const vocab = [
-    { icon:"🏠", word:"あります", reading:"あります", meaning:"ada (benda)",
-      jp:"机の上に本が<b>あります</b>。", id:"Di atas meja ada buku." },
+    { icon:"🐱", word:"います", reading:"います", meaning:"ada (benda hidup)",
+      jp:"猫が部屋に<b>います</b>。", id:"Kucing ada di dalam kamar." },
 
-    { icon:"👤", word:"います", reading:"います", meaning:"ada (orang/hewan)",
-      jp:"教室に先生が<b>います</b>。", id:"Di kelas ada guru." },
-
-    { icon:"🔧", word:"作業します", reading:"さぎょうします", meaning:"bekerja / melakukan pekerjaan",
-      jp:"工場で<b>作業します</b>。", id:"Saya bekerja di pabrik." },
+    { icon:"🏭", word:"作業します", reading:"さぎょうします", meaning:"bekerja",
+      jp:"工場で<b>作業します</b>。", id:"Bekerja di pabrik." },
 
     { icon:"🤝", word:"協力します", reading:"きょうりょくします", meaning:"bekerja sama",
-      jp:"みんなで<b>協力します</b>。", id:"Kami bekerja sama." },
+      jp:"友だちと<b>協力します</b>。", id:"Bekerja sama dengan teman." },
 
-    { icon:"📖", word:"勉強します", reading:"べんきょうします", meaning:"belajar",
-      jp:"毎日日本語を<b>勉強します</b>。", id:"Saya belajar bahasa Jepang setiap hari." },
+    { icon:"📖", word:"勉強します", reading:"べんきょうします", meaning:"belajar (pelajaran)",
+      jp:"毎日日本語を<b>勉強します</b>。", id:"Setiap hari belajar bahasa Jepang." },
 
-    { icon:"🎓", word:"学びます", reading:"まなびます", meaning:"mempelajari",
-      jp:"学校で多くのことを<b>学びます</b>。", id:"Saya mempelajari banyak hal di sekolah." },
+    { icon:"🎓", word:"学びます", reading:"まなびます", meaning:"belajar (pengalaman hidup, ilmu)",
+      jp:"失敗から<b>学びます</b>。", id:"Belajar dari kegagalan." },
 
-    { icon:"🚆", word:"出発します", reading:"しゅっぱつします", meaning:"berangkat",
-      jp:"朝８時に<b>出発します</b>。", id:"Saya berangkat jam 8 pagi." },
+    { icon:"🚄", word:"出発します", reading:"しゅっぱつします", meaning:"berangkat",
+      jp:"明日東京へ<b>出発します</b>。", id:"Besok berangkat ke Tokyo." },
 
     { icon:"💬", word:"話し合います", reading:"はなしあいます", meaning:"berdiskusi",
-      jp:"みんなで問題について<b>話し合います</b>。", id:"Kami berdiskusi tentang masalah itu." },
+      jp:"みんなで問題を<b>話し合います</b>。", id:"Berdiskusi tentang masalah bersama." },
 
-    { icon:"🏢", word:"営業します", reading:"えいぎょうします", meaning:"beroperasi / buka usaha",
-      jp:"この店は毎日<b>営業します</b>。", id:"Toko ini buka setiap hari." },
+    { icon:"🏪", word:"営業します", reading:"えいぎょうします", meaning:"berbisnis / beroperasi",
+      jp:"店は朝9時から<b>営業します</b>。", id:"Toko buka/beroperasi dari jam 9 pagi." },
 
-    { icon:"🛒", word:"商売します", reading:"しょうばいします", meaning:"berdagang",
-      jp:"父は市場で<b>商売します</b>。", id:"Ayah berdagang di pasar." },
+    { icon:"💼", word:"商売します", reading:"しょうばいします", meaning:"berdagang",
+      jp:"小さな店で<b>商売します</b>。", id:"Berdagang di toko kecil." },
+
+    { icon:"🎭", word:"騙します", reading:"だまします", meaning:"menipu",
+      jp:"人を<b>騙します</b>のはよくありません。", id:"Menipu orang itu tidak baik." },
 
     { icon:"🤐", word:"無口", reading:"むくち", meaning:"pendiam",
-      jp:"彼は<b>無口</b>です。", id:"Dia orang yang pendiam." },
+      jp:"彼は<b>無口</b>です。", id:"Dia pendiam." },
 
-    { icon:"🚀", word:"立ち上げます", reading:"たちあげます", meaning:"mendirikan / meluncurkan",
-      jp:"新しい会社を<b>立ち上げます</b>。", id:"Saya mendirikan perusahaan baru." },
+    { icon:"🚀", word:"立ち上げます", reading:"たちあげます", meaning:"mendirikan (usaha/perusahaan)",
+      jp:"新しい会社を<b>立ち上げます</b>。", id:"Mendirikan perusahaan baru." },
 
     { icon:"🏊", word:"泳ぎます", reading:"およぎます", meaning:"berenang",
-      jp:"夏に海で<b>泳ぎます</b>。", id:"Saya berenang di laut saat musim panas." },
+      jp:"毎日プールで<b>泳ぎます</b>。", id:"Berenang di kolam setiap hari." },
 
-    { icon:"🙋", word:"参加します", reading:"さんかします", meaning:"berpartisipasi / ikut",
-      jp:"来週のイベントに<b>参加します</b>。", id:"Saya akan ikut acara minggu depan." }
+    { icon:"🙋", word:"参加します", reading:"さんかします", meaning:"bergabung / berpartisipasi",
+      jp:"会議に<b>参加します</b>。", id:"Mengikuti rapat." }
 ];
 
 let current = 0;
