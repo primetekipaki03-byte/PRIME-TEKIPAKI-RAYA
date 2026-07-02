@@ -266,14 +266,6 @@ font-weight:bold;
 
 }
 
-#hiragana{
-
-font-size:38px;
-
-margin-top:10px;
-
-}
-
 .big{
 
 animation:zoom .3s;
@@ -452,13 +444,12 @@ HOME
 
 <div id="kanji" class="big">
 
-消火
+必要
 
 </div>
 
-<div id="hiragana"></div>
-
 </div>
+
 
 <div class="grid">
         <div class="card" onclick="show('消火','しょうか')">
@@ -522,10 +513,9 @@ HOME
 // FLASH CARD
 //============================
 
-function show(kanji,hira){
+function show(kanji){
 
     document.getElementById("kanji").innerHTML=kanji;
-    document.getElementById("hiragana").innerHTML=hira;
 
     let x=document.getElementById("kanji");
 
