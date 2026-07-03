@@ -38,8 +38,8 @@ body{
     top:0;
     z-index:999;
     background:#001530;
-    border-bottom:2px solid rgba(250,204,21,.25);
-    box-shadow:0 4px 14px rgba(0,0,0,.35);
+    border-bottom:2px solid rgba(224,181,42,.3);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
 }
 
 .navbar-inner{
@@ -58,13 +58,15 @@ body{
     display:flex;
     gap:8px;
     align-items:center;
+    flex-wrap:wrap;
+    justify-content:flex-end;
 }
 
 .home-btn{
     display:flex;
     align-items:center;
     gap:8px;
-    background:var(--gold);
+    background:#e0b52a;
     color:#001530;
     text-decoration:none;
     padding:8px 14px;
@@ -89,16 +91,18 @@ body{
 
 .dropdown-btn{
     background:none;
-    border:2px solid var(--gold);
-    color:var(--gold);
+    border:2px solid #e0b52a;
+    color:#e0b52a;
     padding:8px 14px;
     border-radius:8px;
     font-weight:bold;
     cursor:pointer;
+    font-family:inherit;
+    font-size:.9rem;
 }
 
 .dropdown-btn:hover{
-    background:var(--gold);
+    background:#e0b52a;
     color:#001530;
 }
 
@@ -107,11 +111,17 @@ body{
     position:absolute;
     top:45px;
     left:0;
-    background:#022655;
+    background:#1f4577;
     border-radius:10px;
     overflow:hidden;
     min-width:220px;
-    box-shadow:0 8px 20px rgba(0,0,0,.4);
+    max-width:90vw;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+
+.dropdown-menu.align-right{
+    left:auto;
+    right:0;
 }
 
 .dropdown-menu a{
@@ -122,12 +132,27 @@ body{
 }
 
 .dropdown-menu a:hover{
-    background:var(--gold);
+    background:#e0b52a;
     color:#001530;
 }
 
 .show{
     display:block;
+}
+
+@media(max-width:600px){
+    .navbar-inner{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+    }
+    .nav-right{
+        width:100%;
+    }
+    .dropdown-btn{
+        font-size:.72rem;
+        padding:6px 9px;
+    }
 }
 
 /* =======================
@@ -546,7 +571,7 @@ footer{
 <div class="navbar-inner">
 
 <div class="nav-left">
-<a href="index.html" class="home-btn">
+<a href="../index.html" class="home-btn">
 <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
 </svg>
@@ -559,20 +584,20 @@ HOME
   <div class="dropdown">
     <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
     <div class="dropdown-menu" id="materi">
-      <a href="daftarkosakata.html">Kosakata JFT</a>
-      <a href="tatabahasa_n4.html">Tata Bahasa</a>
-      <a href="kanjidasar.html">Kanji Flash Card</a>
+      <a href="../daftarkosakata.html">Kosakata JFT</a>
+      <a href="../tatabahasa_n4.html">Tata Bahasa</a>
+      <a href="../kanjidasar.html">Kanji Flash Card</a>
     </div>
   </div>
 
   <div class="dropdown">
     <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
     <div class="dropdown-menu" id="quiz">
-      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
-      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
-      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
-      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
-      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+      <a href="../ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="../ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="../ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="../ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="../ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
     </div>
   </div>
 
@@ -817,19 +842,40 @@ initQuiz(1);
 initQuiz(2);
 
 function toggleDropdown(id){
-    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
-        if(menu.id!=id){
-            menu.classList.remove("show");
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+        if(m.id!==id){
+            m.classList.remove('show');
+            m.classList.remove('align-right');
+            m.closest('.dropdown').classList.remove('open');
         }
     });
-    document.getElementById(id).classList.toggle("show");
+    const menu = document.getElementById(id);
+    const wrap = menu.closest('.dropdown');
+    const willShow = !menu.classList.contains('show');
+    menu.classList.toggle('show');
+    wrap.classList.toggle('open');
+    if(willShow){
+        menu.classList.remove('align-right');
+        const rect = menu.getBoundingClientRect();
+        if(rect.right > window.innerWidth - 8){ menu.classList.add('align-right'); }
+    }
 }
+
+window.addEventListener('resize', ()=>{
+    document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
+        m.classList.remove('show');
+        m.classList.remove('align-right');
+        m.closest('.dropdown').classList.remove('open');
+    });
+});
 
 document.addEventListener("click",function(e){
     if(!e.target.closest(".dropdown")){
         document.querySelectorAll(".dropdown-menu").forEach(function(menu){
             menu.classList.remove("show");
+            menu.classList.remove("align-right");
         });
+        document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
     }
 });
 
