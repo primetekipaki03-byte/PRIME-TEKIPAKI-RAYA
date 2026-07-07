@@ -153,9 +153,6 @@ body{
         font-size:.72rem;
         padding:6px 9px;
     }
-    .breadcrumb{
-        margin-top:16px;
-    }
 }
 
 /* =======================
@@ -586,12 +583,15 @@ body{
 }
 
 .quiz-actions{
-    display:flex;
+    display:grid;
+    grid-template-columns:1fr 1fr;
     gap:10px;
-    flex-wrap:wrap;
+    width:100%;
 }
 
 .quiz-btn{
+    display:block;
+    width:100%;
     border:2px solid var(--navy);
     background:var(--navy);
     color:var(--gold);
@@ -599,8 +599,15 @@ body{
     border-radius:10px;
     font-weight:bold;
     font-size:14px;
+    text-align:center;
     cursor:pointer;
     transition:.2s;
+}
+
+@media(max-width:400px){
+    .quiz-actions{
+        grid-template-columns:1fr;
+    }
 }
 
 .quiz-btn:hover{
@@ -894,97 +901,93 @@ HOME
         </p>
 
         <!-- SOAL 1 -->
+        <div class="quiz-box" id="quiz1">
+            <span class="qno">SOAL 1</span>
+            <div class="qtext">
+                ドアを　＿＿＿＿＿　＿★＿。
+            </div>
 
-     <div class="quiz-box" id="quiz1">
-       <span class="qno">SOAL 1</span>
-       <div class="qtext">
-        ドアを　＿＿＿＿＿　＿★＿。
-       </div>
+            <div class="answer-slot" id="slot1"></div>
 
-       <div class="answer-slot" id="slot1"></div>
+            <div class="word-bank" id="bank1">
+                <div class="word-tile" data-word="すぐ">すぐ</div>
+                <div class="word-tile" data-word="閉めろ">しめろ</div>
+            </div>
 
-     <div class="word-bank" id="bank1">
-        <div class="word-tile" data-word="すぐ">すぐ</div>
-        <div class="word-tile" data-word="閉めろ">しめろ</div>
-     </div>
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(1)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(1)">Ulangi</button>
+            </div>
 
-      <div class="quiz-actions">
-        <button class="quiz-btn" onclick="checkAnswer(1)">Cek Jawaban</button>
-        <button class="quiz-btn secondary" onclick="resetQuiz(1)">Ulangi</button>
-    </div>
-
-    <div class="quiz-result" id="result1"></div>
-</div>
-
-<!-- SOAL 2 -->
-<div class="quiz-box" id="quiz2">
-    <span class="qno">SOAL 2</span>
-    <div class="qtext">
-        分からなかったら　＿＿＿＿＿　＿★＿。
-    </div>
-
-    <div class="answer-slot" id="slot2"></div>
-
-    <div class="word-bank" id="bank2">
-        <div class="word-tile" data-word="聞け">きけ</div>
-        <div class="word-tile" data-word="先生に">せんせいに</div>
-    </div>
-
-    <div class="quiz-actions">
-        <button class="quiz-btn" onclick="checkAnswer(2)">Cek Jawaban</button>
-        <button class="quiz-btn secondary" onclick="resetQuiz(2)">Ulangi</button>
-    </div>
-
-    <div class="quiz-result" id="result2"></div>
- </div>
-
-
-    <!-- SOAL 3 -->
-    <div class="quiz-box" id="quiz3">
-        <span class="qno">SOAL 3</span>
-
-        <div class="qtext">
-            心配するな。＿＿＿＿＿　＿★＿！
+            <div class="quiz-result" id="result1"></div>
         </div>
 
-        <div class="answer-slot" id="slot3"></div>
+        <!-- SOAL 2 -->
+        <div class="quiz-box" id="quiz2">
+            <span class="qno">SOAL 2</span>
+            <div class="qtext">
+                分からなかったら　＿＿＿＿＿　＿★＿。
+            </div>
 
-        <div class="word-bank" id="bank3">
-            <div class="word-tile" data-word="最後まで">さいごまで</div>
-            <div class="word-tile" data-word="頑張れ">がんばれ</div>
+            <div class="answer-slot" id="slot2"></div>
+
+            <div class="word-bank" id="bank2">
+                <div class="word-tile" data-word="聞け">きけ</div>
+                <div class="word-tile" data-word="先生に">せんせいに</div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(2)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(2)">Ulangi</button>
+            </div>
+
+            <div class="quiz-result" id="result2"></div>
         </div>
 
-        <div class="quiz-actions">
-            <button class="quiz-btn" onclick="checkAnswer(3)">Cek Jawaban</button>
-            <button class="quiz-btn secondary" onclick="resetQuiz(3)">Ulangi</button>
+        <!-- SOAL 3 -->
+        <div class="quiz-box" id="quiz3">
+            <span class="qno">SOAL 3</span>
+            <div class="qtext">
+                心配するな。＿＿＿＿＿　＿★＿！
+            </div>
+
+            <div class="answer-slot" id="slot3"></div>
+
+            <div class="word-bank" id="bank3">
+                <div class="word-tile" data-word="最後まで">さいごまで</div>
+                <div class="word-tile" data-word="頑張れ">がんばれ</div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(3)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(3)">Ulangi</button>
+            </div>
+
+            <div class="quiz-result" id="result3"></div>
         </div>
 
-        <div class="quiz-result" id="result3"></div>
+        <!-- SOAL 4 -->
+        <div class="quiz-box" id="quiz4">
+            <span class="qno">SOAL 4</span>
+            <div class="qtext">
+                前を　＿＿＿＿＿　＿★＿！
+            </div>
+
+            <div class="answer-slot" id="slot4"></div>
+
+            <div class="word-bank" id="bank4">
+                <div class="word-tile" data-word="よく">よく</div>
+                <div class="word-tile" data-word="見ろ">みろ</div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(4)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(4)">Ulangi</button>
+            </div>
+
+            <div class="quiz-result" id="result4"></div>
+        </div>
     </div>
-
-    <!-- SOAL 4 -->
-    <div class="quiz-box" id="quiz4">
-        <span class="qno">SOAL 4</span>
-
-        <div class="qtext">
-            前を　＿＿＿＿＿　＿★＿！
-        </div>
-
-        <div class="answer-slot" id="slot4"></div>
-
-        <div class="word-bank" id="bank4">
-            <div class="word-tile" data-word="よく">よく</div>
-            <div class="word-tile" data-word="見ろ">みろ</div>
-        </div>
-
-        <div class="quiz-actions">
-            <button class="quiz-btn" onclick="checkAnswer(4)">Cek Jawaban</button>
-            <button class="quiz-btn secondary" onclick="resetQuiz(4)">Ulangi</button>
-        </div>
-
-        <div class="quiz-result" id="result4"></div>
-    </div>
-
 </div>
 
 <div class="content" style="padding-top:0;">
