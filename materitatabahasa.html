@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tata Bahasa · JLPT N5 & N4</title>
+<title>Tata Bahasa · JLPT N5–N1</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -129,10 +129,9 @@ body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
 
 .level-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
   gap:26px;
 }
-@media(max-width:980px){ .level-grid{grid-template-columns:1fr 1fr;} }
 @media(max-width:760px){ .level-grid{grid-template-columns:1fr;} }
 
 .ticket{
@@ -191,7 +190,9 @@ body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
 .n5 .ticket-stub{background:linear-gradient(160deg,var(--gold) 0%,#c99a1b 100%);color:var(--navy-deep);}
 .n5 .ticket-stub::after{border-right-color:rgba(0,21,48,.35);}
 .n4 .ticket-stub{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);}
+.n3 .ticket-stub{background:linear-gradient(160deg,#0f766e 0%,#0a4a45 100%);}
 .n2 .ticket-stub{background:linear-gradient(160deg,#7a1229 0%,#3d0713 100%);}
+.n1 .ticket-stub{background:linear-gradient(160deg,#2e1065 0%,#120426 100%);}
 
 .ticket-body{
   flex:1;
@@ -203,6 +204,7 @@ body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
   font-size:1.25rem;
   color:var(--navy);
   margin-bottom:6px;
+  padding-right:58px;
 }
 .ticket-body .desc{
   font-size:13.5px;
@@ -233,7 +235,9 @@ body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
 }
 .n5 .cta{color:#a4780a;}
 .n4 .cta{color:var(--navy);}
+.n3 .cta{color:#0f766e;}
 .n2 .cta{color:#7a1229;}
+.n1 .cta{color:#2e1065;}
 .ticket-body .cta .arrow{
   transition:transform .2s ease;
 }
@@ -366,6 +370,25 @@ HOME
       </div>
     </a>
 
+    <a href="tatabahasajlptn3.html" class="ticket n3">
+      <div class="stamp jp">中上級<br>強化</div>
+      <div class="ticket-stub">
+        <div class="lvl-tag">LEVEL</div>
+        <div class="lvl-num" style="color:var(--gold-bright)">N3</div>
+        <div class="lvl-jp jp">中上級</div>
+      </div>
+      <div class="ticket-body">
+        <h3>JLPT N3 — Menengah</h3>
+        <p class="desc">Jembatan menuju level mahir: pola kalimat majemuk, ungkapan penilaian & dugaan, serta tata bahasa yang sering dipakai di media sehari-hari.</p>
+        <div class="tag-row">
+          <span>ようだ・そうだ</span>
+          <span>bentuk pasif/kausatif</span>
+          <span>ungkapan penilaian</span>
+        </div>
+        <div class="cta">Mulai belajar N3 <span class="arrow">→</span></div>
+      </div>
+    </a>
+
     <a href="tatabahasajlptn2.html" class="ticket n2">
       <div class="stamp jp">上級<br>挑戦</div>
       <div class="ticket-stub">
@@ -385,10 +408,29 @@ HOME
       </div>
     </a>
 
+    <a href="tatabahasajlptn1.html" class="ticket n1">
+      <div class="stamp jp">最上級<br>達人</div>
+      <div class="ticket-stub">
+        <div class="lvl-tag">LEVEL</div>
+        <div class="lvl-num" style="color:var(--gold-bright)">N1</div>
+        <div class="lvl-jp jp">最上級</div>
+      </div>
+      <div class="ticket-body">
+        <h3>JLPT N1 — Mahir Tinggi</h3>
+        <p class="desc">Puncak tata bahasa Jepang: ungkapan sastra & formal tingkat tinggi, nuansa halus antar pola kalimat, serta struktur yang sering muncul di teks akademik dan berita resmi.</p>
+        <div class="tag-row">
+          <span>bunpou sastra</span>
+          <span>nuansa halus</span>
+          <span>teks akademik</span>
+        </div>
+        <div class="cta">Mulai belajar N1 <span class="arrow">→</span></div>
+      </div>
+    </a>
+
   </div>
 </div>
 
-<footer>© 2026 Tekipaki Japanese Learning | Tata Bahasa JLPT N5 & N4</footer>
+<footer>© 2026 Tekipaki Japanese Learning | Tata Bahasa JLPT N5–N1</footer>
 
 <script>
 function toggleDropdown(id){
