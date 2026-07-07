@@ -929,8 +929,6 @@ HOME
  </div>
 
 
-  <div class="content">
-
     <!-- SOAL 3 -->
     <div class="quiz-box" id="quiz3">
         <span class="qno">SOAL 3</span>
@@ -1004,13 +1002,17 @@ HOME
 //============================
 
 const quizAnswers = {
-    1:["早く","来い"],
-    2:["から","逃げろ"]
+    1:["すぐ","閉めろ"],
+    2:["先生に","聞け"],
+    3:["最後まで","頑張れ"],
+    4:["よく","見ろ"]
 };
 
 const quizState = {
     1:[],
-    2:[]
+    2:[],
+    3:[],
+    4:[]
 };
 
 function initQuiz(id){
@@ -1076,6 +1078,8 @@ function resetQuiz(id){
 
 initQuiz(1);
 initQuiz(2);
+initQuiz(3);
+initQuiz(4);
 
 function toggleDropdown(id){
     document.querySelectorAll('.dropdown-menu').forEach(m=>{
