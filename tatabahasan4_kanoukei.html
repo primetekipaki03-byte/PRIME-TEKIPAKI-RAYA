@@ -581,15 +581,12 @@ body{
 }
 
 .quiz-actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
+    display:flex;
     gap:10px;
-    width:100%;
+    flex-wrap:wrap;
 }
 
 .quiz-btn{
-    display:block;
-    width:100%;
     border:2px solid var(--navy);
     background:var(--navy);
     color:var(--gold);
@@ -597,15 +594,8 @@ body{
     border-radius:10px;
     font-weight:bold;
     font-size:14px;
-    text-align:center;
     cursor:pointer;
     transition:.2s;
-}
-
-@media(max-width:400px){
-    .quiz-actions{
-        grid-template-columns:1fr;
-    }
 }
 
 .quiz-btn:hover{
@@ -700,11 +690,11 @@ HOME
   <div class="dropdown">
     <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
     <div class="dropdown-menu" id="kanjiquiz">
-      <a href="quizkanji1.html">QUIZ KANJI 1</a>
-      <a href="quizkanji2.html">QUIZ KANJI 2</a>
-      <a href="quizkanji3.html">QUIZ KANJI 3</a>
-      <a href="quizkanji4.html">QUIZ KANJI 4</a>
-      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+      <a href="../quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="../quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="../quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="../quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="../quizkanji5.html">QUIZ KANJI 5</a>
     </div>
   </div>
 
