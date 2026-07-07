@@ -110,7 +110,7 @@ body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
         LEVELS
 ======================= */
 .levels-wrap{
-  max-width:1180px;
+  max-width:1040px;
   margin:20px auto 0;
   padding:0 20px 70px;
   position:relative;
@@ -128,11 +128,16 @@ body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
 .levels-intro p{color:var(--muted);font-size:14px;}
 
 .level-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
   gap:26px;
 }
-@media(max-width:760px){ .level-grid{grid-template-columns:1fr;} }
+.ticket{
+  flex:1 1 400px;
+  max-width:480px;
+}
+@media(max-width:600px){ .ticket{flex-basis:100%;} }
 
 .ticket{
   position:relative;
@@ -152,7 +157,7 @@ body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
 }
 
 .ticket-stub{
-  width:92px;
+  width:104px;
   flex-shrink:0;
   display:flex;
   flex-direction:column;
