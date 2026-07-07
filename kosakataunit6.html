@@ -538,52 +538,51 @@ HOME
 <script>
 
   const vocab = [
-  { icon:"💥", word:"爆発する", reading:"ばくはつする", meaning:"meledak",
-    jp:"ガスが<b>爆発します</b>。", id:"Gas meledak." },
+  { icon:"😞", word:"がっかりする", reading:"がっかりする", meaning:"kecewa ringan",
+    jp:"試験に落ちて<b>がっかりしました</b>。", id:"Kecewa karena gagal ujian." },
 
-  { icon:"👟", word:"脱ぐ", reading:"ぬぐ", meaning:"melepas pakaian atau barang yang dipakai di tubuh",
-    jp:"靴を<b>脱いで</b>ください。", id:"Tolong lepas sepatu." },
+  { icon:"💔", word:"失望", reading:"しつぼう", meaning:"kecewa berat / putus harapan",
+    jp:"彼に<b>失望しました</b>。", id:"Kecewa berat pada dia." },
 
-  { icon:"🕶️", word:"外す", reading:"はずす", meaning:"melepas benda yang terpasang",
-    jp:"メガネを<b>外します</b>。", id:"Melepas kacamata." },
+  { icon:"😭", word:"泣く", reading:"なく", meaning:"menangis",
+    jp:"友だちと別れて<b>泣きました</b>。", id:"Menangis karena berpisah dengan teman." },
 
-  { icon:"🛡️", word:"守る", reading:"まもる", meaning:"melindungi",
-    jp:"家族を<b>守ります</b>。", id:"Melindungi keluarga." },
+  { icon:"📉", word:"失う", reading:"うしなう", meaning:"kehilangan",
+    jp:"チャンスを<b>失いました</b>。", id:"Kehilangan kesempatan." },
 
-  { icon:"🐱", word:"飛び出す", reading:"とびだす", meaning:"melompat keluar",
-    jp:"部屋の中から猫が驚いて<b>飛び出しました</b>。", id:"Kucing itu kaget lalu tiba-tiba melompat keluar dari kamar." },
+  { icon:"🗣️", word:"相談する", reading:"そうだんする", meaning:"berkonsultasi",
+    jp:"仕事の問題を上司に<b>相談しました</b>。", id:"Berkonsultasi dengan atasan tentang masalah kerja." },
 
-  { icon:"📏", word:"広い", reading:"ひろい", meaning:"luas / lebar",
-    jp:"日本の道路は<b>広い</b>です。", id:"Jalan di Jepang lebar." },
+  { icon:"➡️", word:"真っすぐ", reading:"まっすぐ", meaning:"lurus / langsung",
+    jp:"家に<b>真っすぐ帰ります</b>。", id:"Langsung pulang ke rumah." },
 
-  { icon:"🚪", word:"狭い", reading:"せまい", meaning:"sempit",
-    jp:"部屋が<b>狭くて</b>住みにくいです。", id:"Kamarnya sempit dan sulit ditinggali." },
+  { icon:"🍚", word:"食事", reading:"しょくじ", meaning:"makan",
+    jp:"家族と<b>食事をします</b>。", id:"Makan bersama keluarga." },
 
-  { icon:"🙏", word:"謝る", reading:"あやまる", meaning:"meminta maaf",
-    jp:"友だちに<b>謝りました</b>。", id:"Sudah minta maaf kepada teman." },
+  { icon:"🍱", word:"食事代", reading:"しょくじだい", meaning:"biaya makan",
+    jp:"食事代は会社が<b>払います</b>。", id:"Biaya makan dibayar perusahaan." },
 
-  { icon:"🤝", word:"許す", reading:"ゆるす", meaning:"memaafkan",
-    jp:"彼のミスを<b>許します</b>。", id:"Memaafkan kesalahannya." },
+  { icon:"🚿", word:"浴びる", reading:"あびる", meaning:"mandi (shower)",
+    jp:"シャワーを<b>浴びます</b>。", id:"Mandi shower." },
 
-  { icon:"🧠", word:"理解する", reading:"りかいする", meaning:"memahami",
-    jp:"日本語をもっと<b>理解したい</b>です。", id:"Ingin lebih memahami bahasa Jepang." },
+  { icon:"🚿", word:"シャワー", reading:"シャワー", meaning:"shower",
+    jp:"毎朝、<b>シャワーを使います</b>。", id:"Setiap pagi memakai shower." },
 
-  { icon:"➡️", word:"進む", reading:"すすむ", meaning:"berjalan maju / berlanjut",
-    jp:"仕事が順調に<b>進んでいます</b>。", id:"Pekerjaan berjalan lancar." },
+  { icon:"🏥", word:"入院する", reading:"にゅういんする", meaning:"dirawat di rumah sakit",
+    jp:"彼は1週間<b>入院しました</b>。", id:"Dia dirawat di rumah sakit selama satu minggu." },
 
-  { icon:"🪖", word:"被る", reading:"かぶる", meaning:"memakai (topi, helm, hijab)",
-    jp:"ヘルメットを<b>被って</b>仕事をします。", id:"Bekerja sambil memakai helm." },
+  { icon:"🎓", word:"入学する", reading:"にゅうがくする", meaning:"masuk sekolah / universitas",
+    jp:"大学に<b>入学しました</b>。", id:"Masuk universitas." },
 
-  { icon:"💪", word:"無理する", reading:"むりする", meaning:"memaksakan diri",
-    jp:"体調が悪いのに<b>無理して</b>働きました。", id:"Tetap memaksakan diri bekerja walaupun kondisi badan buruk." },
+  { icon:"📋", word:"報告する", reading:"ほうこくする", meaning:"melaporkan",
+    jp:"上司に状況を<b>報告しました</b>。", id:"Melaporkan situasi kepada atasan." },
 
-  { icon:"🎒", word:"就学する", reading:"しゅうがくする", meaning:"mulai menjalani pendidikan",
-    jp:"子どもが来年<b>就学します</b>。", id:"Anak itu tahun depan mulai sekolah." },
+  { icon:"💰", word:"お釣り", reading:"おつり", meaning:"uang kembalian",
+    jp:"お釣りを<b>もらいました</b>。", id:"Menerima uang kembalian." },
 
-  { icon:"✂️", word:"刈る", reading:"かる", meaning:"memangkas",
-    jp:"庭の草を<b>刈りました</b>。", id:"Memangkas rumput di taman." }
+  { icon:"💵", word:"現金", reading:"げんきん", meaning:"cash / uang tunai",
+    jp:"現金で<b>払います</b>。", id:"Membayar dengan uang tunai." }
 ];
-
 let current = 0;
 
 const flipCard = document.getElementById("flipCard");
