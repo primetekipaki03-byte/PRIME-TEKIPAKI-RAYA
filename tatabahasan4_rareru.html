@@ -300,6 +300,94 @@ body{
     margin-top:6px;
 }
 
+/* =======================
+   TABEL KONJUGASI UKEMI
+======================= */
+
+.table-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.konjugasi-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
+    font-size:15px;
+}
+
+.konjugasi-table thead th{
+    background:var(--navy);
+    color:var(--gold);
+    text-align:left;
+    padding:14px 16px;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+.konjugasi-table tbody td{
+    padding:13px 16px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.konjugasi-table tbody tr:nth-child(even){
+    background:#f5f8fc;
+}
+
+.konjugasi-table tbody tr:hover{
+    background:#fffbe6;
+}
+
+.konjugasi-table .grp-tag{
+    display:inline-block;
+    background:rgba(0,31,63,.08);
+    color:var(--navy);
+    font-weight:bold;
+    font-size:12px;
+    padding:4px 10px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.konjugasi-table .kamus{
+    font-weight:bold;
+    font-size:17px;
+    color:var(--navy);
+}
+
+.konjugasi-table .yomi-small{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    font-weight:400;
+}
+
+.konjugasi-table .arrow{
+    color:var(--gold2);
+    font-weight:900;
+    font-size:18px;
+    text-shadow:0 0 0 var(--navy);
+    filter:none;
+}
+
+.konjugasi-table .ukemi{
+    font-weight:bold;
+    font-size:17px;
+    color:#166534;
+}
+
+.konjugasi-table .group-row td{
+    background:var(--navy2);
+    color:var(--gold);
+    font-weight:bold;
+    font-size:13px;
+    letter-spacing:.5px;
+    padding:10px 16px;
+}
+
 /* contoh kalimat */
 
 .example{
@@ -554,6 +642,9 @@ body{
     .nav-bottom .next{
         text-align:left;
     }
+    .konjugasi-table{
+        font-size:13px;
+    }
 }
 
 footer{
@@ -649,6 +740,118 @@ HOME
             Grup 2 (Ichidan): hilangkan る + られる<br>
             Tidak beraturan: する → される／来る → 来られる
             <small>Contoh: 読む→読まれる／褒める→褒められる／する→される／来る→来られる</small>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">TABEL</span> Konjugasi: Bentuk Kamus → Bentuk Ukemi</h2>
+        <p style="margin-bottom:16px;">
+            Berikut tabel ringkas perubahan dari bentuk kamus (jisho-kei) menjadi bentuk pasif (ukemi-kei),
+            dikelompokkan berdasarkan jenis kata kerja agar lebih mudah dihafal.
+        </p>
+
+        <div class="table-wrap">
+            <table class="konjugasi-table">
+                <thead>
+                    <tr>
+                        <th>Bentuk Kamus</th>
+                        <th></th>
+                        <th>Bentuk Ukemi</th>
+                        <th>Artinya</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row"><td colspan="4">KATA KERJA GRUP 1 (u → a + れる)</td></tr>
+                    <tr>
+                        <td><span class="kamus">書く</span><span class="yomi-small">かく (kaku)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">書かれる</span><span class="yomi-small">かかれる (kakareru)</span></td>
+                        <td>ditulis</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">読む</span><span class="yomi-small">よむ (yomu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">読まれる</span><span class="yomi-small">よまれる (yomareru)</span></td>
+                        <td>dibaca</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">話す</span><span class="yomi-small">はなす (hanasu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">話される</span><span class="yomi-small">はなされる (hanasareru)</span></td>
+                        <td>dibicarakan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">待つ</span><span class="yomi-small">まつ (matsu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">待たれる</span><span class="yomi-small">またれる (matareru)</span></td>
+                        <td>ditunggu</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">呼ぶ</span><span class="yomi-small">よぶ (yobu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">呼ばれる</span><span class="yomi-small">よばれる (yobareru)</span></td>
+                        <td>dipanggil</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">飲む</span><span class="yomi-small">のむ (nomu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">飲まれる</span><span class="yomi-small">のまれる (nomareru)</span></td>
+                        <td>diminum</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">踏む</span><span class="yomi-small">ふむ (fumu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">踏まれる</span><span class="yomi-small">ふまれる (fumareru)</span></td>
+                        <td>diinjak</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">KATA KERJJA GRUP 2(hilangkan る + られる)</td></tr>
+                    <tr>
+                        <td><span class="kamus">食べる</span><span class="yomi-small">たべる (taberu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">食べられる</span><span class="yomi-small">たべられる (taberareru)</span></td>
+                        <td>dimakan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">見る</span><span class="yomi-small">みる (miru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">見られる</span><span class="yomi-small">みられる (mirareru)</span></td>
+                        <td>dilihat</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">褒める</span><span class="yomi-small">ほめる (homeru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">褒められる</span><span class="yomi-small">ほめられる (homerareru)</span></td>
+                        <td>dipuji</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">教える</span><span class="yomi-small">おしえる (oshieru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">教えられる</span><span class="yomi-small">おしえられる (oshierareru)</span></td>
+                        <td>diajari/diberitahu</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">KATA KERJA GRUP 3 </td></tr>
+                    <tr>
+                        <td><span class="kamus">する</span><span class="yomi-small">suru</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">される</span><span class="yomi-small">sareru</span></td>
+                        <td>dilakukan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">来る</span><span class="yomi-small">くる (kuru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">来られる</span><span class="yomi-small">こられる (korareru)</span></td>
+                        <td>didatangi</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Cara cepat mengingat Grup 1:</b> ubah huruf akhir baris "u" menjadi baris "a", lalu tambahkan
+            <b>れる</b>. Contoh: 書く(ku) → 書か(ka) → 書かれる. Khusus kata kerja yang berakhiran う (contoh: 買う),
+            huruf う berubah menjadi わ, sehingga menjadi 買われる (kawareru), bukan 買あれる.
         </div>
     </div>
 
