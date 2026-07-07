@@ -153,6 +153,9 @@ body{
         font-size:.72rem;
         padding:6px 9px;
     }
+    .breadcrumb{
+        margin-top:16px;
+    }
 }
 
 /* =======================
@@ -376,7 +379,7 @@ body{
 .konjugasi-table .ukemi{
     font-weight:bold;
     font-size:17px;
-    color:#166534;
+    color:#5b8bb0;
 }
 
 .konjugasi-table .group-row td{
@@ -387,6 +390,150 @@ body{
     letter-spacing:.5px;
     padding:10px 16px;
 }
+
+/* =======================
+   TABEL PERBANDINGAN
+   SHIEKI / UKEMI / SHIEKI-UKEMI
+======================= */
+
+.compare-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.compare-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:700px;
+    font-size:14px;
+}
+
+.compare-table thead th{
+    padding:14px 14px;
+    text-align:left;
+    color:#fff;
+    font-size:13px;
+    white-space:nowrap;
+}
+
+.compare-table thead th.th-kamus{
+    background:var(--navy);
+    color:var(--gold);
+}
+
+.compare-table thead th.th-shieki{
+    background:#c98a4d;
+}
+
+.compare-table thead th.th-ukemi{
+    background:#5b8bb0;
+}
+
+.compare-table thead th.th-shiekiukemi{
+    background:#c17b7b;
+}
+
+.compare-table thead th small{
+    display:block;
+    font-weight:400;
+    font-size:11px;
+    opacity:.85;
+    margin-top:2px;
+}
+
+.compare-table tbody td{
+    padding:13px 14px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.compare-table tbody tr:nth-child(even){
+    background:#f5f8fc;
+}
+
+.compare-table tbody tr:hover{
+    background:#fffbe6;
+}
+
+.compare-table .kamus{
+    font-weight:bold;
+    font-size:16px;
+    color:var(--navy);
+}
+
+.compare-table .yomi-small{
+    display:block;
+    font-size:11px;
+    color:#8892a3;
+    font-weight:400;
+}
+
+.compare-table .val-shieki{
+    font-weight:bold;
+    font-size:16px;
+    color:#c98a4d;
+}
+
+.compare-table .val-ukemi{
+    font-weight:bold;
+    font-size:16px;
+    color:#5b8bb0;
+}
+
+.compare-table .val-shiekiukemi{
+    font-weight:bold;
+    font-size:16px;
+    color:#c17b7b;
+}
+
+.compare-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:16px 0;
+}
+
+.compare-legend .chip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:999px;
+    background:#f5f8fc;
+    border:1px solid #e3e9f2;
+    color:#333;
+}
+
+.compare-legend .dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    display:inline-block;
+}
+
+.compare-legend .dot.shieki{ background:#c98a4d; }
+.compare-legend .dot.ukemi{ background:#5b8bb0; }
+.compare-legend .dot.shiekiukemi{ background:#c17b7b; }
+
+.example-group-label{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    font-weight:bold;
+    color:#fff;
+    padding:6px 14px;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+
+.example-group-label.shieki{ background:#c98a4d; }
+.example-group-label.ukemi{ background:#5b8bb0; }
+.example-group-label.shiekiukemi{ background:#c17b7b; }
 
 /* contoh kalimat */
 
@@ -761,7 +908,7 @@ HOME
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="group-row"><td colspan="4">KATA KERJA GRUP 1 (u → a + れる)</td></tr>
+                    <tr class="group-row"><td colspan="4">GRUP 1 — GODAN (u → a + れる)</td></tr>
                     <tr>
                         <td><span class="kamus">書く</span><span class="yomi-small">かく (kaku)</span></td>
                         <td class="arrow">→</td>
@@ -805,7 +952,7 @@ HOME
                         <td>diinjak</td>
                     </tr>
 
-                    <tr class="group-row"><td colspan="4">KATA KERJJA GRUP 2(hilangkan る + られる)</td></tr>
+                    <tr class="group-row"><td colspan="4">GRUP 2 — ICHIDAN (hilangkan る + られる)</td></tr>
                     <tr>
                         <td><span class="kamus">食べる</span><span class="yomi-small">たべる (taberu)</span></td>
                         <td class="arrow">→</td>
@@ -831,7 +978,7 @@ HOME
                         <td>diajari/diberitahu</td>
                     </tr>
 
-                    <tr class="group-row"><td colspan="4">KATA KERJA GRUP 3 </td></tr>
+                    <tr class="group-row"><td colspan="4">GRUP 3 — TIDAK BERATURAN</td></tr>
                     <tr>
                         <td><span class="kamus">する</span><span class="yomi-small">suru</span></td>
                         <td class="arrow">→</td>
@@ -889,6 +1036,113 @@ HOME
             sama persis dengan bentuk potensial (kemampuan)</b> untuk kata kerja grup 2, jadi perhatikan konteks
             kalimat untuk membedakannya — contoh: <i>朝早く起きられる</i> bisa berarti "bisa bangun pagi" (potensial)
             atau dalam konteks tertentu bermakna pasif.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">PERBEDAAN</span> Tabel Shieki vs Ukemi vs Shieki-Ukemi</h2>
+        <p style="margin-bottom:12px;">
+            可能形, 受身形 dan 使役形 memiliki bentuk yang sekilas tampak mirip. 
+            Berikut tabel perbandingan ketiganya menggunakan kata kerja yang sama agar perbedaan bentuk dan maknanya lebih mudah dipahami.
+        </p>
+
+        <div class="compare-legend">
+            <span class="chip"><span class="dot shieki"></span> 使役形 Shieki — menyuruh/membiarkan</span>
+            <span class="chip"><span class="dot ukemi"></span> 受身形 Ukemi — pasif, dikenai tindakan</span>
+            <span class="chip"><span class="dot shiekiukemi"></span> 使役受身形 Shieki-Ukemi — dipaksa/disuruh (terpaksa)</span>
+        </div>
+
+        <div class="compare-wrap">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th class="th-kamus">Bentuk Kamus</th>
+                        <th class="th-shieki">使役 Shieki<small>menyuruh</small></th>
+                        <th class="th-ukemi">受身 Ukemi<small>pasif</small></th>
+                        <th class="th-shiekiukemi">使役受身<small>dipaksa melakukan</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="kamus">飲む</span><span class="yomi-small">のむ (nomu)</span></td>
+                        <td><span class="val-shieki">飲ませる</span><span class="yomi-small">のませる (nomaseru)</span></td>
+                        <td><span class="val-ukemi">飲まれる</span><span class="yomi-small">のまれる (nomareru)</span></td>
+                        <td><span class="val-shiekiukemi">飲まされる</span><span class="yomi-small">のまされる (nomasareru)</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">書く</span><span class="yomi-small">かく (kaku)</span></td>
+                        <td><span class="val-shieki">書かせる</span><span class="yomi-small">かかせる (kakaseru)</span></td>
+                        <td><span class="val-ukemi">書かれる</span><span class="yomi-small">かかれる (kakareru)</span></td>
+                        <td><span class="val-shiekiukemi">書かされる</span><span class="yomi-small">かかされる (kakasareru)</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">食べる</span><span class="yomi-small">たべる (taberu)</span></td>
+                        <td><span class="val-shieki">食べさせる</span><span class="yomi-small">たべさせる (tabesaseru)</span></td>
+                        <td><span class="val-ukemi">食べられる</span><span class="yomi-small">たべられる (taberareru)</span></td>
+                        <td><span class="val-shiekiukemi">食べさせられる</span><span class="yomi-small">たべさせられる (tabesaserareru)</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">待つ</span><span class="yomi-small">まつ (matsu)</span></td>
+                        <td><span class="val-shieki">待たせる</span><span class="yomi-small">またせる (mataseru)</span></td>
+                        <td><span class="val-ukemi">待たれる</span><span class="yomi-small">またれる (matareru)</span></td>
+                        <td><span class="val-shiekiukemi">待たされる</span><span class="yomi-small">またされる (matasareru)</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">する</span><span class="yomi-small">suru</span></td>
+                        <td><span class="val-shieki">させる</span><span class="yomi-small">saseru</span></td>
+                        <td><span class="val-ukemi">される</span><span class="yomi-small">sareru</span></td>
+                        <td><span class="val-shiekiukemi">させられる</span><span class="yomi-small">saserareru</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">来る</span><span class="yomi-small">くる (kuru)</span></td>
+                        <td><span class="val-shieki">来させる</span><span class="yomi-small">こさせる (kosaseru)</span></td>
+                        <td><span class="val-ukemi">来られる</span><span class="yomi-small">こられる (korareru)</span></td>
+                        <td><span class="val-shiekiukemi">来させられる</span><span class="yomi-small">こさせられる (kosaserareru)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Catatan bentuk singkat (khusus Grup 1):</b> untuk kata kerja godan, bentuk shieki-ukemi punya
+            versi panjang (～せられる) dan versi singkat (～される). Contoh: 飲ませられる bisa disingkat jadi
+            飲まされる, 待たせられる jadi 待たされる. Khusus kata kerja yang akhirannya す (misalnya 話す), versi
+            singkat ini <b>tidak dipakai</b> karena akan terdengar aneh (話さされる), jadi tetap pakai bentuk
+            panjang 話させられる.
+        </div>
+
+        <p style="margin:18px 0 10px;">
+            Perhatikan bagaimana ketiga bentuk ini mengubah <b>siapa yang melakukan</b> dan <b>siapa yang
+            merasakan</b> tindakan, dari kata kerja dasar yang sama: 飲む（minum）.
+        </p>
+
+        <div class="example-group-label shieki">使役 SHIEKI — Menyuruh orang lain melakukan</div>
+        <div class="example">
+            <div class="jp">母は弟に薬を飲ませました。</div>
+            <div class="yomi">ははは おとうとに くすりを のませました。</div>
+            <div class="id">Ibu menyuruh adik minum obat. (ibu = pemberi perintah, adik = yang disuruh)</div>
+        </div>
+
+        <div class="example-group-label ukemi">受身 UKEMI — Sesuatu dikenai tindakan (pasif)</div>
+        <div class="example">
+            <div class="jp">薬は弟に飲まれました。</div>
+            <div class="yomi">くすりは おとうとに のまれました。</div>
+            <div class="id">Obat itu diminum oleh adik. (fokus pada obat sebagai objek yang "menerima" tindakan)</div>
+        </div>
+
+        <div class="example-group-label shiekiukemi">使役受身 SHIEKI-UKEMI — Dipaksa/disuruh melakukan (terpaksa)</div>
+        <div class="example">
+            <div class="jp">弟は母に薬を飲まされました。</div>
+            <div class="yomi">おとうとは ははに くすりを のまされました。</div>
+            <div class="id">Adik dipaksa/disuruh minum obat oleh ibu. (adik = subjek yang merasa terpaksa melakukan)</div>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Kunci membedakan ketiganya lewat contoh di atas:</b> pada <i>shieki</i>, fokus kalimat ada pada
+            orang yang <b>menyuruh</b> (ibu sebagai subjek). Pada <i>ukemi</i>, fokus ada pada <b>benda/hal yang
+            dikenai tindakan</b> (obat sebagai subjek, bukan orang). Pada <i>shieki-ukemi</i>, fokus berpindah
+            ke orang yang <b>disuruh dan merasa terpaksa</b> (adik sebagai subjek, dengan nuansa tidak rela/tidak
+            ada pilihan lain).
         </div>
     </div>
 
