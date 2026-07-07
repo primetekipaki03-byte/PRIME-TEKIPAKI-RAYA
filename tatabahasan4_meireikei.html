@@ -437,19 +437,21 @@ body{
     color:var(--navy);
 }
 
-/* navigasi bawah */
+/* =======================
+   NAVIGASI BAWAH (FIXED)
+======================= */
 
 .nav-bottom{
-    display:flex;
-    justify-content:space-between;
+    display:grid;
+    grid-template-columns:1fr 1fr;
     gap:16px;
     margin-top:50px;
-    flex-wrap:wrap;
+    width:100%;
 }
 
 .nav-bottom a{
-    flex:1;
-    min-width:200px;
+    display:block;
+    width:100%;
     text-decoration:none;
     border:2px solid var(--navy);
     border-radius:14px;
@@ -477,6 +479,17 @@ body{
 
 .nav-bottom .next{
     text-align:right;
+}
+
+/* di layar sempit, tombol ditumpuk 1 kolom penuh
+   supaya tetap presisi sejajar dengan kotak soal di atasnya */
+@media(max-width:600px){
+    .nav-bottom{
+        grid-template-columns:1fr;
+    }
+    .nav-bottom .next{
+        text-align:left;
+    }
 }
 
 /* =======================
@@ -628,9 +641,6 @@ body{
     }
     .pattern-hero::before{
         font-size:160px;
-    }
-    .nav-bottom .next{
-        text-align:left;
     }
     .konjugasi-table{
         font-size:13px;
@@ -884,7 +894,7 @@ HOME
         </p>
 
         <!-- SOAL 1 -->
-    
+
      <div class="quiz-box" id="quiz1">
        <span class="qno">SOAL 1</span>
        <div class="qtext">
