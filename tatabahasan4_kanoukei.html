@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〜れる／られる（可能形） | Tata Bahasa N4</title>
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --navy3:#022655;
+    --gold:#facc15;
+    --gold2:#ffd700;
+    --text:#001f3f;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:var(--text);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(224,181,42,.3);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.home-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#e0b52a;
+    color:#001530;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.home-btn:hover{
+    opacity:.85;
+}
+
+.home-icon{
+    width:24px;
+    height:24px;
+    object-fit:cover;
+    border-radius:4px;
+}
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown-btn{
+    background:none;
+    border:2px solid #e0b52a;
+    color:#e0b52a;
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:.9rem;
+}
+
+.dropdown-btn:hover{
+    background:#e0b52a;
+    color:#001530;
+}
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:45px;
+    left:0;
+    background:#1f4577;
+    border-radius:10px;
+    overflow:hidden;
+    min-width:220px;
+    max-width:90vw;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+
+.dropdown-menu.align-right{
+    left:auto;
+    right:0;
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:12px 15px;
+    color:#ffd700;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:#e0b52a;
+    color:#001530;
+}
+
+.show{
+    display:block;
+}
+
+@media(max-width:600px){
+    .navbar-inner{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+    }
+    .nav-right{
+        width:100%;
+    }
+    .dropdown-btn{
+        font-size:.72rem;
+        padding:6px 9px;
+    }
+}
+
+/* =======================
+     BREADCRUMB
+======================= */
+
+.breadcrumb{
+    margin:20px 0 0 0;
+    padding:0 0 0 20px;
+    font-size:14px;
+    color:#8892a3;
+    text-align:left;
+}
+
+.breadcrumb a{
+    color:var(--navy);
+    text-decoration:none;
+    font-weight:600;
+}
+
+.breadcrumb a:hover{
+    text-decoration:underline;
+}
+
+/* =======================
+       HERO PATTERN
+======================= */
+
+.pattern-hero{
+    max-width:900px;
+    margin:20px auto 0;
+    padding:40px 30px;
+    background:linear-gradient(135deg, var(--navy) 0%, #062a52 100%);
+    border-radius:22px;
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+}
+
+.pattern-hero::before{
+    content:"可";
+    position:absolute;
+    font-size:260px;
+    font-weight:900;
+    color:rgba(250,204,21,.06);
+    top:-60px;
+    right:-30px;
+    pointer-events:none;
+    user-select:none;
+}
+
+.pattern-hero .no-badge{
+    display:inline-block;
+    background:rgba(250,204,21,.12);
+    border:1px solid rgba(250,204,21,.4);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:1px;
+    padding:6px 16px;
+    border-radius:999px;
+    margin-bottom:18px;
+    position:relative;
+}
+
+.pattern-hero h1{
+    font-size:56px;
+    color:#ffffff;
+    position:relative;
+    margin-bottom:8px;
+}
+
+.pattern-hero .romaji{
+    font-size:20px;
+    color:var(--gold2);
+    font-weight:600;
+    position:relative;
+    margin-bottom:14px;
+}
+
+.pattern-hero .mean{
+    font-size:18px;
+    color:#c9d6e8;
+    position:relative;
+}
+
+/* =======================
+      CONTENT SECTIONS
+======================= */
+
+.content{
+    max-width:900px;
+    margin:30px auto;
+    padding:0 30px 60px;
+}
+
+.section-block{
+    margin-bottom:36px;
+}
+
+.section-block h2{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:22px;
+    color:var(--navy);
+    margin-bottom:14px;
+}
+
+.section-block h2 .tag{
+    background:var(--navy);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    padding:5px 12px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.section-block p{
+    font-size:16px;
+    line-height:1.9;
+    color:#333;
+}
+
+/* pola / formula box */
+
+.formula-box{
+    background:#f5f8fc;
+    border:2px dashed var(--navy);
+    border-radius:16px;
+    padding:22px 26px;
+    font-size:19px;
+    text-align:center;
+    color:var(--navy);
+    font-weight:600;
+    line-height:1.8;
+}
+
+.formula-box small{
+    display:block;
+    font-size:13px;
+    font-weight:400;
+    color:#8892a3;
+    margin-top:6px;
+}
+
+/* =======================
+   TABEL KONJUGASI KANOU
+======================= */
+
+.table-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.konjugasi-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
+    font-size:15px;
+}
+
+.konjugasi-table thead th{
+    background:var(--navy);
+    color:var(--gold);
+    text-align:left;
+    padding:14px 16px;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+.konjugasi-table tbody td{
+    padding:13px 16px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.konjugasi-table tbody tr:nth-child(even){
+    background:#f5f8fc;
+}
+
+.konjugasi-table tbody tr:hover{
+    background:#fffbe6;
+}
+
+.konjugasi-table .kamus{
+    font-weight:bold;
+    font-size:17px;
+    color:var(--navy);
+}
+
+.konjugasi-table .yomi-small{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    font-weight:400;
+}
+
+.konjugasi-table .arrow{
+    color:var(--gold2);
+    font-weight:900;
+    font-size:18px;
+}
+
+.konjugasi-table .meirei{
+    font-weight:bold;
+    font-size:17px;
+    color:#b91c1c;
+}
+
+.konjugasi-table .group-row td{
+    background:var(--navy2);
+    color:var(--gold);
+    font-weight:bold;
+    font-size:13px;
+    letter-spacing:.5px;
+    padding:10px 16px;
+}
+
+/* contoh kalimat */
+
+.example{
+    border:2px solid var(--navy);
+    border-radius:16px;
+    padding:20px 24px;
+    margin-bottom:16px;
+    transition:.25s;
+}
+
+.example:hover{
+    background:var(--navy3);
+    color:#fff;
+    transform:translateY(-3px);
+    box-shadow:0 12px 24px rgba(0,31,63,.2);
+}
+
+.example .jp{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.example .yomi{
+    font-size:14px;
+    color:#8892a3;
+    margin-bottom:8px;
+}
+
+.example:hover .yomi{
+    color:#c9d6e8;
+}
+
+.example .id{
+    font-size:15px;
+    color:#333;
+    font-style:italic;
+}
+
+.example:hover .id{
+    color:#e6edf7;
+}
+
+/* catatan / tips */
+
+.note-box{
+    background:#fffbe6;
+    border-left:5px solid var(--gold);
+    border-radius:10px;
+    padding:18px 22px;
+    font-size:15px;
+    line-height:1.8;
+    color:#4a4020;
+}
+
+.note-box b{
+    color:var(--navy);
+}
+
+/* =======================
+   NAVIGASI BAWAH
+======================= */
+
+.nav-bottom{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-top:50px;
+    width:100%;
+}
+
+.nav-bottom a{
+    display:block;
+    width:100%;
+    text-decoration:none;
+    border:2px solid var(--navy);
+    border-radius:14px;
+    padding:16px 20px;
+    color:var(--navy);
+    font-weight:600;
+    transition:.25s;
+}
+
+.nav-bottom a:hover{
+    background:var(--navy);
+    color:var(--gold);
+}
+
+.nav-bottom .dir{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    margin-bottom:4px;
+}
+
+.nav-bottom a:hover .dir{
+    color:#c9d6e8;
+}
+
+.nav-bottom .next{
+    text-align:right;
+}
+
+@media(max-width:600px){
+    .nav-bottom{
+        grid-template-columns:1fr;
+    }
+    .nav-bottom .next{
+        text-align:left;
+    }
+}
+
+/* =======================
+      LATIHAN SOAL
+======================= */
+
+.quiz-box{
+    border:2px solid var(--navy);
+    border-radius:18px;
+    padding:24px 26px;
+    margin-bottom:22px;
+    background:#fafcff;
+}
+
+.quiz-box .qno{
+    display:inline-block;
+    background:var(--navy);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    padding:5px 12px;
+    border-radius:8px;
+    margin-bottom:14px;
+}
+
+.quiz-box .qtext{
+    font-size:16px;
+    color:#333;
+    margin-bottom:16px;
+    line-height:1.8;
+}
+
+.quiz-box .qtext .blank{
+    display:inline-block;
+    min-width:90px;
+    border-bottom:2px solid var(--navy);
+    text-align:center;
+    color:var(--gold2);
+    font-weight:bold;
+}
+
+.word-bank{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.word-tile{
+    background:#fff;
+    border:2px solid var(--navy);
+    color:var(--navy);
+    padding:10px 16px;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+    user-select:none;
+}
+
+.word-tile:hover{
+    background:var(--navy);
+    color:var(--gold);
+    transform:translateY(-2px);
+}
+
+.word-tile.used{
+    opacity:.3;
+    pointer-events:none;
+}
+
+.answer-slot{
+    min-height:52px;
+    border:2px dashed var(--gold2);
+    border-radius:10px;
+    background:#fffbe6;
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    padding:8px 12px;
+    margin-bottom:16px;
+}
+
+.answer-slot .placed{
+    background:var(--gold);
+    color:#001530;
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.quiz-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    width:100%;
+}
+
+.quiz-btn{
+    display:block;
+    width:100%;
+    border:2px solid var(--navy);
+    background:var(--navy);
+    color:var(--gold);
+    padding:10px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:14px;
+    text-align:center;
+    cursor:pointer;
+    transition:.2s;
+}
+
+@media(max-width:400px){
+    .quiz-actions{
+        grid-template-columns:1fr;
+    }
+}
+
+.quiz-btn:hover{
+    opacity:.85;
+}
+
+.quiz-btn.secondary{
+    background:#fff;
+    color:var(--navy);
+}
+
+.quiz-result{
+    margin-top:14px;
+    font-size:15px;
+    font-weight:600;
+    display:none;
+    padding:12px 16px;
+    border-radius:10px;
+}
+
+.quiz-result.correct{
+    display:block;
+    background:#e6f7ec;
+    color:#166534;
+    border:1px solid #86efac;
+}
+
+.quiz-result.wrong{
+    display:block;
+    background:#fdeaea;
+    color:#991b1b;
+    border:1px solid #fca5a5;
+}
+
+@media(max-width:600px){
+    .pattern-hero h1{
+        font-size:38px;
+    }
+    .pattern-hero::before{
+        font-size:160px;
+    }
+    .konjugasi-table{
+        font-size:13px;
+    }
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa_n4.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+
+</div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="tatabahasajlptn4.html">← Kembali ke Daftar Tata Bahasa N4</a>
+</div>
+
+<div class="pattern-hero">
+    <span class="no-badge">POLA · JLPT N4</span>
+    <h1>〜れる／られる</h1>
+    <div class="romaji">kanou-kei</div>
+    <div class="mean">bentuk kesanggupan (bisa/mampu melakukan)</div>
+</div>
+
+<div class="content">
+
+    <div class="section-block">
+        <h2><span class="tag">ARTI</span> Penjelasan</h2>
+        <p>
+            <b>可能形（かのうけい）</b> adalah bentuk kata kerja yang menyatakan <b>kesanggupan atau kemampuan</b>
+            untuk melakukan sesuatu — sepadan dengan "bisa/mampu ~" dalam bahasa Indonesia. Karena maknanya sudah
+            mengandung "bisa", kata kerja yang dijadikan bentuk kanou selalu berubah sifat menjadi
+            <b>intransitif</b>, sehingga partikel <b>を</b> pada objeknya sering berubah menjadi <b>が</b>.
+            Bentuk ini dipakai untuk menyatakan kemampuan diri sendiri, izin/kemungkinan melakukan sesuatu, atau
+            sifat suatu benda/tempat yang memungkinkan suatu tindakan dilakukan.
+        </p>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">POLA</span> Rumus</h2>
+        <div class="formula-box">
+            Grup 1 (Godan): akhiran ～u → ～e + る<br>
+            Grup 2 (Ichidan): hilangkan る + られる<br>
+            Tidak beraturan: する → できる／来る → 来られる
+            <small>Contoh: 書く→書ける／食べる→食べられる／する→できる／来る→来られる</small>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">TABEL</span> Konjugasi: Bentuk Kamus → Bentuk Kanou</h2>
+        <p style="margin-bottom:16px;">
+            Berikut tabel perubahan dari bentuk kamus (jisho-kei) menjadi bentuk kesanggupan (kanou-kei),
+            dikelompokkan berdasarkan jenis kata kerja.
+        </p>
+
+        <div class="table-wrap">
+            <table class="konjugasi-table">
+                <thead>
+                    <tr>
+                        <th>Bentuk Kamus</th>
+                        <th></th>
+                        <th>Bentuk Kanou</th>
+                        <th>Artinya</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row"><td colspan="4">GRUP 1 — GODAN (u → e + る)</td></tr>
+                    <tr>
+                        <td><span class="kamus">書く</span><span class="yomi-small">かく (kaku)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="meirei">書ける</span><span class="yomi-small">かける (kakeru)</span></td>
+                        <td>bisa menulis</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">話す</span><span class="yomi-small">はなす (hanasu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="meirei">話せる</span><span class="yomi-small">はなせる (hanaseru)</span></td>
+                        <td>bisa bicara</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">読む</span><span class="yomi-small">よむ (yomu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="meirei">読める</span><span class="yomi-small">よめる (yomeru)</span></td>
+                        <td>bisa membaca</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">泳ぐ</span><span class="yomi-small">およぐ (oyogu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="meirei">泳げる</span><span class="yomi-small">およげる (oyogeru)</span></td>
+                        <td>bisa berenang</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">行く</span><span class="yomi-small">いく (iku)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="meirei">行ける</span><span class="yomi-small">いける (ikeru)</span></td>
+                        <td>bisa pergi</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">GRUP 2 — ICHIDAN (hilangkan る + られる)</td></tr>
+                    <tr>
+                        <td><span class="kamus">食べる</span><span class="yomi-small">たべる (taberu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="meirei">食べられる</span><span class="yomi-small">たべられる (taberareru)</span></td>
+                        <td>bisa makan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">見る</span><span class="yomi-small">みる (miru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="meirei">見られる</span><span class="yomi-small">みられる (mirareru)</span></td>
+                        <td>bisa melihat</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">起きる</span><span class="yomi-small">おきる (okiru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="meirei">起きられる</span><span class="yomi-small">おきられる (okirareru)</span></td>
+                        <td>bisa bangun</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">GRUP 3 — TIDAK BERATURAN</td></tr>
+                    <tr>
+                        <td><span class="kamus">する</span><span class="yomi-small">suru</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="meirei">できる</span><span class="yomi-small">dekiru</span></td>
+                        <td>bisa melakukan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">来る</span><span class="yomi-small">くる (kuru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="meirei">来られる</span><span class="yomi-small">こられる (korareru)</span></td>
+                        <td>bisa datang</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Cara cepat mengingat Grup 1:</b> ubah huruf akhir baris "u" menjadi baris "e", lalu tambahkan る.
+            Contoh: 書く(ku) → 書け(ke) → 書ける, 読む(mu) → 読め(me) → 読める. Pola perubahan akhirnya sama
+            dengan bentuk 命令形, hanya di sini ditambah る di belakangnya.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CONTOH</span> Contoh Kalimat</h2>
+
+        <div class="example">
+            <div class="jp">私は日本語が話せます。</div>
+            <div class="yomi">わたしは にほんごが はなせます。</div>
+            <div class="id">Saya bisa berbicara bahasa Jepang.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">漢字が全部読めますか。</div>
+            <div class="yomi">かんじが ぜんぶ よめますか。</div>
+            <div class="id">Apakah kamu bisa membaca semua kanjinya?</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">ここでは写真が撮れません。</div>
+            <div class="yomi">ここでは しゃしんが とれません。</div>
+            <div class="id">Di sini tidak boleh/tidak bisa memotret.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">明日、早く起きられますか。</div>
+            <div class="yomi">あした、はやく おきられますか。</div>
+            <div class="id">Besok, apakah kamu bisa bangun pagi?</div>
+        </div>
+
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CATATAN</span> Tips & Perbedaan</h2>
+        <div class="note-box">
+            <b>Perubahan partikel を → が:</b> Karena bentuk kanou bersifat intransitif, objek yang biasanya
+            memakai <b>を</b> pada kalimat biasa berubah menjadi <b>が</b>, contoh: <i>漢字を書く</i> → <i>漢字が書ける</i>
+            （bisa menulis kanji）. <b>ら抜き言葉（ranuki kotoba）:</b> dalam percakapan santai/informal, banyak
+            penutur asli menghilangkan huruf <b>ら</b> pada kata kerja Grup 2, misalnya <i>食べられる</i> sering
+            diucapkan <i>食べれる</i>. Bentuk ini dianggap tidak baku dan sebaiknya dihindari dalam tulisan
+            formal atau ujian JLPT. <b>できる</b> juga bisa dipakai berdiri sendiri untuk menyatakan "bisa/mampu"
+            secara umum, contoh: <i>料理ができる</i>（bisa memasak）.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">LATIHAN</span> Soal Susun Kalimat</h2>
+        <p style="margin-bottom:18px;">
+            Susun kata-kata acak di bawah ini menjadi kalimat yang benar dengan mengklik kata secara berurutan.
+            Klik kata yang sudah dipasang untuk membatalkannya.
+        </p>
+
+        <!-- SOAL 1 -->
+        <div class="quiz-box" id="quiz1">
+            <span class="qno">SOAL 1</span>
+            <div class="qtext">
+                私は　＿＿＿＿＿　＿★＿　＿＿＿＿＿。
+            </div>
+
+            <div class="answer-slot" id="slot1"></div>
+
+            <div class="word-bank" id="bank1">
+                <div class="word-tile" data-word="日本語が">にほんごが</div>
+                <div class="word-tile" data-word="話せます">はなせます</div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(1)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(1)">Ulangi</button>
+            </div>
+
+            <div class="quiz-result" id="result1"></div>
+        </div>
+
+        <!-- SOAL 2 -->
+        <div class="quiz-box" id="quiz2">
+            <span class="qno">SOAL 2</span>
+            <div class="qtext">
+                ここでは　＿＿＿＿＿　＿★＿　＿＿＿＿＿。
+            </div>
+
+            <div class="answer-slot" id="slot2"></div>
+
+            <div class="word-bank" id="bank2">
+                <div class="word-tile" data-word="写真が">しゃしんが</div>
+                <div class="word-tile" data-word="撮れません">とれません</div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(2)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(2)">Ulangi</button>
+            </div>
+
+            <div class="quiz-result" id="result2"></div>
+        </div>
+
+        <!-- SOAL 3 -->
+        <div class="quiz-box" id="quiz3">
+            <span class="qno">SOAL 3</span>
+            <div class="qtext">
+                明日、早く　＿＿＿＿＿　＿★＿？
+            </div>
+
+            <div class="answer-slot" id="slot3"></div>
+
+            <div class="word-bank" id="bank3">
+                <div class="word-tile" data-word="起きられます">おきられます</div>
+                <div class="word-tile" data-word="か">か</div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(3)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(3)">Ulangi</button>
+            </div>
+
+            <div class="quiz-result" id="result3"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="content" style="padding-top:0;">
+    <div class="nav-bottom">
+        <a href="n4-meireikei.html" class="prev">
+            <span class="dir">← Sebelumnya</span>
+            命令形
+        </a>
+        <a href="n4-tokoro.html" class="next">
+            <span class="dir">Selanjutnya →</span>
+            〜たところ／〜ているところ
+        </a>
+    </div>
+</div>
+
+<footer>
+© Tekipaki Japanese Learning
+</footer>
+
+<script>
+
+//============================
+// LATIHAN SOAL - SUSUN KALIMAT
+//============================
+
+const quizAnswers = {
+    1:["日本語が","話せます"],
+    2:["写真が","撮れません"],
+    3:["起きられます","か"]
+};
+
+const quizState = {
+    1:[],
+    2:[],
+    3:[]
+};
+
+function initQuiz(id){
+    const bank = document.getElementById("bank"+id);
+    bank.querySelectorAll(".word-tile").forEach(tile=>{
+        tile.addEventListener("click", ()=>placeWord(id, tile));
+    });
+}
+
+function placeWord(id, tile){
+    if(tile.classList.contains("used")) return;
+
+    tile.classList.add("used");
+    quizState[id].push(tile.dataset.word);
+
+    const slot = document.getElementById("slot"+id);
+    const placed = document.createElement("span");
+    placed.className = "placed";
+    placed.textContent = tile.dataset.word;
+    placed.dataset.word = tile.dataset.word;
+
+    placed.addEventListener("click", ()=>{
+        slot.removeChild(placed);
+        const idx = quizState[id].indexOf(tile.dataset.word);
+        if(idx > -1){
+            quizState[id].splice(idx,1);
+        }
+        tile.classList.remove("used");
+        document.getElementById("result"+id).className = "quiz-result";
+    });
+
+    slot.appendChild(placed);
+    document.getElementById("result"+id).className = "quiz-result";
+}
+
+function checkAnswer(id){
+    const result = document.getElementById("result"+id);
+    const correct = quizAnswers[id].join("") === quizState[id].join("");
+
+    if(quizState[id].length === 0){
+        result.className = "quiz-result wrong";
+        result.textContent = "⚠️ Susun dulu kata-katanya sebelum mengecek jawaban.";
+        return;
+    }
+
+    if(correct){
+        result.className = "quiz-result correct";
+        result.textContent = "✅ Benar! Susunan kalimatmu sudah tepat.";
+    } else {
+        result.className = "quiz-result wrong";
+        result.textContent = "❌ Belum tepat. Jawaban yang benar: " + quizAnswers[id].join(" ");
+    }
+}
+
+function resetQuiz(id){
+    quizState[id] = [];
+    document.getElementById("slot"+id).innerHTML = "";
+    document.querySelectorAll("#bank"+id+" .word-tile").forEach(tile=>{
+        tile.classList.remove("used");
+    });
+    document.getElementById("result"+id).className = "quiz-result";
+}
+
+initQuiz(1);
+initQuiz(2);
+initQuiz(3);
+
+function toggleDropdown(id){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+        if(m.id!==id){
+            m.classList.remove('show');
+            m.classList.remove('align-right');
+            m.closest('.dropdown').classList.remove('open');
+        }
+    });
+    const menu = document.getElementById(id);
+    const wrap = menu.closest('.dropdown');
+    const willShow = !menu.classList.contains('show');
+    menu.classList.toggle('show');
+    wrap.classList.toggle('open');
+    if(willShow){
+        menu.classList.remove('align-right');
+        const rect = menu.getBoundingClientRect();
+        if(rect.right > window.innerWidth - 8){ menu.classList.add('align-right'); }
+    }
+}
+
+window.addEventListener('resize', ()=>{
+    document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
+        m.classList.remove('show');
+        m.classList.remove('align-right');
+        m.closest('.dropdown').classList.remove('open');
+    });
+});
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+        });
+        document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
+    }
+});
+
+</script>
+
+</body>
+</html>
