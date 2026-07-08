@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〜やすい・〜にくい | Tata Bahasa N4</title>
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --navy3:#022655;
+    --gold:#facc15;
+    --gold2:#ffd700;
+    --text:#001f3f;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:var(--text);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(224,181,42,.3);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.home-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#e0b52a;
+    color:#001530;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.home-btn:hover{
+    opacity:.85;
+}
+
+.home-icon{
+    width:24px;
+    height:24px;
+    object-fit:cover;
+    border-radius:4px;
+}
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown-btn{
+    background:none;
+    border:2px solid #e0b52a;
+    color:#e0b52a;
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:.9rem;
+}
+
+.dropdown-btn:hover{
+    background:#e0b52a;
+    color:#001530;
+}
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:45px;
+    left:0;
+    background:#1f4577;
+    border-radius:10px;
+    overflow:hidden;
+    min-width:220px;
+    max-width:90vw;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+
+.dropdown-menu.align-right{
+    left:auto;
+    right:0;
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:12px 15px;
+    color:#ffd700;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:#e0b52a;
+    color:#001530;
+}
+
+.show{
+    display:block;
+}
+
+@media(max-width:600px){
+    .navbar-inner{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+    }
+    .nav-right{
+        width:100%;
+    }
+    .dropdown-btn{
+        font-size:.72rem;
+        padding:6px 9px;
+    }
+    .breadcrumb{
+        margin-top:16px;
+    }
+}
+
+/* =======================
+     BREADCRUMB
+======================= */
+
+.breadcrumb{
+    margin:20px 0 0 0;
+    padding:0 0 0 20px;
+    font-size:14px;
+    color:#8892a3;
+    text-align:left;
+}
+
+.breadcrumb a{
+    color:var(--navy);
+    text-decoration:none;
+    font-weight:600;
+}
+
+.breadcrumb a:hover{
+    text-decoration:underline;
+}
+
+/* =======================
+       HERO PATTERN
+======================= */
+
+.pattern-hero{
+    max-width:900px;
+    margin:20px auto 0;
+    padding:40px 30px;
+    background:linear-gradient(135deg, var(--navy) 0%, #062a52 100%);
+    border-radius:22px;
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+}
+
+.pattern-hero::before{
+    content:"易";
+    position:absolute;
+    font-size:260px;
+    font-weight:900;
+    color:rgba(250,204,21,.06);
+    top:-60px;
+    right:-30px;
+    pointer-events:none;
+    user-select:none;
+}
+
+.pattern-hero .no-badge{
+    display:inline-block;
+    background:rgba(250,204,21,.12);
+    border:1px solid rgba(250,204,21,.4);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:1px;
+    padding:6px 16px;
+    border-radius:999px;
+    margin-bottom:18px;
+    position:relative;
+}
+
+.pattern-hero h1{
+    font-size:52px;
+    color:#ffffff;
+    position:relative;
+    margin-bottom:8px;
+}
+
+.pattern-hero .romaji{
+    font-size:20px;
+    color:var(--gold2);
+    font-weight:600;
+    position:relative;
+    margin-bottom:14px;
+}
+
+.pattern-hero .mean{
+    font-size:18px;
+    color:#c9d6e8;
+    position:relative;
+}
+
+/* =======================
+      CONTENT SECTIONS
+======================= */
+
+.content{
+    max-width:900px;
+    margin:30px auto;
+    padding:0 30px 60px;
+}
+
+.section-block{
+    margin-bottom:36px;
+}
+
+.section-block h2{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:22px;
+    color:var(--navy);
+    margin-bottom:14px;
+}
+
+.section-block h2 .tag{
+    background:var(--navy);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    padding:5px 12px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.section-block p{
+    font-size:16px;
+    line-height:1.9;
+    color:#333;
+}
+
+/* pola / formula box */
+
+.formula-box{
+    background:#f5f8fc;
+    border:2px dashed var(--navy);
+    border-radius:16px;
+    padding:22px 26px;
+    font-size:19px;
+    text-align:center;
+    color:var(--navy);
+    font-weight:600;
+    line-height:1.8;
+}
+
+.formula-box small{
+    display:block;
+    font-size:13px;
+    font-weight:400;
+    color:#8892a3;
+    margin-top:6px;
+}
+
+/* =======================
+   TABEL POLA YASUI / NIKUI
+======================= */
+
+.table-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.konjugasi-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
+    font-size:15px;
+}
+
+.konjugasi-table thead th{
+    background:var(--navy);
+    color:var(--gold);
+    text-align:left;
+    padding:14px 16px;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+.konjugasi-table tbody td{
+    padding:13px 16px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.konjugasi-table tbody tr:nth-child(even){
+    background:#f5f8fc;
+}
+
+.konjugasi-table tbody tr:hover{
+    background:#fffbe6;
+}
+
+.konjugasi-table .grp-tag{
+    display:inline-block;
+    background:rgba(0,31,63,.08);
+    color:var(--navy);
+    font-weight:bold;
+    font-size:12px;
+    padding:4px 10px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.konjugasi-table .kamus{
+    font-weight:bold;
+    font-size:17px;
+    color:var(--navy);
+}
+
+.konjugasi-table .yomi-small{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    font-weight:400;
+}
+
+.konjugasi-table .arrow{
+    color:var(--gold2);
+    font-weight:900;
+    font-size:18px;
+}
+
+.konjugasi-table .shi{
+    font-weight:bold;
+    font-size:17px;
+    color:#5b8bb0;
+}
+
+.konjugasi-table .group-row td{
+    background:var(--navy2);
+    color:var(--gold);
+    font-weight:bold;
+    font-size:13px;
+    letter-spacing:.5px;
+    padding:10px 16px;
+}
+
+/* =======================
+   TABEL PERBANDINGAN
+   YASUI / NIKUI / SUGIRU
+======================= */
+
+.compare-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.compare-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:700px;
+    font-size:14px;
+}
+
+.compare-table thead th{
+    padding:14px 14px;
+    text-align:left;
+    color:#fff;
+    font-size:13px;
+    white-space:nowrap;
+}
+
+.compare-table thead th.th-kamus{
+    background:var(--navy);
+    color:var(--gold);
+}
+
+.compare-table thead th.th-shi{
+    background:#5b8bb0;
+}
+
+.compare-table thead th.th-kara{
+    background:#c98a4d;
+}
+
+.compare-table thead th.th-node{
+    background:#c17b7b;
+}
+
+.compare-table thead th small{
+    display:block;
+    font-weight:400;
+    font-size:11px;
+    opacity:.85;
+    margin-top:2px;
+}
+
+.compare-table tbody td{
+    padding:13px 14px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.compare-table tbody tr:nth-child(even){
+    background:#f5f8fc;
+}
+
+.compare-table tbody tr:hover{
+    background:#fffbe6;
+}
+
+.compare-table .kamus{
+    font-weight:bold;
+    font-size:16px;
+    color:var(--navy);
+}
+
+.compare-table .yomi-small{
+    display:block;
+    font-size:11px;
+    color:#8892a3;
+    font-weight:400;
+}
+
+.compare-table .val-shi{
+    font-weight:bold;
+    font-size:16px;
+    color:#5b8bb0;
+}
+
+.compare-table .val-kara{
+    font-weight:bold;
+    font-size:16px;
+    color:#c98a4d;
+}
+
+.compare-table .val-node{
+    font-weight:bold;
+    font-size:16px;
+    color:#c17b7b;
+}
+
+.compare-table .arti-mini{
+    display:block;
+    font-size:12px;
+    font-style:italic;
+    color:#5b6b80;
+    font-weight:400;
+    margin-top:4px;
+}
+
+.compare-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:16px 0;
+}
+
+.compare-legend .chip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:999px;
+    background:#f5f8fc;
+    border:1px solid #e3e9f2;
+    color:#333;
+}
+
+.compare-legend .dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    display:inline-block;
+}
+
+.compare-legend .dot.shi{ background:#5b8bb0; }
+.compare-legend .dot.kara{ background:#c98a4d; }
+.compare-legend .dot.node{ background:#c17b7b; }
+
+.example-group-label{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    font-weight:bold;
+    color:#fff;
+    padding:6px 14px;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+
+.example-group-label.shi{ background:#5b8bb0; }
+.example-group-label.kara{ background:#c98a4d; }
+.example-group-label.node{ background:#c17b7b; }
+
+/* contoh kalimat */
+
+.example{
+    border:2px solid var(--navy);
+    border-radius:16px;
+    padding:20px 24px;
+    margin-bottom:16px;
+    transition:.25s;
+}
+
+.example:hover{
+    background:var(--navy3);
+    color:#fff;
+    transform:translateY(-3px);
+    box-shadow:0 12px 24px rgba(0,31,63,.2);
+}
+
+.example .jp{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.example .yomi{
+    font-size:14px;
+    color:#8892a3;
+    margin-bottom:8px;
+}
+
+.example:hover .yomi{
+    color:#c9d6e8;
+}
+
+.example .id{
+    font-size:15px;
+    color:#333;
+    font-style:italic;
+}
+
+.example:hover .id{
+    color:#e6edf7;
+}
+
+/* catatan / tips */
+
+.note-box{
+    background:#fffbe6;
+    border-left:5px solid var(--gold);
+    border-radius:10px;
+    padding:18px 22px;
+    font-size:15px;
+    line-height:1.8;
+    color:#4a4020;
+}
+
+.note-box b{
+    color:var(--navy);
+}
+
+/* navigasi bawah */
+
+.nav-bottom{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    margin-top:50px;
+    flex-wrap:wrap;
+}
+
+.nav-bottom a{
+    flex:1;
+    min-width:200px;
+    text-decoration:none;
+    border:2px solid var(--navy);
+    border-radius:14px;
+    padding:16px 20px;
+    color:var(--navy);
+    font-weight:600;
+    transition:.25s;
+}
+
+.nav-bottom a:hover{
+    background:var(--navy);
+    color:var(--gold);
+}
+
+.nav-bottom .dir{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    margin-bottom:4px;
+}
+
+.nav-bottom a:hover .dir{
+    color:#c9d6e8;
+}
+
+.nav-bottom .next{
+    text-align:right;
+}
+
+/* =======================
+      LATIHAN SOAL
+======================= */
+
+.quiz-box{
+    border:2px solid var(--navy);
+    border-radius:18px;
+    padding:24px 26px;
+    margin-bottom:22px;
+    background:#fafcff;
+}
+
+.quiz-box .qno{
+    display:inline-block;
+    background:var(--navy);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    padding:5px 12px;
+    border-radius:8px;
+    margin-bottom:14px;
+}
+
+.quiz-box .qtext{
+    font-size:16px;
+    color:#333;
+    margin-bottom:16px;
+    line-height:1.8;
+}
+
+.quiz-box .qtext .blank{
+    display:inline-block;
+    min-width:90px;
+    border-bottom:2px solid var(--navy);
+    text-align:center;
+    color:var(--gold2);
+    font-weight:bold;
+}
+
+.word-bank{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.word-tile{
+    background:#fff;
+    border:2px solid var(--navy);
+    color:var(--navy);
+    padding:10px 16px;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+    user-select:none;
+}
+
+.word-tile:hover{
+    background:var(--navy);
+    color:var(--gold);
+    transform:translateY(-2px);
+}
+
+.word-tile.used{
+    opacity:.3;
+    pointer-events:none;
+}
+
+.answer-slot{
+    min-height:52px;
+    border:2px dashed var(--gold2);
+    border-radius:10px;
+    background:#fffbe6;
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    padding:8px 12px;
+    margin-bottom:16px;
+}
+
+.answer-slot .placed{
+    background:var(--gold);
+    color:#001530;
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.quiz-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.quiz-btn{
+    border:2px solid var(--navy);
+    background:var(--navy);
+    color:var(--gold);
+    padding:10px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:14px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.quiz-btn:hover{
+    opacity:.85;
+}
+
+.quiz-btn.secondary{
+    background:#fff;
+    color:var(--navy);
+}
+
+.quiz-result{
+    margin-top:14px;
+    font-size:15px;
+    font-weight:600;
+    display:none;
+    padding:12px 16px;
+    border-radius:10px;
+}
+
+.quiz-result.correct{
+    display:block;
+    background:#e6f7ec;
+    color:#166534;
+    border:1px solid #86efac;
+}
+
+.quiz-result.wrong{
+    display:block;
+    background:#fdeaea;
+    color:#991b1b;
+    border:1px solid #fca5a5;
+}
+
+@media(max-width:600px){
+    .pattern-hero h1{
+        font-size:36px;
+    }
+    .pattern-hero::before{
+        font-size:160px;
+    }
+    .nav-bottom .next{
+        text-align:left;
+    }
+    .konjugasi-table{
+        font-size:13px;
+    }
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa_n4.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+
+</div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="tatabahasajlptn4.html">← Kembali ke Daftar Tata Bahasa N4</a>
+</div>
+
+<div class="pattern-hero">
+    <span class="no-badge">JLPT N4</span>
+    <h1>〜やすい・〜にくい</h1>
+    <div class="romaji">~yasui / ~nikui</div>
+    <div class="mean">menyatakan bahwa suatu tindakan mudah (やすい) atau sulit (にくい) untuk dilakukan</div>
+</div>
+
+<div class="content">
+
+    <div class="section-block">
+        <h2><span class="tag">ARTI</span> Penjelasan</h2>
+        <p>
+            <b>〜やすい</b> digunakan untuk menyatakan bahwa suatu tindakan <b>mudah/gampang dilakukan</b>, dengan
+            arti "mudah untuk 〜". Sebaliknya, <b>〜にくい</b> digunakan untuk menyatakan bahwa suatu tindakan
+            <b>sulit/susah dilakukan</b>, dengan arti "sulit untuk 〜". Kedua pola ini ditempelkan pada
+            <b>bentuk ます (stem) kata kerja</b>, lalu keseluruhan bentuk tersebut berperilaku seperti kata
+            sifat-i (い形容詞), sehingga bisa dikonjugasikan menjadi bentuk lampau, negatif, atau menerangkan
+            kata benda.
+        </p>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">POLA</span> Rumus</h2>
+        <div class="formula-box">
+            動詞（ます形）＋やすい　（mudah untuk melakukan V）<br>
+            動詞（ます形）＋にくい　（sulit untuk melakukan V）
+            <small>Contoh: 読みやすい／書きにくい／このペンは使いやすいです</small>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">TABEL</span> Pola Penggunaan 〜やすい・〜にくい</h2>
+        <p style="margin-bottom:16px;">
+            Berikut tabel ringkas perubahan kata kerja bentuk ます（stem）menjadi bentuk やすい (mudah) dan
+            にくい (sulit), lalu berperilaku layaknya kata sifat-i.
+        </p>
+
+        <div class="table-wrap">
+            <table class="konjugasi-table">
+                <thead>
+                    <tr>
+                        <th>Kata Kerja (Kamus)</th>
+                        <th></th>
+                        <th>Bentuk やすい／にくい</th>
+                        <th>Artinya</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row"><td colspan="4">動詞ます形 ＋ やすい (MUDAH)</td></tr>
+                    <tr>
+                        <td><span class="kamus">読む</span><span class="yomi-small">よむ (yomu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">読みやすい</span><span class="yomi-small">よみやすい (yomiyasui)</span></td>
+                        <td>mudah dibaca</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">使う</span><span class="yomi-small">つかう (tsukau)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">使いやすい</span><span class="yomi-small">つかいやすい (tsukaiyasui)</span></td>
+                        <td>mudah digunakan</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">動詞ます形 ＋ にくい (SULIT)</td></tr>
+                    <tr>
+                        <td><span class="kamus">書く</span><span class="yomi-small">かく (kaku)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">書きにくい</span><span class="yomi-small">かきにくい (kakinikui)</span></td>
+                        <td>sulit ditulis</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">分かる</span><span class="yomi-small">わかる (wakaru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">分かりにくい</span><span class="yomi-small">わかりにくい (wakarinikui)</span></td>
+                        <td>sulit dipahami</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Catatan penting:</b> Setelah menjadi bentuk やすい atau にくい, kata tersebut berperilaku seperti
+            kata sifat-i biasa, sehingga bisa diubah menjadi bentuk lampau (〜やすかった／〜にくかった), negatif
+            (〜やすくない／〜にくくない), atau langsung menerangkan kata benda (例：読みやすい本＝buku yang mudah
+            dibaca).
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CONTOH</span> Contoh Kalimat</h2>
+
+        <div class="example">
+            <div class="jp">このひらがなの本は読みやすいです。</div>
+            <div class="yomi">このひらがなの ほんは よみやすいです。</div>
+            <div class="id">Buku hiragana ini mudah dibaca.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">この漢字は書きにくいです。</div>
+            <div class="yomi">このかんじは かきにくいです。</div>
+            <div class="id">Kanji ini sulit ditulis.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">このくつは軽くて、歩きやすいです。</div>
+            <div class="yomi">このくつは かるくて、あるきやすいです。</div>
+            <div class="id">Sepatu ini ringan dan mudah untuk dipakai berjalan.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">先生の説明は分かりにくかったです。</div>
+            <div class="yomi">せんせいの せつめいは わかりにくかったです。</div>
+            <div class="id">Penjelasan guru tadi sulit dipahami.</div>
+        </div>
+
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CATATAN</span> Tips & Perbedaan</h2>
+        <div class="note-box">
+            <b>〜やすい・〜にくい sangat berguna untuk memberi komentar atau penilaian terhadap suatu benda,
+            tempat, atau kegiatan</b>, misalnya menilai apakah suatu barang nyaman dipakai, apakah suatu buku
+            mudah dibaca, atau apakah suatu jalan sulit dilalui. Pola ini sering muncul dalam ulasan produk,
+            percakapan sehari-hari, dan panduan penggunaan barang. Ingat, kedua bentuk ini selalu menempel pada
+            <b>bentuk ます (stem)</b> kata kerja, bukan bentuk kamus maupun bentuk te.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">PERBEDAAN</span> Tabel 〜やすい vs 〜にくい vs 〜すぎる</h2>
+        <p style="margin-bottom:12px;">
+            Banyak siswa tertukar antara 〜やすい／にくい dengan 〜すぎる yang sama-sama menempel pada bentuk
+            ます（stem）kata kerja, tetapi maknanya berbeda: やすい／にくい menilai <b>tingkat kemudahan</b>,
+            sedangkan すぎる menyatakan sesuatu yang <b>berlebihan/terlalu</b>. Tabel berikut membandingkan
+            ketiganya dari situasi yang sama.
+        </p>
+
+        <div class="compare-legend">
+            <span class="chip"><span class="dot shi"></span> 〜やすい — mudah dilakukan</span>
+            <span class="chip"><span class="dot kara"></span> 〜にくい — sulit dilakukan</span>
+            <span class="chip"><span class="dot node"></span> 〜すぎる — terlalu/berlebihan (bukan soal mudah/sulit)</span>
+        </div>
+
+        <div class="compare-wrap">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th class="th-kamus">Situasi</th>
+                        <th class="th-shi">〜やすい<small>mudah</small></th>
+                        <th class="th-kara">〜にくい<small>sulit</small></th>
+                        <th class="th-node">〜すぎる<small>terlalu</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="kamus">Membaca buku</span><span class="yomi-small">hon wo yomu</span></td>
+                        <td><span class="val-shi">この本は読みやすいです</span><span class="yomi-small">このほんはよみやすいです</span><span class="arti-mini">Buku ini mudah dibaca (huruf besar, bahasa sederhana, dsb).</span></td>
+                        <td><span class="val-kara">この本は読みにくいです</span><span class="yomi-small">このほんはよみにくいです</span><span class="arti-mini">Buku ini sulit dibaca (huruf kecil, bahasa rumit, dsb).</span></td>
+                        <td><span class="val-node">この本は難しすぎます</span><span class="yomi-small">このほんはむずかしすぎます</span><span class="arti-mini">Buku ini terlalu sulit (isinya melebihi kemampuan pembaca, bukan soal mudah/sulitnya membaca fisik).</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">Memakai sepatu</span><span class="yomi-small">kutsu wo haku</span></td>
+                        <td><span class="val-shi">このくつは歩きやすいです</span><span class="yomi-small">このくつはあるきやすいです</span><span class="arti-mini">Sepatu ini nyaman/mudah dipakai berjalan.</span></td>
+                        <td><span class="val-kara">このくつは歩きにくいです</span><span class="yomi-small">このくつはあるきにくいです</span><span class="arti-mini">Sepatu ini tidak nyaman/sulit dipakai berjalan.</span></td>
+                        <td><span class="val-node">このくつは大きすぎます</span><span class="yomi-small">このくつはおおきすぎます</span><span class="arti-mini">Sepatu ini terlalu besar (ukurannya berlebihan, bukan soal mudah/sulit berjalan).</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Konteks penggunaan:</b> 〜やすい dan 〜にくい dipakai untuk <b>menilai tingkat kemudahan</b> suatu
+            tindakan terhadap benda/situasi tertentu, sedangkan 〜すぎる dipakai untuk menyatakan bahwa suatu
+            sifat atau jumlah <b>melebihi batas wajar</b> (terlalu besar, terlalu sulit, terlalu banyak), tanpa
+            harus berhubungan dengan kata kerja tindakan seperti やすい／にくい. Ketiganya sama-sama menempel pada
+            bentuk ます（stem), tetapi すぎる juga bisa menempel pada kata sifat-i dan kata sifat-na.
+        </div>
+
+        <p style="margin:18px 0 10px;">
+            Perhatikan bagaimana ketiga pola ini mengubah <b>penilaian</b> dari situasi dasar yang sama:
+            mengomentari sebuah ponsel baru.
+        </p>
+
+        <div class="example-group-label shi">〜やすい — Mudah digunakan</div>
+        <div class="example">
+            <div class="jp">この携帯は使いやすいです。</div>
+            <div class="yomi">このけいたいは つかいやすいです。</div>
+            <div class="id">Ponsel ini mudah digunakan.</div>
+        </div>
+
+        <div class="example-group-label kara">〜にくい — Sulit digunakan</div>
+        <div class="example">
+            <div class="jp">このボタンは押しにくいです。</div>
+            <div class="yomi">このボタンは おしにくいです。</div>
+            <div class="id">Tombol ini sulit ditekan.</div>
+        </div>
+
+        <div class="example-group-label node">〜すぎる — Terlalu/berlebihan</div>
+        <div class="example">
+            <div class="jp">この携帯は高すぎます。</div>
+            <div class="yomi">このけいたいは たかすぎます。</div>
+            <div class="id">Ponsel ini terlalu mahal.</div>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Kunci membedakan ketiganya lewat contoh di atas:</b> pada <i>〜やすい</i>, pembicara menilai bahwa
+            tindakan menggunakan ponsel itu <b>mudah</b> dilakukan. Pada <i>〜にくい</i>, pembicara menilai bahwa
+            tindakan menekan tombol itu <b>sulit</b> dilakukan. Pada <i>〜すぎる</i>, pembicara tidak sedang
+            menilai mudah/sulitnya sebuah tindakan, melainkan menyatakan bahwa suatu sifat (harga) sudah
+            <b>melampaui batas wajar</b>.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">LATIHAN</span> Soal Susun Kalimat</h2>
+        <p style="margin-bottom:18px;">
+            Susun kata-kata acak di bawah ini menjadi kalimat yang benar dengan mengklik kata secara berurutan.
+            Klik kata yang sudah dipasang untuk membatalkannya.
+        </p>
+
+        <!-- SOAL 1 -->
+        <div class="quiz-box" id="quiz1">
+            <span class="qno">SOAL 1</span>
+            <div class="qtext">
+                このひらがなの　＿＿＿＿＿　＿★＿　＿＿＿＿＿。
+            </div>
+
+            <div class="answer-slot" id="slot1"></div>
+
+            <div class="word-bank" id="bank1">
+                <div class="word-tile" data-word="本は">ほんは</div>
+                <div class="word-tile" data-word="読みやすい">よみやすい</div>
+                <div class="word-tile" data-word="です">です</div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(1)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(1)">Ulangi</button>
+            </div>
+
+            <div class="quiz-result" id="result1"></div>
+        </div>
+
+        <!-- SOAL 2 -->
+        <div class="quiz-box" id="quiz2">
+            <span class="qno">SOAL 2</span>
+            <div class="qtext">
+                先生の　＿＿＿＿＿　＿★＿　＿＿＿＿＿。
+            </div>
+
+            <div class="answer-slot" id="slot2"></div>
+
+            <div class="word-bank" id="bank2">
+                <div class="word-tile" data-word="説明は">せつめいは</div>
+                <div class="word-tile" data-word="分かりにくかった">わかりにくかった</div>
+                <div class="word-tile" data-word="です">です</div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(2)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(2)">Ulangi</button>
+            </div>
+
+            <div class="quiz-result" id="result2"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="content" style="padding-top:0;">
+    <div class="nav-bottom">
+        <a href="tatabahasan4_youni.html" class="prev">
+            <span class="dir">← Sebelumnya</span>
+            〜ように（目的）
+        </a>
+        <a href="tatabahasan4_sugiru.html" class="next">
+            <span class="dir">Selanjutnya →</span>
+            〜すぎる（過剰）
+        </a>
+    </div>
+</div>
+
+<footer>
+© Tekipaki Japanese Learning
+</footer>
+
+<script>
+
+//============================
+// LATIHAN SOAL - SUSUN KALIMAT
+//============================
+
+const quizAnswers = {
+    1:["本は","読みやすい","です"],
+    2:["説明は","分かりにくかった","です"]
+};
+
+const quizState = {
+    1:[],
+    2:[]
+};
+
+function shuffleArray(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+function shuffleBank(id){
+    const bank = document.getElementById("bank"+id);
+    const tiles = Array.from(bank.children);
+    shuffleArray(tiles);
+    tiles.forEach(tile => bank.appendChild(tile));
+}
+
+function initQuiz(id){
+    shuffleBank(id);
+    const bank = document.getElementById("bank"+id);
+    bank.querySelectorAll(".word-tile").forEach(tile=>{
+        tile.addEventListener("click", ()=>placeWord(id, tile));
+    });
+}
+
+function placeWord(id, tile){
+    if(tile.classList.contains("used")) return;
+
+    tile.classList.add("used");
+    quizState[id].push(tile.dataset.word);
+
+    const slot = document.getElementById("slot"+id);
+    const placed = document.createElement("span");
+    placed.className = "placed";
+    placed.textContent = tile.dataset.word;
+    placed.dataset.word = tile.dataset.word;
+
+    placed.addEventListener("click", ()=>{
+        slot.removeChild(placed);
+        const idx = quizState[id].indexOf(tile.dataset.word);
+        if(idx > -1){
+            quizState[id].splice(idx,1);
+        }
+        tile.classList.remove("used");
+        document.getElementById("result"+id).className = "quiz-result";
+    });
+
+    slot.appendChild(placed);
+    document.getElementById("result"+id).className = "quiz-result";
+}
+
+function checkAnswer(id){
+    const result = document.getElementById("result"+id);
+    const correct = quizAnswers[id].join("") === quizState[id].join("");
+
+    if(quizState[id].length === 0){
+        result.className = "quiz-result wrong";
+        result.textContent = "⚠️ Susun dulu kata-katanya sebelum mengecek jawaban.";
+        return;
+    }
+
+    if(correct){
+        result.className = "quiz-result correct";
+        result.textContent = "✅ Benar! Susunan kalimatmu sudah tepat.";
+    } else {
+        result.className = "quiz-result wrong";
+        result.textContent = "❌ Belum tepat. Jawaban yang benar: " + quizAnswers[id].join(" ");
+    }
+}
+
+function resetQuiz(id){
+    quizState[id] = [];
+    document.getElementById("slot"+id).innerHTML = "";
+    document.querySelectorAll("#bank"+id+" .word-tile").forEach(tile=>{
+        tile.classList.remove("used");
+    });
+    document.getElementById("result"+id).className = "quiz-result";
+    shuffleBank(id);
+}
+
+initQuiz(1);
+initQuiz(2);
+
+function toggleDropdown(id){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+        if(m.id!==id){
+            m.classList.remove('show');
+            m.classList.remove('align-right');
+            m.closest('.dropdown').classList.remove('open');
+        }
+    });
+    const menu = document.getElementById(id);
+    const wrap = menu.closest('.dropdown');
+    const willShow = !menu.classList.contains('show');
+    menu.classList.toggle('show');
+    wrap.classList.toggle('open');
+    if(willShow){
+        menu.classList.remove('align-right');
+        const rect = menu.getBoundingClientRect();
+        if(rect.right > window.innerWidth - 8){ menu.classList.add('align-right'); }
+    }
+}
+
+window.addEventListener('resize', ()=>{
+    document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
+        m.classList.remove('show');
+        m.classList.remove('align-right');
+        m.closest('.dropdown').classList.remove('open');
+    });
+});
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+        });
+        document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
+    }
+});
+
+</script>
+
+</body>
+</html>
