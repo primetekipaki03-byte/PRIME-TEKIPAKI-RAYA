@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〜について（話題） | Tata Bahasa N4</title>
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --navy3:#022655;
+    --gold:#facc15;
+    --gold2:#ffd700;
+    --text:#001f3f;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:var(--text);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(224,181,42,.3);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.home-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#e0b52a;
+    color:#001530;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.home-btn:hover{
+    opacity:.85;
+}
+
+.home-icon{
+    width:24px;
+    height:24px;
+    object-fit:cover;
+    border-radius:4px;
+}
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown-btn{
+    background:none;
+    border:2px solid #e0b52a;
+    color:#e0b52a;
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:.9rem;
+}
+
+.dropdown-btn:hover{
+    background:#e0b52a;
+    color:#001530;
+}
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:45px;
+    left:0;
+    background:#1f4577;
+    border-radius:10px;
+    overflow:hidden;
+    min-width:220px;
+    max-width:90vw;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+
+.dropdown-menu.align-right{
+    left:auto;
+    right:0;
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:12px 15px;
+    color:#ffd700;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:#e0b52a;
+    color:#001530;
+}
+
+.show{
+    display:block;
+}
+
+@media(max-width:600px){
+    .navbar-inner{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+    }
+    .nav-right{
+        width:100%;
+    }
+    .dropdown-btn{
+        font-size:.72rem;
+        padding:6px 9px;
+    }
+    .breadcrumb{
+        margin-top:16px;
+    }
+}
+
+/* =======================
+     BREADCRUMB
+======================= */
+
+.breadcrumb{
+    margin:20px 0 0 0;
+    padding:0 0 0 20px;
+    font-size:14px;
+    color:#8892a3;
+    text-align:left;
+}
+
+.breadcrumb a{
+    color:var(--navy);
+    text-decoration:none;
+    font-weight:600;
+}
+
+.breadcrumb a:hover{
+    text-decoration:underline;
+}
+
+/* =======================
+       HERO PATTERN
+======================= */
+
+.pattern-hero{
+    max-width:900px;
+    margin:20px auto 0;
+    padding:40px 30px;
+    background:linear-gradient(135deg, var(--navy) 0%, #062a52 100%);
+    border-radius:22px;
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+}
+
+.pattern-hero::before{
+    content:"題";
+    position:absolute;
+    font-size:260px;
+    font-weight:900;
+    color:rgba(250,204,21,.06);
+    top:-60px;
+    right:-30px;
+    pointer-events:none;
+    user-select:none;
+}
+
+.pattern-hero .no-badge{
+    display:inline-block;
+    background:rgba(250,204,21,.12);
+    border:1px solid rgba(250,204,21,.4);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:1px;
+    padding:6px 16px;
+    border-radius:999px;
+    margin-bottom:18px;
+    position:relative;
+}
+
+.pattern-hero h1{
+    font-size:56px;
+    color:#ffffff;
+    position:relative;
+    margin-bottom:8px;
+}
+
+.pattern-hero .romaji{
+    font-size:20px;
+    color:var(--gold2);
+    font-weight:600;
+    position:relative;
+    margin-bottom:14px;
+}
+
+.pattern-hero .mean{
+    font-size:18px;
+    color:#c9d6e8;
+    position:relative;
+}
+
+/* =======================
+      CONTENT SECTIONS
+======================= */
+
+.content{
+    max-width:900px;
+    margin:30px auto;
+    padding:0 30px 60px;
+}
+
+.section-block{
+    margin-bottom:36px;
+}
+
+.section-block h2{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:22px;
+    color:var(--navy);
+    margin-bottom:14px;
+}
+
+.section-block h2 .tag{
+    background:var(--navy);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    padding:5px 12px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.section-block p{
+    font-size:16px;
+    line-height:1.9;
+    color:#333;
+}
+
+/* pola / formula box */
+
+.formula-box{
+    background:#f5f8fc;
+    border:2px dashed var(--navy);
+    border-radius:16px;
+    padding:22px 26px;
+    font-size:19px;
+    text-align:center;
+    color:var(--navy);
+    font-weight:600;
+    line-height:1.8;
+}
+
+.formula-box small{
+    display:block;
+    font-size:13px;
+    font-weight:400;
+    color:#8892a3;
+    margin-top:6px;
+}
+
+/* =======================
+   TABEL POLA ~NI TSUITE
+======================= */
+
+.table-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.konjugasi-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
+    font-size:15px;
+}
+
+.konjugasi-table thead th{
+    background:var(--navy);
+    color:var(--gold);
+    text-align:left;
+    padding:14px 16px;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+.konjugasi-table tbody td{
+    padding:13px 16px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.konjugasi-table tbody tr:nth-child(even){
+    background:#f5f8fc;
+}
+
+.konjugasi-table tbody tr:hover{
+    background:#fffbe6;
+}
+
+.konjugasi-table .grp-tag{
+    display:inline-block;
+    background:rgba(0,31,63,.08);
+    color:var(--navy);
+    font-weight:bold;
+    font-size:12px;
+    padding:4px 10px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.konjugasi-table .kamus{
+    font-weight:bold;
+    font-size:17px;
+    color:var(--navy);
+}
+
+.konjugasi-table .yomi-small{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    font-weight:400;
+}
+
+.konjugasi-table .arrow{
+    color:var(--gold2);
+    font-weight:900;
+    font-size:18px;
+}
+
+.konjugasi-table .shi{
+    font-weight:bold;
+    font-size:17px;
+    color:#5b8bb0;
+}
+
+.konjugasi-table .group-row td{
+    background:var(--navy2);
+    color:var(--gold);
+    font-weight:bold;
+    font-size:13px;
+    letter-spacing:.5px;
+    padding:10px 16px;
+}
+
+/* =======================
+   TABEL PERBANDINGAN
+   NI TSUITE / NI KANSHITE / WA
+======================= */
+
+.compare-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.compare-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:700px;
+    font-size:14px;
+}
+
+.compare-table thead th{
+    padding:14px 14px;
+    text-align:left;
+    color:#fff;
+    font-size:13px;
+    white-space:nowrap;
+}
+
+.compare-table thead th.th-kamus{
+    background:var(--navy);
+    color:var(--gold);
+}
+
+.compare-table thead th.th-shi{
+    background:#5b8bb0;
+}
+
+.compare-table thead th.th-kara{
+    background:#c98a4d;
+}
+
+.compare-table thead th.th-node{
+    background:#c17b7b;
+}
+
+.compare-table thead th small{
+    display:block;
+    font-weight:400;
+    font-size:11px;
+    opacity:.85;
+    margin-top:2px;
+}
+
+.compare-table tbody td{
+    padding:13px 14px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.compare-table tbody tr:nth-child(even){
+    background:#f5f8fc;
+}
+
+.compare-table tbody tr:hover{
+    background:#fffbe6;
+}
+
+.compare-table .kamus{
+    font-weight:bold;
+    font-size:16px;
+    color:var(--navy);
+}
+
+.compare-table .yomi-small{
+    display:block;
+    font-size:11px;
+    color:#8892a3;
+    font-weight:400;
+}
+
+.compare-table .val-shi{
+    font-weight:bold;
+    font-size:16px;
+    color:#5b8bb0;
+}
+
+.compare-table .val-kara{
+    font-weight:bold;
+    font-size:16px;
+    color:#c98a4d;
+}
+
+.compare-table .val-node{
+    font-weight:bold;
+    font-size:16px;
+    color:#c17b7b;
+}
+
+.compare-table .arti-mini{
+    display:block;
+    font-size:12px;
+    font-style:italic;
+    color:#5b6b80;
+    font-weight:400;
+    margin-top:4px;
+}
+
+.compare-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:16px 0;
+}
+
+.compare-legend .chip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:999px;
+    background:#f5f8fc;
+    border:1px solid #e3e9f2;
+    color:#333;
+}
+
+.compare-legend .dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    display:inline-block;
+}
+
+.compare-legend .dot.shi{ background:#5b8bb0; }
+.compare-legend .dot.kara{ background:#c98a4d; }
+.compare-legend .dot.node{ background:#c17b7b; }
+
+.example-group-label{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    font-weight:bold;
+    color:#fff;
+    padding:6px 14px;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+
+.example-group-label.shi{ background:#5b8bb0; }
+.example-group-label.kara{ background:#c98a4d; }
+.example-group-label.node{ background:#c17b7b; }
+
+/* contoh kalimat */
+
+.example{
+    border:2px solid var(--navy);
+    border-radius:16px;
+    padding:20px 24px;
+    margin-bottom:16px;
+    transition:.25s;
+}
+
+.example:hover{
+    background:var(--navy3);
+    color:#fff;
+    transform:translateY(-3px);
+    box-shadow:0 12px 24px rgba(0,31,63,.2);
+}
+
+.example .jp{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.example .yomi{
+    font-size:14px;
+    color:#8892a3;
+    margin-bottom:8px;
+}
+
+.example:hover .yomi{
+    color:#c9d6e8;
+}
+
+.example .id{
+    font-size:15px;
+    color:#333;
+    font-style:italic;
+}
+
+.example:hover .id{
+    color:#e6edf7;
+}
+
+/* catatan / tips */
+
+.note-box{
+    background:#fffbe6;
+    border-left:5px solid var(--gold);
+    border-radius:10px;
+    padding:18px 22px;
+    font-size:15px;
+    line-height:1.8;
+    color:#4a4020;
+}
+
+.note-box b{
+    color:var(--navy);
+}
+
+/* navigasi bawah */
+
+.nav-bottom{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    margin-top:50px;
+    flex-wrap:wrap;
+}
+
+.nav-bottom a{
+    flex:1;
+    min-width:200px;
+    text-decoration:none;
+    border:2px solid var(--navy);
+    border-radius:14px;
+    padding:16px 20px;
+    color:var(--navy);
+    font-weight:600;
+    transition:.25s;
+}
+
+.nav-bottom a:hover{
+    background:var(--navy);
+    color:var(--gold);
+}
+
+.nav-bottom .dir{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    margin-bottom:4px;
+}
+
+.nav-bottom a:hover .dir{
+    color:#c9d6e8;
+}
+
+.nav-bottom .next{
+    text-align:right;
+}
+
+/* =======================
+      LATIHAN SOAL
+======================= */
+
+.quiz-box{
+    border:2px solid var(--navy);
+    border-radius:18px;
+    padding:24px 26px;
+    margin-bottom:22px;
+    background:#fafcff;
+}
+
+.quiz-box .qno{
+    display:inline-block;
+    background:var(--navy);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    padding:5px 12px;
+    border-radius:8px;
+    margin-bottom:14px;
+}
+
+.quiz-box .qtext{
+    font-size:16px;
+    color:#333;
+    margin-bottom:16px;
+    line-height:1.8;
+}
+
+.quiz-box .qtext .blank{
+    display:inline-block;
+    min-width:90px;
+    border-bottom:2px solid var(--navy);
+    text-align:center;
+    color:var(--gold2);
+    font-weight:bold;
+}
+
+.word-bank{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.word-tile{
+    background:#fff;
+    border:2px solid var(--navy);
+    color:var(--navy);
+    padding:10px 16px;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+    user-select:none;
+}
+
+.word-tile:hover{
+    background:var(--navy);
+    color:var(--gold);
+    transform:translateY(-2px);
+}
+
+.word-tile.used{
+    opacity:.3;
+    pointer-events:none;
+}
+
+.answer-slot{
+    min-height:52px;
+    border:2px dashed var(--gold2);
+    border-radius:10px;
+    background:#fffbe6;
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    padding:8px 12px;
+    margin-bottom:16px;
+}
+
+.answer-slot .placed{
+    background:var(--gold);
+    color:#001530;
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.quiz-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.quiz-btn{
+    border:2px solid var(--navy);
+    background:var(--navy);
+    color:var(--gold);
+    padding:10px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:14px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.quiz-btn:hover{
+    opacity:.85;
+}
+
+.quiz-btn.secondary{
+    background:#fff;
+    color:var(--navy);
+}
+
+.quiz-result{
+    margin-top:14px;
+    font-size:15px;
+    font-weight:600;
+    display:none;
+    padding:12px 16px;
+    border-radius:10px;
+}
+
+.quiz-result.correct{
+    display:block;
+    background:#e6f7ec;
+    color:#166534;
+    border:1px solid #86efac;
+}
+
+.quiz-result.wrong{
+    display:block;
+    background:#fdeaea;
+    color:#991b1b;
+    border:1px solid #fca5a5;
+}
+
+@media(max-width:600px){
+    .pattern-hero h1{
+        font-size:38px;
+    }
+    .pattern-hero::before{
+        font-size:160px;
+    }
+    .nav-bottom .next{
+        text-align:left;
+    }
+    .konjugasi-table{
+        font-size:13px;
+    }
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa_n4.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+
+</div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="tatabahasajlptn4.html">← Kembali ke Daftar Tata Bahasa N4</a>
+</div>
+
+<div class="pattern-hero">
+    <span class="no-badge">POLA 10 · JLPT N4</span>
+    <h1>〜について</h1>
+    <div class="romaji">~ni tsuite</div>
+    <div class="mean">menyatakan topik/hal yang dibahas, dipikirkan, atau ditanyakan (tentang/mengenai)</div>
+</div>
+
+<div class="content">
+
+    <div class="section-block">
+        <h2><span class="tag">ARTI</span> Penjelasan</h2>
+        <p>
+            <b>〜について</b> digunakan untuk menunjukkan <b>topik atau hal yang sedang dibicarakan, dipikirkan,
+            ditanyakan, atau ditulis</b>, dengan arti "tentang 〜" atau "mengenai 〜" dalam bahasa Indonesia.
+            Pola ini biasanya diikuti oleh kata kerja seperti 話す（berbicara）, 考える（memikirkan）, 書く（menulis）,
+            質問する（bertanya）, dan 調べる（meneliti/mencari tahu）. について berasal dari kata kerja 付く（menempel）
+            yang sudah menjadi ungkapan tetap untuk menandai topik pembicaraan.
+        </p>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">POLA</span> Rumus</h2>
+        <div class="formula-box">
+            名詞＋について＋動詞　（tentang/mengenai N, [melakukan sesuatu])<br>
+            名詞＋についての＋名詞　（N tentang/mengenai N lain, sebagai kata benda）
+            <small>Contoh: 歴史について話す／将来についての相談／環境問題について調べる</small>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">TABEL</span> Pola Penggunaan 〜について</h2>
+        <p style="margin-bottom:16px;">
+            Berikut tabel ringkas dua bentuk utama 〜について: langsung diikuti kata kerja, dan bentuk についての
+            yang menerangkan kata benda berikutnya.
+        </p>
+
+        <div class="table-wrap">
+            <table class="konjugasi-table">
+                <thead>
+                    <tr>
+                        <th>Topik (Kata Benda)</th>
+                        <th></th>
+                        <th>Bentuk 〜について</th>
+                        <th>Artinya</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row"><td colspan="4">について ＋ KATA KERJA</td></tr>
+                    <tr>
+                        <td><span class="kamus">日本の歴史</span><span class="yomi-small">にほんのれきし (nihon no rekishi)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">日本の歴史について話す</span><span class="yomi-small">にほんのれきしについてはなす (nihon no rekishi ni tsuite hanasu)</span></td>
+                        <td>berbicara tentang sejarah Jepang</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">環境問題</span><span class="yomi-small">かんきょうもんだい (kankyou mondai)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">環境問題について調べる</span><span class="yomi-small">かんきょうもんだいについてしらべる (kankyou mondai ni tsuite shiraberu)</span></td>
+                        <td>meneliti tentang masalah lingkungan</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">についての ＋ KATA BENDA</td></tr>
+                    <tr>
+                        <td><span class="kamus">将来</span><span class="yomi-small">しょうらい (shourai)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">将来についての相談</span><span class="yomi-small">しょうらいについてのそうだん (shourai ni tsuite no soudan)</span></td>
+                        <td>konsultasi tentang masa depan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">この本</span><span class="yomi-small">このほん (kono hon)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">この本についての質問</span><span class="yomi-small">このほんについてのしつもん (kono hon ni tsuite no shitsumon)</span></td>
+                        <td>pertanyaan tentang buku ini</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Catatan penting:</b> について hanya bisa diletakkan setelah <b>kata benda</b>, tidak bisa langsung
+            setelah kata kerja atau kata sifat. Ketika について ingin menerangkan kata benda lain (bukan diikuti
+            kata kerja), bentuknya berubah menjadi <b>についての</b>（tentang 〜, sebagai kata sifat）, misalnya
+            将来についての相談（konsultasi tentang masa depan）, bukan 将来について相談（yang juga bisa dipakai jika
+            について langsung diikuti kata kerja 相談する）.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CONTOH</span> Contoh Kalimat</h2>
+
+        <div class="example">
+            <div class="jp">私は日本の歴史について勉強しています。</div>
+            <div class="yomi">わたしは にほんの れきしについて べんきょうしています。</div>
+            <div class="id">Saya sedang belajar tentang sejarah Jepang.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">この問題について、みんなで話し合いましょう。</div>
+            <div class="yomi">この もんだいについて、みんなで はなしあいましょう。</div>
+            <div class="id">Mari kita bicarakan bersama masalah ini.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">先生に将来についての相談をしました。</div>
+            <div class="yomi">せんせいに しょうらいについての そうだんを しました。</div>
+            <div class="id">Saya berkonsultasi kepada guru tentang masa depan.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">この本についての質問があれば、聞いてください。</div>
+            <div class="yomi">この ほんについての しつもんが あれば、きいてください。</div>
+            <div class="id">Kalau ada pertanyaan tentang buku ini, silakan bertanya.</div>
+        </div>
+
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CATATAN</span> Tips & Perbedaan</h2>
+        <div class="note-box">
+            <b>〜について sangat berguna untuk menandai dengan jelas hal apa yang sedang dibicarakan</b>, terutama
+            saat topiknya cukup spesifik atau baru diperkenalkan dalam percakapan. Pola ini sering muncul dalam
+            presentasi, laporan, wawancara, dan tulisan akademik. Ingat bentuk についての dipakai saat について
+            langsung menerangkan kata benda berikutnya (bukan kata kerja), sedangkan について biasa dipakai saat
+            langsung diikuti kata kerja seperti 話す, 考える, 調べる, atau 質問する.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">PERBEDAAN</span> Tabel 〜について vs 〜に関して vs 〜は</h2>
+        <p style="margin-bottom:12px;">
+            Banyak siswa tertukar antara 〜について dengan 〜に関して yang artinya mirip, atau dengan partikel
+            topik biasa 〜は yang sebenarnya fungsinya berbeda. Tabel berikut membandingkan langsung ketiganya
+            dari situasi yang sama, supaya perbedaan nuansa dan tingkat formalitasnya terlihat jelas
+            berdampingan.
+        </p>
+
+        <div class="compare-legend">
+            <span class="chip"><span class="dot shi"></span> 〜について — menyatakan topik secara umum, dipakai sehari-hari</span>
+            <span class="chip"><span class="dot kara"></span> 〜に関して — mirip について, tapi lebih formal/tertulis</span>
+            <span class="chip"><span class="dot node"></span> 〜は — partikel topik biasa, bukan khusus "tentang"</span>
+        </div>
+
+        <div class="compare-wrap">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th class="th-kamus">Situasi</th>
+                        <th class="th-shi">〜について<small>topik umum</small></th>
+                        <th class="th-kara">〜に関して<small>topik formal</small></th>
+                        <th class="th-node">〜は<small>topik biasa</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="kamus">Sejarah Jepang</span><span class="yomi-small">nihon no rekishi</span></td>
+                        <td><span class="val-shi">日本の歴史について調べました</span><span class="yomi-small">にほんのれきしについてしらべました</span><span class="arti-mini">Saya meneliti tentang sejarah Jepang.</span></td>
+                        <td><span class="val-kara">日本の歴史に関して調査を行いました</span><span class="yomi-small">にほんのれきしにかんしてちょうさをおこないました</span><span class="arti-mini">Penelitian mengenai sejarah Jepang telah dilakukan (gaya formal/laporan).</span></td>
+                        <td><span class="val-node">日本の歴史は面白いです</span><span class="yomi-small">にほんのれきしはおもしろいです</span><span class="arti-mini">Sejarah Jepang itu menarik. (bukan "tentang", hanya menyatakan topik biasa)</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">Masalah lingkungan</span><span class="yomi-small">kankyou mondai</span></td>
+                        <td><span class="val-shi">環境問題について話しましょう</span><span class="yomi-small">かんきょうもんだいについてはなしましょう</span><span class="arti-mini">Mari kita bicarakan tentang masalah lingkungan.</span></td>
+                        <td><span class="val-kara">環境問題に関してご意見をお聞かせください</span><span class="yomi-small">かんきょうもんだいにかんしてごいけんをおきかせください</span><span class="arti-mini">Mohon sampaikan pendapat Anda mengenai masalah lingkungan (gaya sopan/formal).</span></td>
+                        <td><span class="val-node">環境問題は難しいです</span><span class="yomi-small">かんきょうもんだいはむずかしいです</span><span class="arti-mini">Masalah lingkungan itu sulit. (bukan "tentang", hanya menyatakan topik biasa)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Konteks penggunaan:</b> 〜に関して dan 〜について artinya hampir sama ("tentang/mengenai"), tapi
+            〜に関して terasa <b>lebih formal dan lebih sering dipakai dalam tulisan, laporan, atau situasi
+            resmi</b>, sedangkan 〜について lebih netral dan bisa dipakai di percakapan sehari-hari maupun tulisan.
+            Sementara itu, 〜は <b>bukan berarti "tentang"</b> — は hanya partikel topik biasa yang menandai apa
+            yang sedang dibicarakan pembicara secara umum, tanpa nuansa "membahas/meneliti/menanyakan" seperti
+            について dan に関して.
+        </div>
+
+        <p style="margin:18px 0 10px;">
+            Perhatikan bagaimana ketiga pola ini mengubah <b>cara topik itu disampaikan</b> dari situasi dasar
+            yang sama: membahas rencana liburan.
+        </p>
+
+        <div class="example-group-label shi">〜について — Topik umum sehari-hari</div>
+        <div class="example">
+            <div class="jp">夏休みの旅行について、友達と話しました。</div>
+            <div class="yomi">なつやすみの りょこうについて、ともだちと はなしました。</div>
+            <div class="id">Saya membicarakan tentang liburan musim panas dengan teman.</div>
+        </div>
+
+        <div class="example-group-label kara">〜に関して — Topik formal/tertulis</div>
+        <div class="example">
+            <div class="jp">夏休みの旅行に関して、詳しい情報をお送りします。</div>
+            <div class="yomi">なつやすみの りょこうにかんして、くわしい じょうほうを おおくりします。</div>
+            <div class="id">Mengenai liburan musim panas, kami akan mengirimkan informasi lebih lengkap.</div>
+        </div>
+
+        <div class="example-group-label node">〜は — Topik biasa, bukan "tentang"</div>
+        <div class="example">
+            <div class="jp">夏休みの旅行は来月です。</div>
+            <div class="yomi">なつやすみの りょこうは らいげつです。</div>
+            <div class="id">Liburan musim panas (jatuh) bulan depan.</div>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Kunci membedakan ketiganya lewat contoh di atas:</b> pada <i>〜について</i>, pembicara menandai
+            <b>topik yang sedang dibahas/dibicarakan</b> secara umum. Pada <i>〜に関して</i>, pembicara
+            menyampaikan hal yang sama tapi dengan <b>nuansa lebih formal dan resmi</b>, cocok untuk tulisan atau
+            situasi bisnis. Pada <i>〜は</i>, pembicara hanya <b>menyebutkan topik kalimat secara biasa</b> tanpa
+            makna "membahas" atau "mengenai" — kalimatnya bisa berupa fakta atau pernyataan sederhana tentang
+            topik tersebut.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">LATIHAN</span> Soal Susun Kalimat</h2>
+        <p style="margin-bottom:18px;">
+            Susun kata-kata acak di bawah ini menjadi kalimat yang benar dengan mengklik kata secara berurutan.
+            Klik kata yang sudah dipasang untuk membatalkannya.
+        </p>
+
+        <!-- SOAL 1 -->
+        <div class="quiz-box" id="quiz1">
+            <span class="qno">SOAL 1</span>
+            <div class="qtext">
+                私は　＿＿＿＿＿　＿★＿　＿＿＿＿＿。
+            </div>
+
+            <div class="answer-slot" id="slot1"></div>
+
+            <div class="word-bank" id="bank1">
+                <div class="word-tile" data-word="日本の歴史について">にほんのれきしについて</div>
+                <div class="word-tile" data-word="勉強して">べんきょうして</div>
+                <div class="word-tile" data-word="います">います</div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(1)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(1)">Ulangi</button>
+            </div>
+
+            <div class="quiz-result" id="result1"></div>
+        </div>
+
+        <!-- SOAL 2 -->
+        <div class="quiz-box" id="quiz2">
+            <span class="qno">SOAL 2</span>
+            <div class="qtext">
+                この　＿＿＿＿＿　＿★＿　＿＿＿＿＿　＿＿＿＿＿。
+            </div>
+
+            <div class="answer-slot" id="slot2"></div>
+
+            <div class="word-bank" id="bank2">
+                <div class="word-tile" data-word="問題について">もんだいについて</div>
+                <div class="word-tile" data-word="みんなで">みんなで</div>
+                <div class="word-tile" data-word="話し合い">はなしあい</div>
+                <div class="word-tile" data-word="ましょう">ましょう</div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(2)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(2)">Ulangi</button>
+            </div>
+
+            <div class="quiz-result" id="result2"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="content" style="padding-top:0;">
+    <div class="nav-bottom">
+        <a href="tatabahasan4_toomou.html" class="prev">
+            <span class="dir">← Sebelumnya</span>
+            〜と思う（意見・考え）
+        </a>
+        <a href="tatabahasan4_tara.html" class="next">
+            <span class="dir">Selanjutnya →</span>
+            〜たら（条件）
+        </a>
+    </div>
+</div>
+
+<footer>
+© Tekipaki Japanese Learning
+</footer>
+
+<script>
+
+//============================
+// LATIHAN SOAL - SUSUN KALIMAT
+//============================
+
+const quizAnswers = {
+    1:["日本の歴史について","勉強して","います"],
+    2:["問題について","みんなで","話し合い","ましょう"]
+};
+
+const quizState = {
+    1:[],
+    2:[]
+};
+
+function shuffleArray(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+function shuffleBank(id){
+    const bank = document.getElementById("bank"+id);
+    const tiles = Array.from(bank.children);
+    shuffleArray(tiles);
+    tiles.forEach(tile => bank.appendChild(tile));
+}
+
+function initQuiz(id){
+    shuffleBank(id);
+    const bank = document.getElementById("bank"+id);
+    bank.querySelectorAll(".word-tile").forEach(tile=>{
+        tile.addEventListener("click", ()=>placeWord(id, tile));
+    });
+}
+
+function placeWord(id, tile){
+    if(tile.classList.contains("used")) return;
+
+    tile.classList.add("used");
+    quizState[id].push(tile.dataset.word);
+
+    const slot = document.getElementById("slot"+id);
+    const placed = document.createElement("span");
+    placed.className = "placed";
+    placed.textContent = tile.dataset.word;
+    placed.dataset.word = tile.dataset.word;
+
+    placed.addEventListener("click", ()=>{
+        slot.removeChild(placed);
+        const idx = quizState[id].indexOf(tile.dataset.word);
+        if(idx > -1){
+            quizState[id].splice(idx,1);
+        }
+        tile.classList.remove("used");
+        document.getElementById("result"+id).className = "quiz-result";
+    });
+
+    slot.appendChild(placed);
+    document.getElementById("result"+id).className = "quiz-result";
+}
+
+function checkAnswer(id){
+    const result = document.getElementById("result"+id);
+    const correct = quizAnswers[id].join("") === quizState[id].join("");
+
+    if(quizState[id].length === 0){
+        result.className = "quiz-result wrong";
+        result.textContent = "⚠️ Susun dulu kata-katanya sebelum mengecek jawaban.";
+        return;
+    }
+
+    if(correct){
+        result.className = "quiz-result correct";
+        result.textContent = "✅ Benar! Susunan kalimatmu sudah tepat.";
+    } else {
+        result.className = "quiz-result wrong";
+        result.textContent = "❌ Belum tepat. Jawaban yang benar: " + quizAnswers[id].join(" ");
+    }
+}
+
+function resetQuiz(id){
+    quizState[id] = [];
+    document.getElementById("slot"+id).innerHTML = "";
+    document.querySelectorAll("#bank"+id+" .word-tile").forEach(tile=>{
+        tile.classList.remove("used");
+    });
+    document.getElementById("result"+id).className = "quiz-result";
+    shuffleBank(id);
+}
+
+initQuiz(1);
+initQuiz(2);
+
+function toggleDropdown(id){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+        if(m.id!==id){
+            m.classList.remove('show');
+            m.classList.remove('align-right');
+            m.closest('.dropdown').classList.remove('open');
+        }
+    });
+    const menu = document.getElementById(id);
+    const wrap = menu.closest('.dropdown');
+    const willShow = !menu.classList.contains('show');
+    menu.classList.toggle('show');
+    wrap.classList.toggle('open');
+    if(willShow){
+        menu.classList.remove('align-right');
+        const rect = menu.getBoundingClientRect();
+        if(rect.right > window.innerWidth - 8){ menu.classList.add('align-right'); }
+    }
+}
+
+window.addEventListener('resize', ()=>{
+    document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
+        m.classList.remove('show');
+        m.classList.remove('align-right');
+        m.closest('.dropdown').classList.remove('open');
+    });
+});
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+        });
+        document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
+    }
+});
+
+</script>
+
+</body>
+</html>
