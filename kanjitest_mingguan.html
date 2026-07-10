@@ -266,11 +266,24 @@ header p{
     margin-bottom:14px;
 }
 
+.badge.illustrated{
+    width:84px;
+    height:84px;
+    background:var(--paper);
+    border:2px solid var(--navy);
+}
+
+.badge svg{
+    width:70%;
+    height:70%;
+}
+
 .word{
-    font-size:56px;
+    font-size:42px;
     font-weight:900;
     color:var(--navy);
-    line-height:1.1;
+    line-height:1.35;
+    word-break:break-word;
 }
 
 .reveal-box{
@@ -533,7 +546,7 @@ HOME
 </div>
 
 <div class="card" id="card">
-    <div class="badge">漢</div>
+    <div class="badge" id="cardBadge">漢</div>
     <div class="word jp" id="cardWord"></div>
 
     <div class="reveal-box" id="revealBox">
@@ -575,56 +588,64 @@ HOME
 
 <script>
 
-// paket soal per siswa (5 kanji tiap siswa, level N5-N4)
+// ilustrasi SVG untuk kata yang membutuhkan gambar bantu
+const ILU_BELOK = '<svg viewBox="0 0 100 100"><path d="M20 82 Q20 30 68 30" fill="none" stroke="#001f3f" stroke-width="8" stroke-linecap="round"/><path d="M56 15 L78 30 L56 46 Z" fill="#facc15"/></svg>';
+const ILU_SHAIN = '<svg viewBox="0 0 100 100"><circle cx="50" cy="30" r="16" fill="#001f3f"/><path d="M25 90 Q25 55 50 55 Q75 55 75 90 Z" fill="#002a54"/><path d="M46 55 L50 78 L54 55 Z" fill="#facc15"/></svg>';
+const ILU_SHOKUDOU = '<svg viewBox="0 0 100 100"><ellipse cx="50" cy="58" rx="36" ry="10" fill="#e5e7eb"/><circle cx="50" cy="50" r="24" fill="#fff3c4" stroke="#001f3f" stroke-width="4"/><rect x="13" y="18" width="7" height="48" rx="3" fill="#001f3f"/><rect x="80" y="18" width="7" height="32" rx="3" fill="#001f3f"/></svg>';
+const ILU_HEYA = '<svg viewBox="0 0 100 100"><rect x="18" y="13" width="46" height="74" rx="4" fill="none" stroke="#001f3f" stroke-width="6"/><path d="M64 13 L86 24 L86 76 L64 87 Z" fill="#fff3c4" stroke="#001f3f" stroke-width="4"/><path d="M38 50 L62 50" stroke="#facc15" stroke-width="6"/><path d="M52 40 L64 50 L52 60" fill="none" stroke="#facc15" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ILU_TETSUDAU = '<svg viewBox="0 0 100 100"><path d="M14 55 Q26 38 42 50 L58 61 Q64 66 58 72 Q52 78 46 72 L34 64" fill="#fff3c4" stroke="#001f3f" stroke-width="4" stroke-linejoin="round"/><path d="M86 55 Q74 38 58 50 L42 61 Q36 66 42 72 Q48 78 54 72 L66 64" fill="#facc15" stroke="#001f3f" stroke-width="4" stroke-linejoin="round"/></svg>';
+const ILU_SETSUMEI = '<svg viewBox="0 0 100 100"><rect x="8" y="14" width="58" height="42" rx="4" fill="#fff3c4" stroke="#001f3f" stroke-width="4"/><path d="M18 30 L56 30 M18 41 L46 41" stroke="#001f3f" stroke-width="4" stroke-linecap="round"/><circle cx="82" cy="62" r="10" fill="#001f3f"/><path d="M70 90 Q70 70 82 70 Q94 70 94 90 Z" fill="#002a54"/></svg>';
+
+// paket soal per siswa (soal ujian bacaan kanji per kelas)
 const students = [
     { name:"Niko", words:[
-        { kanji:"かじがおきたので、すぐに消火しました。", reading:"しょうか", meaning:"Karena terjadi kebakaran, saya segera memadamkan api." },
-        { kanji:"先生", reading:"せんせい", meaning:"guru" },
-        { kanji:"友達", reading:"ともだち", meaning:"teman" },
-        { kanji:"家族", reading:"かぞく", meaning:"keluarga" },
-        { kanji:"名前", reading:"なまえ", meaning:"nama" }
+        { kanji:"かじがおきたので、すぐに消火しました。", reading:"かじがおきたので、すぐにしょうかしました。", meaning:"Karena terjadi kebakaran, api segera dipadamkan." },
+        { kanji:"こわれたパソコンを直しました。", reading:"こわれたパソコンをなおしました。", meaning:"Memperbaiki komputer yang rusak." },
+        { kanji:"入口", reading:"いりぐち", meaning:"pintu masuk" },
+        { kanji:"曲がる", reading:"まがる", meaning:"berbelok", illustration: ILU_BELOK },
+        { kanji:"食事の前にてをあらいます。", reading:"しょくじのまえにてをあらいます。", meaning:"Mencuci tangan sebelum makan." }
     ]},
     { name:"Ringga", words:[
-        { kanji:"会社", reading:"かいしゃ", meaning:"perusahaan" },
-        { kanji:"仕事", reading:"しごと", meaning:"pekerjaan" },
-        { kanji:"電話", reading:"でんわ", meaning:"telepon" },
-        { kanji:"時間", reading:"じかん", meaning:"waktu" },
-        { kanji:"天気", reading:"てんき", meaning:"cuaca" }
+        { kanji:"最近、あたらしいしごとをはじめた。", reading:"さいきん、あたらしいしごとをはじめた。", meaning:"Baru-baru ini mulai pekerjaan baru." },
+        { kanji:"かぜの薬をかいました。", reading:"かぜのくすりをかいました。", meaning:"Membeli obat flu." },
+        { kanji:"社員", reading:"しゃいん", meaning:"karyawan / pegawai perusahaan", illustration: ILU_SHAIN },
+        { kanji:"駅でともだちをまっています。", reading:"えきでともだちをまっています。", meaning:"Menunggu teman di stasiun." },
+        { kanji:"住所をおしえてください。", reading:"じゅうしょをおしえてください。", meaning:"Tolong beritahu alamatnya." }
     ]},
-    { name:"Shomat", words:[
-        { kanji:"図書館", reading:"としょかん", meaning:"perpustakaan" },
-        { kanji:"病院", reading:"びょういん", meaning:"rumah sakit" },
-        { kanji:"大学", reading:"だいがく", meaning:"universitas" },
-        { kanji:"食べ物", reading:"たべもの", meaning:"makanan" },
-        { kanji:"飲み物", reading:"のみもの", meaning:"minuman" }
+    { name:"Shomad", words:[
+        { kanji:"子どもたちは広場であそんでいます。", reading:"こどもたちはひろばであそんでいます。", meaning:"Anak-anak sedang bermain di alun-alun." },
+        { kanji:"休む", reading:"やすむ", meaning:"beristirahat / libur" },
+        { kanji:"食堂", reading:"しょくどう", meaning:"kantin / ruang makan", illustration: ILU_SHOKUDOU },
+        { kanji:"どちらを選びますか。", reading:"どちらをえらびますか。", meaning:"Yang mana yang akan dipilih?" },
+        { kanji:"地図を見ます。", reading:"ちずをみます。", meaning:"Melihat peta." }
     ]},
     { name:"Trianto", words:[
-        { kanji:"買い物", reading:"かいもの", meaning:"belanja" },
-        { kanji:"乗り物", reading:"のりもの", meaning:"kendaraan" },
-        { kanji:"動物", reading:"どうぶつ", meaning:"hewan" },
-        { kanji:"建物", reading:"たてもの", meaning:"bangunan" },
-        { kanji:"天気予報", reading:"てんきよほう", meaning:"ramalan cuaca" }
+        { kanji:"あしたは先生と約束があります。", reading:"あしたはせんせいとやくそくがあります。", meaning:"Besok ada janji dengan guru." },
+        { kanji:"銀行でお金を下ろしました。", reading:"ぎんこうでおかねをおろしました。", meaning:"Mengambil uang di bank." },
+        { kanji:"信号があおになりました。", reading:"しんごうがあおになりました。", meaning:"Lampu lalu lintas berubah menjadi hijau." },
+        { kanji:"間違い", reading:"まちがい", meaning:"kesalahan" },
+        { kanji:"部屋にはいります。", reading:"へやにはいります。", meaning:"Masuk ke kamar.", illustration: ILU_HEYA }
     ]},
     { name:"Joni", words:[
-        { kanji:"銀行", reading:"ぎんこう", meaning:"bank" },
-        { kanji:"郵便局", reading:"ゆうびんきょく", meaning:"kantor pos" },
-        { kanji:"空港", reading:"くうこう", meaning:"bandara" },
-        { kanji:"駅", reading:"えき", meaning:"stasiun" },
-        { kanji:"道路", reading:"どうろ", meaning:"jalan" }
+        { kanji:"明るい", reading:"あかるい", meaning:"terang / cerah" },
+        { kanji:"友達に電話をしました。", reading:"ともだちにでんわをしました。", meaning:"Menelepon teman." },
+        { kanji:"とりが空をとんでいます。", reading:"とりがそらをとんでいます。", meaning:"Burung sedang terbang di langit." },
+        { kanji:"かれは短いかみがすきです。", reading:"かれはみじかいかみがすきです。", meaning:"Dia suka rambut pendek." },
+        { kanji:"雨がふりました。", reading:"あめがふりました。", meaning:"Hujan turun." }
     ]},
     { name:"Ferian", words:[
-        { kanji:"会議", reading:"かいぎ", meaning:"rapat" },
-        { kanji:"資料", reading:"しりょう", meaning:"dokumen / data" },
-        { kanji:"予定", reading:"よてい", meaning:"jadwal" },
-        { kanji:"連絡", reading:"れんらく", meaning:"kontak / hubungi" },
-        { kanji:"説明", reading:"せつめい", meaning:"penjelasan" }
+        { kanji:"あしたの天気はどうですか。", reading:"あしたのてんきはどうですか。", meaning:"Bagaimana cuaca besok?" },
+        { kanji:"時間", reading:"じかん", meaning:"waktu" },
+        { kanji:"このレストランは有名です。", reading:"このレストランはゆうめいです。", meaning:"Restoran ini terkenal." },
+        { kanji:"手伝う", reading:"てつだう", meaning:"membantu", illustration: ILU_TETSUDAU },
+        { kanji:"便利なばしょにすんでいます。", reading:"べんりなばしょにすんでいます。", meaning:"Tinggal di tempat yang praktis/nyaman." }
     ]},
-    { name:"Siswa 7", words:[
-        { kanji:"経験", reading:"けいけん", meaning:"pengalaman" },
-        { kanji:"質問", reading:"しつもん", meaning:"pertanyaan" },
-        { kanji:"練習", reading:"れんしゅう", meaning:"latihan" },
-        { kanji:"準備", reading:"じゅんび", meaning:"persiapan" },
-        { kanji:"相談", reading:"そうだん", meaning:"konsultasi" }
+    { name:"Luki", words:[
+        { kanji:"説明", reading:"せつめい", meaning:"penjelasan", illustration: ILU_SETSUMEI },
+        { kanji:"運転するときは、きをつけてください。", reading:"うんてんするときは、きをつけてください。", meaning:"Saat mengemudi, harap hati-hati." },
+        { kanji:"心配", reading:"しんぱい", meaning:"khawatir" },
+        { kanji:"台所をきれいにそうじしました。", reading:"だいどころをきれいにそうじしました。", meaning:"Membersihkan dapur dengan bersih." },
+        { kanji:"会社から連絡がありました。", reading:"かいしゃかられんらくがありました。", meaning:"Ada kontak/hubungan dari perusahaan." }
     ]}
 ];
 
@@ -637,6 +658,7 @@ students.forEach(s => {
 let activeStudent = 0;
 
 const studentRow = document.getElementById("studentRow");
+const cardBadge = document.getElementById("cardBadge");
 const cardWord = document.getElementById("cardWord");
 const cardReading = document.getElementById("cardReading");
 const cardMeaning = document.getElementById("cardMeaning");
@@ -695,8 +717,18 @@ function renderCard(){
     const w = s.words[s.current];
     const result = s.results[s.current];
 
+    if(w.illustration){
+        cardBadge.innerHTML = w.illustration;
+        cardBadge.classList.add("illustrated");
+    } else {
+        cardBadge.innerHTML = "漢";
+        cardBadge.classList.remove("illustrated");
+    }
+
     cardWord.textContent = w.kanji;
+    cardWord.style.fontSize = w.kanji.length > 8 ? "24px" : (w.kanji.length > 4 ? "34px" : "48px");
     cardReading.textContent = w.reading;
+    cardReading.style.fontSize = w.reading.length > 15 ? "16px" : "20px";
     cardMeaning.textContent = w.meaning;
 
     revealBox.classList.remove("show");
