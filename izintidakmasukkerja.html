@@ -439,6 +439,12 @@ HOME
 <p>Cara izin sakit / cuti dalam bahasa Jepang — klik kartu di bawah</p>
 </header>
 
+<div class="viewer">
+  <div class="icon" id="icon"></div>
+  <div id="kanji" class="big"></div>
+  <button class="arti-btn" id="artiBtn" onclick="toggleArti()">Lihat Arti</button>
+  <div class="arti hidden" id="arti"></div>
+</div>
 
 <div class="dialogue-wrap">
   <div class="dialogue" id="dialogue"></div>
@@ -470,6 +476,8 @@ const ICONS = {
   calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><line x1="3.5" y1="9.5" x2="20.5" y2="9.5"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg>',
 
   cross: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>',
+
+  ivbag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16"/><path d="M8 3v3l-1.5 4.5A5.5 5.5 0 0 0 12 17.5a5.5 5.5 0 0 0 5.5-7L16 6V3"/><line x1="12" y1="17.5" x2="12" y2="20"/><path d="M10.5 21.5h3"/><line x1="9.5" y1="9" x2="14.5" y2="9"/></svg>',
 
   mask: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11c0-2 2-4 8-4s8 2 8 4v2c0 2.5-3.5 5-8 5s-8-2.5-8-5v-2Z"/><path d="M4 12H2"/><path d="M22 12h-2"/><path d="M8 13.5c1 .8 2.4 1.2 4 1.2s3-.4 4-1.2"/></svg>',
 
@@ -531,7 +539,7 @@ const data = {
   },
 
   muntaber:{
-    icon:"cross",
+    icon:"ivbag",
     kanji:"<ruby>胃腸炎<rt>いちょうえん</rt></ruby>",
     arti:"Muntaber",
     lines:[
