@@ -391,6 +391,10 @@ font-size:42px;
 
 font-weight:bold;
 
+line-height:1.25;
+
+word-break:break-word;
+
 }
 
 .card .h{
@@ -561,8 +565,22 @@ HOME
 <script>
 
 //============================
-// FLASH CARD
+// AUTO-SIZE FONT KARTU
 //============================
+
+function autoSizeCards(){
+    document.querySelectorAll(".card .j").forEach(function(el){
+        const len = el.textContent.trim().length;
+        let size;
+        if(len <= 2){ size = 42; }
+        else if(len === 3){ size = 34; }
+        else if(len === 4){ size = 28; }
+        else { size = 22; }
+        el.style.fontSize = size + "px";
+    });
+}
+
+autoSizeCards();
 
 function show(kanji){
 
