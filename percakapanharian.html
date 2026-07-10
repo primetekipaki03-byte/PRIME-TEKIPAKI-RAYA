@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Percakapan Kehidupan Sehari-hari Flash Card</title>
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --text:#001f3f;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:var(--text);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.home-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--gold);
+    color:#001530;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.home-btn:hover{ opacity:.85; }
+
+.home-icon{
+    width:24px;
+    height:24px;
+    object-fit:cover;
+    border-radius:4px;
+}
+
+.back-wrap{ padding:16px 20px 0; }
+
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    text-decoration:none;
+    padding:10px 18px;
+    background:#eef2f7;
+    border:1px solid #dde3ec;
+    color:var(--navy);
+    border-radius:999px;
+    font-weight:600;
+    font-size:14px;
+    transition:.2s;
+}
+
+.back-btn:hover{ background:#e2e8f2; }
+
+.dropdown{ position:relative; }
+
+.dropdown-btn{
+    background:none;
+    border:2px solid var(--gold);
+    color:var(--gold);
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.dropdown-btn:hover{
+    background:var(--gold);
+    color:#001530;
+}
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:45px;
+    left:0;
+    background:#022655;
+    border-radius:10px;
+    overflow:hidden;
+    min-width:220px;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:12px 15px;
+    color:#ffd700;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:var(--gold);
+    color:#001530;
+}
+
+.show{ display:block; }
+
+@media(max-width:600px){
+  .navbar-inner{flex-direction:column;align-items:flex-start;}
+  .nav-right{width:100%;}
+}
+
+/* =======================
+       HEADER
+======================= */
+
+header{
+    text-align:center;
+    padding:40px 20px 10px;
+}
+
+header h1{
+    font-size:36px;
+    color:#001f3f;
+    margin-bottom:10px;
+}
+
+header p{
+    font-size:17px;
+    color:#555;
+}
+
+/* =======================
+     FLASH CARD VIEWER
+======================= */
+
+.viewer{
+    max-width:900px;
+    margin:20px auto;
+    border:4px solid #001f3f;
+    border-radius:20px;
+    min-height:200px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:white;
+    padding:34px 20px;
+    text-align:center;
+    gap:16px;
+}
+
+.viewer .icon{
+    width:60px;
+    height:60px;
+    color:var(--navy);
+}
+
+.viewer .icon svg{
+    width:100%;
+    height:100%;
+}
+
+#kanji{
+    font-size:44px;
+    font-weight:bold;
+    line-height:1.6;
+}
+
+#kanji ruby rt{
+    font-size:16px;
+    color:#043668;
+}
+
+.arti-btn{
+    background:var(--gold);
+    color:#001530;
+    border:none;
+    padding:10px 22px;
+    border-radius:999px;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.arti-btn:hover{
+    opacity:.85;
+}
+
+.arti{
+    font-size:22px;
+    color:#0a3d91;
+    font-weight:700;
+    min-height:28px;
+}
+
+/* =======================
+     DIALOGUE BOX
+======================= */
+
+.dialogue-wrap{
+    max-width:900px;
+    margin:0 auto 30px;
+    padding:0 20px;
+}
+
+.dialogue{
+    border:2px solid #001f3f;
+    border-radius:15px;
+    padding:22px 25px;
+    background:#f7f9fc;
+}
+
+.line{
+    margin-bottom:16px;
+    line-height:2.1;
+    font-size:19px;
+}
+
+.line:last-child{ margin-bottom:0; }
+
+.line strong{
+    color:#043668;
+    margin-right:4px;
+}
+
+.line.boss strong{
+    color:#a66a00;
+}
+
+.line ruby rt{
+    font-size:12px;
+    color:#666;
+}
+
+.line-id{
+    font-size:15px;
+    color:#5a6b85;
+    font-style:italic;
+    margin-top:4px;
+}
+
+.line-id.hidden{
+    display:none;
+}
+
+.translate-row{
+    text-align:center;
+    margin-top:18px;
+}
+
+/* =======================
+        GRID
+======================= */
+
+.grid{
+    max-width:1200px;
+    margin:40px auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    border:2px solid #001f3f;
+    border-radius:15px;
+    padding:25px 15px;
+    cursor:pointer;
+    transition:.25s;
+    text-align:center;
+}
+
+.card:hover{
+    background:#043668;
+    color:white;
+    transform:translateY(-5px);
+}
+
+.card .icon2{
+    width:40px;
+    height:40px;
+    margin:0 auto 10px;
+    color:var(--navy);
+}
+
+.card .icon2 svg{
+    width:100%;
+    height:100%;
+}
+
+.card:hover .icon2{
+    color:white;
+}
+
+.card .j{
+    font-size:20px;
+    font-weight:bold;
+    line-height:1.5;
+    word-break:break-word;
+}
+
+.card .j ruby rt{
+    font-size:11px;
+    color:#666;
+}
+
+.card:hover .j ruby rt{
+    color:#dbe6f5;
+}
+
+.card .h{
+    margin-top:8px;
+    font-size:14px;
+    opacity:.8;
+}
+
+@media(max-width:768px){
+    .grid{ grid-template-columns:repeat(2,1fr); }
+    #kanji{ font-size:32px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+      <a href="izintidakmasukkerja.html">Latihan Percakapan</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+</div>
+</nav>
+
+<div class="back-wrap">
+<a href="izintidakmasukkerja.html" class="back-btn">← Kembali</a>
+</div>
+
+<header>
+<h1>日常生活の会話</h1>
+<p>Percakapan penting untuk kehidupan sehari-hari di Jepang — klik kartu di bawah</p>
+</header>
+
+<div class="viewer">
+  <div class="icon" id="icon"></div>
+  <div id="kanji"></div>
+  <div class="arti" id="arti"></div>
+</div>
+
+<div class="dialogue-wrap">
+  <div class="dialogue" id="dialogue"></div>
+  <div class="translate-row">
+    <button class="arti-btn" id="translateBtn" onclick="toggleTranslate()">Lihat Arti Percakapan</button>
+  </div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<footer style="text-align:center;padding:30px;color:#666;font-size:14px;">
+© Tekipaki Japanese Learning
+</footer>
+
+<script>
+
+//============================
+// ICON SET (svg, no emoji)
+//============================
+
+const ICONS = {
+
+  cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.8h7.6a2 2 0 0 0 2-1.6L20.5 8H6"/><circle cx="9.5" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg>',
+
+  bowl: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18a9 9 0 0 1-9 8 9 9 0 0 1-9-8Z"/><path d="M7 11c0-2 1-3 1-5"/><path d="M12 11c0-2.4 1.2-3.4 1.2-5.6"/><path d="M17 11c0-2 1-3 1-5"/></svg>',
+
+  tooth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.3 0-3 1.4-4.6 1.4C5.7 4.4 4 5.9 4 8.3c0 2 .8 2.7 1 4.7.2 2.3.6 3.7 1.4 6.6.3 1 .8 1.4 1.4 1.4.9 0 1-1 1.2-2.6.2-1.6.6-2.9 1.9-2.9s1.7 1.3 1.9 2.9c.2 1.6.3 2.6 1.2 2.6.6 0 1.1-.4 1.4-1.4.8-2.9 1.2-4.3 1.4-6.6.2-2 1-2.7 1-4.7 0-2.4-1.7-3.9-3.4-3.9C15 4.4 14.3 3 12 3Z"/></svg>',
+
+  bed: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5"/><path d="M3 18v2"/><path d="M21 18v2"/><path d="M3 13V8a1 1 0 0 1 1-1h6v6"/><circle cx="6.5" cy="9.5" r="1.3"/></svg>',
+
+  plane: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-7-3 9-5-2-3 4-1-4-5-1 3-3-6 1Z"/></svg>',
+
+  idcard: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M5 16c0-1.7 1.3-3 3-3s3 1.3 3 3"/><line x1="14" y1="9" x2="19" y2="9"/><line x1="14" y1="12.5" x2="19" y2="12.5"/></svg>',
+
+  document: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="16.5" x2="13" y2="16.5"/><path d="M8 20.5c1.5-1 3-1 4.5 0"/></svg>',
+
+  fuel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v15"/><path d="M2 21h14"/><path d="M14 10h2.5L19 12.5V17a1.5 1.5 0 0 1-3 0v-2a1 1 0 0 0-1-1"/><line x1="6" y1="7" x2="12" y2="7"/></svg>'
+
+};
+
+//============================
+// DATA
+//============================
+
+const data = {
+
+  super:{
+    icon:"cart",
+    kanji:"<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>",
+    arti:"Belanja di Supermarket",
+    lines:[
+      {who:"店員", boss:true, txt:"いらっしゃいませ。", id:"Selamat datang."},
+      {who:"店員", boss:true, txt:"<ruby>全部<rt>ぜんぶ</rt></ruby>で2,580<ruby>円<rt>えん</rt></ruby>です。", id:"Semuanya 2.580 yen."},
+      {who:"店員", boss:true, txt:"お<ruby>支払<rt>しはら</rt></ruby>いは<ruby>現金<rt>げんきん</rt></ruby>ですか、それともカードですか。", id:"Pembayarannya dengan tunai atau kartu?"},
+      {who:"客", boss:false, txt:"カードでお<ruby>願<rt>ねが</rt></ruby>いします。", id:"Dengan kartu."},
+      {who:"店員", boss:true, txt:"レジ<ruby>袋<rt>ぶくろ</rt></ruby>はご<ruby>利用<rt>りよう</rt></ruby>になりますか。", id:"Apakah memerlukan kantong plastik?"},
+      {who:"客", boss:false, txt:"いいえ、いりません。", id:"Tidak, tidak perlu."},
+      {who:"店員", boss:true, txt:"かしこまりました。", id:"Baik, dimengerti."},
+      {who:"店員", boss:true, txt:"ありがとうございました。", id:"Terima kasih banyak."}
+    ]
+  },
+
+  resto:{
+    icon:"bowl",
+    kanji:"<ruby>注文<rt>ちゅうもん</rt></ruby>",
+    arti:"Memesan di Restoran (Sonkeigo)",
+    lines:[
+      {who:"店員", boss:true, txt:"いらっしゃいませ。<ruby>何名様<rt>なんめいさま</rt></ruby>ですか。", id:"Selamat datang. Untuk berapa orang?"},
+      {who:"客", boss:false, txt:"<ruby>一人<rt>ひとり</rt></ruby>です。", id:"Sendirian (satu orang)."},
+      {who:"店員", boss:true, txt:"こちらへどうぞ。ご<ruby>注文<rt>ちゅうもん</rt></ruby>はお<ruby>決<rt>き</rt></ruby>まりですか。", id:"Silakan lewat sini. Apakah sudah menentukan pesanan?"},
+      {who:"客", boss:false, txt:"はい。ラーメンを<ruby>一<rt>ひと</rt></ruby>つお<ruby>願<rt>ねが</rt></ruby>いします。", id:"Ya. Tolong satu ramen."},
+      {who:"店員", boss:true, txt:"お<ruby>飲<rt>の</rt></ruby>み<ruby>物<rt>もの</rt></ruby>はいかがですか。", id:"Bagaimana dengan minumannya?"},
+      {who:"客", boss:false, txt:"お<ruby>水<rt>みず</rt></ruby>をお<ruby>願<rt>ねが</rt></ruby>いします。", id:"Tolong air putih."},
+      {who:"店員", boss:true, txt:"かしこまりました。", id:"Baik, dimengerti."}
+    ]
+  },
+
+  haisha:{
+    icon:"tooth",
+    kanji:"<ruby>歯医者<rt>はいしゃ</rt></ruby>",
+    arti:"Di Dokter Gigi",
+    lines:[
+      {who:"受付", boss:true, txt:"<ruby>今日<rt>きょう</rt></ruby>はどうしましたか。", id:"Ada keluhan apa hari ini?"},
+      {who:"患者", boss:false, txt:"<ruby>歯<rt>は</rt></ruby>が<ruby>痛<rt>いた</rt></ruby>いです。", id:"Gigi saya sakit."},
+      {who:"受付", boss:true, txt:"いつからですか。", id:"Sejak kapan?"},
+      {who:"患者", boss:false, txt:"<ruby>昨日<rt>きのう</rt></ruby>からです。", id:"Sejak kemarin."},
+      {who:"医者", boss:true, txt:"<ruby>口<rt>くち</rt></ruby>を<ruby>開<rt>あ</rt></ruby>けてください。", id:"Tolong buka mulutnya."},
+      {who:"患者", boss:false, txt:"はい。", id:"Baik."},
+      {who:"医者", boss:true, txt:"<ruby>虫歯<rt>むしば</rt></ruby>がありますね。<ruby>今日<rt>きょう</rt></ruby>は<ruby>薬<rt>くすり</rt></ruby>を<ruby>出<rt>だ</rt></ruby>しますので、<ruby>痛<rt>いた</rt></ruby>みが<ruby>続<rt>つづ</rt></ruby>いたらまた<ruby>来<rt>き</rt></ruby>てください。", id:"Ada gigi berlubang ya. Hari ini saya berikan obat, kalau rasa sakitnya berlanjut silakan datang lagi."},
+      {who:"患者", boss:false, txt:"<ruby>分<rt>わ</rt></ruby>かりました。ありがとうございます。", id:"Baik, dimengerti. Terima kasih."}
+    ]
+  },
+
+  hotel:{
+    icon:"bed",
+    kanji:"<ruby>予約<rt>よやく</rt></ruby>",
+    arti:"Memesan Hotel",
+    lines:[
+      {who:"客", boss:false, txt:"すみません。<ruby>部屋<rt>へや</rt></ruby>を<ruby>予約<rt>よやく</rt></ruby>したいです。", id:"Permisi. Saya ingin memesan kamar."},
+      {who:"スタッフ", boss:true, txt:"はい。<ruby>何月何日<rt>なんがつなんにち</rt></ruby>にご<ruby>宿泊<rt>しゅくはく</rt></ruby>ですか。", id:"Baik. Tanggal berapa Anda akan menginap?"},
+      {who:"客", boss:false, txt:"7<ruby>月<rt>がつ</rt></ruby>15<ruby>日<rt>にち</rt></ruby>です。", id:"Tanggal 15 Juli."},
+      {who:"スタッフ", boss:true, txt:"<ruby>何泊<rt>なんぱく</rt></ruby>のご<ruby>予定<rt>よてい</rt></ruby>ですか。", id:"Berapa malam rencananya?"},
+      {who:"客", boss:false, txt:"2<ruby>泊<rt>はく</rt></ruby>です。", id:"2 malam."},
+      {who:"スタッフ", boss:true, txt:"お<ruby>名前<rt>なまえ</rt></ruby>をお<ruby>願<rt>ねが</rt></ruby>いします。", id:"Boleh minta nama Anda?"},
+      {who:"客", boss:false, txt:"アリです。", id:"Ali."},
+      {who:"スタッフ", boss:true, txt:"ご<ruby>予約<rt>よやく</rt></ruby>を<ruby>承<rt>うけたまわ</rt></ruby>りました。", id:"Pemesanan Anda sudah kami terima."}
+    ]
+  },
+
+  hikouki:{
+    icon:"plane",
+    kanji:"<ruby>航空券<rt>こうくうけん</rt></ruby>",
+    arti:"Memesan Tiket Pesawat",
+    lines:[
+      {who:"スタッフ", boss:true, txt:"どちらまでですか。", id:"Sampai mana tujuannya?"},
+      {who:"客", boss:false, txt:"<ruby>東京<rt>とうきょう</rt></ruby>までお<ruby>願<rt>ねが</rt></ruby>いします。", id:"Tolong sampai Tokyo."},
+      {who:"スタッフ", boss:true, txt:"<ruby>片道<rt>かたみち</rt></ruby>ですか、<ruby>往復<rt>おうふく</rt></ruby>ですか。", id:"Sekali jalan atau pulang-pergi?"},
+      {who:"客", boss:false, txt:"<ruby>往復<rt>おうふく</rt></ruby>でお<ruby>願<rt>ねが</rt></ruby>いします。", id:"Tolong pulang-pergi."},
+      {who:"スタッフ", boss:true, txt:"<ruby>国内線<rt>こくないせん</rt></ruby>ですか、<ruby>国際線<rt>こくさいせん</rt></ruby>ですか。", id:"Penerbangan domestik atau internasional?"},
+      {who:"客", boss:false, txt:"<ruby>国内線<rt>こくないせん</rt></ruby>です。", id:"Domestik."},
+      {who:"スタッフ", boss:true, txt:"ご<ruby>出発日<rt>しゅっぱつび</rt></ruby>はいつですか。", id:"Kapan tanggal keberangkatannya?"},
+      {who:"客", boss:false, txt:"8<ruby>月<rt>がつ</rt></ruby>10<ruby>日<rt>とおか</rt></ruby>です。", id:"Tanggal 10 Agustus."},
+      {who:"スタッフ", boss:true, txt:"お<ruby>名前<rt>なまえ</rt></ruby>をお<ruby>願<rt>ねが</rt></ruby>いします。", id:"Boleh minta nama Anda?"},
+      {who:"客", boss:false, txt:"ブディです。", id:"Budi."},
+      {who:"スタッフ", boss:true, txt:"お<ruby>席<rt>せき</rt></ruby>は<ruby>窓側<rt>まどがわ</rt></ruby>と<ruby>通路側<rt>つうろがわ</rt></ruby>、どちらがよろしいですか。", id:"Untuk kursi, pilih sisi jendela atau sisi lorong?"},
+      {who:"客", boss:false, txt:"<ruby>窓側<rt>まどがわ</rt></ruby>でお<ruby>願<rt>ねが</rt></ruby>いします。", id:"Tolong sisi jendela."}
+    ]
+  },
+
+  zairyu:{
+    icon:"idcard",
+    kanji:"<ruby>在留<rt>ざいりゅう</rt></ruby>カード",
+    arti:"Memperbarui Zairyu Card",
+    lines:[
+      {who:"職員", boss:true, txt:"<ruby>今日<rt>きょう</rt></ruby>はどうしましたか。", id:"Ada keperluan apa hari ini?"},
+      {who:"外国人", boss:false, txt:"<ruby>在留<rt>ざいりゅう</rt></ruby>カードを<ruby>更新<rt>こうしん</rt></ruby>したいです。", id:"Saya ingin memperbarui kartu izin tinggal (zairyu card)."},
+      {who:"職員", boss:true, txt:"パスポートを<ruby>見<rt>み</rt></ruby>せてください。", id:"Tolong tunjukkan paspornya."},
+      {who:"外国人", boss:false, txt:"はい、どうぞ。", id:"Baik, silakan."},
+      {who:"職員", boss:true, txt:"ありがとうございます。", id:"Terima kasih."}
+    ]
+  },
+
+  moushikomi:{
+    icon:"document",
+    kanji:"<ruby>申込書<rt>もうしこみしょ</rt></ruby>",
+    arti:"Mengisi Formulir Pendaftaran (Sonkeigo)",
+    lines:[
+      {who:"職員", boss:true, txt:"この<ruby>申込書<rt>もうしこみしょ</rt></ruby>をご<ruby>記入<rt>きにゅう</rt></ruby>ください。", id:"Silakan isi formulir pendaftaran ini."},
+      {who:"外国人", boss:false, txt:"はい。", id:"Baik."},
+      {who:"外国人", boss:false, txt:"ここに<ruby>名前<rt>なまえ</rt></ruby>を<ruby>書<rt>か</rt></ruby>きますか。", id:"Nama ditulis di sini ya?"},
+      {who:"職員", boss:true, txt:"はい。ご<ruby>住所<rt>じゅうしょ</rt></ruby>とお<ruby>電話番号<rt>でんわばんごう</rt></ruby>もお<ruby>書<rt>か</rt></ruby>きください。", id:"Ya. Tolong tulis juga alamat dan nomor telepon Anda."},
+      {who:"外国人", boss:false, txt:"<ruby>分<rt>わ</rt></ruby>かりました。", id:"Baik, dimengerti."},
+      {who:"職員", boss:true, txt:"<ruby>最後<rt>さいご</rt></ruby>にこちらにご<ruby>署名<rt>しょめい</rt></ruby>をお<ruby>願<rt>ねが</rt></ruby>いいたします。", id:"Terakhir, mohon tanda tangan di sini."},
+      {who:"外国人", boss:false, txt:"はい、<ruby>書<rt>か</rt></ruby>きました。", id:"Baik, sudah saya tulis."},
+      {who:"職員", boss:true, txt:"ありがとうございます。<ruby>確認<rt>かくにん</rt></ruby>いたします。", id:"Terima kasih. Saya akan periksa."}
+    ]
+  },
+
+  gasoline:{
+    icon:"fuel",
+    kanji:"ガソリン",
+    arti:"Mengisi Bensin",
+    lines:[
+      {who:"店員", boss:true, txt:"いらっしゃいませ。", id:"Selamat datang."},
+      {who:"店員", boss:true, txt:"レギュラーですか。ハイオクですか。", id:"Reguler atau High-Octane (RON tinggi)?"},
+      {who:"客", boss:false, txt:"レギュラー<ruby>満<rt>まん</rt></ruby>タンでお<ruby>願<rt>ねが</rt></ruby>いします。", id:"Tolong reguler, penuh."},
+      {who:"店員", boss:true, txt:"<ruby>満<rt>まん</rt></ruby>タンでよろしいですか。", id:"Baik, penuh ya?"},
+      {who:"客", boss:false, txt:"はい、お<ruby>願<rt>ねが</rt></ruby>いします。", id:"Ya, tolong."},
+      {who:"店員", boss:true, txt:"お<ruby>支払<rt>しはら</rt></ruby>いは<ruby>現金<rt>げんきん</rt></ruby>ですか。カードですか。", id:"Pembayarannya tunai atau kartu?"},
+      {who:"客", boss:false, txt:"カードでお<ruby>願<rt>ねが</rt></ruby>いします。", id:"Dengan kartu."},
+      {who:"店員", boss:true, txt:"ありがとうございました。", id:"Terima kasih banyak."}
+    ]
+  }
+
+};
+
+//============================
+// BUILD GRID
+//============================
+
+const grid = document.getElementById("grid");
+
+Object.keys(data).forEach(key=>{
+
+    const d = data[key];
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.onclick = ()=>show(key);
+
+    card.innerHTML =
+      '<div class="icon2">' + ICONS[d.icon] + '</div>' +
+      '<div class="j">' + d.kanji + '</div>' +
+      '<div class="h">' + d.arti + '</div>';
+
+    grid.appendChild(card);
+
+});
+
+//============================
+// SHOW CARD
+//============================
+
+function show(key){
+
+    const d = data[key];
+    if(!d) return;
+
+    document.getElementById("icon").innerHTML = ICONS[d.icon];
+
+    document.getElementById("kanji").innerHTML = d.kanji;
+
+    document.getElementById("arti").textContent = d.arti;
+
+    let box = document.getElementById("dialogue");
+    box.innerHTML = "";
+    d.lines.forEach(l=>{
+        const row = document.createElement("div");
+        row.className = "line" + (l.boss ? " boss" : "");
+        row.innerHTML =
+          '<strong>' + l.who + '：</strong>' + l.txt +
+          '<div class="line-id hidden">' + l.id + '</div>';
+        box.appendChild(row);
+    });
+
+    document.getElementById("translateBtn").textContent = "Lihat Arti Percakapan";
+}
+
+function toggleTranslate(){
+    const lines = document.querySelectorAll("#dialogue .line-id");
+    const btn = document.getElementById("translateBtn");
+    const willShow = lines.length > 0 && lines[0].classList.contains("hidden");
+    lines.forEach(el=>{
+        el.classList.toggle("hidden", !willShow);
+    });
+    btn.textContent = willShow ? "Sembunyikan Arti Percakapan" : "Lihat Arti Percakapan";
+}
+
+// tampilkan default saat load
+show('super');
+
+//============================
+// DROPDOWN
+//============================
+
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+        if(menu.id!=id){
+            menu.classList.remove("show");
+        }
+    });
+    document.getElementById(id).classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+            menu.classList.remove("show");
+        });
+    }
+});
+
+//============================
+// PROTEKSI
+//============================
+
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("copy",e=>e.preventDefault());
+document.addEventListener("cut",e=>e.preventDefault());
+document.addEventListener("selectstart",e=>e.preventDefault());
+document.addEventListener("dragstart",e=>e.preventDefault());
+
+document.addEventListener("keydown",function(e){
+    if(
+    (e.ctrlKey&&["c","u","s","p"].includes(e.key.toLowerCase()))
+    ||
+    e.key==="F12"
+    ||
+    (e.ctrlKey&&e.shiftKey&&["i","j","c"].includes(e.key.toLowerCase()))
+    ){
+        e.preventDefault();
+    }
+});
+
+</script>
+
+</body>
+</html>
