@@ -213,15 +213,6 @@ header p{
     color:#043668;
 }
 
-.big{
-    animation:zoom .3s;
-}
-
-@keyframes zoom{
-    0%{ transform:scale(.5); opacity:0; }
-    100%{ transform:scale(1); opacity:1; }
-}
-
 .arti-btn{
     background:var(--gold);
     color:#001530;
@@ -243,10 +234,6 @@ header p{
     color:#0a3d91;
     font-weight:700;
     min-height:28px;
-}
-
-.arti.hidden{
-    display:none;
 }
 
 /* =======================
@@ -441,9 +428,8 @@ HOME
 
 <div class="viewer">
   <div class="icon" id="icon"></div>
-  <div id="kanji" class="big"></div>
-  <button class="arti-btn" id="artiBtn" onclick="toggleArti()">Lihat Arti</button>
-  <div class="arti hidden" id="arti"></div>
+  <div id="kanji"></div>
+  <div class="arti" id="arti"></div>
 </div>
 
 <div class="dialogue-wrap">
@@ -610,16 +596,9 @@ function show(key){
 
     document.getElementById("icon").innerHTML = ICONS[d.icon];
 
-    let x = document.getElementById("kanji");
-    x.innerHTML = d.kanji;
-    x.classList.remove("big");
-    void x.offsetWidth;
-    x.classList.add("big");
+    document.getElementById("kanji").innerHTML = d.kanji;
 
-    const artiEl = document.getElementById("arti");
-    artiEl.textContent = d.arti;
-    artiEl.classList.add("hidden");
-    document.getElementById("artiBtn").textContent = "Lihat Arti";
+    document.getElementById("arti").textContent = d.arti;
 
     let box = document.getElementById("dialogue");
     box.innerHTML = "";
@@ -633,13 +612,6 @@ function show(key){
     });
 
     document.getElementById("translateBtn").textContent = "Lihat Arti Percakapan";
-}
-
-function toggleArti(){
-    const artiEl = document.getElementById("arti");
-    const btn = document.getElementById("artiBtn");
-    const hidden = artiEl.classList.toggle("hidden");
-    btn.textContent = hidden ? "Lihat Arti" : "Sembunyikan Arti";
 }
 
 function toggleTranslate(){
