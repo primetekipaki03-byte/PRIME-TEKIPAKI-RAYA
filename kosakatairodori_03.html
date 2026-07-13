@@ -5,7 +5,7 @@
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bab 3 - Daftar Kosakata JFT A2</title>
+<title>Bab 2 - Daftar Kosakata JFT A2</title>
 
 <style>
 
@@ -514,10 +514,10 @@ SOAL JFT A — TEST 5
 </div>
 
 <header>
-<div class="eyebrow">📚 UNIT 3 · 48 KOSAKATA</div>
-<h1>Bab 3</h1>
+<div class="eyebrow">📚 UNIT 2 · 33 KOSAKATA</div>
+<h1>Bab 2</h1>
 <p>
-Kosakata dasar untuk Unit 3. Setiap baris menampilkan kotoba (cara baca), kanji, dan arti
+Kosakata dasar untuk Unit 2. Setiap baris menampilkan kotoba (cara baca), kanji, dan arti
 dalam Bahasa Indonesia. Gunakan kolom pencarian di bawah untuk mencari kosakata dengan cepat.
 </p>
 </header>
@@ -590,6 +590,7 @@ dalam Bahasa Indonesia. Gunakan kolom pencarian di bawah untuk mencari kosakata 
 <tr><td class="col-no"></td><td class="col-kotoba">クーポン</td><td class="col-kanji">-</td><td class="col-arti">kupon</td></tr>
 <tr><td class="col-no"></td><td class="col-kotoba">わりかん</td><td class="col-kanji">割り勘</td><td class="col-arti">patungan</td></tr>
 
+
 </tbody>
 
 </table>
@@ -601,13 +602,13 @@ dalam Bahasa Indonesia. Gunakan kolom pencarian di bawah untuk mencari kosakata 
 </div>
 
 <div class="nav-bottom">
-    <a href="kosakataunit2.html" class="prev">
+    <a href="kosakataunit1.html" class="prev">
         <span class="dir">← Sebelumnya</span>
-        Bab 2
+        Bab 1
     </a>
-    <a href="kosakataunit4.html" class="next">
+    <a href="kosakataunit3.html" class="next">
         <span class="dir">Selanjutnya →</span>
-        Bab 4
+        Bab 3
     </a>
 </div>
 
@@ -686,7 +687,7 @@ document.addEventListener("click",function(e){
 
 // ================= NOMOR + PENCARIAN + PAGINASI =================
 
-const ROWS_PER_PAGE = 20;
+const ROWS_PER_PAGE = 50;
 let currentPage = 1;
 
 const allRows = Array.from(document.querySelectorAll("#vocabBody tr"));
@@ -733,6 +734,12 @@ function renderPagination(totalPages){
 
     const pag = document.getElementById("pagination");
     pag.innerHTML = "";
+
+    if(totalPages <= 1){
+        pag.style.display = "none";
+        return;
+    }
+    pag.style.display = "flex";
 
     function makeLink(label, page, opts){
         opts = opts || {};
