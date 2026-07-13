@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untaian Doa — Sholawat, Al-Fatihah &amp; Ayat Kursi Penutup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#0f3025;
+  --deep2:#08201a;
+  --deep3:#164636;
+  --gold:#cf9f3f;
+  --gold-soft:#e6c877;
+  --paper:#f7f2e5;
+  --paper2:#eee3c8;
+  --ink:#20261f;
+  --ink-soft:#565c4f;
+  --brick:#9c4a2e;
+  --muted:#a9bdae;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+h1,h2,h3{font-family:"Cormorant Garamond",serif;}
+.arab{font-family:"Amiri",serif;direction:rtl;}
+.mono{font-family:"JetBrains Mono",monospace;}
+a{color:inherit;}
+
+/* ===== NAVBAR ===== */
+#navbar{position:sticky;top:0;z-index:999;background:var(--deep2);border-bottom:2px solid rgba(207,159,63,.3);box-shadow:0 4px 14px rgba(0,0,0,.25);}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--deep2);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;}
+.home-btn:hover{opacity:.85;}
+.home-icon{width:22px;height:22px;}
+.nav-right{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
+.nav-right a{border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-weight:bold;font-size:.85rem;text-decoration:none;transition:.15s;}
+.nav-right a:hover{background:var(--gold);color:var(--deep2);}
+@media(max-width:640px){.navbar-inner{flex-direction:column;align-items:flex-start;gap:8px;}.nav-right{width:100%;}}
+
+/* ===== HERO ===== */
+.hero{position:relative;background:radial-gradient(120% 140% at 15% -10%, var(--deep3), var(--deep) 55%, var(--deep2) 100%);color:#fff;padding:80px 20px 90px;text-align:center;overflow:hidden;border-bottom:3px solid var(--gold);}
+.hero-orn{position:absolute;font-family:"Amiri",serif;font-size:min(55vw,480px);color:rgba(207,159,63,.07);top:50%;left:50%;transform:translate(-50%,-50%);line-height:1;user-select:none;pointer-events:none;white-space:nowrap;}
+.hero-inner{position:relative;z-index:2;max-width:720px;margin:0 auto;}
+.seal{display:inline-flex;align-items:center;justify-content:center;width:76px;height:76px;border:3px solid var(--gold);border-radius:50%;color:var(--gold);font-family:"Amiri",serif;font-weight:700;font-size:1.5rem;margin-bottom:22px;}
+.hero .eyebrow{font-family:"JetBrains Mono",monospace;letter-spacing:3px;text-transform:uppercase;color:var(--gold-soft);font-size:.75rem;margin-bottom:14px;}
+.hero h1{font-size:clamp(2rem,5vw,3.1rem);color:#fff;line-height:1.25;margin-bottom:14px;}
+.hero h1 span{color:var(--gold);}
+.hero p{color:var(--muted);font-size:1.03rem;line-height:1.7;max-width:540px;margin:0 auto 30px;}
+.hero-cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.btn{display:inline-block;text-decoration:none;padding:13px 24px;border-radius:10px;font-weight:700;font-size:.92rem;transition:.18s;cursor:pointer;border:2px solid transparent;}
+.btn-gold{background:var(--gold);color:var(--deep2);}
+.btn-gold:hover{background:var(--gold-soft);transform:translateY(-2px);}
+.btn-ghost{border-color:rgba(255,255,255,.35);color:#fff;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ===== LAYOUT ===== */
+#app{max-width:900px;margin:0 auto;padding:60px 20px 20px;}
+.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px;flex-wrap:wrap;}
+.section-head .stamp-mini{width:32px;height:32px;flex:none;border:2px solid var(--brick);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--brick);font-weight:700;font-family:"Amiri",serif;font-size:.85rem;}
+.section-head h2{font-size:1.6rem;color:var(--deep);}
+.section-head .jp{font-family:"JetBrains Mono",monospace;color:var(--brick);font-size:.75rem;letter-spacing:1px;}
+.section-sub{color:var(--ink-soft);font-size:.92rem;margin:-8px 0 26px;max-width:620px;}
+
+/* ===== CARD (ayat/doa box) ===== */
+.card{background:#fff;border:1px solid var(--paper2);border-radius:16px;padding:28px 26px;margin-bottom:22px;box-shadow:0 2px 10px rgba(15,48,37,.06);}
+.card .arab-block{font-size:1.7rem;line-height:2.5;color:var(--deep2);text-align:right;margin-bottom:14px;}
+.card .latin{font-style:italic;color:var(--ink-soft);font-size:.95rem;line-height:1.7;margin-bottom:10px;}
+.card .terjemah{font-size:.92rem;color:var(--ink);line-height:1.7;border-top:1px dashed var(--paper2);padding-top:12px;}
+.ayat-no{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--brick);color:#fff;font-family:"JetBrains Mono",monospace;font-size:.7rem;margin-right:6px;}
+
+/* ===== sholawat repeat grid ===== */
+.repeat-note{background:var(--deep3);color:var(--gold-soft);border-radius:12px;padding:14px 18px;font-family:"JetBrains Mono",monospace;font-size:.8rem;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.repeat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:64px;}
+.repeat-tile{background:#12362b;border:1px solid rgba(207,159,63,.2);border-radius:12px;padding:14px 10px;text-align:center;color:#fff;}
+.repeat-tile .count{font-family:"JetBrains Mono",monospace;color:var(--gold);font-size:.7rem;letter-spacing:1px;margin-bottom:6px;}
+.repeat-tile .arab-mini{font-family:"Amiri",serif;font-size:1.25rem;direction:rtl;}
+
+/* ===== materi cards ===== */
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:64px;}
+@media(max-width:640px){.grid2{grid-template-columns:1fr;}}
+.materi-card{background:#fff;border:1px solid var(--paper2);border-radius:14px;padding:24px 22px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:8px;box-shadow:0 2px 10px rgba(15,48,37,.05);transition:.2s;position:relative;overflow:hidden;}
+.materi-card::before{content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gold);transform:scaleY(0);transform-origin:top;transition:.2s;}
+.materi-card:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(15,48,37,.14);}
+.materi-card:hover::before{transform:scaleY(1);}
+.materi-card .ic{font-size:1.6rem;}
+.materi-card h3{font-size:1.05rem;color:var(--deep);}
+.materi-card p{font-size:.85rem;color:var(--ink-soft);line-height:1.5;}
+
+footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20px;border-top:1px solid var(--paper2);}
+footer .fseal{color:var(--brick);}
+</style>
+</head>
+<body translate="no">
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-left">
+<a href="#" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
+HOME
+</a>
+</div>
+<div class="nav-right">
+<a href="#sholawat">Sholawat Jibril</a>
+<a href="#doa">Doa Harian</a>
+<a href="#fatihah">Al-Fatihah</a>
+<a href="#baqarah">Penutup Al-Baqarah</a>
+</div>
+</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-orn" aria-hidden="true">دعاء</div>
+  <div class="hero-inner">
+    <div class="seal">دعاء</div>
+    <div class="eyebrow">Untaian Dzikir &amp; Doa Harian</div>
+    <h1>Merangkai <span>Doa</span><br>di Setiap Langkah</h1>
+    <p>Kumpulan sholawat, doa harian, surat Al-Fatihah, dan dua ayat penutup Al-Baqarah untuk dibaca dan dihafalkan.</p>
+    <div class="hero-cta">
+      <a href="#sholawat" class="btn btn-gold">▶ Mulai dari Sholawat</a>
+      <a href="#fatihah" class="btn btn-ghost">Langsung ke Al-Fatihah</a>
+    </div>
+  </div>
+</section>
+
+<div id="app">
+
+  <!-- ===== 1. SHOLAWAT JIBRIL 11x ===== -->
+  <div id="sholawat">
+    <div class="section-head">
+      <div class="stamp-mini">١١</div>
+      <h2>Sholawat Jibril</h2>
+      <span class="jp">dibaca 11 kali</span>
+    </div>
+    <p class="section-sub">Sholawat pendek yang biasa diamalkan sebanyak 11 kali dalam satu majelis dzikir.</p>
+
+    <div class="repeat-note">🔁 Ulangi bacaan berikut sebanyak <strong>11×</strong> secara berturut-turut.</div>
+
+    <div class="card">
+      <div class="arab-block">صَلَّى اللهُ عَلَى مُحَمَّد</div>
+      <div class="latin">Ṣallallāhu ‘alā Muḥammad</div>
+      <div class="terjemah">Artinya: "Semoga Allah melimpahkan rahmat dan kesejahteraan kepada Nabi Muhammad ﷺ."</div>
+    </div>
+
+    <div class="repeat-grid">
+      <div class="repeat-tile"><div class="count">BACAAN 01</div><div class="arab-mini">صَلَّى اللهُ عَلَى مُحَمَّد</div></div>
+      <div class="repeat-tile"><div class="count">BACAAN 02</div><div class="arab-mini">صَلَّى اللهُ عَلَى مُحَمَّد</div></div>
+      <div class="repeat-tile"><div class="count">BACAAN 03</div><div class="arab-mini">صَلَّى اللهُ عَلَى مُحَمَّد</div></div>
+      <div class="repeat-tile"><div class="count">BACAAN 04</div><div class="arab-mini">صَلَّى اللهُ عَلَى مُحَمَّد</div></div>
+      <div class="repeat-tile"><div class="count">BACAAN 05</div><div class="arab-mini">صَلَّى اللهُ عَلَى مُحَمَّد</div></div>
+      <div class="repeat-tile"><div class="count">BACAAN 06</div><div class="arab-mini">صَلَّى اللهُ عَلَى مُحَمَّد</div></div>
+      <div class="repeat-tile"><div class="count">BACAAN 07</div><div class="arab-mini">صَلَّى اللهُ عَلَى مُحَمَّد</div></div>
+      <div class="repeat-tile"><div class="count">BACAAN 08</div><div class="arab-mini">صَلَّى اللهُ عَلَى مُحَمَّد</div></div>
+      <div class="repeat-tile"><div class="count">BACAAN 09</div><div class="arab-mini">صَلَّى اللهُ عَلَى مُحَمَّد</div></div>
+      <div class="repeat-tile"><div class="count">BACAAN 10</div><div class="arab-mini">صَلَّى اللهُ عَلَى مُحَمَّد</div></div>
+      <div class="repeat-tile"><div class="count">BACAAN 11</div><div class="arab-mini">صَلَّى اللهُ عَلَى مُحَمَّد</div></div>
+    </div>
+  </div>
+
+  <!-- ===== 2. ISI DOA (Doa Harian) ===== -->
+  <div id="doa">
+    <div class="section-head">
+      <div class="stamp-mini">🤲</div>
+      <h2>Doa Harian</h2>
+      <span class="jp">contoh — silakan disesuaikan</span>
+    </div>
+    <p class="section-sub">Beberapa contoh doa harian yang sering dibaca. Bagian ini bisa kamu ganti dengan doa spesifik yang kamu inginkan (doa sebelum belajar, doa perjalanan, dll).</p>
+
+    <div class="card">
+      <h3 style="margin-bottom:10px;font-size:1rem;color:var(--brick);">Doa Sebelum Belajar</h3>
+      <div class="arab-block">رَبِّ زِدْنِي عِلْمًا وَارْزُقْنِي فَهْمًا</div>
+      <div class="latin">Rabbi zidnī ‘ilman wa-rzuqnī fahmā</div>
+      <div class="terjemah">Artinya: "Ya Tuhanku, tambahkanlah ilmu kepadaku dan berikanlah aku pemahaman yang baik."</div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:10px;font-size:1rem;color:var(--brick);">Doa Keluar Rumah</h3>
+      <div class="arab-block">بِسْمِ اللهِ تَوَكَّلْتُ عَلَى اللهِ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللهِ</div>
+      <div class="latin">Bismillāhi tawakkaltu ‘alallāhi wa lā ḥaula wa lā quwwata illā billāh</div>
+      <div class="terjemah">Artinya: "Dengan nama Allah, aku bertawakal kepada Allah, tiada daya dan kekuatan kecuali dengan pertolongan Allah."</div>
+    </div>
+
+    <div class="card" style="margin-bottom:64px;">
+      <h3 style="margin-bottom:10px;font-size:1rem;color:var(--brick);">Doa Kebaikan Dunia &amp; Akhirat</h3>
+      <div class="arab-block">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div>
+      <div class="latin">Rabbanā ātinā fid-dunyā ḥasanah wa fil-ākhirati ḥasanah wa qinā ‘adhāban-nār</div>
+      <div class="terjemah">Artinya: "Ya Tuhan kami, berilah kami kebaikan di dunia dan kebaikan di akhirat, dan peliharalah kami dari siksa neraka."</div>
+    </div>
+  </div>
+
+  <!-- ===== 3. AL-FATIHAH ===== -->
+  <div id="fatihah">
+    <div class="section-head">
+      <div class="stamp-mini">١</div>
+      <h2>Surat Al-Fātiḥah</h2>
+      <span class="jp">7 ayat</span>
+    </div>
+    <p class="section-sub">Surat pembuka Al-Qur'an yang dibaca di setiap rakaat salat.</p>
+
+    <div class="card">
+      <div class="arab-block"><span class="ayat-no">1</span>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <div class="latin">Bismillāhir-raḥmānir-raḥīm</div>
+      <div class="terjemah">"Dengan nama Allah Yang Maha Pengasih, Maha Penyayang."</div>
+    </div>
+    <div class="card">
+      <div class="arab-block"><span class="ayat-no">2</span>الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div>
+      <div class="latin">Al-ḥamdu lillāhi rabbil-‘ālamīn</div>
+      <div class="terjemah">"Segala puji bagi Allah, Tuhan seluruh alam."</div>
+    </div>
+    <div class="card">
+      <div class="arab-block"><span class="ayat-no">3</span>الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <div class="latin">Ar-raḥmānir-raḥīm</div>
+      <div class="terjemah">"Yang Maha Pengasih, Maha Penyayang."</div>
+    </div>
+    <div class="card">
+      <div class="arab-block"><span class="ayat-no">4</span>مَالِكِ يَوْمِ الدِّينِ</div>
+      <div class="latin">Māliki yaumid-dīn</div>
+      <div class="terjemah">"Pemilik hari pembalasan."</div>
+    </div>
+    <div class="card">
+      <div class="arab-block"><span class="ayat-no">5</span>إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ</div>
+      <div class="latin">Iyyāka na‘budu wa iyyāka nasta‘īn</div>
+      <div class="terjemah">"Hanya kepada-Mu kami menyembah, dan hanya kepada-Mu kami memohon pertolongan."</div>
+    </div>
+    <div class="card">
+      <div class="arab-block"><span class="ayat-no">6</span>اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ</div>
+      <div class="latin">Ihdinaṣ-ṣirāṭal-mustaqīm</div>
+      <div class="terjemah">"Tunjukilah kami jalan yang lurus."</div>
+    </div>
+    <div class="card" style="margin-bottom:64px;">
+      <div class="arab-block"><span class="ayat-no">7</span>صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ</div>
+      <div class="latin">Ṣirāṭalladzīna an‘amta ‘alaihim ghairil-maghḍūbi ‘alaihim wa laḍ-ḍāllīn</div>
+      <div class="terjemah">"(Yaitu) jalan orang-orang yang telah Engkau beri nikmat, bukan (jalan) mereka yang dimurkai, dan bukan (pula jalan) mereka yang sesat."</div>
+    </div>
+  </div>
+
+  <!-- ===== 4. 2 AYAT TERAKHIR AL-BAQARAH ===== -->
+  <div id="baqarah">
+    <div class="section-head">
+      <div class="stamp-mini">٢</div>
+      <h2>Penutup Surat Al-Baqarah</h2>
+      <span class="jp">ayat 285–286</span>
+    </div>
+    <p class="section-sub">Dua ayat terakhir surat Al-Baqarah, sering disebut "Āmanar-Rasūl", yang dianjurkan dibaca setiap malam.</p>
+
+    <div class="card">
+      <div class="arab-block"><span class="ayat-no">285</span>آمَنَ الرَّسُولُ بِمَا أُنْزِلَ إِلَيْهِ مِنْ رَبِّهِ وَالْمُؤْمِنُونَ ۚ كُلٌّ آمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِنْ رُسُلِهِ ۚ وَقَالُوا سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ</div>
+      <div class="latin">Āmanar-rasūlu bimā unzila ilaihi mir-rabbihī wal-mu’minūn, kullun āmana billāhi wa malā’ikatihī wa kutubihī wa rusulih, lā nufarriqu baina aḥadim mir-rusulih, wa qālū sami‘nā wa aṭa‘nā, ghufrānaka rabbanā wa ilaikal-maṣīr</div>
+      <div class="terjemah">"Rasul (Muhammad) beriman kepada apa yang diturunkan kepadanya dari Tuhannya, demikian pula orang-orang beriman. Semuanya beriman kepada Allah, malaikat-malaikat-Nya, kitab-kitab-Nya, dan rasul-rasul-Nya. Mereka berkata: 'Kami tidak membeda-bedakan seorang pun dari rasul-rasul-Nya.' Dan mereka berkata: 'Kami dengar dan kami taat. Ampunilah kami, ya Tuhan kami, dan kepada-Mu tempat kami kembali.'"</div>
+    </div>
+
+    <div class="card" style="margin-bottom:64px;">
+      <div class="arab-block"><span class="ayat-no">286</span>لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَا إِنْ نَسِينَا أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِنْ قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ ۖ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا ۚ أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ</div>
+      <div class="latin">Lā yukallifullāhu nafsan illā wus‘ahā, lahā mā kasabat wa ‘alaihā mak-tasabat, rabbanā lā tu’ākhidznā in nasīnā au akhṭa’nā, rabbanā wa lā taḥmil ‘alainā iṣran kamā ḥamaltahū ‘alalladzīna min qablinā, rabbanā wa lā tuḥammilnā mā lā ṭāqata lanā bih, wa‘fu ‘annā waghfir lanā warḥamnā, anta maulānā fanṣurnā ‘alal-qaumil-kāfirīn</div>
+      <div class="terjemah">"Allah tidak membebani seseorang melainkan sesuai dengan kesanggupannya. Ia mendapat pahala (dari kebajikan) yang diusahakannya, dan ia mendapat siksa (dari kejahatan) yang dikerjakannya. Ya Tuhan kami, janganlah Engkau hukum kami jika kami lupa atau kami tersalah. Ya Tuhan kami, janganlah Engkau bebankan kepada kami beban yang berat sebagaimana Engkau bebankan kepada orang-orang sebelum kami. Ya Tuhan kami, janganlah Engkau pikulkan kepada kami apa yang tidak sanggup kami memikulnya. Maafkanlah kami, ampunilah kami, dan rahmatilah kami. Engkaulah pelindung kami, maka tolonglah kami menghadapi orang-orang kafir."</div>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGASI TAMBAHAN ===== -->
+  <div class="grid2">
+    <a href="#sholawat" class="materi-card">
+      <div class="ic">🕌</div>
+      <h3>Kembali ke Sholawat</h3>
+      <p>Ulangi bacaan Sholawat Jibril 11× sebagai pembuka dzikir.</p>
+    </a>
+    <a href="#baqarah" class="materi-card">
+      <div class="ic">🌙</div>
+      <h3>Baca Sebelum Tidur</h3>
+      <p>Dua ayat terakhir Al-Baqarah dianjurkan dibaca setiap malam.</p>
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  <span class="fseal">﷽</span> · Untaian Doa Harian
+</footer>
+
+</body>
+</html>
