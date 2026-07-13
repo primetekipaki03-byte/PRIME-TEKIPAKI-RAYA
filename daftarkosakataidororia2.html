@@ -224,18 +224,25 @@ background:#f7f9fc;
 background:#fff6d8;
 }
 
+.col-no{
+width:8%;
+text-align:center;
+font-weight:bold;
+color:var(--navy);
+}
+
 .col-kotoba{
-width:28%;
+width:26%;
 font-weight:bold;
 }
 
 .col-kanji{
-width:22%;
+width:20%;
 font-size:20px;
 }
 
 .col-arti{
-width:50%;
+width:46%;
 color:#333;
 }
 
@@ -245,6 +252,58 @@ padding:30px;
 color:#888;
 font-style:italic;
 display:none;
+}
+
+/* ================= PAGINATION ================= */
+
+.pagination{
+display:flex;
+justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+gap:8px;
+margin-top:24px;
+}
+
+.pagination a,
+.pagination span{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-width:38px;
+height:38px;
+padding:0 10px;
+border:2px solid var(--navy);
+border-radius:8px;
+color:var(--navy);
+text-decoration:none;
+font-weight:bold;
+font-size:14px;
+cursor:pointer;
+user-select:none;
+background:#fff;
+}
+
+.pagination a:hover{
+background:var(--navy);
+color:var(--gold);
+}
+
+.pagination a.active{
+background:var(--navy);
+color:var(--gold);
+border-color:var(--navy);
+}
+
+.pagination a.disabled{
+opacity:.4;
+pointer-events:none;
+}
+
+.pagination .ellipsis{
+border:none;
+background:none;
+cursor:default;
 }
 
 @media(max-width:600px){
@@ -261,6 +320,13 @@ padding:10px 8px;
 
 .col-kanji{
 font-size:17px;
+}
+
+.pagination a,
+.pagination span{
+min-width:32px;
+height:32px;
+font-size:13px;
 }
 
 }
@@ -404,6 +470,7 @@ Indonesia. Gunakan kolom pencarian di bawah untuk mencari kosakata dengan cepat.
 
 <thead>
 <tr>
+<th class="col-no">No</th>
 <th class="col-kotoba">Kotoba</th>
 <th class="col-kanji">Kanji</th>
 <th class="col-arti">Arti</th>
@@ -412,32 +479,34 @@ Indonesia. Gunakan kolom pencarian di bawah untuk mencari kosakata dengan cepat.
 
 <tbody id="vocabBody">
 
-<tr><td class="col-kotoba">おはようございます</td><td class="col-kanji">-</td><td class="col-arti">Selamat pagi</td></tr>
-<tr><td class="col-kotoba">こんにちは</td><td class="col-kanji">-</td><td class="col-arti">Selamat siang</td></tr>
-<tr><td class="col-kotoba">こんばんは</td><td class="col-kanji">-</td><td class="col-arti">Selamat malam</td></tr>
-<tr><td class="col-kotoba">ありがとうございます</td><td class="col-kanji">-</td><td class="col-arti">Terima kasih</td></tr>
-<tr><td class="col-kotoba">すみません</td><td class="col-kanji">-</td><td class="col-arti">Permisi / Maaf</td></tr>
-<tr><td class="col-kotoba">わたし</td><td class="col-kanji">私</td><td class="col-arti">Saya</td></tr>
-<tr><td class="col-kotoba">あなた</td><td class="col-kanji">貴方</td><td class="col-arti">Anda</td></tr>
-<tr><td class="col-kotoba">せんせい</td><td class="col-kanji">先生</td><td class="col-arti">Guru</td></tr>
-<tr><td class="col-kotoba">がっこう</td><td class="col-kanji">学校</td><td class="col-arti">Sekolah</td></tr>
-<tr><td class="col-kotoba">かいしゃ</td><td class="col-kanji">会社</td><td class="col-arti">Perusahaan</td></tr>
-<tr><td class="col-kotoba">にほん</td><td class="col-kanji">日本</td><td class="col-arti">Jepang</td></tr>
-<tr><td class="col-kotoba">いえ</td><td class="col-kanji">家</td><td class="col-arti">Rumah</td></tr>
-<tr><td class="col-kotoba">たべもの</td><td class="col-kanji">食べ物</td><td class="col-arti">Makanan</td></tr>
-<tr><td class="col-kotoba">のみもの</td><td class="col-kanji">飲み物</td><td class="col-arti">Minuman</td></tr>
-<tr><td class="col-kotoba">みず</td><td class="col-kanji">水</td><td class="col-arti">Air</td></tr>
-<tr><td class="col-kotoba">くるま</td><td class="col-kanji">車</td><td class="col-arti">Mobil</td></tr>
-<tr><td class="col-kotoba">でんしゃ</td><td class="col-kanji">電車</td><td class="col-arti">Kereta listrik</td></tr>
-<tr><td class="col-kotoba">じかん</td><td class="col-kanji">時間</td><td class="col-arti">Waktu</td></tr>
-<tr><td class="col-kotoba">きょう</td><td class="col-kanji">今日</td><td class="col-arti">Hari ini</td></tr>
-<tr><td class="col-kotoba">あした</td><td class="col-kanji">明日</td><td class="col-arti">Besok</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">おはようございます</td><td class="col-kanji">-</td><td class="col-arti">Selamat pagi</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">こんにちは</td><td class="col-kanji">-</td><td class="col-arti">Selamat siang</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">こんばんは</td><td class="col-kanji">-</td><td class="col-arti">Selamat malam</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">ありがとうございます</td><td class="col-kanji">-</td><td class="col-arti">Terima kasih</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">すみません</td><td class="col-kanji">-</td><td class="col-arti">Permisi / Maaf</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">わたし</td><td class="col-kanji">私</td><td class="col-arti">Saya</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">あなた</td><td class="col-kanji">貴方</td><td class="col-arti">Anda</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">せんせい</td><td class="col-kanji">先生</td><td class="col-arti">Guru</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">がっこう</td><td class="col-kanji">学校</td><td class="col-arti">Sekolah</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">かいしゃ</td><td class="col-kanji">会社</td><td class="col-arti">Perusahaan</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">にほん</td><td class="col-kanji">日本</td><td class="col-arti">Jepang</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">いえ</td><td class="col-kanji">家</td><td class="col-arti">Rumah</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">たべもの</td><td class="col-kanji">食べ物</td><td class="col-arti">Makanan</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">のみもの</td><td class="col-kanji">飲み物</td><td class="col-arti">Minuman</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">みず</td><td class="col-kanji">水</td><td class="col-arti">Air</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">くるま</td><td class="col-kanji">車</td><td class="col-arti">Mobil</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">でんしゃ</td><td class="col-kanji">電車</td><td class="col-arti">Kereta listrik</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">じかん</td><td class="col-kanji">時間</td><td class="col-arti">Waktu</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">きょう</td><td class="col-kanji">今日</td><td class="col-arti">Hari ini</td></tr>
+<tr><td class="col-no"></td><td class="col-kotoba">あした</td><td class="col-kanji">明日</td><td class="col-arti">Besok</td></tr>
 
 </tbody>
 
 </table>
 
 <p class="no-result" id="noResult">Kosakata tidak ditemukan.</p>
+
+<div class="pagination" id="pagination"></div>
 
 </div>
 
@@ -514,29 +583,113 @@ document.addEventListener("click",function(e){
 
 });
 
-// Fitur pencarian tabel kosakata
-function filterTable(){
+// ================= NOMOR + PENCARIAN + PAGINASI =================
 
-    var keyword = document.getElementById("searchInput").value.toLowerCase();
-    var rows = document.querySelectorAll("#vocabBody tr");
-    var visibleCount = 0;
+const ROWS_PER_PAGE = 20;
+let currentPage = 1;
 
-    rows.forEach(function(row){
+const allRows = Array.from(document.querySelectorAll("#vocabBody tr"));
 
-        var text = row.textContent.toLowerCase();
+// beri nomor urut tetap pada setiap baris (sesuai urutan asli)
+allRows.forEach(function(row, idx){
+    row.dataset.originalNo = idx + 1;
+});
 
-        if(text.indexOf(keyword) > -1){
-            row.style.display = "";
-            visibleCount++;
-        } else {
-            row.style.display = "none";
-        }
+function getFilteredRows(){
+    const keyword = document.getElementById("searchInput").value.toLowerCase();
+    return allRows.filter(function(row){
+        const text = row.textContent.toLowerCase();
+        return text.indexOf(keyword) > -1;
+    });
+}
 
+function renderTable(){
+
+    const filtered = getFilteredRows();
+    const totalPages = Math.max(1, Math.ceil(filtered.length / ROWS_PER_PAGE));
+
+    if(currentPage > totalPages){ currentPage = totalPages; }
+    if(currentPage < 1){ currentPage = 1; }
+
+    // sembunyikan semua baris dulu
+    allRows.forEach(function(row){
+        row.style.display = "none";
     });
 
-    document.getElementById("noResult").style.display = visibleCount === 0 ? "block" : "none";
+    const start = (currentPage - 1) * ROWS_PER_PAGE;
+    const end = start + ROWS_PER_PAGE;
+    const pageRows = filtered.slice(start, end);
 
+    pageRows.forEach(function(row, i){
+        row.style.display = "";
+        row.querySelector(".col-no").textContent = start + i + 1;
+    });
+
+    document.getElementById("noResult").style.display = filtered.length === 0 ? "block" : "none";
+
+    renderPagination(totalPages);
 }
+
+function renderPagination(totalPages){
+
+    const pag = document.getElementById("pagination");
+    pag.innerHTML = "";
+
+    function makeLink(label, page, opts){
+        opts = opts || {};
+        const a = document.createElement("a");
+        a.href = "#";
+        a.textContent = label;
+        if(opts.active){ a.classList.add("active"); }
+        if(opts.disabled){ a.classList.add("disabled"); }
+        a.addEventListener("click", function(e){
+            e.preventDefault();
+            if(opts.disabled){ return; }
+            currentPage = page;
+            renderTable();
+            document.getElementById("vocabTable").scrollIntoView({behavior:"smooth", block:"start"});
+        });
+        return a;
+    }
+
+    function makeEllipsis(){
+        const span = document.createElement("span");
+        span.textContent = "...";
+        span.classList.add("ellipsis");
+        return span;
+    }
+
+    // tombol Prev
+    pag.appendChild(makeLink("‹", currentPage - 1, { disabled: currentPage === 1 }));
+
+    // daftar nomor halaman dengan ellipsis jika terlalu banyak
+    const pages = [];
+    for(let p = 1; p <= totalPages; p++){
+        if(p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1){
+            pages.push(p);
+        } else if(pages[pages.length - 1] !== "..."){
+            pages.push("...");
+        }
+    }
+
+    pages.forEach(function(p){
+        if(p === "..."){
+            pag.appendChild(makeEllipsis());
+        } else {
+            pag.appendChild(makeLink(p, p, { active: p === currentPage }));
+        }
+    });
+
+    // tombol Next
+    pag.appendChild(makeLink("›", currentPage + 1, { disabled: currentPage === totalPages }));
+}
+
+function filterTable(){
+    currentPage = 1;
+    renderTable();
+}
+
+renderTable();
 
 </script>
 
