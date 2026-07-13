@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>擬音語・擬態語 | Daftar Onomatope Bahasa Jepang</title>
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --navy3:#022655;
+    --gold:#facc15;
+    --gold2:#ffd700;
+    --text:#001f3f;
+    --giongo:#5b8bb0;
+    --gitaigo:#c98a4d;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:var(--text);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(224,181,42,.3);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.home-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#e0b52a;
+    color:#001530;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.home-btn:hover{ opacity:.85; }
+
+.home-icon{
+    width:24px;
+    height:24px;
+    object-fit:cover;
+    border-radius:4px;
+}
+
+.dropdown{ position:relative; }
+
+.dropdown-btn{
+    background:none;
+    border:2px solid #e0b52a;
+    color:#e0b52a;
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:.9rem;
+}
+
+.dropdown-btn:hover{
+    background:#e0b52a;
+    color:#001530;
+}
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:45px;
+    left:0;
+    background:#1f4577;
+    border-radius:10px;
+    overflow:hidden;
+    min-width:220px;
+    max-width:90vw;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+
+.dropdown-menu.align-right{ left:auto; right:0; }
+
+.dropdown-menu a{
+    display:block;
+    padding:12px 15px;
+    color:#ffd700;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:#e0b52a;
+    color:#001530;
+}
+
+.show{ display:block; }
+
+@media(max-width:600px){
+    .navbar-inner{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+    }
+    .nav-right{ width:100%; }
+    .dropdown-btn{
+        font-size:.72rem;
+        padding:6px 9px;
+    }
+    .breadcrumb{ margin-top:16px; }
+}
+
+/* =======================
+     BREADCRUMB
+======================= */
+
+.breadcrumb{
+    margin:20px 0 0 0;
+    padding:0 0 0 20px;
+    font-size:14px;
+    color:#8892a3;
+    text-align:left;
+}
+
+.breadcrumb a{
+    color:var(--navy);
+    text-decoration:none;
+    font-weight:600;
+}
+
+.breadcrumb a:hover{ text-decoration:underline; }
+
+/* =======================
+       HERO
+======================= */
+
+.pattern-hero{
+    max-width:900px;
+    margin:20px auto 0;
+    padding:40px 30px;
+    background:linear-gradient(135deg, var(--navy) 0%, #062a52 100%);
+    border-radius:22px;
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+}
+
+.pattern-hero::before{
+    content:"音";
+    position:absolute;
+    font-size:260px;
+    font-weight:900;
+    color:rgba(250,204,21,.06);
+    top:-60px;
+    right:-30px;
+    pointer-events:none;
+    user-select:none;
+}
+
+.pattern-hero .no-badge{
+    display:inline-block;
+    background:rgba(250,204,21,.12);
+    border:1px solid rgba(250,204,21,.4);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:1px;
+    padding:6px 16px;
+    border-radius:999px;
+    margin-bottom:18px;
+    position:relative;
+}
+
+.pattern-hero h1{
+    font-size:48px;
+    color:#ffffff;
+    position:relative;
+    margin-bottom:8px;
+}
+
+.pattern-hero .romaji{
+    font-size:20px;
+    color:var(--gold2);
+    font-weight:600;
+    position:relative;
+    margin-bottom:14px;
+}
+
+.pattern-hero .mean{
+    font-size:17px;
+    color:#c9d6e8;
+    position:relative;
+    max-width:640px;
+    margin:0 auto;
+}
+
+/* =======================
+      CONTENT
+======================= */
+
+.content{
+    max-width:1000px;
+    margin:30px auto;
+    padding:0 30px 60px;
+}
+
+.section-block{ margin-bottom:36px; }
+
+.section-block h2{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:22px;
+    color:var(--navy);
+    margin-bottom:14px;
+}
+
+.section-block h2 .tag{
+    background:var(--navy);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    padding:5px 12px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.section-block p{
+    font-size:16px;
+    line-height:1.9;
+    color:#333;
+}
+
+/* legend chip untuk giongo/gitaigo */
+
+.compare-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:16px 0 26px;
+}
+
+.compare-legend .chip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:999px;
+    background:#f5f8fc;
+    border:1px solid #e3e9f2;
+    color:#333;
+}
+
+.compare-legend .dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    display:inline-block;
+}
+
+.compare-legend .dot.giongo{ background:var(--giongo); }
+.compare-legend .dot.gitaigo{ background:var(--gitaigo); }
+
+.note-box{
+    background:#fffbe6;
+    border-left:5px solid var(--gold);
+    border-radius:10px;
+    padding:18px 22px;
+    font-size:15px;
+    line-height:1.8;
+    color:#4a4020;
+    margin-top:16px;
+}
+
+.note-box b{ color:var(--navy); }
+
+/* =======================
+   TABEL ONOMATOPE
+======================= */
+
+.table-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.onomat-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:760px;
+    font-size:14.5px;
+}
+
+.onomat-table thead th{
+    background:var(--navy);
+    color:var(--gold);
+    text-align:left;
+    padding:14px 16px;
+    font-size:13px;
+    white-space:nowrap;
+}
+
+.onomat-table tbody td{
+    padding:14px 16px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.onomat-table tbody tr:nth-child(even){ background:#f5f8fc; }
+.onomat-table tbody tr:hover{ background:#fffbe6; }
+
+.onomat-icon-cell{
+    width:64px;
+    height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#f5f8fc;
+    border-radius:12px;
+}
+
+.onomat-icon-cell svg{ width:48px; height:48px; }
+
+.onomat-jp{
+    font-size:19px;
+    font-weight:bold;
+    color:var(--navy);
+    display:block;
+}
+
+.onomat-romaji{
+    font-size:12px;
+    color:#8892a3;
+    font-weight:600;
+}
+
+.type-badge{
+    font-size:11px;
+    font-weight:bold;
+    padding:4px 10px;
+    border-radius:999px;
+    color:#fff;
+    white-space:nowrap;
+    display:inline-block;
+}
+
+.type-badge.giongo{ background:var(--giongo); }
+.type-badge.gitaigo{ background:var(--gitaigo); }
+
+.onomat-mean{
+    font-size:13.5px;
+    color:#333;
+    line-height:1.6;
+    max-width:220px;
+}
+
+.onomat-example .jp{
+    font-size:14px;
+    font-weight:600;
+    color:var(--navy);
+    margin-bottom:2px;
+}
+
+.onomat-example .yomi{
+    font-size:11px;
+    color:#8892a3;
+    margin-bottom:4px;
+    display:block;
+}
+
+.onomat-example .id{
+    font-size:12.5px;
+    color:#5b6b80;
+    font-style:italic;
+}
+
+/* navigasi bawah */
+
+.nav-bottom{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    margin-top:50px;
+    flex-wrap:wrap;
+}
+
+.nav-bottom a{
+    flex:1;
+    min-width:200px;
+    text-decoration:none;
+    border:2px solid var(--navy);
+    border-radius:14px;
+    padding:16px 20px;
+    color:var(--navy);
+    font-weight:600;
+    transition:.25s;
+}
+
+.nav-bottom a:hover{
+    background:var(--navy);
+    color:var(--gold);
+}
+
+.nav-bottom .dir{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    margin-bottom:4px;
+}
+
+.nav-bottom a:hover .dir{ color:#c9d6e8; }
+.nav-bottom .next{ text-align:right; }
+
+@media(max-width:600px){
+    .pattern-hero h1{ font-size:34px; }
+    .pattern-hero::before{ font-size:160px; }
+    .nav-bottom .next{ text-align:left; }
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa_n2.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+      <a href="daftaronomatope.html">Daftar Onomatope</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjftb2test1.html">SOAL JFT B — TEST 1</a>
+      <a href="ujianjftb2test2.html">SOAL JFT B — TEST 2</a>
+      <a href="ujianjftb2test3.html">SOAL JFT B — TEST 3</a>
+      <a href="ujianjftb2test4.html">SOAL JFT B — TEST 4</a>
+      <a href="ujianjftb2test5.html">SOAL JFT B — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+
+</div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="daftarkosakata.html">← Kembali ke Daftar Kosakata</a>
+</div>
+
+<div class="pattern-hero">
+    <span class="no-badge">KOSAKATA · GIONGO &amp; GITAIGO</span>
+    <h1>擬音語・擬態語</h1>
+    <div class="romaji">giongo &amp; gitaigo</div>
+    <div class="mean">Kumpulan onomatope bahasa Jepang lengkap dengan ilustrasi, cara baca, arti, dan contoh kalimat — supaya lebih mudah membayangkan suara dan suasana yang digambarkan tiap kata.</div>
+</div>
+
+<div class="content">
+
+    <div class="section-block">
+        <h2><span class="tag">ARTI</span> Apa itu Onomatope?</h2>
+        <p>
+            Bahasa Jepang terkenal punya sangat banyak <b>onomatope（オノマトペ）</b>, kata-kata yang meniru suara
+            atau menggambarkan suasana/keadaan tertentu. Onomatope ini dibagi menjadi dua kelompok besar:
+        </p>
+        <div class="compare-legend">
+            <span class="chip"><span class="dot giongo"></span> <b>擬音語（ぎおんご）Giongo</b> — meniru suara asli yang benar-benar terdengar (hujan, tertawa, ketukan, dsb)</span>
+            <span class="chip"><span class="dot gitaigo"></span> <b>擬態語（ぎたいご）Gitaigo</b> — menggambarkan keadaan, perasaan, atau gerakan yang sebenarnya tidak berbunyi</span>
+        </div>
+        <div class="note-box">
+            <b>Tips:</b> hampir semua onomatope bahasa Jepang berpola pengulangan dua suku kata,
+            seperti <b>わくわく</b>, <b>きらきら</b>, atau <b>ぐるぐる</b>. Pola berulang ini biasanya menekankan
+            bahwa suara atau keadaan tersebut terjadi <b>berkelanjutan atau berulang-ulang</b>, bukan hanya sekali.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">DAFTAR</span> Onomatope &amp; Ilustrasi</h2>
+        <div class="table-wrap">
+        <table class="onomat-table">
+            <thead>
+                <tr>
+                    <th>Ilustrasi</th>
+                    <th>Onomatope</th>
+                    <th>Tipe</th>
+                    <th>Arti</th>
+                    <th>Contoh Kalimat</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            <!-- 1 わくわく -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="55" r="26" fill="#fffbe6" stroke="#facc15" stroke-width="3"/>
+<path d="M50 45 C46 38 36 38 34 46 C32 54 42 60 50 66 C58 60 68 54 66 46 C64 38 54 38 50 45Z" fill="#c98a4d"/>
+<path d="M18 30 l6 8 M82 30 l-6 8 M14 55 l9 3 M86 55 l-9 3" stroke="#001f3f" stroke-width="3" stroke-linecap="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">わくわく</span><span class="onomat-romaji">wakuwaku</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Perasaan bersemangat dan tidak sabar menantikan sesuatu yang menyenangkan.</td>
+                <td class="onomat-example">
+                    <span class="jp">明日の旅行が楽しみでわくわくする。</span>
+                    <span class="yomi">あしたのりょこうがたのしみでわくわくする。</span>
+                    <span class="id">Aku tidak sabar dan bersemangat menantikan liburan besok.</span>
+                </td>
+            </tr>
+
+            <!-- 2 どきどき -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 78 C20 58 18 34 36 26 C46 22 50 32 50 32 C50 32 54 22 64 26 C82 34 80 58 50 78Z" fill="#c17b7b"/>
+<polyline points="12,55 28,55 34,42 40,68 46,50 52,55 88,55" fill="none" stroke="#001f3f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">どきどき</span><span class="onomat-romaji">dokidoki</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Jantung berdebar kencang karena gugup, gembira, atau takut.</td>
+                <td class="onomat-example">
+                    <span class="jp">面接の前は心臓がどきどきした。</span>
+                    <span class="yomi">めんせつのまえはしんぞうがどきどきした。</span>
+                    <span class="id">Sebelum wawancara jantungku berdebar kencang.</span>
+                </td>
+            </tr>
+
+            <!-- 3 にこにこ -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="30" fill="#fffbe6" stroke="#facc15" stroke-width="3"/>
+<path d="M38 45 q2 -6 6 0 M56 45 q2 -6 6 0" stroke="#001f3f" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M36 58 q14 14 28 0" stroke="#001f3f" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">にこにこ</span><span class="onomat-romaji">nikoniko</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Tersenyum terus dengan wajah ceria dan ramah.</td>
+                <td class="onomat-example">
+                    <span class="jp">彼女はいつもにこにこしている。</span>
+                    <span class="yomi">かのじょはいつもにこにこしている。</span>
+                    <span class="id">Dia selalu tersenyum ramah.</span>
+                </td>
+            </tr>
+
+            <!-- 4 げらげら -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="30" fill="#fffbe6" stroke="#c98a4d" stroke-width="3"/>
+<path d="M36 42 l6 6 M64 42 l-6 6" stroke="#001f3f" stroke-width="3" stroke-linecap="round"/>
+<path d="M32 55 Q50 78 68 55 Q50 68 32 55Z" fill="#c17b7b"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">げらげら</span><span class="onomat-romaji">geragera</span></td>
+                <td><span class="type-badge giongo">giongo</span></td>
+                <td class="onomat-mean">Tertawa terbahak-bahak dengan suara keras.</td>
+                <td class="onomat-example">
+                    <span class="jp">その話を聞いてげらげら笑った。</span>
+                    <span class="yomi">そのはなしをきいてげらげらわらった。</span>
+                    <span class="id">Aku tertawa terbahak-bahak mendengar cerita itu.</span>
+                </td>
+            </tr>
+
+            <!-- 5 くすくす -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="46" cy="48" r="26" fill="#fffbe6" stroke="#facc15" stroke-width="3"/>
+<path d="M36 44 q2 -5 5 0 M52 44 q2 -5 5 0" stroke="#001f3f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<path d="M36 56 q10 8 20 0" stroke="#001f3f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<ellipse cx="70" cy="62" rx="16" ry="12" fill="#c9d6e8"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">くすくす</span><span class="onomat-romaji">kusukusu</span></td>
+                <td><span class="type-badge giongo">giongo</span></td>
+                <td class="onomat-mean">Tertawa kecil cekikikan, biasanya sambil menahan suara.</td>
+                <td class="onomat-example">
+                    <span class="jp">彼らはくすくす笑っていた。</span>
+                    <span class="yomi">かれらはくすくすわらっていた。</span>
+                    <span class="id">Mereka tertawa cekikikan.</span>
+                </td>
+            </tr>
+
+            <!-- 6 しーん -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="15" y="15" width="70" height="70" rx="14" fill="#f5f8fc" stroke="#001f3f" stroke-width="2"/>
+<circle cx="50" cy="50" r="3" fill="#8892a3"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">しーん</span><span class="onomat-romaji">shiin</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Keheningan total, tidak ada suara sama sekali, sunyi senyap.</td>
+                <td class="onomat-example">
+                    <span class="jp">彼が失敗した瞬間、教室はしーんとなった。</span>
+                    <span class="yomi">かれがしっぱいしたしゅんかん、きょうしつはしーんとなった。</span>
+                    <span class="id">Begitu dia gagal, kelas seketika hening total.</span>
+                </td>
+            </tr>
+
+            <!-- 7 ぺらぺら -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="36" cy="42" rx="26" ry="18" fill="#5b8bb0"/>
+<path d="M22 56 L14 68 L30 58Z" fill="#5b8bb0"/>
+<ellipse cx="68" cy="60" rx="20" ry="14" fill="#022655"/>
+<path d="M78 70 L86 80 L72 72Z" fill="#022655"/>
+<circle cx="30" cy="42" r="2.4" fill="#fff"/><circle cx="40" cy="42" r="2.4" fill="#fff"/>
+<circle cx="62" cy="60" r="2" fill="#fff"/><circle cx="70" cy="60" r="2" fill="#fff"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ぺらぺら</span><span class="onomat-romaji">perapera</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Berbicara suatu bahasa dengan lancar sekali, mengalir tanpa tersendat.</td>
+                <td class="onomat-example">
+                    <span class="jp">彼女は英語がぺらぺらだ。</span>
+                    <span class="yomi">かのじょはえいごがぺらぺらだ。</span>
+                    <span class="id">Bahasa Inggrisnya lancar sekali.</span>
+                </td>
+            </tr>
+
+            <!-- 8 べらべら -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="32" cy="36" rx="20" ry="14" fill="#5b8bb0"/><path d="M20 46 L14 56 L28 48Z" fill="#5b8bb0"/>
+<ellipse cx="58" cy="50" rx="20" ry="14" fill="#022655"/><path d="M46 60 L40 70 L54 62Z" fill="#022655"/>
+<ellipse cx="80" cy="66" rx="16" ry="11" fill="#c98a4d"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">べらべら</span><span class="onomat-romaji">berabera</span></td>
+                <td><span class="type-badge giongo">giongo</span></td>
+                <td class="onomat-mean">Berbicara terus-menerus tanpa henti, cerewet.</td>
+                <td class="onomat-example">
+                    <span class="jp">彼は自分のことをべらべら話す。</span>
+                    <span class="yomi">かれはじぶんのことをべらべらはなす。</span>
+                    <span class="id">Dia terus-terusan bicara tentang dirinya sendiri.</span>
+                </td>
+            </tr>
+
+            <!-- 9 ぐっすり -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M62 20 C46 20 34 34 34 50 C34 66 46 80 62 80 C70 80 77 76 82 70 C74 74 64 72 57 65 C48 56 48 40 57 31 C62 26 68 24 74 24 C70 21 66 20 62 20Z" fill="#022655"/>
+<text x="60" y="42" font-size="16" fill="#facc15" font-weight="bold">Z</text>
+<text x="70" y="30" font-size="12" fill="#facc15" font-weight="bold">z</text>
+<text x="50" y="55" font-size="20" fill="#facc15" font-weight="bold">Z</text>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ぐっすり</span><span class="onomat-romaji">gussuri</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Tidur nyenyak dan pulas, tanpa terganggu apa pun.</td>
+                <td class="onomat-example">
+                    <span class="jp">疲れていたのでぐっすり眠った。</span>
+                    <span class="yomi">つかれていたのでぐっすりねむった。</span>
+                    <span class="id">Karena sedang lelah, aku tidur nyenyak sekali.</span>
+                </td>
+            </tr>
+
+            <!-- 10 うとうと -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="46" cy="52" r="24" fill="#fffbe6" stroke="#c9d6e8" stroke-width="3"/>
+<path d="M36 50 h10 M52 50 h10" stroke="#001f3f" stroke-width="3" stroke-linecap="round"/>
+<text x="68" y="34" font-size="14" fill="#8892a3" font-weight="bold">z</text>
+                    </svg></div></td>
+                <td><span class="onomat-jp">うとうと</span><span class="onomat-romaji">utouto</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Mengantuk dan setengah tertidur, sering tertidur sebentar tanpa sadar.</td>
+                <td class="onomat-example">
+                    <span class="jp">授業中にうとうとしてしまった。</span>
+                    <span class="yomi">じゅぎょうちゅうにうとうとしてしまった。</span>
+                    <span class="id">Aku jadi setengah tertidur saat pelajaran.</span>
+                </td>
+            </tr>
+
+            <!-- 11 すやすや -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="50" cy="60" rx="30" ry="16" fill="#c9d6e8"/>
+<path d="M32 56 q4 -6 8 0 M50 56 q4 -6 8 0" stroke="#001f3f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<text x="66" y="30" font-size="16" fill="#5b8bb0" font-weight="bold">z z</text>
+                    </svg></div></td>
+                <td><span class="onomat-jp">すやすや</span><span class="onomat-romaji">suyasuya</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Tidur dengan tenang dan pulas, biasanya untuk bayi atau anak kecil.</td>
+                <td class="onomat-example">
+                    <span class="jp">赤ちゃんがすやすや眠っている。</span>
+                    <span class="yomi">あかちゃんがすやすやねむっている。</span>
+                    <span class="id">Bayinya tidur pulas dengan tenang.</span>
+                </td>
+            </tr>
+
+            <!-- 12 いらいら -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="52" r="26" fill="#fdeaea" stroke="#c17b7b" stroke-width="3"/>
+<path d="M36 44 l10 4 M64 44 l-10 4" stroke="#001f3f" stroke-width="3" stroke-linecap="round"/>
+<path d="M36 66 q14 -10 28 0" stroke="#001f3f" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M18 22 l6 10 M82 22 l-6 10" stroke="#c17b7b" stroke-width="4" stroke-linecap="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">いらいら</span><span class="onomat-romaji">iraira</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Merasa kesal, jengkel, atau tidak sabar.</td>
+                <td class="onomat-example">
+                    <span class="jp">渋滞でいらいらする。</span>
+                    <span class="yomi">じゅうたいでいらいらする。</span>
+                    <span class="id">Aku jadi kesal karena macet.</span>
+                </td>
+            </tr>
+
+            <!-- 13 むかむか -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 60 C20 40 34 30 50 30 C66 30 80 40 80 60 C80 74 66 82 50 82 C34 82 20 74 20 60Z" fill="#c9d6e8"/>
+<path d="M32 55 q6 -8 12 0 q6 8 12 0 q6 -8 12 0" stroke="#5b8bb0" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">むかむか</span><span class="onomat-romaji">mukamuka</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Merasa mual di perut, atau jengkel/marah dalam hati.</td>
+                <td class="onomat-example">
+                    <span class="jp">気持ちが悪くて胃がむかむかする。</span>
+                    <span class="yomi">きもちがわるくていがむかむかする。</span>
+                    <span class="id">Perutku mual karena merasa tidak enak badan.</span>
+                </td>
+            </tr>
+
+            <!-- 14 びくびく -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="52" r="26" fill="#fffbe6" stroke="#8892a3" stroke-width="3"/>
+<circle cx="40" cy="46" r="3" fill="#001f3f"/><circle cx="60" cy="46" r="3" fill="#001f3f"/>
+<path d="M40 66 q10 4 20 0" stroke="#001f3f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<ellipse cx="72" cy="70" rx="4" ry="7" fill="#5b8bb0"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">びくびく</span><span class="onomat-romaji">bikubiku</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Merasa takut dan waswas, khawatir sesuatu yang buruk akan terjadi.</td>
+                <td class="onomat-example">
+                    <span class="jp">叱られるのではないかとびくびくしている。</span>
+                    <span class="yomi">しかられるのではないかとびくびくしている。</span>
+                    <span class="id">Aku waswas takut akan dimarahi.</span>
+                </td>
+            </tr>
+
+            <!-- 15 おろおろ -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="42" cy="52" r="22" fill="#fffbe6" stroke="#c98a4d" stroke-width="3"/>
+<circle cx="35" cy="48" r="2.5" fill="#001f3f"/><circle cx="49" cy="48" r="2.5" fill="#001f3f"/>
+<path d="M35 62 q7 3 14 0" stroke="#001f3f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<text x="66" y="36" font-size="20" fill="#c98a4d" font-weight="bold">?</text>
+<text x="78" y="56" font-size="14" fill="#c98a4d" font-weight="bold">?</text>
+                    </svg></div></td>
+                <td><span class="onomat-jp">おろおろ</span><span class="onomat-romaji">orooro</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Panik dan kebingungan, tidak tahu harus berbuat apa.</td>
+                <td class="onomat-example">
+                    <span class="jp">突然のことでおろおろしてしまった。</span>
+                    <span class="yomi">とつぜんのことでおろおろしてしまった。</span>
+                    <span class="id">Aku jadi panik dan bingung karena kejadian mendadak itu.</span>
+                </td>
+            </tr>
+
+            <!-- 16 のんびり -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 66 Q50 78 82 66" stroke="#001f3f" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M30 66 Q30 46 50 46 Q70 46 70 66" fill="#c9d6e8"/>
+<circle cx="74" cy="30" r="12" fill="#facc15"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">のんびり</span><span class="onomat-romaji">nonbiri</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Bersantai tanpa terburu-buru, menikmati waktu dengan tenang.</td>
+                <td class="onomat-example">
+                    <span class="jp">休みの日はのんびり過ごしたい。</span>
+                    <span class="yomi">やすみのひはのんびりすごしたい。</span>
+                    <span class="id">Di hari libur aku ingin menghabiskan waktu dengan santai.</span>
+                </td>
+            </tr>
+
+            <!-- 17 ゆっくり -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="50" cy="60" rx="30" ry="16" fill="#5b8bb0"/>
+<circle cx="76" cy="52" r="10" fill="#5b8bb0"/>
+<path d="M20 60 h-6 M26 68 h-8 M20 52 h-4" stroke="#8892a3" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ゆっくり</span><span class="onomat-romaji">yukkuri</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Melakukan sesuatu secara pelan-pelan, tidak terburu-buru.</td>
+                <td class="onomat-example">
+                    <span class="jp">もっとゆっくり話してください。</span>
+                    <span class="yomi">もっとゆっくりはなしてください。</span>
+                    <span class="id">Tolong bicara lebih pelan-pelan.</span>
+                </td>
+            </tr>
+
+            <!-- 18 ばたばた -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="30" r="10" fill="#022655"/>
+<path d="M50 40 L40 62 L50 60 L46 82 M50 40 L60 62 L50 60 L54 82" stroke="#022655" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M14 50 h10 M14 62 h14 M76 50 h10 M72 62 h14" stroke="#c98a4d" stroke-width="3" stroke-linecap="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ばたばた</span><span class="onomat-romaji">batabata</span></td>
+                <td><span class="type-badge giongo">giongo</span></td>
+                <td class="onomat-mean">Sibuk dan terburu-buru ke sana kemari, atau suara langkah kaki yang ribut.</td>
+                <td class="onomat-example">
+                    <span class="jp">朝はいつもばたばたしている。</span>
+                    <span class="yomi">あさはいつもばたばたしている。</span>
+                    <span class="id">Pagi hari aku selalu sibuk terburu-buru.</span>
+                </td>
+            </tr>
+
+            <!-- 19 きらきら -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <g fill="#facc15">
+<path d="M50 18 L55 40 L77 45 L55 50 L50 72 L45 50 L23 45 L45 40 Z"/>
+<path d="M78 20 L80 28 L88 30 L80 32 L78 40 L76 32 L68 30 L76 28 Z"/>
+<path d="M20 62 L22 70 L30 72 L22 74 L20 82 L18 74 L10 72 L18 70 Z"/>
+</g>
+                    </svg></div></td>
+                <td><span class="onomat-jp">きらきら</span><span class="onomat-romaji">kirakira</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Kilauan cahaya yang berkelap-kelip indah, seperti bintang atau perhiasan.</td>
+                <td class="onomat-example">
+                    <span class="jp">夜空に星がきらきら光っている。</span>
+                    <span class="yomi">よぞらにほしがきらきらひかっている。</span>
+                    <span class="id">Bintang-bintang berkelap-kelip indah di langit malam.</span>
+                </td>
+            </tr>
+
+            <!-- 20 ぴかぴか -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="55" width="60" height="14" rx="4" fill="#c9d6e8"/>
+<path d="M50 20 L56 42 L78 48 L56 54 L50 76 L44 54 L22 48 L44 42 Z" fill="#facc15"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ぴかぴか</span><span class="onomat-romaji">pikapika</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Mengilap dan bercahaya karena bersih atau baru.</td>
+                <td class="onomat-example">
+                    <span class="jp">新しい靴はぴかぴかだ。</span>
+                    <span class="yomi">あたらしいくつはぴかぴかだ。</span>
+                    <span class="id">Sepatu barunya mengilap.</span>
+                </td>
+            </tr>
+
+            <!-- 21 つるつる -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="15" y="35" width="70" height="30" rx="14" fill="#c9d6e8"/>
+<path d="M22 45 q28 -10 56 0 M22 55 q28 -10 56 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">つるつる</span><span class="onomat-romaji">tsurutsuru</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Licin dan halus, tanpa tekstur kasar di permukaannya.</td>
+                <td class="onomat-example">
+                    <span class="jp">この床は氷のようにつるつるだ。</span>
+                    <span class="yomi">このゆかはこおりのようにつるつるだ。</span>
+                    <span class="id">Lantai ini licin seperti es.</span>
+                </td>
+            </tr>
+
+            <!-- 22 ざらざら -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="15" y="30" width="70" height="40" rx="10" fill="#e3d9c8"/>
+<g fill="#8892a3"><circle cx="28" cy="42" r="2.4"/><circle cx="42" cy="50" r="2.4"/><circle cx="56" cy="40" r="2.4"/><circle cx="70" cy="52" r="2.4"/><circle cx="34" cy="60" r="2.4"/><circle cx="62" cy="62" r="2.4"/></g>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ざらざら</span><span class="onomat-romaji">zarazara</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Bertekstur kasar dan tidak halus saat disentuh.</td>
+                <td class="onomat-example">
+                    <span class="jp">この紙はざらざらしている。</span>
+                    <span class="yomi">このかみはざらざらしている。</span>
+                    <span class="id">Kertas ini bertekstur kasar.</span>
+                </td>
+            </tr>
+
+            <!-- 23 ふわふわ -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <g fill="#c9d6e8" stroke="#5b8bb0" stroke-width="1.5">
+<circle cx="34" cy="55" r="16"/><circle cx="54" cy="45" r="20"/><circle cx="72" cy="58" r="14"/><circle cx="50" cy="65" r="18"/>
+</g>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ふわふわ</span><span class="onomat-romaji">fuwafuwa</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Lembut dan mengembang, seperti awan, bantal, atau bulu binatang.</td>
+                <td class="onomat-example">
+                    <span class="jp">このクッションはふわふわで気持ちいい。</span>
+                    <span class="yomi">このクッションはふわふわできもちいい。</span>
+                    <span class="id">Bantal ini empuk dan lembut, nyaman sekali.</span>
+                </td>
+            </tr>
+
+            <!-- 24 もちもち -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 25 C30 25 22 42 22 55 C22 72 34 80 50 80 C66 80 78 72 78 55 C78 42 70 25 50 25Z" fill="#fdfaf3" stroke="#c98a4d" stroke-width="3"/>
+<path d="M34 48 q4 6 0 12 M66 48 q-4 6 0 12" stroke="#c98a4d" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".6"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">もちもち</span><span class="onomat-romaji">mochimochi</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Tekstur kenyal dan lembut seperti mochi saat digigit.</td>
+                <td class="onomat-example">
+                    <span class="jp">このパンはもちもちしている。</span>
+                    <span class="yomi">このパンはもちもちしている。</span>
+                    <span class="id">Roti ini teksturnya kenyal.</span>
+                </td>
+            </tr>
+
+            <!-- 25 さらさら -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 34 q30 -10 60 0" stroke="#5b8bb0" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M22 48 q30 -10 60 0" stroke="#5b8bb0" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M24 62 q30 -10 60 0" stroke="#5b8bb0" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M26 76 q30 -10 60 0" stroke="#5b8bb0" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">さらさら</span><span class="onomat-romaji">sarasara</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Halus dan lembut, mengalir bebas tanpa lengket, seperti rambut atau air.</td>
+                <td class="onomat-example">
+                    <span class="jp">彼女の髪はさらさらだ。</span>
+                    <span class="yomi">かのじょのかみはさらさらだ。</span>
+                    <span class="id">Rambutnya halus dan lembut mengalir.</span>
+                </td>
+            </tr>
+
+            <!-- 26 ねばねば -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 20 C50 20 30 48 30 62 C30 76 39 84 50 84 C61 84 70 76 70 62 C70 48 50 20 50 20Z" fill="#c98a4d"/>
+<path d="M42 55 C42 65 42 75 42 82 M58 55 C58 65 58 75 58 82" stroke="#c98a4d" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ねばねば</span><span class="onomat-romaji">nebaneba</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Lengket dan berserabut, seperti natto atau lem.</td>
+                <td class="onomat-example">
+                    <span class="jp">納豆はねばねばしている。</span>
+                    <span class="yomi">なっとうはねばねばしている。</span>
+                    <span class="id">Natto itu lengket.</span>
+                </td>
+            </tr>
+
+            <!-- 27 がたがた -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="26" y="30" width="48" height="40" rx="6" fill="#c9d6e8" stroke="#001f3f" stroke-width="3"/>
+<path d="M14 40 l8 4 l-8 4 M86 40 l-8 4 l8 4 M14 60 l8 4 l-8 4 M86 60 l-8 4 l8 4" stroke="#8892a3" stroke-width="3" stroke-linecap="round" fill="none"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">がたがた</span><span class="onomat-romaji">gatagata</span></td>
+                <td><span class="type-badge giongo">giongo</span></td>
+                <td class="onomat-mean">Suara berguncang atau bergemeretak, atau tubuh yang gemetar.</td>
+                <td class="onomat-example">
+                    <span class="jp">地震で窓ががたがた揺れた。</span>
+                    <span class="yomi">じしんでまどががたがたゆれた。</span>
+                    <span class="id">Jendela berguncang keras karena gempa.</span>
+                </td>
+            </tr>
+
+            <!-- 28 ごろごろ -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="55" r="24" fill="#c98a4d"/>
+<path d="M50 55 m-24 0 a24 24 0 0 1 44 -14" fill="none" stroke="#022655" stroke-width="3" stroke-linecap="round"/>
+<path d="M24 34 l8 2 l-2 8Z" fill="#022655"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ごろごろ</span><span class="onomat-romaji">gorogoro</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Berguling-guling atau bermalas-malasan tanpa melakukan apa-apa.</td>
+                <td class="onomat-example">
+                    <span class="jp">休日は家でごろごろしている。</span>
+                    <span class="yomi">きゅうじつはいえでごろごろしている。</span>
+                    <span class="id">Di hari libur aku bermalas-malasan di rumah.</span>
+                </td>
+            </tr>
+
+            <!-- 29 ぱらぱら -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="#5b8bb0" stroke-width="3" stroke-linecap="round">
+<line x1="30" y1="30" x2="27" y2="42"/><line x1="50" y1="24" x2="47" y2="38"/><line x1="70" y1="32" x2="67" y2="44"/>
+<line x1="40" y1="50" x2="37" y2="62"/><line x1="60" y1="52" x2="57" y2="64"/>
+</g>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ぱらぱら</span><span class="onomat-romaji">parapara</span></td>
+                <td><span class="type-badge giongo">giongo</span></td>
+                <td class="onomat-mean">Suara rintik ringan atau membalik halaman satu per satu.</td>
+                <td class="onomat-example">
+                    <span class="jp">雨がぱらぱら降ってきた。</span>
+                    <span class="yomi">あめがぱらぱらふってきた。</span>
+                    <span class="id">Hujan mulai turun rintik-rintik.</span>
+                </td>
+            </tr>
+
+            <!-- 30 ざあざあ -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="50" cy="32" rx="30" ry="15" fill="#5b8bb0"/>
+<ellipse cx="30" cy="38" rx="16" ry="12" fill="#5b8bb0"/><ellipse cx="70" cy="38" rx="16" ry="12" fill="#5b8bb0"/>
+<g stroke="#001f3f" stroke-width="3" stroke-linecap="round">
+<line x1="30" y1="55" x2="24" y2="80"/><line x1="48" y1="55" x2="42" y2="82"/><line x1="66" y1="55" x2="60" y2="80"/><line x1="80" y1="58" x2="76" y2="78"/>
+</g>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ざあざあ</span><span class="onomat-romaji">zaazaa</span></td>
+                <td><span class="type-badge giongo">giongo</span></td>
+                <td class="onomat-mean">Suara hujan yang turun sangat deras dan lebat.</td>
+                <td class="onomat-example">
+                    <span class="jp">外はざあざあ雨が降っている。</span>
+                    <span class="yomi">そとはざあざああめがふっている。</span>
+                    <span class="id">Di luar hujan turun sangat deras.</span>
+                </td>
+            </tr>
+
+            <!-- 31 ぽつぽつ -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="50" cy="30" rx="26" ry="12" fill="#c9d6e8"/>
+<g stroke="#5b8bb0" stroke-width="4" stroke-linecap="round"><line x1="36" y1="52" x2="34" y2="60"/><line x1="64" y1="55" x2="62" y2="63"/></g>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ぽつぽつ</span><span class="onomat-romaji">potsupotsu</span></td>
+                <td><span class="type-badge giongo">giongo</span></td>
+                <td class="onomat-mean">Hujan yang baru mulai turun sedikit demi sedikit.</td>
+                <td class="onomat-example">
+                    <span class="jp">空を見ると雨がぽつぽつ降り始めた。</span>
+                    <span class="yomi">そらをみるとあめがぽつぽつふりはじめた。</span>
+                    <span class="id">Melihat ke langit, hujan mulai turun rintik sedikit demi sedikit.</span>
+                </td>
+            </tr>
+
+            <!-- 32 ごくごく -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M34 24 h32 l-4 52 a4 4 0 0 1 -4 4 h-16 a4 4 0 0 1 -4 -4 Z" fill="#c9d6e8" stroke="#001f3f" stroke-width="2.5"/>
+<path d="M38 40 h24" stroke="#5b8bb0" stroke-width="4" stroke-linecap="round"/>
+<path d="M50 78 q-6 8 0 16 M50 78 q6 8 0 16" stroke="#5b8bb0" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ごくごく</span><span class="onomat-romaji">gokugoku</span></td>
+                <td><span class="type-badge giongo">giongo</span></td>
+                <td class="onomat-mean">Minum dengan lahap dan cepat, biasanya karena sangat haus.</td>
+                <td class="onomat-example">
+                    <span class="jp">喉が渇いていたので水をごくごく飲んだ。</span>
+                    <span class="yomi">のどがかわいていたのでみずをごくごくのんだ。</span>
+                    <span class="id">Karena haus sekali, aku minum air dengan lahap.</span>
+                </td>
+            </tr>
+
+            <!-- 33 もぐもぐ -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="28" fill="#fffbe6" stroke="#c98a4d" stroke-width="3"/>
+<ellipse cx="50" cy="58" rx="16" ry="8" fill="#c17b7b"/>
+<circle cx="40" cy="42" r="2.4" fill="#001f3f"/><circle cx="60" cy="42" r="2.4" fill="#001f3f"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">もぐもぐ</span><span class="onomat-romaji">mogumogu</span></td>
+                <td><span class="type-badge giongo">giongo</span></td>
+                <td class="onomat-mean">Mengunyah makanan perlahan dengan mulut tertutup.</td>
+                <td class="onomat-example">
+                    <span class="jp">子供がパンをもぐもぐ食べている。</span>
+                    <span class="yomi">こどもがパンをもぐもぐたべている。</span>
+                    <span class="id">Anak itu mengunyah roti perlahan.</span>
+                </td>
+            </tr>
+
+            <!-- 34 ぺこぺこ -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="42" r="22" fill="#fffbe6" stroke="#c98a4d" stroke-width="3"/>
+<path d="M38 40 q4 -6 8 0" stroke="#001f3f" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M54 40 q4 -6 8 0" stroke="#001f3f" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M42 52 q8 8 16 0" stroke="#001f3f" stroke-width="3" fill="none" stroke-linecap="round"/>
+<ellipse cx="50" cy="78" rx="26" ry="6" fill="#e3e9f2"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ぺこぺこ</span><span class="onomat-romaji">pekopeko</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Sangat lapar, perut sudah kosong tak tertahankan.</td>
+                <td class="onomat-example">
+                    <span class="jp">朝から何も食べていないのでお腹がぺこぺこだ。</span>
+                    <span class="yomi">あさからなにもたべていないのでおなかがぺこぺこだ。</span>
+                    <span class="id">Sejak pagi belum makan apa-apa, perutku lapar sekali.</span>
+                </td>
+            </tr>
+
+            <!-- 35 がつがつ -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="50" cy="78" rx="28" ry="7" fill="#e3e9f2"/>
+<path d="M30 30 L44 62 M70 30 L56 62" stroke="#8892a3" stroke-width="4" stroke-linecap="round"/>
+<path d="M30 30 v14 M26 30 v10 M34 30 v10" stroke="#8892a3" stroke-width="3" stroke-linecap="round"/>
+<path d="M70 30 q6 0 6 8 q0 8 -6 8" stroke="#8892a3" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">がつがつ</span><span class="onomat-romaji">gatsugatsu</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Makan dengan lahap dan terburu-buru karena sangat lapar.</td>
+                <td class="onomat-example">
+                    <span class="jp">彼はがつがつご飯を食べた。</span>
+                    <span class="yomi">かれはがつがつごはんをたべた。</span>
+                    <span class="id">Dia makan nasi dengan sangat lahap.</span>
+                </td>
+            </tr>
+
+            <!-- 36 わいわい -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="30" cy="36" r="9" fill="#5b8bb0"/><rect x="19" y="47" width="22" height="24" rx="7" fill="#5b8bb0"/>
+<circle cx="70" cy="36" r="9" fill="#c98a4d"/><rect x="59" y="47" width="22" height="24" rx="7" fill="#c98a4d"/>
+<path d="M40 40 q10 -8 20 0" stroke="#facc15" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">わいわい</span><span class="onomat-romaji">waiwai</span></td>
+                <td><span class="type-badge giongo">giongo</span></td>
+                <td class="onomat-mean">Suasana ramai dan meriah, biasanya saat berkumpul bersama.</td>
+                <td class="onomat-example">
+                    <span class="jp">友達とわいわい楽しく過ごした。</span>
+                    <span class="yomi">ともだちとわいわいたのしくすごした。</span>
+                    <span class="id">Aku menghabiskan waktu dengan ramai dan menyenangkan bersama teman-teman.</span>
+                </td>
+            </tr>
+
+            <!-- 37 がやがや -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="30" cy="40" r="10" fill="#022655"/><rect x="18" y="52" width="24" height="26" rx="8" fill="#022655"/>
+<circle cx="66" cy="34" r="10" fill="#5b8bb0"/><rect x="54" y="46" width="24" height="26" rx="8" fill="#5b8bb0"/>
+<path d="M76 60 q10 -4 14 4 q-6 2 -8 8Z" fill="#facc15"/><path d="M20 46 q-8 -4 -12 4 q6 2 8 8Z" fill="#facc15"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">がやがや</span><span class="onomat-romaji">gayagaya</span></td>
+                <td><span class="type-badge giongo">giongo</span></td>
+                <td class="onomat-mean">Suara riuh banyak orang mengobrol bersamaan, ramai dan berisik.</td>
+                <td class="onomat-example">
+                    <span class="jp">教室はがやがやと騒がしかった。</span>
+                    <span class="yomi">きょうしつはがやがやとさわがしかった。</span>
+                    <span class="id">Kelas itu ramai riuh dengan suara mengobrol.</span>
+                </td>
+            </tr>
+
+            <!-- 38 こつこつ -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="60" width="18" height="18" fill="#c98a4d"/><rect x="41" y="46" width="18" height="32" fill="#c98a4d"/><rect x="62" y="30" width="18" height="48" fill="#c98a4d"/>
+<path d="M20 60 l8 -6 M41 46 l8 -6" stroke="#001f3f" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">こつこつ</span><span class="onomat-romaji">kotsukotsu</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Berusaha tekun sedikit demi sedikit secara konsisten dalam waktu lama.</td>
+                <td class="onomat-example">
+                    <span class="jp">彼はこつこつ勉強を続けた。</span>
+                    <span class="yomi">かれはこつこつべんきょうをつづけた。</span>
+                    <span class="id">Dia terus belajar dengan tekun sedikit demi sedikit.</span>
+                </td>
+            </tr>
+
+            <!-- 39 はきはき -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="42" cy="46" rx="26" ry="18" fill="#022655"/><path d="M28 60 L20 72 L36 62Z" fill="#022655"/>
+<path d="M64 44 l6 6 l12 -12" stroke="#facc15" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">はきはき</span><span class="onomat-romaji">hakihaki</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Berbicara dengan jelas, lantang, dan tegas.</td>
+                <td class="onomat-example">
+                    <span class="jp">彼女ははきはきと答えた。</span>
+                    <span class="yomi">かのじょははきはきとこたえた。</span>
+                    <span class="id">Dia menjawab dengan jelas dan tegas.</span>
+                </td>
+            </tr>
+
+            <!-- 40 きちんと -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="24" y="24" width="14" height="14" fill="#5b8bb0"/><rect x="43" y="24" width="14" height="14" fill="#5b8bb0"/><rect x="62" y="24" width="14" height="14" fill="#5b8bb0"/>
+<rect x="24" y="43" width="14" height="14" fill="#c98a4d"/><rect x="43" y="43" width="14" height="14" fill="#c98a4d"/><rect x="62" y="43" width="14" height="14" fill="#c98a4d"/>
+<rect x="24" y="62" width="14" height="14" fill="#022655"/><rect x="43" y="62" width="14" height="14" fill="#022655"/><rect x="62" y="62" width="14" height="14" fill="#022655"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">きちんと</span><span class="onomat-romaji">kichinto</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Melakukan sesuatu dengan rapi, tertib, dan benar.</td>
+                <td class="onomat-example">
+                    <span class="jp">部屋をきちんと片付けた。</span>
+                    <span class="yomi">へやをきちんとかたづけた。</span>
+                    <span class="id">Aku merapikan kamar dengan rapi dan benar.</span>
+                </td>
+            </tr>
+
+            <!-- 41 しっかり -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="28" r="9" fill="#022655"/>
+<path d="M50 37 v30" stroke="#022655" stroke-width="6" stroke-linecap="round"/>
+<path d="M30 40 h40 M32 55 h36" stroke="#022655" stroke-width="5" stroke-linecap="round"/>
+<path d="M50 67 L36 84 M50 67 L64 84" stroke="#022655" stroke-width="6" stroke-linecap="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">しっかり</span><span class="onomat-romaji">shikkari</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Melakukan sesuatu dengan kuat, mantap, dan sungguh-sungguh.</td>
+                <td class="onomat-example">
+                    <span class="jp">しっかり勉強してください。</span>
+                    <span class="yomi">しっかりべんきょうしてください。</span>
+                    <span class="id">Tolong belajar dengan sungguh-sungguh.</span>
+                </td>
+            </tr>
+
+            <!-- 42 ぼんやり -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="28" fill="#e9edf3"/>
+<circle cx="42" cy="45" r="2.4" fill="#8892a3"/><circle cx="58" cy="45" r="2.4" fill="#8892a3"/>
+<ellipse cx="50" cy="20" rx="18" ry="8" fill="#e9edf3" opacity=".8"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ぼんやり</span><span class="onomat-romaji">bonyari</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Melamun atau berpikir dengan pikiran kosong, tidak fokus.</td>
+                <td class="onomat-example">
+                    <span class="jp">疲れていて、ぼんやりしていた。</span>
+                    <span class="yomi">つかれていて、ぼんやりしていた。</span>
+                    <span class="id">Karena lelah, aku jadi melamun tidak fokus.</span>
+                </td>
+            </tr>
+
+            <!-- 43 ぐるぐる -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 50 m0 -30 a30 30 0 1 1 -21 9" fill="none" stroke="#c17b7b" stroke-width="5" stroke-linecap="round"/>
+<path d="M22 26 l7 3 l-2 8Z" fill="#c17b7b"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ぐるぐる</span><span class="onomat-romaji">guruguru</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Berputar-putar terus-menerus, atau kepala pusing/berputar.</td>
+                <td class="onomat-example">
+                    <span class="jp">考えすぎて頭がぐるぐるする。</span>
+                    <span class="yomi">かんがえすぎてあたまがぐるぐるする。</span>
+                    <span class="id">Kepalaku pusing berputar karena kebanyakan berpikir.</span>
+                </td>
+            </tr>
+
+            <!-- 44 ぎりぎり -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="30" fill="#fffbe6" stroke="#001f3f" stroke-width="3"/>
+<line x1="50" y1="50" x2="50" y2="28" stroke="#001f3f" stroke-width="3" stroke-linecap="round"/>
+<line x1="50" y1="50" x2="68" y2="56" stroke="#c17b7b" stroke-width="3" stroke-linecap="round"/>
+<circle cx="50" cy="50" r="3" fill="#001f3f"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">ぎりぎり</span><span class="onomat-romaji">girigiri</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Nyaris atau mepet sekali, seperti hampir terlambat atau batas akhir.</td>
+                <td class="onomat-example">
+                    <span class="jp">ぎりぎり電車に間に合った。</span>
+                    <span class="yomi">ぎりぎりでんしゃにまにあった。</span>
+                    <span class="id">Aku nyaris terlambat tapi berhasil mengejar kereta.</span>
+                </td>
+            </tr>
+
+            <!-- 45 そろそろ -->
+            <tr>
+                <td><div class="onomat-icon-cell"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="30" fill="#fffbe6" stroke="#5b8bb0" stroke-width="3"/>
+<line x1="50" y1="50" x2="50" y2="32" stroke="#001f3f" stroke-width="3" stroke-linecap="round"/>
+<line x1="50" y1="50" x2="64" y2="50" stroke="#001f3f" stroke-width="3" stroke-linecap="round"/>
+<path d="M78 50 q6 0 6 6" stroke="#5b8bb0" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                    </svg></div></td>
+                <td><span class="onomat-jp">そろそろ</span><span class="onomat-romaji">sorosoro</span></td>
+                <td><span class="type-badge gitaigo">gitaigo</span></td>
+                <td class="onomat-mean">Sebentar lagi, sudah waktunya untuk melakukan sesuatu.</td>
+                <td class="onomat-example">
+                    <span class="jp">そろそろ帰りましょう。</span>
+                    <span class="yomi">そろそろかえりましょう。</span>
+                    <span class="id">Sebentar lagi mari kita pulang.</span>
+                </td>
+            </tr>
+
+                        </tbody>
+        </table>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">TIPS</span> Cara Mudah Mengingat</h2>
+        <div class="note-box">
+            Cobalah bayangkan situasinya langsung saat membaca tiap onomatope: <b>どきどき</b> = tangan memegang
+            dada saat gugup, <b>きらきら</b> = mata yang berbinar melihat sesuatu yang berkilau, <b>ぐっすり</b> =
+            posisi tidur yang nyaman tanpa gerak sama sekali. Onomatope paling cepat melekat kalau dihafal
+            <b>bersama gerakan tubuh atau ekspresi wajah</b> yang sesuai, bukan hanya dihafal sebagai daftar kata.
+        </div>
+    </div>
+
+</div>
+
+<div class="content" style="padding-top:0;">
+    <div class="nav-bottom">
+        <a href="daftarkosakata.html" class="prev">
+            <span class="dir">← Sebelumnya</span>
+            Kosakata JFT
+        </a>
+        <a href="materitatabahasa_n2.html" class="next">
+            <span class="dir">Selanjutnya →</span>
+            Tata Bahasa N2
+        </a>
+    </div>
+</div>
+
+<footer>
+© Tekipaki Japanese Learning
+</footer>
+
+<script>
+
+function toggleDropdown(id){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+        if(m.id!==id){
+            m.classList.remove('show');
+            m.classList.remove('align-right');
+            m.closest('.dropdown').classList.remove('open');
+        }
+    });
+    const menu = document.getElementById(id);
+    const wrap = menu.closest('.dropdown');
+    const willShow = !menu.classList.contains('show');
+    menu.classList.toggle('show');
+    wrap.classList.toggle('open');
+    if(willShow){
+        menu.classList.remove('align-right');
+        const rect = menu.getBoundingClientRect();
+        if(rect.right > window.innerWidth - 8){ menu.classList.add('align-right'); }
+    }
+}
+
+window.addEventListener('resize', ()=>{
+    document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
+        m.classList.remove('show');
+        m.classList.remove('align-right');
+        m.closest('.dropdown').classList.remove('open');
+    });
+});
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+        });
+        document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
+    }
+});
+
+</script>
+
+</body>
+</html>
