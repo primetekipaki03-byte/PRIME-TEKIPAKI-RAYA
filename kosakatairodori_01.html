@@ -585,7 +585,7 @@ dalam Bahasa Indonesia. Gunakan kolom pencarian di bawah untuk mencari kosakata 
 </div>
 
 <div class="nav-bottom">
-    <a href="daftarkosakatasehari.html" class="prev">
+    <a href="kosakatairodori_homepage.html" class="prev">
         <span class="dir">← Kembali</span>
         Daftar Unit
     </a>
@@ -670,7 +670,7 @@ document.addEventListener("click",function(e){
 
 // ================= NOMOR + PENCARIAN + PAGINASI =================
 
-const ROWS_PER_PAGE = 20;
+const ROWS_PER_PAGE = 50;
 let currentPage = 1;
 
 const allRows = Array.from(document.querySelectorAll("#vocabBody tr"));
@@ -717,6 +717,12 @@ function renderPagination(totalPages){
 
     const pag = document.getElementById("pagination");
     pag.innerHTML = "";
+
+    if(totalPages <= 1){
+        pag.style.display = "none";
+        return;
+    }
+    pag.style.display = "flex";
 
     function makeLink(label, page, opts){
         opts = opts || {};
