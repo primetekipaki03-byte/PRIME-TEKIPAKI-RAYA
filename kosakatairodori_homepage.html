@@ -178,7 +178,7 @@ header p{
 }
 
 /* =======================
-      UNIT LIST
+      BAB LIST
 ======================= */
 
 .container{
@@ -187,7 +187,7 @@ header p{
     padding:30px 24px 80px;
 }
 
-.unit-card{
+.bab-card{
     position:relative;
     display:flex;
     align-items:center;
@@ -201,9 +201,10 @@ header p{
     color:var(--text);
     overflow:hidden;
     transition:.25s;
+    cursor:pointer;
 }
 
-.unit-card::before{
+.bab-card::before{
     content:"";
     position:absolute;
     left:0;
@@ -214,18 +215,18 @@ header p{
     transition:.25s;
 }
 
-.unit-card:hover{
+.bab-card:hover{
     border-color:var(--navy);
     transform:translateX(6px);
     box-shadow:0 8px 20px rgba(0,31,63,.12);
 }
 
-.unit-card:hover::before{
+.bab-card:hover::before{
     width:100%;
     opacity:.06;
 }
 
-.unit-icon{
+.bab-icon{
     flex-shrink:0;
     width:56px;
     height:56px;
@@ -242,13 +243,13 @@ header p{
     z-index:1;
 }
 
-.unit-body{
+.bab-body{
     flex:1;
     position:relative;
     z-index:1;
 }
 
-.unit-tag{
+.bab-tag{
     font-size:11px;
     font-weight:700;
     letter-spacing:.1em;
@@ -260,50 +261,50 @@ header p{
     margin-bottom:6px;
 }
 
-.unit-title{
+.bab-title{
     font-size:19px;
     font-weight:700;
     color:var(--navy);
 }
 
-.unit-desc{
+.bab-desc{
     font-size:13px;
     color:var(--muted);
     margin-top:2px;
 }
 
-.unit-meta{
+.bab-meta{
     flex-shrink:0;
     text-align:right;
     position:relative;
     z-index:1;
 }
 
-.unit-count{
+.bab-count{
     font-size:13px;
     font-weight:600;
     color:var(--navy2);
 }
 
-.unit-arrow{
+.bab-arrow{
     margin-top:6px;
     font-size:18px;
     color:var(--navy);
     transition:.25s;
 }
 
-.unit-card:hover .unit-arrow{
+.bab-card:hover .bab-arrow{
     transform:translateX(4px);
     color:var(--gold);
     filter:drop-shadow(0 0 1px var(--navy));
 }
 
 @media(max-width:600px){
-    .unit-card{
+    .bab-card{
         flex-wrap:wrap;
         padding:16px;
     }
-    .unit-meta{
+    .bab-meta{
         width:100%;
         text-align:left;
         margin-top:8px;
@@ -376,14 +377,14 @@ HOME
 </nav>
 
 <header>
-<div class="eyebrow">
-<h1>DAFTAR KOSAKATA JFT A2 (IRODORI)</h1></div>
-<p>Halaman ini berisi daftar kosakata dasar JFT A2 berdasarkan buku Irodori.
-Setiap baris menampilkan kotoba (cara baca), kanji, dan arti dalam Bahasa
+<div class="eyebrow">DAFTAR KOSAKATA JFT A2 (IRODORI)</div>
+<h1>18 BAB Kosakata</h1>
+<p>Klik salah satu BAB di bawah untuk membuka daftar 20 kosakata pada bab
+tersebut, lengkap dengan kotoba (cara baca), kanji, dan arti dalam Bahasa
 Indonesia.</p>
 </header>
 
-<div class="container" id="unitList"></div>
+<div class="container" id="babList"></div>
 
 <footer>
 © 2026 Tekipaki Japanese Learning | Daftar Kosakata JFT A2
@@ -391,20 +392,20 @@ Indonesia.</p>
 
 <script>
 
-const TOTAL_UNITS = 37;
-const WORDS_PER_UNIT = 20;
+const TOTAL_BAB = 18;
+const WORDS_PER_BAB = 20;
 
-// 👇 TAMBAHKAN INI: link khusus untuk unit tertentu (opsional)
- const customLinks = {
-    1: "kosakataunit1.html",
-    2: "kosakataunit2.html",
-    3: "kosakataunit3.html",
-    4: "kosakataunit4.html",
-    5: "kosakataunit5.html",
-    6: "kosakataunit6.html",
-    7: "kosakataunit7.html",
-    8: "kosakataunit8.html",
-    9: "kosakataunit9.html",
+// 👇 Link tiap BAB. Ubah di sini kalau nama file halamannya berbeda.
+const babLinks = {
+    1:  "kosakataunit1.html",
+    2:  "kosakataunit2.html",
+    3:  "kosakataunit3.html",
+    4:  "kosakataunit4.html",
+    5:  "kosakataunit5.html",
+    6:  "kosakataunit6.html",
+    7:  "kosakataunit7.html",
+    8:  "kosakataunit8.html",
+    9:  "kosakataunit9.html",
     10: "kosakataunit10.html",
     11: "kosakataunit11.html",
     12: "kosakataunit12.html",
@@ -413,47 +414,26 @@ const WORDS_PER_UNIT = 20;
     15: "kosakataunit15.html",
     16: "kosakataunit16.html",
     17: "kosakataunit17.html",
-    18: "kosakataunit18.html",
-    19: "kosakataunit19.html",
-    20: "kosakataunit20.html",
-    21: "kosakataunit21.html",
-    22: "kosakataunit22.html",
-    23: "kosakataunit23.html",
-    24: "kosakataunit24.html",
-    25: "kosakataunit25.html",
-    26: "kosakataunit26.html",
-    27: "kosakataunit27.html",
-    28: "kosakataunit28.html",
-    29: "kosakataunit29.html",
-    30: "kosakataunit30.html",
-    31: "kosakataunit31.html",
-    32: "kosakataunit32.html",
-    33: "kosakataunit33.html",
-    34: "kosakataunit34.html",
-    35: "kosakataunit35.html",
-    36: "kosakataunit36.html",
-    37: "kosakataunit37.html"
-
+    18: "kosakataunit18.html"
 };
 
-const list = document.getElementById("unitList");
+const list = document.getElementById("babList");
 
-for(let i=1; i<=TOTAL_UNITS; i++){
+for(let i=1; i<=TOTAL_BAB; i++){
     const n = String(i).padStart(2,"0");
     const a = document.createElement("a");
 
-    // 👇 UBAH BARIS INI
-    a.href = customLinks[i] || ("kosakata_unit" + i + ".html");
+    a.href = babLinks[i] || ("kosakataunit" + i + ".html");
+    a.className = "bab-card";
 
-    a.className = "unit-card";
     a.innerHTML = `
-        <div class="unit-icon">${n}</div>
-        <div class="unit-body">
-            <div class="unit-title">Unit ${i}</div>
+        <div class="bab-icon">${n}</div>
+        <div class="bab-body">
+            <div class="bab-title">BAB ${i}</div>
         </div>
-        <div class="unit-meta">
-            <div class="unit-count">${WORDS_PER_UNIT} kosakata</div>
-            <div class="unit-arrow">→</div>
+        <div class="bab-meta">
+            <div class="bab-count">${WORDS_PER_BAB} kosakata</div>
+            <div class="bab-arrow">→</div>
         </div>
     `;
     list.appendChild(a);
