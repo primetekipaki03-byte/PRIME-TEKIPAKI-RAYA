@@ -5,7 +5,7 @@
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bab 4 - Daftar Kosakata JFT A2</title>
+<title>Bab 5 - Daftar Kosakata JFT A2</title>
 
 <style>
 
@@ -514,10 +514,10 @@ SOAL JFT A — TEST 5
 </div>
 
 <header>
-<div class="eyebrow">📚 UNIT 4 · 31 KOSAKATA</div>
-<h1>Bab 4</h1>
+<div class="eyebrow">📚 UNIT 5 · 30 KOSAKATA</div>
+<h1>Bab 5</h1>
 <p>
-Kosakata dasar untuk Unit 4. Setiap baris menampilkan kotoba (cara baca), kanji, dan arti
+Kosakata dasar untuk Unit 5. Setiap baris menampilkan kotoba (cara baca), kanji, dan arti
 dalam Bahasa Indonesia. Gunakan kolom pencarian di bawah untuk mencari kosakata dengan cepat.
 </p>
 </header>
@@ -540,6 +540,7 @@ dalam Bahasa Indonesia. Gunakan kolom pencarian di bawah untuk mencari kosakata 
 </thead>
 
 <tbody id="vocabBody">
+
 
 <tr><td class="col-no"></td><td class="col-kotoba">ちょうみりょう</td><td class="col-kanji">調味料</td><td class="col-arti">bumbu / penyedap</td></tr>
 <tr><td class="col-no"></td><td class="col-kotoba">ちょうりほうほう</td><td class="col-kanji">調理方法</td><td class="col-arti">cara memasak</td></tr>
@@ -584,13 +585,13 @@ dalam Bahasa Indonesia. Gunakan kolom pencarian di bawah untuk mencari kosakata 
 </div>
 
 <div class="nav-bottom">
-    <a href="kosakataunit3.html" class="prev">
+    <a href="kosakataunit4.html" class="prev">
         <span class="dir">← Sebelumnya</span>
-        Bab 3
+        Bab 4
     </a>
-    <a href="kosakataunit5.html" class="next">
+    <a href="kosakataunit6.html" class="next">
         <span class="dir">Selanjutnya →</span>
-        Bab 5
+        Bab 6
     </a>
 </div>
 
@@ -669,7 +670,7 @@ document.addEventListener("click",function(e){
 
 // ================= NOMOR + PENCARIAN + PAGINASI =================
 
-const ROWS_PER_PAGE = 20;
+const ROWS_PER_PAGE = 50;
 let currentPage = 1;
 
 const allRows = Array.from(document.querySelectorAll("#vocabBody tr"));
@@ -716,6 +717,12 @@ function renderPagination(totalPages){
 
     const pag = document.getElementById("pagination");
     pag.innerHTML = "";
+
+    if(totalPages <= 1){
+        pag.style.display = "none";
+        return;
+    }
+    pag.style.display = "flex";
 
     function makeLink(label, page, opts){
         opts = opts || {};
