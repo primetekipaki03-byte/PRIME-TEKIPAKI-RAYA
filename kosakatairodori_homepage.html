@@ -249,28 +249,10 @@ header p{
     z-index:1;
 }
 
-.bab-tag{
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.1em;
-    color:var(--gold);
-    background:var(--navy);
-    display:inline-block;
-    padding:3px 10px;
-    border-radius:999px;
-    margin-bottom:6px;
-}
-
 .bab-title{
     font-size:19px;
     font-weight:700;
     color:var(--navy);
-}
-
-.bab-desc{
-    font-size:13px;
-    color:var(--muted);
-    margin-top:2px;
 }
 
 .bab-meta{
@@ -377,8 +359,9 @@ HOME
 </nav>
 
 <header>
-<div class="eyebrow"><h1>DAFTAR KOSAKATA JFT A2 (IRODORI)</h1></div>
-<p>Klik salah satu BAB di bawah untuk membuka daftar 20 kosakata pada bab
+<div class="eyebrow">DAFTAR KOSAKATA JFT A2 (IRODORI)</div>
+<h1>18 BAB Kosakata</h1>
+<p>Klik salah satu BAB di bawah untuk membuka daftar kosakata pada bab
 tersebut, lengkap dengan kotoba (cara baca), kanji, dan arti dalam Bahasa
 Indonesia.</p>
 </header>
@@ -392,7 +375,6 @@ Indonesia.</p>
 <script>
 
 const TOTAL_BAB = 18;
-
 
 // 👇 Link tiap BAB. Ubah di sini kalau nama file halamannya berbeda.
 const babLinks = {
@@ -416,6 +398,29 @@ const babLinks = {
     18: "kosakatairodori_18.html"
 };
 
+// 👇 Jumlah kosakata tiap BAB. Isi manual sesuai isi masing-masing halaman.
+//    Kalau nomor bab tidak diisi di sini, jumlah kosakata tidak akan ditampilkan.
+const babCounts = {
+    1:  32,
+    2:  33,
+    3:  48,
+    4:  0,
+    5:  0,
+    6:  0,
+    7:  0,
+    8:  0,
+    9:  0,
+    10: 0,
+    11: 0,
+    12: 0,
+    13: 0,
+    14: 0,
+    15: 0,
+    16: 0,
+    17: 0,
+    18: 0
+};
+
 const list = document.getElementById("babList");
 
 for(let i=1; i<=TOTAL_BAB; i++){
@@ -425,13 +430,16 @@ for(let i=1; i<=TOTAL_BAB; i++){
     a.href = babLinks[i] || ("kosakataunit" + i + ".html");
     a.className = "bab-card";
 
+    const count = babCounts[i];
+    const countHtml = count ? `<div class="bab-count">${count} kosakata</div>` : "";
+
     a.innerHTML = `
         <div class="bab-icon">${n}</div>
         <div class="bab-body">
             <div class="bab-title">BAB ${i}</div>
         </div>
         <div class="bab-meta">
-            <div class="bab-count">${WORDS_PER_BAB} kosakata</div>
+            ${countHtml}
             <div class="bab-arrow">→</div>
         </div>
     `;
