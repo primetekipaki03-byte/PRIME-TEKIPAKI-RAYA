@@ -631,43 +631,43 @@ HOME
 <div class="grid">
 
 
-    <div class="card" onclick="show('送る')">
+    <div class="card active" onclick="show('送る', this)">
         <div class="j">送る</div>
     </div>
 
-    <div class="card" onclick="show('歩く')">
+    <div class="card" onclick="show('歩く', this)">
         <div class="j">歩く</div>
     </div>
 
-    <div class="card" onclick="show('走る')">
+    <div class="card" onclick="show('走る', this)">
         <div class="j">走る</div>
     </div>
 
-    <div class="card" onclick="show('調べる')">
+    <div class="card" onclick="show('調べる', this)">
         <div class="j">調べる</div>
     </div>
 
-    <div class="card" onclick="show('無理')">
+    <div class="card" onclick="show('無理', this)">
         <div class="j">無理</div>
     </div>
 
-    <div class="card" onclick="show('庭')">
+    <div class="card" onclick="show('庭', this)">
         <div class="j">庭</div>
     </div>
 
-    <div class="card" onclick="show('彼')">
+    <div class="card" onclick="show('彼', this)">
         <div class="j">彼</div>
     </div>
 
-    <div class="card" onclick="show('彼女')">
+    <div class="card" onclick="show('彼女', this)">
         <div class="j">彼女</div>
     </div>
 
-    <div class="card" onclick="show('野菜')">
+    <div class="card" onclick="show('野菜', this)">
         <div class="j">野菜</div>
     </div>
 
-    <div class="card" onclick="show('財布')">
+    <div class="card" onclick="show('財布', this)">
         <div class="j">財布</div>
     </div>
 
@@ -687,16 +687,16 @@ HOME
 //============================
 
 const kanjiData = {
-    "勉強": { yomi:"べんきょう (benkyou)", arti:"belajar" },
-    "図書館": { yomi:"としょかん (toshokan)", arti:"perpustakaan" },
-    "病気": { yomi:"びょうき (byouki)", arti:"sakit / penyakit" },
-    "体": { yomi:"からだ (karada)", arti:"tubuh" },
-    "声": { yomi:"こえ (koe)", arti:"suara" },
-    "起きる": { yomi:"おきる (okiru)", arti:"bangun" },
-    "思い出す": { yomi:"おもいだす (omoidasu)", arti:"mengingat kembali" },
-    "練習する": { yomi:"れんしゅうする (renshuu suru)", arti:"berlatih" },
-    "売る": { yomi:"うる (uru)", arti:"menjual" },
-    "落ちる": { yomi:"おちる (ochiru)", arti:"jatuh / turun" }
+    "送る": { yomi:"おくる (okuru)", arti:"mengirim" },
+    "歩く": { yomi:"あるく (aruku)", arti:"berjalan kaki" },
+    "走る": { yomi:"はしる (hashiru)", arti:"berlari" },
+    "調べる": { yomi:"しらべる (shiraberu)", arti:"memeriksa / meneliti" },
+    "無理": { yomi:"むり (muri)", arti:"tidak mungkin / mustahil" },
+    "庭": { yomi:"にわ (niwa)", arti:"taman / halaman" },
+    "彼": { yomi:"かれ (kare)", arti:"dia (laki-laki) / pacar" },
+    "彼女": { yomi:"かのじょ (kanojo)", arti:"dia (perempuan) / pacar" },
+    "野菜": { yomi:"やさい (yasai)", arti:"sayuran" },
+    "財布": { yomi:"さいふ (saifu)", arti:"dompet" }
 };
 //============================
 // AUTO-SIZE FONT KARTU GRID
