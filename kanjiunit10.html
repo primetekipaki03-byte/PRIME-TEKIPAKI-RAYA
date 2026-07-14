@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kanji Flash Card</title>
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --text:#001f3f;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:var(--text);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.home-btn{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+background:var(--gold);
+color:#001530;
+
+text-decoration:none;
+
+padding:8px 14px;
+
+border-radius:10px;
+
+font-weight:bold;
+
+}
+
+.home-btn:hover{
+
+opacity:.85;
+
+}
+
+.home-icon{
+
+width:24px;
+
+height:24px;
+
+object-fit:cover;
+
+border-radius:4px;
+
+}
+
+.dropdown{
+
+position:relative;
+
+}
+
+.dropdown-btn{
+
+background:none;
+
+border:2px solid var(--gold);
+
+color:var(--gold);
+
+padding:8px 14px;
+
+border-radius:8px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+.dropdown-btn:hover{
+
+background:var(--gold);
+
+color:#001530;
+
+}
+
+.dropdown-menu{
+
+display:none;
+
+position:absolute;
+
+top:45px;
+
+left:0;
+
+background:#022655;
+
+border-radius:10px;
+
+overflow:hidden;
+
+min-width:220px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.4);
+
+}
+
+.dropdown-menu a{
+
+display:block;
+
+padding:12px 15px;
+
+color:#ffd700;
+
+text-decoration:none;
+
+}
+
+.dropdown-menu a:hover{
+
+background:var(--gold);
+
+color:#001530;
+
+}
+
+.show{
+
+display:block;
+
+}
+
+.nav-link-btn{
+
+text-decoration:none;
+
+padding:8px 14px;
+
+border:2px solid var(--gold);
+
+color:var(--gold);
+
+border-radius:8px;
+
+font-weight:bold;
+
+}
+
+.nav-link-btn:hover{
+
+background:var(--gold);
+
+color:#001530;
+
+}
+
+@media(max-width:600px){
+  .navbar-inner{flex-direction:column;align-items:flex-start;}
+  .nav-right{width:100%;}
+}
+
+/* =======================
+     BACK BUTTON
+======================= */
+
+.back-wrap{
+    padding:16px 20px 0;
+}
+
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    text-decoration:none;
+    padding:10px 18px;
+    background:#eef2f7;
+    border:1px solid #dde3ec;
+    color:var(--navy);
+    border-radius:999px;
+    font-weight:600;
+    font-size:14px;
+    transition:.2s;
+}
+
+.back-btn:hover{
+    background:#e2e8f2;
+}
+
+/* =======================
+       HEADER
+======================= */
+
+header{
+
+text-align:center;
+
+padding:40px 20px 10px;
+
+}
+
+header h1{
+
+font-size:46px;
+
+color:#001f3f;
+
+margin-bottom:10px;
+
+}
+
+header p{
+
+font-size:18px;
+
+color:#555;
+
+}
+
+.hint{
+    text-align:center;
+    font-size:14px;
+    color:#8892a3;
+    margin-bottom:10px;
+}
+
+/* =======================
+     FLASH CARD (FLIP)
+======================= */
+
+.viewer-wrap{
+    max-width:900px;
+    margin:20px auto;
+    perspective:1600px;
+}
+
+.viewer{
+
+position:relative;
+
+width:100%;
+
+height:330px;
+
+cursor:pointer;
+
+transform-style:preserve-3d;
+
+transition:transform .5s cubic-bezier(.4,.2,.2,1);
+
+}
+
+.viewer.flipped{
+
+transform:rotateY(180deg);
+
+}
+
+.viewer.big{
+
+animation:pop .3s;
+
+}
+
+@keyframes pop{
+
+0%{
+
+transform:scale(.94) rotateY(var(--rot,0deg));
+
+opacity:.4;
+
+}
+
+100%{
+
+transform:scale(1) rotateY(var(--rot,0deg));
+
+opacity:1;
+
+}
+
+}
+
+.face{
+
+position:absolute;
+
+inset:0;
+
+border:4px solid #001f3f;
+
+border-radius:20px;
+
+background:white;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+backface-visibility:hidden;
+
+-webkit-backface-visibility:hidden;
+
+padding:20px;
+
+text-align:center;
+
+}
+
+.face-front #kanji{
+
+font-size:130px;
+
+font-weight:bold;
+
+}
+
+.face-back{
+
+transform:rotateY(180deg);
+
+background:var(--navy);
+
+color:#fff;
+
+gap:12px;
+
+}
+
+.face-back .yomi{
+
+font-size:26px;
+
+color:var(--gold);
+
+font-weight:bold;
+
+letter-spacing:.5px;
+
+}
+
+.face-back .arti{
+
+font-size:32px;
+
+font-weight:bold;
+
+}
+
+.tap-tip{
+
+position:absolute;
+
+bottom:16px;
+
+font-size:13px;
+
+font-weight:bold;
+
+background:var(--gold);
+
+color:#001530;
+
+padding:8px 16px;
+
+border-radius:999px;
+
+box-shadow:0 4px 10px rgba(0,0,0,.15);
+
+}
+
+@media(max-width:768px){
+
+.viewer{
+
+height:270px;
+
+}
+
+.face-front #kanji{
+
+font-size:90px;
+
+}
+
+.face-back .arti{
+
+font-size:24px;
+
+}
+
+.face-back .yomi{
+
+font-size:20px;
+
+}
+
+}
+
+/* =======================
+        GRID
+======================= */
+
+.grid{
+
+max-width:1200px;
+
+margin:40px auto;
+
+display:grid;
+
+grid-template-columns:repeat(5,1fr);
+
+gap:20px;
+
+padding:20px;
+
+}
+
+.card{
+
+border:2px solid #001f3f;
+
+border-radius:15px;
+
+padding:25px;
+
+cursor:pointer;
+
+transition:.25s;
+
+text-align:center;
+
+}
+
+.card:hover{
+
+background:#043668;
+
+color:white;
+
+transform:translateY(-5px);
+
+}
+
+.card.active{
+
+background:var(--navy);
+
+color:#fff;
+
+box-shadow:0 0 0 3px var(--gold);
+
+}
+
+.card .j{
+
+font-size:42px;
+
+font-weight:bold;
+
+line-height:1.25;
+
+word-break:break-word;
+
+}
+
+.card .h{
+
+margin-top:10px;
+
+font-size:20px;
+
+}
+
+@media(max-width:768px){
+
+.grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 24 24">
+
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+
+</svg>
+
+HOME
+
+</a>
+</div>
+
+<div class="nav-right">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+</nav>
+
+<div class="back-wrap">
+<a href="kanjidasar.html" class="back-btn">← Kembali ke Kanji Dasar</a>
+</div>
+
+<header>
+
+<h1>漢字フラッシュカード</h1>
+
+</header>
+
+<p class="hint">Klik kartu besar untuk membalik dan melihat cara baca &amp; artinya</p>
+
+<div class="viewer-wrap">
+    <div class="viewer big" id="viewer" onclick="flipCard()">
+
+        <div class="face face-front">
+            <div id="kanji">集まる</div>
+            <span class="tap-tip">klik untuk lihat arti</span>
+        </div>
+
+        <div class="face face-back">
+            <div class="yomi" id="yomi">あつまる (atsumaru)</div>
+            <div class="arti" id="arti">berkumpul</div>
+            <span class="tap-tip">klik untuk kembali</span>
+        </div>
+
+    </div>
+</div>
+<div class="grid">
+
+    <div class="card" onclick="show('急ぐ')">
+        <div class="j">急ぐ</div>
+    </div>
+
+    <div class="card" onclick="show('間に合う')">
+        <div class="j">間に合う</div>
+    </div>
+
+    <div class="card" onclick="show('届く')">
+        <div class="j">届く</div>
+    </div>
+
+    <div class="card" onclick="show('汚れる')">
+        <div class="j">汚れる</div>
+    </div>
+
+    <div class="card" onclick="show('動物')">
+        <div class="j">動物</div>
+    </div>
+
+    <div class="card" onclick="show('無料')">
+        <div class="j">無料</div>
+    </div>
+
+    <div class="card" onclick="show('料理')">
+        <div class="j">料理</div>
+    </div>
+
+    <div class="card" onclick="show('首')">
+        <div class="j">首</div>
+    </div>
+
+    <div class="card" onclick="show('耳')">
+        <div class="j">耳</div>
+    </div>
+
+    <div class="card" onclick="show('顔')">
+        <div class="j">顔</div>
+    </div>
+
+</div>
+
+</div>
+
+<footer style="text-align:center;padding:30px;color:#666;font-size:14px;">
+© Tekipaki Japanese Learning
+</footer>
+
+<script>
+
+//============================
+// DATA ARTI & CARA BACA KANJI
+//============================
+
+const kanjiData = {
+    "急ぐ": { yomi:"いそぐ (isogu)", arti:"bergegas" },
+    "間に合う": { yomi:"まにあう (maniau)", arti:"tepat waktu, sempat" },
+    "届く": { yomi:"とどく (todoku)", arti:"sampai (barang/surat)" },
+    "汚れる": { yomi:"よごれる (yogoreru)", arti:"menjadi kotor" },
+    "動物": { yomi:"どうぶつ (doubutsu)", arti:"hewan" },
+    "無料": { yomi:"むりょう (muryou)", arti:"gratis" },
+    "料理": { yomi:"りょうり (ryouri)", arti:"masakan / memasak" },
+    "首": { yomi:"くび (kubi)", arti:"leher" },
+    "耳": { yomi:"みみ (mimi)", arti:"telinga" },
+    "顔": { yomi:"かお (kao)", arti:"wajah" }
+};
+
+//============================
+// AUTO-SIZE FONT KARTU GRID
+//============================
+
+function autoSizeCards(){
+    document.querySelectorAll(".card .j").forEach(function(el){
+        const len = el.textContent.trim().length;
+        let size;
+        if(len <= 2){ size = 42; }
+        else if(len === 3){ size = 34; }
+        else if(len === 4){ size = 28; }
+        else { size = 22; }
+        el.style.fontSize = size + "px";
+    });
+}
+
+autoSizeCards();
+
+//============================
+// TAMPILKAN KANJI DI VIEWER
+//============================
+
+function show(kanji, el){
+
+    const viewer = document.getElementById("viewer");
+    const data = kanjiData[kanji] || { yomi:"—", arti:"—" };
+
+    document.getElementById("kanji").innerHTML = kanji;
+    document.getElementById("yomi").innerHTML = data.yomi;
+    document.getElementById("arti").innerHTML = data.arti;
+
+    viewer.classList.remove("flipped");
+    viewer.classList.remove("big");
+    void viewer.offsetWidth;
+    viewer.classList.add("big");
+
+    document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+    if(el){ el.classList.add("active"); }
+}
+
+//============================
+// FLIP KARTU
+//============================
+
+function flipCard(){
+    document.getElementById("viewer").classList.toggle("flipped");
+}
+
+//============================
+// DROPDOWN
+//============================
+
+function toggleDropdown(id){
+
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+
+        if(menu.id!=id){
+
+            menu.classList.remove("show");
+
+        }
+
+    });
+
+    document.getElementById(id).classList.toggle("show");
+
+}
+
+document.addEventListener("click",function(e){
+
+    if(!e.target.closest(".dropdown")){
+
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+
+            menu.classList.remove("show");
+
+        });
+
+    }
+
+});
+
+//============================
+// PROTEKSI
+//============================
+
+document.addEventListener("contextmenu",e=>e.preventDefault());
+
+document.addEventListener("copy",e=>e.preventDefault());
+
+document.addEventListener("cut",e=>e.preventDefault());
+
+document.addEventListener("selectstart",e=>e.preventDefault());
+
+document.addEventListener("dragstart",e=>e.preventDefault());
+
+document.addEventListener("keydown",function(e){
+
+if(
+(e.ctrlKey&&["c","u","s","p"].includes(e.key.toLowerCase()))
+||
+e.key==="F12"
+||
+(e.ctrlKey&&e.shiftKey&&["i","j","c"].includes(e.key.toLowerCase()))
+){
+
+e.preventDefault();
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
