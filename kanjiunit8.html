@@ -46,11 +46,15 @@ body{
     justify-content:space-between;
     align-items:center;
     padding:10px 20px;
+    flex-wrap:wrap;
+    gap:10px;
 }
 
 .nav-left{
     display:flex;
     align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
 .nav-right{
@@ -200,6 +204,11 @@ color:#001530;
 
 }
 
+@media(max-width:600px){
+  .navbar-inner{flex-direction:column;align-items:flex-start;}
+  .nav-right{width:100%;}
+}
+
 /* =======================
      BACK BUTTON
 ======================= */
@@ -235,7 +244,7 @@ header{
 
 text-align:center;
 
-padding:40px 20px;
+padding:40px 20px 10px;
 
 }
 
@@ -257,21 +266,82 @@ color:#555;
 
 }
 
+.hint{
+    text-align:center;
+    font-size:14px;
+    color:#8892a3;
+    margin-bottom:10px;
+}
+
 /* =======================
-     FLASH CARD
+     FLASH CARD (FLIP)
 ======================= */
+
+.viewer-wrap{
+    max-width:900px;
+    margin:20px auto;
+    perspective:1600px;
+}
 
 .viewer{
 
-max-width:900px;
+position:relative;
 
-margin:20px auto;
+width:100%;
+
+height:330px;
+
+cursor:pointer;
+
+transform-style:preserve-3d;
+
+transition:transform .5s cubic-bezier(.4,.2,.2,1);
+
+}
+
+.viewer.flipped{
+
+transform:rotateY(180deg);
+
+}
+
+.viewer.big{
+
+animation:pop .3s;
+
+}
+
+@keyframes pop{
+
+0%{
+
+transform:scale(.94) rotateY(var(--rot,0deg));
+
+opacity:.4;
+
+}
+
+100%{
+
+transform:scale(1) rotateY(var(--rot,0deg));
+
+opacity:1;
+
+}
+
+}
+
+.face{
+
+position:absolute;
+
+inset:0;
 
 border:4px solid #001f3f;
 
 border-radius:20px;
 
-height:330px;
+background:white;
 
 display:flex;
 
@@ -281,11 +351,17 @@ justify-content:center;
 
 align-items:center;
 
-background:white;
+backface-visibility:hidden;
+
+-webkit-backface-visibility:hidden;
+
+padding:20px;
+
+text-align:center;
 
 }
 
-#kanji{
+.face-front #kanji{
 
 font-size:130px;
 
@@ -293,27 +369,83 @@ font-weight:bold;
 
 }
 
-.big{
+.face-back{
 
-animation:zoom .3s;
+transform:rotateY(180deg);
 
-}
+background:var(--navy);
 
-@keyframes zoom{
+color:#fff;
 
-0%{
-
-transform:scale(.5);
-
-opacity:0;
+gap:12px;
 
 }
 
-100%{
+.face-back .yomi{
 
-transform:scale(1);
+font-size:26px;
 
-opacity:1;
+color:var(--gold);
+
+font-weight:bold;
+
+letter-spacing:.5px;
+
+}
+
+.face-back .arti{
+
+font-size:32px;
+
+font-weight:bold;
+
+}
+
+.tap-tip{
+
+position:absolute;
+
+bottom:16px;
+
+font-size:13px;
+
+font-weight:bold;
+
+background:var(--gold);
+
+color:#001530;
+
+padding:8px 16px;
+
+border-radius:999px;
+
+box-shadow:0 4px 10px rgba(0,0,0,.15);
+
+}
+
+@media(max-width:768px){
+
+.viewer{
+
+height:270px;
+
+}
+
+.face-front #kanji{
+
+font-size:90px;
+
+}
+
+.face-back .arti{
+
+font-size:24px;
+
+}
+
+.face-back .yomi{
+
+font-size:20px;
 
 }
 
@@ -365,6 +497,16 @@ transform:translateY(-5px);
 
 }
 
+.card.active{
+
+background:var(--navy);
+
+color:#fff;
+
+box-shadow:0 0 0 3px var(--gold);
+
+}
+
 .card .j{
 
 font-size:42px;
@@ -390,12 +532,6 @@ font-size:20px;
 .grid{
 
 grid-template-columns:repeat(2,1fr);
-
-}
-
-#kanji{
-
-font-size:90px;
 
 }
 
@@ -472,66 +608,74 @@ HOME
 
 <h1>漢字フラッシュカード</h1>
 
-
 </header>
 
-<div class="viewer">
+<p class="hint">Klik kartu besar untuk membalik dan melihat cara baca &amp; artinya</p>
 
-<div id="kanji" class="big">
+<div class="viewer-wrap">
+    <div class="viewer big" id="viewer" onclick="flipCard()">
 
-安心
+        <div class="face face-front">
+            <div id="kanji">安心</div>
+            <span class="tap-tip">klik untuk lihat arti</span>
+        </div>
 
-</div>
+        <div class="face face-back">
+            <div class="yomi" id="yomi">あんしん (anshin)</div>
+            <div class="arti" id="arti">lega / tenang</div>
+            <span class="tap-tip">klik untuk kembali</span>
+        </div>
 
+    </div>
 </div>
 
 
 <div class="grid">
-        <div class="card" onclick="show('安心')">
+        <div class="card active" onclick="show('安心', this)">
         <div class="j">安心</div>
      
     </div>
 
-    <div class="card" onclick="show('左')">
+    <div class="card" onclick="show('左', this)">
         <div class="j">左</div>
     
     </div>
 
-    <div class="card" onclick="show('右')">
+    <div class="card" onclick="show('右', this)">
         <div class="j">右</div>
     
     </div>
 
-    <div class="card" onclick="show('大変')">
+    <div class="card" onclick="show('大変', this)">
         <div class="j">大変</div>
        
     </div>
 
-    <div class="card" onclick="show('準備')">
+    <div class="card" onclick="show('準備', this)">
         <div class="j">準備</div>
      
     </div>
 
-    <div class="card" onclick="show('案内')">
+    <div class="card" onclick="show('案内', this)">
         <div class="j">案内</div>
     </div>
 
-    <div class="card" onclick="show('反対')">
+    <div class="card" onclick="show('反対', this)">
         <div class="j">反対</div>
 
     </div>
 
-    <div class="card" onclick="show('公園')">
+    <div class="card" onclick="show('公園', this)">
         <div class="j">公園</div>
        
     </div>
 
-    <div class="card" onclick="show('交番')">
+    <div class="card" onclick="show('交番', this)">
         <div class="j">交番</div>
     
     </div>
 
-    <div class="card" onclick="show('並ぶ')">
+    <div class="card" onclick="show('並ぶ', this)">
         <div class="j">並ぶ</div>
 
     </div>
@@ -546,7 +690,24 @@ HOME
 <script>
 
 //============================
-// AUTO-SIZE FONT KARTU
+// DATA ARTI & CARA BACA KANJI
+//============================
+
+const kanjiData = {
+    "安心": { yomi:"あんしん (anshin)", arti:"lega / tenang" },
+    "左": { yomi:"ひだり (hidari)", arti:"kiri" },
+    "右": { yomi:"みぎ (migi)", arti:"kanan" },
+    "大変": { yomi:"たいへん (taihen)", arti:"berat / susah / luar biasa" },
+    "準備": { yomi:"じゅんび (junbi)", arti:"persiapan" },
+    "案内": { yomi:"あんない (annai)", arti:"panduan / pemandu" },
+    "反対": { yomi:"はんたい (hantai)", arti:"lawan / menentang" },
+    "公園": { yomi:"こうえん (kouen)", arti:"taman" },
+    "交番": { yomi:"こうばん (kouban)", arti:"pos polisi" },
+    "並ぶ": { yomi:"ならぶ (narabu)", arti:"berbaris / antre" }
+};
+
+//============================
+// AUTO-SIZE FONT KARTU GRID
 //============================
 
 function autoSizeCards(){
@@ -564,21 +725,33 @@ function autoSizeCards(){
 autoSizeCards();
 
 //============================
-// FLASH CARD
+// TAMPILKAN KANJI DI VIEWER
 //============================
 
-function show(kanji){
+function show(kanji, el){
 
-    document.getElementById("kanji").innerHTML=kanji;
+    const viewer = document.getElementById("viewer");
+    const data = kanjiData[kanji] || { yomi:"—", arti:"—" };
 
-    let x=document.getElementById("kanji");
+    document.getElementById("kanji").innerHTML = kanji;
+    document.getElementById("yomi").innerHTML = data.yomi;
+    document.getElementById("arti").innerHTML = data.arti;
 
-    x.classList.remove("big");
+    viewer.classList.remove("flipped");
+    viewer.classList.remove("big");
+    void viewer.offsetWidth;
+    viewer.classList.add("big");
 
-    void x.offsetWidth;
+    document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+    if(el){ el.classList.add("active"); }
+}
 
-    x.classList.add("big");
+//============================
+// FLIP KARTU
+//============================
 
+function flipCard(){
+    document.getElementById("viewer").classList.toggle("flipped");
 }
 
 //============================
