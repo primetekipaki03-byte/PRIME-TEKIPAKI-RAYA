@@ -477,7 +477,7 @@ border:2px solid #001f3f;
 
 border-radius:15px;
 
-padding:25px;
+padding:15px 10px;
 
 cursor:pointer;
 
@@ -704,13 +704,7 @@ const kanjiData = {
 
 function autoSizeCards(){
     document.querySelectorAll(".card .j").forEach(function(el){
-        const len = el.textContent.trim().length;
-        let size;
-        if(len <= 2){ size = 42; }
-        else if(len === 3){ size = 34; }
-        else if(len === 4){ size = 28; }
-        else { size = 22; }
-        el.style.fontSize = size + "px";
+        el.style.fontSize = "28px";
     });
 }
 
