@@ -255,7 +255,7 @@ header{
 
 text-align:center;
 
-padding:40px 20px;
+padding:40px 20px 10px;
 
 }
 
@@ -277,21 +277,82 @@ color:#555;
 
 }
 
+.hint{
+    text-align:center;
+    font-size:14px;
+    color:#8892a3;
+    margin-bottom:10px;
+}
+
 /* =======================
-     FLASH CARD
+     FLASH CARD (FLIP)
 ======================= */
+
+.viewer-wrap{
+    max-width:900px;
+    margin:20px auto;
+    perspective:1600px;
+}
 
 .viewer{
 
-max-width:900px;
+position:relative;
 
-margin:20px auto;
+width:100%;
+
+height:330px;
+
+cursor:pointer;
+
+transform-style:preserve-3d;
+
+transition:transform .5s cubic-bezier(.4,.2,.2,1);
+
+}
+
+.viewer.flipped{
+
+transform:rotateY(180deg);
+
+}
+
+.viewer.big{
+
+animation:pop .3s;
+
+}
+
+@keyframes pop{
+
+0%{
+
+transform:scale(.94) rotateY(var(--rot,0deg));
+
+opacity:.4;
+
+}
+
+100%{
+
+transform:scale(1) rotateY(var(--rot,0deg));
+
+opacity:1;
+
+}
+
+}
+
+.face{
+
+position:absolute;
+
+inset:0;
 
 border:4px solid #001f3f;
 
 border-radius:20px;
 
-height:330px;
+background:white;
 
 display:flex;
 
@@ -301,11 +362,17 @@ justify-content:center;
 
 align-items:center;
 
-background:white;
+backface-visibility:hidden;
+
+-webkit-backface-visibility:hidden;
+
+padding:20px;
+
+text-align:center;
 
 }
 
-#kanji{
+.face-front #kanji{
 
 font-size:130px;
 
@@ -313,27 +380,83 @@ font-weight:bold;
 
 }
 
-.big{
+.face-back{
 
-animation:zoom .3s;
+transform:rotateY(180deg);
 
-}
+background:var(--navy);
 
-@keyframes zoom{
+color:#fff;
 
-0%{
-
-transform:scale(.5);
-
-opacity:0;
+gap:12px;
 
 }
 
-100%{
+.face-back .yomi{
 
-transform:scale(1);
+font-size:26px;
 
-opacity:1;
+color:var(--gold);
+
+font-weight:bold;
+
+letter-spacing:.5px;
+
+}
+
+.face-back .arti{
+
+font-size:32px;
+
+font-weight:bold;
+
+}
+
+.tap-tip{
+
+position:absolute;
+
+bottom:16px;
+
+font-size:13px;
+
+font-weight:bold;
+
+background:var(--gold);
+
+color:#001530;
+
+padding:8px 16px;
+
+border-radius:999px;
+
+box-shadow:0 4px 10px rgba(0,0,0,.15);
+
+}
+
+@media(max-width:768px){
+
+.viewer{
+
+height:270px;
+
+}
+
+.face-front #kanji{
+
+font-size:90px;
+
+}
+
+.face-back .arti{
+
+font-size:24px;
+
+}
+
+.face-back .yomi{
+
+font-size:20px;
 
 }
 
@@ -385,6 +508,16 @@ transform:translateY(-5px);
 
 }
 
+.card.active{
+
+background:var(--navy);
+
+color:#fff;
+
+box-shadow:0 0 0 3px var(--gold);
+
+}
+
 .card .j{
 
 font-size:42px;
@@ -410,12 +543,6 @@ font-size:20px;
 .grid{
 
 grid-template-columns:repeat(2,1fr);
-
-}
-
-#kanji{
-
-font-size:90px;
 
 }
 
@@ -492,66 +619,74 @@ HOME
 
 <h1>漢字フラッシュカード</h1>
 
-
 </header>
 
-<div class="viewer">
+<p class="hint">Klik kartu besar untuk membalik dan melihat cara baca &amp; artinya</p>
 
-<div id="kanji" class="big">
+<div class="viewer-wrap">
+    <div class="viewer big" id="viewer" onclick="flipCard()">
 
-消火 
+        <div class="face face-front">
+            <div id="kanji">消火</div>
+            <span class="tap-tip">klik untuk lihat arti</span>
+        </div>
 
-</div>
+        <div class="face face-back">
+            <div class="yomi" id="yomi">しょうか (shouka)</div>
+            <div class="arti" id="arti">pemadaman api</div>
+            <span class="tap-tip">klik untuk kembali</span>
+        </div>
 
+    </div>
 </div>
 
 
 <div class="grid">
-        <div class="card" onclick="show('消火')">
+        <div class="card active" onclick="show('消火', this)">
         <div class="j">消火</div>
      
     </div>
 
-    <div class="card" onclick="show('食事')">
+    <div class="card" onclick="show('食事', this)">
         <div class="j">食事</div>
     
     </div>
 
-    <div class="card" onclick="show('曲がる')">
+    <div class="card" onclick="show('曲がる', this)">
         <div class="j">曲がる</div>
     
     </div>
 
-    <div class="card" onclick="show('渡る')">
+    <div class="card" onclick="show('渡る', this)">
         <div class="j">渡る</div>
        
     </div>
 
-    <div class="card" onclick="show('迷う')">
+    <div class="card" onclick="show('迷う', this)">
         <div class="j">迷う</div>
      
     </div>
 
-    <div class="card" onclick="show('入口')">
+    <div class="card" onclick="show('入口', this)">
         <div class="j">入口</div>
     </div>
 
-    <div class="card" onclick="show('直す')">
+    <div class="card" onclick="show('直す', this)">
         <div class="j">直す</div>
 
     </div>
 
-    <div class="card" onclick="show('病院')">
+    <div class="card" onclick="show('病院', this)">
         <div class="j">病院</div>
        
     </div>
 
-    <div class="card" onclick="show('出る')">
+    <div class="card" onclick="show('出る', this)">
         <div class="j">出る</div>
     
     </div>
 
-    <div class="card" onclick="show('痛む')">
+    <div class="card" onclick="show('痛む', this)">
         <div class="j">痛む</div>
 
     </div>
@@ -565,7 +700,24 @@ HOME
 <script>
 
 //============================
-// AUTO-SIZE FONT KARTU
+// DATA ARTI & CARA BACA KANJI
+//============================
+
+const kanjiData = {
+    "消火": { yomi:"しょうか (shouka)", arti:"pemadaman api" },
+    "食事": { yomi:"しょくじ (shokuji)", arti:"makan / santapan" },
+    "曲がる": { yomi:"まがる (magaru)", arti:"berbelok" },
+    "渡る": { yomi:"わたる (wataru)", arti:"menyeberang" },
+    "迷う": { yomi:"まよう (mayou)", arti:"tersesat / bingung" },
+    "入口": { yomi:"いりぐち (iriguchi)", arti:"pintu masuk" },
+    "直す": { yomi:"なおす (naosu)", arti:"memperbaiki" },
+    "病院": { yomi:"びょういん (byouin)", arti:"rumah sakit" },
+    "出る": { yomi:"でる (deru)", arti:"keluar" },
+    "痛む": { yomi:"いたむ (itamu)", arti:"sakit / nyeri" }
+};
+
+//============================
+// AUTO-SIZE FONT KARTU GRID
 //============================
 
 function autoSizeCards(){
@@ -582,18 +734,34 @@ function autoSizeCards(){
 
 autoSizeCards();
 
-function show(kanji){
+//============================
+// TAMPILKAN KANJI DI VIEWER
+//============================
 
-    document.getElementById("kanji").innerHTML=kanji;
+function show(kanji, el){
 
-    let x=document.getElementById("kanji");
+    const viewer = document.getElementById("viewer");
+    const data = kanjiData[kanji] || { yomi:"—", arti:"—" };
 
-    x.classList.remove("big");
+    document.getElementById("kanji").innerHTML = kanji;
+    document.getElementById("yomi").innerHTML = data.yomi;
+    document.getElementById("arti").innerHTML = data.arti;
 
-    void x.offsetWidth;
+    viewer.classList.remove("flipped");
+    viewer.classList.remove("big");
+    void viewer.offsetWidth;
+    viewer.classList.add("big");
 
-    x.classList.add("big");
+    document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+    if(el){ el.classList.add("active"); }
+}
 
+//============================
+// FLIP KARTU
+//============================
+
+function flipCard(){
+    document.getElementById("viewer").classList.toggle("flipped");
 }
 
 //============================
