@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〜ことにする | Tata Bahasa N4</title>
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --navy3:#022655;
+    --gold:#facc15;
+    --gold2:#ffd700;
+    --text:#001f3f;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:var(--text);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(224,181,42,.3);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.home-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#e0b52a;
+    color:#001530;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.home-btn:hover{
+    opacity:.85;
+}
+
+.home-icon{
+    width:24px;
+    height:24px;
+    object-fit:cover;
+    border-radius:4px;
+}
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown-btn{
+    background:none;
+    border:2px solid #e0b52a;
+    color:#e0b52a;
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:.9rem;
+}
+
+.dropdown-btn:hover{
+    background:#e0b52a;
+    color:#001530;
+}
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:45px;
+    left:0;
+    background:#1f4577;
+    border-radius:10px;
+    overflow:hidden;
+    min-width:220px;
+    max-width:90vw;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+
+.dropdown-menu.align-right{
+    left:auto;
+    right:0;
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:12px 15px;
+    color:#ffd700;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:#e0b52a;
+    color:#001530;
+}
+
+.show{
+    display:block;
+}
+
+@media(max-width:600px){
+    .navbar-inner{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+    }
+    .nav-right{
+        width:100%;
+    }
+    .dropdown-btn{
+        font-size:.72rem;
+        padding:6px 9px;
+    }
+    .breadcrumb{
+        margin-top:16px;
+    }
+}
+
+/* =======================
+     BREADCRUMB
+======================= */
+
+.breadcrumb{
+    margin:20px 0 0 0;
+    padding:0 0 0 20px;
+    font-size:14px;
+    color:#8892a3;
+    text-align:left;
+}
+
+.breadcrumb a{
+    color:var(--navy);
+    text-decoration:none;
+    font-weight:600;
+}
+
+.breadcrumb a:hover{
+    text-decoration:underline;
+}
+
+/* =======================
+       HERO PATTERN
+======================= */
+
+.pattern-hero{
+    max-width:900px;
+    margin:20px auto 0;
+    padding:40px 30px;
+    background:linear-gradient(135deg, var(--navy) 0%, #062a52 100%);
+    border-radius:22px;
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+}
+
+.pattern-hero::before{
+    content:"決";
+    position:absolute;
+    font-size:260px;
+    font-weight:900;
+    color:rgba(250,204,21,.06);
+    top:-60px;
+    right:-30px;
+    pointer-events:none;
+    user-select:none;
+}
+
+.pattern-hero .no-badge{
+    display:inline-block;
+    background:rgba(250,204,21,.12);
+    border:1px solid rgba(250,204,21,.4);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:1px;
+    padding:6px 16px;
+    border-radius:999px;
+    margin-bottom:18px;
+    position:relative;
+}
+
+.pattern-hero h1{
+    font-size:56px;
+    color:#ffffff;
+    position:relative;
+    margin-bottom:8px;
+}
+
+.pattern-hero .romaji{
+    font-size:20px;
+    color:var(--gold2);
+    font-weight:600;
+    position:relative;
+    margin-bottom:14px;
+}
+
+.pattern-hero .mean{
+    font-size:18px;
+    color:#c9d6e8;
+    position:relative;
+}
+
+/* =======================
+      CONTENT SECTIONS
+======================= */
+
+.content{
+    max-width:900px;
+    margin:30px auto;
+    padding:0 30px 60px;
+}
+
+.section-block{
+    margin-bottom:36px;
+}
+
+.section-block h2{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:22px;
+    color:var(--navy);
+    margin-bottom:14px;
+}
+
+.section-block h2 .tag{
+    background:var(--navy);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    padding:5px 12px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.section-block p{
+    font-size:16px;
+    line-height:1.9;
+    color:#333;
+}
+
+/* pola / formula box */
+
+.formula-box{
+    background:#f5f8fc;
+    border:2px dashed var(--navy);
+    border-radius:16px;
+    padding:22px 26px;
+    font-size:19px;
+    text-align:center;
+    color:var(--navy);
+    font-weight:600;
+    line-height:1.8;
+}
+
+.formula-box small{
+    display:block;
+    font-size:13px;
+    font-weight:400;
+    color:#8892a3;
+    margin-top:6px;
+}
+
+/* =======================
+   TABEL KONJUGASI KOTONISURU
+======================= */
+
+.table-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.konjugasi-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
+    font-size:15px;
+}
+
+.konjugasi-table thead th{
+    background:var(--navy);
+    color:var(--gold);
+    text-align:left;
+    padding:14px 16px;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+.konjugasi-table tbody td{
+    padding:13px 16px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.konjugasi-table tbody tr:nth-child(even){
+    background:#f5f8fc;
+}
+
+.konjugasi-table tbody tr:hover{
+    background:#fffbe6;
+}
+
+.konjugasi-table .grp-tag{
+    display:inline-block;
+    background:rgba(0,31,63,.08);
+    color:var(--navy);
+    font-weight:bold;
+    font-size:12px;
+    padding:4px 10px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.konjugasi-table .kamus{
+    font-weight:bold;
+    font-size:17px;
+    color:var(--navy);
+}
+
+.konjugasi-table .yomi-small{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    font-weight:400;
+}
+
+.konjugasi-table .arrow{
+    color:var(--gold2);
+    font-weight:900;
+    font-size:18px;
+    text-shadow:0 0 0 var(--navy);
+    filter:none;
+}
+
+.konjugasi-table .ukemi{
+    font-weight:bold;
+    font-size:17px;
+    color:#5b8bb0;
+}
+
+.konjugasi-table .group-row td{
+    background:var(--navy2);
+    color:var(--gold);
+    font-weight:bold;
+    font-size:13px;
+    letter-spacing:.5px;
+    padding:10px 16px;
+}
+
+/* =======================
+   TABEL PERBANDINGAN
+   KOTONISURU / KOTONINARU / YOUTOOMOU
+======================= */
+
+.compare-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.compare-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:700px;
+    font-size:14px;
+}
+
+.compare-table thead th{
+    padding:14px 14px;
+    text-align:left;
+    color:#fff;
+    font-size:13px;
+    white-space:nowrap;
+}
+
+.compare-table thead th.th-kamus{
+    background:var(--navy);
+    color:var(--gold);
+}
+
+.compare-table thead th.th-shieki{
+    background:#c98a4d;
+}
+
+.compare-table thead th.th-ukemi{
+    background:#5b8bb0;
+}
+
+.compare-table thead th.th-shiekiukemi{
+    background:#c17b7b;
+}
+
+.compare-table thead th small{
+    display:block;
+    font-weight:400;
+    font-size:11px;
+    opacity:.85;
+    margin-top:2px;
+}
+
+.compare-table tbody td{
+    padding:13px 14px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.compare-table tbody tr:nth-child(even){
+    background:#f5f8fc;
+}
+
+.compare-table tbody tr:hover{
+    background:#fffbe6;
+}
+
+.compare-table .kamus{
+    font-weight:bold;
+    font-size:16px;
+    color:var(--navy);
+}
+
+.compare-table .yomi-small{
+    display:block;
+    font-size:11px;
+    color:#8892a3;
+    font-weight:400;
+}
+
+.compare-table .val-shieki{
+    font-weight:bold;
+    font-size:16px;
+    color:#c98a4d;
+}
+
+.compare-table .val-ukemi{
+    font-weight:bold;
+    font-size:16px;
+    color:#5b8bb0;
+}
+
+.compare-table .val-shiekiukemi{
+    font-weight:bold;
+    font-size:16px;
+    color:#c17b7b;
+}
+
+.compare-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:16px 0;
+}
+
+.compare-legend .chip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:999px;
+    background:#f5f8fc;
+    border:1px solid #e3e9f2;
+    color:#333;
+}
+
+.compare-legend .dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    display:inline-block;
+}
+
+.compare-legend .dot.shieki{ background:#c98a4d; }
+.compare-legend .dot.ukemi{ background:#5b8bb0; }
+.compare-legend .dot.shiekiukemi{ background:#c17b7b; }
+
+.example-group-label{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    font-weight:bold;
+    color:#fff;
+    padding:6px 14px;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+
+.example-group-label.shieki{ background:#c98a4d; }
+.example-group-label.ukemi{ background:#5b8bb0; }
+.example-group-label.shiekiukemi{ background:#c17b7b; }
+
+/* contoh kalimat */
+
+.example{
+    border:2px solid var(--navy);
+    border-radius:16px;
+    padding:20px 24px;
+    margin-bottom:16px;
+    transition:.25s;
+}
+
+.example:hover{
+    background:var(--navy3);
+    color:#fff;
+    transform:translateY(-3px);
+    box-shadow:0 12px 24px rgba(0,31,63,.2);
+}
+
+.example .jp{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.example .yomi{
+    font-size:14px;
+    color:#8892a3;
+    margin-bottom:8px;
+}
+
+.example:hover .yomi{
+    color:#c9d6e8;
+}
+
+.example .id{
+    font-size:15px;
+    color:#333;
+    font-style:italic;
+}
+
+.example:hover .id{
+    color:#e6edf7;
+}
+
+/* catatan / tips */
+
+.note-box{
+    background:#fffbe6;
+    border-left:5px solid var(--gold);
+    border-radius:10px;
+    padding:18px 22px;
+    font-size:15px;
+    line-height:1.8;
+    color:#4a4020;
+}
+
+.note-box b{
+    color:var(--navy);
+}
+
+/* navigasi bawah */
+
+.nav-bottom{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    margin-top:50px;
+    flex-wrap:wrap;
+}
+
+.nav-bottom a{
+    flex:1;
+    min-width:200px;
+    text-decoration:none;
+    border:2px solid var(--navy);
+    border-radius:14px;
+    padding:16px 20px;
+    color:var(--navy);
+    font-weight:600;
+    transition:.25s;
+}
+
+.nav-bottom a:hover{
+    background:var(--navy);
+    color:var(--gold);
+}
+
+.nav-bottom .dir{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    margin-bottom:4px;
+}
+
+.nav-bottom a:hover .dir{
+    color:#c9d6e8;
+}
+
+.nav-bottom .next{
+    text-align:right;
+}
+
+/* =======================
+      LATIHAN SOAL
+======================= */
+
+.quiz-box{
+    border:2px solid var(--navy);
+    border-radius:18px;
+    padding:24px 26px;
+    margin-bottom:22px;
+    background:#fafcff;
+}
+
+.quiz-box .qno{
+    display:inline-block;
+    background:var(--navy);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    padding:5px 12px;
+    border-radius:8px;
+    margin-bottom:14px;
+}
+
+.quiz-box .qtext{
+    font-size:16px;
+    color:#333;
+    margin-bottom:16px;
+    line-height:1.8;
+}
+
+.quiz-box .qtext .blank{
+    display:inline-block;
+    min-width:90px;
+    border-bottom:2px solid var(--navy);
+    text-align:center;
+    color:var(--gold2);
+    font-weight:bold;
+}
+
+.word-bank{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.word-tile{
+    background:#fff;
+    border:2px solid var(--navy);
+    color:var(--navy);
+    padding:10px 16px;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+    user-select:none;
+}
+
+.word-tile:hover{
+    background:var(--navy);
+    color:var(--gold);
+    transform:translateY(-2px);
+}
+
+.word-tile.used{
+    opacity:.3;
+    pointer-events:none;
+}
+
+.answer-slot{
+    min-height:52px;
+    border:2px dashed var(--gold2);
+    border-radius:10px;
+    background:#fffbe6;
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    padding:8px 12px;
+    margin-bottom:16px;
+}
+
+.answer-slot .placed{
+    background:var(--gold);
+    color:#001530;
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.quiz-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.quiz-btn{
+    border:2px solid var(--navy);
+    background:var(--navy);
+    color:var(--gold);
+    padding:10px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:14px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.quiz-btn:hover{
+    opacity:.85;
+}
+
+.quiz-btn.secondary{
+    background:#fff;
+    color:var(--navy);
+}
+
+.quiz-result{
+    margin-top:14px;
+    font-size:15px;
+    font-weight:600;
+    display:none;
+    padding:12px 16px;
+    border-radius:10px;
+}
+
+.quiz-result.correct{
+    display:block;
+    background:#e6f7ec;
+    color:#166534;
+    border:1px solid #86efac;
+}
+
+.quiz-result.wrong{
+    display:block;
+    background:#fdeaea;
+    color:#991b1b;
+    border:1px solid #fca5a5;
+}
+
+@media(max-width:600px){
+    .pattern-hero h1{
+        font-size:38px;
+    }
+    .pattern-hero::before{
+        font-size:160px;
+    }
+    .nav-bottom .next{
+        text-align:left;
+    }
+    .konjugasi-table{
+        font-size:13px;
+    }
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa_n4.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+
+</div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="tatabahasajlptn4.html">← Kembali ke Daftar Tata Bahasa N4</a>
+</div>
+
+<div class="pattern-hero">
+    <span class="no-badge">POLA · JLPT N4</span>
+    <h1>〜ことにする</h1>
+    <div class="romaji">~koto ni suru</div>
+    <div class="mean">memutuskan untuk melakukan (keputusan aktif dari diri sendiri)</div>
+</div>
+
+<div class="content">
+
+    <div class="section-block">
+        <h2><span class="tag">ARTI</span> Penjelasan</h2>
+        <p>
+            <b>〜ことにする</b> digunakan untuk menyatakan <b>keputusan yang diambil sendiri oleh pembicara</b>
+            secara sadar, baik untuk melakukan maupun tidak melakukan sesuatu. Pola ini terbentuk dari
+            <b>こと（yang menjadikan kata kerja sebagai kata benda）+ にする（memutuskan/menjadikan）</b>, sehingga
+            secara harfiah berarti "menjadikan hal ~ sebagai pilihan". Berbeda dengan sekadar niat, 〜ことにする
+            menunjukkan bahwa <b>keputusan itu sudah final</b>, bukan lagi sekadar wacana. Jika ingin menyatakan
+            <b>kebiasaan yang sudah diputuskan dan dijalani terus-menerus</b>, pola ini bisa diubah menjadi
+            〜ことにしている.
+        </p>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">POLA</span> Rumus</h2>
+        <div class="formula-box">
+            Kata kerja bentuk kamus / bentuk nai + ことにする
+            <small>Contoh: 行くことにする／食べないことにする／することにする</small>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">TABEL</span> Perubahan: Bentuk Kamus / Nai → +ことにする</h2>
+        <p style="margin-bottom:16px;">
+            Berbeda dari pola yang memerlukan perubahan bentuk kehendak, 〜ことにする cukup ditempelkan langsung
+            setelah <b>bentuk kamus（untuk memutuskan melakukan）</b> atau <b>bentuk nai（untuk memutuskan tidak
+            melakukan）</b>, berlaku sama untuk semua kelompok kata kerja.
+        </p>
+
+        <div class="table-wrap">
+            <table class="konjugasi-table">
+                <thead>
+                    <tr>
+                        <th>Bentuk Dasar</th>
+                        <th></th>
+                        <th>Bentuk +ことにする</th>
+                        <th>Artinya</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row"><td colspan="4">BENTUK KAMUS（memutuskan MELAKUKAN）</td></tr>
+                    <tr>
+                        <td><span class="kamus">行く</span><span class="yomi-small">いく (iku)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">行くことにする</span><span class="yomi-small">いくことにする (iku koto ni suru)</span></td>
+                        <td>memutuskan untuk pergi</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">食べる</span><span class="yomi-small">たべる (taberu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">食べることにする</span><span class="yomi-small">たべることにする (taberu koto ni suru)</span></td>
+                        <td>memutuskan untuk makan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">する</span><span class="yomi-small">suru</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">することにする</span><span class="yomi-small">suru koto ni suru</span></td>
+                        <td>memutuskan untuk melakukan</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">BENTUK NAI（memutuskan TIDAK melakukan）</td></tr>
+                    <tr>
+                        <td><span class="kamus">行かない</span><span class="yomi-small">いかない (ikanai)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">行かないことにする</span><span class="yomi-small">いかないことにする (ikanai koto ni suru)</span></td>
+                        <td>memutuskan untuk tidak pergi</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">食べない</span><span class="yomi-small">たべない (tabenai)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">食べないことにする</span><span class="yomi-small">たべないことにする (tabenai koto ni suru)</span></td>
+                        <td>memutuskan untuk tidak makan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">しない</span><span class="yomi-small">shinai</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">しないことにする</span><span class="yomi-small">shinai koto ni suru</span></td>
+                        <td>memutuskan untuk tidak melakukan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Cara cepat mengingat:</b> tidak perlu mengubah kata kerja ke bentuk khusus seperti bentuk kehendak —
+            cukup pakai <b>bentuk kamus biasa</b> untuk keputusan positif, atau <b>bentuk nai</b> untuk keputusan
+            negatif, lalu tambahkan ことにする. Untuk menceritakan keputusan yang <b>sudah diambil di masa lalu</b>,
+            biasanya dipakai bentuk lampau ことにしました, contoh: 行くことにしました（saya sudah memutuskan untuk pergi）.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CONTOH</span> Contoh Kalimat</h2>
+
+        <div class="example">
+            <div class="jp">来月、会社を辞めることにしました。</div>
+            <div class="yomi">らいげつ、かいしゃを やめることにしました。</div>
+            <div class="id">Bulan depan, saya memutuskan untuk berhenti dari perusahaan.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">お酒を飲まないことにしています。</div>
+            <div class="yomi">おさけを のまないことにしています。</div>
+            <div class="id">Saya sudah membiasakan diri untuk tidak minum alkohol.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">今度の旅行は電車で行くことにしましょう。</div>
+            <div class="yomi">こんどの りょこうは でんしゃで いくことにしましょう。</div>
+            <div class="id">Ayo kita putuskan naik kereta untuk perjalanan kali ini.</div>
+        </div>
+
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CATATAN</span> Tips & Perbedaan</h2>
+        <div class="note-box">
+            <b>ことにする vs ことにしている:</b> bentuk <b>〜ことにする</b> menekankan <b>momen keputusan itu diambil</b>,
+            sedangkan <b>〜ことにしている</b> menekankan bahwa keputusan itu <b>sudah dijalani terus-menerus sebagai
+            kebiasaan</b>, contoh: <i>毎朝走ることにしている</i>（saya sudah membiasakan diri lari setiap pagi）. Perlu
+            diingat juga bahwa 〜ことにする berbeda dari 〜ことになる: yang pertama adalah <b>keputusan aktif</b> dari
+            pembicara sendiri, sedangkan yang kedua adalah <b>hasil yang ditentukan oleh keadaan atau pihak lain</b>
+            di luar kendali pembicara.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">PERBEDAAN</span> Tabel ことにする vs ことになる vs ようと思う</h2>
+        <p style="margin-bottom:12px;">
+            Ketiganya berhubungan dengan keputusan atau rencana, tetapi berbeda dari segi <b>siapa yang
+            memutuskan</b> dan <b>seberapa final keputusan itu</b>. Tabel berikut membandingkan ketiganya
+            menggunakan topik yang sama agar perbedaannya terlihat jelas berdampingan.
+        </p>
+
+        <div class="compare-legend">
+            <span class="chip"><span class="dot shieki"></span> 〜ことにする — keputusan aktif diri sendiri, final</span>
+            <span class="chip"><span class="dot ukemi"></span> 〜ことになる — ditentukan keadaan/pihak lain</span>
+            <span class="chip"><span class="dot shiekiukemi"></span> 〜（よ）うと思う — masih sebatas pikiran</span>
+        </div>
+
+        <div class="compare-wrap">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th class="th-kamus">Topik</th>
+                        <th class="th-shieki">〜ことにする<small>keputusan sendiri</small></th>
+                        <th class="th-ukemi">〜ことになる<small>ditentukan keadaan</small></th>
+                        <th class="th-shiekiukemi">〜（よ）うと思う<small>sebatas pikiran</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="kamus">会社を辞める</span><span class="yomi-small">かいしゃを やめる (berhenti kerja)</span></td>
+                        <td><span class="val-shieki">辞めることにする</span><span class="yomi-small">yameru koto ni suru</span></td>
+                        <td><span class="val-ukemi">辞めることになる</span><span class="yomi-small">yameru koto ni naru</span></td>
+                        <td><span class="val-shiekiukemi">辞めようと思う</span><span class="yomi-small">yameyou to omou</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">大阪に引っ越す</span><span class="yomi-small">おおさかに ひっこす (pindah ke Osaka)</span></td>
+                        <td><span class="val-shieki">引っ越すことにする</span><span class="yomi-small">hikkosu koto ni suru</span></td>
+                        <td><span class="val-ukemi">引っ越すことになる</span><span class="yomi-small">hikkosu koto ni naru</span></td>
+                        <td><span class="val-shiekiukemi">引っ越そうと思う</span><span class="yomi-small">hikkosou to omou</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">留学する</span><span class="yomi-small">りゅうがくする (belajar ke luar negeri)</span></td>
+                        <td><span class="val-shieki">留学することにする</span><span class="yomi-small">ryuugaku suru koto ni suru</span></td>
+                        <td><span class="val-ukemi">留学することになる</span><span class="yomi-small">ryuugaku suru koto ni naru</span></td>
+                        <td><span class="val-shiekiukemi">留学しようと思う</span><span class="yomi-small">ryuugaku shiyou to omou</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Ringkasan penggunaan:</b> pakai <b>〜ことにする</b> saat pembicara <b>sendiri yang memutuskan</b> dan
+            keputusan itu sudah final; pakai <b>〜ことになる</b> saat sesuatu <b>ditentukan oleh keadaan, aturan,
+            atau pihak lain</b> di luar kendali pembicara, misalnya keputusan perusahaan; pakai
+            <b>〜（よ）うと思う</b> saat masih berupa <b>pemikiran atau niat awal</b> yang belum tentu final.
+        </div>
+
+        <p style="margin:18px 0 10px;">
+            Perhatikan bagaimana ketiga pola ini membawa <b>sudut pandang berbeda</b> meskipun berasal dari topik
+            dasar yang sama: 会社を辞める（berhenti dari perusahaan）.
+        </p>
+
+        <div class="example-group-label shieki">〜ことにする — Keputusan aktif diri sendiri, final</div>
+        <div class="example">
+            <div class="jp">よく考えて、会社を辞めることにしました。</div>
+            <div class="yomi">よく かんがえて、かいしゃを やめることにしました。</div>
+            <div class="id">Setelah berpikir matang-matang, saya memutuskan berhenti dari perusahaan. (keputusan sendiri, sudah final)</div>
+        </div>
+
+        <div class="example-group-label ukemi">〜ことになる — Ditentukan keadaan/pihak lain</div>
+        <div class="example">
+            <div class="jp">会社の都合で、会社を辞めることになりました。</div>
+            <div class="yomi">かいしゃの つごうで、かいしゃを やめることになりました。</div>
+            <div class="id">Karena keadaan perusahaan, saya jadi harus berhenti dari perusahaan. (bukan keinginan sendiri, ditentukan pihak lain)</div>
+        </div>
+
+        <div class="example-group-label shiekiukemi">〜（よ）うと思う — Masih sebatas pikiran</div>
+        <div class="example">
+            <div class="jp">最近、会社を辞めようと思っています。</div>
+            <div class="yomi">さいきん、かいしゃを やめようとおもっています。</div>
+            <div class="id">Akhir-akhir ini saya sedang berpikir untuk berhenti dari perusahaan. (belum ada keputusan final)</div>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Kunci membedakan ketiganya lewat contoh di atas:</b> pada <i>〜ことにする</i>, pembicara
+            <b>secara sadar dan aktif memutuskan sendiri</b> setelah mempertimbangkan sesuatu. Pada
+            <i>〜ことになる</i>, hasil itu <b>terjadi karena faktor luar</b> — pembicara seolah hanya
+            "menerima" keputusan yang sudah ditentukan. Pada <i>〜（よ）うと思う</i>, semuanya masih berada di
+            tahap <b>pemikiran</b>, belum ada tindakan atau keputusan nyata yang diambil.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">LATIHAN</span> Soal Susun Kalimat</h2>
+        <p style="margin-bottom:18px;">
+            Susun kata-kata acak di bawah ini menjadi kalimat yang benar dengan mengklik kata secara berurutan.
+            Klik kata yang sudah dipasang untuk membatalkannya.
+        </p>
+
+        <!-- SOAL 1 -->
+        <div class="quiz-box" id="quiz1">
+            <span class="qno">SOAL 1</span>
+            <div class="qtext">
+                来月　＿＿＿＿＿　＿★＿　＿＿＿＿＿　＿＿＿＿＿。
+            </div>
+
+            <div class="answer-slot" id="slot1"></div>
+
+            <div class="word-bank" id="bank1">
+                <div class="word-tile" data-word="しました">しました</div>
+                <div class="word-tile" data-word="会社を">かいしゃを</div>
+                <div class="word-tile" data-word="辞める">やめる</div>
+                <div class="word-tile" data-word="ことに">ことに</div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(1)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(1)">Ulangi</button>
+            </div>
+
+            <div class="quiz-result" id="result1"></div>
+        </div>
+
+        <!-- SOAL 2 -->
+        <div class="quiz-box" id="quiz2">
+            <span class="qno">SOAL 2</span>
+            <div class="qtext">
+                毎朝　＿＿＿＿＿　＿★＿　＿＿＿＿＿　＿＿＿＿＿。
+            </div>
+
+            <div class="answer-slot" id="slot2"></div>
+
+            <div class="word-bank" id="bank2">
+                <div class="word-tile" data-word="して">して</div>
+                <div class="word-tile" data-word="走る">はしる</div>
+                <div class="word-tile" data-word="ことに">ことに</div>
+                <div class="word-tile" data-word="います">います</div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(2)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(2)">Ulangi</button>
+            </div>
+
+            <div class="quiz-result" id="result2"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="content" style="padding-top:0;">
+    <div class="nav-bottom">
+        <a href="tatabahasan4_youtoomou.html" class="prev">
+            <span class="dir">← Sebelumnya</span>
+            〜（よ）うと思う（berniat）
+        </a>
+        <a href="tatabahasan4_kotoninaru.html" class="next">
+            <span class="dir">Selanjutnya →</span>
+            〜ことになる（ditentukan）
+        </a>
+    </div>
+</div>
+
+<footer>
+© Tekipaki Japanese Learning
+</footer>
+
+<script>
+
+//============================
+// LATIHAN SOAL - SUSUN KALIMAT
+//============================
+
+const quizAnswers = {
+    1:["会社を","辞める","ことに","しました"],
+    2:["走る","ことに","して","います"]
+};
+
+const quizState = {
+    1:[],
+    2:[]
+};
+
+function initQuiz(id){
+    const bank = document.getElementById("bank"+id);
+    bank.querySelectorAll(".word-tile").forEach(tile=>{
+        tile.addEventListener("click", ()=>placeWord(id, tile));
+    });
+}
+
+function placeWord(id, tile){
+    if(tile.classList.contains("used")) return;
+
+    tile.classList.add("used");
+    quizState[id].push(tile.dataset.word);
+
+    const slot = document.getElementById("slot"+id);
+    const placed = document.createElement("span");
+    placed.className = "placed";
+    placed.textContent = tile.dataset.word;
+    placed.dataset.word = tile.dataset.word;
+
+    placed.addEventListener("click", ()=>{
+        slot.removeChild(placed);
+        const idx = quizState[id].indexOf(tile.dataset.word);
+        if(idx > -1){
+            quizState[id].splice(idx,1);
+        }
+        tile.classList.remove("used");
+        document.getElementById("result"+id).className = "quiz-result";
+    });
+
+    slot.appendChild(placed);
+    document.getElementById("result"+id).className = "quiz-result";
+}
+
+function checkAnswer(id){
+    const result = document.getElementById("result"+id);
+    const correct = quizAnswers[id].join("") === quizState[id].join("");
+
+    if(quizState[id].length === 0){
+        result.className = "quiz-result wrong";
+        result.textContent = "⚠️ Susun dulu kata-katanya sebelum mengecek jawaban.";
+        return;
+    }
+
+    if(correct){
+        result.className = "quiz-result correct";
+        result.textContent = "✅ Benar! Susunan kalimatmu sudah tepat.";
+    } else {
+        result.className = "quiz-result wrong";
+        result.textContent = "❌ Belum tepat. Jawaban yang benar: " + quizAnswers[id].join(" ");
+    }
+}
+
+function resetQuiz(id){
+    quizState[id] = [];
+    document.getElementById("slot"+id).innerHTML = "";
+    document.querySelectorAll("#bank"+id+" .word-tile").forEach(tile=>{
+        tile.classList.remove("used");
+    });
+    document.getElementById("result"+id).className = "quiz-result";
+}
+
+initQuiz(1);
+initQuiz(2);
+
+function toggleDropdown(id){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+        if(m.id!==id){
+            m.classList.remove('show');
+            m.classList.remove('align-right');
+            m.closest('.dropdown').classList.remove('open');
+        }
+    });
+    const menu = document.getElementById(id);
+    const wrap = menu.closest('.dropdown');
+    const willShow = !menu.classList.contains('show');
+    menu.classList.toggle('show');
+    wrap.classList.toggle('open');
+    if(willShow){
+        menu.classList.remove('align-right');
+        const rect = menu.getBoundingClientRect();
+        if(rect.right > window.innerWidth - 8){ menu.classList.add('align-right'); }
+    }
+}
+
+window.addEventListener('resize', ()=>{
+    document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
+        m.classList.remove('show');
+        m.classList.remove('align-right');
+        m.closest('.dropdown').classList.remove('open');
+    });
+});
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+        });
+        document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
+    }
+});
+
+</script>
+
+</body>
+</html>
