@@ -5,7 +5,7 @@
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bab 6 - Daftar Kosakata JFT A2</title>
+<title>Bab 11 - Daftar Kosakata JFT A2</title>
 
 <style>
 
@@ -27,10 +27,6 @@ body{
     background:#ffffff;
     color:var(--text);
 }
-
-/* =======================
-        NAVBAR
-======================= */
 
 #navbar{
     position:sticky;
@@ -129,8 +125,6 @@ color:#001530;
 display:block;
 }
 
-/* ================= BREADCRUMB ================= */
-
 .breadcrumb{
 padding:0 20px;
 margin:20px 0 0 0;
@@ -148,8 +142,6 @@ text-decoration:none;
 .breadcrumb a:hover{
 text-decoration:underline;
 }
-
-/* ================= HEADER ================= */
 
 header{
 padding:35px 20px 25px;
@@ -183,8 +175,6 @@ line-height:1.8;
 color:#555;
 }
 
-/* ================= SEARCH BOX ================= */
-
 .search-wrap{
 max-width:500px;
 margin:0 auto 30px auto;
@@ -204,8 +194,6 @@ outline:none;
 #searchInput:focus{
 border-color:var(--gold);
 }
-
-/* ================= TABLE KOSAKATA ================= */
 
 .container{
 max-width:1000px;
@@ -251,9 +239,14 @@ font-weight:bold;
 color:var(--navy);
 }
 
-.col-jepang{
-width:46%;
+.col-kotoba{
+width:26%;
 font-weight:bold;
+}
+
+.col-kanji{
+width:20%;
+font-size:20px;
 }
 
 .col-arti{
@@ -268,8 +261,6 @@ color:#888;
 font-style:italic;
 display:none;
 }
-
-/* ================= PAGINATION ================= */
 
 .pagination{
 display:flex;
@@ -321,8 +312,6 @@ background:none;
 cursor:default;
 }
 
-/* ================= NAV BAWAH (UNIT SEBELUM/SESUDAH) ================= */
-
 .nav-bottom{
     display:flex;
     justify-content:space-between;
@@ -372,7 +361,7 @@ font-size:14px;
 padding:10px 8px;
 }
 
-.col-jepang{
+.col-kanji{
 font-size:17px;
 }
 
@@ -509,16 +498,16 @@ SOAL JFT A — TEST 5
 </div>
 
 <header>
-<div class="eyebrow">📚 UNIT 11 · 20 KALIMAT</div>
+<div class="eyebrow">📚 UNIT 11 · 26 KOSAKATA</div>
 <h1>Bab 11</h1>
 <p>
-Kosakata dan kalimat dasar untuk Unit 11. Setiap baris menampilkan kalimat dalam bahasa Jepang
-dan artinya dalam Bahasa Indonesia. Gunakan kolom pencarian di bawah untuk mencari dengan cepat.
+Kosakata dasar untuk Unit 11. Setiap baris menampilkan kotoba (cara baca), kanji, dan arti
+dalam Bahasa Indonesia. Gunakan kolom pencarian di bawah untuk mencari kosakata dengan cepat.
 </p>
 </header>
 
 <div class="search-wrap">
-<input type="text" id="searchInput" placeholder="Cari kosakata... (kalimat / arti)" onkeyup="filterTable()">
+<input type="text" id="searchInput" placeholder="Cari kosakata... (kotoba / kanji / arti)" onkeyup="filterTable()">
 </div>
 
 <div class="container">
@@ -528,51 +517,40 @@ dan artinya dalam Bahasa Indonesia. Gunakan kolom pencarian di bawah untuk menca
 <thead>
 <tr>
 <th class="col-no">No</th>
-<th class="col-jepang">Kalimat</th>
+<th class="col-kotoba">Kotoba</th>
+<th class="col-kanji">Kanji</th>
 <th class="col-arti">Arti</th>
 </tr>
 </thead>
 
 <tbody id="vocabBody">
-<tr><td class="col-no">1</td><td class="col-jepang">大きな地震が来ても、あわてて動かないでください。</td><td class="col-arti">Meskipun terjadi gempa besar, jangan panik bergerak.</td></tr>
+<tr><td class="col-no">1</td><td class="col-kotoba">じしん</td><td class="col-kanji">地震</td><td class="col-arti">Gempa bumi</td></tr>
+<tr><td class="col-no">2</td><td class="col-kotoba">あわてる</td><td class="col-kanji">慌てる</td><td class="col-arti">Panik</td></tr>
+<tr><td class="col-no">3</td><td class="col-kotoba">うごく</td><td class="col-kanji">動く</td><td class="col-arti">Bergerak</td></tr>
+<tr><td class="col-no">4</td><td class="col-kotoba">ゆれ</td><td class="col-kanji">揺れ</td><td class="col-arti">Guncangan</td></tr>
+<tr><td class="col-no">5</td><td class="col-kotoba">かんじる</td><td class="col-kanji">感じる</td><td class="col-arti">Merasakan</td></tr>
+<tr><td class="col-no">6</td><td class="col-kotoba">かくれる</td><td class="col-kanji">隠れる</td><td class="col-arti">Bersembunyi, berlindung</td></tr>
+<tr><td class="col-no">7</td><td class="col-kotoba">おちる</td><td class="col-kanji">落ちる</td><td class="col-arti">Jatuh</td></tr>
+<tr><td class="col-no">8</td><td class="col-kotoba">たおれる</td><td class="col-kanji">倒れる</td><td class="col-arti">Roboh, tumbang</td></tr>
+<tr><td class="col-no">9</td><td class="col-kotoba">みをまもる</td><td class="col-kanji">身を守る</td><td class="col-arti">Melindungi diri</td></tr>
+<tr><td class="col-no">10</td><td class="col-kotoba">へや</td><td class="col-kanji">部屋</td><td class="col-arti">Kamar, ruangan</td></tr>
+<tr><td class="col-no">11</td><td class="col-kotoba">あける</td><td class="col-kanji">開ける</td><td class="col-arti">Membuka</td></tr>
+<tr><td class="col-no">12</td><td class="col-kotoba">むりをする</td><td class="col-kanji">無理をする</td><td class="col-arti">Memaksakan diri</td></tr>
+<tr><td class="col-no">13</td><td class="col-kotoba">けす</td><td class="col-kanji">消す</td><td class="col-arti">Mematikan, memadamkan</td></tr>
+<tr><td class="col-no">14</td><td class="col-kotoba">おさまる</td><td class="col-kanji">収まる</td><td class="col-arti">Mereda, berhenti</td></tr>
+<tr><td class="col-no">15</td><td class="col-kotoba">しょうかき</td><td class="col-kanji">消火器</td><td class="col-arti">Alat pemadam api</td></tr>
+<tr><td class="col-no">16</td><td class="col-kotoba">にげる</td><td class="col-kanji">逃げる</td><td class="col-arti">Melarikan diri, mengungsi</td></tr>
+<tr><td class="col-no">17</td><td class="col-kotoba">かばん</td><td class="col-kanji">-</td><td class="col-arti">Tas</td></tr>
+<tr><td class="col-no">18</td><td class="col-kotoba">あたま</td><td class="col-kanji">頭</td><td class="col-arti">Kepala</td></tr>
+<tr><td class="col-no">19</td><td class="col-kotoba">まもる</td><td class="col-kanji">守る</td><td class="col-arti">Melindungi</td></tr>
+<tr><td class="col-no">20</td><td class="col-kotoba">たてもの</td><td class="col-kanji">建物</td><td class="col-arti">Bangunan, gedung</td></tr>
+<tr><td class="col-no">21</td><td class="col-kotoba">はなれる</td><td class="col-kanji">離れる</td><td class="col-arti">Menjauh</td></tr>
+<tr><td class="col-no">22</td><td class="col-kotoba">ひなんじょ</td><td class="col-kanji">避難所</td><td class="col-arti">Tempat pengungsian</td></tr>
+<tr><td class="col-no">23</td><td class="col-kotoba">じゅうでん</td><td class="col-kanji">充電</td><td class="col-arti">Mengisi daya (baterai)</td></tr>
+<tr><td class="col-no">24</td><td class="col-kotoba">こまる</td><td class="col-kanji">困る</td><td class="col-arti">Kesulitan, bingung</td></tr>
+<tr><td class="col-no">25</td><td class="col-kotoba">きゅうすいしゃ</td><td class="col-kanji">給水車</td><td class="col-arti">Mobil distribusi air</td></tr>
+<tr><td class="col-no">26</td><td class="col-kotoba">ようき</td><td class="col-kanji">容器</td><td class="col-arti">Wadah</td></tr>
 
-<tr><td class="col-no">2</td><td class="col-jepang">揺れを感じたら、机などの下に隠れてください。</td><td class="col-arti">Kalau merasakan gempa, berlindunglah di bawah meja.</td></tr>
-
-<tr><td class="col-no">3</td><td class="col-jepang">上から落ちてくるものや倒れてくるものから身を守りましょう。</td><td class="col-arti">Lindungilah diri dari benda yang jatuh atau roboh.</td></tr>
-
-<tr><td class="col-no">4</td><td class="col-jepang">できれば、部屋のドアを開けるようにしてください。</td><td class="col-arti">Kalau memungkinkan, bukalah pintu ruangan.</td></tr>
-
-<tr><td class="col-no">5</td><td class="col-jepang">揺れが強いときは、無理をしないでください。</td><td class="col-arti">Jika guncangannya kuat, jangan memaksakan diri.</td></tr>
-
-<tr><td class="col-no">6</td><td class="col-jepang">火を消すのは、揺れがおさまってからにしてください。</td><td class="col-arti">Padamkan api setelah guncangan berhenti.</td></tr>
-
-<tr><td class="col-no">7</td><td class="col-jepang">火が小さかったら、消火器で消してください。</td><td class="col-arti">Jika apinya kecil, padamkan dengan alat pemadam.</td></tr>
-
-<tr><td class="col-no">8</td><td class="col-jepang">火が大きかったら、逃げてください。</td><td class="col-arti">Jika apinya besar, segera mengungsi.</td></tr>
-
-<tr><td class="col-no">9</td><td class="col-jepang">外にいるときは、かばんなどで頭を守ってください。</td><td class="col-arti">Saat berada di luar, lindungi kepala dengan tas atau benda lain.</td></tr>
-
-<tr><td class="col-no">10</td><td class="col-jepang">できるだけ建物から離れてください。</td><td class="col-arti">Sebisa mungkin menjauhlah dari bangunan.</td></tr>
-
-<tr><td class="col-no">11</td><td class="col-jepang">避難所はどこですか。</td><td class="col-arti">Di mana tempat pengungsian?</td></tr>
-
-<tr><td class="col-no">12</td><td class="col-jepang">何か持って行ったほうがいいですか。</td><td class="col-arti">Apakah ada yang sebaiknya saya bawa?</td></tr>
-
-<tr><td class="col-no">13</td><td class="col-jepang">食べ物とか飲み物とか、持って行ったほうがいいと思います。</td><td class="col-arti">Menurut saya, sebaiknya membawa makanan dan minuman.</td></tr>
-
-<tr><td class="col-no">14</td><td class="col-jepang">スマホの充電ができなくて、困っています。</td><td class="col-arti">Saya kesulitan karena tidak bisa mengisi daya ponsel.</td></tr>
-
-<tr><td class="col-no">15</td><td class="col-jepang">充電できるところ、知りませんか。</td><td class="col-arti">Apakah Anda tahu tempat untuk mengisi daya?</td></tr>
-
-<tr><td class="col-no">16</td><td class="col-jepang">店が開いているかどうか、わからないけど……。</td><td class="col-arti">Saya tidak tahu apakah tokonya buka atau tidak.</td></tr>
-
-<tr><td class="col-no">17</td><td class="col-jepang">あと少ししかないです。どうしたらいいですか。</td><td class="col-arti">Tinggal sedikit lagi. Apa yang sebaiknya saya lakukan?</td></tr>
-
-<tr><td class="col-no">18</td><td class="col-jepang">明日の8時に、給水車が来るって聞きました。</td><td class="col-arti">Saya dengar mobil distribusi air akan datang besok pukul 8.</td></tr>
-
-<tr><td class="col-no">19</td><td class="col-jepang">水を入れる容器を忘れないでください。</td><td class="col-arti">Jangan lupa membawa wadah untuk menampung air.</td></tr>
-
-<tr><td class="col-no">20</td><td class="col-jepang">だれでも、ただで入れます。</td><td class="col-arti">Siapa pun bisa menggunakannya secara gratis.</td></tr>
 </tbody>
 
 </table>
@@ -584,11 +562,11 @@ dan artinya dalam Bahasa Indonesia. Gunakan kolom pencarian di bawah untuk menca
 </div>
 
 <div class="nav-bottom">
-    <a href="kosakataunit5.html" class="prev">
+    <a href="kosakatarirodori_10.html" class="prev">
         <span class="dir">← Sebelumnya</span>
         Bab 5
     </a>
-    <a href="kosakataunit7.html" class="next">
+    <a href="kosakatarirodori_12.html" class="next">
         <span class="dir">Selanjutnya →</span>
         Bab 7
     </a>
@@ -602,27 +580,22 @@ dan artinya dalam Bahasa Indonesia. Gunakan kolom pencarian di bawah untuk menca
 
 <script>
 
-// Menonaktifkan klik kanan
 document.addEventListener("contextmenu",function(e){
     e.preventDefault();
 });
 
-// Menonaktifkan drag
 document.addEventListener("dragstart",function(e){
     e.preventDefault();
 });
 
-// Menonaktifkan seleksi teks
 document.addEventListener("selectstart",function(e){
     e.preventDefault();
 });
 
-// Menonaktifkan copy
 document.addEventListener("copy",function(e){
     e.preventDefault();
 });
 
-// Shortcut umum
 document.addEventListener("keydown",function(e){
 
     if(
@@ -666,8 +639,6 @@ document.addEventListener("click",function(e){
     }
 
 });
-
-// ================= NOMOR + PENCARIAN + PAGINASI =================
 
 const ROWS_PER_PAGE = 50;
 let currentPage = 1;
