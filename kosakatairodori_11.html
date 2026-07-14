@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bab 6 - Daftar Kosakata JFT A2</title>
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --text:#001f3f;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:var(--text);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.home-btn{
+display:flex;
+align-items:center;
+gap:8px;
+background:var(--gold);
+color:#001530;
+text-decoration:none;
+padding:8px 14px;
+border-radius:10px;
+font-weight:bold;
+}
+
+.home-btn:hover{
+opacity:.85;
+}
+
+.home-icon{
+width:24px;
+height:24px;
+object-fit:cover;
+border-radius:4px;
+}
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-btn{
+background:none;
+border:2px solid var(--gold);
+color:var(--gold);
+padding:8px 14px;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.dropdown-btn:hover{
+background:var(--gold);
+color:#001530;
+}
+
+.dropdown-menu{
+display:none;
+position:absolute;
+top:45px;
+left:0;
+background:#022655;
+border-radius:10px;
+overflow:hidden;
+min-width:220px;
+box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+.dropdown-menu a{
+display:block;
+padding:12px 15px;
+color:#ffd700;
+text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+background:var(--gold);
+color:#001530;
+}
+
+.show{
+display:block;
+}
+
+/* ================= BREADCRUMB ================= */
+
+.breadcrumb{
+padding:0 20px;
+margin:20px 0 0 0;
+text-align:left;
+}
+
+.breadcrumb a{
+display:inline-block;
+font-size:14px;
+font-weight:600;
+color:var(--navy);
+text-decoration:none;
+}
+
+.breadcrumb a:hover{
+text-decoration:underline;
+}
+
+/* ================= HEADER ================= */
+
+header{
+padding:35px 20px 25px;
+text-align:center;
+}
+
+.eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--navy);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.12em;
+    padding:7px 16px;
+    border-radius:999px;
+    margin-bottom:16px;
+}
+
+header h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+header p{
+font-size:17px;
+max-width:800px;
+margin:auto;
+line-height:1.8;
+color:#555;
+}
+
+/* ================= SEARCH BOX ================= */
+
+.search-wrap{
+max-width:500px;
+margin:0 auto 30px auto;
+padding:0 20px;
+}
+
+#searchInput{
+width:100%;
+padding:12px 18px;
+font-size:16px;
+border:3px solid var(--navy);
+border-radius:10px;
+color:var(--text);
+outline:none;
+}
+
+#searchInput:focus{
+border-color:var(--gold);
+}
+
+/* ================= TABLE KOSAKATA ================= */
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:0 20px 40px 20px;
+}
+
+.vocab-table{
+width:100%;
+border-collapse:collapse;
+border:3px solid var(--navy);
+}
+
+.vocab-table thead th{
+background:var(--navy);
+color:var(--gold);
+padding:14px 12px;
+font-size:16px;
+text-align:left;
+position:sticky;
+top:64px;
+}
+
+.vocab-table tbody td{
+padding:14px 12px;
+font-size:16px;
+border-bottom:1px solid #ddd;
+vertical-align:top;
+}
+
+.vocab-table tbody tr:nth-child(even){
+background:#f7f9fc;
+}
+
+.vocab-table tbody tr:hover{
+background:#fff6d8;
+}
+
+.col-no{
+width:8%;
+text-align:center;
+font-weight:bold;
+color:var(--navy);
+}
+
+.col-kotoba{
+width:26%;
+font-weight:bold;
+}
+
+.col-kanji{
+width:20%;
+font-size:20px;
+}
+
+.col-arti{
+width:46%;
+color:#333;
+}
+
+.no-result{
+text-align:center;
+padding:30px;
+color:#888;
+font-style:italic;
+display:none;
+}
+
+/* ================= PAGINATION ================= */
+
+.pagination{
+display:flex;
+justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+gap:8px;
+margin-top:24px;
+}
+
+.pagination a,
+.pagination span{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-width:38px;
+height:38px;
+padding:0 10px;
+border:2px solid var(--navy);
+border-radius:8px;
+color:var(--navy);
+text-decoration:none;
+font-weight:bold;
+font-size:14px;
+cursor:pointer;
+user-select:none;
+background:#fff;
+}
+
+.pagination a:hover{
+background:var(--navy);
+color:var(--gold);
+}
+
+.pagination a.active{
+background:var(--navy);
+color:var(--gold);
+border-color:var(--navy);
+}
+
+.pagination a.disabled{
+opacity:.4;
+pointer-events:none;
+}
+
+.pagination .ellipsis{
+border:none;
+background:none;
+cursor:default;
+}
+
+/* ================= NAV BAWAH (UNIT SEBELUM/SESUDAH) ================= */
+
+.nav-bottom{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    margin:40px auto 0;
+    max-width:1000px;
+    padding:0 20px;
+    flex-wrap:wrap;
+}
+
+.nav-bottom a{
+    flex:1;
+    min-width:200px;
+    text-decoration:none;
+    border:2px solid var(--navy);
+    border-radius:14px;
+    padding:16px 20px;
+    color:var(--navy);
+    font-weight:600;
+    transition:.25s;
+}
+
+.nav-bottom a:hover{
+    background:var(--navy);
+    color:var(--gold);
+}
+
+.nav-bottom .dir{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    margin-bottom:4px;
+}
+
+.nav-bottom a:hover .dir{ color:#c9d6e8; }
+.nav-bottom .next{ text-align:right; }
+
+@media(max-width:600px){
+
+header h1{
+font-size:30px;
+}
+
+.vocab-table thead th,
+.vocab-table tbody td{
+font-size:14px;
+padding:10px 8px;
+}
+
+.col-kanji{
+font-size:17px;
+}
+
+.pagination a,
+.pagination span{
+min-width:32px;
+height:32px;
+font-size:13px;
+}
+
+.nav-bottom .next{ text-align:left; }
+
+}
+
+footer{
+margin-top:60px;
+padding:25px;
+text-align:center;
+color:#666;
+font-size:14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav id="navbar">
+
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 24 24">
+
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+
+</svg>
+
+HOME
+
+</a>
+
+</div>
+
+<div class="nav-right">
+
+<div class="dropdown">
+
+<button class="dropdown-btn"
+onclick="toggleDropdown('materi')">
+
+MATERI ▼
+
+</button>
+
+<div class="dropdown-menu"
+id="materi">
+
+<a href="daftarkosakatasehari.html">
+Kosakata JFT
+</a>
+
+<a href="materitatabahasa.html">
+Tata Bahasa
+</a>
+
+<a href="kanjidasar.html">
+Kanji Flash Card
+</a>
+
+</div>
+
+</div>
+
+<div class="dropdown">
+
+<button class="dropdown-btn"
+onclick="toggleDropdown('quiz')">
+
+QUIZ JFT ▼
+
+</button>
+
+<div class="dropdown-menu"
+id="quiz">
+
+<a href="ujianjfta2test1.html">
+SOAL JFT A — TEST 1
+</a>
+
+<a href="ujianjfta2test2.html">
+SOAL JFT A — TEST 2
+</a>
+
+<a href="ujianjfta2test3.html">
+SOAL JFT A — TEST 3
+</a>
+
+<a href="ujianjfta2test4.html">
+SOAL JFT A — TEST 4
+</a>
+
+<a href="ujianjfta2test5.html">
+SOAL JFT A — TEST 5
+</a>
+
+</div>
+
+</div>
+
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+<div class="dropdown-menu" id="kanjiquiz">
+<a href="quizkanji1.html">QUIZ KANJI 1</a>
+<a href="quizkanji2.html">QUIZ KANJI 2</a>
+<a href="quizkanji3.html">QUIZ KANJI 3</a>
+<a href="quizkanji4.html">QUIZ KANJI 4</a>
+<a href="quizkanji5.html">QUIZ KANJI 5</a>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</nav>
+
+<div class="breadcrumb">
+<a href="kosakatairodori_homepage.html">← Kembali ke Daftar Unit</a>
+</div>
+
+<header>
+<div class="eyebrow">📚 UNIT 11 · 26 KOSAKATA</div>
+<h1>Bab 11</h1>
+<p>
+Kosakata dasar untuk Unit 11. Setiap baris menampilkan kotoba (cara baca), kanji, dan arti
+dalam Bahasa Indonesia. Gunakan kolom pencarian di bawah untuk mencari kosakata dengan cepat.
+</p>
+</header>
+
+<div class="search-wrap">
+<input type="text" id="searchInput" placeholder="Cari kosakata... (kotoba / kanji / arti)" onkeyup="filterTable()">
+</div>
+
+<div class="container">
+
+<table class="vocab-table" id="vocabTable">
+
+<thead>
+<tr>
+<th class="col-no">No</th>
+<th class="col-kotoba">Kotoba</th>
+<th class="col-kanji">Kanji</th>
+<th class="col-arti">Arti</th>
+</tr>
+</thead>
+
+<tbody id="vocabBody">
+<tbody>
+<tbody>
+<tr><td class="col-no">1</td><td class="col-jepang">このセーター、Mサイズ、ありますか。</td><td class="col-arti">Apakah ada sweater ini ukuran M?</td></tr>
+<tr><td class="col-no">2</td><td class="col-jepang">着てみてもいいですか。</td><td class="col-arti">Boleh saya mencobanya?</td></tr>
+<tr><td class="col-no">3</td><td class="col-jepang">ご試着もできますよ。</td><td class="col-arti">Anda juga boleh mencobanya.</td></tr>
+<tr><td class="col-no">4</td><td class="col-jepang">試着室へご案内いたします。</td><td class="col-arti">Saya akan mengantar Anda ke ruang ganti.</td></tr>
+<tr><td class="col-no">5</td><td class="col-jepang">ほかの色、ありませんか。</td><td class="col-arti">Ada warna yang lain?</td></tr>
+<tr><td class="col-no">6</td><td class="col-jepang">この色はちょっと派手すぎます。</td><td class="col-arti">Warna ini agak terlalu mencolok.</td></tr>
+<tr><td class="col-no">7</td><td class="col-jepang">その３つ、試着してもいいですか。</td><td class="col-arti">Boleh saya mencoba ketiga warna itu?</td></tr>
+<tr><td class="col-no">8</td><td class="col-jepang">もうちょっと大きいの、ありますか。</td><td class="col-arti">Ada yang sedikit lebih besar?</td></tr>
+<tr><td class="col-no">9</td><td class="col-jepang">Lサイズ、お持ちします。</td><td class="col-arti">Saya akan mengambilkan ukuran L.</td></tr>
+<tr><td class="col-no">10</td><td class="col-jepang">いかがでしたか。</td><td class="col-arti">Bagaimana hasilnya?</td></tr>
+<tr><td class="col-no">11</td><td class="col-jepang">このベージュにします。</td><td class="col-arti">Saya pilih yang warna beige ini.</td></tr>
+<tr><td class="col-no">12</td><td class="col-jepang">これにします。</td><td class="col-arti">Saya ambil yang ini.</td></tr>
+<tr><td class="col-no">13</td><td class="col-jepang">自転車を盗まれました。</td><td class="col-arti">Sepeda saya dicuri.</td></tr>
+<tr><td class="col-no">14</td><td class="col-jepang">ここに自転車を止めたんですけど、ないんです。</td><td class="col-arti">Saya tadi memarkir sepeda di sini, tetapi sekarang tidak ada.</td></tr>
+<tr><td class="col-no">15</td><td class="col-jepang">移動されたかもしれません。</td><td class="col-arti">Mungkin sudah dipindahkan.</td></tr>
+<tr><td class="col-no">16</td><td class="col-jepang">急にお腹が痛くなって……。</td><td class="col-arti">Tiba-tiba perut saya sakit.</td></tr>
+<tr><td class="col-no">17</td><td class="col-jepang">救急車を呼んでください。</td><td class="col-arti">Tolong panggil ambulans.</td></tr>
+<tr><td class="col-no">18</td><td class="col-jepang">こちらのソファに座ってください。</td><td class="col-arti">Silakan duduk di sofa ini.</td></tr>
+<tr><td class="col-no">19</td><td class="col-jepang">バッグがなくなったんです。</td><td class="col-arti">Tas saya hilang.</td></tr>
+<tr><td class="col-no">20</td><td class="col-jepang">とられたかもしれません。</td><td class="col-arti">Mungkin dicuri.</td></tr>
+<tr><td class="col-no">21</td><td class="col-jepang">インフォメーションに行ってみますか。</td><td class="col-arti">Bagaimana kalau pergi ke bagian informasi?</td></tr>
+<tr><td class="col-no">22</td><td class="col-jepang">ポイントカード、忘れてしまいました。</td><td class="col-arti">Saya lupa membawa kartu poin.</td></tr>
+<tr><td class="col-no">23</td><td class="col-jepang">次回お持ちください。</td><td class="col-arti">Tolong bawa pada kunjungan berikutnya.</td></tr>
+<tr><td class="col-no">24</td><td class="col-jepang">スマホをなくしてしまったんですけど、届いてませんか。</td><td class="col-arti">Saya kehilangan HP. Apakah ada yang menemukannya?</td></tr>
+<tr><td class="col-no">25</td><td class="col-jepang">特徴を教えてください。</td><td class="col-arti">Tolong jelaskan ciri-cirinya.</td></tr>
+<tr><td class="col-no">26</td><td class="col-jepang">いつ、どこでなくしたか、わかりますか。</td><td class="col-arti">Apakah Anda tahu kapan dan di mana kehilangannya?</td></tr>
+<tr><td class="col-no">27</td><td class="col-jepang">たぶん、トイレに忘れたと思います。</td><td class="col-arti">Saya rasa mungkin tertinggal di toilet.</td></tr>
+<tr><td class="col-no">28</td><td class="col-jepang">自分で電話してみましたか。</td><td class="col-arti">Apakah sudah mencoba menelepon sendiri?</td></tr>
+<tr><td class="col-no">29</td><td class="col-jepang">あとで見つかるかもしれません。</td><td class="col-arti">Mungkin nanti akan ditemukan.</td></tr>
+<tr><td class="col-no">30</td><td class="col-jepang">必要事項を書いてください。</td><td class="col-arti">Silakan isi data yang diperlukan.</td></tr>
+<tr><td class="col-no">31</td><td class="col-jepang">見つかったら、連絡します。</td><td class="col-arti">Kalau sudah ditemukan, kami akan menghubungi Anda.</td></tr>
+<tr><td class="col-no">32</td><td class="col-jepang">名前と連絡先を書いてください。</td><td class="col-arti">Silakan tulis nama dan nomor yang bisa dihubungi.</td></tr>
+<tr><td class="col-no">33</td><td class="col-jepang">お客様のお呼び出しを申し上げます。</td><td class="col-arti">Kami akan memanggil pelanggan.</td></tr>
+<tr><td class="col-no">34</td><td class="col-jepang">ごゆっくりお買い物をお楽しみください。</td><td class="col-arti">Silakan menikmati waktu berbelanja Anda.</td></tr>
+<tr><td class="col-no">35</td><td class="col-jepang">お心当たりの方は、インフォメーションカウンターまでお越しください。</td><td class="col-arti">Bagi yang merasa memiliki barang tersebut, silakan datang ke meja informasi.</td></tr>
+</tbody>
+</tbody>
+
+</table>
+
+<p class="no-result" id="noResult">Kosakata tidak ditemukan.</p>
+
+<div class="pagination" id="pagination"></div>
+
+</div>
+
+<div class="nav-bottom">
+    <a href="kosakataunit5.html" class="prev">
+        <span class="dir">← Sebelumnya</span>
+        Bab 5
+    </a>
+    <a href="kosakataunit7.html" class="next">
+        <span class="dir">Selanjutnya →</span>
+        Bab 7
+    </a>
+</div>
+
+<footer>
+
+© 2026 Tekipaki Japanese Learning | Daftar Kosakata JFT A2
+
+</footer>
+
+<script>
+
+// Menonaktifkan klik kanan
+document.addEventListener("contextmenu",function(e){
+    e.preventDefault();
+});
+
+// Menonaktifkan drag
+document.addEventListener("dragstart",function(e){
+    e.preventDefault();
+});
+
+// Menonaktifkan seleksi teks
+document.addEventListener("selectstart",function(e){
+    e.preventDefault();
+});
+
+// Menonaktifkan copy
+document.addEventListener("copy",function(e){
+    e.preventDefault();
+});
+
+// Shortcut umum
+document.addEventListener("keydown",function(e){
+
+    if(
+        e.key==="F12" ||
+        (e.ctrlKey && e.shiftKey &&
+        ["I","J","C"].includes(e.key.toUpperCase())) ||
+        (e.ctrlKey &&
+        ["U","S"].includes(e.key.toUpperCase()))
+    ){
+        e.preventDefault();
+    }
+
+});
+
+function toggleDropdown(id){
+
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+
+        if(menu.id!=id){
+
+            menu.classList.remove("show");
+
+        }
+
+    });
+
+    document.getElementById(id).classList.toggle("show");
+
+}
+
+document.addEventListener("click",function(e){
+
+    if(!e.target.closest(".dropdown")){
+
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+
+            menu.classList.remove("show");
+
+        });
+
+    }
+
+});
+
+// ================= NOMOR + PENCARIAN + PAGINASI =================
+
+const ROWS_PER_PAGE = 50;
+let currentPage = 1;
+
+const allRows = Array.from(document.querySelectorAll("#vocabBody tr"));
+
+allRows.forEach(function(row, idx){
+    row.dataset.originalNo = idx + 1;
+});
+
+function getFilteredRows(){
+    const keyword = document.getElementById("searchInput").value.toLowerCase();
+    return allRows.filter(function(row){
+        const text = row.textContent.toLowerCase();
+        return text.indexOf(keyword) > -1;
+    });
+}
+
+function renderTable(){
+
+    const filtered = getFilteredRows();
+    const totalPages = Math.max(1, Math.ceil(filtered.length / ROWS_PER_PAGE));
+
+    if(currentPage > totalPages){ currentPage = totalPages; }
+    if(currentPage < 1){ currentPage = 1; }
+
+    allRows.forEach(function(row){
+        row.style.display = "none";
+    });
+
+    const start = (currentPage - 1) * ROWS_PER_PAGE;
+    const end = start + ROWS_PER_PAGE;
+    const pageRows = filtered.slice(start, end);
+
+    pageRows.forEach(function(row, i){
+        row.style.display = "";
+        row.querySelector(".col-no").textContent = start + i + 1;
+    });
+
+    document.getElementById("noResult").style.display = filtered.length === 0 ? "block" : "none";
+
+    renderPagination(totalPages);
+}
+
+function renderPagination(totalPages){
+
+    const pag = document.getElementById("pagination");
+    pag.innerHTML = "";
+
+    if(totalPages <= 1){
+        pag.style.display = "none";
+        return;
+    }
+    pag.style.display = "flex";
+
+    function makeLink(label, page, opts){
+        opts = opts || {};
+        const a = document.createElement("a");
+        a.href = "#";
+        a.textContent = label;
+        if(opts.active){ a.classList.add("active"); }
+        if(opts.disabled){ a.classList.add("disabled"); }
+        a.addEventListener("click", function(e){
+            e.preventDefault();
+            if(opts.disabled){ return; }
+            currentPage = page;
+            renderTable();
+            document.getElementById("vocabTable").scrollIntoView({behavior:"smooth", block:"start"});
+        });
+        return a;
+    }
+
+    function makeEllipsis(){
+        const span = document.createElement("span");
+        span.textContent = "...";
+        span.classList.add("ellipsis");
+        return span;
+    }
+
+    pag.appendChild(makeLink("‹", currentPage - 1, { disabled: currentPage === 1 }));
+
+    const pages = [];
+    for(let p = 1; p <= totalPages; p++){
+        if(p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1){
+            pages.push(p);
+        } else if(pages[pages.length - 1] !== "..."){
+            pages.push("...");
+        }
+    }
+
+    pages.forEach(function(p){
+        if(p === "..."){
+            pag.appendChild(makeEllipsis());
+        } else {
+            pag.appendChild(makeLink(p, p, { active: p === currentPage }));
+        }
+    });
+
+    pag.appendChild(makeLink("›", currentPage + 1, { disabled: currentPage === totalPages }));
+}
+
+function filterTable(){
+    currentPage = 1;
+    renderTable();
+}
+
+renderTable();
+
+</script>
+
+</body>
+</html>
