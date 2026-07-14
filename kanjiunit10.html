@@ -616,61 +616,62 @@ HOME
     <div class="viewer big" id="viewer" onclick="flipCard()">
 
         <div class="face face-front">
-            <div id="kanji">急ぐ</div>
+            <div id="kanji">集まる</div>
             <span class="tap-tip">klik untuk lihat arti</span>
         </div>
 
         <div class="face face-back">
-            <div class="yomi" id="yomi">いそぐ (isogu)</div>
-            <div class="arti" id="arti">bergegas</div>
+            <div class="yomi" id="yomi">あつまる (atsumaru)</div>
+            <div class="arti" id="arti">berkumpul</div>
             <span class="tap-tip">klik untuk kembali</span>
         </div>
 
     </div>
 </div>
+
 <div class="grid">
 
-    <div class="card" onclick="show('急ぐ')">
-        <div class="j">急ぐ</div>
+    <div class="card active" onclick="show('集まる', this)">
+        <div class="j">集まる</div>
     </div>
 
-    <div class="card" onclick="show('間に合う')">
-        <div class="j">間に合う</div>
+    <div class="card" onclick="show('決める', this)">
+        <div class="j">決める</div>
     </div>
 
-    <div class="card" onclick="show('届く')">
-        <div class="j">届く</div>
+    <div class="card" onclick="show('地図', this)">
+        <div class="j">地図</div>
     </div>
 
-    <div class="card" onclick="show('汚れる')">
-        <div class="j">汚れる</div>
+    <div class="card" onclick="show('景色', this)">
+        <div class="j">景色</div>
     </div>
 
-    <div class="card" onclick="show('動物')">
-        <div class="j">動物</div>
+    <div class="card" onclick="show('店員', this)">
+        <div class="j">店員</div>
     </div>
 
-    <div class="card" onclick="show('無料')">
-        <div class="j">無料</div>
+    <div class="card" onclick="show('働く', this)">
+        <div class="j">働く</div>
     </div>
 
-    <div class="card" onclick="show('料理')">
-        <div class="j">料理</div>
+    <div class="card" onclick="show('忘れる', this)">
+        <div class="j">忘れる</div>
     </div>
 
-    <div class="card" onclick="show('首')">
-        <div class="j">首</div>
+    <div class="card" onclick="show('借りる', this)">
+        <div class="j">借りる</div>
     </div>
 
-    <div class="card" onclick="show('耳')">
-        <div class="j">耳</div>
+    <div class="card" onclick="show('返す', this)">
+        <div class="j">返す</div>
     </div>
 
-    <div class="card" onclick="show('顔')">
-        <div class="j">顔</div>
+    <div class="card" onclick="show('貸す', this)">
+        <div class="j">貸す</div>
     </div>
 
-</div>
+
 
 </div>
 
@@ -685,16 +686,16 @@ HOME
 //============================
 
 const kanjiData = {
-    "急ぐ": { yomi:"いそぐ (isogu)", arti:"bergegas" },
-    "間に合う": { yomi:"まにあう (maniau)", arti:"tepat waktu, sempat" },
-    "届く": { yomi:"とどく (todoku)", arti:"sampai (barang/surat)" },
-    "汚れる": { yomi:"よごれる (yogoreru)", arti:"menjadi kotor" },
-    "動物": { yomi:"どうぶつ (doubutsu)", arti:"hewan" },
-    "無料": { yomi:"むりょう (muryou)", arti:"gratis" },
-    "料理": { yomi:"りょうり (ryouri)", arti:"masakan / memasak" },
-    "首": { yomi:"くび (kubi)", arti:"leher" },
-    "耳": { yomi:"みみ (mimi)", arti:"telinga" },
-    "顔": { yomi:"かお (kao)", arti:"wajah" }
+    "集まる": { yomi:"あつまる (atsumaru)", arti:"berkumpul" },
+    "決める": { yomi:"きめる (kimeru)", arti:"memutuskan" },
+    "地図": { yomi:"ちず (chizu)", arti:"peta" },
+    "景色": { yomi:"けしき (keshiki)", arti:"pemandangan" },
+    "店員": { yomi:"てんいん (ten.in)", arti:"pegawai toko" },
+    "働く": { yomi:"はたらく (hataraku)", arti:"bekerja" },
+    "忘れる": { yomi:"わすれる (wasureru)", arti:"lupa" },
+    "借りる": { yomi:"かりる (kariru)", arti:"meminjam" },
+    "返す": { yomi:"かえす (kaesu)", arti:"mengembalikan" },
+    "貸す": { yomi:"かす (kasu)", arti:"meminjamkan" }
 };
 
 //============================
