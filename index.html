@@ -46,34 +46,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:var(--ink)
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
 .nav-hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:.3s}
 
-/* ===== HERO ===== */
-.hero{min-height:100vh;background:linear-gradient(135deg,var(--navy3) 0%,var(--navy) 50%,var(--navy-mid) 100%);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:64px}
-.hero-bg-pattern{position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(255,255,255,1) 40px,rgba(255,255,255,1) 41px),repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(255,255,255,1) 40px,rgba(255,255,255,1) 41px)}
-.hero-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.03)}
-.hero-circle.c1{width:500px;height:500px;top:-150px;right:-100px}
-.hero-circle.c2{width:300px;height:300px;bottom:-80px;left:10%}
-.hero-inner{max-width:1100px;margin:0 auto;padding:80px 28px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);border-radius:999px;padding:6px 16px;font-size:12px;color:var(--gold);font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-bottom:24px}
-.hero h1{font-family:'Noto Serif JP',serif;font-size:46px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:20px}
-.hero h1 em{font-style:normal;color:var(--gold)}
-.hero p{color:rgba(255,255,255,.7);font-size:16px;line-height:1.8;margin-bottom:36px;max-width:480px}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
-.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:var(--navy3);border:none;border-radius:var(--radius);padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;font-family:inherit}
-.btn-primary:hover{background:#b8922f;transform:translateY(-2px)}
-.btn-outline{display:inline-flex;align-items:center;gap:9px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);border-radius:var(--radius);padding:14px 24px;font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s;font-family:inherit}
-.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.08)}
-.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
-.hero-stat{text-align:center;padding:16px;border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);background:rgba(255,255,255,.04)}
-.hero-stat .num{font-size:28px;font-weight:700;color:var(--gold);font-family:'Noto Serif JP',serif}
-.hero-stat .lbl{font-size:11px;color:rgba(255,255,255,.55);margin-top:3px;letter-spacing:.5px}
-.hero-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:32px;backdrop-filter:blur(10px)}
-.hero-card h3{color:var(--gold);font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px}
-.hero-feature{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
-.hero-feature:last-child{margin-bottom:0}
-.hero-feature-icon{width:38px;height:38px;background:rgba(201,168,76,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:15px;flex-shrink:0}
-.hero-feature-text strong{display:block;color:#fff;font-size:14px;margin-bottom:2px}
-.hero-feature-text span{color:rgba(255,255,255,.5);font-size:12.5px}
-
 /* ===== SECTION BASE ===== */
 section{padding:90px 0}
 .container{max-width:1100px;margin:0 auto;padding:0 28px}
@@ -85,67 +57,10 @@ section{padding:90px 0}
 .section-head.center{text-align:center}
 .section-head.center .section-sub{margin:0 auto}
 
-/* ===== ABOUT ===== */
-#about{background:var(--surface)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-.about-img-stack{position:relative;height:420px}
-.about-img-placeholder{width:100%;height:100%;border-radius:12px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:48px}
-.about-img-placeholder span{font-size:13px;margin-top:12px;letter-spacing:1px}
-.about-badge{position:absolute;bottom:24px;right:-20px;background:#fff;border-radius:12px;padding:16px 20px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:flex;align-items:center;gap:12px;min-width:180px}
-.about-badge-icon{width:40px;height:40px;background:var(--navy-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:18px}
-.about-badge-text strong{display:block;font-size:20px;font-weight:700;color:var(--navy)}
-.about-badge-text span{font-size:11px;color:var(--ink3)}
-.about-points{margin-top:28px;display:flex;flex-direction:column;gap:16px}
-.about-point{display:flex;align-items:flex-start;gap:14px;padding:16px;border-radius:var(--radius);border:1px solid var(--border);background:#fff;transition:box-shadow .2s,border-color .2s}
-.about-point:hover{box-shadow:0 4px 16px rgba(26,58,92,.08);border-color:rgba(26,58,92,.2)}
-.about-point-icon{width:36px;height:36px;background:var(--navy-light);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:15px;flex-shrink:0}
-.about-point-text strong{display:block;font-size:14px;font-weight:600;margin-bottom:2px}
-.about-point-text span{font-size:13px;color:var(--ink3)}
-.izin-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
-.izin-item{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;border-left:3px solid var(--navy)}
-.izin-item p{font-size:12px;color:var(--ink2);line-height:1.5}
-.izin-item span{font-size:10px;color:var(--ink3);display:block;margin-top:4px}
-
-/* ===== PROGRAM ===== */
-#program{background:#fff}
-.program-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.program-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:box-shadow .25s,transform .25s;cursor:pointer}
-.program-card:hover{box-shadow:0 12px 40px rgba(26,58,92,.12);transform:translateY(-4px)}
-.program-card-head{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:28px;color:#fff}
-.program-card-head .tag{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-.program-card-head h3{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:600;margin-bottom:4px}
-.program-card-head p{font-size:13px;opacity:.7}
-.program-card-body{padding:24px}
-.program-list{list-style:none;display:flex;flex-direction:column;gap:10px}
-.program-list li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink2)}
-.program-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--navy);flex-shrink:0}
-
-/* ===== BIDANG ===== */
-#bidang{background:var(--surface)}
-.bidang-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
-.bidang-item{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px 12px;text-align:center;transition:all .2s}
-.bidang-item:hover{border-color:var(--navy);box-shadow:0 4px 20px rgba(26,58,92,.1);transform:translateY(-2px)}
-.bidang-item .ico{width:52px;height:52px;background:var(--navy-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;color:var(--navy)}
-.bidang-item strong{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px}
-.bidang-item span{font-size:11px;color:var(--ink3)}
-
-/* ===== STATS ===== */
-.stats-section{background:linear-gradient(135deg,var(--navy3) 0%,var(--navy) 100%);padding:72px 0}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
-.stat-item .num{font-family:'Noto Serif JP',serif;font-size:48px;font-weight:700;color:var(--gold)}
-.stat-item .lbl{font-size:14px;color:rgba(255,255,255,.65);margin-top:6px}
-
-/* ===== GALLERY ===== */
-#gallery{background:#fff}
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.gallery-item{border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,var(--navy-light),var(--navy));display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:32px;position:relative}
-.gallery-item.tall{grid-row:span 2;aspect-ratio:auto}
-.gallery-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,26,48,.7),transparent);opacity:0;transition:.3s;display:flex;align-items:flex-end;padding:16px}
-.gallery-item-overlay p{color:#fff;font-size:13px;font-weight:500}
-.gallery-item:hover .gallery-item-overlay{opacity:1}
-.gallery-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--navy-mid)}
-.gallery-placeholder span{font-size:12px;opacity:.6}
-.gallery-item img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:var(--navy3);border:none;border-radius:var(--radius);padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;font-family:inherit}
+.btn-primary:hover{background:#b8922f;transform:translateY(-2px)}
+.btn-outline{display:inline-flex;align-items:center;gap:9px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);border-radius:var(--radius);padding:14px 24px;font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s;font-family:inherit}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.08)}
 
 /* ===== KONTAK ===== */
 #contact{background:var(--surface)}
@@ -182,23 +97,12 @@ footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
 .footer-bottom p{font-size:13px}
 
 @media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr;gap:40px}
-  .hero h1{font-size:34px}
-  .about-grid,.contact-grid{grid-template-columns:1fr}
-  .program-grid{grid-template-columns:1fr}
-  .bidang-grid{grid-template-columns:repeat(3,1fr)}
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
-  .gallery-grid{grid-template-columns:repeat(2,1fr)}
-  .about-badge{right:0}
 }
 @media(max-width:600px){
-  .hero h1{font-size:28px}
   .nav-links{display:none}
   .nav-hamburger{display:flex}
-  .bidang-grid{grid-template-columns:repeat(2,1fr)}
-  .stats-grid{grid-template-columns:1fr 1fr}
-  .gallery-grid{grid-template-columns:1fr}
   section{padding:60px 0}
 }
 </style>
@@ -231,238 +135,12 @@ footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
   </div>
 </nav>
 
-<!-- ===== HERO ===== -->
-<section id="home" class="hero">
-  <div class="hero-bg-pattern"></div>
-  <div class="hero-circle c1"></div>
-  <div class="hero-circle c2"></div>
-  <div class="hero-inner">
-    <div>
-      <div class="hero-badge"><i class="fas fa-torii-gate"></i> Lembaga Pengiriman Tenaga Kerja Jepang</div>
-      <h1>Wujudkan Impianmu <em>Bekerja di Jepang</em></h1>
-      <p>Prime Tekipaki Raya hadir sebagai mitra terpercaya untuk membuka peluang karier di Jepang melalui program Tokutei Ginou dan Jisshusei dengan pendampingan profesional.</p>
-      <div class="hero-btns">
-        <a href="pendaftaran.html" class="btn-primary"><i class="fas fa-pen-to-square"></i> Daftar Sekarang</a>
-        <a href="#about" class="btn-outline"><i class="fas fa-circle-info"></i> Pelajari Lebih</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hero-stat"><div class="num">500+</div><div class="lbl">Kandidat Terkirim</div></div>
-        <div class="hero-stat"><div class="num">50+</div><div class="lbl">Mitra Perusahaan</div></div>
-        <div class="hero-stat"><div class="num">98%</div><div class="lbl">Tingkat Keberhasilan</div></div>
-      </div>
-    </div>
-    <div class="hero-card">
-      <h3>Keunggulan Kami</h3>
-      <div class="hero-feature">
-        <div class="hero-feature-icon"><i class="fas fa-graduation-cap"></i></div>
-        <div class="hero-feature-text">
-          <strong>Pelatihan Bahasa Jepang</strong>
-          <span>Kelas intensif oleh pengajar berpengalaman lulusan Jepang</span>
-        </div>
-      </div>
-      <div class="hero-feature">
-        <div class="hero-feature-icon"><i class="fas fa-briefcase"></i></div>
-        <div class="hero-feature-text">
-          <strong>Penempatan Terjamin</strong>
-          <span>Jaringan luas perusahaan Jepang di berbagai bidang industri</span>
-        </div>
-      </div>
-      <div class="hero-feature">
-        <div class="hero-feature-icon"><i class="fas fa-headset"></i></div>
-        <div class="hero-feature-text">
-          <strong>Pendampingan Penuh</strong>
-          <span>Support dari proses pendaftaran hingga keberangkatan ke Jepang</span>
-        </div>
-      </div>
-      <div class="hero-feature">
-        <div class="hero-feature-icon"><i class="fas fa-file-shield"></i></div>
-        <div class="hero-feature-text">
-          <strong>Legalitas Terjamin</strong>
-          <span>Berizin resmi dan terdaftar di Kemnaker RI</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ===== CONTAINER (KOSONG, ISI DI SINI) ===== -->
+<div class="container" style="padding-top:100px">
 
-<!-- ===== ABOUT ===== -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div>
-        <div class="about-img-stack">
-          <div class="about-img-placeholder">
-            <i class="fas fa-building"></i>
-            <span>PRIME TEKIPAKI RAYA</span>
-          </div>
-          <div class="about-badge">
-            <div class="about-badge-icon"><i class="fas fa-award"></i></div>
-            <div class="about-badge-text">
-              <strong>10+ Tahun</strong>
-              <span>Pengalaman Terpercaya</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="section-label">Tentang Kami</div>
-        <h2 class="section-title">Mitra Terpercaya <em>Menuju Jepang</em></h2>
-        <p style="color:var(--ink2);line-height:1.85;margin-bottom:12px">Prime Tekipaki Raya adalah lembaga pengiriman tenaga kerja Indonesia ke Jepang yang telah berpengalaman lebih dari satu dekade. Kami berkomitmen menghadirkan pelayanan terbaik mulai dari seleksi, pelatihan, pengurusan dokumen, hingga penempatan kerja di Jepang.</p>
-        <p style="color:var(--ink2);line-height:1.85;margin-bottom:24px">Dengan tim yang berpengalaman dan jaringan mitra perusahaan Jepang yang luas, kami siap membimbing setiap kandidat untuk sukses berkarier di negeri sakura.</p>
-        <div class="about-points">
-          <div class="about-point">
-            <div class="about-point-icon"><i class="fas fa-check-circle"></i></div>
-            <div class="about-point-text">
-              <strong>Visi</strong>
-              <span>Menjadi lembaga terdepan dalam membuka peluang karier generasi Indonesia di Jepang</span>
-            </div>
-          </div>
-          <div class="about-point">
-            <div class="about-point-icon"><i class="fas fa-globe-asia"></i></div>
-            <div class="about-point-text">
-              <strong>Kolaborasi Global</strong>
-              <span>Kemitraan dengan perusahaan-perusahaan ternama di seluruh wilayah Jepang</span>
-            </div>
-          </div>
-          <div class="about-point">
-            <div class="about-point-icon"><i class="fas fa-book-open"></i></div>
-            <div class="about-point-text">
-              <strong>Kurikulum Terstandar</strong>
-              <span>Pembelajaran bahasa Jepang sesuai standar JLPT N4 dan JFT Basic A2</span>
-            </div>
-          </div>
-        </div>
-        <div style="margin-top:28px">
-          <p style="font-size:12px;font-weight:700;color:var(--ink3);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px">Perizinan Resmi</p>
-          <div class="izin-grid">
-            <div class="izin-item"><p>Izin Penyelenggaraan Pemagangan Luar Negeri</p><span>Kemnaker RI</span></div>
-            <div class="izin-item"><p>Izin Usaha Penempatan Tenaga Kerja Swasta</p><span>Kemnaker RI</span></div>
-            <div class="izin-item"><p>Izin Lembaga Pelatihan Kerja (LPK)</p><span>Disnaker Setempat</span></div>
-            <div class="izin-item"><p>SIP3MI – Perizinan Berusaha Berbasis Risiko</p><span>Kemnaker RI</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- konten halaman diisi di sini -->
 
-<!-- ===== PROGRAM ===== -->
-<section id="program">
-  <div class="container">
-    <div class="section-head center">
-      <div class="section-label">Program Kami</div>
-      <h2 class="section-title">Pilih Program yang <em>Tepat Untukmu</em></h2>
-      <p class="section-sub">Kami menyediakan dua jalur utama untuk bekerja di Jepang sesuai dengan kualifikasi dan tujuanmu</p>
-    </div>
-    <div class="program-grid">
-      <div class="program-card">
-        <div class="program-card-head">
-          <div class="tag">特定技能 · Spesialis</div>
-          <h3>Tokutei Ginou</h3>
-          <p>Specified Skilled Worker</p>
-        </div>
-        <div class="program-card-body">
-          <p style="font-size:14px;color:var(--ink2);margin-bottom:16px;line-height:1.75">Program untuk tenaga kerja terampil yang ingin bekerja langsung di perusahaan Jepang dengan kontrak mandiri dan gaji kompetitif.</p>
-          <ul class="program-list">
-            <li>Usia 18–39 tahun</li>
-            <li>Minimal JLPT N4 atau JFT Basic A2</li>
-            <li>Lulus uji keterampilan bidang terkait</li>
-            <li>Kontrak 1–5 tahun, dapat diperpanjang</li>
-            <li>Gaji sesuai standar UMR Jepang</li>
-            <li>Bisa membawa keluarga (SSW2)</li>
-          </ul>
-        </div>
-      </div>
-      <div class="program-card">
-        <div class="program-card-head" style="background:linear-gradient(135deg,#1d4e7a 0%,#2e6fa3 100%)">
-          <div class="tag">技能実習生 · Magang</div>
-          <h3>Jisshusei</h3>
-          <p>Technical Intern Training</p>
-        </div>
-        <div class="program-card-body">
-          <p style="font-size:14px;color:var(--ink2);margin-bottom:16px;line-height:1.75">Program magang teknis untuk mengembangkan keterampilan dan pengalaman kerja di Jepang sambil mendapat kompensasi yang layak.</p>
-          <ul class="program-list">
-            <li>Usia 18–30 tahun</li>
-            <li>Pendidikan minimal SMA/SMK sederajat</li>
-            <li>Pelatihan bahasa Jepang intensif 6 bulan</li>
-            <li>Durasi 3 tahun (bisa diperpanjang 5 tahun)</li>
-            <li>Fasilitas tempat tinggal disediakan</li>
-            <li>Pengalaman kerja internasional bersertifikat</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== BIDANG KERJA ===== -->
-<section id="bidang">
-  <div class="container">
-    <div class="section-head center">
-      <div class="section-label">Bidang Pekerjaan · 業種</div>
-      <h2 class="section-title">Beragam Pilihan <em>Industri</em></h2>
-      <p class="section-sub">Kami menempatkan tenaga kerja di berbagai sektor industri Jepang yang membutuhkan SDM berkualitas dari Indonesia</p>
-    </div>
-    <div class="bidang-grid">
-      <div class="bidang-item"><div class="ico"><i class="fas fa-seedling"></i></div><strong>Agriculture</strong><span>農業</span></div>
-      <div class="bidang-item"><div class="ico"><i class="fas fa-cogs"></i></div><strong>Manufacturing</strong><span>製造業</span></div>
-      <div class="bidang-item"><div class="ico"><i class="fas fa-hard-hat"></i></div><strong>Construction</strong><span>建設</span></div>
-      <div class="bidang-item"><div class="ico"><i class="fas fa-microchip"></i></div><strong>Engineering</strong><span>エンジニアリング</span></div>
-      <div class="bidang-item"><div class="ico"><i class="fas fa-utensils"></i></div><strong>Restaurant</strong><span>外食業</span></div>
-      <div class="bidang-item"><div class="ico"><i class="fas fa-heart-pulse"></i></div><strong>Caregiver</strong><span>介護</span></div>
-      <div class="bidang-item"><div class="ico"><i class="fas fa-hotel"></i></div><strong>Hotels</strong><span>宿泊</span></div>
-      <div class="bidang-item"><div class="ico"><i class="fas fa-truck"></i></div><strong>Logistics</strong><span>物流</span></div>
-      <div class="bidang-item"><div class="ico"><i class="fas fa-fish"></i></div><strong>Fishery</strong><span>漁業</span></div>
-      <div class="bidang-item"><div class="ico"><i class="fas fa-globe"></i></div><strong>Intl Service</strong><span>国際業務</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== STATS ===== -->
-<div class="stats-section">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item"><div class="num" data-target="500">0</div><div class="lbl">Kandidat Terkirim ke Jepang</div></div>
-      <div class="stat-item"><div class="num" data-target="50">0</div><div class="lbl">Perusahaan Jepang Mitra</div></div>
-      <div class="stat-item"><div class="num" data-target="10">0</div><div class="lbl">Tahun Pengalaman</div></div>
-      <div class="stat-item"><div class="num" data-target="98">0</div><div class="lbl">% Tingkat Keberhasilan</div></div>
-    </div>
-  </div>
 </div>
-
-<!-- ===== GALLERY ===== -->
-<section id="gallery">
-  <div class="container">
-    <div class="section-head center">
-      <div class="section-label">Galeri</div>
-      <h2 class="section-title">Momen <em>Bersama Kami</em></h2>
-      <p class="section-sub">Dokumentasi kegiatan pelatihan, keberangkatan, dan kesuksesan peserta kami di Jepang</p>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-item tall" style="background:linear-gradient(135deg,#1a3a5c,#2e5480)">
-        <div class="gallery-placeholder"><i class="fas fa-users"></i><span>Foto Kegiatan</span></div>
-        <div class="gallery-item-overlay"><p>Sesi Pelatihan Bahasa Jepang</p></div>
-      </div>
-      <div class="gallery-item" style="background:linear-gradient(135deg,#2e5480,#1d4e7a)">
-        <div class="gallery-placeholder"><i class="fas fa-plane"></i><span>Foto Kegiatan</span></div>
-        <div class="gallery-item-overlay"><p>Keberangkatan Peserta</p></div>
-      </div>
-      <div class="gallery-item" style="background:linear-gradient(135deg,#0f2440,#1a3a5c)">
-        <div class="gallery-placeholder"><i class="fas fa-graduation-cap"></i><span>Foto Kegiatan</span></div>
-        <div class="gallery-item-overlay"><p>Wisuda Peserta</p></div>
-      </div>
-      <div class="gallery-item" style="background:linear-gradient(135deg,#1a3a5c,#0a1a30)">
-        <div class="gallery-placeholder"><i class="fas fa-handshake"></i><span>Foto Kegiatan</span></div>
-        <div class="gallery-item-overlay"><p>Penandatanganan MOU</p></div>
-      </div>
-      <div class="gallery-item" style="background:linear-gradient(135deg,#2e5480,#1a3a5c)">
-        <div class="gallery-placeholder"><i class="fas fa-torii-gate"></i><span>Foto Kegiatan</span></div>
-        <div class="gallery-item-overlay"><p>Kunjungan ke Jepang</p></div>
-      </div>
-    </div>
-    <p style="text-align:center;margin-top:24px;font-size:13px;color:var(--ink3)">* Tambahkan foto asli kegiatan untuk menggantikan placeholder di atas</p>
-  </div>
-</section>
 
 <!-- ===== KONTAK ===== -->
 <section id="contact">
@@ -581,37 +259,6 @@ function toggleMenu(){
     links.style.background='rgba(10,26,48,.97)';links.style.padding='16px 28px';
   }
 }
-
-window.addEventListener('scroll',()=>{
-  const sections=document.querySelectorAll('section[id]');
-  const scrollY=window.scrollY+80;
-  sections.forEach(s=>{
-    const top=s.offsetTop,h=s.offsetHeight,id=s.getAttribute('id');
-    const link=document.querySelector(`.nav-links a[href="#${id}"]`);
-    if(link){
-      if(scrollY>=top&&scrollY<top+h)link.classList.add('active');
-      else link.classList.remove('active');
-    }
-  });
-});
-
-function animateCounters(){
-  document.querySelectorAll('[data-target]').forEach(el=>{
-    const target=+el.dataset.target;
-    let current=0;
-    const step=target/60;
-    const timer=setInterval(()=>{
-      current+=step;
-      if(current>=target){el.textContent=target+(target===98?'%':'+');clearInterval(timer)}
-      else el.textContent=Math.floor(current)+(target===98?'%':'+');
-    },25);
-  });
-}
-const statsObserver=new IntersectionObserver(entries=>{
-  if(entries[0].isIntersecting){animateCounters();statsObserver.disconnect()}
-},{threshold:.3});
-const statsEl=document.querySelector('.stats-section');
-if(statsEl)statsObserver.observe(statsEl);
 </script>
 </body>
 </html>
