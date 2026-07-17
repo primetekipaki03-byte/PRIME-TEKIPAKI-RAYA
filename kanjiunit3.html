@@ -515,7 +515,7 @@ font-weight:bold;
 
 line-height:1.25;
 
-word-break:break-word;
+white-space:nowrap;
 
 }
 
@@ -532,6 +532,12 @@ font-size:20px;
 .grid{
 
 grid-template-columns:repeat(2,1fr);
+
+}
+
+.card .j{
+
+font-size:32px;
 
 }
 
@@ -707,22 +713,22 @@ const kanjiData = {
 };
 
 //============================
-// AUTO-SIZE FONT KARTU GRID
+// AUTO-FIT FONT (tetap 1 baris, tidak membungkus)
 //============================
 
-function autoSizeCards(){
+function autoFitCards(){
     document.querySelectorAll(".card .j").forEach(function(el){
-        const len = el.textContent.trim().length;
-        let size;
-        if(len <= 2){ size = 42; }
-        else if(len === 3){ size = 34; }
-        else if(len === 4){ size = 28; }
-        else { size = 22; }
+        let size = 42;
         el.style.fontSize = size + "px";
+        while(el.scrollWidth > el.parentElement.clientWidth && size > 18){
+            size -= 2;
+            el.style.fontSize = size + "px";
+        }
     });
 }
 
-autoSizeCards();
+autoFitCards();
+window.addEventListener("resize", autoFitCards);
 
 //============================
 // TAMPILKAN KANJI DI VIEWER
