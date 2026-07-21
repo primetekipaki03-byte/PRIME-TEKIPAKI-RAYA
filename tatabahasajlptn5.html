@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tata Bahasa JLPT N5</title>
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --navy3:#022655;
+    --gold:#facc15;
+    --gold2:#ffd700;
+    --text:#001f3f;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:var(--text);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.home-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--gold);
+    color:#001530;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.home-btn:hover{
+    opacity:.85;
+}
+
+.home-icon{
+    width:24px;
+    height:24px;
+    object-fit:cover;
+    border-radius:4px;
+}
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown-btn{
+    background:none;
+    border:2px solid var(--gold);
+    color:var(--gold);
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.dropdown-btn:hover{
+    background:var(--gold);
+    color:#001530;
+}
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:45px;
+    left:0;
+    background:#022655;
+    border-radius:10px;
+    overflow:hidden;
+    min-width:220px;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:12px 15px;
+    color:#ffd700;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:var(--gold);
+    color:#001530;
+}
+
+.show{
+    display:block;
+}
+
+/* =======================
+       HEADER / HERO
+======================= */
+
+header{
+    text-align:center;
+    padding:60px 20px 40px;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(180deg, var(--navy) 0%, #062a52 100%);
+}
+
+header::before{
+    content:"文法";
+    position:absolute;
+    font-size:340px;
+    font-weight:900;
+    color:rgba(250,204,21,.05);
+    top:-90px;
+    left:50%;
+    transform:translateX(-50%);
+    pointer-events:none;
+    user-select:none;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--gold);
+    color:#001530;
+    font-weight:bold;
+    font-size:13px;
+    letter-spacing:1px;
+    padding:6px 16px;
+    border-radius:999px;
+    margin-bottom:18px;
+    position:relative;
+}
+
+header h1{
+    font-size:48px;
+    color:#ffffff;
+    margin-bottom:12px;
+    position:relative;
+    letter-spacing:1px;
+}
+
+header h1 span{
+    color:var(--gold);
+}
+
+header p{
+    font-size:17px;
+    color:#c9d6e8;
+    max-width:600px;
+    margin:0 auto;
+    position:relative;
+}
+
+.stats-row{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:30px;
+    position:relative;
+}
+
+.stat-pill{
+    background:rgba(250,204,21,.08);
+    border:1px solid rgba(250,204,21,.35);
+    color:var(--gold);
+    padding:8px 18px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+}
+
+/* =======================
+     SEARCH BAR
+======================= */
+
+.search-wrap{
+    max-width:600px;
+    margin:-26px auto 10px;
+    padding:0 20px;
+    position:relative;
+    z-index:5;
+}
+
+#searchInput{
+    width:100%;
+    padding:16px 22px;
+    border-radius:16px;
+    border:2px solid var(--navy);
+    font-size:16px;
+    box-shadow:0 10px 24px rgba(0,31,63,.15);
+    outline:none;
+    color:var(--navy);
+}
+
+#searchInput:focus{
+    border-color:var(--gold);
+}
+
+.no-result{
+    text-align:center;
+    color:#888;
+    padding:40px;
+    display:none;
+    font-size:16px;
+}
+
+/* =======================
+    SECTION LABELS
+======================= */
+
+.section-title{
+    max-width:1200px;
+    margin:50px auto 5px;
+    padding:0 20px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.section-title .lvl{
+    background:var(--navy);
+    color:var(--gold);
+    font-weight:bold;
+    font-size:14px;
+    padding:6px 14px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.section-title .line{
+    flex:1;
+    height:2px;
+    background:linear-gradient(90deg, var(--navy), rgba(0,31,63,.05));
+}
+
+/* =======================
+        GRID
+======================= */
+
+.grid{
+    max-width:1200px;
+    margin:20px auto 40px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    padding:20px;
+}
+
+.card{
+    border:2px solid var(--navy);
+    border-radius:15px;
+    padding:22px 20px;
+    cursor:pointer;
+    transition:.25s;
+    text-align:left;
+    text-decoration:none;
+    color:var(--text);
+    display:block;
+    position:relative;
+    background:#fff;
+    overflow:hidden;
+}
+
+.card::after{
+    content:"→";
+    position:absolute;
+    right:18px;
+    bottom:16px;
+    font-size:18px;
+    color:var(--gold2);
+    opacity:0;
+    transform:translateX(-6px);
+    transition:.25s;
+}
+
+.card:hover{
+    background:var(--navy3);
+    color:white;
+    transform:translateY(-5px);
+    box-shadow:0 12px 24px rgba(0,31,63,.25);
+}
+
+.card:hover .h{
+    color:#c9d6e8;
+}
+
+.card:hover::after{
+    opacity:1;
+    transform:translateX(0);
+}
+
+.card .no{
+    font-size:12px;
+    font-weight:bold;
+    color:var(--gold2);
+    letter-spacing:1px;
+    margin-bottom:6px;
+    display:block;
+}
+
+.card .j{
+    font-size:26px;
+    font-weight:bold;
+    line-height:1.3;
+}
+
+.card .h{
+    margin-top:8px;
+    font-size:14px;
+    color:#556;
+}
+
+.card .mean{
+    margin-top:10px;
+    font-size:13px;
+    color:#8892a3;
+    font-style:italic;
+}
+
+.card:hover .mean{
+    color:#a9bad6;
+}
+
+@media(max-width:1000px){
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+    header h1{
+        font-size:32px;
+    }
+    header::before{
+        font-size:200px;
+    }
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta1test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta1test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta1test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta1test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta1test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+
+</div>
+</nav>
+
+<header>
+    <span class="badge">JLPT N5 GRAMMAR</span>
+    <h1>文法 <span>Tata Bahasa</span> N5</h1>
+    <p>Kumpulan pola tata bahasa JLPT N5 lengkap dengan cara baca dan arti. Klik salah satu kartu untuk membuka penjelasan lengkap beserta contoh kalimatnya.</p>
+    <div class="stats-row">
+        <span class="stat-pill" id="totalCount">0 Pola Tata Bahasa</span>
+        <span class="stat-pill">Level N5</span>
+        <span class="stat-pill">Lengkap Contoh Kalimat</span>
+    </div>
+</header>
+
+<div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="🔍 Cari pola tata bahasa... (contoh: です, たい, てください)" oninput="filterCards()">
+</div>
+
+<div class="section-title">
+    <span class="lvl">SEMUA POLA</span>
+    <span class="line"></span>
+</div>
+
+<div class="grid" id="grammarGrid"></div>
+
+<p class="no-result" id="noResult">Pola tata bahasa tidak ditemukan.</p>
+
+<footer>
+© Tekipaki Japanese Learning
+</footer>
+
+<script>
+
+const grammarList = [
+    { jp:"〜は〜です", romaji:"~wa ~desu", mean:"~ adalah ~ (kalimat dasar)", link:"tatabahasan5_wadesu.html" },
+    { jp:"〜も", romaji:"~mo", mean:"juga", link:"tatabahasan5_mo.html" },
+    { jp:"〜の", romaji:"~no", mean:"kepunyaan / penghubung kata benda", link:"tatabahasan5_no.html" },
+    { jp:"これ／それ／あれ／どれ", romaji:"kore/sore/are/dore", mean:"ini / itu / itu (jauh) / yang mana", link:"tatabahasan5_koresoreare.html" },
+    { jp:"この／その／あの／どの＋名詞", romaji:"kono/sono/ano/dono + N", mean:"~ ini / ~ itu / ~ yang mana (menerangkan benda)", link:"tatabahasan5_kono.html" },
+    { jp:"〜ここ／そこ／あそこ／どこ", romaji:"koko/soko/asoko/doko", mean:"di sini / di situ / di sana / di mana", link:"tatabahasan5_kokosoko.html" },
+    { jp:"〜があります／います", romaji:"~ga arimasu/imasu", mean:"ada (benda mati / makhluk hidup)", link:"tatabahasan5_arimasuimasu.html" },
+    { jp:"〜を＋動詞", romaji:"~wo + doushi", mean:"menandai objek suatu kata kerja", link:"tatabahasan5_wo.html" },
+    { jp:"〜に行きます／来ます／帰ります", romaji:"~ni ikimasu/kimasu/kaerimasu", mean:"pergi / datang / pulang ke ~", link:"tatabahasan5_niikimasu.html" },
+    { jp:"〜で（場所・道具）", romaji:"~de", mean:"di (tempat aksi) / dengan (alat)", link:"tatabahasan5_de.html" },
+    { jp:"〜と（人・こと）", romaji:"~to", mean:"bersama dengan / dan (kata benda)", link:"tatabahasan5_to.html" },
+    { jp:"〜や〜など", romaji:"~ya ~nado", mean:"dan lain-lain (tidak lengkap)", link:"tatabahasan5_yanado.html" },
+    { jp:"〜から〜まで", romaji:"~kara ~made", mean:"dari ~ sampai ~", link:"tatabahasan5_karamade.html" },
+    { jp:"〜ませんか", romaji:"~masen ka", mean:"mengajak / menawarkan", link:"tatabahasan5_masenka.html" },
+    { jp:"〜ましょう", romaji:"~mashou", mean:"ayo / mari kita", link:"tatabahasan5_mashou.html" },
+    { jp:"〜たいです", romaji:"~tai desu", mean:"ingin melakukan", link:"tatabahasan5_taidesu.html" },
+    { jp:"〜がほしいです", romaji:"~ga hoshii desu", mean:"ingin memiliki (benda)", link:"tatabahasan5_hoshiidesu.html" },
+    { jp:"〜ています", romaji:"~te imasu", mean:"sedang melakukan / kebiasaan / keadaan", link:"tatabahasan5_teimasu.html" },
+    { jp:"〜てください", romaji:"~te kudasai", mean:"tolong lakukan ~", link:"tatabahasan5_tekudasai.html" },
+    { jp:"〜ないでください", romaji:"~naide kudasai", mean:"tolong jangan lakukan ~", link:"tatabahasan5_naidekudasai.html" },
+    { jp:"〜てもいいです", romaji:"~temo ii desu", mean:"boleh melakukan ~", link:"tatabahasan5_temoiidesu.html" },
+    { jp:"〜てはいけません", romaji:"~te wa ikemasen", mean:"tidak boleh melakukan ~", link:"tatabahasan5_tewaikemasen.html" },
+    { jp:"〜ことができます", romaji:"~koto ga dekimasu", mean:"bisa / mampu melakukan ~", link:"tatabahasan5_kotogadekimasu.html" },
+    { jp:"〜前に", romaji:"~mae ni", mean:"sebelum melakukan ~", link:"tatabahasan5_maeni.html" },
+    { jp:"〜てから", romaji:"~te kara", mean:"setelah melakukan ~", link:"tatabahasan5_tekara.html" },
+    { jp:"〜とき", romaji:"~toki", mean:"waktu / ketika ~", link:"tatabahasan5_toki.html" },
+    { jp:"〜から（理由）", romaji:"~kara", mean:"karena ~ (alasan)", link:"tatabahasan5_karaalasan.html" },
+    { jp:"〜が（逆接）", romaji:"~ga", mean:"tetapi / namun", link:"tatabahasan5_ga.html" },
+    { jp:"〜でしょう", romaji:"~deshou", mean:"mungkin / kan? (dugaan sederhana)", link:"tatabahasan5_deshou.html" },
+    { jp:"〜より〜のほうが", romaji:"~yori ~no hou ga", mean:"lebih ~ daripada ~", link:"tatabahasan5_yorihouga.html" },
+    { jp:"〜の中で〜が一番", romaji:"~no naka de ~ga ichiban", mean:"di antara ~, paling ~", link:"tatabahasan5_ichiban.html" },
+    { jp:"い形容詞（現在・過去）", romaji:"i-keiyoushi", mean:"konjugasi kata sifat-i (sekarang & lampau)", link:"tatabahasan5_ikeiyoushi.html" },
+    { jp:"な形容詞（現在・過去）", romaji:"na-keiyoushi", mean:"konjugasi kata sifat-na (sekarang & lampau)", link:"tatabahasan5_nakeiyoushi.html" },
+    { jp:"動詞のグループ（ます形）", romaji:"doushi no group (masu-kei)", mean:"kelompok kata kerja bentuk ~masu", link:"tatabahasan5_masukei.html" },
+    { jp:"〜ませんでした", romaji:"~masen deshita", mean:"tidak melakukan (bentuk lampau negatif)", link:"tatabahasan5_masendeshita.html" },
+    { jp:"疑問詞＋か", romaji:"gimonshi + ka", mean:"sesuatu / seseorang / suatu tempat (tidak pasti)", link:"tatabahasan5_gimonshika.html" },
+    { jp:"疑問詞＋も＋否定", romaji:"gimonshi + mo + hitei", mean:"tidak ada apa pun / tidak ada siapa pun", link:"tatabahasan5_gimonshimo.html" },
+    { jp:"〜だけ", romaji:"~dake", mean:"hanya", link:"tatabahasan5_dake.html" },
+    { jp:"〜すき／きらい", romaji:"~suki/kirai", mean:"suka / tidak suka", link:"tatabahasan5_sukikirai.html" },
+    { jp:"〜じょうず／へた", romaji:"~jouzu/heta", mean:"pandai / tidak pandai", link:"tatabahasan5_jouzuheta.html" },
+    { jp:"〜ましょうか", romaji:"~mashou ka", mean:"bagaimana kalau saya ~? (menawarkan bantuan)", link:"tatabahasan5_mashouka.html" },
+    { jp:"〜んです", romaji:"~n desu", mean:"penekanan penjelasan / alasan", link:"tatabahasan5_ndesu.html" },
+    { jp:"〜つもりです", romaji:"~tsumori desu", mean:"berniat / berencana melakukan ~", link:"tatabahasan5_tsumoridesu.html" },
+];
+
+const grid = document.getElementById("grammarGrid");
+const noResult = document.getElementById("noResult");
+document.getElementById("totalCount").textContent = grammarList.length + " Pola Tata Bahasa";
+
+function renderCards(list){
+    grid.innerHTML = "";
+    list.forEach((g, i)=>{
+        const a = document.createElement("a");
+        a.href = g.link;
+        a.className = "card";
+        a.innerHTML =
+            '<span class="no">POLA ' + String(i+1).padStart(2,"0") + '</span>' +
+            '<div class="j">' + g.jp + '</div>' +
+            '<div class="h">' + g.romaji + '</div>' +
+            '<div class="mean">' + g.mean + '</div>';
+        grid.appendChild(a);
+    });
+    noResult.style.display = list.length === 0 ? "block" : "none";
+}
+
+function filterCards(){
+    const q = document.getElementById("searchInput").value.trim().toLowerCase();
+    const filtered = grammarList.filter(g =>
+        g.jp.toLowerCase().includes(q) ||
+        g.romaji.toLowerCase().includes(q) ||
+        g.mean.toLowerCase().includes(q)
+    );
+    renderCards(filtered);
+}
+
+renderCards(grammarList);
+
+//============================
+// DROPDOWN
+//============================
+
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+        if(menu.id!=id){
+            menu.classList.remove("show");
+        }
+    });
+    document.getElementById(id).classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+            menu.classList.remove("show");
+        });
+    }
+});
+
+</script>
+
+</body>
+</html>
