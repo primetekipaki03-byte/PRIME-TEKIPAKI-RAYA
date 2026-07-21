@@ -208,6 +208,30 @@ header p{
 }
 
 /* =======================
+     BACK BUTTON
+======================= */
+
+.back-btn-wrap{
+    position:absolute;
+    top:18px;
+    left:20px;
+    text-align:left;
+    z-index:2;
+}
+
+.back-btn-wrap a{
+    font-size:14px;
+    color:#c9d6e8;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.back-btn-wrap a:hover{
+    color:var(--gold);
+    text-decoration:underline;
+}
+
+/* =======================
      SEARCH BAR
 ======================= */
 
@@ -439,6 +463,9 @@ HOME
 </nav>
 
 <header>
+    <div class="back-btn-wrap">
+        <a href="materitatabahasa.html">← Kembali ke Materi Tata Bahasa</a>
+    </div>
     <span class="badge">JLPT N3 GRAMMAR</span>
     <h1>文法 <span>Tata Bahasa</span> N3</h1>
     <p>Kumpulan pola tata bahasa JLPT N3 lengkap dengan cara baca dan arti. Klik salah satu kartu untuk membuka penjelasan lengkap beserta contoh kalimatnya.</p>
@@ -519,6 +546,85 @@ const grammarList = [
     { jp:"〜としても／にしても", romaji:"~ni shitemo", mean:"walaupun dianggap begitu", link:"tatabahasan3_nishitemo.html" },
     { jp:"〜にしては", romaji:"~ni shite wa", mean:"untuk ukuran ~ / mengingat bahwa ~", link:"tatabahasan3_nishitewa.html" },
     { jp:"〜だけあって", romaji:"~dake atte", mean:"pantas saja karena / sesuai dengan", link:"tatabahasan3_dakeatte.html" },
+
+    { jp:"〜うちに", romaji:"~uchi ni", mean:"selagi / mumpung (sebelum keadaan berubah)", link:"tatabahasan3_uchini.html" },
+    { jp:"〜間（あいだ）", romaji:"~aida", mean:"selama (rentang waktu tertentu)", link:"tatabahasan3_aida.html" },
+    { jp:"〜間に", romaji:"~aida ni", mean:"di suatu saat selama ~ (kejadian sesaat)", link:"tatabahasan3_aidani.html" },
+    { jp:"〜たところ", romaji:"~ta tokoro", mean:"baru saja / setelah dicoba ternyata", link:"tatabahasan3_tatokoro.html" },
+    { jp:"〜たばかり", romaji:"~ta bakari", mean:"baru saja melakukan", link:"tatabahasan3_tabakari.html" },
+    { jp:"〜最中（さいちゅう）", romaji:"~saichuu", mean:"sedang di tengah-tengah melakukan", link:"tatabahasan3_saichuu.html" },
+    { jp:"〜ているところ", romaji:"~te iru tokoro", mean:"sedang dalam proses melakukan", link:"tatabahasan3_teirutokoro.html" },
+    { jp:"〜たとたん", romaji:"~ta totan", mean:"begitu / tepat setelah melakukan, langsung terjadi", link:"tatabahasan3_tatotan.html" },
+    { jp:"〜際（さい）に", romaji:"~sai ni", mean:"pada saat / dalam kesempatan (formal)", link:"tatabahasan3_saini.html" },
+
+    { jp:"〜ために", romaji:"~tame ni", mean:"demi / untuk tujuan", link:"tatabahasan3_tameni.html" },
+    { jp:"〜ように", romaji:"~you ni", mean:"agar / supaya", link:"tatabahasan3_youni.html" },
+    { jp:"〜ようになる", romaji:"~you ni naru", mean:"menjadi bisa / berubah menjadi", link:"tatabahasan3_youninaru.html" },
+    { jp:"〜ようにする", romaji:"~you ni suru", mean:"berusaha / membiasakan diri melakukan", link:"tatabahasan3_younisuru.html" },
+    { jp:"〜ことにする", romaji:"~koto ni suru", mean:"memutuskan untuk melakukan", link:"tatabahasan3_kotonisuru.html" },
+    { jp:"〜ことになる", romaji:"~koto ni naru", mean:"telah diputuskan / menjadi begitu", link:"tatabahasan3_kotoninaru.html" },
+    { jp:"〜ていく", romaji:"~te iku", mean:"akan terus berlangsung (menjauh dari sekarang)", link:"tatabahasan3_teiku.html" },
+    { jp:"〜てくる", romaji:"~te kuru", mean:"mulai terjadi / berlangsung sampai sekarang", link:"tatabahasan3_tekuru.html" },
+
+    { jp:"〜そうだ（様態）", romaji:"~sou da (youtai)", mean:"kelihatannya / sepertinya (berdasarkan penampilan)", link:"tatabahasan3_souyoutai.html" },
+    { jp:"〜そうだ（伝聞）", romaji:"~sou da (denbun)", mean:"katanya / menurut informasi", link:"tatabahasan3_soudenbun.html" },
+    { jp:"〜らしい", romaji:"~rashii", mean:"katanya / sepertinya (berdasarkan info)", link:"tatabahasan3_rashii.html" },
+    { jp:"〜ようだ", romaji:"~you da", mean:"sepertinya / seolah-olah (indra/perkiraan)", link:"tatabahasan3_youda.html" },
+    { jp:"〜みたいだ", romaji:"~mitai da", mean:"seperti / mirip dengan (informal)", link:"tatabahasan3_mitaida.html" },
+
+    { jp:"〜わりに", romaji:"~wari ni", mean:"padahal / dibanding dengan seharusnya", link:"tatabahasan3_warini.html" },
+    { jp:"〜のに", romaji:"~noni", mean:"padahal", link:"tatabahasan3_noni.html" },
+    { jp:"〜ても", romaji:"~temo", mean:"meskipun / walaupun", link:"tatabahasan3_temo.html" },
+    { jp:"〜ながら", romaji:"~nagara", mean:"sambil melakukan / meskipun begitu", link:"tatabahasan3_nagara.html" },
+
+    { jp:"〜だけでなく", romaji:"~dake de naku", mean:"bukan hanya ~, tetapi juga", link:"tatabahasan3_dakedenaku.html" },
+    { jp:"〜ばかりでなく", romaji:"~bakari de naku", mean:"bukan hanya ~, tetapi juga", link:"tatabahasan3_bakaridenaku.html" },
+    { jp:"〜うえに", romaji:"~ue ni", mean:"selain itu / ditambah lagi", link:"tatabahasan3_ueni.html" },
+    { jp:"〜そのうえ", romaji:"~sono ue", mean:"selain itu / lagipula", link:"tatabahasan3_sonoue.html" },
+    { jp:"〜それに", romaji:"~sore ni", mean:"selain itu / lagipula", link:"tatabahasan3_soreni.html" },
+    { jp:"〜しかも", romaji:"~shikamo", mean:"lagipula / bahkan", link:"tatabahasan3_shikamo.html" },
+
+    { jp:"〜ほど", romaji:"~hodo", mean:"sekitar / sampai taraf", link:"tatabahasan3_hodo.html" },
+    { jp:"〜くらい", romaji:"~kurai", mean:"kira-kira / sekitar", link:"tatabahasan3_kurai.html" },
+    { jp:"〜ぐらい", romaji:"~gurai", mean:"kira-kira / sekitar (variasi bunyi)", link:"tatabahasan3_gurai.html" },
+    { jp:"〜ばかり", romaji:"~bakari", mean:"hanya / melulu", link:"tatabahasan3_bakari.html" },
+    { jp:"〜だけ", romaji:"~dake", mean:"hanya", link:"tatabahasan3_dake.html" },
+    { jp:"〜さえ", romaji:"~sae", mean:"bahkan / sampai-sampai", link:"tatabahasan3_sae.html" },
+    { jp:"〜まで", romaji:"~made", mean:"sampai", link:"tatabahasan3_made.html" },
+    { jp:"〜ほど〜ない", romaji:"~hodo ~nai", mean:"tidak sampai / tidak se~", link:"tatabahasan3_hodonai.html" },
+
+    { jp:"〜ば", romaji:"~ba", mean:"kalau / jika", link:"tatabahasan3_ba.html" },
+    { jp:"〜たら", romaji:"~tara", mean:"kalau / seandainya", link:"tatabahasan3_tara.html" },
+    { jp:"〜なら", romaji:"~nara", mean:"kalau begitu / kalau memang", link:"tatabahasan3_nara.html" },
+    { jp:"〜場合（ばあい）は", romaji:"~baai wa", mean:"dalam hal / seandainya terjadi", link:"tatabahasan3_baaiwa.html" },
+
+    { jp:"〜べきではない", romaji:"~beki dewa nai", mean:"seharusnya tidak melakukan", link:"tatabahasan3_bekidewanai.html" },
+    { jp:"〜こと", romaji:"~koto", mean:"harus melakukan (perintah tidak langsung)", link:"tatabahasan3_koto.html" },
+    { jp:"〜ないこと", romaji:"~nai koto", mean:"harus tidak melakukan (larangan tertulis)", link:"tatabahasan3_naikoto.html" },
+    { jp:"〜ことになっている", romaji:"~koto ni natte iru", mean:"sudah menjadi ketentuan / aturan bahwa", link:"tatabahasan3_kotoninatteiru.html" },
+
+    { jp:"〜まま", romaji:"~mama", mean:"tetap dalam keadaan / begitu saja", link:"tatabahasan3_mama.html" },
+    { jp:"〜っぱなし", romaji:"~ppanashi", mean:"dibiarkan begitu saja (tanpa diurus)", link:"tatabahasan3_ppanashi.html" },
+    { jp:"〜きり", romaji:"~kiri", mean:"hanya sekali itu / sejak itu terus begitu", link:"tatabahasan3_kiri.html" },
+    { jp:"〜ずに", romaji:"~zu ni", mean:"tanpa melakukan", link:"tatabahasan3_zuni.html" },
+
+    { jp:"〜など", romaji:"~nado", mean:"dan lain-lain / seperti", link:"tatabahasan3_nado.html" },
+    { jp:"〜なんか", romaji:"~nanka", mean:"seperti / semacam (informal, meremehkan)", link:"tatabahasan3_nanka.html" },
+    { jp:"〜なんて", romaji:"~nante", mean:"hal seperti / sampai-sampai (kaget/meremehkan)", link:"tatabahasan3_nante.html" },
+    { jp:"〜という", romaji:"~to iu", mean:"yang disebut / bahwa", link:"tatabahasan3_toiu.html" },
+    { jp:"〜といった", romaji:"~to itta", mean:"seperti / semacam", link:"tatabahasan3_toitta.html" },
+
+    { jp:"〜たあとで", romaji:"~ta ato de", mean:"setelah melakukan", link:"tatabahasan3_taatode.html" },
+    { jp:"〜前に", romaji:"~mae ni", mean:"sebelum melakukan", link:"tatabahasan3_maeni.html" },
+    { jp:"〜てから", romaji:"~te kara", mean:"setelah melakukan", link:"tatabahasan3_tekara.html" },
+    { jp:"〜あとで", romaji:"~ato de", mean:"setelah / nanti", link:"tatabahasan3_atode.html" },
+    { jp:"〜につれて", romaji:"~ni tsurete", mean:"seiring dengan / semakin", link:"tatabahasan3_nitsurete.html" },
+    { jp:"〜にしたがって", romaji:"~ni shitagatte", mean:"seiring dengan / sesuai dengan", link:"tatabahasan3_nishitagatte.html" },
+    { jp:"〜とともに", romaji:"~to tomo ni", mean:"bersamaan dengan / seiring dengan", link:"tatabahasan3_totomoni.html" },
+
+    { jp:"〜について", romaji:"~ni tsuite", mean:"mengenai / tentang", link:"tatabahasan3_nitsuite.html" },
+    { jp:"〜によると", romaji:"~ni yoru to", mean:"menurut (sumber informasi)", link:"tatabahasan3_niyoruto.html" },
+    { jp:"〜を通して", romaji:"~wo tooshite", mean:"melalui / lewat perantara", link:"tatabahasan3_wotooshite.html" },
 ];
 
 const grid = document.getElementById("grammarGrid");
