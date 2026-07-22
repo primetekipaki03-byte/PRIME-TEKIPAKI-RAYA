@@ -5,7 +5,7 @@
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Kanji Flash Card</title>
+<title>Kanji Flash Card 4</title>
 
 <style>
 
@@ -46,7 +46,6 @@ body{
     justify-content:space-between;
     align-items:center;
     padding:10px 20px;
-    flex-wrap:wrap;
     gap:10px;
 }
 
@@ -54,13 +53,24 @@ body{
     display:flex;
     align-items:center;
     gap:10px;
-    flex-wrap:wrap;
 }
 
 .nav-right{
     display:flex;
     gap:8px;
     align-items:center;
+}
+
+.menu-toggle{
+    display:none;
+    background:none;
+    border:2px solid var(--gold);
+    color:var(--gold);
+    font-size:20px;
+    line-height:1;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
 }
 
 .home-btn{
@@ -121,6 +131,8 @@ border-radius:8px;
 font-weight:bold;
 
 cursor:pointer;
+
+width:100%;
 
 }
 
@@ -204,9 +216,49 @@ color:#001530;
 
 }
 
-@media(max-width:600px){
-  .navbar-inner{flex-direction:column;align-items:flex-start;}
-  .nav-right{width:100%;}
+@media(max-width:880px){
+
+  .menu-toggle{
+    display:inline-flex;
+    align-items:center;
+  }
+
+  .nav-right{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    flex-direction:column;
+    align-items:stretch;
+    gap:8px;
+    background:#001530;
+    padding:12px 16px 16px;
+    border-top:1px solid rgba(250,204,21,.2);
+    box-shadow:0 10px 18px rgba(0,0,0,.35);
+  }
+
+  .nav-right.open{
+    display:flex;
+  }
+
+  #navbar{
+    position:sticky;
+  }
+
+  .navbar-inner{
+    position:relative;
+  }
+
+  .dropdown{width:100%;}
+
+  .dropdown-menu{
+    position:static;
+    width:100%;
+    margin-top:6px;
+    box-shadow:none;
+    min-width:0;
+  }
 }
 
 /* =======================
@@ -273,6 +325,13 @@ color:#555;
     margin-bottom:10px;
 }
 
+@media(max-width:480px){
+  header{padding:24px 16px 6px;}
+  header h1{font-size:30px;}
+  header p{font-size:14px;}
+  .hint{font-size:12px;padding:0 10px;}
+}
+
 /* =======================
      FLASH CARD (FLIP)
 ======================= */
@@ -280,6 +339,7 @@ color:#555;
 .viewer-wrap{
     max-width:900px;
     margin:20px auto;
+    padding:0 16px;
     perspective:1600px;
 }
 
@@ -443,7 +503,7 @@ box-shadow:0 4px 10px rgba(0,0,0,.15);
 
 .viewer{
 
-height:340px;
+height:300px;
 
 }
 
@@ -469,6 +529,51 @@ font-size:18px;
 
 font-size:12px;
 
+}
+
+}
+
+@media(max-width:480px){
+
+.face{
+border-width:3px;
+border-radius:16px;
+padding:14px;
+}
+
+.viewer{
+
+height:220px;
+
+}
+
+.face-front #kanji{
+
+font-size:52px;
+
+}
+
+.face-back{
+gap:8px;
+padding:14px 18px;
+}
+
+.face-back .arti{
+
+font-size:18px;
+
+}
+
+.face-back .yomi{
+
+font-size:15px;
+
+}
+
+.tap-tip{
+font-size:11px;
+padding:6px 12px;
+bottom:10px;
 }
 
 }
@@ -553,8 +658,38 @@ font-size:20px;
 
 .grid{
 
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+padding:16px;
+margin:24px auto;
 
+}
+
+.card{
+padding:14px 8px;
+border-radius:12px;
+}
+
+.card .h{
+font-size:14px;
+margin-top:6px;
+}
+
+}
+
+@media(max-width:480px){
+
+.grid{
+
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+padding:12px;
+
+}
+
+.card{
+padding:16px 8px;
+border-width:1.5px;
 }
 
 }
@@ -583,7 +718,9 @@ HOME
 </a>
 </div>
 
-<div class="nav-right">
+<button class="menu-toggle" id="menuToggle" onclick="toggleMobileMenu()" aria-label="Buka menu">☰</button>
+
+<div class="nav-right" id="navRight">
 
   <div class="dropdown">
     <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
@@ -638,16 +775,13 @@ HOME
     <div class="viewer big" id="viewer" onclick="flipCard()">
 
         <div class="face face-front">
-            <div id="kanji">準備</div>
+            <div id="kanji">報告する</div>
             <span class="tap-tip">klik untuk lihat arti</span>
         </div>
 
         <div class="face face-back">
-            <div class="yomi" id="yomi">じゅんび (junbi)</div>
-            <div class="arti" id="arti">Persiapan</div>
-            <div class="contoh" id="contoh">出発の準備をします。
-しゅっぱつ の じゅんび を します。
-Saya melakukan persiapan untuk berangkat.</div>
+            <div class="yomi" id="yomi">ほうこくする (houkokusuru)</div>
+            <div class="arti" id="arti">Melaporkan</div>
             <span class="tap-tip">klik untuk kembali</span>
         </div>
 
@@ -656,44 +790,44 @@ Saya melakukan persiapan untuk berangkat.</div>
 <div class="grid">
 
 
-    <div class="card active" onclick="show('準備', this)">
-        <div class="j">準備</div>
+    <div class="card active" onclick="show('報告する', this)">
+        <div class="j">報告する</div>
     </div>
 
-    <div class="card" onclick="show('中止', this)">
-        <div class="j">中止</div>
+    <div class="card" onclick="show('残業', this)">
+        <div class="j">残業</div>
     </div>
 
-    <div class="card" onclick="show('出発', this)">
-        <div class="j">出発</div>
+    <div class="card" onclick="show('面接', this)">
+        <div class="j">面接</div>
     </div>
 
-    <div class="card" onclick="show('選手', this)">
-        <div class="j">選手</div>
+    <div class="card" onclick="show('面談', this)">
+        <div class="j">面談</div>
     </div>
 
-    <div class="card" onclick="show('歌手', this)">
-        <div class="j">歌手</div>
+    <div class="card" onclick="show('津波', this)">
+        <div class="j">津波</div>
     </div>
 
-    <div class="card" onclick="show('捨てる', this)">
-        <div class="j">捨てる</div>
+    <div class="card" onclick="show('掃除する', this)">
+        <div class="j">掃除する</div>
     </div>
 
-    <div class="card" onclick="show('電池', this)">
-        <div class="j">電池</div>
+    <div class="card" onclick="show('相談する', this)">
+        <div class="j">相談する</div>
     </div>
 
-    <div class="card" onclick="show('間に合う', this)">
-        <div class="j">間に合う</div>
+    <div class="card" onclick="show('難しい', this)">
+        <div class="j">難しい</div>
     </div>
 
-    <div class="card" onclick="show('比べる', this)">
-        <div class="j">比べる</div>
+    <div class="card" onclick="show('到着する', this)">
+        <div class="j">到着する</div>
     </div>
 
-    <div class="card" onclick="show('伝える', this)">
-        <div class="j">伝える</div>
+    <div class="card" onclick="show('不便', this)">
+        <div class="j">不便</div>
     </div>
 
 
@@ -712,55 +846,45 @@ Saya melakukan persiapan untuk berangkat.</div>
 //============================
 
 const kanjiData = {
-    "準備": {
-        yomi:"じゅんび (junbi)",
-        arti:"Persiapan",
-        contoh:"出発の準備をします。\nしゅっぱつ の じゅんび を します。\nSaya melakukan persiapan untuk berangkat."
+    "報告する": {
+        yomi:"ほうこくする (houkokusuru)",
+        arti:"Melaporkan"
     },
-    "中止": {
-        yomi:"ちゅうし (chuushi)",
-        arti:"Pembatalan",
-        contoh:"雨で試合は中止になりました。\nあめ で しあい は ちゅうし に なりました。\nPertandingan dibatalkan karena hujan."
+    "残業": {
+        yomi:"ざんぎょう (zangyou)",
+        arti:"Lembur"
     },
-    "出発": {
-        yomi:"しゅっぱつ (shuppatsu)",
-        arti:"Berangkat",
-        contoh:"朝七時に出発します。\nあさ しちじ に しゅっぱつ します。\nSaya berangkat pukul tujuh pagi."
+    "面接": {
+        yomi:"めんせつ (mensetsu)",
+        arti:"Wawancara"
     },
-    "選手": {
-        yomi:"せんしゅ (senshu)",
-        arti:"Atlet, pemain",
-        contoh:"あの選手はとても速いです。\nあの せんしゅ は とても はやい です。\nAtlet itu sangat cepat."
+    "面談": {
+        yomi:"めんだん (mendan)",
+        arti:"Pertemuan / Konsultasi"
     },
-    "歌手": {
-        yomi:"かしゅ (kashu)",
-        arti:"Penyanyi",
-        contoh:"妹は歌手になりたいです。\nいもうと は かしゅ に なりたい です。\nAdik perempuan saya ingin menjadi penyanyi."
+    "津波": {
+        yomi:"つなみ (tsunami)",
+        arti:"Tsunami"
     },
-    "捨てる": {
-        yomi:"すてる (suteru)",
-        arti:"Membuang",
-        contoh:"古い新聞を捨てました。\nふるい しんぶん を すてました。\nSaya membuang koran yang sudah lama."
+    "掃除する": {
+        yomi:"そうじする (soujisuru)",
+        arti:"Membersihkan"
     },
-    "電池": {
-        yomi:"でんち (denchi)",
-        arti:"Baterai",
-        contoh:"スマホの電池を交換しました。\nスマホの でんち を こうかん しました。\nSaya mengganti baterai Handphone."
+    "相談する": {
+        yomi:"そうだんする (soudansuru)",
+        arti:"Berkonsultasi"
     },
-    "間に合う": {
-        yomi:"まにあう (maniau)",
-        arti:"Tepat waktu, sempat",
-        contoh:"電車に間に合いました。\nでんしゃ に まにあいました。\nSaya sempat naik kereta tepat waktu."
+    "難しい": {
+        yomi:"むずかしい (muzukashii)",
+        arti:"Sulit"
     },
-    "比べる": {
-        yomi:"くらべる (kuraberu)",
-        arti:"Membandingkan",
-        contoh:"二つの車を比べました。\nふたつ の くるま を くらべました。\nSaya membandingkan dua mobil."
+    "到着する": {
+        yomi:"とうちゃくする (touchakusuru)",
+        arti:"Tiba / Kedatangan"
     },
-    "伝える": {
-        yomi:"つたえる (tsutaeru)",
-        arti:"Menyampaikan",
-        contoh:"先生に理由を伝えました。\nせんせい に りゆう を つたえました。\nSaya menyampaikan alasannya kepada guru."
+    "不便": {
+        yomi:"ふべん (fuben)",
+        arti:"Tidak praktis / Tidak nyaman"
     }
 };
 //============================
@@ -768,14 +892,22 @@ const kanjiData = {
 //============================
 
 function autoSizeCards(){
-    document.querySelectorAll(".card .j").forEach(function(el){
+    const cards = document.querySelectorAll(".card .j");
+
+    let maxLen = 0;
+    cards.forEach(function(el){
         const len = el.textContent.trim().length;
-        let size;
-        if(len <= 2){ size = 42; }
-        else if(len === 3){ size = 34; }
-        else if(len === 4){ size = 28; }
-        else { size = 22; }
-        el.style.fontSize = size + "px";
+        if(len > maxLen){ maxLen = len; }
+    });
+
+    let size;
+    if(maxLen <= 2){ size = "clamp(26px, 8vw, 42px)"; }
+    else if(maxLen === 3){ size = "clamp(22px, 7vw, 34px)"; }
+    else if(maxLen === 4){ size = "clamp(19px, 6vw, 28px)"; }
+    else { size = "clamp(16px, 5vw, 22px)"; }
+
+    cards.forEach(function(el){
+        el.style.fontSize = size;
     });
 }
 
@@ -788,12 +920,11 @@ autoSizeCards();
 function show(kanji, el){
 
     const viewer = document.getElementById("viewer");
-    const data = kanjiData[kanji] || { yomi:"—", arti:"—", contoh:"—" };
+    const data = kanjiData[kanji] || { yomi:"—", arti:"—" };
 
     document.getElementById("kanji").innerHTML = kanji;
     document.getElementById("yomi").innerHTML = data.yomi;
     document.getElementById("arti").innerHTML = data.arti;
-    document.getElementById("contoh").innerText = data.contoh;
 
     viewer.classList.remove("flipped");
     viewer.classList.remove("big");
@@ -815,6 +946,10 @@ function flipCard(){
 //============================
 // DROPDOWN
 //============================
+
+function toggleMobileMenu(){
+    document.getElementById("navRight").classList.toggle("open");
+}
 
 function toggleDropdown(id){
 
@@ -841,6 +976,12 @@ document.addEventListener("click",function(e){
             menu.classList.remove("show");
 
         });
+
+    }
+
+    if(!e.target.closest("#navbar")){
+
+        document.getElementById("navRight").classList.remove("open");
 
     }
 
