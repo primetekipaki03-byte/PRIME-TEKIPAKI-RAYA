@@ -445,13 +445,21 @@ padding:20px 30px;
 
 .face-back .yomi{
 
-font-size:34px;
+font-size:26px;
 
 color:var(--gold);
 
 font-weight:bold;
 
 letter-spacing:.5px;
+
+}
+
+.face-back .arti{
+
+font-size:28px;
+
+font-weight:bold;
 
 }
 
@@ -491,9 +499,15 @@ font-size:80px;
 
 }
 
+.face-back .arti{
+
+font-size:22px;
+
+}
+
 .face-back .yomi{
 
-font-size:24px;
+font-size:18px;
 
 }
 
@@ -524,9 +538,15 @@ gap:8px;
 padding:14px 18px;
 }
 
+.face-back .arti{
+
+font-size:18px;
+
+}
+
 .face-back .yomi{
 
-font-size:20px;
+font-size:15px;
 
 }
 
@@ -736,11 +756,12 @@ HOME
 
         <div class="face face-front">
             <div id="kanji">報告する</div>
-            <span class="tap-tip">klik untuk lihat cara baca</span>
+            <span class="tap-tip">klik untuk lihat arti</span>
         </div>
 
         <div class="face face-back">
             <div class="yomi" id="yomi">ほうこくする (houkokusuru)</div>
+            <div class="arti" id="arti">Melaporkan</div>
             <span class="tap-tip">klik untuk kembali</span>
         </div>
 
@@ -806,34 +827,44 @@ HOME
 
 const kanjiData = {
     "報告する": {
-        yomi:"ほうこくする (houkokusuru)"
+        yomi:"ほうこくする (houkokusuru)",
+        arti:"Melaporkan"
     },
     "残業": {
-        yomi:"ざんぎょう (zangyou)"
+        yomi:"ざんぎょう (zangyou)",
+        arti:"Lembur"
     },
     "面接": {
-        yomi:"めんせつ (mensetsu)"
+        yomi:"めんせつ (mensetsu)",
+        arti:"Wawancara"
     },
     "面談": {
-        yomi:"めんだん (mendan)"
+        yomi:"めんだん (mendan)",
+        arti:"Pertemuan / Konsultasi"
     },
     "津波": {
-        yomi:"つなみ (tsunami)"
+        yomi:"つなみ (tsunami)",
+        arti:"Tsunami"
     },
     "掃除する": {
-        yomi:"そうじする (soujisuru)"
+        yomi:"そうじする (soujisuru)",
+        arti:"Membersihkan"
     },
     "相談する": {
-        yomi:"そうだんする (soudansuru)"
+        yomi:"そうだんする (soudansuru)",
+        arti:"Berkonsultasi"
     },
     "難しい": {
-        yomi:"むずかしい (muzukashii)"
+        yomi:"むずかしい (muzukashii)",
+        arti:"Sulit"
     },
     "到着する": {
-        yomi:"とうちゃくする (touchakusuru)"
+        yomi:"とうちゃくする (touchakusuru)",
+        arti:"Tiba / Kedatangan"
     },
     "不便": {
-        yomi:"ふべん (fuben)"
+        yomi:"ふべん (fuben)",
+        arti:"Tidak praktis / Tidak nyaman"
     }
 };
 //============================
@@ -869,10 +900,11 @@ autoSizeCards();
 function show(kanji, el){
 
     const viewer = document.getElementById("viewer");
-    const data = kanjiData[kanji] || { yomi:"—" };
+    const data = kanjiData[kanji] || { yomi:"—", arti:"—" };
 
     document.getElementById("kanji").innerHTML = kanji;
     document.getElementById("yomi").innerHTML = data.yomi;
+    document.getElementById("arti").innerHTML = data.arti;
 
     viewer.classList.remove("flipped");
     viewer.classList.remove("big");
