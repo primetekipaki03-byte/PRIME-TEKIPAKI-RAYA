@@ -46,7 +46,6 @@ body{
     justify-content:space-between;
     align-items:center;
     padding:10px 20px;
-    flex-wrap:wrap;
     gap:10px;
 }
 
@@ -54,13 +53,24 @@ body{
     display:flex;
     align-items:center;
     gap:10px;
-    flex-wrap:wrap;
 }
 
 .nav-right{
     display:flex;
     gap:8px;
     align-items:center;
+}
+
+.menu-toggle{
+    display:none;
+    background:none;
+    border:2px solid var(--gold);
+    color:var(--gold);
+    font-size:20px;
+    line-height:1;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
 }
 
 .home-btn{
@@ -121,6 +131,8 @@ border-radius:8px;
 font-weight:bold;
 
 cursor:pointer;
+
+width:100%;
 
 }
 
@@ -204,9 +216,49 @@ color:#001530;
 
 }
 
-@media(max-width:600px){
-  .navbar-inner{flex-direction:column;align-items:flex-start;}
-  .nav-right{width:100%;}
+@media(max-width:880px){
+
+  .menu-toggle{
+    display:inline-flex;
+    align-items:center;
+  }
+
+  .nav-right{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    flex-direction:column;
+    align-items:stretch;
+    gap:8px;
+    background:#001530;
+    padding:12px 16px 16px;
+    border-top:1px solid rgba(250,204,21,.2);
+    box-shadow:0 10px 18px rgba(0,0,0,.35);
+  }
+
+  .nav-right.open{
+    display:flex;
+  }
+
+  #navbar{
+    position:sticky;
+  }
+
+  .navbar-inner{
+    position:relative;
+  }
+
+  .dropdown{width:100%;}
+
+  .dropdown-menu{
+    position:static;
+    width:100%;
+    margin-top:6px;
+    box-shadow:none;
+    min-width:0;
+  }
 }
 
 /* =======================
@@ -273,6 +325,13 @@ color:#555;
     margin-bottom:10px;
 }
 
+@media(max-width:480px){
+  header{padding:24px 16px 6px;}
+  header h1{font-size:30px;}
+  header p{font-size:14px;}
+  .hint{font-size:12px;padding:0 10px;}
+}
+
 /* =======================
      FLASH CARD (FLIP)
 ======================= */
@@ -280,6 +339,7 @@ color:#555;
 .viewer-wrap{
     max-width:900px;
     margin:20px auto;
+    padding:0 16px;
     perspective:1600px;
 }
 
@@ -443,7 +503,7 @@ box-shadow:0 4px 10px rgba(0,0,0,.15);
 
 .viewer{
 
-height:340px;
+height:300px;
 
 }
 
@@ -469,6 +529,51 @@ font-size:18px;
 
 font-size:12px;
 
+}
+
+}
+
+@media(max-width:480px){
+
+.face{
+border-width:3px;
+border-radius:16px;
+padding:14px;
+}
+
+.viewer{
+
+height:220px;
+
+}
+
+.face-front #kanji{
+
+font-size:52px;
+
+}
+
+.face-back{
+gap:8px;
+padding:14px 18px;
+}
+
+.face-back .arti{
+
+font-size:18px;
+
+}
+
+.face-back .yomi{
+
+font-size:15px;
+
+}
+
+.tap-tip{
+font-size:11px;
+padding:6px 12px;
+bottom:10px;
 }
 
 }
@@ -553,8 +658,38 @@ font-size:20px;
 
 .grid{
 
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+padding:16px;
+margin:24px auto;
 
+}
+
+.card{
+padding:14px 8px;
+border-radius:12px;
+}
+
+.card .h{
+font-size:14px;
+margin-top:6px;
+}
+
+}
+
+@media(max-width:480px){
+
+.grid{
+
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+padding:12px;
+
+}
+
+.card{
+padding:16px 8px;
+border-width:1.5px;
 }
 
 }
@@ -583,7 +718,9 @@ HOME
 </a>
 </div>
 
-<div class="nav-right">
+<button class="menu-toggle" id="menuToggle" onclick="toggleMobileMenu()" aria-label="Buka menu">☰</button>
+
+<div class="nav-right" id="navRight">
 
   <div class="dropdown">
     <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
@@ -645,9 +782,6 @@ HOME
         <div class="face face-back">
             <div class="yomi" id="yomi">つける (tsukeru)</div>
             <div class="arti" id="arti">Menyalakan</div>
-            <div class="contoh" id="contoh">部屋の電気を点けます。
-へやの でんきを つけます。
-Menyalakan lampu kamar.</div>
             <span class="tap-tip">klik untuk kembali</span>
         </div>
 
@@ -714,53 +848,43 @@ Menyalakan lampu kamar.</div>
 const kanjiData = {
     "点ける": {
         yomi:"つける (tsukeru)",
-        arti:"Menyalakan",
-        contoh:"部屋の電気を点けます。\nへやの でんきを つけます。\nMenyalakan lampu kamar."
+        arti:"Menyalakan"
     },
     "消す": {
         yomi:"けす (kesu)",
-        arti:"Mematikan",
-        contoh:"テレビを消します。\nてれびを けします。\nMematikan televisi."
+        arti:"Mematikan"
     },
     "強い": {
         yomi:"つよい (tsuyoi)",
-        arti:"Kuat",
-        contoh:"このチームは強いです。\nこの ちーむは つよいです。\nTim ini kuat."
+        arti:"Kuat"
     },
     "弱い": {
         yomi:"よわい (yowai)",
-        arti:"Lemah",
-        contoh:"弟は体が弱いです。\nおとうとは からだが よわいです。\nAdik laki-laki saya tubuhnya lemah."
+        arti:"Lemah"
     },
     "動き": {
         yomi:"うごき (ugoki)",
-        arti:"Gerakan",
-        contoh:"ロボットの動きは速いです。\nろぼっとの うごきは はやいです。\nGerakan robot itu cepat."
+        arti:"Gerakan"
     },
     "雪": {
         yomi:"ゆき (yuki)",
-        arti:"Salju",
-        contoh:"冬になると雪が降ります。\nふゆに なると ゆきが ふります。\nSaat musim dingin, salju turun."
+        arti:"Salju"
     },
     "雲": {
         yomi:"くも (kumo)",
-        arti:"Awan",
-        contoh:"空に白い雲があります。\nそらに しろい くもが あります。\nAda awan putih di langit."
+        arti:"Awan"
     },
     "用事": {
         yomi:"ようじ (youji)",
-        arti:"Urusan",
-        contoh:"午後は用事があります。\nごごは ようじが あります。\nSore hari saya ada urusan."
+        arti:"Urusan"
     },
     "理由": {
         yomi:"りゆう (riyuu)",
-        arti:"Alasan",
-        contoh:"遅れた理由を話してください。\nおくれた りゆうを はなして ください。\nTolong jelaskan alasan terlambat."
+        arti:"Alasan"
     },
     "途中": {
         yomi:"とちゅう (tochuu)",
-        arti:"Di tengah perjalanan",
-        contoh:"途中で雨が降りました。\nとちゅうで あめが ふりました。\nDi tengah perjalanan turun hujan."
+        arti:"Di tengah perjalanan"
     }
 };
 //============================
@@ -768,14 +892,22 @@ const kanjiData = {
 //============================
 
 function autoSizeCards(){
-    document.querySelectorAll(".card .j").forEach(function(el){
+    const cards = document.querySelectorAll(".card .j");
+
+    let maxLen = 0;
+    cards.forEach(function(el){
         const len = el.textContent.trim().length;
-        let size;
-        if(len <= 2){ size = 42; }
-        else if(len === 3){ size = 34; }
-        else if(len === 4){ size = 28; }
-        else { size = 22; }
-        el.style.fontSize = size + "px";
+        if(len > maxLen){ maxLen = len; }
+    });
+
+    let size;
+    if(maxLen <= 2){ size = "clamp(26px, 8vw, 42px)"; }
+    else if(maxLen === 3){ size = "clamp(22px, 7vw, 34px)"; }
+    else if(maxLen === 4){ size = "clamp(19px, 6vw, 28px)"; }
+    else { size = "clamp(16px, 5vw, 22px)"; }
+
+    cards.forEach(function(el){
+        el.style.fontSize = size;
     });
 }
 
@@ -788,12 +920,11 @@ autoSizeCards();
 function show(kanji, el){
 
     const viewer = document.getElementById("viewer");
-    const data = kanjiData[kanji] || { yomi:"—", arti:"—", contoh:"—" };
+    const data = kanjiData[kanji] || { yomi:"—", arti:"—" };
 
     document.getElementById("kanji").innerHTML = kanji;
     document.getElementById("yomi").innerHTML = data.yomi;
     document.getElementById("arti").innerHTML = data.arti;
-    document.getElementById("contoh").innerText = data.contoh;
 
     viewer.classList.remove("flipped");
     viewer.classList.remove("big");
@@ -815,6 +946,10 @@ function flipCard(){
 //============================
 // DROPDOWN
 //============================
+
+function toggleMobileMenu(){
+    document.getElementById("navRight").classList.toggle("open");
+}
 
 function toggleDropdown(id){
 
@@ -841,6 +976,12 @@ document.addEventListener("click",function(e){
             menu.classList.remove("show");
 
         });
+
+    }
+
+    if(!e.target.closest("#navbar")){
+
+        document.getElementById("navRight").classList.remove("open");
 
     }
 
