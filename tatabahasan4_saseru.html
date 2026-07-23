@@ -160,11 +160,11 @@ body{
 ======================= */
 
 .breadcrumb{
-    max-width:900px;
-    margin:20px auto 0;
-    padding:0 20px;
+    margin:20px 0 0 0;
+    padding:0 0 0 20px;
     font-size:14px;
     color:#8892a3;
+    text-align:left;
 }
 
 .breadcrumb a{
@@ -298,6 +298,94 @@ body{
     font-weight:400;
     color:#8892a3;
     margin-top:6px;
+}
+
+/* =======================
+   TABEL KONJUGASI
+======================= */
+
+.table-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.konjugasi-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
+    font-size:15px;
+}
+
+.konjugasi-table thead th{
+    background:var(--navy);
+    color:var(--gold);
+    text-align:left;
+    padding:14px 16px;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+.konjugasi-table tbody td{
+    padding:13px 16px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.konjugasi-table tbody tr:nth-child(even){
+    background:#f5f8fc;
+}
+
+.konjugasi-table tbody tr:hover{
+    background:#fffbe6;
+}
+
+.konjugasi-table .grp-tag{
+    display:inline-block;
+    background:rgba(0,31,63,.08);
+    color:var(--navy);
+    font-weight:bold;
+    font-size:12px;
+    padding:4px 10px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.konjugasi-table .kamus{
+    font-weight:bold;
+    font-size:17px;
+    color:var(--navy);
+}
+
+.konjugasi-table .yomi-small{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    font-weight:400;
+}
+
+.konjugasi-table .arrow{
+    color:var(--gold2);
+    font-weight:900;
+    font-size:18px;
+    text-shadow:0 0 0 var(--navy);
+    filter:none;
+}
+
+.konjugasi-table .ukemi{
+    font-weight:bold;
+    font-size:17px;
+    color:#5b8bb0;
+}
+
+.konjugasi-table .group-row td{
+    background:var(--navy2);
+    color:var(--gold);
+    font-weight:bold;
+    font-size:13px;
+    letter-spacing:.5px;
+    padding:10px 16px;
 }
 
 /* contoh kalimat */
@@ -554,6 +642,9 @@ body{
     .nav-bottom .next{
         text-align:left;
     }
+    .konjugasi-table{
+        font-size:13px;
+    }
 }
 
 footer{
@@ -561,23 +652,6 @@ footer{
     padding:30px;
     color:#666;
     font-size:14px;
-}
-.breadcrumb{
-    margin:20px 0 0 0;
-    padding:0 0 0 20px;
-    font-size:14px;
-    color:#8892a3;
-    text-align:left;
-}
-
-.breadcrumb a{
-    color:var(--navy);
-    text-decoration:none;
-    font-weight:600;
-}
-
-.breadcrumb a:hover{
-    text-decoration:underline;
 }
 </style>
 </head>
@@ -665,6 +739,82 @@ HOME
             Grup 2 (Ichidan): hilangkan る + させる<br>
             Tidak beraturan: する → させる／来る → 来させる
             <small>Contoh: 行く→行かせる／読む→読ませる／食べる→食べさせる／する→させる／来る→来させる</small>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">TABEL</span> Perubahan Kata Kerja → Bentuk せる／させる</h2>
+        <p style="margin-bottom:16px;">
+            Bentuk kausatif dibuat dengan mengubah akhiran kata kerja kamus sesuai kelompoknya
+            (Godan, Ichidan, atau tidak beraturan), lalu menambahkan せる atau させる.
+        </p>
+
+        <div class="table-wrap">
+            <table class="konjugasi-table">
+                <thead>
+                    <tr>
+                        <th>Kamus (Jisho-kei)</th>
+                        <th></th>
+                        <th>Bentuk せる／させる</th>
+                        <th>Artinya</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row"><td colspan="4">GRUP 1 (GODAN) — ～u → ～a + せる</td></tr>
+                    <tr>
+                        <td><span class="kamus">行く</span><span class="yomi-small">いく (iku)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">行かせる</span><span class="yomi-small">いかせる (ikaseru)</span></td>
+                        <td>menyuruh/membiarkan pergi</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">読む</span><span class="yomi-small">よむ (yomu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">読ませる</span><span class="yomi-small">よませる (yomaseru)</span></td>
+                        <td>menyuruh membaca</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">書く</span><span class="yomi-small">かく (kaku)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">書かせる</span><span class="yomi-small">かかせる (kakaseru)</span></td>
+                        <td>menyuruh menulis</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">GRUP 2 (ICHIDAN) — hilangkan る + させる</td></tr>
+                    <tr>
+                        <td><span class="kamus">食べる</span><span class="yomi-small">たべる (taberu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">食べさせる</span><span class="yomi-small">たべさせる (tabesaseru)</span></td>
+                        <td>menyuruh/membiarkan makan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">見る</span><span class="yomi-small">みる (miru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">見させる</span><span class="yomi-small">みさせる (misaseru)</span></td>
+                        <td>menyuruh/membiarkan melihat</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">TIDAK BERATURAN</td></tr>
+                    <tr>
+                        <td><span class="kamus">する</span><span class="yomi-small">する (suru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">させる</span><span class="yomi-small">させる (saseru)</span></td>
+                        <td>menyuruh melakukan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">来る</span><span class="yomi-small">くる (kuru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">来させる</span><span class="yomi-small">こさせる (kosaseru)</span></td>
+                        <td>menyuruh/membiarkan datang</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Cara cepat mengingat:</b> untuk Godan, ubah bunyi akhir ～u menjadi ～a lalu tambahkan せる
+            (行く→行か＋せる). Untuk Ichidan, cukup buang る lalu tambahkan させる (食べ＋させる). する dan
+            来る harus dihafalkan langsung karena tidak beraturan.
         </div>
     </div>
 
