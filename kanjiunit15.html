@@ -5,7 +5,7 @@
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Kanji Flash Card 4</title>
+<title>Kanji Flash Card 5</title>
 
 <style>
 
@@ -775,13 +775,13 @@ HOME
     <div class="viewer big" id="viewer" onclick="flipCard()">
 
         <div class="face face-front">
-            <div id="kanji">報告する</div>
+            <div id="kanji">準備</div>
             <span class="tap-tip">klik untuk lihat arti</span>
         </div>
 
         <div class="face face-back">
-            <div class="yomi" id="yomi">ほうこくする (houkokusuru)</div>
-            <div class="arti" id="arti">Melaporkan</div>
+            <div class="yomi" id="yomi">じゅんび (junbi)</div>
+            <div class="arti" id="arti">Persiapan</div>
             <span class="tap-tip">klik untuk kembali</span>
         </div>
 
@@ -790,44 +790,44 @@ HOME
 <div class="grid">
 
 
-    <div class="card active" onclick="show('報告する', this)">
-        <div class="j">報告する</div>
+    <div class="card active" onclick="show('準備', this)">
+        <div class="j">準備</div>
     </div>
 
-    <div class="card" onclick="show('残業', this)">
-        <div class="j">残業</div>
+    <div class="card" onclick="show('中止', this)">
+        <div class="j">中止</div>
     </div>
 
-    <div class="card" onclick="show('面接', this)">
-        <div class="j">面接</div>
+    <div class="card" onclick="show('出発', this)">
+        <div class="j">出発</div>
     </div>
 
-    <div class="card" onclick="show('面談', this)">
-        <div class="j">面談</div>
+    <div class="card" onclick="show('選手', this)">
+        <div class="j">選手</div>
     </div>
 
-    <div class="card" onclick="show('津波', this)">
-        <div class="j">津波</div>
+    <div class="card" onclick="show('歌手', this)">
+        <div class="j">歌手</div>
     </div>
 
-    <div class="card" onclick="show('掃除する', this)">
-        <div class="j">掃除する</div>
+    <div class="card" onclick="show('捨てる', this)">
+        <div class="j">捨てる</div>
     </div>
 
-    <div class="card" onclick="show('相談する', this)">
-        <div class="j">相談する</div>
+    <div class="card" onclick="show('電池', this)">
+        <div class="j">電池</div>
     </div>
 
-    <div class="card" onclick="show('難しい', this)">
-        <div class="j">難しい</div>
+    <div class="card" onclick="show('間に合う', this)">
+        <div class="j">間に合う</div>
     </div>
 
-    <div class="card" onclick="show('到着する', this)">
-        <div class="j">到着する</div>
+    <div class="card" onclick="show('比べる', this)">
+        <div class="j">比べる</div>
     </div>
 
-    <div class="card" onclick="show('不便', this)">
-        <div class="j">不便</div>
+    <div class="card" onclick="show('伝える', this)">
+        <div class="j">伝える</div>
     </div>
 
 
@@ -842,49 +842,49 @@ HOME
 <script>
 
 //============================
-// DATA ARTI, CARA BACA & CONTOH KALIMAT
+// DATA ARTI & CARA BACA
 //============================
 
 const kanjiData = {
-    "報告する": {
-        yomi:"ほうこくする (houkokusuru)",
-        arti:"Melaporkan"
+    "準備": {
+        yomi:"じゅんび (junbi)",
+        arti:"Persiapan"
     },
-    "残業": {
-        yomi:"ざんぎょう (zangyou)",
-        arti:"Lembur"
+    "中止": {
+        yomi:"ちゅうし (chuushi)",
+        arti:"Pembatalan"
     },
-    "面接": {
-        yomi:"めんせつ (mensetsu)",
-        arti:"Wawancara"
+    "出発": {
+        yomi:"しゅっぱつ (shuppatsu)",
+        arti:"Berangkat"
     },
-    "面談": {
-        yomi:"めんだん (mendan)",
-        arti:"Pertemuan / Konsultasi"
+    "選手": {
+        yomi:"せんしゅ (senshu)",
+        arti:"Atlet, pemain"
     },
-    "津波": {
-        yomi:"つなみ (tsunami)",
-        arti:"Tsunami"
+    "歌手": {
+        yomi:"かしゅ (kashu)",
+        arti:"Penyanyi"
     },
-    "掃除する": {
-        yomi:"そうじする (soujisuru)",
-        arti:"Membersihkan"
+    "捨てる": {
+        yomi:"すてる (suteru)",
+        arti:"Membuang"
     },
-    "相談する": {
-        yomi:"そうだんする (soudansuru)",
-        arti:"Berkonsultasi"
+    "電池": {
+        yomi:"でんち (denchi)",
+        arti:"Baterai"
     },
-    "難しい": {
-        yomi:"むずかしい (muzukashii)",
-        arti:"Sulit"
+    "間に合う": {
+        yomi:"まにあう (maniau)",
+        arti:"Tepat waktu, sempat"
     },
-    "到着する": {
-        yomi:"とうちゃくする (touchakusuru)",
-        arti:"Tiba / Kedatangan"
+    "比べる": {
+        yomi:"くらべる (kuraberu)",
+        arti:"Membandingkan"
     },
-    "不便": {
-        yomi:"ふべん (fuben)",
-        arti:"Tidak praktis / Tidak nyaman"
+    "伝える": {
+        yomi:"つたえる (tsutaeru)",
+        arti:"Menyampaikan"
     }
 };
 //============================
