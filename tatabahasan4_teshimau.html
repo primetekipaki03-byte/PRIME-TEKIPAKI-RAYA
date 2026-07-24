@@ -275,6 +275,92 @@ body{
     margin-top:6px;
 }
 
+/* =======================
+   TABEL KONJUGASI
+======================= */
+
+.table-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.konjugasi-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
+    font-size:15px;
+}
+
+.konjugasi-table thead th{
+    background:var(--navy);
+    color:var(--gold);
+    text-align:left;
+    padding:14px 16px;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+.konjugasi-table tbody td{
+    padding:13px 16px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.konjugasi-table tbody tr:nth-child(even){
+    background:#f5f8fc;
+}
+
+.konjugasi-table tbody tr:hover{
+    background:#fffbe6;
+}
+
+.konjugasi-table .grp-tag{
+    display:inline-block;
+    background:rgba(0,31,63,.08);
+    color:var(--navy);
+    font-weight:bold;
+    font-size:12px;
+    padding:4px 10px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.konjugasi-table .kamus{
+    font-weight:bold;
+    font-size:17px;
+    color:var(--navy);
+}
+
+.konjugasi-table .yomi-small{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    font-weight:400;
+}
+
+.konjugasi-table .arrow{
+    color:var(--gold2);
+    font-weight:900;
+    font-size:18px;
+}
+
+.konjugasi-table .ukemi{
+    font-weight:bold;
+    font-size:17px;
+    color:#5b8bb0;
+}
+
+.konjugasi-table .group-row td{
+    background:var(--navy2);
+    color:var(--gold);
+    font-weight:bold;
+    font-size:13px;
+    letter-spacing:.5px;
+    padding:10px 16px;
+}
+
 /* contoh kalimat */
 
 .example{
@@ -536,6 +622,9 @@ body{
     .nav-bottom .next{
         text-align:left;
     }
+    .konjugasi-table{
+        font-size:13px;
+    }
 }
 
 footer{
@@ -648,6 +737,83 @@ HOME
     </div>
 
     <div class="section-block">
+        <h2><span class="tag">TABEL</span> Perubahan Kata Kerja → てしまいます</h2>
+        <p style="margin-bottom:16px;">
+            Cara membentuk 〜てしまいます sama seperti membuat bentuk て pada kata kerja, lalu ditambah
+            しまいます di belakangnya. Perubahannya berbeda tergantung golongan kata kerjanya.
+        </p>
+
+        <div class="table-wrap">
+            <table class="konjugasi-table">
+                <thead>
+                    <tr>
+                        <th>Kamus</th>
+                        <th></th>
+                        <th>Bentuk てしまいます</th>
+                        <th>Artinya</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row"><td colspan="4">GOLONGAN 1 (GODAN)</td></tr>
+                    <tr>
+                        <td><span class="kamus">飲む</span><span class="yomi-small">のむ (nomu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">飲んでしまいます</span><span class="yomi-small">のんでしまいます (nonde shimaimasu)</span></td>
+                        <td>tidak sengaja/telanjur minum</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">書く</span><span class="yomi-small">かく (kaku)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">書いてしまいます</span><span class="yomi-small">かいてしまいます (kaite shimaimasu)</span></td>
+                        <td>tidak sengaja/telanjur menulis</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">話す</span><span class="yomi-small">はなす (hanasu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">話してしまいます</span><span class="yomi-small">はなしてしまいます (hanashite shimaimasu)</span></td>
+                        <td>tidak sengaja/telanjur bicara</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">GOLONGAN 2 (ICHIDAN)</td></tr>
+                    <tr>
+                        <td><span class="kamus">食べる</span><span class="yomi-small">たべる (taberu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">食べてしまいます</span><span class="yomi-small">たべてしまいます (tabete shimaimasu)</span></td>
+                        <td>tidak sengaja/telanjur makan; sudah habis dimakan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">忘れる</span><span class="yomi-small">わすれる (wasureru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">忘れてしまいます</span><span class="yomi-small">わすれてしまいます (wasurete shimaimasu)</span></td>
+                        <td>tidak sengaja/telanjur lupa</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">GOLONGAN 3 (IRREGULAR)</td></tr>
+                    <tr>
+                        <td><span class="kamus">する</span><span class="yomi-small">suru</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">してしまいます</span><span class="yomi-small">してしまいます (shite shimaimasu)</span></td>
+                        <td>tidak sengaja/telanjur melakukan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">来る</span><span class="yomi-small">くる (kuru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">来てしまいます</span><span class="yomi-small">きてしまいます (kite shimaimasu)</span></td>
+                        <td>tidak sengaja/telanjur datang</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Cara cepat mengingat:</b> bentuk てしまいます dibuat persis seperti bentuk て biasa
+            (む・ぶ・ぬ → んで, く → いて, す → して, dst), lalu tinggal tambahkan しまいます di
+            belakangnya. Golongan 2 dan golongan 3 tidak berubah polanya, cukup buang る lalu tambahkan
+            てしまいます／来る menjadi 来て.
+        </div>
+    </div>
+
+    <div class="section-block">
         <h2><span class="tag">CONTOH</span> Contoh Kalimat</h2>
 
         <div class="example">
@@ -706,9 +872,8 @@ HOME
             <div class="answer-slot" id="slot1"></div>
 
             <div class="word-bank" id="bank1">
-                <div class="word-tile" data-word="で">で</div>
                 <div class="word-tile" data-word="ねて">ねて</div>
-                <div class="word-tile" data-word="さいふを">さいふを</div>
+                <div class="word-tile" data-word="で">で</div>
             </div>
 
             <div class="quiz-actions">
@@ -730,10 +895,9 @@ HOME
             <div class="answer-slot" id="slot2"></div>
 
             <div class="word-bank" id="bank2">
+                <div class="word-tile" data-word="たべて">たべて</div>
                 <div class="word-tile" data-word="を">を</div>
                 <div class="word-tile" data-word="ぜんぶ">ぜんぶ</div>
-                <div class="word-tile" data-word="たべて">たべて</div>
-                <div class="word-tile" data-word="は">は</div>
             </div>
 
             <div class="quiz-actions">
