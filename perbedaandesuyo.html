@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>でしょう・ですよ・で・に — Perbandingan Tata Bahasa</title>
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --text:#001f3f;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:var(--text);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.home-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--gold);
+    color:#001530;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.home-btn:hover{ opacity:.85; }
+
+.home-icon{
+    width:24px;
+    height:24px;
+    object-fit:cover;
+    border-radius:4px;
+}
+
+.back-wrap{ padding:16px 20px 0; }
+
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    text-decoration:none;
+    padding:10px 18px;
+    background:#eef2f7;
+    border:1px solid #dde3ec;
+    color:var(--navy);
+    border-radius:999px;
+    font-weight:600;
+    font-size:14px;
+    transition:.2s;
+}
+
+.back-btn:hover{ background:#e2e8f2; }
+
+.dropdown{ position:relative; }
+
+.dropdown-btn{
+    background:none;
+    border:2px solid var(--gold);
+    color:var(--gold);
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.dropdown-btn:hover{
+    background:var(--gold);
+    color:#001530;
+}
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:45px;
+    left:0;
+    background:#022655;
+    border-radius:10px;
+    overflow:hidden;
+    min-width:220px;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:12px 15px;
+    color:#ffd700;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:var(--gold);
+    color:#001530;
+}
+
+.show{ display:block; }
+
+@media(max-width:600px){
+  .navbar-inner{flex-direction:column;align-items:flex-start;}
+  .nav-right{width:100%;}
+}
+
+/* =======================
+       HEADER
+======================= */
+
+header{
+    text-align:center;
+    padding:40px 20px 10px;
+}
+
+header h1{
+    font-size:36px;
+    color:#001f3f;
+    margin-bottom:10px;
+}
+
+header p{
+    font-size:17px;
+    color:#555;
+}
+
+/* =======================
+     FLASH CARD VIEWER
+======================= */
+
+.viewer{
+    max-width:900px;
+    margin:20px auto;
+    border:4px solid #001f3f;
+    border-radius:20px;
+    min-height:200px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:white;
+    padding:34px 20px;
+    text-align:center;
+    gap:16px;
+}
+
+.viewer .icon{
+    width:60px;
+    height:60px;
+    color:var(--navy);
+}
+
+.viewer .icon svg{
+    width:100%;
+    height:100%;
+}
+
+#kanji{
+    font-size:52px;
+    font-weight:bold;
+    line-height:1.6;
+}
+
+#kanji ruby rt{
+    font-size:18px;
+    color:#043668;
+}
+
+.arti-btn{
+    background:var(--gold);
+    color:#001530;
+    border:none;
+    padding:10px 22px;
+    border-radius:999px;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.arti-btn:hover{
+    opacity:.85;
+}
+
+.arti{
+    font-size:22px;
+    color:#0a3d91;
+    font-weight:700;
+    min-height:28px;
+}
+
+.penjelasan{
+    font-size:16px;
+    color:#333;
+    max-width:700px;
+    line-height:1.8;
+}
+
+/* =======================
+     DIALOGUE BOX
+======================= */
+
+.dialogue-wrap{
+    max-width:900px;
+    margin:0 auto 30px;
+    padding:0 20px;
+}
+
+.dialogue{
+    border:2px solid #001f3f;
+    border-radius:15px;
+    padding:22px 25px;
+    background:#f7f9fc;
+}
+
+.line{
+    margin-bottom:16px;
+    line-height:2.1;
+    font-size:19px;
+}
+
+.line:last-child{ margin-bottom:0; }
+
+.line strong{
+    color:#043668;
+    margin-right:4px;
+}
+
+.line.staff strong{
+    color:#a66a00;
+}
+
+.line ruby rt{
+    font-size:12px;
+    color:#666;
+}
+
+.line-id{
+    font-size:15px;
+    color:#5a6b85;
+    font-style:italic;
+    margin-top:4px;
+}
+
+.line-id.hidden{
+    display:none;
+}
+
+.translate-row{
+    text-align:center;
+    margin-top:18px;
+}
+
+/* =======================
+        GRID
+======================= */
+
+.grid{
+    max-width:1000px;
+    margin:40px auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    border:2px solid #001f3f;
+    border-radius:15px;
+    padding:25px 15px;
+    cursor:pointer;
+    transition:.25s;
+    text-align:center;
+}
+
+.card:hover{
+    background:#043668;
+    color:white;
+    transform:translateY(-5px);
+}
+
+.card .icon2{
+    width:40px;
+    height:40px;
+    margin:0 auto 10px;
+    color:var(--navy);
+}
+
+.card .icon2 svg{
+    width:100%;
+    height:100%;
+}
+
+.card:hover .icon2{
+    color:white;
+}
+
+.card .j{
+    font-size:24px;
+    font-weight:bold;
+    line-height:1.5;
+    word-break:break-word;
+}
+
+.card .h{
+    margin-top:8px;
+    font-size:15px;
+    opacity:.8;
+}
+
+@media(max-width:768px){
+    .grid{ grid-template-columns:repeat(2,1fr); }
+    #kanji{ font-size:38px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+</div>
+</nav>
+
+<div class="back-wrap">
+<a href="materitatabahasa.html" class="back-btn">← Kembali</a>
+</div>
+
+<header>
+<h1>でしょう・ですよ・で・に</h1>
+<p>Perbandingan pola tata bahasa & partikel — klik kartu di bawah</p>
+</header>
+
+<div class="viewer">
+  <div class="icon" id="icon"></div>
+  <div id="kanji"></div>
+  <div class="arti" id="arti"></div>
+  <div class="penjelasan" id="penjelasan"></div>
+</div>
+
+<div class="dialogue-wrap">
+  <div class="dialogue" id="dialogue"></div>
+  <div class="translate-row">
+    <button class="arti-btn" id="translateBtn" onclick="toggleTranslate()">Lihat Arti Percakapan</button>
+  </div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<footer style="text-align:center;padding:30px;color:#666;font-size:14px;">
+© Tekipaki Japanese Learning
+</footer>
+
+<script>
+
+//============================
+// ICON SET (svg, no emoji)
+//============================
+
+const ICONS = {
+
+  guess: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2-2.5 4"/><line x1="12" y1="17" x2="12" y2="17.01"/></svg>',
+
+  inform: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="8.01"/><line x1="12" y1="11" x2="12" y2="16"/></svg>',
+
+  location: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+
+  target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>'
+
+};
+
+//============================
+// DATA
+//============================
+
+const data = {
+
+  deshou:{
+    icon:"guess",
+    kanji:"でしょう",
+    arti:"Perkiraan / Menebak / Meminta Konfirmasi",
+    penjelasan:"「でしょう」 dipakai untuk menyatakan dugaan atau perkiraan pembicara terhadap sesuatu yang belum pasti, atau untuk meminta konfirmasi/persetujuan lawan bicara (biasanya dengan intonasi naik di akhir kalimat). Nuansanya lebih lembut dan tidak menegaskan fakta secara langsung.",
+    lines:[
+      {who:"A", staff:false, txt:"<ruby>明日<rt>あした</rt></ruby>は<ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>るでしょう。", id:"Sepertinya besok akan turun hujan. (perkiraan)"},
+      {who:"B", staff:true, txt:"そうですね、<ruby>天気予報<rt>てんきよほう</rt></ruby>でもそう<ruby>言<rt>い</rt></ruby>っていました。", id:"Iya ya, di ramalan cuaca juga bilang begitu."},
+      {who:"A", staff:false, txt:"この<ruby>問題<rt>もんだい</rt></ruby>は<ruby>難<rt>むずか</rt></ruby>しいでしょう？", id:"Soal ini susah, ya kan? (meminta konfirmasi/persetujuan)"},
+      {who:"B", staff:true, txt:"ええ、<ruby>本当<rt>ほんとう</rt></ruby>に<ruby>難<rt>むずか</rt></ruby>しいです。", id:"Iya, benar-benar susah."}
+    ]
+  },
+
+  desuyo:{
+    icon:"inform",
+    kanji:"ですよ",
+    arti:"Penegasan / Memberitahu Informasi",
+    penjelasan:"「ですよ」 dipakai untuk menegaskan suatu fakta atau memberitahukan informasi yang mungkin belum diketahui lawan bicara, dengan nada yakin dan pasti. Berbeda dengan 「でしょう」, 「ですよ」 tidak mengandung unsur dugaan — pembicara sudah yakin akan kebenarannya.",
+    lines:[
+      {who:"A", staff:false, txt:"このお<ruby>店<rt>みせ</rt></ruby>、<ruby>今日<rt>きょう</rt></ruby>は<ruby>休<rt>やす</rt></ruby>みですよ。", id:"Toko ini hari ini tutup, lho. (memberitahu info)"},
+      {who:"B", staff:true, txt:"えっ、そうなんですか。<ruby>知<rt>し</rt></ruby>りませんでした。", id:"Eh, begitu ya. Saya tidak tahu."},
+      {who:"A", staff:false, txt:"この<ruby>電車<rt>でんしゃ</rt></ruby>は<ruby>次<rt>つぎ</rt></ruby>の<ruby>駅<rt>えき</rt></ruby>で<ruby>止<rt>と</rt></ruby>まりますよ。", id:"Kereta ini berhenti di stasiun berikutnya, lho. (penegasan fakta)"},
+      {who:"B", staff:true, txt:"ありがとうございます、<ruby>教<rt>おし</rt></ruby>えてくれて。", id:"Terima kasih sudah memberitahu."}
+    ]
+  },
+
+  de:{
+    icon:"location",
+    kanji:"で",
+    arti:"Partikel: Tempat Aktivitas / Alat / Cara",
+    penjelasan:"「で」 dipakai untuk menunjukkan tempat berlangsungnya suatu aktivitas/kegiatan (bukan sekadar keberadaan), serta untuk menunjukkan alat, sarana, bahan, atau cara melakukan sesuatu. Contoh pola: 「〜で〜をします」 (melakukan sesuatu di suatu tempat) dan 「〜で〜します」 (melakukan dengan alat/cara tertentu).",
+    lines:[
+      {who:"A", staff:false, txt:"<ruby>図書館<rt>としょかん</rt></ruby>で<ruby>勉強<rt>べんきょう</rt></ruby>します。", id:"Saya belajar di perpustakaan. (tempat aktivitas)"},
+      {who:"B", staff:true, txt:"いいですね。<ruby>静<rt>しず</rt></ruby>かでしょう？", id:"Bagus tuh. Tenang ya di sana?"},
+      {who:"A", staff:false, txt:"はい。ボールペンで<ruby>名前<rt>なまえ</rt></ruby>を<ruby>書<rt>か</rt></ruby>いてください。", id:"Ya. Silakan tulis nama dengan pulpen. (alat)"},
+      {who:"B", staff:true, txt:"バスで<ruby>行<rt>い</rt></ruby>くのと<ruby>電車<rt>でんしゃ</rt></ruby>で<ruby>行<rt>い</rt></ruby>くの、どちらが<ruby>速<rt>はや</rt></ruby>いですか。", id:"Pergi naik bus dengan naik kereta, mana yang lebih cepat? (cara/sarana)"}
+    ]
+  },
+
+  ni:{
+    icon:"target",
+    kanji:"に",
+    arti:"Partikel: Waktu / Tujuan / Keberadaan",
+    penjelasan:"「に」 dipakai untuk menunjukkan titik waktu spesifik (jam, hari, tanggal), tujuan/arah suatu gerakan, serta keberadaan orang/benda di suatu tempat (dengan kata kerja あります/います). Berbeda dengan 「で」 yang menunjukkan tempat aktivitas, 「に」 lebih ke arah, tujuan, atau titik keberadaan/waktu.",
+    lines:[
+      {who:"A", staff:false, txt:"<ruby>毎朝<rt>まいあさ</rt></ruby>7<ruby>時<rt>じ</rt></ruby>に<ruby>起<rt>お</rt></ruby>きます。", id:"Setiap pagi saya bangun jam 7. (waktu spesifik)"},
+      {who:"B", staff:true, txt:"<ruby>早<rt>はや</rt></ruby>いですね。<ruby>週末<rt>しゅうまつ</rt></ruby>も<ruby>会社<rt>かいしゃ</rt></ruby>に<ruby>行<rt>い</rt></ruby>きますか。", id:"Pagi sekali ya. Akhir pekan juga pergi ke kantor? (tujuan/arah)"},
+      {who:"A", staff:false, txt:"いいえ、<ruby>週末<rt>しゅうまつ</rt></ruby>は<ruby>家<rt>いえ</rt></ruby>にいます。", id:"Tidak, akhir pekan saya di rumah. (keberadaan)"},
+      {who:"B", staff:true, txt:"<ruby>机<rt>つくえ</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>に<ruby>本<rt>ほん</rt></ruby>があります。", id:"Di atas meja ada buku. (keberadaan benda)"}
+    ]
+  }
+
+};
+
+//============================
+// BUILD GRID
+//============================
+
+const grid = document.getElementById("grid");
+
+Object.keys(data).forEach(key=>{
+
+    const d = data[key];
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.onclick = ()=>show(key);
+
+    card.innerHTML =
+      '<div class="icon2">' + ICONS[d.icon] + '</div>' +
+      '<div class="j">' + d.kanji + '</div>' +
+      '<div class="h">' + d.arti + '</div>';
+
+    grid.appendChild(card);
+
+});
+
+//============================
+// SHOW CARD
+//============================
+
+function show(key){
+
+    const d = data[key];
+    if(!d) return;
+
+    document.getElementById("icon").innerHTML = ICONS[d.icon];
+
+    document.getElementById("kanji").innerHTML = d.kanji;
+
+    document.getElementById("arti").textContent = d.arti;
+
+    document.getElementById("penjelasan").textContent = d.penjelasan;
+
+    let box = document.getElementById("dialogue");
+    box.innerHTML = "";
+    d.lines.forEach(l=>{
+        const row = document.createElement("div");
+        row.className = "line" + (l.staff ? " staff" : "");
+        row.innerHTML =
+          '<strong>' + l.who + '：</strong>' + l.txt +
+          '<div class="line-id hidden">' + l.id + '</div>';
+        box.appendChild(row);
+    });
+
+    document.getElementById("translateBtn").textContent = "Lihat Arti Percakapan";
+}
+
+function toggleTranslate(){
+    const lines = document.querySelectorAll("#dialogue .line-id");
+    const btn = document.getElementById("translateBtn");
+    const willShow = lines.length > 0 && lines[0].classList.contains("hidden");
+    lines.forEach(el=>{
+        el.classList.toggle("hidden", !willShow);
+    });
+    btn.textContent = willShow ? "Sembunyikan Arti Percakapan" : "Lihat Arti Percakapan";
+}
+
+// tampilkan default saat load
+show('deshou');
+
+//============================
+// DROPDOWN
+//============================
+
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+        if(menu.id!=id){
+            menu.classList.remove("show");
+        }
+    });
+    document.getElementById(id).classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+            menu.classList.remove("show");
+        });
+    }
+});
+
+//============================
+// PROTEKSI
+//============================
+
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("copy",e=>e.preventDefault());
+document.addEventListener("cut",e=>e.preventDefault());
+document.addEventListener("selectstart",e=>e.preventDefault());
+document.addEventListener("dragstart",e=>e.preventDefault());
+
+document.addEventListener("keydown",function(e){
+    if(
+    (e.ctrlKey&&["c","u","s","p"].includes(e.key.toLowerCase()))
+    ||
+    e.key==="F12"
+    ||
+    (e.ctrlKey&&e.shiftKey&&["i","j","c"].includes(e.key.toLowerCase()))
+    ){
+        e.preventDefault();
+    }
+});
+
+</script>
+
+</body>
+</html>
