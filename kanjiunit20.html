@@ -345,43 +345,6 @@ font-size:28px;
 font-weight:bold;
 }
 
-.contoh{
-    margin-top:10px;
-    padding-top:14px;
-    border-top:1px solid rgba(255,255,255,.25);
-    width:100%;
-    max-width:600px;
-    display:flex;
-    flex-direction:column;
-    gap:4px;
-}
-
-.contoh .label{
-    font-size:12px;
-    letter-spacing:1px;
-    color:var(--gold);
-    text-transform:uppercase;
-    font-weight:bold;
-    margin-bottom:2px;
-}
-
-.contoh .jp-kanji{
-    font-size:19px;
-    font-weight:bold;
-}
-
-.contoh .jp-yomi{
-    font-size:15px;
-    color:#cdd7ea;
-}
-
-.contoh .id{
-    font-size:15px;
-    color:#f0e6bf;
-    font-style:italic;
-    margin-top:4px;
-}
-
 .tap-tip{
 position:absolute;
 bottom:16px;
@@ -411,10 +374,6 @@ font-size:22px;
 .face-back .yomi{
 font-size:18px;
 }
-
-.contoh .jp-kanji{font-size:17px;}
-.contoh .jp-yomi{font-size:13px;}
-.contoh .id{font-size:13px;}
 
 }
 
@@ -446,11 +405,6 @@ font-size:18px;
 .face-back .yomi{
 font-size:15px;
 }
-
-.contoh{margin-top:6px;padding-top:10px;}
-.contoh .jp-kanji{font-size:15px;}
-.contoh .jp-yomi{font-size:12px;}
-.contoh .id{font-size:12px;}
 
 .tap-tip{
 font-size:11px;
@@ -617,7 +571,7 @@ HOME
 
 </header>
 
-<p class="hint">Klik kartu besar untuk membalik dan melihat cara baca, arti, &amp; contoh kalimat</p>
+<p class="hint">Klik kartu besar untuk membalik dan melihat cara baca &amp; arti</p>
 
 <div class="viewer-wrap">
     <div class="viewer big" id="viewer" onclick="flipCard()">
@@ -630,12 +584,6 @@ HOME
         <div class="face face-back">
             <div class="yomi" id="yomi">しけん (shiken)</div>
             <div class="arti" id="arti">Ujian, tes</div>
-            <div class="contoh">
-                <div class="label">Contoh Kalimat</div>
-                <div class="jp-kanji" id="contohKanji">試験に合格しました。</div>
-                <div class="jp-yomi" id="contohYomi">しけん に ごうかく しました。</div>
-                <div class="id" id="contohId">Saya lulus ujian.</div>
-            </div>
             <span class="tap-tip">klik untuk kembali</span>
         </div>
 
@@ -702,73 +650,43 @@ HOME
 const kanjiData = {
     "試験": {
         yomi:"しけん (shiken)",
-        arti:"Ujian, tes",
-        contohKanji:"試験に合格しました。",
-        contohYomi:"しけん に ごうかく しました。",
-        contohId:"Saya lulus ujian."
+        arti:"Ujian, tes"
     },
     "自然": {
         yomi:"しぜん (shizen)",
-        arti:"Alam",
-        contohKanji:"自然の中を歩きます。",
-        contohYomi:"しぜん の なか を あるきます。",
-        contohId:"Berjalan di tengah alam."
+        arti:"Alam"
     },
     "豊か": {
         yomi:"ゆたか (yutaka)",
-        arti:"Kaya, melimpah",
-        contohKanji:"水が豊かです。",
-        contohYomi:"みず が ゆたか です。",
-        contohId:"Airnya melimpah."
+        arti:"Kaya, melimpah"
     },
     "遠い": {
         yomi:"とおい (tooi)",
-        arti:"Jauh",
-        contohKanji:"駅は遠いです。",
-        contohYomi:"えき は とおい です。",
-        contohId:"Stasiunnya jauh."
+        arti:"Jauh"
     },
     "近い": {
         yomi:"ちかい (chikai)",
-        arti:"Dekat",
-        contohKanji:"学校は近いです。",
-        contohYomi:"がっこう は ちかい です。",
-        contohId:"Sekolahnya dekat."
+        arti:"Dekat"
     },
     "静か": {
         yomi:"しずか (shizuka)",
-        arti:"Tenang, sepi",
-        contohKanji:"この公園は静かです。",
-        contohYomi:"この こうえん は しずか です。",
-        contohId:"Taman ini tenang."
+        arti:"Tenang, sepi"
     },
     "暖かい": {
         yomi:"あたたかい (atatakai)",
-        arti:"Hangat",
-        contohKanji:"今日は暖かいです。",
-        contohYomi:"きょう は あたたかい です。",
-        contohId:"Hari ini hangat."
+        arti:"Hangat"
     },
     "空気": {
         yomi:"くうき (kuuki)",
-        arti:"Udara",
-        contohKanji:"空気がきれいです。",
-        contohYomi:"くうき が きれい です。",
-        contohId:"Udaranya bersih."
+        arti:"Udara"
     },
     "気持ち": {
         yomi:"きもち (kimochi)",
-        arti:"Perasaan, perasaan hati",
-        contohKanji:"気持ちがいいです。",
-        contohYomi:"きもち が いい です。",
-        contohId:"Rasanya nyaman/enak."
+        arti:"Perasaan, perasaan hati"
     },
     "涼しい": {
         yomi:"すずしい (suzushii)",
-        arti:"Sejuk",
-        contohKanji:"高原は涼しいです。",
-        contohYomi:"こうげん は すずしい です。",
-        contohId:"Dataran tingginya sejuk."
+        arti:"Sejuk"
     }
 };
 //============================
@@ -804,14 +722,11 @@ autoSizeCards();
 function show(kanji, el){
 
     const viewer = document.getElementById("viewer");
-    const data = kanjiData[kanji] || { yomi:"—", arti:"—", contohKanji:"—", contohYomi:"—", contohId:"—" };
+    const data = kanjiData[kanji] || { yomi:"—", arti:"—" };
 
     document.getElementById("kanji").innerHTML = kanji;
     document.getElementById("yomi").innerHTML = data.yomi;
     document.getElementById("arti").innerHTML = data.arti;
-    document.getElementById("contohKanji").innerHTML = data.contohKanji;
-    document.getElementById("contohYomi").innerHTML = data.contohYomi;
-    document.getElementById("contohId").innerHTML = data.contohId;
 
     viewer.classList.remove("flipped");
     viewer.classList.remove("big");
