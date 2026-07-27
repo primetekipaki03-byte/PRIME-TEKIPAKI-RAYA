@@ -140,19 +140,87 @@ body{
     display:block;
 }
 
+/* =======================
+      HAMBURGER (MOBILE)
+======================= */
+
+.hamburger-btn{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    width:38px;
+    height:38px;
+    background:none;
+    border:2px solid #e0b52a;
+    border-radius:8px;
+    cursor:pointer;
+    padding:0;
+}
+
+.hamburger-btn span{
+    display:block;
+    width:20px;
+    height:2px;
+    margin:0 auto;
+    background:#e0b52a;
+    border-radius:2px;
+    transition:.25s;
+}
+
+.hamburger-btn.open span:nth-child(1){
+    transform:translateY(7px) rotate(45deg);
+}
+
+.hamburger-btn.open span:nth-child(2){
+    opacity:0;
+}
+
+.hamburger-btn.open span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg);
+}
+
 @media(max-width:600px){
     .navbar-inner{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:8px;
+        flex-wrap:wrap;
     }
+
+    .hamburger-btn{
+        display:flex;
+    }
+
     .nav-right{
+        display:none;
+        width:100%;
+        flex-direction:column;
+        align-items:stretch;
+        gap:8px;
+        margin-top:12px;
+    }
+
+    .nav-right.show-mobile{
+        display:flex;
+    }
+
+    .dropdown{
         width:100%;
     }
+
     .dropdown-btn{
-        font-size:.72rem;
-        padding:6px 9px;
+        width:100%;
+        text-align:left;
+        font-size:.85rem;
+        padding:10px 14px;
     }
+
+    .dropdown-menu{
+        position:static;
+        width:100%;
+        max-width:none;
+        box-shadow:none;
+        margin-top:6px;
+    }
+
     .breadcrumb{
         margin-top:16px;
     }
@@ -817,7 +885,13 @@ HOME
 </a>
 </div>
 
-<div class="nav-right">
+<button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<div class="nav-right" id="navRight">
 
   <div class="dropdown">
     <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
@@ -1178,6 +1252,17 @@ function resetQuiz(id){
 initQuiz(1);
 initQuiz(2);
 
+//============================
+// HAMBURGER (MOBILE MENU)
+//============================
+
+function toggleMobileMenu(){
+    const navRight = document.getElementById('navRight');
+    const btn = document.getElementById('hamburgerBtn');
+    navRight.classList.toggle('show-mobile');
+    btn.classList.toggle('open');
+}
+
 function toggleDropdown(id){
     document.querySelectorAll('.dropdown-menu').forEach(m=>{
         if(m.id!==id){
@@ -1191,7 +1276,7 @@ function toggleDropdown(id){
     const willShow = !menu.classList.contains('show');
     menu.classList.toggle('show');
     wrap.classList.toggle('open');
-    if(willShow){
+    if(willShow && window.innerWidth > 600){
         menu.classList.remove('align-right');
         const rect = menu.getBoundingClientRect();
         if(rect.right > window.innerWidth - 8){ menu.classList.add('align-right'); }
@@ -1204,6 +1289,10 @@ window.addEventListener('resize', ()=>{
         m.classList.remove('align-right');
         m.closest('.dropdown').classList.remove('open');
     });
+    if(window.innerWidth > 600){
+        document.getElementById('navRight').classList.remove('show-mobile');
+        document.getElementById('hamburgerBtn').classList.remove('open');
+    }
 });
 
 document.addEventListener("click",function(e){
@@ -1213,6 +1302,14 @@ document.addEventListener("click",function(e){
             menu.classList.remove("align-right");
         });
         document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
+    }
+    if(!e.target.closest("#navRight") && !e.target.closest("#hamburgerBtn")){
+        const navRight = document.getElementById('navRight');
+        const btn = document.getElementById('hamburgerBtn');
+        if(navRight.classList.contains('show-mobile') && window.innerWidth <= 600){
+            navRight.classList.remove('show-mobile');
+            btn.classList.remove('open');
+        }
     }
 });
 
