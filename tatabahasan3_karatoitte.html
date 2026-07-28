@@ -1106,7 +1106,18 @@ const quizState = {
     2:[]
 };
 
+function shuffleBank(id){
+    const bank = document.getElementById("bank"+id);
+    const tiles = Array.from(bank.querySelectorAll(".word-tile"));
+    for(let i = tiles.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+    }
+    tiles.forEach(tile => bank.appendChild(tile));
+}
+
 function initQuiz(id){
+    shuffleBank(id);
     const bank = document.getElementById("bank"+id);
     bank.querySelectorAll(".word-tile").forEach(tile=>{
         tile.addEventListener("click", ()=>placeWord(id, tile));
