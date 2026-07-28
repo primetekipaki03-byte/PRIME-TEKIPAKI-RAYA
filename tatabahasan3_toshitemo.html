@@ -140,18 +140,68 @@ body{
     display:block;
 }
 
+.navbar-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+}
+
+.hamburger-btn{
+    display:none;
+    background:none;
+    border:2px solid #e0b52a;
+    color:#e0b52a;
+    padding:6px 14px;
+    border-radius:8px;
+    font-size:20px;
+    line-height:1;
+    cursor:pointer;
+    font-family:inherit;
+}
+
+.hamburger-btn:hover{
+    background:#e0b52a;
+    color:#001530;
+}
+
 @media(max-width:600px){
     .navbar-inner{
         flex-direction:column;
-        align-items:flex-start;
-        gap:8px;
+        align-items:stretch;
+        gap:0;
+    }
+    .hamburger-btn{
+        display:block;
     }
     .nav-right{
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        width:100%;
+        gap:8px;
+        margin-top:10px;
+        padding-bottom:6px;
+    }
+    .nav-right.open{
+        display:flex;
+    }
+    .dropdown{
         width:100%;
     }
     .dropdown-btn{
-        font-size:.72rem;
-        padding:6px 9px;
+        width:100%;
+        text-align:left;
+        font-size:.85rem;
+        padding:10px 14px;
+    }
+    .dropdown-menu{
+        position:static;
+        width:100%;
+        min-width:0;
+        max-width:100%;
+        margin-top:4px;
+        box-shadow:none;
     }
     .breadcrumb{
         margin-top:16px;
@@ -791,6 +841,7 @@ footer{
 <nav id="navbar">
 <div class="navbar-inner">
 
+<div class="navbar-top">
 <div class="nav-left">
 <a href="index.html" class="home-btn">
 <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -800,7 +851,10 @@ HOME
 </a>
 </div>
 
-<div class="nav-right">
+<button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+</div>
+
+<div class="nav-right" id="navRight">
 
   <div class="dropdown">
     <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
@@ -1207,12 +1261,25 @@ function toggleDropdown(id){
     }
 }
 
+function toggleMobileMenu(){
+    const nav = document.getElementById('navRight');
+    const btn = document.getElementById('hamburgerBtn');
+    nav.classList.toggle('open');
+    btn.textContent = nav.classList.contains('open') ? '✕' : '☰';
+}
+
 window.addEventListener('resize', ()=>{
     document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
         m.classList.remove('show');
         m.classList.remove('align-right');
         m.closest('.dropdown').classList.remove('open');
     });
+    if(window.innerWidth > 600){
+        const nav = document.getElementById('navRight');
+        const btn = document.getElementById('hamburgerBtn');
+        if(nav){ nav.classList.remove('open'); }
+        if(btn){ btn.textContent = '☰'; }
+    }
 });
 
 document.addEventListener("click",function(e){
