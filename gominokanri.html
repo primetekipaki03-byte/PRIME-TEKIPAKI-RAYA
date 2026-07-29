@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="id" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ゴミの管理方法 — Cara Mengelola Sampah</title>
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --text:#001f3f;
+    --moeru:#001f3f;
+    --moenai:#00305e;
+    --shigen:#003b73;
+    --plastik:#0a4a8a;
+    --sodai:#022655;
+    --yuugai:#3d0f14;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:var(--text);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.burger-btn{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    width:38px;
+    height:38px;
+    background:none;
+    border:2px solid var(--gold);
+    border-radius:8px;
+    cursor:pointer;
+    padding:0;
+}
+
+.burger-btn span{
+    display:block;
+    width:18px;
+    height:2px;
+    background:var(--gold);
+    margin:0 auto;
+    transition:.3s;
+}
+
+.burger-btn.open span:nth-child(1){
+    transform:translateY(7px) rotate(45deg);
+}
+
+.burger-btn.open span:nth-child(2){
+    opacity:0;
+}
+
+.burger-btn.open span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg);
+}
+
+.home-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--gold);
+    color:#001530;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.home-btn:hover{
+    opacity:.85;
+}
+
+.home-icon{
+    width:24px;
+    height:24px;
+    object-fit:cover;
+    border-radius:4px;
+}
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown-btn{
+    background:none;
+    border:2px solid var(--gold);
+    color:var(--gold);
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.dropdown-btn:hover{
+    background:var(--gold);
+    color:#001530;
+}
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:45px;
+    left:0;
+    background:#022655;
+    border-radius:10px;
+    overflow:hidden;
+    min-width:220px;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:12px 15px;
+    color:#ffd700;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:var(--gold);
+    color:#001530;
+}
+
+.show{
+    display:block;
+}
+
+@media(max-width:768px){
+  .burger-btn{
+      display:flex;
+  }
+  .nav-right{
+      display:none;
+      width:100%;
+      flex-direction:column;
+      align-items:stretch;
+      gap:8px;
+      padding:12px 20px 16px;
+      background:#001530;
+  }
+  .nav-right.open{
+      display:flex;
+  }
+  .dropdown{
+      width:100%;
+  }
+  .dropdown-btn{
+      width:100%;
+      text-align:left;
+  }
+  .dropdown-menu{
+      position:static;
+      width:100%;
+      min-width:0;
+      box-shadow:none;
+      margin-top:4px;
+  }
+  .navbar-inner{
+      flex-wrap:wrap;
+  }
+}
+
+/* =======================
+     BACK BUTTON
+======================= */
+
+.back-wrap{
+    padding:16px 20px 0;
+}
+
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    text-decoration:none;
+    padding:10px 18px;
+    background:#eef2f7;
+    border:1px solid #dde3ec;
+    color:var(--navy);
+    border-radius:999px;
+    font-weight:600;
+    font-size:14px;
+    transition:.2s;
+}
+
+.back-btn:hover{
+    background:#e2e8f2;
+}
+
+/* =======================
+       HEADER
+======================= */
+
+header{
+    text-align:center;
+    padding:40px 20px 10px;
+}
+
+header h1{
+    font-size:38px;
+    color:#001f3f;
+    margin-bottom:8px;
+}
+
+header p{
+    font-size:17px;
+    color:#555;
+}
+
+.hint{
+    text-align:center;
+    font-size:14px;
+    color:#8892a3;
+    margin-bottom:25px;
+}
+
+/* =======================
+     ARTICLE WRAP
+======================= */
+
+.article-wrap{
+    max-width:960px;
+    margin:20px auto 60px;
+    padding:0 20px;
+}
+
+.intro-card{
+    border:2px solid var(--navy);
+    border-radius:20px;
+    padding:30px 35px;
+    background:#fff;
+    box-shadow:0 8px 24px rgba(0,31,63,.08);
+    margin-bottom:30px;
+}
+
+.intro-card p{
+    font-size:16px;
+    line-height:1.85;
+    color:#2b2b2b;
+    text-align:justify;
+}
+
+/* category section */
+
+.cat-section{
+    border-radius:18px;
+    margin-bottom:24px;
+    overflow:hidden;
+    border:2px solid var(--navy);
+    background:#fff;
+}
+
+.cat-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 24px;
+    color:#fff;
+    cursor:pointer;
+    user-select:none;
+    background:var(--navy2);
+    transition:background .2s;
+}
+
+.cat-head:hover{
+    background:var(--navy);
+}
+
+.cat-head .jp{
+    font-size:14px;
+    opacity:.8;
+    display:block;
+    margin-top:2px;
+    color:var(--gold);
+}
+
+.cat-head h2{
+    font-size:22px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.cat-dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    display:inline-block;
+    flex-shrink:0;
+}
+
+.cat-head .arrow{
+    font-size:20px;
+    transition:.3s;
+}
+
+.cat-head.open .arrow{
+    transform:rotate(180deg);
+}
+
+.cat-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .4s ease;
+    background:#fbfcfe;
+}
+
+.cat-body-inner{
+    padding:22px 26px;
+}
+
+.cat-body ul{
+    margin-left:20px;
+    line-height:1.9;
+    font-size:15.5px;
+    color:#2b2b2b;
+}
+
+.cat-body li{
+    margin-bottom:6px;
+}
+
+.cat-note{
+    margin-top:14px;
+    background:#f4f8ff;
+    border:2px dashed var(--gold);
+    border-radius:12px;
+    padding:14px 18px;
+    font-size:14.5px;
+    color:#333;
+}
+
+.dot-moeru{background:#f97316;}
+.dot-moenai{background:#60a5fa;}
+.dot-shigen{background:#4ade80;}
+.dot-plastik{background:#22d3ee;}
+.dot-sodai{background:#c2a878;}
+.dot-yuugai{background:#f87171;}
+
+/* schedule table */
+
+h2.section-title{
+    color:var(--navy2);
+    font-size:26px;
+    margin:40px 0 16px;
+    border-left:6px solid var(--gold);
+    padding-left:12px;
+}
+
+.sort-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:15px 0 25px;
+    font-size:14.5px;
+}
+
+.sort-table th, .sort-table td{
+    border:1px solid #cdd8e6;
+    padding:9px 10px;
+    text-align:center;
+}
+
+.sort-table th{
+    background:var(--navy);
+    color:var(--gold);
+}
+
+.sort-table tr:nth-child(even){
+    background:#f6f9fd;
+}
+
+.info-box{
+    background:#f4f8ff;
+    border:2px dashed var(--gold);
+    border-radius:14px;
+    padding:18px 22px;
+    margin:16px 0 25px;
+    font-size:15.5px;
+    line-height:1.8;
+}
+
+.info-box strong{
+    color:var(--navy2);
+}
+
+/* steps */
+
+.steps{
+    counter-reset:step;
+    margin:15px 0 30px;
+    padding:0;
+    list-style:none;
+}
+
+.steps li{
+    counter-increment:step;
+    position:relative;
+    padding:12px 20px 12px 55px;
+    margin-bottom:10px;
+    background:#fbfcfe;
+    border:1px solid #dde3ec;
+    border-radius:12px;
+    font-size:15.5px;
+    line-height:1.7;
+}
+
+.steps li::before{
+    content:counter(step);
+    position:absolute;
+    left:14px;
+    top:50%;
+    transform:translateY(-50%);
+    width:26px;
+    height:26px;
+    background:var(--navy);
+    color:var(--gold);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:13px;
+}
+
+/* quiz */
+
+.quiz-wrap{
+    border:2px solid var(--navy);
+    border-radius:20px;
+    padding:30px;
+    background:#fff;
+    margin:20px 0 40px;
+}
+
+.quiz-item{
+    margin-bottom:22px;
+    padding-bottom:18px;
+    border-bottom:1px dashed #dde3ec;
+}
+
+.quiz-item:last-child{
+    border-bottom:none;
+    margin-bottom:0;
+}
+
+.quiz-q{
+    font-size:15.5px;
+    margin-bottom:10px;
+    color:#2b2b2b;
+    line-height:1.7;
+}
+
+.quiz-options{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.quiz-btn{
+    border:2px solid var(--navy);
+    background:#fff;
+    color:var(--navy);
+    padding:8px 16px;
+    border-radius:999px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:14px;
+    transition:.2s;
+}
+
+.quiz-btn:hover{
+    background:var(--navy);
+    color:#fff;
+}
+
+.quiz-btn.correct{
+    background:#2e9e57;
+    border-color:#2e9e57;
+    color:#fff;
+}
+
+.quiz-btn.wrong{
+    background:#c0392b;
+    border-color:#c0392b;
+    color:#fff;
+}
+
+.quiz-btn[disabled]{
+    cursor:default;
+}
+
+@media(max-width:768px){
+    .intro-card, .quiz-wrap{
+        padding:22px;
+    }
+    header h1{
+        font-size:27px;
+    }
+    .cat-head h2{
+        font-size:18px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 24 24">
+
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+
+</svg>
+
+HOME
+
+</a>
+</div>
+
+<button class="burger-btn" id="burgerBtn" onclick="toggleBurger()" aria-label="Menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<div class="nav-right" id="navRight">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+</nav>
+
+<div class="back-wrap">
+<a href="index.html" class="back-btn">← Kembali ke Beranda</a>
+</div>
+
+<header>
+<h1>🗑️ ゴミの管理方法</h1>
+<p>Cara Mengelola Sampah di Jepang — Pembuangan Sampah yang Benar dan Sesuai Aturan</p>
+</header>
+
+<p class="hint">Klik setiap kategori di bawah untuk membuka detail jenis sampah &amp; contohnya</p>
+
+<div class="article-wrap">
+
+  <div class="intro-card">
+    <p>
+      Di Jepang, sampah rumah tangga wajib dipilah (分別／ぶんべつ) sebelum dibuang. Setiap jenis sampah memiliki hari pembuangan, kantong, dan cara penanganan yang berbeda-beda. Memahami sistem ini penting supaya sampah benar-benar diambil oleh petugas dan tidak mengganggu lingkungan sekitar tempat tinggal.
+    </p>
+  </div>
+
+  <!-- MOERU GOMI -->
+  <div class="cat-section moeru">
+    <div class="cat-head" onclick="toggleCat(this)">
+      <div>
+        <h2><span class="cat-dot dot-moeru"></span>もえるごみ — Sampah yang Bisa Dibakar</h2>
+        <span class="jp">燃えるゴミ (Moeru gomi)</span>
+      </div>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="cat-body">
+      <div class="cat-body-inner">
+        <ul>
+          <li>生ごみ（なまごみ）— sisa makanan</li>
+          <li>紙くず — kertas bekas (tisu, popok)</li>
+          <li>かばん・くつ — tas, sepatu</li>
+          <li>木くず — kayu</li>
+          <li>洋服 — pakaian</li>
+          <li>料理でつかったあぶら — minyak bekas masak</li>
+        </ul>
+        <div class="cat-note"><strong>Catatan:</strong> Sisa nasi dan lauk, kulit buah/sayur, makanan basi, dan ampas teh/kopi (生ゴミ) juga termasuk dalam kategori ini.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOENAI GOMI -->
+  <div class="cat-section moenai">
+    <div class="cat-head" onclick="toggleCat(this)">
+      <div>
+        <h2><span class="cat-dot dot-moenai"></span>もえないごみ — Sampah yang Tidak Bisa Dibakar</h2>
+        <span class="jp">不燃ゴミ (Moenai gomi)</span>
+      </div>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="cat-body">
+      <div class="cat-body-inner">
+        <ul>
+          <li>ガラス — kaca (gelas, lampu)</li>
+          <li>陶器（とうき）— keramik</li>
+          <li>鏡（かがみ）— cermin</li>
+          <li>包丁（ほうちょう）— pisau</li>
+          <li>はさみ — gunting</li>
+          <li>金属小物（きんぞくこもの）— barang logam kecil, panci/wajan</li>
+          <li>スプレーかん — kaleng semprot</li>
+          <li>かさ — payung</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHIGEN GOMI -->
+  <div class="cat-section shigen">
+    <div class="cat-head" onclick="toggleCat(this)">
+      <div>
+        <h2><span class="cat-dot dot-shigen"></span>資源ごみ — Sampah Daur Ulang</h2>
+        <span class="jp">Shigen gomi</span>
+      </div>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="cat-body">
+      <div class="cat-body-inner">
+        <ul>
+          <li>びん — botol kaca</li>
+          <li>かん — kaleng</li>
+          <li>ペットボトル — botol plastik PET</li>
+          <li>紙・段ボール — kertas / kardus</li>
+          <li>majalah / koran</li>
+          <li>plastik kemasan bersih</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLASTIK GOMI -->
+  <div class="cat-section plastik">
+    <div class="cat-head" onclick="toggleCat(this)">
+      <div>
+        <h2><span class="cat-dot dot-plastik"></span>プラスチックごみ — Sampah Plastik</h2>
+        <span class="jp">Purasuchikku gomi</span>
+      </div>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="cat-body">
+      <div class="cat-body-inner">
+        <ul>
+          <li>Bungkus makanan</li>
+          <li>Plastik cup mie instan yang sudah dicuci</li>
+          <li>Tray makanan</li>
+          <li>Kantong plastik bersih</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SODAI GOMI -->
+  <div class="cat-section sodai">
+    <div class="cat-head" onclick="toggleCat(this)">
+      <div>
+        <h2><span class="cat-dot dot-sodai"></span>粗大ごみ — Sampah Besar</h2>
+        <span class="jp">Sodai gomi</span>
+      </div>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="cat-body">
+      <div class="cat-body-inner">
+        <ul>
+          <li>Sofa, kasur, lemari</li>
+          <li>Meja kayu besar</li>
+          <li>Sepeda, stroller</li>
+          <li>Peralatan elektronik besar: TV, AC</li>
+        </ul>
+        <div class="cat-note">
+          <strong>Hal penting:</strong> Tidak bisa dibuang sembarangan di kantong sampah biasa. Harus mendaftar terlebih dahulu ke kantor sampah setempat atau via telepon/website, biasanya perlu stiker biaya sampah besar yang dibeli di toko konbini (コンビニ). Jadwal pengambilan ditentukan oleh kota.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YUUGAI GOMI -->
+  <div class="cat-section yuugai">
+    <div class="cat-head" onclick="toggleCat(this)">
+      <div>
+        <h2><span class="cat-dot dot-yuugai"></span>有害ごみ — Sampah Berbahaya</h2>
+        <span class="jp">Yuugai gomi</span>
+      </div>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="cat-body">
+      <div class="cat-body-inner">
+        <p style="margin-bottom:12px;line-height:1.8;font-size:15.5px;">Sampah yang mengandung zat berbahaya, beracun, atau mudah meledak sehingga tidak boleh dibuang bersama sampah biasa dan harus ditangani secara khusus.</p>
+        <ul>
+          <li>Baterai</li>
+          <li>Lampu neon</li>
+          <li>Termometer raksa</li>
+          <li>Spray kaleng</li>
+          <li>Tabung gas kecil</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">ゴミだしのひ — Hari &amp; Waktu Pembuangan</h2>
+  <div class="info-box">
+    Sampah harus dikeluarkan sesuai jadwal yang telah ditentukan. Selalu periksa kalender atau jadwal sampah di daerah masing-masing, karena petugas hanya akan mengambil sampah sesuai jadwal pengambilan. Tujuannya untuk menjaga kebersihan lingkungan dan mencegah gagak atau kucing mengacak sampah.
+  </div>
+
+  <table class="sort-table">
+    <tr>
+      <th></th>
+      <th>月曜日<br>Senin</th>
+      <th>火曜日<br>Selasa</th>
+      <th>水曜日<br>Rabu</th>
+      <th>木曜日<br>Kamis</th>
+      <th>金曜日<br>Jumat</th>
+    </tr>
+    <tr>
+      <td>ペットボトル・衣料<br>Botol PET</td>
+      <td>—</td>
+      <td>✔</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Jenis sampah</td>
+      <td>もえないごみ<br>(tidak bisa dibakar)</td>
+      <td>もえないごみ<br>(tidak bisa dibakar)</td>
+      <td>もえるごみ<br>(bisa dibakar)</td>
+      <td>もえるごみ<br>(bisa dibakar)</td>
+      <td>資源ごみ<br>(daur ulang)</td>
+    </tr>
+  </table>
+  <div class="info-box">
+    <strong>ごみの日 — Hari Pembuangan:</strong> biasanya sampah harus sudah dikeluarkan sebelum pukul <strong>8:00 pagi</strong> pada hari yang ditentukan. Jadwal pasti (hari &amp; kategori) berbeda-beda tiap kota/apartemen, jadi selalu cek kalender resmi setempat.
+  </div>
+
+  <h2 class="section-title">ゴミ袋 — Kantong Plastik</h2>
+  <ol class="steps">
+    <li>Pilah sampah terlebih dahulu, lalu masukkan ke kantong sesuai kategorinya.</li>
+    <li>Pisahkan sampah berdasarkan kategori dan masukkan ke kantong sampah yang sesuai.</li>
+    <li>Gunakan kantong sampah berbeda untuk setiap jenis sampah (misalnya kantong berlabel 燃えるゴミ untuk sampah yang bisa dibakar dan 燃えないゴミ untuk yang tidak bisa dibakar).</li>
+  </ol>
+
+  <h2 class="section-title">油凝固剤（あぶらぎょうこざい）— Serbuk Pembeku Minyak</h2>
+  <p style="line-height:1.85;font-size:15.5px;margin-bottom:14px;">
+    Serbuk ini digunakan untuk membekukan minyak goreng bekas agar berubah dari cair menjadi padat, sehingga memudahkan pembuangan minyak tanpa tumpah, mencegah saluran air tersumbat, dan mengurangi bau tidak sedap dari minyak bekas. Tujuannya adalah menjaga kebersihan dapur, melindungi lingkungan agar tidak mencemari air dan tanah, membuang minyak sesuai aturan sampah, serta mencegah kerusakan pipa dan selokan.
+  </p>
+  <p style="font-weight:bold;margin-bottom:8px;">Cara penggunaan:</p>
+  <ol class="steps">
+    <li>Masukkan serbuk pembeku minyak ke dalam wajan/teflon berisi minyak bekas.</li>
+    <li>Panaskan wajan sambil diaduk.</li>
+    <li>Matikan api, lalu tunggu hingga dingin dan minyak membeku.</li>
+    <li>Setelah dingin, masukkan minyak beku ke dalam kantong sampah.</li>
+    <li>Buang ke dalam kategori sampah もえるごみ (moyasu gomi / sampah yang mudah terbakar).</li>
+  </ol>
+
+  <h2 class="section-title">Langkah Sebelum Membuang Botol PET</h2>
+  <ol class="steps">
+    <li>ラベルをはがす — Lepaskan label botol.</li>
+    <li>キャップを外す — Pisahkan/lepas tutup botol.</li>
+    <li>中をすすぐ — Bilas bagian dalam botol.</li>
+    <li>つぶす — Pipihkan botol, lalu masukkan ke kantong ペットボトル (botol PET).</li>
+  </ol>
+
+  <h2 class="section-title">Langkah Sebelum Membuang Cup Mie Instan</h2>
+  <ol class="steps">
+    <li>Cuci bersih bagian dalam cup dari sisa kuah dan bumbu.</li>
+    <li>Keringkan cup sebelum dibuang.</li>
+    <li>Buang ke kategori プラスチック容器包装 (plastic containers and packaging).</li>
+  </ol>
+
+  <h2 class="section-title">Mesin Pengumpul Botol Plastik (PET)</h2>
+  <div class="info-box">
+    Di banyak minimarket seperti 7-Eleven, tersedia <strong>ペットボトル回収機</strong>（ペットボトルかいしゅうき）atau mesin pengumpul botol PET. Botol yang sudah dibersihkan dapat dimasukkan ke mesin ini, dan poin yang didapat bisa disimpan ke <strong>ナナコカード（Kartu Nanaco）</strong> sebagai bentuk insentif daur ulang.
+    <br><br><em>Sumber: ESSE Online (2024)</em>
+  </div>
+
+  <h2 class="section-title">🧩 Quiz — Masuk Kategori Mana?</h2>
+  <div class="quiz-wrap">
+
+    <div class="quiz-item">
+      <div class="quiz-q">1. Sisa makanan (生ごみ), tisu/kertas kotor, popok sekali pakai, kayu kecil, dan plastik kotor yang tidak bisa dicuci — masuk kategori apa?</div>
+      <div class="quiz-options">
+        <button class="quiz-btn" onclick="checkQuiz(this,true)">かねんごみ</button>
+        <button class="quiz-btn" onclick="checkQuiz(this,false)">ふねんごみ</button>
+        <button class="quiz-btn" onclick="checkQuiz(this,false)">そだいごみ</button>
+      </div>
+    </div>
+
+    <div class="quiz-item">
+      <div class="quiz-q">2. Kaca, keramik, cermin, pisau, gunting, dan logam kecil — masuk kategori apa?</div>
+      <div class="quiz-options">
+        <button class="quiz-btn" onclick="checkQuiz(this,false)">かねんごみ</button>
+        <button class="quiz-btn" onclick="checkQuiz(this,true)">ふねんごみ</button>
+        <button class="quiz-btn" onclick="checkQuiz(this,false)">そだいごみ</button>
+      </div>
+    </div>
+
+    <div class="quiz-item">
+      <div class="quiz-q">3. Kursi, meja, kasur, sepeda, dan peralatan elektronik besar — masuk kategori apa?</div>
+      <div class="quiz-options">
+        <button class="quiz-btn" onclick="checkQuiz(this,false)">かねんごみ</button>
+        <button class="quiz-btn" onclick="checkQuiz(this,false)">ふねんごみ</button>
+        <button class="quiz-btn" onclick="checkQuiz(this,true)">そだいごみ</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer style="text-align:center;padding:30px;color:#666;font-size:14px;">
+© Tekipaki Japanese Learning
+</footer>
+
+<script>
+
+//============================
+// ACCORDION KATEGORI
+//============================
+
+function toggleCat(headEl){
+    const body = headEl.nextElementSibling;
+    const isOpen = headEl.classList.contains("open");
+
+    document.querySelectorAll(".cat-head").forEach(h=>{
+        h.classList.remove("open");
+        h.nextElementSibling.style.maxHeight = null;
+    });
+
+    if(!isOpen){
+        headEl.classList.add("open");
+        body.style.maxHeight = body.scrollHeight + "px";
+    }
+}
+
+//============================
+// QUIZ
+//============================
+
+function checkQuiz(btn, isCorrect){
+    const options = btn.parentElement.querySelectorAll(".quiz-btn");
+    options.forEach(b=>b.disabled = true);
+
+    if(isCorrect){
+        btn.classList.add("correct");
+    }else{
+        btn.classList.add("wrong");
+        options.forEach(b=>{
+            if(b.getAttribute("onclick").includes("true")){
+                b.classList.add("correct");
+            }
+        });
+    }
+}
+
+//============================
+// BURGER MENU (MOBILE)
+//============================
+
+function toggleBurger(){
+    document.getElementById("burgerBtn").classList.toggle("open");
+    document.getElementById("navRight").classList.toggle("open");
+}
+
+//============================
+// DROPDOWN
+//============================
+
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+        if(menu.id!=id){
+            menu.classList.remove("show");
+        }
+    });
+    document.getElementById(id).classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+            menu.classList.remove("show");
+        });
+    }
+    if(!e.target.closest("#navbar")){
+        document.getElementById("burgerBtn").classList.remove("open");
+        document.getElementById("navRight").classList.remove("open");
+    }
+});
+
+//============================
+// PROTEKSI
+//============================
+
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("copy",e=>e.preventDefault());
+document.addEventListener("cut",e=>e.preventDefault());
+document.addEventListener("selectstart",e=>e.preventDefault());
+document.addEventListener("dragstart",e=>e.preventDefault());
+
+document.addEventListener("keydown",function(e){
+if(
+(e.ctrlKey&&["c","u","s","p"].includes(e.key.toLowerCase()))
+||
+e.key==="F12"
+||
+(e.ctrlKey&&e.shiftKey&&["i","j","c"].includes(e.key.toLowerCase()))
+){
+e.preventDefault();
+}
+});
+
+</script>
+
+</body>
+</html>
