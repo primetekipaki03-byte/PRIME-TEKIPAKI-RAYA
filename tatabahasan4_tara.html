@@ -275,6 +275,92 @@ body{
     margin-top:6px;
 }
 
+/* =======================
+   TABEL KONJUGASI
+======================= */
+
+.table-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.konjugasi-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:560px;
+    font-size:15px;
+}
+
+.konjugasi-table thead th{
+    background:var(--navy);
+    color:var(--gold);
+    text-align:left;
+    padding:14px 16px;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+.konjugasi-table tbody td{
+    padding:13px 16px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.konjugasi-table tbody tr:nth-child(even){
+    background:#f5f8fc;
+}
+
+.konjugasi-table tbody tr:hover{
+    background:#fffbe6;
+}
+
+.konjugasi-table .grp-tag{
+    display:inline-block;
+    background:rgba(0,31,63,.08);
+    color:var(--navy);
+    font-weight:bold;
+    font-size:12px;
+    padding:4px 10px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.konjugasi-table .kamus{
+    font-weight:bold;
+    font-size:17px;
+    color:var(--navy);
+}
+
+.konjugasi-table .yomi-small{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    font-weight:400;
+}
+
+.konjugasi-table .arrow{
+    color:var(--gold2);
+    font-weight:900;
+    font-size:18px;
+}
+
+.konjugasi-table .ukemi{
+    font-weight:bold;
+    font-size:17px;
+    color:#5b8bb0;
+}
+
+.konjugasi-table .group-row td{
+    background:var(--navy2);
+    color:var(--gold);
+    font-weight:bold;
+    font-size:13px;
+    letter-spacing:.5px;
+    padding:10px 16px;
+}
+
 /* contoh kalimat */
 
 .example{
@@ -529,6 +615,9 @@ body{
     .nav-bottom .next{
         text-align:left;
     }
+    .konjugasi-table{
+        font-size:13px;
+    }
 }
 
 footer{
@@ -564,7 +653,7 @@ footer{
 
 <div class="nav-left">
 <a href="index.html" class="home-btn">
-<svg class="home-icon" xmlns="tatabahasajlptn4.html" viewBox="0 0 24 24">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
 </svg>
 HOME
@@ -642,6 +731,119 @@ HOME
     </div>
 
     <div class="section-block">
+        <h2><span class="tag">TABEL</span> Perubahan Kata Kerja Kelompok 1, 2, 3 → ＋たら</h2>
+        <p style="margin-bottom:16px;">
+            Bentuk 〜たら dibuat dari bentuk た (bentuk lampau biasa) ditambah ら, sehingga cara mengubahnya
+            mengikuti aturan konjugasi bentuk た pada setiap kelompok kata kerja.
+        </p>
+
+        <div class="table-wrap">
+            <table class="konjugasi-table">
+                <thead>
+                    <tr>
+                        <th>Kamus / Kata Dasar</th>
+                        <th></th>
+                        <th>Bentuk ＋たら</th>
+                        <th>Artinya</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row"><td colspan="4">KATA KERJA KELOMPOK 1（動詞グループ1／Godan）</td></tr>
+                    <tr>
+                        <td><span class="kamus">買う</span><span class="yomi-small">かう (kau)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">買ったら</span><span class="yomi-small">かったら (kattara)</span></td>
+                        <td>kalau/setelah membeli</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">待つ</span><span class="yomi-small">まつ (matsu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">待ったら</span><span class="yomi-small">まったら (mattara)</span></td>
+                        <td>kalau/setelah menunggu</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">帰る</span><span class="yomi-small">かえる (kaeru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">帰ったら</span><span class="yomi-small">かえったら (kaettara)</span></td>
+                        <td>kalau/setelah pulang</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">書く</span><span class="yomi-small">かく (kaku)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">書いたら</span><span class="yomi-small">かいたら (kaitara)</span></td>
+                        <td>kalau/setelah menulis</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">泳ぐ</span><span class="yomi-small">およぐ (oyogu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">泳いだら</span><span class="yomi-small">およいだら (oyoidara)</span></td>
+                        <td>kalau/setelah berenang</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">話す</span><span class="yomi-small">はなす (hanasu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">話したら</span><span class="yomi-small">はなしたら (hanashitara)</span></td>
+                        <td>kalau/setelah berbicara</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">死ぬ</span><span class="yomi-small">しぬ (shinu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">死んだら</span><span class="yomi-small">しんだら (shindara)</span></td>
+                        <td>kalau/seandainya meninggal</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">読む</span><span class="yomi-small">よむ (yomu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">読んだら</span><span class="yomi-small">よんだら (yondara)</span></td>
+                        <td>kalau/setelah membaca</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">KATA KERJA KELOMPOK 2（動詞グループ2／Ichidan）</td></tr>
+                    <tr>
+                        <td><span class="kamus">食べる</span><span class="yomi-small">たべる (taberu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">食べたら</span><span class="yomi-small">たべたら (tabetara)</span></td>
+                        <td>kalau/setelah makan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">見る</span><span class="yomi-small">みる (miru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">見たら</span><span class="yomi-small">みたら (mitara)</span></td>
+                        <td>kalau/setelah melihat</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">起きる</span><span class="yomi-small">おきる (okiru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">起きたら</span><span class="yomi-small">おきたら (okitara)</span></td>
+                        <td>kalau/setelah bangun</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">KATA KERJA KELOMPOK 3（動詞グループ3／Fukisoku・Irregular）</td></tr>
+                    <tr>
+                        <td><span class="kamus">する</span><span class="yomi-small">する (suru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">したら</span><span class="yomi-small">したら (shitara)</span></td>
+                        <td>kalau/setelah melakukan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">来る</span><span class="yomi-small">くる (kuru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">来たら</span><span class="yomi-small">きたら (kitara)</span></td>
+                        <td>kalau/setelah datang</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Cara cepat mengingat:</b> karena たら = bentuk た + ら, cukup ingat perubahan bentuk た yang
+            sudah dipelajari sebelumnya lalu tambahkan ら di akhir. Perubahan bunyi (っ／い／ん) pada
+            Kelompok 1 mengikuti pola yang sama persis dengan bentuk た biasa (contoh: 買った→買ったら,
+            読んだ→読んだら).
+        </div>
+    </div>
+
+    <div class="section-block">
         <h2><span class="tag">CONTOH</span> Contoh Kalimat</h2>
 
         <div class="example">
@@ -691,7 +893,7 @@ HOME
 
             <div class="word-bank" id="bank1">
                 <div class="word-tile" data-word="雨が">雨が</div>
-                <div class="word-tile" data-word="降ったら">ふります</div>
+                <div class="word-tile" data-word="降ったら">降ったら</div>
                 <div class="word-tile" data-word="学校へ">学校へ</div>
                 <div class="word-tile" data-word="は">は</div>
             </div>
@@ -714,7 +916,7 @@ HOME
             <div class="answer-slot" id="slot2"></div>
 
             <div class="word-bank" id="bank2">
-                <div class="word-tile" data-word="着いたら">つきます</div>
+                <div class="word-tile" data-word="着いたら">着いたら</div>
                 <div class="word-tile" data-word="電話">電話</div>
                 <div class="word-tile" data-word="を">を</div>
                 <div class="word-tile" data-word="して">して</div>
@@ -764,7 +966,23 @@ const quizState = {
     2:[]
 };
 
+function shuffleArray(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+function shuffleBank(id){
+    const bank = document.getElementById("bank"+id);
+    const tiles = Array.from(bank.querySelectorAll(".word-tile"));
+    const shuffled = shuffleArray(tiles);
+    shuffled.forEach(tile => bank.appendChild(tile));
+}
+
 function initQuiz(id){
+    shuffleBank(id);
     const bank = document.getElementById("bank"+id);
     bank.querySelectorAll(".word-tile").forEach(tile=>{
         tile.addEventListener("click", ()=>placeWord(id, tile));
@@ -823,6 +1041,7 @@ function resetQuiz(id){
         tile.classList.remove("used");
     });
     document.getElementById("result"+id).className = "quiz-result";
+    shuffleBank(id);
 }
 
 initQuiz(1);
