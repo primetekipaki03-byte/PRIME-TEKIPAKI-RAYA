@@ -600,9 +600,6 @@ HOME
         <div class="face face-back">
             <div class="yomi" id="yomi">ぶんべつする (bunbetsu suru)</div>
             <div class="arti" id="arti">Memilah, memisahkan</div>
-            <div class="contoh" id="contoh">ごみを分別してください。
-ごみをぶんべつしてください。
-Tolong pilah sampah.</div>
             <span class="tap-tip">klik untuk kembali</span>
         </div>
 
@@ -670,52 +667,42 @@ const kanjiData = {
     "分別する": {
         yomi:"ぶんべつする (bunbetsu suru)",
         arti:"Memilah, memisahkan",
-        contoh:"ごみを分別してください。\nごみをぶんべつしてください。\nTolong pilah sampah."
     },
     "分析します": {
         yomi:"ぶんせきします (bunseki shimasu)",
         arti:"Menganalisis",
-        contoh:"データを分析します。\nデータをぶんせきします。\nSaya menganalisis data."
     },
     "節約します": {
         yomi:"せつやくします (setsuyaku shimasu)",
         arti:"Berhemat, menghemat",
-        contoh:"お金を節約します。\nおかねをせつやくします。\nSaya menghemat uang."
     },
     "要約する": {
         yomi:"ようやくする (youyaku suru)",
         arti:"Meringkas, membuat ringkasan",
-        contoh:"レポートの内容を要約します。\nレポートのないようをようやくします。\nSaya meringkas isi laporan."
     },
     "停電": {
         yomi:"ていでん (teiden)",
         arti:"Pemadaman listrik",
-        contoh:"昨日の夜、停電がありました。\nきのうのよる、ていでんがありました。\nTadi malam terjadi pemadaman listrik."
     },
     "割れる": {
         yomi:"われる (wareru)",
         arti:"Pecah, retak",
-        contoh:"コップが割れました。\nコップがわれました。\nGelasnya pecah."
     },
     "増える": {
         yomi:"ふえる (fueru)",
         arti:"Bertambah",
-        contoh:"人が増えました。\nひとがふえました。\nJumlah orang bertambah."
     },
     "減らす": {
         yomi:"へらす (herasu)",
         arti:"Mengurangi",
-        contoh:"ごみを減らしましょう。\nごみをへらしましょう。\nMari mengurangi sampah."
     },
     "不足": {
         yomi:"ふそく (fusoku)",
         arti:"Kekurangan",
-        contoh:"水が不足しています。\nみずがふそくしています。\nAir sedang kekurangan."
     },
     "機会": {
         yomi:"きかい (kikai)",
         arti:"Kesempatan",
-        contoh:"日本へ行く機会があります。\nにほんへいくきかいがあります。\nSaya mempunyai kesempatan untuk pergi ke Jepang."
     }
 };
 //============================
@@ -751,12 +738,11 @@ autoSizeCards();
 function show(kanji, el){
 
     const viewer = document.getElementById("viewer");
-    const data = kanjiData[kanji] || { yomi:"—", arti:"—", contoh:"" };
+    const data = kanjiData[kanji] || { yomi:"—", arti:"—" };
 
     document.getElementById("kanji").innerHTML = kanji;
     document.getElementById("yomi").innerHTML = data.yomi;
     document.getElementById("arti").innerHTML = data.arti;
-    document.getElementById("contoh").innerText = data.contoh;
 
     viewer.classList.remove("flipped");
     viewer.classList.remove("big");
