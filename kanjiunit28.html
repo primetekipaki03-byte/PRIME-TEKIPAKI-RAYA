@@ -600,9 +600,6 @@ HOME
         <div class="face face-back">
             <div class="yomi" id="yomi">たのしい (tanoshii)</div>
             <div class="arti" id="arti">Menyenangkan</div>
-            <div class="contoh" id="contoh">日本語の授業は楽しいです。
-にほんごのじゅぎょうはたのしいです。
-Pelajaran bahasa Jepang menyenangkan.</div>
             <span class="tap-tip">klik untuk kembali</span>
         </div>
 
@@ -670,52 +667,42 @@ const kanjiData = {
     "楽しい": {
         yomi:"たのしい (tanoshii)",
         arti:"Menyenangkan",
-        contoh:"日本語の授業は楽しいです。\nにほんごのじゅぎょうはたのしいです。\nPelajaran bahasa Jepang menyenangkan."
     },
     "嬉しい": {
         yomi:"うれしい (ureshii)",
         arti:"Senang, gembira",
-        contoh:"プレゼントをもらって嬉しいです。\nプレゼントをもらってうれしいです。\nSaya senang karena mendapat hadiah."
     },
     "詳しい": {
         yomi:"くわしい (kuwashii)",
         arti:"Paham, mengetahui dengan baik; terperinci",
-        contoh:"彼は日本の文化に詳しいです。\nかれはにほんのぶんかにくわしいです。\nDia sangat paham tentang budaya Jepang."
     },
     "悔しい": {
         yomi:"くやしい (kuyashii)",
         arti:"Kecewa, menyesal (karena kalah atau gagal)",
-        contoh:"試験に落ちて悔しいです。\nしけんにおちてくやしいです。\nSaya kecewa karena gagal ujian."
     },
     "横": {
         yomi:"よこ (yoko)",
         arti:"Samping, sebelah",
-        contoh:"学校の横にコンビニがあります。\nがっこうのよこにコンビニがあります。\nDi samping sekolah ada minimarket."
     },
     "列": {
         yomi:"れつ (retsu)",
         arti:"Barisan, antrean",
-        contoh:"長い列があります。\nながいれつがあります。\nAda antrean yang panjang."
     },
     "後ろ": {
         yomi:"うしろ (ushiro)",
         arti:"Belakang",
-        contoh:"学校の後ろに公園があります。\nがっこうのうしろにこうえんがあります。\nDi belakang sekolah ada taman."
     },
     "隣": {
         yomi:"となり (tonari)",
         arti:"Sebelah, di samping",
-        contoh:"私の家は学校の隣です。\nわたしのいえはがっこうのとなりです。\nRumah saya berada di sebelah sekolah."
     },
     "向かい": {
         yomi:"むかい (mukai)",
         arti:"Seberang",
-        contoh:"駅の向かいに銀行があります。\nえきのむかいにぎんこうがあります。\nDi seberang stasiun ada bank."
     },
     "最近": {
         yomi:"さいきん (saikin)",
         arti:"Akhir-akhir ini, belakangan ini",
-        contoh:"最近忙しいです。\nさいきんいそがしいです。\nAkhir-akhir ini saya sibuk."
     }
 };
 //============================
@@ -751,12 +738,11 @@ autoSizeCards();
 function show(kanji, el){
 
     const viewer = document.getElementById("viewer");
-    const data = kanjiData[kanji] || { yomi:"—", arti:"—", contoh:"" };
+    const data = kanjiData[kanji] || { yomi:"—", arti:"—" };
 
     document.getElementById("kanji").innerHTML = kanji;
     document.getElementById("yomi").innerHTML = data.yomi;
     document.getElementById("arti").innerHTML = data.arti;
-    document.getElementById("contoh").innerText = data.contoh;
 
     viewer.classList.remove("flipped");
     viewer.classList.remove("big");
