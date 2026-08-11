@@ -221,6 +221,7 @@ header p{
     font-size:13px;
     font-weight:600;
     color:var(--navy);
+    white-space:nowrap;
 }
 
 .progress-bar{
@@ -264,18 +265,6 @@ header p{
     justify-content:center;
     font-size:20px;
     margin-bottom:14px;
-}
-
-.badge.illustrated{
-    width:84px;
-    height:84px;
-    background:var(--paper);
-    border:2px solid var(--navy);
-}
-
-.badge svg{
-    width:70%;
-    height:70%;
 }
 
 .word{
@@ -377,6 +366,7 @@ header p{
     justify-content:center;
     gap:16px;
     margin-top:22px;
+    flex-wrap:wrap;
 }
 
 .nav-btn{
@@ -413,6 +403,20 @@ header p{
 }
 
 .reset-btn:hover{ background:var(--gold); color:var(--navy); }
+
+.shuffle-btn{
+    border-radius:999px;
+    width:auto;
+    padding:0 18px;
+    font-size:13px;
+    font-weight:600;
+    gap:6px;
+    border:2px solid var(--navy);
+    background:white;
+    color:var(--navy);
+}
+
+.shuffle-btn:hover{ background:var(--navy); color:var(--gold); }
 
 /* jump dots */
 
@@ -498,11 +502,19 @@ td.score{
     font-weight:700;
 }
 
+td.score.pass{ color:var(--green); }
+td.score.fail{ color:var(--red); }
+
 footer{
     text-align:center;
     padding:50px 20px 30px;
     color:#8a93a0;
     font-size:14px;
+}
+
+@media(max-width:480px){
+    .word{ font-size:36px; }
+    header h1{ font-size:26px; }
 }
 
 </style>
@@ -530,7 +542,7 @@ HOME
 <header>
 <div class="eyebrow">📝 UJIAN LISAN · CEK BACAAN KANJI</div>
 <h1>Cek Bacaan Kanji Siswa</h1>
-<p>Pilih nama siswa, lalu tunjukkan kanji di layar. Setelah siswa membacakan, klik "Lihat Jawaban" untuk cek cara bacanya, lalu tandai Benar / Salah.</p>
+<p>Pilih nama siswa, lalu tunjukkan kanji di layar. Setelah siswa membacakan, klik "Lihat Jawaban" untuk cek cara bacanya, lalu tandai Benar / Salah. Setiap siswa mendapat 42 soal kanji dan nilai dihitung otomatis.</p>
 </header>
 
 <div class="student-wrap">
@@ -541,7 +553,7 @@ HOME
 <div class="viewer-wrap">
 
 <div class="progress-row">
-<span class="progress-text" id="progressText">1 / 5</span>
+<span class="progress-text" id="progressText">1 / 42</span>
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 </div>
 
@@ -564,6 +576,7 @@ HOME
 
 <div class="nav-row">
 <button class="nav-btn" id="prevBtn" title="Sebelumnya">←</button>
+<button class="nav-btn shuffle-btn" id="shuffleBtn" title="Acak urutan soal">🔀 Acak Soal</button>
 <button class="nav-btn reset-btn" id="resetBtn">↺ Ulang Paket</button>
 <button class="nav-btn" id="nextBtn" title="Berikutnya">→</button>
 </div>
@@ -588,63 +601,335 @@ HOME
 
 <script>
 
-// paket soal per siswa (soal ujian bacaan kanji per kelas)
+// paket soal per siswa - 42 kanji per siswa (diambil dari bank 286 kanji unik)
 const students = [
     { name:"Niko", words:[
-        { kanji:"貸す", reading:"かす", meaning:"meminjamkan" },
-        { kanji:"決める", reading:"きめる", meaning:"memutuskan" },
-        { kanji:"返す", reading:"かえす", meaning:"mengembalikan" },
-        { kanji:"忘れる", reading:"わすれる", meaning:"melupakan" },
-        { kanji:"地図", reading:"ちず", meaning:"peta" }
+        { kanji:'運転', reading:'うんてん', meaning:'Mengemudi' },
+        { kanji:'軽い', reading:'かるい', meaning:'Ringan' },
+        { kanji:'危険', reading:'きけん', meaning:'Bahaya' },
+        { kanji:'間に合う', reading:'まにあう', meaning:'Tepat waktu, sempat' },
+        { kanji:'給料', reading:'きゅうりょう', meaning:'Gaji' },
+        { kanji:'入口', reading:'いりぐち', meaning:'Pintu masuk' },
+        { kanji:'津波', reading:'つなみ', meaning:'Tsunami' },
+        { kanji:'痛む', reading:'いたむ', meaning:'Terasa sakit' },
+        { kanji:'起こす', reading:'おこす', meaning:'Membangunkan; menyebabkan' },
+        { kanji:'空', reading:'そら', meaning:'Langit' },
+        { kanji:'交番', reading:'こうばん', meaning:'Pos polisi' },
+        { kanji:'送る', reading:'おくる', meaning:'Mengirim / mengantar' },
+        { kanji:'図書館', reading:'としょかん', meaning:'Perpustakaan' },
+        { kanji:'米', reading:'こめ', meaning:'Beras' },
+        { kanji:'時間', reading:'じかん', meaning:'Waktu' },
+        { kanji:'払う', reading:'はらう', meaning:'Membayar' },
+        { kanji:'豊か', reading:'ゆたか', meaning:'Kaya, melimpah' },
+        { kanji:'果物', reading:'くだもの', meaning:'Buah' },
+        { kanji:'全員', reading:'ぜんいん', meaning:'Semua orang' },
+        { kanji:'要約する', reading:'ようやくする', meaning:'Meringkas, membuat ringkasan' },
+        { kanji:'甘い', reading:'あまい', meaning:'Manis' },
+        { kanji:'首', reading:'くび', meaning:'Leher' },
+        { kanji:'彼', reading:'かれ', meaning:'Dia (laki-laki)' },
+        { kanji:'昨日', reading:'きのう', meaning:'Kemarin' },
+        { kanji:'青い', reading:'あおい', meaning:'Biru' },
+        { kanji:'吸う', reading:'すう', meaning:'Menghirup; mengisap' },
+        { kanji:'向かい', reading:'むかい', meaning:'Seberang' },
+        { kanji:'消す', reading:'けす', meaning:'Mematikan' },
+        { kanji:'食事', reading:'しょくじ', meaning:'Kegiatan Makan' },
+        { kanji:'使い方', reading:'つかいかた', meaning:'Cara menggunakan' },
+        { kanji:'ご飯', reading:'ごはん', meaning:'Nasi; makanan; makan' },
+        { kanji:'心配', reading:'しんぱい', meaning:'Khawatir' },
+        { kanji:'景色', reading:'けしき', meaning:'Pemandangan' },
+        { kanji:'文化', reading:'ぶんか', meaning:'Budaya' },
+        { kanji:'周り', reading:'まわり', meaning:'Sekeliling, Sekitar' },
+        { kanji:'彼女', reading:'かのじょ', meaning:'Dia (perempuan)' },
+        { kanji:'信号', reading:'しんごう', meaning:'Lampu lalu lintas' },
+        { kanji:'直す', reading:'なおす', meaning:'Memperbaiki secara umum' },
+        { kanji:'途中', reading:'とちゅう', meaning:'Di tengah perjalanan' },
+        { kanji:'食堂', reading:'しょくどう', meaning:'Kantin / Ruang Makan' },
+        { kanji:'隣', reading:'となり', meaning:'Sebelah, di samping' },
+        { kanji:'庭', reading:'にわ', meaning:'Halaman' },
     ]},
     { name:"Ringga", words:[
-        { kanji:"安心", reading:"あんしん", meaning:"tenang / lega" },
-        { kanji:"左", reading:"ひだり", meaning:"kiri" },
-        { kanji:"準備", reading:"じゅんび", meaning:"persiapan" },
-        { kanji:"並ぶ", reading:"ならぶ", meaning:"berbaris / berjejer" },
-        { kanji:"案内", reading:"あんない", meaning:"panduan / pemanduan" }
+        { kanji:'弱い', reading:'よわい', meaning:'Lemah' },
+        { kanji:'残念', reading:'ざんねん', meaning:'Sayang sekali, mengecewakan' },
+        { kanji:'女性', reading:'じょせい', meaning:'Perempuan, wanita' },
+        { kanji:'辛い', reading:'からい', meaning:'Pedas' },
+        { kanji:'戻る', reading:'もどる', meaning:'Kembali' },
+        { kanji:'財布', reading:'さいふ', meaning:'Dompet' },
+        { kanji:'借りる', reading:'かりる', meaning:'Meminjam' },
+        { kanji:'電車', reading:'でんしゃ', meaning:'Kereta listrik' },
+        { kanji:'利用する', reading:'りようする', meaning:'Menggunakan, memanfaatkan' },
+        { kanji:'絵', reading:'え', meaning:'Gambar, lukisan' },
+        { kanji:'必ず', reading:'かならず', meaning:'Pasti / harus' },
+        { kanji:'売る', reading:'うる', meaning:'Menjual' },
+        { kanji:'忘れる', reading:'わすれる', meaning:'Lupa' },
+        { kanji:'好き', reading:'すき', meaning:'Suka' },
+        { kanji:'大変', reading:'たいへん', meaning:'Sulit, berat' },
+        { kanji:'料金', reading:'りょうきん', meaning:'Biaya / Tarif' },
+        { kanji:'終わる', reading:'おわる', meaning:'Selesai / berakhir' },
+        { kanji:'列', reading:'れつ', meaning:'Barisan, antrean' },
+        { kanji:'旅行', reading:'りょこう', meaning:'Perjalanan, wisata' },
+        { kanji:'登る', reading:'のぼる', meaning:'Naik, mendaki' },
+        { kanji:'迷う', reading:'まよう', meaning:'Tersesat / Bingung' },
+        { kanji:'雪', reading:'ゆき', meaning:'Salju' },
+        { kanji:'楽しい', reading:'たのしい', meaning:'Menyenangkan' },
+        { kanji:'捨てる', reading:'すてる', meaning:'Membuang' },
+        { kanji:'写真', reading:'しゃしん', meaning:'Foto' },
+        { kanji:'作業', reading:'さぎょう', meaning:'Pekerjaan / Proses kerja' },
+        { kanji:'最初', reading:'さいしょ', meaning:'Pertama, awal' },
+        { kanji:'弁当', reading:'べんとう', meaning:'Bekal / Bento' },
+        { kanji:'教科書', reading:'きょうかしょ', meaning:'Buku pelajaran, buku teks' },
+        { kanji:'減らす', reading:'へらす', meaning:'Mengurangi' },
+        { kanji:'手紙', reading:'てがみ', meaning:'Surat' },
+        { kanji:'荷物', reading:'にもつ', meaning:'Barang bawaan' },
+        { kanji:'電気', reading:'でんき', meaning:'Listrik' },
+        { kanji:'体調', reading:'たいちょう', meaning:'Kondisi tubuh, kondisi kesehatan' },
+        { kanji:'天気', reading:'てんき', meaning:'Cuaca' },
+        { kanji:'親切', reading:'しんせつ', meaning:'Baik hati, ramah, suka menolong' },
+        { kanji:'冷たい', reading:'つめたい', meaning:'Dingin (Benda, minuman, makanan, sentuhan, sikap, perasaan)' },
+        { kanji:'野菜', reading:'やさい', meaning:'Sayuran' },
+        { kanji:'見つける', reading:'みつける', meaning:'Menemukan' },
+        { kanji:'暖かい', reading:'あたたかい', meaning:'Hangat (Cuaca, suhu udara)' },
+        { kanji:'到着する', reading:'とうちゃくする', meaning:'Tiba / Kedatangan' },
+        { kanji:'確認する', reading:'かくにんする', meaning:'Memeriksa / mengonfirmasi' },
     ]},
     { name:"Shomad", words:[
-        { kanji:"説明", reading:"せつめい", meaning:"penjelasan" },
-        { kanji:"運転", reading:"うんてん", meaning:"mengemudi" },
-        { kanji:"台所", reading:"だいどころ", meaning:"dapur" },
-        { kanji:"連絡", reading:"れんらく", meaning:"kontak / menghubungi" },
-        { kanji:"荷物", reading:"にもつ", meaning:"barang bawaan" }
+        { kanji:'約束', reading:'やくそく', meaning:'Janji' },
+        { kanji:'探す', reading:'さがす', meaning:'Mencari' },
+        { kanji:'安心', reading:'あんしん', meaning:'Tenang, merasa aman' },
+        { kanji:'説明', reading:'せつめい', meaning:'Penjelasan' },
+        { kanji:'働く', reading:'はたらく', meaning:'Bekerja' },
+        { kanji:'書類', reading:'しょるい', meaning:'Dokumen' },
+        { kanji:'油', reading:'あぶら', meaning:'Minyak' },
+        { kanji:'歌手', reading:'かしゅ', meaning:'Penyanyi' },
+        { kanji:'自然', reading:'しぜん', meaning:'Alam' },
+        { kanji:'勉強', reading:'べんきょう', meaning:'Belajar' },
+        { kanji:'変わる', reading:'かわる', meaning:'Berubah' },
+        { kanji:'設定', reading:'せってい', meaning:'Pengaturan, setelan' },
+        { kanji:'生活', reading:'せいかつ', meaning:'Kehidupan sehari-hari' },
+        { kanji:'右', reading:'みぎ', meaning:'Kanan' },
+        { kanji:'郵便局', reading:'ゆうびんきょく', meaning:'Kantor pos' },
+        { kanji:'病院', reading:'びょういん', meaning:'Rumah sakit' },
+        { kanji:'必要', reading:'ひつよう', meaning:'Diperlukan / penting' },
+        { kanji:'用事', reading:'ようじ', meaning:'Urusan' },
+        { kanji:'安い', reading:'やすい', meaning:'Murah' },
+        { kanji:'近い', reading:'ちかい', meaning:'Dekat' },
+        { kanji:'温かい', reading:'あたたかい', meaning:'Hangat (Benda, makanan, minuman, perasaan, sikap)' },
+        { kanji:'事故', reading:'じこ', meaning:'Kecelakaan' },
+        { kanji:'明日', reading:'あした', meaning:'Besok' },
+        { kanji:'反対', reading:'はんたい', meaning:'Berlawanan' },
+        { kanji:'お菓子', reading:'おかし', meaning:'Camilan / Kue' },
+        { kanji:'寒い', reading:'さむい', meaning:'Dingin (cuaca)' },
+        { kanji:'洗う', reading:'あらう', meaning:'Mencuci' },
+        { kanji:'家族', reading:'かぞく', meaning:'Keluarga' },
+        { kanji:'大人', reading:'おとな', meaning:'Orang dewasa' },
+        { kanji:'悲しい', reading:'かなしい', meaning:'Sedih' },
+        { kanji:'幸せ', reading:'しあわせ', meaning:'Bahagia, kebahagiaan' },
+        { kanji:'薬', reading:'くすり', meaning:'Obat' },
+        { kanji:'特別', reading:'とくべつ', meaning:'Khusus, istimewa' },
+        { kanji:'公園', reading:'こうえん', meaning:'Taman' },
+        { kanji:'趣味', reading:'しゅみ', meaning:'Hobi' },
+        { kanji:'横', reading:'よこ', meaning:'Samping, sebelah' },
+        { kanji:'病気', reading:'びょうき', meaning:'Sakit / penyakit' },
+        { kanji:'部屋', reading:'へや', meaning:'Kamar' },
+        { kanji:'涼しい', reading:'すずしい', meaning:'Sejuk' },
+        { kanji:'重い', reading:'おもい', meaning:'Berat' },
+        { kanji:'節約します', reading:'せつやくします', meaning:'Berhemat, menghemat' },
+        { kanji:'新しい', reading:'あたらしい', meaning:'Baru' },
     ]},
     { name:"Trianto", words:[
-        { kanji:"送る", reading:"おくる", meaning:"mengirim" },
-        { kanji:"庭", reading:"にわ", meaning:"taman / halaman" },
-        { kanji:"調べる", reading:"しらべる", meaning:"memeriksa / meneliti" },
-        { kanji:"彼", reading:"かれ", meaning:"dia (laki-laki) / pacar" },
-        { kanji:"無理", reading:"むり", meaning:"tidak mungkin / mustahil" }
+        { kanji:'気持ち', reading:'きもち', meaning:'Perasaan, perasaan hati' },
+        { kanji:'短い', reading:'みじかい', meaning:'Pendek' },
+        { kanji:'暑い', reading:'あつい', meaning:'Panas (cuaca)' },
+        { kanji:'教室', reading:'きょうしつ', meaning:'Ruang kelas' },
+        { kanji:'消火', reading:'しょうか', meaning:'Memadamkan api / kebakaran' },
+        { kanji:'返事', reading:'へんじ', meaning:'Jawaban / Balasan' },
+        { kanji:'最後', reading:'さいご', meaning:'Terakhir, akhir' },
+        { kanji:'割れる', reading:'われる', meaning:'Pecah, retak' },
+        { kanji:'住む / 住みたい', reading:'すむ / すみたい', meaning:'Tinggal / ingin tinggal' },
+        { kanji:'理由', reading:'りゆう', meaning:'Alasan' },
+        { kanji:'返す', reading:'かえす', meaning:'Mengembalikan' },
+        { kanji:'広い', reading:'ひろい', meaning:'Luas' },
+        { kanji:'片付ける', reading:'かたづける', meaning:'Merapikan' },
+        { kanji:'休む', reading:'やすむ', meaning:'Beristirahat / Libur' },
+        { kanji:'曲がる', reading:'まがる', meaning:'Berbelok' },
+        { kanji:'自由', reading:'じゆう', meaning:'Bebas, kebebasan' },
+        { kanji:'予約', reading:'よやく', meaning:'Reservasi' },
+        { kanji:'中止', reading:'ちゅうし', meaning:'Pembatalan' },
+        { kanji:'停電', reading:'ていでん', meaning:'Pemadaman listrik' },
+        { kanji:'今度', reading:'こんど', meaning:'Lain kali / kali ini / nanti' },
+        { kanji:'作る', reading:'つくる', meaning:'Membuat' },
+        { kanji:'開ける', reading:'あける', meaning:'Membuka' },
+        { kanji:'体', reading:'からだ', meaning:'Tubuh' },
+        { kanji:'明るい', reading:'あかるい', meaning:'Terang / Ceria' },
+        { kanji:'銀行', reading:'ぎんこう', meaning:'Bank' },
+        { kanji:'選ぶ', reading:'えらぶ', meaning:'Memilih' },
+        { kanji:'若い', reading:'わかい', meaning:'Muda' },
+        { kanji:'窓口', reading:'まどぐち', meaning:'Loket / Counter' },
+        { kanji:'上手', reading:'じょうず', meaning:'Pandai, mahir' },
+        { kanji:'自信', reading:'じしん', meaning:'Percaya diri' },
+        { kanji:'閉める', reading:'しめる', meaning:'Menutup' },
+        { kanji:'空気', reading:'くうき', meaning:'Udara' },
+        { kanji:'知ります', reading:'しります', meaning:'Mengetahui, mengenal' },
+        { kanji:'室', reading:'しつ', meaning:'Ruangan' },
+        { kanji:'動く', reading:'うごく', meaning:'Bergerak' },
+        { kanji:'声', reading:'こえ', meaning:'Suara' },
+        { kanji:'雲', reading:'くも', meaning:'Awan' },
+        { kanji:'相談する', reading:'そうだんする', meaning:'Berkonsultasi' },
+        { kanji:'授業', reading:'じゅぎょう', meaning:'Pelajaran, kelas' },
+        { kanji:'点ける', reading:'つける', meaning:'Menyalakan' },
+        { kanji:'連絡', reading:'れんらく', meaning:'Menghubungi / Kontak' },
+        { kanji:'近く', reading:'ちかく', meaning:'Dekat' },
     ]},
     { name:"Joni", words:[
-        { kanji:"上手", reading:"じょうず", meaning:"pandai / mahir" },
-        { kanji:"重い", reading:"おもい", meaning:"berat" },
-        { kanji:"旅行", reading:"りょこう", meaning:"perjalanan / wisata" },
-        { kanji:"自信", reading:"じしん", meaning:"percaya diri" },
-        { kanji:"軽い", reading:"かるい", meaning:"ringan" }
+        { kanji:'待ち合わせ', reading:'まちあわせ', meaning:'Janji bertemu' },
+        { kanji:'遠い', reading:'とおい', meaning:'Jauh' },
+        { kanji:'博物館', reading:'はくぶつかん', meaning:'Museum' },
+        { kanji:'面接', reading:'めんせつ', meaning:'Wawancara' },
+        { kanji:'分析します', reading:'ぶんせきします', meaning:'Menganalisis' },
+        { kanji:'下手', reading:'へた', meaning:'Tidak pandai' },
+        { kanji:'掃除する', reading:'そうじする', meaning:'Membersihkan' },
+        { kanji:'寂しい', reading:'さびしい', meaning:'Kesepian' },
+        { kanji:'試験', reading:'しけん', meaning:'Ujian, tes' },
+        { kanji:'強い', reading:'つよい', meaning:'Kuat' },
+        { kanji:'元気', reading:'げんき', meaning:'Sehat, semangat' },
+        { kanji:'不足', reading:'ふそく', meaning:'Kekurangan' },
+        { kanji:'打ち合わせ', reading:'うちあわせ', meaning:'Rapat (Suasana lebih santai, berbeda dengan 会議)' },
+        { kanji:'晴れ', reading:'はれ', meaning:'Cerah' },
+        { kanji:'集まる', reading:'あつまる', meaning:'Berkumpul' },
+        { kanji:'出る', reading:'でる', meaning:'Keluar / muncul' },
+        { kanji:'全部', reading:'ぜんぶ', meaning:'Semua, seluruhnya' },
+        { kanji:'仕事', reading:'しごと', meaning:'Pekerjaan' },
+        { kanji:'店員', reading:'てんいん', meaning:'Pegawai Toko' },
+        { kanji:'申し込む', reading:'もうしこむ', meaning:'Mendaftar, mengajukan permohonan' },
+        { kanji:'簡単', reading:'かんたん', meaning:'Mudah' },
+        { kanji:'嬉しい', reading:'うれしい', meaning:'Senang, gembira' },
+        { kanji:'苦手', reading:'にがて', meaning:'Tidak pandai, kurang mahir' },
+        { kanji:'残業', reading:'ざんぎょう', meaning:'Lembur' },
+        { kanji:'家', reading:'いえ', meaning:'Rumah' },
+        { kanji:'白い', reading:'しろい', meaning:'Putih' },
+        { kanji:'調べる', reading:'しらべる', meaning:'Memeriksa, mencari tahu' },
+        { kanji:'現金', reading:'げんきん', meaning:'Uang tunai' },
+        { kanji:'安全', reading:'あんぜん', meaning:'Aman / Keselamatan' },
+        { kanji:'事務所', reading:'じむしょ', meaning:'Kantor (kantor administrasi)' },
+        { kanji:'出発', reading:'しゅっぱつ', meaning:'Berangkat' },
+        { kanji:'電話', reading:'でんわ', meaning:'Telepon' },
+        { kanji:'分別する', reading:'ぶんべつする', meaning:'Memilah, memisahkan' },
+        { kanji:'都会', reading:'とかい', meaning:'Kota besar' },
+        { kanji:'駅', reading:'えき', meaning:'Stasiun' },
+        { kanji:'面談', reading:'めんだん', meaning:'Pertemuan / Konsultasi' },
+        { kanji:'詳しい', reading:'くわしい', meaning:'Paham, mengetahui dengan baik; terperinci' },
+        { kanji:'古い', reading:'ふるい', meaning:'Tua, lama' },
+        { kanji:'台所', reading:'だいどころ', meaning:'Dapur' },
+        { kanji:'不便', reading:'ふべん', meaning:'Tidak praktis / Tidak nyaman' },
+        { kanji:'有名', reading:'ゆうめい', meaning:'Terkenal' },
+        { kanji:'届く', reading:'とどく', meaning:'Sampai (barang/surat)' },
     ]},
     { name:"Ferian", words:[
-        { kanji:"作る", reading:"つくる", meaning:"membuat" },
-        { kanji:"台風", reading:"たいふう", meaning:"topan" },
-        { kanji:"写真", reading:"しゃしん", meaning:"foto" },
-        { kanji:"終わる", reading:"おわる", meaning:"selesai / berakhir" },
-        { kanji:"晴れ", reading:"はれ", meaning:"cerah (cuaca)" }
+        { kanji:'料理', reading:'りょうり', meaning:'Masakan; Memasak' },
+        { kanji:'暗い', reading:'くらい', meaning:'Gelap' },
+        { kanji:'無料', reading:'むりょう', meaning:'Gratis' },
+        { kanji:'結果', reading:'けっか', meaning:'Hasil' },
+        { kanji:'報告する', reading:'ほうこくする', meaning:'Melaporkan' },
+        { kanji:'歩く', reading:'あるく', meaning:'Berjalan' },
+        { kanji:'調子', reading:'ちょうし', meaning:'Kondisi, keadaan, performa' },
+        { kanji:'苦い', reading:'にがい', meaning:'Pahit' },
+        { kanji:'地図', reading:'ちず', meaning:'Peta' },
+        { kanji:'教える', reading:'おしえる', meaning:'Mengajar, memberi tahu' },
+        { kanji:'黒い', reading:'くろい', meaning:'Hitam' },
+        { kanji:'温度', reading:'おんど', meaning:'Suhu, temperatur' },
+        { kanji:'準備', reading:'じゅんび', meaning:'Persiapan' },
+        { kanji:'修理', reading:'しゅうり', meaning:'Perbaikan / Memperbaiki' },
+        { kanji:'手伝う', reading:'てつだう', meaning:'Membantu' },
+        { kanji:'難しい', reading:'むずかしい', meaning:'Sulit' },
+        { kanji:'市役所', reading:'しやくしょ', meaning:'Kantor kelurahan/balai kota (kantor pemerintah daerah)' },
+        { kanji:'困る', reading:'こまる', meaning:'Kesulitan, kesusahan' },
+        { kanji:'会議', reading:'かいぎ', meaning:'Rapat, pertemuan' },
+        { kanji:'雨', reading:'あめ', meaning:'Hujan' },
+        { kanji:'動き', reading:'うごき', meaning:'Gerakan' },
+        { kanji:'動物', reading:'どうぶつ', meaning:'Hewan' },
+        { kanji:'参加する', reading:'さんかする', meaning:'Berpartisipasi, mengikuti' },
+        { kanji:'男性', reading:'だんせい', meaning:'Laki-laki, pria' },
+        { kanji:'夕方', reading:'ゆうがた', meaning:'Sore (menjelang malam)' },
+        { kanji:'運ぶ', reading:'はこぶ', meaning:'Mengangkut / membawa' },
+        { kanji:'方法', reading:'ほうほう', meaning:'Cara / Metode' },
+        { kanji:'案内', reading:'あんない', meaning:'Panduan, petunjuk' },
+        { kanji:'比べる', reading:'くらべる', meaning:'Membandingkan' },
+        { kanji:'建物', reading:'たてもの', meaning:'Gedung/bangunan' },
+        { kanji:'耳', reading:'みみ', meaning:'Telinga' },
+        { kanji:'建てる', reading:'たてる', meaning:'Membangun (bangunan)' },
+        { kanji:'注意', reading:'ちゅうい', meaning:'Peringatan / Hati-hati Waspada' },
+        { kanji:'選手', reading:'せんしゅ', meaning:'Atlet, pemain' },
+        { kanji:'走る', reading:'はしる', meaning:'Berlari' },
+        { kanji:'静か', reading:'しずか', meaning:'Tenang, sepi' },
+        { kanji:'予定', reading:'よてい', meaning:'Rencana / Jadwal' },
+        { kanji:'着る', reading:'きる', meaning:'Memakai (baju)' },
+        { kanji:'急ぐ', reading:'いそぐ', meaning:'Bergegas' },
+        { kanji:'量', reading:'りょう', meaning:'Porsi / jumlah' },
+        { kanji:'貸す', reading:'かす', meaning:'Meminjamkan' },
+        { kanji:'悔しい', reading:'くやしい', meaning:'Kecewa, menyesal (karena kalah atau gagal)' },
     ]},
     { name:"Luki", words:[
-        { kanji:"汚れる", reading:"よごれる", meaning:"menjadi kotor" },
-        { kanji:"届く", reading:"とどく", meaning:"sampai / terkirim" },
-        { kanji:"首", reading:"くび", meaning:"leher" },
-        { kanji:"動物", reading:"どうぶつ", meaning:"binatang" },
-        { kanji:"間に合う", reading:"まにあう", meaning:"tepat waktu / sempat" }
-    ]}
+        { kanji:'汚れる', reading:'よごれる', meaning:'Menjadi kotor' },
+        { kanji:'広場', reading:'ひろば', meaning:'Lapangan / Area Terbuka' },
+        { kanji:'顔', reading:'かお', meaning:'Wajah' },
+        { kanji:'増える', reading:'ふえる', meaning:'Bertambah' },
+        { kanji:'船', reading:'ふね', meaning:'Kapal' },
+        { kanji:'美味しい', reading:'おいしい', meaning:'Enak' },
+        { kanji:'起きる', reading:'おきる', meaning:'Bangun' },
+        { kanji:'並ぶ', reading:'ならぶ', meaning:'Mengantre, berbaris' },
+        { kanji:'後ろ', reading:'うしろ', meaning:'Belakang' },
+        { kanji:'乗る', reading:'のる', meaning:'Naik (kendaraan)' },
+        { kanji:'機会', reading:'きかい', meaning:'Kesempatan' },
+        { kanji:'決める', reading:'きめる', meaning:'Memutuskan' },
+        { kanji:'渡る', reading:'わたる', meaning:'Menyebrang' },
+        { kanji:'伝える', reading:'つたえる', meaning:'Menyampaikan' },
+        { kanji:'狭い', reading:'せまい', meaning:'Sempit' },
+        { kanji:'練習する', reading:'れんしゅうする', meaning:'Berlatih' },
+        { kanji:'道具', reading:'どうぐ', meaning:'Alat / Perkakas' },
+        { kanji:'台風', reading:'たいふう', meaning:'Badai / topan' },
+        { kanji:'会社', reading:'かいしゃ', meaning:'Perusahaan / Kantor' },
+        { kanji:'嫌い', reading:'きらい', meaning:'Tidak suka' },
+        { kanji:'無理', reading:'むり', meaning:'Tidak mungkin, terlalu berat' },
+        { kanji:'思い出す', reading:'おもいだす', meaning:'Mengingat kembali' },
+        { kanji:'高い', reading:'たかい', meaning:'Mahal / Tinggi' },
+        { kanji:'社員', reading:'しゃいん', meaning:'Karyawan perusahaan' },
+        { kanji:'最近', reading:'さいきん', meaning:'Akhir-akhir ini, belakangan ini' },
+        { kanji:'会話', reading:'かいわ', meaning:'Percakapan' },
+        { kanji:'長い', reading:'ながい', meaning:'Panjang' },
+        { kanji:'便利', reading:'べんり', meaning:'Praktis, nyaman, berguna' },
+        { kanji:'左', reading:'ひだり', meaning:'Kiri' },
+        { kanji:'落ちる', reading:'おちる', meaning:'Jatuh / turun' },
+        { kanji:'友達', reading:'ともだち', meaning:'Teman' },
+        { kanji:'電池', reading:'でんち', meaning:'Baterai' },
+        { kanji:'住所', reading:'じゅうしょ', meaning:'Alamat' },
+        { kanji:'使う', reading:'つかう', meaning:'Menggunakan' },
+        { kanji:'運転', reading:'うんてん', meaning:'Mengemudi' },
+        { kanji:'軽い', reading:'かるい', meaning:'Ringan' },
+        { kanji:'危険', reading:'きけん', meaning:'Bahaya' },
+        { kanji:'間に合う', reading:'まにあう', meaning:'Tepat waktu, sempat' },
+        { kanji:'給料', reading:'きゅうりょう', meaning:'Gaji' },
+        { kanji:'入口', reading:'いりぐち', meaning:'Pintu masuk' },
+        { kanji:'津波', reading:'つなみ', meaning:'Tsunami' },
+        { kanji:'痛む', reading:'いたむ', meaning:'Terasa sakit' },
+    ]},
 ];
 
-// state per siswa: index kanji sekarang, dan hasil (null/true/false) tiap kanji
+//============================
+// UTIL
+//============================
+
+function shuffleArray(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+// simpan urutan tampil (indeks ke array words asli) + hasil per siswa
 students.forEach(s => {
+    s.order = shuffleArray(s.words.map((_, i) => i)); // urutan soal diacak dari awal
     s.current = 0;
-    s.results = s.words.map(() => null);
+    s.results = s.words.map(() => null); // hasil disimpan berdasarkan indeks asli, bukan urutan tampil
 });
 
 let activeStudent = 0;
@@ -661,6 +946,7 @@ const progressFill = document.getElementById("progressFill");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const resetBtn = document.getElementById("resetBtn");
+const shuffleBtn = document.getElementById("shuffleBtn");
 const jumpRow = document.getElementById("jumpRow");
 const benarBtn = document.getElementById("benarBtn");
 const salahBtn = document.getElementById("salahBtn");
@@ -686,36 +972,16 @@ function renderStudentRow(){
             renderAll();
         });
         studentRow.appendChild(pill);
-
-        if(s.name.startsWith("Siswa ")){
-            const rn = document.createElement("button");
-            rn.className = "rename-btn";
-            rn.textContent = "ganti nama";
-            rn.addEventListener("click", (e) => {
-                e.stopPropagation();
-                const newName = prompt("Nama siswa ke-" + (i+1) + ":", s.name);
-                if(newName && newName.trim()){
-                    s.name = newName.trim();
-                    renderAll();
-                }
-            });
-            studentRow.appendChild(rn);
-        }
     });
 }
 
 function renderCard(){
     const s = students[activeStudent];
-    const w = s.words[s.current];
-    const result = s.results[s.current];
+    const wordIndex = s.order[s.current];
+    const w = s.words[wordIndex];
+    const result = s.results[wordIndex];
 
-    if(w.illustration){
-        cardBadge.innerHTML = w.illustration;
-        cardBadge.classList.add("illustrated");
-    } else {
-        cardBadge.innerHTML = "漢";
-        cardBadge.classList.remove("illustrated");
-    }
+    cardBadge.innerHTML = "漢";
 
     cardWord.textContent = w.kanji;
     cardWord.style.fontSize = w.kanji.length > 8 ? "24px" : (w.kanji.length > 4 ? "34px" : "48px");
@@ -751,11 +1017,11 @@ function renderCard(){
 function renderJumpRow(){
     const s = students[activeStudent];
     jumpRow.innerHTML = "";
-    s.words.forEach((w, i) => {
+    s.order.forEach((wordIndex, i) => {
         const dot = document.createElement("button");
         let cls = "dot" + (i === s.current ? " active" : "");
-        if(s.results[i] === true) cls += " correct";
-        if(s.results[i] === false) cls += " wrong";
+        if(s.results[wordIndex] === true) cls += " correct";
+        if(s.results[wordIndex] === false) cls += " wrong";
         dot.className = cls;
         dot.textContent = i + 1;
         dot.addEventListener("click", () => {
@@ -770,13 +1036,15 @@ function renderSummary(){
     summaryBody.innerHTML = "";
     students.forEach(s => {
         const sc = scoreOf(s);
+        const allDone = sc.done === s.results.length;
+        const nilaiClass = sc.nilai === null ? "" : (sc.nilai >= 70 ? "pass" : "fail");
         const tr = document.createElement("tr");
         tr.innerHTML =
             "<td>" + s.name + "</td>" +
             "<td>" + sc.done + " / " + s.results.length + "</td>" +
             "<td style='color:var(--green);font-weight:700;'>" + sc.correct + "</td>" +
             "<td style='color:var(--red);font-weight:700;'>" + sc.wrong + "</td>" +
-            "<td class='score'>" + (sc.nilai === null ? "-" : sc.nilai) + "</td>";
+            "<td class='score " + nilaiClass + "'>" + (sc.nilai === null ? "-" : sc.nilai) + (allDone && sc.nilai !== null ? " ✓" : "") + "</td>";
         summaryBody.appendChild(tr);
     });
 }
@@ -790,7 +1058,8 @@ function renderAll(){
 revealBtn.addEventListener("click", function(){
     revealBox.classList.add("show");
     const s = students[activeStudent];
-    if(s.results[s.current] === null){
+    const wordIndex = s.order[s.current];
+    if(s.results[wordIndex] === null){
         benarBtn.disabled = false;
         salahBtn.disabled = false;
     }
@@ -798,14 +1067,16 @@ revealBtn.addEventListener("click", function(){
 
 benarBtn.addEventListener("click", function(){
     const s = students[activeStudent];
-    s.results[s.current] = true;
+    const wordIndex = s.order[s.current];
+    s.results[wordIndex] = true;
     revealBox.classList.add("show");
     renderAll();
 });
 
 salahBtn.addEventListener("click", function(){
     const s = students[activeStudent];
-    s.results[s.current] = false;
+    const wordIndex = s.order[s.current];
+    s.results[wordIndex] = false;
     revealBox.classList.add("show");
     renderAll();
 });
@@ -820,9 +1091,17 @@ nextBtn.addEventListener("click", function(){
     if(s.current < s.words.length - 1){ s.current++; renderCard(); }
 });
 
+shuffleBtn.addEventListener("click", function(){
+    const s = students[activeStudent];
+    s.order = shuffleArray(s.words.map((_, i) => i));
+    s.current = 0;
+    renderCard();
+});
+
 resetBtn.addEventListener("click", function(){
     const s = students[activeStudent];
-    if(confirm("Ulang paket soal untuk " + s.name + "?")){
+    if(confirm("Ulang paket soal untuk " + s.name + "? Nilai akan dihapus dan urutan soal diacak ulang.")){
+        s.order = shuffleArray(s.words.map((_, i) => i));
         s.current = 0;
         s.results = s.words.map(() => null);
         renderAll();
