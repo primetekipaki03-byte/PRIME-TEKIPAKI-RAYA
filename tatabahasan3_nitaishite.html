@@ -488,6 +488,15 @@ body{
     color:#c17b7b;
 }
 
+.compare-table .arti-small{
+    display:block;
+    font-size:12px;
+    font-weight:400;
+    font-style:italic;
+    color:#8892a3;
+    margin-top:3px;
+}
+
 .compare-legend{
     display:flex;
     flex-wrap:wrap;
@@ -991,15 +1000,15 @@ HOME
                 <tbody>
                     <tr>
                         <td><span class="kamus">客</span><span class="yomi-small">きゃく (tamu)</span></td>
-                        <td><span class="val-shieki">客に対して</span></td>
-                        <td><span class="val-ukemi">客にとって</span></td>
-                        <td><span class="val-shiekiukemi">客について</span></td>
+                        <td><span class="val-shieki">客に対して</span><span class="arti-small">terhadap tamu (sasaran sikap, misal bersikap ramah pada tamu)</span></td>
+                        <td><span class="val-ukemi">客にとって</span><span class="arti-small">bagi tamu (dari sudut pandang tamu, misal nyaman/tidak)</span></td>
+                        <td><span class="val-shiekiukemi">客について</span><span class="arti-small">tentang tamu (topik yang dibicarakan/ditulis)</span></td>
                     </tr>
                     <tr>
                         <td><span class="kamus">問題</span><span class="yomi-small">もんだい (masalah)</span></td>
-                        <td><span class="val-shieki">問題に対して</span></td>
-                        <td><span class="val-ukemi">問題にとって</span></td>
-                        <td><span class="val-shiekiukemi">問題について</span></td>
+                        <td><span class="val-shieki">問題に対して</span><span class="arti-small">terhadap masalah (sasaran tindakan, misal menangani masalah)</span></td>
+                        <td><span class="val-ukemi">問題にとって</span><span class="arti-small">bagi masalah tersebut (dari sudut pandang dampaknya)</span></td>
+                        <td><span class="val-shiekiukemi">問題について</span><span class="arti-small">tentang masalah (topik yang dibicarakan/dibahas)</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -1106,9 +1115,24 @@ const quizState = {
     2:[]
 };
 
+function shuffleArray(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
 function initQuiz(id){
     const bank = document.getElementById("bank"+id);
-    bank.querySelectorAll(".word-tile").forEach(tile=>{
+    const tiles = Array.from(bank.querySelectorAll(".word-tile"));
+
+    // acak urutan tile lalu tempel ulang ke dalam bank
+    shuffleArray(tiles).forEach(tile=>{
+        bank.appendChild(tile);
+    });
+
+    tiles.forEach(tile=>{
         tile.addEventListener("click", ()=>placeWord(id, tile));
     });
 }
