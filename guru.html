@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Admin — Progres Siswa | Tekipaki</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0a1f3d;
+  --navy2:#001530;
+  --navy3:#132c52;
+  --gold:#e0b52a;
+  --gold-dim:#c4a02a;
+  --paper:#f6f0e2;
+  --paper2:#efe6d0;
+  --ink:#1c2541;
+  --ink-soft:#4a5875;
+  --seal:#b3382e;
+  --muted:#9fb0c9;
+  --pass:#3f7d52;
+  --pass-bg:#e7f1ea;
+  --warn-bg:#faf1d9;
+  --fail-bg:#f8e7e5;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+h1,h2,h3,.display{font-family:"Shippori Mincho",serif;}
+a{color:inherit;}
+.mono{font-family:"JetBrains Mono",monospace;}
+
+/* ================= NAVBAR ================= */
+#navbar{
+  position:sticky;top:0;z-index:999;
+  background:#001530;
+  border-bottom:2px solid rgba(224,181,42,.3);
+  box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+.navbar-inner{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 20px;flex-wrap:wrap;gap:10px;
+}
+.nav-left{display:flex;align-items:center;}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+.home-btn{
+  display:flex;align-items:center;gap:8px;
+  background:var(--gold);color:var(--navy2);
+  text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;
+}
+.home-btn:hover{opacity:.85;}
+.home-icon{width:24px;height:24px;object-fit:cover;border-radius:4px;}
+.admin-tag{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.72rem;letter-spacing:1.5px;
+  color:var(--gold);border:1px solid rgba(224,181,42,.4);
+  padding:6px 10px;border-radius:999px;
+}
+@media(max-width:600px){
+  .navbar-inner{flex-direction:column;align-items:flex-start;gap:8px;}
+  .nav-right{width:100%;}
+}
+
+.back-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    text-decoration:none;padding:9px 16px;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);color:#fff;
+    border-radius:999px;font-weight:600;font-size:13.5px;
+}
+.back-btn:hover{ background:rgba(255,255,255,.16); border-color:var(--gold); color:var(--gold); }
+
+/* ================= HERO ================= */
+.hero{
+  position:relative;
+  background:radial-gradient(120% 140% at 15% -10%, var(--navy3), var(--navy) 55%, var(--navy2) 100%);
+  color:#fff;
+  padding:18px 20px 46px;
+  overflow:hidden;
+  border-bottom:3px solid var(--gold);
+}
+.hero-back-wrap{
+  position:relative;z-index:2;
+  max-width:1140px;margin:0 auto;
+  padding-bottom:22px;
+}
+.hero-kanji{
+  position:absolute;
+  font-family:"Shippori Mincho",serif;
+  font-size:min(48vw,420px);
+  font-weight:800;
+  color:rgba(224,181,42,.06);
+  top:50%;right:-4%;
+  transform:translateY(-50%);
+  line-height:1;
+  user-select:none;pointer-events:none;white-space:nowrap;
+}
+.hero-inner{position:relative;z-index:2;max-width:1140px;margin:0 auto;}
+.eyebrow{
+  font-family:"JetBrains Mono",monospace;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);font-size:.78rem;margin-bottom:14px;display:flex;align-items:center;gap:10px;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+.hero h1{font-size:clamp(1.9rem,4vw,2.7rem);color:#fff;line-height:1.25;margin-bottom:10px;max-width:640px;}
+.hero h1 span{color:var(--gold);}
+.hero p{color:var(--muted);font-size:1rem;line-height:1.65;max-width:560px;}
+
+.stats{
+  display:flex;gap:0;margin-top:34px;flex-wrap:wrap;
+  border-top:1px solid rgba(255,255,255,.12);padding-top:24px;
+}
+.stat{padding:0 28px 0 0;margin-right:28px;text-align:left;border-right:1px solid rgba(255,255,255,.12);}
+.stat:last-child{border-right:none;margin-right:0;}
+.stat .num{font-family:"JetBrains Mono",monospace;font-size:1.6rem;color:var(--gold);font-weight:600;}
+.stat .lbl{font-size:.7rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+
+/* ================= APP LAYOUT ================= */
+#app{max-width:1140px;margin:0 auto;padding:40px 20px 70px;}
+
+.section-head{display:flex;align-items:baseline;gap:16px;margin-bottom:18px;flex-wrap:wrap;}
+.section-head .stamp-mini{
+  width:34px;height:34px;flex:none;border:2px solid var(--seal);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;color:var(--seal);
+  font-weight:800;font-size:.85rem;transform:rotate(-6deg);
+}
+.section-head h2{font-size:1.4rem;color:var(--navy);}
+.section-head .jp{font-family:"JetBrains Mono",monospace;color:var(--seal);font-size:.78rem;letter-spacing:1px;}
+
+.layout{
+  display:grid;
+  grid-template-columns:340px 1fr;
+  gap:20px;
+  align-items:start;
+}
+@media(max-width:860px){
+  .layout{grid-template-columns:1fr;}
+}
+
+/* ---- LEFT: student list ---- */
+.panel{
+  background:#fff;border:1px solid var(--paper2);border-radius:16px;
+  box-shadow:0 2px 10px rgba(10,31,61,.05);
+  overflow:hidden;
+}
+.list-panel{ position:sticky; top:80px; }
+@media(max-width:860px){ .list-panel{ position:static; } }
+
+.list-head{padding:16px 16px 12px;border-bottom:1px solid var(--paper2);}
+.search-box{
+  display:flex;align-items:center;gap:8px;
+  background:var(--paper);border:1px solid var(--paper2);border-radius:10px;
+  padding:9px 12px;
+}
+.search-box input{
+  border:none;background:none;outline:none;font-size:.88rem;color:var(--ink);
+  width:100%;font-family:inherit;
+}
+.search-box .ic{color:var(--ink-soft);font-size:.85rem;}
+.sort-row{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+.sort-chip{
+  font-family:"JetBrains Mono",monospace;font-size:.68rem;letter-spacing:.5px;
+  padding:5px 10px;border-radius:999px;border:1px solid var(--paper2);
+  background:#fff;color:var(--ink-soft);cursor:pointer;
+}
+.sort-chip.active{background:var(--navy);color:var(--gold);border-color:var(--navy);}
+
+.student-list{max-height:560px;overflow-y:auto;}
+.student-item{
+  display:flex;align-items:center;gap:12px;
+  padding:13px 16px;
+  border-bottom:1px solid var(--paper2);
+  cursor:pointer;
+  transition:.15s;
+  position:relative;
+}
+.student-item:last-child{border-bottom:none;}
+.student-item:hover{background:var(--paper);}
+.student-item.active{background:var(--navy);}
+.student-item.active .s-name{color:#fff;}
+.student-item.active .s-meta{color:var(--muted);}
+.student-item.active::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gold);
+}
+.avatar{
+  flex:none;width:38px;height:38px;border-radius:10px;
+  background:var(--navy);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Shippori Mincho",serif;font-weight:800;font-size:1rem;
+}
+.student-item.active .avatar{background:var(--gold);color:var(--navy2);}
+.s-info{flex:1;min-width:0;}
+.s-name{font-weight:700;font-size:.92rem;color:var(--navy);}
+.s-meta{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--ink-soft);margin-top:2px;}
+.s-score{
+  font-family:"JetBrains Mono",monospace;font-weight:700;font-size:.85rem;
+  flex:none;padding:4px 9px;border-radius:8px;
+}
+.s-score.pass{background:var(--pass-bg);color:var(--pass);}
+.s-score.warn{background:var(--warn-bg);color:var(--gold-dim);}
+.s-score.fail{background:var(--fail-bg);color:var(--seal);}
+.student-item.active .s-score{background:rgba(255,255,255,.12);}
+.student-item.active .s-score.pass{color:#7fd39c;}
+.student-item.active .s-score.warn{color:var(--gold);}
+.student-item.active .s-score.fail{color:#ef8f86;}
+
+.empty-search{padding:30px 16px;text-align:center;color:var(--ink-soft);font-size:.85rem;}
+
+/* ---- RIGHT: detail panel ---- */
+.detail-panel{padding:26px 26px 30px;}
+.detail-head{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+  flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--paper2);margin-bottom:22px;
+}
+.detail-id{display:flex;gap:14px;align-items:center;}
+.avatar-lg{
+  width:58px;height:58px;border-radius:14px;background:var(--navy);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;font-family:"Shippori Mincho",serif;
+  font-weight:800;font-size:1.5rem;flex:none;
+}
+.detail-id h3{font-size:1.3rem;color:var(--navy);}
+.detail-id .sub{font-family:"JetBrains Mono",monospace;font-size:.75rem;color:var(--ink-soft);margin-top:4px;}
+.status-pill{
+  font-family:"JetBrains Mono",monospace;font-size:.7rem;font-weight:700;letter-spacing:.5px;
+  padding:6px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;
+}
+.status-pill.pass{background:var(--pass-bg);color:var(--pass);}
+.status-pill.warn{background:var(--warn-bg);color:var(--gold-dim);}
+.status-pill.fail{background:var(--fail-bg);color:var(--seal);}
+
+.avg-block{text-align:right;}
+.avg-num{font-family:"JetBrains Mono",monospace;font-size:2.1rem;font-weight:700;color:var(--navy);line-height:1;}
+.avg-lbl{font-size:.7rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+
+.detail-section{margin-bottom:30px;}
+.detail-section h4{
+  font-family:"JetBrains Mono",monospace;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;
+  color:var(--seal);margin-bottom:14px;display:flex;align-items:center;gap:8px;
+}
+.detail-section h4::after{content:"";flex:1;height:1px;background:var(--paper2);}
+
+/* progress bars */
+.prog-row{margin-bottom:14px;}
+.prog-top{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:6px;}
+.prog-top .name{color:var(--ink);font-weight:600;}
+.prog-top .val{font-family:"JetBrains Mono",monospace;color:var(--ink-soft);}
+.prog-track{height:9px;background:var(--paper);border-radius:999px;overflow:hidden;border:1px solid var(--paper2);}
+.prog-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gold-dim),var(--gold));}
+
+/* quiz tables */
+.quiz-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+@media(max-width:640px){.quiz-grid{grid-template-columns:1fr;}}
+.quiz-table{width:100%;border-collapse:collapse;}
+.quiz-table th{
+  text-align:left;font-family:"JetBrains Mono",monospace;font-size:.68rem;
+  text-transform:uppercase;letter-spacing:.5px;color:var(--ink-soft);
+  padding:6px 8px;border-bottom:1px solid var(--paper2);
+}
+.quiz-table td{padding:8px 8px;font-size:.85rem;border-bottom:1px solid var(--paper2);}
+.quiz-table tr:last-child td{border-bottom:none;}
+.quiz-table .nilai-badge{
+  font-family:"JetBrains Mono",monospace;font-weight:700;font-size:.8rem;
+  padding:3px 8px;border-radius:6px;display:inline-block;
+}
+.quiz-table .nilai-badge.pass{background:var(--pass-bg);color:var(--pass);}
+.quiz-table .nilai-badge.fail{background:var(--fail-bg);color:var(--seal);}
+.quiz-table .nilai-badge.belum{background:var(--paper);color:var(--muted);}
+.quiz-table .tgl{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--ink-soft);}
+
+/* mini bar chart */
+.chart-wrap{
+  display:flex;align-items:flex-end;gap:8px;height:120px;padding:10px 6px 0;
+  border-bottom:1px solid var(--paper2);
+}
+.chart-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;}
+.chart-bar .fill{
+  width:100%;max-width:26px;border-radius:6px 6px 0 0;
+  background:linear-gradient(180deg,var(--gold),var(--gold-dim));
+  transition:height .4s ease;
+}
+.chart-bar.fail .fill{background:linear-gradient(180deg,#d4645a,var(--seal));}
+.chart-bar .cv{font-family:"JetBrains Mono",monospace;font-size:.65rem;color:var(--ink-soft);margin-bottom:4px;}
+.chart-labels{display:flex;gap:8px;margin-top:6px;}
+.chart-labels span{flex:1;text-align:center;font-family:"JetBrains Mono",monospace;font-size:.6rem;color:var(--muted);}
+
+.dummy-note{
+  margin-top:36px;padding:16px 18px;background:#fff;border:1px dashed var(--paper2);
+  border-radius:12px;font-size:.82rem;color:var(--ink-soft);line-height:1.6;
+}
+.dummy-note b{color:var(--navy);}
+
+.no-select{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:70px 20px;text-align:center;color:var(--ink-soft);
+}
+.no-select .ic{font-size:2.2rem;margin-bottom:10px;}
+
+footer{
+  text-align:center;color:var(--ink-soft);font-size:.85rem;
+  padding:34px 20px;border-top:1px solid var(--paper2);
+}
+</style>
+</head>
+<body translate="no">
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+<div class="nav-right">
+<span class="admin-tag">🔒 MODE ADMIN</span>
+</div>
+</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-kanji" aria-hidden="true">監</div>
+  <div class="hero-back-wrap">
+    <a href="index.html" class="back-btn">← Kembali ke Beranda</a>
+  </div>
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="dot"></span> PANEL ADMIN · TEKIPAKI LEARNING</div>
+    <h1>Pantau <span>perkembangan belajar</span> setiap siswa yang terdaftar</h1>
+    <p>Pilih nama siswa di daftar untuk melihat progres kosakata, tata bahasa, hafalan kanji, hingga hasil quiz dan ujian lisan mereka secara lengkap.</p>
+
+    <div class="stats" id="statsRow"></div>
+  </div>
+</section>
+
+<div id="app">
+  <div class="section-head">
+    <div class="stamp-mini">生</div>
+    <h2>Daftar Siswa Terdaftar</h2>
+    <span class="jp">せいと・いちらん</span>
+  </div>
+
+  <div class="layout">
+
+    <!-- ===== LEFT: LIST ===== -->
+    <div class="panel list-panel">
+      <div class="list-head">
+        <div class="search-box">
+          <span class="ic">🔍</span>
+          <input type="text" id="searchInput" placeholder="Cari nama siswa...">
+        </div>
+        <div class="sort-row" id="sortRow"></div>
+      </div>
+      <div class="student-list" id="studentList"></div>
+    </div>
+
+    <!-- ===== RIGHT: DETAIL ===== -->
+    <div class="panel">
+      <div id="detailPanel"></div>
+    </div>
+
+  </div>
+
+  <div class="dummy-note">
+    ⚠️ <b>Catatan:</b> Data siswa di halaman ini masih berupa <b>data contoh (dummy)</b> untuk keperluan tampilan.
+    Untuk penggunaan nyata, daftar siswa dan nilai perlu dihubungkan ke sumber data pendaftaran &amp; hasil quiz yang sesungguhnya
+    (misalnya spreadsheet atau database), supaya progres yang tampil di sini otomatis ter-update setiap siswa mengerjakan latihan.
+  </div>
+</div>
+
+<footer>
+  © Tekipaki Japanese Learning · Panel Admin
+</footer>
+
+<script>
+//====================================================
+// DATA CONTOH (DUMMY) — ganti dengan data asli nanti
+//====================================================
+const siswaData = [
+  {
+    nama:"Niko",
+    bergabung:"2026-03-02",
+    terakhirAktif:"2026-08-11",
+    kosakata:82,
+    tataBahasa:70,
+    kanjiHafalan:198, kanjiHafalanTotal:286,
+    cekBacaanKanji:[
+      {tanggal:"2026-07-20", nilai:76},
+      {tanggal:"2026-08-05", nilai:88},
+    ],
+    quizJFT:[
+      {no:1, nilai:85, tanggal:"2026-06-14"},
+      {no:2, nilai:80, tanggal:"2026-06-28"},
+      {no:3, nilai:90, tanggal:"2026-07-12"},
+      {no:4, nilai:75, tanggal:"2026-07-30"},
+      {no:5, nilai:null, tanggal:null},
+    ],
+    quizKanji:[
+      {no:1, nilai:88, tanggal:"2026-06-10"},
+      {no:2, nilai:92, tanggal:"2026-06-24"},
+      {no:3, nilai:79, tanggal:"2026-07-08"},
+      {no:4, nilai:84, tanggal:"2026-07-22"},
+      {no:5, nilai:81, tanggal:"2026-08-04"},
+    ],
+  },
+  {
+    nama:"Ringga",
+    bergabung:"2026-03-02",
+    terakhirAktif:"2026-08-10",
+    kosakata:64,
+    tataBahasa:58,
+    kanjiHafalan:140, kanjiHafalanTotal:286,
+    cekBacaanKanji:[
+      {tanggal:"2026-07-18", nilai:60},
+      {tanggal:"2026-08-02", nilai:69},
+    ],
+    quizJFT:[
+      {no:1, nilai:65, tanggal:"2026-06-15"},
+      {no:2, nilai:58, tanggal:"2026-06-29"},
+      {no:3, nilai:70, tanggal:"2026-07-13"},
+      {no:4, nilai:null, tanggal:null},
+      {no:5, nilai:null, tanggal:null},
+    ],
+    quizKanji:[
+      {no:1, nilai:72, tanggal:"2026-06-11"},
+      {no:2, nilai:66, tanggal:"2026-06-25"},
+      {no:3, nilai:60, tanggal:"2026-07-09"},
+      {no:4, nilai:null, tanggal:null},
+      {no:5, nilai:null, tanggal:null},
+    ],
+  },
+  {
+    nama:"Shomad",
+    bergabung:"2026-04-15",
+    terakhirAktif:"2026-08-09",
+    kosakata:91,
+    tataBahasa:88,
+    kanjiHafalan:260, kanjiHafalanTotal:286,
+    cekBacaanKanji:[
+      {tanggal:"2026-07-22", nilai:93},
+      {tanggal:"2026-08-06", nilai:95},
+    ],
+    quizJFT:[
+      {no:1, nilai:95, tanggal:"2026-06-16"},
+      {no:2, nilai:90, tanggal:"2026-06-30"},
+      {no:3, nilai:92, tanggal:"2026-07-14"},
+      {no:4, nilai:88, tanggal:"2026-07-28"},
+      {no:5, nilai:94, tanggal:"2026-08-08"},
+    ],
+    quizKanji:[
+      {no:1, nilai:96, tanggal:"2026-06-12"},
+      {no:2, nilai:93, tanggal:"2026-06-26"},
+      {no:3, nilai:90, tanggal:"2026-07-10"},
+      {no:4, nilai:95, tanggal:"2026-07-24"},
+      {no:5, nilai:97, tanggal:"2026-08-07"},
+    ],
+  },
+  {
+    nama:"Trianto",
+    bergabung:"2026-04-15",
+    terakhirAktif:"2026-07-22",
+    kosakata:48,
+    tataBahasa:40,
+    kanjiHafalan:75, kanjiHafalanTotal:286,
+    cekBacaanKanji:[
+      {tanggal:"2026-07-05", nilai:45},
+    ],
+    quizJFT:[
+      {no:1, nilai:50, tanggal:"2026-06-20"},
+      {no:2, nilai:40, tanggal:"2026-07-05"},
+      {no:3, nilai:null, tanggal:null},
+      {no:4, nilai:null, tanggal:null},
+      {no:5, nilai:null, tanggal:null},
+    ],
+    quizKanji:[
+      {no:1, nilai:55, tanggal:"2026-06-18"},
+      {no:2, nilai:48, tanggal:"2026-07-02"},
+      {no:3, nilai:null, tanggal:null},
+      {no:4, nilai:null, tanggal:null},
+      {no:5, nilai:null, tanggal:null},
+    ],
+  },
+  {
+    nama:"Joni",
+    bergabung:"2026-05-01",
+    terakhirAktif:"2026-08-11",
+    kosakata:73,
+    tataBahasa:69,
+    kanjiHafalan:170, kanjiHafalanTotal:286,
+    cekBacaanKanji:[
+      {tanggal:"2026-07-25", nilai:71},
+      {tanggal:"2026-08-08", nilai:78},
+    ],
+    quizJFT:[
+      {no:1, nilai:74, tanggal:"2026-06-22"},
+      {no:2, nilai:70, tanggal:"2026-07-06"},
+      {no:3, nilai:76, tanggal:"2026-07-20"},
+      {no:4, nilai:69, tanggal:"2026-08-03"},
+      {no:5, nilai:null, tanggal:null},
+    ],
+    quizKanji:[
+      {no:1, nilai:78, tanggal:"2026-06-19"},
+      {no:2, nilai:75, tanggal:"2026-07-03"},
+      {no:3, nilai:80, tanggal:"2026-07-17"},
+      {no:4, nilai:73, tanggal:"2026-07-31"},
+      {no:5, nilai:null, tanggal:null},
+    ],
+  },
+  {
+    nama:"Ferian",
+    bergabung:"2026-05-01",
+    terakhirAktif:"2026-08-06",
+    kosakata:59,
+    tataBahasa:55,
+    kanjiHafalan:110, kanjiHafalanTotal:286,
+    cekBacaanKanji:[
+      {tanggal:"2026-07-19", nilai:57},
+    ],
+    quizJFT:[
+      {no:1, nilai:60, tanggal:"2026-06-23"},
+      {no:2, nilai:55, tanggal:"2026-07-07"},
+      {no:3, nilai:62, tanggal:"2026-07-21"},
+      {no:4, nilai:null, tanggal:null},
+      {no:5, nilai:null, tanggal:null},
+    ],
+    quizKanji:[
+      {no:1, nilai:64, tanggal:"2026-06-20"},
+      {no:2, nilai:58, tanggal:"2026-07-04"},
+      {no:3, nilai:null, tanggal:null},
+      {no:4, nilai:null, tanggal:null},
+      {no:5, nilai:null, tanggal:null},
+    ],
+  },
+  {
+    nama:"Luki",
+    bergabung:"2026-06-10",
+    terakhirAktif:"2026-06-25",
+    kosakata:22,
+    tataBahasa:15,
+    kanjiHafalan:40, kanjiHafalanTotal:286,
+    cekBacaanKanji:[],
+    quizJFT:[
+      {no:1, nilai:35, tanggal:"2026-06-18"},
+      {no:2, nilai:null, tanggal:null},
+      {no:3, nilai:null, tanggal:null},
+      {no:4, nilai:null, tanggal:null},
+      {no:5, nilai:null, tanggal:null},
+    ],
+    quizKanji:[
+      {no:1, nilai:30, tanggal:"2026-06-16"},
+      {no:2, nilai:null, tanggal:null},
+      {no:3, nilai:null, tanggal:null},
+      {no:4, nilai:null, tanggal:null},
+      {no:5, nilai:null, tanggal:null},
+    ],
+  },
+];
+
+const TODAY = new Date("2026-08-12");
+
+//====================================================
+// HELPERS
+//====================================================
+
+function daysAgo(dateStr){
+  if(!dateStr) return Infinity;
+  const d = new Date(dateStr);
+  return Math.round((TODAY - d) / 86400000);
+}
+
+function allScores(s){
+  const scores = [];
+  s.quizJFT.forEach(q => { if(q.nilai !== null) scores.push(q.nilai); });
+  s.quizKanji.forEach(q => { if(q.nilai !== null) scores.push(q.nilai); });
+  s.cekBacaanKanji.forEach(q => scores.push(q.nilai));
+  return scores;
+}
+
+function overallAvg(s){
+  const scores = allScores(s);
+  if(scores.length === 0) return null;
+  return Math.round(scores.reduce((a,b)=>a+b,0) / scores.length);
+}
+
+function statusOf(s){
+  const avg = overallAvg(s);
+  const inactiveDays = daysAgo(s.terakhirAktif);
+  if(avg === null || inactiveDays > 14) return { key:"fail", label:"⚠ Perlu Perhatian" };
+  if(avg < 70 || inactiveDays > 7) return { key:"warn", label:"● Perlu Didorong" };
+  return { key:"pass", label:"✓ Aktif Baik" };
+}
+
+function scoreClass(nilai){
+  if(nilai === null || nilai === undefined) return "belum";
+  return nilai >= 70 ? "pass" : "fail";
+}
+
+function fmtDate(dateStr){
+  if(!dateStr) return "—";
+  const d = new Date(dateStr);
+  const bulan = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+  return d.getDate() + " " + bulan[d.getMonth()] + " " + d.getFullYear();
+}
+
+function initials(nama){
+  return nama.slice(0,2).toUpperCase();
+}
+
+//====================================================
+// STATE
+//====================================================
+let activeIndex = null;
+let searchQuery = "";
+let sortMode = "nama"; // nama | nilai | aktivitas
+
+const statsRow = document.getElementById("statsRow");
+const sortRow = document.getElementById("sortRow");
+const studentList = document.getElementById("studentList");
+const searchInput = document.getElementById("searchInput");
+const detailPanel = document.getElementById("detailPanel");
+
+//====================================================
+// RENDER: hero stats
+//====================================================
+function renderStats(){
+  const total = siswaData.length;
+  const avgAll = Math.round(
+    siswaData.map(overallAvg).filter(v=>v!==null).reduce((a,b)=>a+b,0) /
+    siswaData.filter(s=>overallAvg(s)!==null).length
+  );
+  const aktifMingguIni = siswaData.filter(s => daysAgo(s.terakhirAktif) <= 7).length;
+  const perluPerhatian = siswaData.filter(s => statusOf(s).key !== "pass").length;
+
+  statsRow.innerHTML = `
+    <div class="stat"><div class="num">${total}</div><div class="lbl">Siswa Terdaftar</div></div>
+    <div class="stat"><div class="num">${avgAll}</div><div class="lbl">Rata-rata Nilai</div></div>
+    <div class="stat"><div class="num">${aktifMingguIni}</div><div class="lbl">Aktif 7 Hari Terakhir</div></div>
+    <div class="stat"><div class="num">${perluPerhatian}</div><div class="lbl">Perlu Perhatian</div></div>
+  `;
+}
+
+//====================================================
+// RENDER: sort chips
+//====================================================
+function renderSortRow(){
+  const modes = [
+    { key:"nama", label:"A–Z" },
+    { key:"nilai", label:"Nilai Tertinggi" },
+    { key:"aktivitas", label:"Terbaru Aktif" },
+  ];
+  sortRow.innerHTML = "";
+  modes.forEach(m => {
+    const chip = document.createElement("button");
+    chip.className = "sort-chip" + (sortMode === m.key ? " active" : "");
+    chip.textContent = m.label;
+    chip.addEventListener("click", () => { sortMode = m.key; renderList(); });
+    sortRow.appendChild(chip);
+  });
+}
+
+//====================================================
+// RENDER: student list
+//====================================================
+function getFilteredSorted(){
+  let list = siswaData.map((s, i) => ({ s, i }));
+  if(searchQuery.trim() !== ""){
+    const q = searchQuery.trim().toLowerCase();
+    list = list.filter(({s}) => s.nama.toLowerCase().includes(q));
+  }
+  if(sortMode === "nama"){
+    list.sort((a,b) => a.s.nama.localeCompare(b.s.nama));
+  } else if(sortMode === "nilai"){
+    list.sort((a,b) => (overallAvg(b.s) ?? -1) - (overallAvg(a.s) ?? -1));
+  } else if(sortMode === "aktivitas"){
+    list.sort((a,b) => daysAgo(a.s.terakhirAktif) - daysAgo(b.s.terakhirAktif));
+  }
+  return list;
+}
+
+function renderList(){
+  const list = getFilteredSorted();
+  studentList.innerHTML = "";
+
+  if(list.length === 0){
+    studentList.innerHTML = `<div class="empty-search">Tidak ada siswa dengan nama tersebut.</div>`;
+    renderSortRow();
+    return;
+  }
+
+  list.forEach(({s, i}) => {
+    const avg = overallAvg(s);
+    const st = statusOf(s);
+    const item = document.createElement("div");
+    item.className = "student-item" + (i === activeIndex ? " active" : "");
+    item.innerHTML = `
+      <div class="avatar">${initials(s.nama)}</div>
+      <div class="s-info">
+        <div class="s-name">${s.nama}</div>
+        <div class="s-meta">Aktif ${daysAgo(s.terakhirAktif)} hari lalu</div>
+      </div>
+      <div class="s-score ${st.key}">${avg === null ? "-" : avg}</div>
+    `;
+    item.addEventListener("click", () => {
+      activeIndex = i;
+      renderList();
+      renderDetail();
+    });
+    studentList.appendChild(item);
+  });
+
+  renderSortRow();
+}
+
+//====================================================
+// RENDER: detail panel
+//====================================================
+function quizRows(arr, labelPrefix){
+  return arr.map(q => {
+    const cls = scoreClass(q.nilai);
+    const badge = q.nilai === null
+      ? `<span class="nilai-badge belum">Belum</span>`
+      : `<span class="nilai-badge ${cls}">${q.nilai}</span>`;
+    return `<tr>
+      <td>${labelPrefix} ${q.no}</td>
+      <td>${badge}</td>
+      <td class="tgl">${fmtDate(q.tanggal)}</td>
+    </tr>`;
+  }).join("");
+}
+
+function renderChart(s){
+  const items = [
+    ...s.quizJFT.map(q => ({ label:"J"+q.no, nilai:q.nilai })),
+    ...s.quizKanji.map(q => ({ label:"K"+q.no, nilai:q.nilai })),
+  ];
+  const bars = items.map(it => {
+    const h = it.nilai === null ? 4 : Math.max(6, it.nilai);
+    const failClass = (it.nilai !== null && it.nilai < 70) ? " fail" : "";
+    return `<div class="chart-bar${failClass}">
+      <div class="cv">${it.nilai === null ? "-" : it.nilai}</div>
+      <div class="fill" style="height:${h}%;"></div>
+    </div>`;
+  }).join("");
+  const labels = items.map(it => `<span>${it.label}</span>`).join("");
+  return `<div class="chart-wrap">${bars}</div><div class="chart-labels">${labels}</div>`;
+}
+
+function renderDetail(){
+  if(activeIndex === null){
+    detailPanel.innerHTML = `
+      <div class="no-select">
+        <div class="ic">🈺</div>
+        <div>Pilih nama siswa di sebelah kiri<br>untuk melihat progres belajarnya.</div>
+      </div>
+    `;
+    return;
+  }
+
+  const s = siswaData[activeIndex];
+  const avg = overallAvg(s);
+  const st = statusOf(s);
+  const kanjiPct = Math.round((s.kanjiHafalan / s.kanjiHafalanTotal) * 100);
+
+  const cekBacaanRows = s.cekBacaanKanji.length === 0
+    ? `<tr><td colspan="3" style="color:var(--ink-soft);">Belum pernah mengikuti ujian lisan.</td></tr>`
+    : s.cekBacaanKanji.map(c => {
+        const cls = scoreClass(c.nilai);
+        return `<tr>
+          <td>Ujian Lisan</td>
+          <td><span class="nilai-badge ${cls}">${c.nilai}</span></td>
+          <td class="tgl">${fmtDate(c.tanggal)}</td>
+        </tr>`;
+      }).join("");
+
+  detailPanel.innerHTML = `
+    <div class="detail-panel">
+      <div class="detail-head">
+        <div class="detail-id">
+          <div class="avatar-lg">${initials(s.nama)}</div>
+          <div>
+            <h3>${s.nama}</h3>
+            <div class="sub">Bergabung ${fmtDate(s.bergabung)} · Terakhir aktif ${fmtDate(s.terakhirAktif)}</div>
+            <div style="margin-top:8px;"><span class="status-pill ${st.key}">${st.label}</span></div>
+          </div>
+        </div>
+        <div class="avg-block">
+          <div class="avg-num">${avg === null ? "-" : avg}</div>
+          <div class="avg-lbl">Rata-rata Nilai</div>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h4>Progres Belajar</h4>
+        <div class="prog-row">
+          <div class="prog-top"><span class="name">Kosakata JFT</span><span class="val">${s.kosakata}%</span></div>
+          <div class="prog-track"><div class="prog-fill" style="width:${s.kosakata}%;"></div></div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-top"><span class="name">Tata Bahasa</span><span class="val">${s.tataBahasa}%</span></div>
+          <div class="prog-track"><div class="prog-fill" style="width:${s.tataBahasa}%;"></div></div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-top"><span class="name">Hafalan Kanji</span><span class="val">${s.kanjiHafalan}/${s.kanjiHafalanTotal} (${kanjiPct}%)</span></div>
+          <div class="prog-track"><div class="prog-fill" style="width:${kanjiPct}%;"></div></div>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h4>Riwayat Nilai Quiz</h4>
+        ${renderChart(s)}
+      </div>
+
+      <div class="detail-section">
+        <h4>Detail Hasil Ujian &amp; Quiz</h4>
+        <div class="quiz-grid">
+          <table class="quiz-table">
+            <thead><tr><th>Quiz JFT</th><th>Nilai</th><th>Tanggal</th></tr></thead>
+            <tbody>${quizRows(s.quizJFT, "Test")}</tbody>
+          </table>
+          <table class="quiz-table">
+            <thead><tr><th>Quiz Kanji</th><th>Nilai</th><th>Tanggal</th></tr></thead>
+            <tbody>${quizRows(s.quizKanji, "Set")}</tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="detail-section" style="margin-bottom:0;">
+        <h4>Cek Bacaan Kanji (Ujian Lisan)</h4>
+        <table class="quiz-table">
+          <thead><tr><th>Jenis</th><th>Nilai</th><th>Tanggal</th></tr></thead>
+          <tbody>${cekBacaanRows}</tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+//====================================================
+// EVENTS
+//====================================================
+searchInput.addEventListener("input", (e) => {
+  searchQuery = e.target.value;
+  renderList();
+});
+
+//====================================================
+// INIT
+//====================================================
+renderStats();
+renderList();
+renderDetail();
+</script>
+
+</body>
+</html>
