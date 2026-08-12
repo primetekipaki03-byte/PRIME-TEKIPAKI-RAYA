@@ -137,7 +137,7 @@ header p{
 /* PILIH SISWA */
 
 .student-wrap{
-    max-width:640px;
+    max-width:760px;
     margin:26px auto 0;
     padding:0 20px;
 }
@@ -205,7 +205,7 @@ header p{
 /* VIEWER */
 
 .viewer-wrap{
-    max-width:520px;
+    max-width:760px;
     margin:28px auto 0;
     padding:0 20px;
 }
@@ -215,6 +215,7 @@ header p{
     align-items:center;
     justify-content:space-between;
     margin-bottom:14px;
+    gap:10px;
 }
 
 .progress-text{
@@ -240,18 +241,127 @@ header p{
     transition:width .35s ease;
 }
 
+/* TIMER */
+
+.timer-cluster{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    white-space:nowrap;
+}
+
+.timer-badge{
+    font-weight:700;
+    font-size:13.5px;
+    color:var(--navy);
+    background:var(--gold-soft);
+    border:2px solid var(--gold);
+    padding:6px 13px;
+    border-radius:999px;
+    white-space:nowrap;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    transition:.2s;
+}
+
+.timer-badge.low{
+    color:white;
+    background:var(--red);
+    border-color:var(--red);
+    animation:pulseTimer 1s infinite;
+}
+
+.timer-badge.done{
+    color:white;
+    background:#7a7a7a;
+    border-color:#7a7a7a;
+    animation:none;
+}
+
+.timer-badge.waiting{
+    color:var(--muted);
+    background:#eef1f5;
+    border-color:#dde3ec;
+}
+
+@keyframes pulseTimer{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.06); }
+}
+
+.start-btn{
+    border:2px solid var(--green);
+    background:var(--green);
+    color:white;
+    font-weight:700;
+    font-size:13px;
+    padding:7px 14px;
+    border-radius:999px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    white-space:nowrap;
+    animation:pulseStart 1.4s infinite;
+}
+
+.start-btn:hover{ opacity:.9; }
+
+@keyframes pulseStart{
+    0%,100%{ box-shadow:0 0 0 0 rgba(22,163,74,.35); }
+    50%{ box-shadow:0 0 0 6px rgba(22,163,74,0); }
+}
+
 .card{
     background:var(--paper);
     border:2px solid var(--navy);
     box-shadow:0 6px 0 var(--navy);
-    border-radius:20px;
-    padding:34px 24px;
+    border-radius:22px;
+    padding:48px 40px;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
     text-align:center;
-    min-height:260px;
+    width:100%;
+    min-height:min(52vh, 420px);
+    position:relative;
+}
+
+.card.locked .word,
+.card.locked .badge{
+    opacity:.25;
+    filter:blur(1px);
+}
+
+.lock-note{
+    display:none;
+    position:absolute;
+    left:20px;
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+}
+
+.card.locked .lock-note{
+    display:flex;
+}
+
+.lock-note p{
+    font-size:14px;
+    color:var(--navy);
+    font-weight:600;
+    max-width:320px;
+    line-height:1.5;
+}
+
+.lock-note .start-btn{
+    font-size:15px;
+    padding:11px 22px;
 }
 
 .badge{
@@ -268,15 +378,15 @@ header p{
 }
 
 .word{
-    font-size:42px;
+    font-size:clamp(48px, 8vw, 80px);
     font-weight:900;
     color:var(--navy);
-    line-height:1.35;
+    line-height:1.3;
     word-break:break-word;
 }
 
 .reveal-box{
-    margin-top:18px;
+    margin-top:20px;
     display:none;
 }
 
@@ -285,19 +395,19 @@ header p{
 }
 
 .reading{
-    font-size:22px;
+    font-size:26px;
     color:var(--navy2);
     font-weight:700;
 }
 
 .meaning{
     margin-top:6px;
-    font-size:15px;
+    font-size:16px;
     color:var(--muted);
 }
 
 .tap-note{
-    margin-top:18px;
+    margin-top:20px;
     font-size:11px;
     color:var(--gold);
     background:var(--navy);
@@ -305,6 +415,12 @@ header p{
     border-radius:999px;
     letter-spacing:.04em;
     cursor:pointer;
+}
+
+.tap-note.disabled{
+    opacity:.45;
+    cursor:default;
+    pointer-events:none;
 }
 
 /* JUDGE BUTTONS */
@@ -462,7 +578,7 @@ header p{
 /* SUMMARY TABLE */
 
 .summary-wrap{
-    max-width:640px;
+    max-width:760px;
     margin:40px auto 0;
     padding:0 20px;
 }
@@ -513,8 +629,11 @@ footer{
 }
 
 @media(max-width:480px){
-    .word{ font-size:36px; }
+    .word{ font-size:46px; }
     header h1{ font-size:26px; }
+    .progress-row{ flex-wrap:wrap; }
+    .progress-bar{ order:3; width:100%; margin:8px 0 0; flex:1 1 100%; }
+    .card{ padding:38px 18px; min-height:280px; }
 }
 
 </style>
@@ -542,7 +661,6 @@ HOME
 <header>
 <div class="eyebrow">📝 UJIAN LISAN · CEK BACAAN KANJI</div>
 <h1>Cek Bacaan Kanji Siswa</h1>
-<p>Pilih nama siswa, lalu tunjukkan kanji di layar. Setelah siswa membacakan, klik "Lihat Jawaban" untuk cek cara bacanya, lalu tandai Benar / Salah. Setiap siswa mendapat 42 soal kanji dan nilai dihitung otomatis.</p>
 </header>
 
 <div class="student-wrap">
@@ -555,6 +673,10 @@ HOME
 <div class="progress-row">
 <span class="progress-text" id="progressText">1 / 42</span>
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="timer-cluster">
+<button class="start-btn" id="startTimerBtnTop" title="Mulai hitung mundur 10 menit">▶ Mulai</button>
+<span class="timer-badge waiting" id="timerText">⏱ 10:00</span>
+</div>
 </div>
 
 <div class="card" id="card">
@@ -567,6 +689,11 @@ HOME
     </div>
 
     <div class="tap-note" id="revealBtn">Lihat Jawaban</div>
+
+    <div class="lock-note" id="lockNote">
+        <p>⏳ Timer belum dimulai. Tekan tombol di bawah saat siswa siap mengerjakan.</p>
+        <button class="start-btn" id="startTimerBtnCard">▶ Mulai Ujian (10 menit)</button>
+    </div>
 </div>
 
 <div class="judge-row">
@@ -925,24 +1052,36 @@ function shuffleArray(arr){
     return arr;
 }
 
+// waktu ujian per siswa (detik)
+const TIME_LIMIT = 10 * 60; // 10 menit
+
 // simpan urutan tampil (indeks ke array words asli) + hasil per siswa
 students.forEach(s => {
     s.order = shuffleArray(s.words.map((_, i) => i)); // urutan soal diacak dari awal
     s.current = 0;
     s.results = s.words.map(() => null); // hasil disimpan berdasarkan indeks asli, bukan urutan tampil
+    s.timeLeft = TIME_LIMIT; // waktu tersisa (detik)
+    s.finished = false; // true kalau waktu sudah habis
+    s.started = false; // true kalau timer sudah pernah ditekan mulai
 });
 
 let activeStudent = 0;
+let timerInterval = null; // interval yang sedang berjalan untuk 1 siswa aktif
 
 const studentRow = document.getElementById("studentRow");
+const cardEl = document.getElementById("card");
 const cardBadge = document.getElementById("cardBadge");
 const cardWord = document.getElementById("cardWord");
 const cardReading = document.getElementById("cardReading");
 const cardMeaning = document.getElementById("cardMeaning");
 const revealBox = document.getElementById("revealBox");
 const revealBtn = document.getElementById("revealBtn");
+const lockNote = document.getElementById("lockNote");
 const progressText = document.getElementById("progressText");
 const progressFill = document.getElementById("progressFill");
+const timerText = document.getElementById("timerText");
+const startTimerBtnTop = document.getElementById("startTimerBtnTop");
+const startTimerBtnCard = document.getElementById("startTimerBtnCard");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const resetBtn = document.getElementById("resetBtn");
@@ -960,16 +1099,108 @@ function scoreOf(s){
     return { done, correct, wrong, nilai };
 }
 
+//============================
+// TIMER (10 menit per siswa, mulai manual)
+//============================
+
+function formatTime(sec){
+    const m = Math.floor(sec / 60).toString().padStart(2, "0");
+    const s = (sec % 60).toString().padStart(2, "0");
+    return m + ":" + s;
+}
+
+function renderTimer(){
+    const s = students[activeStudent];
+    timerText.textContent = "⏱ " + formatTime(Math.max(s.timeLeft, 0));
+    timerText.classList.toggle("low", s.started && !s.finished && s.timeLeft > 0 && s.timeLeft <= 60);
+    timerText.classList.toggle("done", s.finished);
+    timerText.classList.toggle("waiting", !s.started && !s.finished);
+
+    // tombol mulai hanya muncul kalau siswa aktif belum pernah menekan mulai
+    const showStart = !s.started && !s.finished;
+    startTimerBtnTop.style.display = showStart ? "flex" : "none";
+    startTimerBtnCard.style.display = showStart ? "flex" : "none";
+}
+
+function clearActiveTimer(){
+    if(timerInterval){
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+}
+
+function handleTimeUp(index){
+    const s = students[index];
+    s.finished = true;
+    s.timeLeft = 0;
+    if(index === activeStudent){
+        renderCard();
+        renderTimer();
+        alert("⏰ Waktu 10 menit untuk " + s.name + " telah habis! Soal yang belum dinilai akan tetap kosong.");
+    }
+    renderStudentRow();
+    renderSummary();
+}
+
+// menjalankan hitung mundur untuk siswa tertentu (hanya kalau sudah "started" dan belum selesai)
+function startTimerForStudent(index){
+    clearActiveTimer();
+    const s = students[index];
+    if(!s.started || s.finished || s.timeLeft <= 0){
+        if(s.timeLeft <= 0){ s.finished = true; s.timeLeft = 0; }
+        renderTimer();
+        return;
+    }
+    timerInterval = setInterval(() => {
+        s.timeLeft--;
+        if(index === activeStudent) renderTimer();
+        if(s.timeLeft <= 0){
+            clearActiveTimer();
+            handleTimeUp(index);
+        }
+    }, 1000);
+}
+
+// dipanggil tiap pindah siswa aktif: lanjutkan timer kalau siswa itu sudah "started", kalau belum, biarkan menunggu tombol Mulai
+function syncTimerForActiveStudent(){
+    clearActiveTimer();
+    const s = students[activeStudent];
+    if(s.started && !s.finished){
+        startTimerForStudent(activeStudent);
+    } else {
+        renderTimer();
+    }
+}
+
+function beginExamForActiveStudent(){
+    const s = students[activeStudent];
+    if(s.started || s.finished) return;
+    s.started = true;
+    startTimerForStudent(activeStudent);
+    renderCard();
+    renderStudentRow();
+}
+
+startTimerBtnTop.addEventListener("click", beginExamForActiveStudent);
+startTimerBtnCard.addEventListener("click", beginExamForActiveStudent);
+
+//============================
+// RENDER
+//============================
+
 function renderStudentRow(){
     studentRow.innerHTML = "";
     students.forEach((s, i) => {
         const sc = scoreOf(s);
         const pill = document.createElement("button");
         pill.className = "student-pill" + (i === activeStudent ? " active" : "");
-        pill.innerHTML = s.name + " <span class='student-score'>" + sc.done + "/" + s.results.length + "</span>";
+        const statusMark = s.finished ? " ⏰" : (s.started ? " ▶" : "");
+        pill.innerHTML = s.name + statusMark + " <span class='student-score'>" + sc.done + "/" + s.results.length + "</span>";
         pill.addEventListener("click", () => {
+            if(i === activeStudent) return;
             activeStudent = i;
             renderAll();
+            syncTimerForActiveStudent();
         });
         studentRow.appendChild(pill);
     });
@@ -984,14 +1215,15 @@ function renderCard(){
     cardBadge.innerHTML = "漢";
 
     cardWord.textContent = w.kanji;
-    cardWord.style.fontSize = w.kanji.length > 8 ? "24px" : (w.kanji.length > 4 ? "34px" : "48px");
+    cardWord.style.fontSize = w.kanji.length > 8 ? "clamp(30px, 5.5vw, 44px)" : (w.kanji.length > 4 ? "clamp(40px, 7vw, 60px)" : "clamp(48px, 8vw, 80px)");
     cardReading.textContent = w.reading;
-    cardReading.style.fontSize = w.reading.length > 15 ? "16px" : "20px";
+    cardReading.style.fontSize = w.reading.length > 15 ? "clamp(16px, 2.6vw, 22px)" : "clamp(20px, 3.2vw, 28px)";
     cardMeaning.textContent = w.meaning;
 
     revealBox.classList.remove("show");
     revealBtn.style.display = "inline-block";
     revealBtn.textContent = "Lihat Jawaban";
+    revealBtn.classList.remove("disabled");
 
     progressText.textContent = (s.current+1) + " / " + s.words.length;
     progressFill.style.width = ((s.current+1)/s.words.length*100) + "%";
@@ -1011,6 +1243,26 @@ function renderCard(){
         if(result === false) salahBtn.classList.add("picked");
     }
 
+    // kalau waktu sudah habis, kunci penilaian untuk soal yang belum dinilai
+    if(s.finished){
+        benarBtn.disabled = true;
+        salahBtn.disabled = true;
+        if(result === null){
+            revealBtn.classList.add("disabled");
+            revealBtn.textContent = "Waktu Habis";
+        }
+    }
+
+    // kalau ujian belum dimulai sama sekali, kunci seluruh kartu
+    const locked = !s.started && !s.finished;
+    cardEl.classList.toggle("locked", locked);
+    if(locked){
+        revealBtn.style.display = "none";
+        benarBtn.disabled = true;
+        salahBtn.disabled = true;
+    }
+
+    renderTimer();
     renderJumpRow();
 }
 
@@ -1040,7 +1292,7 @@ function renderSummary(){
         const nilaiClass = sc.nilai === null ? "" : (sc.nilai >= 70 ? "pass" : "fail");
         const tr = document.createElement("tr");
         tr.innerHTML =
-            "<td>" + s.name + "</td>" +
+            "<td>" + s.name + (s.finished ? " ⏰" : "") + "</td>" +
             "<td>" + sc.done + " / " + s.results.length + "</td>" +
             "<td style='color:var(--green);font-weight:700;'>" + sc.correct + "</td>" +
             "<td style='color:var(--red);font-weight:700;'>" + sc.wrong + "</td>" +
@@ -1056,10 +1308,12 @@ function renderAll(){
 }
 
 revealBtn.addEventListener("click", function(){
-    revealBox.classList.add("show");
     const s = students[activeStudent];
+    if(!s.started) return; // belum mulai
+    if(s.finished && s.results[s.order[s.current]] === null) return; // waktu habis & belum dinilai
+    revealBox.classList.add("show");
     const wordIndex = s.order[s.current];
-    if(s.results[wordIndex] === null){
+    if(s.results[wordIndex] === null && !s.finished){
         benarBtn.disabled = false;
         salahBtn.disabled = false;
     }
@@ -1067,6 +1321,7 @@ revealBtn.addEventListener("click", function(){
 
 benarBtn.addEventListener("click", function(){
     const s = students[activeStudent];
+    if(s.finished || !s.started) return;
     const wordIndex = s.order[s.current];
     s.results[wordIndex] = true;
     revealBox.classList.add("show");
@@ -1075,6 +1330,7 @@ benarBtn.addEventListener("click", function(){
 
 salahBtn.addEventListener("click", function(){
     const s = students[activeStudent];
+    if(s.finished || !s.started) return;
     const wordIndex = s.order[s.current];
     s.results[wordIndex] = false;
     revealBox.classList.add("show");
@@ -1100,10 +1356,14 @@ shuffleBtn.addEventListener("click", function(){
 
 resetBtn.addEventListener("click", function(){
     const s = students[activeStudent];
-    if(confirm("Ulang paket soal untuk " + s.name + "? Nilai akan dihapus dan urutan soal diacak ulang.")){
+    if(confirm("Ulang paket soal untuk " + s.name + "? Nilai akan dihapus, timer direset (belum mulai), dan urutan soal diacak ulang.")){
+        clearActiveTimer();
         s.order = shuffleArray(s.words.map((_, i) => i));
         s.current = 0;
         s.results = s.words.map(() => null);
+        s.timeLeft = TIME_LIMIT;
+        s.finished = false;
+        s.started = false;
         renderAll();
     }
 });
