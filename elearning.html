@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tekipaki Japanese Learning</title>
+<style>
+:root{
+  --primary:#173f5f;
+  --secondary:#20639b;
+  --accent:#f6c85f;
+  --bg:#f4f7fb;
+  --text:#263238;
+  --white:#fff;
+  --muted:#6b7280;
+  --success:#2e8b57;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Arial,"Noto Sans",sans-serif;
+  background:var(--bg);color:var(--text);
+}
+button,input{font:inherit}
+.hidden{display:none!important}
+
+/* LOGIN */
+#loginPage{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:24px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+}
+.login-card{
+  width:min(430px,100%);background:var(--white);border-radius:22px;
+  padding:42px 34px;box-shadow:0 20px 60px rgba(0,0,0,.22);
+  text-align:center;
+}
+.logo{
+  width:74px;height:74px;margin:0 auto 18px;border-radius:18px;
+  background:var(--primary);color:white;display:flex;align-items:center;
+  justify-content:center;font-size:25px;font-weight:800;
+}
+.login-card h1{margin:0;color:var(--primary);font-size:25px}
+.login-card .subtitle{color:var(--muted);margin:8px 0 30px}
+.password-wrap{position:relative}
+.password-wrap input{
+  width:100%;padding:15px 48px 15px 16px;border:1px solid #d7dee8;
+  border-radius:12px;outline:none;
+}
+.password-wrap input:focus{border-color:var(--secondary)}
+.eye{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  border:0;background:transparent;cursor:pointer;color:var(--muted)
+}
+.login-btn{
+  width:100%;margin-top:16px;padding:14px;border:0;border-radius:12px;
+  background:var(--primary);color:#fff;font-weight:700;cursor:pointer;
+}
+.login-btn:hover{background:var(--secondary)}
+.error{color:#c62828;font-size:14px;min-height:20px;margin-top:12px}
+.login-note{font-size:12px;color:var(--muted);margin-top:22px}
+
+/* APP */
+#app{min-height:100vh}
+header{
+  background:var(--white);height:70px;display:flex;align-items:center;
+  justify-content:space-between;padding:0 28px;border-bottom:1px solid #e5e9ef;
+  position:sticky;top:0;z-index:20;
+}
+.brand{font-weight:800;color:var(--primary);font-size:20px}
+.header-right{display:flex;align-items:center;gap:12px}
+.logout{
+  border:1px solid #dce2ea;background:white;color:var(--primary);
+  border-radius:9px;padding:8px 13px;cursor:pointer
+}
+.layout{display:flex;min-height:calc(100vh - 70px)}
+.sidebar{
+  width:235px;background:var(--primary);color:white;padding:20px 14px;
+}
+.sidebar h3{font-size:12px;text-transform:uppercase;letter-spacing:1px;opacity:.7;padding:0 12px}
+.nav{
+  display:block;width:100%;border:0;background:transparent;color:white;
+  text-align:left;padding:12px;border-radius:9px;cursor:pointer;margin:4px 0;
+}
+.nav:hover,.nav.active{background:rgba(255,255,255,.13)}
+.main{flex:1;padding:28px;max-width:1400px;margin:auto;width:100%}
+.page-title{font-size:28px;color:var(--primary);margin:0 0 7px}
+.page-desc{color:var(--muted);margin:0 0 24px}
+
+/* DASHBOARD */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{
+  background:white;border:1px solid #e6eaf0;border-radius:15px;padding:20px;
+}
+.stat-number{font-size:28px;font-weight:800;color:var(--primary)}
+.stat-label{color:var(--muted);font-size:13px;margin-top:5px}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-top:18px}
+.progressbar{height:11px;background:#e9edf3;border-radius:20px;overflow:hidden}
+.progressbar span{display:block;height:100%;background:var(--secondary);border-radius:20px}
+.level{
+  display:flex;align-items:center;justify-content:space-between;gap:15px;
+  padding:15px 0;border-bottom:1px solid #edf0f4
+}
+.level:last-child{border-bottom:0}
+.level h3{margin:0 0 5px;color:var(--primary)}
+.level p{margin:0;color:var(--muted);font-size:13px}
+.level-badge{padding:7px 10px;border-radius:20px;background:#eef4fa;color:var(--secondary);font-size:12px;font-weight:700}
+.level-badge.locked{background:#f0f1f3;color:#888}
+.open-btn{
+  border:0;background:var(--secondary);color:white;border-radius:8px;
+  padding:8px 12px;cursor:pointer
+}
+
+/* MATERIAL */
+.material-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.material-card{
+  background:white;border:1px solid #e5e9ef;border-radius:15px;padding:20px;
+  transition:.2s
+}
+.material-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.07)}
+.tag{
+  display:inline-block;background:#eef4fa;color:var(--secondary);
+  border-radius:20px;padding:5px 9px;font-size:11px;font-weight:700
+}
+.material-card h3{color:var(--primary);margin:13px 0 8px}
+.material-card p{color:var(--muted);font-size:14px;line-height:1.6}
+.material-actions{display:flex;gap:8px;margin-top:15px}
+
+/* CONTENT */
+.content-box{
+  background:white;border:1px solid #e5e9ef;border-radius:16px;padding:25px;
+  margin-bottom:18px
+}
+.pattern-hero{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;border-radius:16px;padding:28px;margin-bottom:18px
+}
+.pattern-hero h1{font-size:38px;margin:10px 0}
+.pattern-hero .romaji{opacity:.85;font-size:16px}
+.example{padding:14px 0;border-bottom:1px solid #edf0f4}
+.example:last-child{border-bottom:0}
+.jp{font-size:21px;font-weight:700}
+.yomi{color:var(--secondary);margin:5px 0}
+.id{color:var(--muted)}
+
+/* QUIZ */
+.quiz-box{
+  border:1px solid #e4e8ee;border-radius:13px;padding:20px;margin:15px 0
+}
+.qno{font-size:11px;font-weight:800;color:var(--secondary)}
+.qtext{font-size:18px;font-weight:700;margin:10px 0}
+.answer-slot{
+  min-height:50px;border:2px dashed #d8dee8;border-radius:10px;
+  padding:10px;display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px
+}
+.word-bank{display:flex;flex-wrap:wrap;gap:8px}
+.word-tile,.placed{
+  border:1px solid #d5dce6;background:#f7f9fc;padding:9px 11px;
+  border-radius:8px;cursor:pointer
+}
+.word-tile.used{opacity:.35;cursor:not-allowed}
+.placed{background:#eaf3fb;border-color:#bcd4ea}
+.quiz-btn{
+  margin-top:13px;border:0;background:var(--secondary);color:#fff;
+  padding:9px 13px;border-radius:8px;cursor:pointer
+}
+.quiz-btn.secondary{background:#eef1f5;color:#344054}
+.quiz-result{margin-top:10px;font-weight:700}
+.correct{color:var(--success)}
+.wrong{color:#c62828}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;background:white}
+th,td{padding:12px;text-align:left;border-bottom:1px solid #edf0f4}
+th{color:var(--primary);background:#f8fafc}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .grid{grid-template-columns:1fr}
+  .material-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px){
+  header{padding:0 16px}
+  .layout{display:block}
+  .sidebar{width:100%;padding:10px;display:flex;overflow:auto;gap:4px}
+  .sidebar h3{display:none}
+  .nav{white-space:nowrap;width:auto}
+  .main{padding:18px}
+  .cards,.material-grid{grid-template-columns:1fr}
+  .page-title{font-size:23px}
+  .login-card{padding:34px 22px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+<section id="loginPage">
+  <div class="login-card">
+    <div class="logo">TP</div>
+    <h1>TEKIPAKI</h1>
+    <div class="subtitle">Japanese Learning · E-Learning</div>
+
+    <div class="password-wrap">
+      <input id="passwordInput" type="password" placeholder="Masukkan password">
+      <button class="eye" type="button" onclick="togglePassword()">👁</button>
+    </div>
+
+    <button class="login-btn" onclick="login()">MASUK</button>
+    <div id="loginError" class="error"></div>
+    <div class="login-note">Akses e-learning menggunakan password.</div>
+  </div>
+</section>
+
+<!-- ================= APP ================= -->
+<section id="app" class="hidden">
+  <header>
+    <div class="brand">TEKIPAKI JAPANESE LEARNING</div>
+    <div class="header-right">
+      <span style="font-size:13px;color:#6b7280">E-Learning</span>
+      <button class="logout" onclick="logout()">Keluar</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <h3>Menu</h3>
+      <button class="nav active" data-page="dashboard">🏠 Dashboard</button>
+      <button class="nav" data-page="materi">📚 Materi</button>
+      <button class="nav" data-page="latihan">📝 Latihan</button>
+      <button class="nav" data-page="progress">📊 Progress</button>
+    </aside>
+
+    <main class="main">
+
+      <!-- DASHBOARD -->
+      <div id="dashboard" class="page">
+        <h1 class="page-title">Dashboard</h1>
+        <p class="page-desc">Selamat datang di Tekipaki Japanese Learning.</p>
+
+        <div class="cards">
+          <div class="card">
+            <div class="stat-number">N3</div>
+            <div class="stat-label">Level saat ini</div>
+          </div>
+          <div class="card">
+            <div class="stat-number">78%</div>
+            <div class="stat-label">Progress belajar</div>
+          </div>
+          <div class="card">
+            <div class="stat-number">24</div>
+            <div class="stat-label">Materi selesai</div>
+          </div>
+          <div class="card">
+            <div class="stat-number">86</div>
+            <div class="stat-label">Nilai rata-rata</div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h2 style="color:#173f5f;margin-top:0">Progress Belajar</h2>
+            <p style="color:#6b7280">Level N3</p>
+            <div class="progressbar"><span style="width:78%"></span></div>
+            <p style="font-size:13px;color:#6b7280">78% selesai</p>
+
+            <div class="level">
+              <div><h3>N5</h3><p>Dasar Bahasa Jepang</p></div>
+              <span class="level-badge">Selesai ✓</span>
+            </div>
+            <div class="level">
+              <div><h3>N4</h3><p>Pemahaman dasar</p></div>
+              <span class="level-badge">Selesai ✓</span>
+            </div>
+            <div class="level">
+              <div><h3>N3</h3><p>Tata bahasa tingkat menengah</p></div>
+              <span class="level-badge">Sedang belajar</span>
+            </div>
+            <div class="level">
+              <div><h3>N2</h3><p>Tingkat menengah atas</p></div>
+              <span class="level-badge locked">🔒 Terkunci</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2 style="color:#173f5f;margin-top:0">Lanjut Belajar</h2>
+            <p><strong>〜代わりに</strong></p>
+            <p style="color:#6b7280;font-size:14px">
+              Sebagai ganti / alih-alih / sebagai imbalan.
+            </p>
+            <button class="open-btn" onclick="showPage('materi')">Buka Materi →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MATERI -->
+      <div id="materi" class="page hidden">
+        <h1 class="page-title">Materi Pembelajaran</h1>
+        <p class="page-desc">Materi Bahasa Jepang berdasarkan level.</p>
+
+        <div class="material-grid">
+          <div class="material-card">
+            <span class="tag">JLPT N3 · GRAMMAR</span>
+            <h3>〜代わりに</h3>
+            <p>sebagai ganti ~ ／ alih-alih ~ ／ sebagai imbalan atas ~</p>
+            <button class="open-btn" onclick="openKawari()">Pelajari →</button>
+          </div>
+
+          <div class="material-card">
+            <span class="tag">JLPT N3</span>
+            <h3>〜抜きで</h3>
+            <p>Tanpa ~ / mengesampingkan ~</p>
+            <button class="open-btn" onclick="alert('Materi 〜抜きで dapat ditambahkan di sini.')">Pelajari →</button>
+          </div>
+
+          <div class="material-card">
+            <span class="tag">JLPT N3</span>
+            <h3>〜たびに</h3>
+            <p>Setiap kali melakukan ~</p>
+            <button class="open-btn" onclick="alert('Materi 〜たびに dapat ditambahkan di sini.')">Pelajari →</button>
+          </div>
+        </div>
+
+        <div id="kawari" class="hidden" style="margin-top:22px">
+          <div class="pattern-hero">
+            <span>POLA · JLPT N3</span>
+            <h1>〜代わりに</h1>
+            <div class="romaji">~kawari ni</div>
+            <div>sebagai ganti ~ ／ alih-alih ~ ／ sebagai imbalan atas ~</div>
+          </div>
+
+          <div class="content-box">
+            <h2 style="color:#173f5f">ARTI · Penjelasan</h2>
+            <p>
+              <b>〜代わりに</b> berasal dari kata benda 代わり (pengganti) dan
+              memiliki dua nuansa utama.
+            </p>
+            <p>
+              Pertama, sebagai <b>pengganti/substitusi</b>:
+              [Kata Benda]＋の代わりに dipakai untuk menyatakan bahwa
+              sesuatu/seseorang menggantikan yang lain.
+            </p>
+            <p>
+              Kedua, sebagai <b>kontras tindakan</b>:
+              [Kata Kerja bentuk kamus]＋代わりに dipakai untuk menyatakan
+              bahwa alih-alih melakukan satu hal, orang justru melakukan hal lain.
+            </p>
+          </div>
+
+          <div class="content-box">
+            <h2 style="color:#173f5f">POLA · Rumus</h2>
+            <p><b>[Kata Benda]＋の代わりに</b> = sebagai ganti ~</p>
+            <p><b>[Kata Kerja bentuk kamus]＋代わりに</b> = alih-alih ~, (malah) ~</p>
+            <p><b>[Kalimat A]＋代わりに、[Kalimat B]</b> = sebagai imbalan atas A, B</p>
+          </div>
+
+          <div class="content-box">
+            <h2 style="color:#173f5f">CONTOH KALIMAT</h2>
+
+            <div class="example">
+              <div class="jp">今日は先生の代わりに、私が授業をします。</div>
+              <div class="yomi">きょうはせんせいのかわりに、わたしがじゅぎょうをします。</div>
+              <div class="id">Hari ini, sebagai ganti guru, saya yang akan mengajar.</div>
+            </div>
+
+            <div class="example">
+              <div class="jp">彼は謝る代わりに、プレゼントを送ってきた。</div>
+              <div class="yomi">かれはあやまるかわりに、プレゼントをおくってきた。</div>
+              <div class="id">Alih-alih meminta maaf, dia malah mengirimkan hadiah.</div>
+            </div>
+
+            <div class="example">
+              <div class="jp">宿題を手伝ってもらう代わりに、彼女にお菓子をあげた。</div>
+              <div class="yomi">しゅくだいをてつだってもらうかわりに、かのじょにおかしをあげた。</div>
+              <div class="id">Sebagai imbalan dibantu mengerjakan PR, saya memberinya camilan.</div>
+            </div>
+          </div>
+
+          <button class="open-btn" onclick="showPage('latihan')">Lanjut ke Latihan →</button>
+        </div>
+      </div>
+
+      <!-- LATIHAN -->
+      <div id="latihan" class="page hidden">
+        <h1 class="page-title">Latihan Soal</h1>
+        <p class="page-desc">Susun kata menjadi kalimat yang benar.</p>
+
+        <div class="content-box">
+          <div class="quiz-box" id="quiz1">
+            <span class="qno">SOAL 1</span>
+            <div class="qtext">＿＿＿＿＿　＿＿＿＿＿　＿＿＿＿＿。</div>
+            <div class="answer-slot" id="slot1"></div>
+            <div class="word-bank" id="bank1">
+              <div class="word-tile" data-word="今日は先生の代わりに、">今日は先生の代わりに、</div>
+              <div class="word-tile" data-word="私が">私が</div>
+              <div class="word-tile" data-word="授業をします">授業をします</div>
+            </div>
+            <button class="quiz-btn" onclick="checkAnswer(1)">Cek Jawaban</button>
+            <button class="quiz-btn secondary" onclick="resetQuiz(1)">Ulangi</button>
+            <div class="quiz-result" id="result1"></div>
+          </div>
+
+          <div class="quiz-box" id="quiz2">
+            <span class="qno">SOAL 2</span>
+            <div class="qtext">＿＿＿＿＿　＿＿＿＿＿　＿＿＿＿＿。</div>
+            <div class="answer-slot" id="slot2"></div>
+            <div class="word-bank" id="bank2">
+              <div class="word-tile" data-word="彼は謝る代わりに、">彼は謝る代わりに、</div>
+              <div class="word-tile" data-word="プレゼントを">プレゼントを</div>
+              <div class="word-tile" data-word="送ってきた">送ってきた</div>
+            </div>
+            <button class="quiz-btn" onclick="checkAnswer(2)">Cek Jawaban</button>
+            <button class="quiz-btn secondary" onclick="resetQuiz(2)">Ulangi</button>
+            <div class="quiz-result" id="result2"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROGRESS -->
+      <div id="progress" class="page hidden">
+        <h1 class="page-title">Progress Belajar</h1>
+        <p class="page-desc">Ringkasan perkembangan belajar.</p>
+
+        <div class="content-box">
+          <table>
+            <thead>
+              <tr>
+                <th>Level</th>
+                <th>Materi</th>
+                <th>Progress</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>N5</td><td>20 materi</td><td>100%</td><td>✅ Selesai</td></tr>
+              <tr><td>N4</td><td>24 materi</td><td>100%</td><td>✅ Selesai</td></tr>
+              <tr><td>N3</td><td>31 materi</td><td>78%</td><td>📚 Belajar</td></tr>
+              <tr><td>N2</td><td>0 materi</td><td>0%</td><td>🔒 Terkunci</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</section>
+
+<script>
+/* ==========================
+   PASSWORD
+   Ganti password di sini.
+   ========================== */
+const ACCESS_PASSWORD = "tekipaki2026";
+
+function login(){
+  const input = document.getElementById("passwordInput").value;
+  const error = document.getElementById("loginError");
+
+  if(input === ACCESS_PASSWORD){
+    sessionStorage.setItem("tekipakiLoggedIn","true");
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
+    error.textContent = "";
+  }else{
+    error.textContent = "❌ Password salah. Silakan coba lagi.";
+  }
+}
+
+function logout(){
+  sessionStorage.removeItem("tekipakiLoggedIn");
+  document.getElementById("app").classList.add("hidden");
+  document.getElementById("loginPage").classList.remove("hidden");
+  document.getElementById("passwordInput").value = "";
+}
+
+function togglePassword(){
+  const input = document.getElementById("passwordInput");
+  input.type = input.type === "password" ? "text" : "password";
+}
+
+document.getElementById("passwordInput").addEventListener("keydown",function(e){
+  if(e.key === "Enter") login();
+});
+
+if(sessionStorage.getItem("tekipakiLoggedIn") === "true"){
+  document.getElementById("loginPage").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
+}
+
+/* ==========================
+   NAVIGATION
+   ========================== */
+document.querySelectorAll(".nav").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    showPage(btn.dataset.page);
+  });
+});
+
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+
+  document.querySelectorAll(".nav").forEach(n=>{
+    n.classList.toggle("active",n.dataset.page===id);
+  });
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function openKawari(){
+  document.getElementById("kawari").classList.remove("hidden");
+  document.getElementById("kawari").scrollIntoView({behavior:"smooth"});
+}
+
+/* ==========================
+   QUIZ
+   ========================== */
+const quizAnswers = {
+  1:["今日は先生の代わりに、","私が","授業をします"],
+  2:["彼は謝る代わりに、","プレゼントを","送ってきた"]
+};
+
+const quizState = {1:[],2:[]};
+
+function shuffleArray(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function shuffleBank(id){
+  const bank=document.getElementById("bank"+id);
+  const tiles=shuffleArray(Array.from(bank.querySelectorAll(".word-tile")));
+  tiles.forEach(tile=>bank.appendChild(tile));
+}
+
+function initQuiz(id){
+  shuffleBank(id);
+  document.querySelectorAll("#bank"+id+" .word-tile").forEach(tile=>{
+    tile.addEventListener("click",()=>placeWord(id,tile));
+  });
+}
+
+function placeWord(id,tile){
+  if(tile.classList.contains("used")) return;
+
+  tile.classList.add("used");
+  quizState[id].push(tile.dataset.word);
+
+  const placed=document.createElement("span");
+  placed.className="placed";
+  placed.textContent=tile.dataset.word;
+
+  placed.addEventListener("click",()=>{
+    placed.remove();
+    const idx=quizState[id].indexOf(tile.dataset.word);
+    if(idx>-1) quizState[id].splice(idx,1);
+    tile.classList.remove("used");
+    document.getElementById("result"+id).textContent="";
+  });
+
+  document.getElementById("slot"+id).appendChild(placed);
+}
+
+function checkAnswer(id){
+  const result=document.getElementById("result"+id);
+
+  if(quizState[id].length===0){
+    result.className="quiz-result wrong";
+    result.textContent="⚠️ Susun dulu kata-katanya.";
+    return;
+  }
+
+  const correct=quizAnswers[id].join("")===quizState[id].join("");
+
+  if(correct){
+    result.className="quiz-result correct";
+    result.textContent="✅ Benar! Susunan kalimatmu sudah tepat.";
+  }else{
+    result.className="quiz-result wrong";
+    result.textContent="❌ Belum tepat. Coba lagi.";
+  }
+}
+
+function resetQuiz(id){
+  quizState[id]=[];
+  document.getElementById("slot"+id).innerHTML="";
+  document.querySelectorAll("#bank"+id+" .word-tile").forEach(tile=>{
+    tile.classList.remove("used");
+  });
+  document.getElementById("result"+id).textContent="";
+  shuffleBank(id);
+}
+
+initQuiz(1);
+initQuiz(2);
+</script>
+
+</body>
+</html>
