@@ -556,6 +556,15 @@ body{
     color:#c17b7b;
 }
 
+.compare-table .arti-small{
+    display:block;
+    font-size:12px;
+    font-weight:400;
+    font-style:italic;
+    color:#8892a3;
+    margin-top:3px;
+}
+
 .compare-legend{
     display:flex;
     flex-wrap:wrap;
@@ -1073,15 +1082,15 @@ HOME
                 <tbody>
                     <tr>
                         <td><span class="kamus">子供</span><span class="yomi-small">こども (anak)</span></td>
-                        <td><span class="val-shieki">子供にとって</span></td>
-                        <td><span class="val-ukemi">子供について</span></td>
-                        <td><span class="val-shiekiukemi">子供に対して</span></td>
+                        <td><span class="val-shieki">子供にとって</span><span class="arti-small">bagi anak-anak (dari sudut pandang mereka, misal sulit/menyenangkan)</span></td>
+                        <td><span class="val-ukemi">子供について</span><span class="arti-small">tentang anak-anak (topik yang dibicarakan/ditulis)</span></td>
+                        <td><span class="val-shiekiukemi">子供に対して</span><span class="arti-small">terhadap anak-anak (sasaran sikap, misal bersikap lembut)</span></td>
                     </tr>
                     <tr>
                         <td><span class="kamus">先生</span><span class="yomi-small">せんせい (guru)</span></td>
-                        <td><span class="val-shieki">先生にとって</span></td>
-                        <td><span class="val-ukemi">先生について</span></td>
-                        <td><span class="val-shiekiukemi">先生に対して</span></td>
+                        <td><span class="val-shieki">先生にとって</span><span class="arti-small">bagi guru (dari sudut pandang guru, misal berat/berarti)</span></td>
+                        <td><span class="val-ukemi">先生について</span><span class="arti-small">tentang guru (topik yang dibicarakan/ditulis)</span></td>
+                        <td><span class="val-shiekiukemi">先生に対して</span><span class="arti-small">terhadap guru (sasaran sikap, misal bersikap sopan)</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -1188,9 +1197,24 @@ const quizState = {
     2:[]
 };
 
+function shuffleArray(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
 function initQuiz(id){
     const bank = document.getElementById("bank"+id);
-    bank.querySelectorAll(".word-tile").forEach(tile=>{
+    const tiles = Array.from(bank.querySelectorAll(".word-tile"));
+
+    // acak urutan tile lalu tempel ulang ke dalam bank
+    shuffleArray(tiles).forEach(tile=>{
+        bank.appendChild(tile);
+    });
+
+    tiles.forEach(tile=>{
         tile.addEventListener("click", ()=>placeWord(id, tile));
     });
 }
