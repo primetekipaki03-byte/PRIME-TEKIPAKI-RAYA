@@ -143,6 +143,17 @@ textarea{resize:vertical;min-height:80px}
 #toast{position:fixed;bottom:30px;right:30px;background:#1a7a4f;color:#fff;padding:14px 22px;border-radius:10px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:10px;box-shadow:0 4px 24px rgba(0,0,0,.2);transform:translateY(80px);opacity:0;transition:.35s ease;z-index:9999}
 #toast.show{transform:translateY(0);opacity:1}
 
+/* ERROR TOAST */
+#toastError{position:fixed;bottom:30px;right:30px;max-width:340px;background:#c0392b;color:#fff;padding:16px 20px;border-radius:10px;font-size:13px;box-shadow:0 4px 24px rgba(0,0,0,.25);transform:translateY(80px);opacity:0;transition:.35s ease;z-index:9999}
+#toastError.show{transform:translateY(0);opacity:1}
+#toastError .terr-title{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:13.5px;font-weight:700}
+#toastError ul{margin:0;padding-left:18px;font-weight:500;font-size:12px;line-height:1.7;max-height:180px;overflow-y:auto}
+
+/* VALIDATION ERROR STATES */
+.input-error{border-color:#c0392b !important;box-shadow:0 0 0 3px rgba(192,57,43,.12) !important}
+.yn-group-error{border-radius:8px;box-shadow:0 0 0 3px rgba(192,57,43,.15)}
+.prog-label.input-error,[id^="ssw"][id$="-lbl"].input-error{border-color:#c0392b !important;background:rgba(192,57,43,.05) !important}
+
 /* INFO BOX */
 .info-box{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:14px 18px;margin-bottom:24px;display:flex;align-items:flex-start;gap:12px}
 .info-box i{color:var(--gold);margin-top:2px;flex-shrink:0}
@@ -563,6 +574,10 @@ textarea{resize:vertical;min-height:80px}
 
 <!-- TOAST -->
 <div id="toast"><i class="fas fa-check-circle"></i> PDF berhasil diunduh!</div>
+<div id="toastError">
+  <div class="terr-title"><i class="fas fa-triangle-exclamation"></i> <span id="toastErrorHeading">Formulir belum lengkap</span></div>
+  <ul id="toastErrorList"></ul>
+</div>
 
 <script>
 function el(id){return document.getElementById(id)}
@@ -579,6 +594,8 @@ function setYN(field, val){
   } else {
     tidakBtn.classList.add('active-no');
   }
+  const group = yaBtn.parentElement;
+  if(group) group.classList.remove('yn-group-error');
 }
 
 function toggleDetail(detailId, show){
@@ -700,6 +717,102 @@ function collectData(){
     pendidikan,kerja,keluarga
   };
 }
+
+// ===== VALIDASI FORM =====
+function clearErrors(){
+  document.querySelectorAll('.input-error').forEach(e=>e.classList.remove('input-error'));
+  document.querySelectorAll('.yn-group-error').forEach(e=>e.classList.remove('yn-group-error'));
+}
+
+function validateForm(){
+  clearErrors();
+  const errors=[];
+  let firstInvalid=null;
+
+  function markInput(target,label,isValid){
+    if(!isValid){
+      errors.push(label);
+      if(target){
+        target.classList.add('input-error');
+        if(!firstInvalid) firstInvalid=target;
+      }
+    }
+  }
+
+  function markGroup(fieldId,label){
+    if(el(fieldId).value===''){
+      errors.push(label);
+      const group=el(fieldId+'Ya').parentElement;
+      group.classList.add('yn-group-error');
+      if(!firstInvalid) firstInvalid=group;
+    }
+  }
+
+  // Program
+  const program=document.querySelector('input[name="program"]:checked');
+  if(!program){
+    errors.push('Program yang Dipilih');
+    el('lbl-toku').classList.add('input-error');
+    el('lbl-jiss').classList.add('input-error');
+    if(!firstInvalid) firstInvalid=el('lbl-toku');
+  }
+
+  markInput(el('namaRomaji'),'Nama Lengkap',el('namaRomaji').value.trim()!=='');
+  markInput(el('jenisKelamin'),'Jenis Kelamin',el('jenisKelamin').value!=='');
+  markInput(el('kewarganegaraan'),'Kewarganegaraan',el('kewarganegaraan').value.trim()!=='');
+  markInput(el('tanggalLahir'),'Tanggal Lahir',el('tanggalLahir').value!=='');
+
+  markGroup('merokok','Merokok');
+  markGroup('alkohol','Minum Alkohol');
+  markGroup('tato','Memiliki Tato');
+  markGroup('penyakit','Riwayat Penyakit');
+  markGroup('jepang','Riwayat Pernah ke Jepang');
+
+  if(el('penyakit').value==='Ya'){
+    markInput(el('penyakitDetail'),'Keterangan Riwayat Penyakit',el('penyakitDetail').value.trim()!=='');
+  }
+  if(el('jepang').value==='Ya'){
+    markInput(el('jepangTujuan'),'Tujuan ke Jepang Sebelumnya',el('jepangTujuan').value!=='');
+    markInput(el('jepangTahun'),'Tahun Keberangkatan',el('jepangTahun').value.trim()!=='');
+  }
+
+  markInput(el('tempatLahir'),'Tempat Lahir',el('tempatLahir').value.trim()!=='');
+  markInput(el('alamatLengkap'),'Alamat Lengkap',el('alamatLengkap').value.trim()!=='');
+
+  if(program && program.value==='Tokutei Ginou'){
+    const sswType=document.querySelector('input[name="sswType"]:checked');
+    if(!sswType){
+      errors.push('Jenis SSW');
+      el('ssw1-lbl').classList.add('input-error');
+      el('ssw2-lbl').classList.add('input-error');
+      if(!firstInvalid) firstInvalid=el('ssw1-lbl');
+    }
+    markInput(el('sswBidang'),'Bidang / Sektor Kerja SSW',el('sswBidang').value!=='');
+  }
+
+  return {errors,firstInvalid};
+}
+
+function showErrorToast(errors){
+  const box=el('toastError');
+  el('toastErrorHeading').textContent=`${errors.length} kolom wajib belum diisi:`;
+  el('toastErrorList').innerHTML=errors.map(e=>`<li>${e}</li>`).join('');
+  el('toast').classList.remove('show');
+  box.classList.add('show');
+  clearTimeout(window._toastErrTimer);
+  window._toastErrTimer=setTimeout(()=>box.classList.remove('show'),7000);
+}
+
+// Hilangkan tanda error saat pengguna mulai mengisi
+document.getElementById('mainForm').addEventListener('input',e=>{
+  e.target.classList.remove('input-error');
+});
+document.getElementById('mainForm').addEventListener('change',e=>{
+  e.target.classList.remove('input-error');
+  if(e.target.name==='program'||e.target.name==='sswType'){
+    e.target.closest('label')?.classList.remove('input-error');
+  }
+});
 
 function generatePDF(){
   const d=collectData();
@@ -942,7 +1055,15 @@ document.addEventListener('DOMContentLoaded',()=>{
   el('tambahPendidikan').onclick=addPendidikan;
   el('tambahKerja').onclick=addKerja;
   el('tambahKeluarga').onclick=()=>addKeluarga();
-  el('btnPDF').onclick=generatePDF;
+  el('btnPDF').onclick=()=>{
+    const {errors,firstInvalid}=validateForm();
+    if(errors.length>0){
+      showErrorToast(errors);
+      if(firstInvalid) firstInvalid.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    generatePDF();
+  };
   el('btnReset').onclick=()=>{
     if(!confirm('Reset semua data form? Semua data yang diisi akan dihapus.'))return;
     el('mainForm').reset();
@@ -960,6 +1081,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     el('sswSection').style.display='none';
     document.querySelectorAll('.prog-label').forEach(l=>{l.style.borderColor='var(--border)';l.style.background=''});
     document.querySelectorAll('[id^="ssw"][id$="-lbl"]').forEach(l=>{l.style.borderColor='var(--border)';l.style.background='#fff'});
+    clearErrors();
     addPendidikan();addKeluarga('Ayah');addKeluarga('Ibu');
   };
 });
