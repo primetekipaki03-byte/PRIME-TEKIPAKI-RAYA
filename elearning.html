@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,131 +9,99 @@
 *{box-sizing:border-box}
 :root{--navy:#173f5f;--blue:#20639b;--gold:#f6c85f;--bg:#f4f7fb}
 body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#263238}
-button,input{font:inherit}
-.hidden{display:none!important}
-
-/* LOGIN */
+button,input{font:inherit}.hidden{display:none!important}
 #loginPage{min-height:100vh;display:flex;align-items:center;justify-content:center;
 background:linear-gradient(135deg,var(--navy),var(--blue));padding:20px}
 .login{width:400px;max-width:100%;background:white;padding:40px 32px;border-radius:20px;
 text-align:center;box-shadow:0 20px 60px #0004}
 .logo{width:70px;height:70px;margin:auto;background:var(--navy);color:white;border-radius:18px;
 display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:24px}
-.login h1{color:var(--navy);margin:18px 0 5px}
-.login p{color:#6b7280}
+.login h1{color:var(--navy);margin:18px 0 5px}.login p{color:#6b7280}
 .login input{width:100%;padding:14px;border:1px solid #d5dce5;border-radius:10px;margin-top:15px;
 outline:none;text-transform:uppercase}
 .login button{width:100%;padding:14px;border:0;border-radius:10px;background:var(--navy);
-color:white;font-weight:bold;margin-top:12px;cursor:pointer}
-.error{color:#c62828;font-size:14px;min-height:20px;margin-top:10px}
-
-/* APP */
-header{height:68px;background:white;border-bottom:1px solid #e5e9ef;display:flex;
-align-items:center;justify-content:space-between;padding:0 25px;position:sticky;top:0;z-index:10}
-.brand{font-weight:bold;color:var(--navy);font-size:19px}
-.logout{border:1px solid #d7dee7;background:white;border-radius:8px;padding:8px 13px;cursor:pointer}
-.layout{display:flex;min-height:calc(100vh - 68px)}
-.sidebar{width:225px;background:var(--navy);padding:18px 12px;color:white}
-.nav{width:100%;border:0;background:transparent;color:white;text-align:left;padding:12px;
-border-radius:8px;cursor:pointer;margin:3px 0}
-.nav:hover,.nav.active{background:#ffffff1c}
-.main{flex:1;padding:28px;max-width:1400px;width:100%;margin:auto}
+color:white;font-weight:bold;margin-top:12px;cursor:pointer}.error{color:#c62828;font-size:14px;min-height:20px;margin-top:10px}
+header{height:68px;background:white;border-bottom:1px solid #e5e9ef;display:flex;align-items:center;
+justify-content:space-between;padding:0 25px;position:sticky;top:0;z-index:10}
+.brand{font-weight:bold;color:var(--navy);font-size:19px}.logout{border:1px solid #d7dee7;background:white;border-radius:8px;padding:8px 13px;cursor:pointer}
+.layout{display:flex;min-height:calc(100vh - 68px)}.sidebar{width:225px;background:var(--navy);padding:18px 12px;color:white}
+.nav{width:100%;border:0;background:transparent;color:white;text-align:left;padding:12px;border-radius:8px;cursor:pointer;margin:3px 0}
+.nav:hover,.nav.active{background:#ffffff1c}.main{flex:1;padding:28px;max-width:1400px;width:100%;margin:auto}
 .title{color:var(--navy);margin:0 0 6px}.desc{color:#6b7280;margin-top:0}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:20px 0}
-.card{background:white;border:1px solid #e5e9ef;border-radius:15px;padding:20px}
-.number{font-size:28px;font-weight:bold;color:var(--navy)}
-.label{font-size:13px;color:#6b7280;margin-top:5px}
-.grid{display:grid;grid-template-columns:2fr 1fr;gap:18px}
-.progress{height:10px;background:#e9edf2;border-radius:20px;overflow:hidden}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:20px 0}.card{background:white;border:1px solid #e5e9ef;border-radius:15px;padding:20px}
+.number{font-size:28px;font-weight:bold;color:var(--navy)}.label{font-size:13px;color:#6b7280;margin-top:5px}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:18px}.progress{height:10px;background:#e9edf2;border-radius:20px;overflow:hidden}
 .progress span{display:block;height:100%;background:var(--blue)}
 .level{padding:14px 0;border-bottom:1px solid #edf0f4;display:flex;justify-content:space-between;align-items:center}
-.badge{padding:6px 10px;background:#eef4fa;color:var(--blue);border-radius:20px;font-size:12px}
-.badge.lock{background:#eee;color:#888}
-.materials{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.material{background:white;border:1px solid #e5e9ef;border-radius:15px;padding:20px}
-.material h3{color:var(--navy)}
-.tag{font-size:11px;background:#eef4fa;color:var(--blue);padding:5px 9px;border-radius:20px}
+.badge{padding:6px 10px;background:#eef4fa;color:var(--blue);border-radius:20px;font-size:12px}.badge.lock{background:#eee;color:#888}
+.materials{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.material{background:white;border:1px solid #e5e9ef;border-radius:15px;padding:20px}
+.material h3{color:var(--navy)}.tag{font-size:11px;background:#eef4fa;color:var(--blue);padding:5px 9px;border-radius:20px}
 .btn{border:0;background:var(--blue);color:white;padding:9px 13px;border-radius:8px;cursor:pointer}
 .hero{background:linear-gradient(135deg,var(--navy),var(--blue));color:white;padding:25px;border-radius:15px;margin-top:20px}
-.hero h2{font-size:34px;margin:10px 0}
-.example{background:white;border-bottom:1px solid #edf0f4;padding:17px 0}
+.hero h2{font-size:34px;margin:10px 0}.example{background:white;border-bottom:1px solid #edf0f4;padding:17px 0}
 .jp{font-size:20px;font-weight:bold}.reading{color:var(--blue)}.meaning{color:#6b7280}
 .quiz{background:white;border:1px solid #e5e9ef;border-radius:14px;padding:20px;margin:15px 0}
 .slot{min-height:50px;border:2px dashed #d8dee8;border-radius:10px;padding:9px;display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}
-.words{display:flex;gap:8px;flex-wrap:wrap}
-.word{padding:9px 11px;background:#f7f9fc;border:1px solid #d5dce6;border-radius:8px;cursor:pointer}
+.words{display:flex;gap:8px;flex-wrap:wrap}.word{padding:9px 11px;background:#f7f9fc;border:1px solid #d5dce6;border-radius:8px;cursor:pointer}
 .word.used{opacity:.3}.placed{padding:9px 11px;background:#eaf3fb;border-radius:8px;cursor:pointer}
 .correct{color:#2e8b57;font-weight:bold}.wrong{color:#c62828;font-weight:bold}
-table{width:100%;border-collapse:collapse;background:white}
-th,td{padding:12px;border-bottom:1px solid #edf0f4;text-align:left}
+table{width:100%;border-collapse:collapse;background:white}th,td{padding:12px;border-bottom:1px solid #edf0f4;text-align:left}
 th{color:var(--navy);background:#f8fafc}
-
-@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}
-.materials{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:650px){header{padding:0 15px}.layout{display:block}.sidebar{width:100%;
-display:flex;overflow:auto;padding:8px}.nav{white-space:nowrap;width:auto}.main{padding:18px}
-.cards,.materials{grid-template-columns:1fr}.brand{font-size:15px}}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.materials{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){header{padding:0 15px}.layout{display:block}.sidebar{width:100%;display:flex;overflow:auto;padding:8px}.nav{white-space:nowrap;width:auto}
+.main{padding:18px}.cards,.materials{grid-template-columns:1fr}.brand{font-size:15px}}
 </style>
 </head>
 <body>
 
-<!-- LOGIN DENGAN KODE SISWA -->
 <section id="loginPage">
 <div class="login">
-  <div class="logo">TP</div>
-  <h1>TEKIPAKI</h1>
-  <p>Japanese Learning · E-Learning</p>
-  <input id="studentCode" placeholder="Masukkan Kode Siswa" maxlength="20">
-  <button onclick="login()">MASUK</button>
-  <div id="error" class="error"></div>
-  <small style="color:#777">Masukkan kode yang diberikan oleh admin.</small>
+<div class="logo">TP</div>
+<h1>TEKIPAKI</h1>
+<p>Japanese Learning · E-Learning</p>
+<input id="studentCode" placeholder="Masukkan Kode Siswa" maxlength="20" autocomplete="off">
+<button onclick="login()">MASUK</button>
+<div id="error" class="error"></div>
+<small style="color:#777">Gunakan kode siswa yang diberikan oleh admin.</small>
 </div>
 </section>
 
 <section id="app" class="hidden">
 <header>
-  <div class="brand">TEKIPAKI JAPANESE LEARNING</div>
-  <div>
-    <span id="headerName" style="margin-right:12px;color:#6b7280"></span>
-    <button class="logout" onclick="logout()">Keluar</button>
-  </div>
+<div class="brand">TEKIPAKI JAPANESE LEARNING</div>
+<div><span id="headerName" style="margin-right:12px;color:#6b7280"></span>
+<button class="logout" onclick="logout()">Keluar</button></div>
 </header>
-
 <div class="layout">
 <aside class="sidebar">
-  <button class="nav active" data-page="dashboard">🏠 Dashboard</button>
-  <button class="nav" data-page="materi">📚 Materi</button>
-  <button class="nav" data-page="latihan">📝 Latihan</button>
-  <button class="nav" data-page="progress">📊 Progress</button>
+<button class="nav active" data-page="dashboard">🏠 Dashboard</button>
+<button class="nav" data-page="materi">📚 Materi</button>
+<button class="nav" data-page="latihan">📝 Latihan</button>
+<button class="nav" data-page="progress">📊 Progress</button>
 </aside>
 
 <main class="main">
 
-<!-- DASHBOARD -->
 <section id="dashboard" class="page">
 <h1 class="title">Selamat datang, <span id="studentName"></span> 👋</h1>
 <p class="desc">Berikut perkembangan belajar kamu.</p>
-
 <div class="cards">
-<div class="card"><div class="number" id="studentLevel">N3</div><div class="label">Level saat ini</div></div>
+<div class="card"><div class="number" id="studentLevel">-</div><div class="label">Level saat ini</div></div>
 <div class="card"><div class="number" id="studentProgress">0%</div><div class="label">Progress belajar</div></div>
 <div class="card"><div class="number" id="studentMaterials">0</div><div class="label">Materi selesai</div></div>
 <div class="card"><div class="number" id="studentScore">0</div><div class="label">Nilai rata-rata</div></div>
 </div>
-
 <div class="grid">
 <div class="card">
 <h2 style="color:var(--navy)">Progress Belajar</h2>
 <p id="levelText"></p>
 <div class="progress"><span id="progressBar" style="width:0"></span></div>
 <p id="progressText" style="color:#6b7280"></p>
-
 <div class="level"><div><b>N5</b><br><small>Dasar Bahasa Jepang</small></div><span class="badge">Selesai ✓</span></div>
 <div class="level"><div><b>N4</b><br><small>Pemahaman dasar</small></div><span class="badge">Selesai ✓</span></div>
 <div class="level"><div><b>N3</b><br><small>Tata bahasa tingkat menengah</small></div><span class="badge">Sedang belajar</span></div>
 <div class="level"><div><b>N2</b><br><small>Tingkat menengah atas</small></div><span class="badge lock">🔒 Terkunci</span></div>
 </div>
-
 <div class="card">
 <h2 style="color:var(--navy)">Lanjut Belajar</h2>
 <h3>〜代わりに</h3>
@@ -142,154 +111,74 @@ display:flex;overflow:auto;padding:8px}.nav{white-space:nowrap;width:auto}.main{
 </div>
 </section>
 
-<!-- MATERI -->
 <section id="materi" class="page hidden">
 <h1 class="title">Materi Pembelajaran</h1>
 <p class="desc">Materi Bahasa Jepang berdasarkan level.</p>
 <div class="materials">
-<div class="material">
-<span class="tag">JLPT N3 · GRAMMAR</span>
-<h3>〜代わりに</h3>
+<div class="material"><span class="tag">JLPT N3 · GRAMMAR</span><h3>〜代わりに</h3>
 <p>sebagai ganti ~ ／ alih-alih ~ ／ sebagai imbalan atas ~</p>
-<button class="btn" onclick="document.getElementById('kawari').classList.remove('hidden')">Pelajari →</button>
-</div>
+<button class="btn" onclick="document.getElementById('kawari').classList.remove('hidden')">Pelajari →</button></div>
 <div class="material"><span class="tag">JLPT N3</span><h3>〜抜きで</h3><p>Tanpa ~ / mengesampingkan ~</p></div>
 <div class="material"><span class="tag">JLPT N3</span><h3>〜たびに</h3><p>Setiap kali melakukan ~</p></div>
 </div>
-
 <div id="kawari" class="hidden">
-<div class="hero"><small>POLA · JLPT N3</small><h2>〜代わりに</h2><div>~kawari ni</div>
-<p>sebagai ganti ~ ／ alih-alih ~ ／ sebagai imbalan atas ~</p></div>
-<div class="card" style="margin-top:18px">
-<h2 style="color:var(--navy)">ARTI · Penjelasan</h2>
-<p><b>〜代わりに</b> berasal dari kata benda 代わり (pengganti).</p>
-<p>Digunakan untuk menyatakan pengganti/substitusi atau kontras tindakan.</p>
-</div>
-<div class="card">
-<h2 style="color:var(--navy)">POLA · Rumus</h2>
-<p><b>[Kata Benda]＋の代わりに</b> = sebagai ganti ~</p>
-<p><b>[Kata Kerja bentuk kamus]＋代わりに</b> = alih-alih ~</p>
-</div>
-<div class="card">
-<h2 style="color:var(--navy)">CONTOH KALIMAT</h2>
-<div class="example"><div class="jp">今日は先生の代わりに、私が授業をします。</div>
-<div class="reading">きょうはせんせいのかわりに、わたしがじゅぎょうをします。</div>
-<div class="meaning">Hari ini, sebagai ganti guru, saya yang akan mengajar.</div></div>
-<div class="example"><div class="jp">彼は謝る代わりに、プレゼントを送ってきた。</div>
-<div class="reading">かれはあやまるかわりに、プレゼントをおくってきた。</div>
-<div class="meaning">Alih-alih meminta maaf, dia malah mengirimkan hadiah.</div></div>
+<div class="hero"><small>POLA · JLPT N3</small><h2>〜代わりに</h2><div>~kawari ni</div><p>sebagai ganti ~ ／ alih-alih ~ ／ sebagai imbalan atas ~</p></div>
+<div class="card" style="margin-top:18px"><h2 style="color:var(--navy)">ARTI · Penjelasan</h2>
+<p><b>〜代わりに</b> berasal dari kata benda 代わり (pengganti).</p><p>Digunakan untuk menyatakan pengganti/substitusi atau kontras tindakan.</p></div>
+<div class="card"><h2 style="color:var(--navy)">POLA · Rumus</h2>
+<p><b>[Kata Benda]＋の代わりに</b> = sebagai ganti ~</p><p><b>[Kata Kerja bentuk kamus]＋代わりに</b> = alih-alih ~</p></div>
+<div class="card"><h2 style="color:var(--navy)">CONTOH KALIMAT</h2>
+<div class="example"><div class="jp">今日は先生の代わりに、私が授業をします。</div><div class="reading">きょうはせんせいのかわりに、わたしがじゅぎょうをします。</div><div class="meaning">Hari ini, sebagai ganti guru, saya yang akan mengajar.</div></div>
+<div class="example"><div class="jp">彼は謝る代わりに、プレゼントを送ってきた。</div><div class="reading">かれはあやまるかわりに、プレゼントをおくってきた。</div><div class="meaning">Alih-alih meminta maaf, dia malah mengirimkan hadiah.</div></div>
 </div>
 <button class="btn" onclick="showPage('latihan')">Lanjut ke Latihan →</button>
 </div>
+</div>
 </section>
 
-<!-- LATIHAN -->
 <section id="latihan" class="page hidden">
-<h1 class="title">Latihan Soal</h1>
-<p class="desc">Susun kata menjadi kalimat yang benar.</p>
-<div class="quiz">
-<b>SOAL 1</b>
-<p>Susun kalimat berikut:</p>
-<div class="slot" id="slot1"></div>
-<div class="words" id="bank1">
+<h1 class="title">Latihan Soal</h1><p class="desc">Susun kata menjadi kalimat yang benar.</p>
+<div class="quiz"><b>SOAL 1</b><p>Susun kalimat berikut:</p>
+<div class="slot" id="slot1"></div><div class="words" id="bank1">
 <span class="word" data-word="今日は先生の代わりに、">今日は先生の代わりに、</span>
-<span class="word" data-word="私が">私が</span>
-<span class="word" data-word="授業をします">授業をします</span>
-</div>
-<button class="btn" onclick="check(1)">Cek Jawaban</button>
-<button class="btn" style="background:#777" onclick="resetQuiz(1)">Ulangi</button>
-<div id="result1"></div>
-</div>
-
-<div class="quiz">
-<b>SOAL 2</b>
-<p>Susun kalimat berikut:</p>
-<div class="slot" id="slot2"></div>
-<div class="words" id="bank2">
+<span class="word" data-word="私が">私が</span><span class="word" data-word="授業をします">授業をします</span></div>
+<button class="btn" onclick="check(1)">Cek Jawaban</button> <button class="btn" style="background:#777" onclick="resetQuiz(1)">Ulangi</button>
+<div id="result1"></div></div>
+<div class="quiz"><b>SOAL 2</b><p>Susun kalimat berikut:</p>
+<div class="slot" id="slot2"></div><div class="words" id="bank2">
 <span class="word" data-word="彼は謝る代わりに、">彼は謝る代わりに、</span>
-<span class="word" data-word="プレゼントを">プレゼントを</span>
-<span class="word" data-word="送ってきた">送ってきた</span>
-</div>
-<button class="btn" onclick="check(2)">Cek Jawaban</button>
-<button class="btn" style="background:#777" onclick="resetQuiz(2)">Ulangi</button>
-<div id="result2"></div>
-</div>
+<span class="word" data-word="プレゼントを">プレゼントを</span><span class="word" data-word="送ってきた">送ってきた</span></div>
+<button class="btn" onclick="check(2)">Cek Jawaban</button> <button class="btn" style="background:#777" onclick="resetQuiz(2)">Ulangi</button>
+<div id="result2"></div></div>
 </section>
 
-<!-- PROGRESS -->
 <section id="progress" class="page hidden">
-<h1 class="title">Progress Belajar</h1>
-<p class="desc">Data khusus untuk akun siswa yang sedang login.</p>
-<div class="card">
-<table>
-<thead><tr><th>Nama</th><th>Kode</th><th>Level</th><th>Progress</th><th>Nilai</th></tr></thead>
-<tbody><tr><td id="tableName"></td><td id="tableCode"></td><td id="tableLevel"></td><td id="tableProgress"></td><td id="tableScore"></td></tr></tbody>
-</table>
-</div>
+<h1 class="title">Progress Belajar</h1><p class="desc">Data khusus untuk akun siswa yang sedang login.</p>
+<div class="card"><table><thead><tr><th>Nama</th><th>Kode</th><th>Level</th><th>Progress</th><th>Nilai</th></tr></thead>
+<tbody><tr><td id="tableName"></td><td id="tableCode"></td><td id="tableLevel"></td><td id="tableProgress"></td><td id="tableScore"></td></tr></tbody></table></div>
 </section>
 
-</main>
-</div>
-</section>
+</main></div></section>
 
 <script>
-/*
-  ===========================================
-  DATA SISWA
-  Tambahkan siswa baru di bagian ini.
-  ===========================================
-*/
+/* =========================
+   DATA SISWA
+   KODE: PTPR01, PTPR02, dst.
+   ========================= */
 const students = {
-  "TKP001": {
-    name:"Exel Fredelica",
-    level:"N3",
-    progress:78,
-    materials:24,
-    score:86
-  },
-  "TKP002": {
-    name:"Rannu",
-    level:"N3",
-    progress:62,
-    materials:19,
-    score:79
-  },
-  "TKP003": {
-    name:"Ristiani Tonang",
-    level:"N4",
-    progress:91,
-    materials:22,
-    score:88
-  },
-  "TKP004": {
-    name:"Muhamad Steven Edoardo",
-    level:"N3",
-    progress:70,
-    materials:21,
-    score:83
-  },
-  "TKP005": {
-    name:"Galih Adhi Saputro",
-    level:"N4",
-    progress:55,
-    materials:14,
-    score:75
-  },
-  "TKP006": {
-    name:"Muhammad Fahreza Kurniawan",
-    level:"N3",
-    progress:78,
-    materials:24,
-    score:86
-  }
+  "PTPR01": {name:"Exel Fredelica", level:"N3", progress:78, materials:24, score:86},
+  "PTPR02": {name:"Rannu", level:"N3", progress:62, materials:19, score:79},
+  "PTPR03": {name:"Ristiani Tonang", level:"N4", progress:91, materials:22, score:88},
+  "PTPR04": {name:"Muhamad Steven Edoardo", level:"N3", progress:70, materials:21, score:83},
+  "PTPR05": {name:"Galih Adhi Saputro", level:"N4", progress:55, materials:14, score:75},
+  "PTPR06": {name:"Muhammad Fahreza Kurniawan", level:"N3", progress:78, materials:24, score:86}
 };
 
-let currentStudent=null;
+let currentStudent = null;
 
 function login(){
   const code=document.getElementById("studentCode").value.trim().toUpperCase();
   const error=document.getElementById("error");
-
   if(students[code]){
     currentStudent={...students[code],code};
     sessionStorage.setItem("student",JSON.stringify(currentStudent));
@@ -303,7 +192,6 @@ function openApp(){
   const s=currentStudent;
   document.getElementById("loginPage").classList.add("hidden");
   document.getElementById("app").classList.remove("hidden");
-
   document.getElementById("studentName").textContent=s.name;
   document.getElementById("headerName").textContent=s.name;
   document.getElementById("studentLevel").textContent=s.level;
@@ -313,7 +201,6 @@ function openApp(){
   document.getElementById("levelText").textContent="Level "+s.level;
   document.getElementById("progressBar").style.width=s.progress+"%";
   document.getElementById("progressText").textContent=s.progress+"% selesai";
-
   document.getElementById("tableName").textContent=s.name;
   document.getElementById("tableCode").textContent=s.code;
   document.getElementById("tableLevel").textContent=s.level;
@@ -344,7 +231,9 @@ function showPage(id){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-/* QUIZ */
+/* =========================
+   LATIHAN
+   ========================= */
 const answers={
   1:["今日は先生の代わりに、","私が","授業をします"],
   2:["彼は謝る代わりに、","プレゼントを","送ってきた"]
@@ -353,9 +242,8 @@ const state={1:[],2:[]};
 
 document.querySelectorAll(".word").forEach(word=>{
   word.addEventListener("click",()=>{
-    if(word.classList.contains("used"))return;
-    const bank=word.parentElement.id;
-    const id=bank.replace("bank","");
+    if(word.classList.contains("used")) return;
+    const id=word.parentElement.id.replace("bank","");
     word.classList.add("used");
     state[id].push(word.dataset.word);
     const placed=document.createElement("span");
@@ -364,7 +252,7 @@ document.querySelectorAll(".word").forEach(word=>{
     placed.onclick=()=>{
       placed.remove();
       const i=state[id].indexOf(word.dataset.word);
-      if(i>-1)state[id].splice(i,1);
+      if(i>-1) state[id].splice(i,1);
       word.classList.remove("used");
     };
     document.getElementById("slot"+id).appendChild(placed);
@@ -387,6 +275,11 @@ function resetQuiz(id){
   document.querySelectorAll("#bank"+id+" .word").forEach(w=>w.classList.remove("used"));
   document.getElementById("result"+id).textContent="";
 }
+
+/* Tekan Enter untuk login */
+document.getElementById("studentCode").addEventListener("keydown",e=>{
+  if(e.key==="Enter") login();
+});
 </script>
 </body>
 </html>
