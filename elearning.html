@@ -68,6 +68,16 @@ header{height:64px;background:var(--navy2);border-bottom:2px solid rgba(224,181,
 .sideDivider{font-family:"JetBrains Mono",monospace;font-size:.65rem;letter-spacing:1px;color:var(--muted);
   text-transform:uppercase;padding:16px 12px 6px;}
 
+/* clickable "level aktif" pill in sidebar -> opens level picker */
+.levelPill{
+  margin:0 12px;padding:10px 12px;border-radius:10px;background:rgba(224,181,42,.08);
+  border:1px solid rgba(224,181,42,.25);cursor:pointer;text-align:left;width:calc(100% - 24px);
+  color:var(--gold);font-family:"JetBrains Mono",monospace;font-size:.75rem;display:flex;
+  align-items:center;justify-content:space-between;gap:6px;
+}
+.levelPill:hover{background:rgba(224,181,42,.16);}
+.levelPill .chev{opacity:.7;}
+
 .main{flex:1;padding:30px;max-width:1100px;width:100%;margin:0 auto;}
 .title{color:var(--navy);margin:0 0 6px;}
 .desc{color:var(--ink-soft);margin-top:0;margin-bottom:22px;}
@@ -154,12 +164,33 @@ header{height:64px;background:var(--navy2);border-bottom:2px solid rgba(224,181,
 .backLink{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);cursor:pointer;font-size:.85rem;margin-bottom:14px;}
 .backLink:hover{color:var(--navy);}
 
+/* ---------- LEVEL PICKER PANEL ---------- */
+.levelGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media(max-width:860px){.levelGrid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.levelGrid{grid-template-columns:1fr;}}
+.levelCard{
+  border:1px solid var(--paper2);border-radius:14px;padding:18px;background:#fff;cursor:pointer;
+  transition:.15s;position:relative;overflow:hidden;
+}
+.levelCard:hover{border-color:var(--gold);transform:translateY(-2px);}
+.levelCard.locked{cursor:not-allowed;opacity:.55;}
+.levelCard.locked:hover{border-color:var(--paper2);transform:none;}
+.levelCard.viewing{border-color:var(--gold);box-shadow:0 0 0 2px rgba(224,181,42,.25) inset;}
+.levelCard .lid{font-family:"Shippori Mincho",serif;font-weight:800;font-size:1.6rem;color:var(--navy);}
+.levelCard .ltitle{font-size:.82rem;color:var(--ink-soft);margin:4px 0 12px;}
+.levelCard .lstatus{font-size:11px;}
+.levelCard::after{
+  content:"学";position:absolute;font-family:"Shippori Mincho",serif;font-weight:800;font-size:70px;
+  color:rgba(10,31,61,.04);right:-6px;bottom:-14px;pointer-events:none;
+}
+
 @media(max-width:650px){
   header{padding:0 14px;}
   .layout{display:block;}
-  .sidebar{width:100%;display:flex;overflow:auto;padding:8px;}
+  .sidebar{width:100%;display:flex;overflow:auto;padding:8px;gap:6px;}
   .nav{white-space:nowrap;width:auto;}
   .sideDivider{display:none;}
+  .levelPill{width:auto;white-space:nowrap;margin:0;}
   .main{padding:16px;}
   .cards{grid-template-columns:1fr 1fr;}
 }
@@ -189,8 +220,10 @@ header{height:64px;background:var(--navy2);border-bottom:2px solid rgba(224,181,
 <button class="nav active" data-page="dashboard">🏠 Dashboard</button>
 <button class="nav" data-page="unitlist">📚 Unit Pembelajaran</button>
 <button class="nav" data-page="progresspage">📊 Progress Saya</button>
-<div class="sideDivider">Level Aktif</div>
-<div style="padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--gold);">N3 · Tata Bahasa</div>
+<div class="sideDivider">Level</div>
+<button class="levelPill" id="levelPillBtn" onclick="showPage('levelpicker')">
+  <span id="levelPillText">— · Tata Bahasa</span><span class="chev">▸</span>
+</button>
 </aside>
 
 <main class="main" id="mainArea"></main>
@@ -201,6 +234,8 @@ header{height:64px;background:var(--navy2);border-bottom:2px solid rgba(224,181,
 <script>
 let currentCode = null;
 let currentUnitId = null;
+/* level currently being browsed in "Unit Pembelajaran" — defaults to student's active level */
+let viewingLevel = null;
 const quizState = {}; // { unitId: { qId: [words...] } }
 
 function login(){
@@ -220,6 +255,7 @@ function login(){
 function logout(){
   sessionStorage.removeItem("tekipaki_current_code");
   currentCode = null;
+  viewingLevel = null;
   document.getElementById("app").classList.add("hidden");
   document.getElementById("loginPage").classList.remove("hidden");
   document.getElementById("studentCode").value = "";
@@ -228,11 +264,18 @@ function logout(){
 
 function openApp(){
   const student = TekiStore.getStudent(currentCode);
+  viewingLevel = student.level || (LEVELS[0] && LEVELS[0].id);
   document.getElementById("loginPage").classList.add("hidden");
   document.getElementById("app").classList.remove("hidden");
   document.getElementById("headerName").textContent = "👤 " + student.name;
   document.querySelectorAll(".nav").forEach(n => n.addEventListener("click", () => showPage(n.dataset.page)));
+  updateLevelPill();
   showPage("dashboard");
+}
+
+function updateLevelPill(){
+  const lvl = LEVELS.find(l => l.id === viewingLevel);
+  document.getElementById("levelPillText").textContent = (lvl ? lvl.id : viewingLevel) + " · Tata Bahasa";
 }
 
 function showPage(id){
@@ -240,7 +283,17 @@ function showPage(id){
   if(id === "dashboard") renderDashboard();
   else if(id === "unitlist") renderUnitList();
   else if(id === "progresspage") renderProgressPage();
+  else if(id === "levelpicker") renderLevelPicker();
   window.scrollTo({top:0, behavior:"smooth"});
+}
+
+/* ================= HELPERS: MULTI-LEVEL DATA ================= */
+/* Looks for a global `UNITS_<LEVELID>` array (e.g. UNITS_N3, UNITS_N4).
+   This keeps the app working with whatever levels currently have content
+   in data.js, and degrades gracefully for levels that don't have units yet. */
+function getUnitsForLevel(levelId){
+  const key = "UNITS_" + levelId;
+  return (typeof window[key] !== "undefined") ? window[key] : null;
 }
 
 /* ================= DASHBOARD ================= */
@@ -251,16 +304,19 @@ function renderDashboard(){
 
   document.getElementById("mainArea").innerHTML = `
     <h1 class="title">Selamat datang, ${student.name} 👋</h1>
-    <p class="desc">Berikut perkembangan belajar kamu di level N3.</p>
+    <p class="desc">Berikut perkembangan belajar kamu di level ${student.level}.</p>
     <div class="cards">
       <div class="card"><div class="number">${student.level}</div><div class="label">Level saat ini</div></div>
-      <div class="card"><div class="number">${sum.percent}%</div><div class="label">Progress level N3</div></div>
+      <div class="card"><div class="number">${sum.percent}%</div><div class="label">Progress level ${student.level}</div></div>
       <div class="card"><div class="number">${sum.completedCount}/${sum.totalUnits}</div><div class="label">Unit selesai</div></div>
       <div class="card"><div class="number">${sum.avg === null ? "-" : sum.avg}</div><div class="label">Nilai rata-rata</div></div>
     </div>
     <div class="grid2">
       <div class="card">
-        <h2 style="color:var(--navy);margin-bottom:14px;">Progress Level</h2>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <h2 style="color:var(--navy);">Progress Level</h2>
+          <button class="btn ghost" onclick="showPage('levelpicker')">Pilih Level</button>
+        </div>
         ${LEVELS.map(l => `
           <div class="level-row">
             <div><b>${l.id}</b><br><small style="color:var(--ink-soft)">${l.title}</small></div>
@@ -274,47 +330,116 @@ function renderDashboard(){
         ${currentUnit ? `
           <h3 style="font-size:1.3rem;">${currentUnit.grammar}</h3>
           <p style="color:var(--ink-soft);margin:6px 0 14px;">${currentUnit.meaning}</p>
-          <button class="btn" onclick="openUnit('${currentUnit.id}')">Buka Unit →</button>
-        ` : `<p style="color:var(--pass);font-weight:700;">🎉 Semua unit N3 selesai! Level N2 akan segera dibuka.</p>`}
+          <button class="btn" onclick="viewingLevel='${student.level}';updateLevelPill();openUnit('${currentUnit.id}')">Buka Unit →</button>
+        ` : `<p style="color:var(--pass);font-weight:700;">🎉 Semua unit level ${student.level} selesai! Level berikutnya akan segera dibuka.</p>`}
       </div>
     </div>
   `;
 }
 
-/* ================= DAFTAR UNIT ================= */
-function renderUnitList(){
+/* ================= PANEL PILIH LEVEL ================= */
+function renderLevelPicker(){
   const student = TekiStore.getStudent(currentCode);
-  const sum = TekiStore.summarize(student);
 
-  const items = sum.units.map((u, i) => {
-    const locked = u.state === "terkunci";
-    const done = u.state === "selesai";
-    const cls = locked ? "locked" : done ? "done" : "current";
-    let rightHTML = "";
-    if(done){
-      rightHTML = `<div class="unitScore">${u.progress.score}</div><div class="deadline">Selesai ${fmtDate(u.progress.completedAt)}</div>`;
-    } else if(!locked && u.progress){
-      const daysLeft = daysBetween(nowISO(), u.progress.deadline);
-      rightHTML = u.overdue
-        ? `<div class="deadline overdue">⚠ Lewat tenggat</div>`
-        : `<div class="deadline">${daysLeft <= 0 ? 'Tenggat hari ini' : daysLeft + ' hari lagi'}</div>`;
-    } else {
-      rightHTML = `<div class="deadline">🔒 Selesaikan unit sebelumnya</div>`;
-    }
+  const cards = LEVELS.map(l => {
+    const locked = l.status === "terkunci";
+    const viewing = l.id === viewingLevel;
+    const statusLabel = l.status === "selesai" ? "Selesai ✓" : l.status === "aktif" ? "Sedang belajar" : "🔒 Terkunci";
+    const badgeClass = l.status === "aktif" ? "active" : l.status === "terkunci" ? "lock" : "";
     return `
-      <div class="unitItem ${cls}" ${locked ? "" : `onclick="openUnit('${u.id}')"`}>
-        <div class="unitIcon">${done ? "✓" : locked ? "🔒" : u.order}</div>
-        <div class="unitInfo">
-          <div class="g">${u.grammar} <span style="color:var(--ink-soft);font-weight:400;font-size:.8rem;">(${u.reading})</span></div>
-          <div class="m">${u.meaning}</div>
-        </div>
-        <div class="unitRight">${rightHTML}</div>
+      <div class="levelCard ${locked ? "locked" : ""} ${viewing ? "viewing" : ""}"
+           ${locked ? "" : `onclick="selectLevel('${l.id}')"`}>
+        <div class="lid">${l.id}</div>
+        <div class="ltitle">${l.title}</div>
+        <span class="badge ${badgeClass} lstatus">${statusLabel}</span>
       </div>`;
   }).join("");
 
   document.getElementById("mainArea").innerHTML = `
-    <h1 class="title">Unit Pembelajaran · N3</h1>
-    <p class="desc">Selesaikan unit secara berurutan. Setiap unit harus diselesaikan dalam 1 minggu sejak dibuka.</p>
+    <h1 class="title">Pilih Level</h1>
+    <p class="desc">Kamu sedang aktif belajar di level <b>${student.level}</b>. Pilih level di bawah untuk melihat unit-unit tata bahasanya — level yang masih terkunci perlu diselesaikan lebih dulu.</p>
+    <div class="levelGrid">${cards}</div>
+  `;
+}
+
+function selectLevel(levelId){
+  const lvl = LEVELS.find(l => l.id === levelId);
+  if(!lvl || lvl.status === "terkunci") return;
+  viewingLevel = levelId;
+  updateLevelPill();
+  showPage("unitlist");
+}
+
+/* ================= DAFTAR UNIT ================= */
+function renderUnitList(){
+  const student = TekiStore.getStudent(currentCode);
+  const lvl = LEVELS.find(l => l.id === viewingLevel);
+  const isActiveLevel = viewingLevel === student.level;
+
+  // For the student's own active level, TekiStore already tracks per-unit
+  // progress/deadlines. For other unlocked levels we don't have progress
+  // data wired up yet, so we show the unit content in browse mode.
+  if(isActiveLevel){
+    const sum = TekiStore.summarize(student);
+    const items = sum.units.map((u) => {
+      const locked = u.state === "terkunci";
+      const done = u.state === "selesai";
+      const cls = locked ? "locked" : done ? "done" : "current";
+      let rightHTML = "";
+      if(done){
+        rightHTML = `<div class="unitScore">${u.progress.score}</div><div class="deadline">Selesai ${fmtDate(u.progress.completedAt)}</div>`;
+      } else if(!locked && u.progress){
+        const daysLeft = daysBetween(nowISO(), u.progress.deadline);
+        rightHTML = u.overdue
+          ? `<div class="deadline overdue">⚠ Lewat tenggat</div>`
+          : `<div class="deadline">${daysLeft <= 0 ? 'Tenggat hari ini' : daysLeft + ' hari lagi'}</div>`;
+      } else {
+        rightHTML = `<div class="deadline">🔒 Selesaikan unit sebelumnya</div>`;
+      }
+      return `
+        <div class="unitItem ${cls}" ${locked ? "" : `onclick="openUnit('${u.id}')"`}>
+          <div class="unitIcon">${done ? "✓" : locked ? "🔒" : u.order}</div>
+          <div class="unitInfo">
+            <div class="g">${u.grammar} <span style="color:var(--ink-soft);font-weight:400;font-size:.8rem;">(${u.reading})</span></div>
+            <div class="m">${u.meaning}</div>
+          </div>
+          <div class="unitRight">${rightHTML}</div>
+        </div>`;
+    }).join("");
+
+    document.getElementById("mainArea").innerHTML = `
+      <div class="backLink" onclick="showPage('levelpicker')">← Ganti level</div>
+      <h1 class="title">Unit Pembelajaran · ${viewingLevel}</h1>
+      <p class="desc">Selesaikan unit secara berurutan. Setiap unit harus diselesaikan dalam 1 minggu sejak dibuka.</p>
+      <div class="unitList">${items}</div>
+    `;
+    return;
+  }
+
+  // Browsing a level that isn't the student's current active level.
+  const units = getUnitsForLevel(viewingLevel);
+  if(!units){
+    document.getElementById("mainArea").innerHTML = `
+      <div class="backLink" onclick="showPage('levelpicker')">← Ganti level</div>
+      <h1 class="title">Unit Pembelajaran · ${viewingLevel}</h1>
+      <div class="card"><p class="desc" style="margin:0;">Materi untuk level ini belum tersedia.</p></div>
+    `;
+    return;
+  }
+  const items = units.map(u => `
+    <div class="unitItem current" onclick="openUnit('${u.id}')">
+      <div class="unitIcon">${u.order}</div>
+      <div class="unitInfo">
+        <div class="g">${u.grammar} <span style="color:var(--ink-soft);font-weight:400;font-size:.8rem;">(${u.reading})</span></div>
+        <div class="m">${u.meaning}</div>
+      </div>
+      <div class="unitRight"><div class="deadline">Mode telusur</div></div>
+    </div>`).join("");
+
+  document.getElementById("mainArea").innerHTML = `
+    <div class="backLink" onclick="showPage('levelpicker')">← Ganti level</div>
+    <h1 class="title">Unit Pembelajaran · ${viewingLevel}</h1>
+    <p class="desc">Kamu sedang menelusuri materi level ${viewingLevel}. Progress hanya dicatat di level aktif kamu (${student.level}).</p>
     <div class="unitList">${items}</div>
   `;
 }
@@ -323,9 +448,9 @@ function renderUnitList(){
 function openUnit(unitId){
   currentUnitId = unitId;
   quizState[unitId] = {};
-  const unit = UNITS_N3.find(u => u.id === unitId);
-  const student = TekiStore.getStudent(currentCode);
-  const state = TekiStore.getUnitStates(student).find(u => u.id === unitId);
+  const units = getUnitsForLevel(viewingLevel) || (typeof UNITS_N3 !== "undefined" ? UNITS_N3 : []);
+  const unit = units.find(u => u.id === unitId);
+  if(!unit) return;
 
   const examplesHTML = unit.examples.map(e => `
     <div class="example">
@@ -348,7 +473,7 @@ function openUnit(unitId){
   document.getElementById("mainArea").innerHTML = `
     <div class="backLink" onclick="showPage('unitlist')">← Kembali ke daftar unit</div>
     <div class="hero">
-      <small>UNIT ${unit.order} · JLPT N3 · GRAMMAR</small>
+      <small>UNIT ${unit.order} · JLPT ${viewingLevel} · GRAMMAR</small>
       <h2>${unit.grammar}</h2>
       <div class="reading">${unit.reading}</div>
       <p>${unit.meaning}</p>
@@ -415,7 +540,9 @@ function resetQuizRow(qId, originalWords){
 }
 
 function submitUnit(unitId){
-  const unit = UNITS_N3.find(u => u.id === unitId);
+  const units = getUnitsForLevel(viewingLevel) || (typeof UNITS_N3 !== "undefined" ? UNITS_N3 : []);
+  const unit = units.find(u => u.id === unitId);
+  if(!unit) return;
   let correct = 0;
   unit.quiz.forEach(q => {
     const given = (quizState[unitId][q.id] || []).join("");
@@ -428,8 +555,20 @@ function submitUnit(unitId){
       rEl.className = "qresult wrong"; rEl.textContent = "❌ Belum tepat.";
     }
   });
-  const result = TekiStore.submitUnitResult(currentCode, unitId, correct, unit.quiz.length);
+
+  const student = TekiStore.getStudent(currentCode);
   const banner = document.getElementById("unitResultBanner");
+
+  // Only the student's active level records real progress in TekiStore.
+  if(viewingLevel !== student.level){
+    const score = Math.round((correct / unit.quiz.length) * 100);
+    banner.innerHTML = `<div class="resultBanner ${correct === unit.quiz.length ? "pass" : "fail"}">
+      Nilai kamu ${score} (mode telusur — tidak disimpan). Progress hanya dicatat di level aktif kamu (${student.level}).
+    </div>`;
+    return;
+  }
+
+  const result = TekiStore.submitUnitResult(currentCode, unitId, correct, unit.quiz.length);
   if(result.passed){
     banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score}. Unit selesai! Unit berikutnya sudah terbuka.</div>`;
   } else {
@@ -452,7 +591,7 @@ function renderProgressPage(){
 
   document.getElementById("mainArea").innerHTML = `
     <h1 class="title">Progress Belajar Saya</h1>
-    <p class="desc">Ringkasan progres kamu di level N3.</p>
+    <p class="desc">Ringkasan progres kamu di level ${student.level}.</p>
     <div class="cards">
       <div class="card"><div class="number">${sum.percent}%</div><div class="label">Progress level</div></div>
       <div class="card"><div class="number">${sum.completedCount}/${sum.totalUnits}</div><div class="label">Unit selesai</div></div>
@@ -462,7 +601,7 @@ function renderProgressPage(){
     <div class="card" style="margin-bottom:16px;">
       <h2 style="color:var(--navy);margin-bottom:6px;">Progress keseluruhan</h2>
       <div class="progress-track"><span class="progress-fill" style="width:${sum.percent}%;"></span></div>
-      <p style="color:var(--ink-soft);margin-top:8px;">${sum.percent}% dari level N3 selesai</p>
+      <p style="color:var(--ink-soft);margin-top:8px;">${sum.percent}% dari level ${student.level} selesai</p>
     </div>
     <div class="card">
       <h2 style="color:var(--navy);margin-bottom:6px;">Nilai per Unit</h2>
