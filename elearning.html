@@ -274,8 +274,7 @@ function openApp(){
 }
 
 function updateLevelPill(){
-  const lvl = LEVELS.find(l => l.id === viewingLevel);
-  document.getElementById("levelPillText").textContent = (lvl ? lvl.id : viewingLevel) + " · Tata Bahasa";
+  document.getElementById("levelPillText").textContent = viewingLevel + " · Tata Bahasa";
 }
 
 function showPage(id){
@@ -292,8 +291,11 @@ function showPage(id){
    This keeps the app working with whatever levels currently have content
    in data.js, and degrades gracefully for levels that don't have units yet. */
 function getUnitsForLevel(levelId){
+  if(typeof UNITS_BY_LEVEL !== "undefined" && UNITS_BY_LEVEL[levelId]){
+    return UNITS_BY_LEVEL[levelId].length ? UNITS_BY_LEVEL[levelId] : null;
+  }
   const key = "UNITS_" + levelId;
-  return (typeof window[key] !== "undefined") ? window[key] : null;
+  return (typeof window[key] !== "undefined" && window[key].length) ? window[key] : null;
 }
 
 /* ================= DASHBOARD ================= */
@@ -317,7 +319,7 @@ function renderDashboard(){
           <h2 style="color:var(--navy);">Progress Level</h2>
           <button class="btn ghost" onclick="showPage('levelpicker')">Pilih Level</button>
         </div>
-        ${LEVELS.map(l => `
+        ${TekiStore.getLevelStates(student).map(l => `
           <div class="level-row">
             <div><b>${l.id}</b><br><small style="color:var(--ink-soft)">${l.title}</small></div>
             <span class="badge ${l.status === 'aktif' ? 'active' : l.status === 'terkunci' ? 'lock' : ''}">
@@ -340,8 +342,9 @@ function renderDashboard(){
 /* ================= PANEL PILIH LEVEL ================= */
 function renderLevelPicker(){
   const student = TekiStore.getStudent(currentCode);
+  const levelStates = TekiStore.getLevelStates(student);
 
-  const cards = LEVELS.map(l => {
+  const cards = levelStates.map(l => {
     const locked = l.status === "terkunci";
     const viewing = l.id === viewingLevel;
     const statusLabel = l.status === "selesai" ? "Selesai ✓" : l.status === "aktif" ? "Sedang belajar" : "🔒 Terkunci";
@@ -363,7 +366,8 @@ function renderLevelPicker(){
 }
 
 function selectLevel(levelId){
-  const lvl = LEVELS.find(l => l.id === levelId);
+  const student = TekiStore.getStudent(currentCode);
+  const lvl = TekiStore.getLevelStates(student).find(l => l.id === levelId);
   if(!lvl || lvl.status === "terkunci") return;
   viewingLevel = levelId;
   updateLevelPill();
@@ -570,7 +574,13 @@ function submitUnit(unitId){
 
   const result = TekiStore.submitUnitResult(currentCode, unitId, correct, unit.quiz.length);
   if(result.passed){
-    banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score}. Unit selesai! Unit berikutnya sudah terbuka.</div>`;
+    if(result.leveledUp){
+      banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score}. Level ${viewingLevel} selesai — selamat, kamu naik ke level ${result.newLevel}!</div>`;
+      viewingLevel = result.newLevel;
+      updateLevelPill();
+    } else {
+      banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score}. Unit selesai! Unit berikutnya sudah terbuka.</div>`;
+    }
   } else {
     banner.innerHTML = `<div class="resultBanner fail">Nilai kamu ${result.score}. Minimal ${PASS_SCORE} untuk lulus — coba lagi ya!</div>`;
   }
