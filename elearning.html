@@ -197,6 +197,31 @@ header{height:64px;background:var(--navy2);border-bottom:2px solid rgba(224,181,
 .mcOption.wrong{border-color:var(--seal);background:var(--fail-bg);color:var(--seal);font-weight:700;}
 .mcOption:disabled{cursor:not-allowed;}
 
+/* ---------- SOAL UNIT (20 SOAL: KANJI + TATA BAHASA, PG + ESAI) ---------- */
+.sectionHead{display:flex;align-items:center;justify-content:space-between;margin:22px 0 10px;}
+.sectionHead h2{color:var(--navy);}
+.sectionHead .cnt{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--ink-soft);
+  background:var(--paper);border:1px solid var(--paper2);border-radius:20px;padding:5px 11px;}
+.qCard{padding:18px 20px;border:1px solid var(--paper2);border-radius:13px;margin-bottom:12px;}
+.qCard .qTag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:.65rem;letter-spacing:.5px;
+  color:var(--gold-dim);background:var(--warn-bg);border-radius:20px;padding:3px 9px;margin-bottom:8px;}
+.qCard .qPrompt{font-weight:700;margin-bottom:12px;line-height:1.5;}
+.essayBox{width:100%;min-height:70px;border:1px solid var(--paper2);border-radius:9px;padding:10px 12px;
+  outline:none;resize:vertical;font-family:inherit;}
+.essayBox:focus{border-color:var(--gold);}
+.essayKey{display:none;margin-top:12px;padding:12px 14px;background:var(--paper);border-radius:9px;font-size:.85rem;}
+.essayKey.show{display:block;}
+.essayKey b{color:var(--navy);}
+.selfCheck{display:flex;gap:8px;margin-top:10px;}
+.selfBtn{flex:1;padding:8px 10px;border-radius:8px;border:1px solid var(--paper2);background:#fff;cursor:pointer;font-size:.8rem;font-weight:700;}
+.selfBtn.benar{color:var(--pass);}
+.selfBtn.benar.active{background:var(--pass-bg);border-color:var(--pass);}
+.selfBtn.salah{color:var(--seal);}
+.selfBtn.salah.active{background:var(--fail-bg);border-color:var(--seal);}
+.scoreBar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--paper);
+  border-radius:12px;margin:16px 0;font-size:.85rem;flex-wrap:wrap;gap:8px;}
+.scoreBar b{font-family:"JetBrains Mono",monospace;color:var(--navy);font-size:1.1rem;}
+
 /* ---------- PROGRESS PAGE ---------- */
 .chart-wrap{display:flex;align-items:flex-end;gap:10px;height:130px;padding:10px 6px 0;border-bottom:1px solid var(--paper2);}
 .chart-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;}
@@ -284,6 +309,11 @@ let currentPackageIndex = null; // paket mingguan yang sedang dibuka (mode paket
 let viewingLevel = null;
 const quizState = {}; // { unitId: { qId: [words...] } }
 const kanjiQuizState = {}; // { qId: selectedOption }
+
+/* ===== state untuk halaman "20 soal per unit" (10 kanji + 10 tata bahasa) ===== */
+let currentUnitQuiz = null;      // { grammarQuestions:[...], kanjiQuestions:[...] }
+const unitAnswers = {};          // { qId: { given, mcSelected, selfMark } }
+let unitGraded = false;          // sudah tekan "Kumpulkan Jawaban"?
 
 function login(){
   const code = document.getElementById("studentCode").value.trim().toUpperCase();
@@ -624,14 +654,17 @@ function renderWeekList(student){
   `;
 }
 
-/* ================= HALAMAN UNIT (MATERI + LATIHAN) ================= */
+/* ================= HALAMAN UNIT (MATERI + 20 SOAL LATIHAN) ================= */
 function openUnit(unitId, packageIndex){
   currentUnitId = unitId;
   currentPackageIndex = (typeof packageIndex === "number") ? packageIndex : null;
-  quizState[unitId] = {};
   const units = getUnitsForLevel(viewingLevel) || (typeof UNITS_N3 !== "undefined" ? UNITS_N3 : []);
   const unit = units.find(u => u.id === unitId);
   if(!unit) return;
+
+  currentUnitQuiz = TekiStore.buildUnitQuiz(viewingLevel, unitId);
+  Object.keys(unitAnswers).forEach(k => delete unitAnswers[k]);
+  unitGraded = false;
 
   const examplesHTML = unit.examples.map(e => `
     <div class="example">
@@ -640,18 +673,7 @@ function openUnit(unitId, packageIndex){
       <div class="meaning">${e.meaning}</div>
     </div>`).join("");
 
-  const quizHTML = unit.quiz.map((q, qi) => `
-    <div class="quiz">
-      <b>SOAL ${qi + 1}</b><p style="color:var(--ink-soft);margin:4px 0 0;">Susun kata menjadi kalimat yang benar:</p>
-      <div class="slot" id="slot_${q.id}"></div>
-      <div class="words" id="bank_${q.id}">
-        ${shuffle([...q.words]).map(w => `<span class="word" data-word="${w}" onclick="placeWord('${q.id}', this)">${w}</span>`).join("")}
-      </div>
-      <button class="btn ghost" onclick="resetQuizRow('${q.id}', ${JSON.stringify(q.words).replace(/"/g,'&quot;')})">Ulangi Susunan</button>
-      <div class="qresult" id="qresult_${q.id}"></div>
-    </div>`).join("");
-
-  const backTarget = currentPackageIndex !== null ? "unitlist" : "unitlist";
+  const backTarget = "unitlist";
   const materialLinkHTML = unit.materialUrl ? `<a class="heroLink" href="${unit.materialUrl}" target="_blank" rel="noopener">📄 Buka Materi Lengkap ↗</a>` : "";
 
   document.getElementById("mainArea").innerHTML = `
@@ -679,14 +701,187 @@ function openUnit(unitId, packageIndex){
       ${examplesHTML}
     </div>
 
+    <p class="desc" style="margin-bottom:0;">Kerjakan 20 soal latihan di bawah ini (10 soal Tata Bahasa + 10 soal Kanji, campuran pilihan ganda &amp; esai). Kunci jawaban baru akan muncul setelah <b>semua soal selesai dikerjakan</b> dan kamu menekan "Kumpulkan Jawaban".</p>
+
+    <div class="sectionHead"><h2>文 Bagian Tata Bahasa</h2><span class="cnt">10 soal</span></div>
+    <div id="grammarQArea">${renderQuestionCards(currentUnitQuiz.grammarQuestions)}</div>
+
+    <div class="sectionHead"><h2>漢 Bagian Kanji</h2><span class="cnt">10 soal</span></div>
+    <div id="kanjiQArea">${renderQuestionCards(currentUnitQuiz.kanjiQuestions)}</div>
+
     <div class="card">
-      <h2 style="color:var(--navy);margin-bottom:6px;">LATIHAN</h2>
-      <p class="desc" style="margin-bottom:6px;">Jawab kedua soal lalu tekan "Kumpulkan Jawaban" untuk menyelesaikan unit ini.</p>
-      ${quizHTML}
-      <button class="btn" onclick="submitUnit('${unit.id}')">Kumpulkan Jawaban</button>
+      <button class="btn" id="gradeBtn" onclick="gradeUnitAnswers()">Kumpulkan Jawaban</button>
+      <button class="btn gold hidden" id="finalizeBtn" onclick="finalizeUnitScore('${unit.id}')">Simpan Nilai Akhir</button>
+      <div id="scoreBarArea"></div>
       <div id="unitResultBanner"></div>
     </div>
   `;
+}
+
+function renderQuestionCards(questions){
+  return questions.map((q, i) => {
+    if(q.type === "mc"){
+      const optsHTML = q.options.map(opt => `<button class="mcOption" data-qid="${q.id}" onclick="selectUnitMC('${q.id}', this, ${JSON.stringify(opt).replace(/"/g,'&quot;')})">${opt}</button>`).join("");
+      return `
+        <div class="qCard" id="qcard_${q.id}">
+          <span class="qTag">PILIHAN GANDA</span>
+          <div class="qPrompt">${i + 1}. ${q.prompt}</div>
+          <div class="mcOptions" id="mcopts_${q.id}">${optsHTML}</div>
+          <div class="qresult" id="qres_${q.id}"></div>
+        </div>`;
+    }
+    return `
+      <div class="qCard" id="qcard_${q.id}">
+        <span class="qTag">ESAI</span>
+        <div class="qPrompt">${i + 1}. ${q.prompt}</div>
+        <textarea class="essayBox" id="essay_${q.id}" placeholder="Tulis jawabanmu di sini..." oninput="unitAnswers['${q.id}']=Object.assign(unitAnswers['${q.id}']||{},{given:this.value})"></textarea>
+        <div class="essayKey" id="key_${q.id}">
+          <b>Kunci jawaban:</b> ${q.answer}
+          <div class="selfCheck">
+            <button class="selfBtn benar" id="selfB_${q.id}" onclick="markSelf('${q.id}', true)">✓ Jawaban saya sudah benar</button>
+            <button class="selfBtn salah" id="selfS_${q.id}" onclick="markSelf('${q.id}', false)">✗ Jawaban saya masih salah</button>
+          </div>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function selectUnitMC(qId, btn, value){
+  if(unitGraded) return;
+  const wrap = document.getElementById("mcopts_" + qId);
+  wrap.querySelectorAll(".mcOption").forEach(b => b.classList.remove("selected"));
+  btn.classList.add("selected");
+  unitAnswers[qId] = Object.assign(unitAnswers[qId] || {}, { mcSelected: value });
+}
+
+function markSelf(qId, isCorrect){
+  unitAnswers[qId] = Object.assign(unitAnswers[qId] || {}, { selfMark: isCorrect });
+  const bBtn = document.getElementById("selfB_" + qId);
+  const sBtn = document.getElementById("selfS_" + qId);
+  bBtn.classList.toggle("active", isCorrect);
+  sBtn.classList.toggle("active", !isCorrect);
+  updateScoreBar();
+}
+
+function allUnitQuestions(){
+  return [...(currentUnitQuiz.grammarQuestions || []), ...(currentUnitQuiz.kanjiQuestions || [])];
+}
+
+function gradeUnitAnswers(){
+  const all = allUnitQuestions();
+
+  // Pastikan SEMUA soal sudah dikerjakan dulu — kunci jawaban baru
+  // ditampilkan setelah semua soal selesai dijawab.
+  const belumDijawab = all.filter(q => {
+    if(q.type === "mc") return !unitAnswers[q.id]?.mcSelected;
+    return !(unitAnswers[q.id]?.given || "").trim();
+  });
+  if(belumDijawab.length > 0){
+    alert(`Masih ada ${belumDijawab.length} soal yang belum kamu jawab. Jawab semua soal dulu sebelum kunci jawaban ditampilkan.`);
+    const firstEl = document.getElementById("qcard_" + belumDijawab[0].id);
+    if(firstEl) firstEl.scrollIntoView({behavior:"smooth", block:"center"});
+    return;
+  }
+
+  unitGraded = true;
+  all.forEach(q => {
+    if(q.type === "mc"){
+      const wrap = document.getElementById("mcopts_" + q.id);
+      const given = unitAnswers[q.id]?.mcSelected;
+      const rEl = document.getElementById("qres_" + q.id);
+      wrap.querySelectorAll(".mcOption").forEach(b => {
+        b.disabled = true;
+        if(b.textContent === q.correct) b.classList.add("correct");
+        else if(b.classList.contains("selected") && b.textContent !== q.correct) b.classList.add("wrong");
+      });
+      const isCorrect = given === q.correct;
+      unitAnswers[q.id] = Object.assign(unitAnswers[q.id] || {}, { mcSelected: given, isCorrect });
+      rEl.className = "qresult " + (isCorrect ? "correct" : "wrong");
+      rEl.textContent = isCorrect ? "✅ Benar!" : (given ? "❌ Belum tepat." : "⚠ Belum dijawab.");
+    } else {
+      document.getElementById("key_" + q.id).classList.add("show");
+      document.getElementById("essay_" + q.id).setAttribute("readonly", "readonly");
+    }
+  });
+  document.getElementById("gradeBtn").classList.add("hidden");
+  document.getElementById("finalizeBtn").classList.remove("hidden");
+  updateScoreBar();
+}
+
+function updateScoreBar(){
+  if(!unitGraded) return;
+  const all = allUnitQuestions();
+  let correct = 0, essayUnmarked = 0;
+  all.forEach(q => {
+    if(q.type === "mc"){
+      if(unitAnswers[q.id]?.isCorrect) correct++;
+    } else {
+      const mark = unitAnswers[q.id]?.selfMark;
+      if(mark === true) correct++;
+      if(mark === undefined) essayUnmarked++;
+    }
+  });
+  const total = all.length;
+  const score = Math.round((correct / total) * 100);
+  const area = document.getElementById("scoreBarArea");
+  area.innerHTML = `
+    <div class="scoreBar">
+      <span>Jawaban benar sejauh ini: <b>${correct}/${total}</b> ${essayUnmarked > 0 ? `<span style="color:var(--ink-soft);">(${essayUnmarked} soal esai belum kamu tandai)</span>` : ""}</span>
+      <span>Estimasi nilai: <b>${score}</b></span>
+    </div>`;
+}
+
+function finalizeUnitScore(unitId){
+  const all = allUnitQuestions();
+  let correct = 0;
+  all.forEach(q => {
+    if(q.type === "mc"){
+      if(unitAnswers[q.id]?.isCorrect) correct++;
+    } else {
+      if(unitAnswers[q.id]?.selfMark === true) correct++;
+    }
+  });
+  const total = all.length;
+
+  const student = TekiStore.getStudent(currentCode);
+  const banner = document.getElementById("unitResultBanner");
+  document.getElementById("finalizeBtn").disabled = true;
+
+  // Level aktif siswa yang memakai paket mingguan (mis. N5)
+  if(viewingLevel === student.level && TekiStore.usesWeeklyPackages(student.level) && currentPackageIndex !== null){
+    const result = TekiStore.submitBunpouInPackage(currentCode, student.level, currentPackageIndex, unitId, correct, total);
+    if(result.passed){
+      banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score} (${correct}/${total} soal). Unit Bunpou ini lulus!
+        ${result.packageCompleted ? ' Paket minggu ini sudah lengkap (Bunpou + Kanji) ✓.' : ' Lanjutkan unit / kuis Kanji lain di paket minggu ini.'}
+        ${result.allPackagesDone ? ' Semua paket level ini sudah selesai — kamu bisa mengerjakan Ujian Akhir!' : ''}</div>
+        <button class="btn ghost" style="margin-top:10px;" onclick="showPage('unitlist')">← Kembali ke daftar minggu</button>`;
+    } else {
+      banner.innerHTML = `<div class="resultBanner fail">Nilai kamu ${result.score} (${correct}/${total} soal). Minimal ${PASS_SCORE} untuk lulus — coba lagi ya!</div>`;
+    }
+    return;
+  }
+
+  // Only the student's active level (mode non-paket, mis. N3) records real progress.
+  if(viewingLevel !== student.level){
+    const score = Math.round((correct / total) * 100);
+    banner.innerHTML = `<div class="resultBanner ${score >= PASS_SCORE ? "pass" : "fail"}">
+      Nilai kamu ${score} (${correct}/${total} soal — mode telusur, tidak disimpan). Progress hanya dicatat di level aktif kamu (${student.level}).
+    </div>`;
+    return;
+  }
+
+  const result = TekiStore.submitUnitResult(currentCode, unitId, correct, total);
+  if(result.passed){
+    if(result.leveledUp){
+      banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score} (${correct}/${total} soal). Level ${viewingLevel} selesai — selamat, kamu naik ke level ${result.newLevel}!</div>`;
+      viewingLevel = result.newLevel;
+      updateLevelPill();
+    } else {
+      banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score} (${correct}/${total} soal). Unit selesai! Unit berikutnya sudah terbuka.</div>`;
+    }
+  } else {
+    banner.innerHTML = `<div class="resultBanner fail">Nilai kamu ${result.score} (${correct}/${total} soal). Minimal ${PASS_SCORE} untuk lulus — coba lagi ya!</div>`;
+  }
 }
 
 function shuffle(arr){
@@ -698,90 +893,7 @@ function shuffle(arr){
   return a;
 }
 
-function placeWord(qId, el){
-  if(el.classList.contains("used")) return;
-  el.classList.add("used");
-  if(!quizState[currentUnitId][qId]) quizState[currentUnitId][qId] = [];
-  quizState[currentUnitId][qId].push(el.dataset.word);
-  const placed = document.createElement("span");
-  placed.className = "placed";
-  placed.textContent = el.dataset.word;
-  placed.onclick = () => {
-    placed.remove();
-    const arr = quizState[currentUnitId][qId];
-    const idx = arr.indexOf(el.dataset.word);
-    if(idx > -1) arr.splice(idx, 1);
-    el.classList.remove("used");
-  };
-  document.getElementById("slot_" + qId).appendChild(placed);
-}
-
-function resetQuizRow(qId, originalWords){
-  quizState[currentUnitId][qId] = [];
-  document.getElementById("slot_" + qId).innerHTML = "";
-  document.querySelectorAll(`#bank_${qId} .word`).forEach(w => w.classList.remove("used"));
-  const rEl = document.getElementById("qresult_" + qId);
-  if(rEl) rEl.textContent = "";
-}
-
-function submitUnit(unitId){
-  const units = getUnitsForLevel(viewingLevel) || (typeof UNITS_N3 !== "undefined" ? UNITS_N3 : []);
-  const unit = units.find(u => u.id === unitId);
-  if(!unit) return;
-  let correct = 0;
-  unit.quiz.forEach(q => {
-    const given = (quizState[unitId][q.id] || []).join("");
-    const answer = q.answer.join("");
-    const rEl = document.getElementById("qresult_" + q.id);
-    if(given === answer){
-      correct++;
-      rEl.className = "qresult correct"; rEl.textContent = "✅ Benar!";
-    } else {
-      rEl.className = "qresult wrong"; rEl.textContent = "❌ Belum tepat.";
-    }
-  });
-
-  const student = TekiStore.getStudent(currentCode);
-  const banner = document.getElementById("unitResultBanner");
-
-  // Level aktif siswa yang memakai paket mingguan (mis. N5)
-  if(viewingLevel === student.level && TekiStore.usesWeeklyPackages(student.level) && currentPackageIndex !== null){
-    const result = TekiStore.submitBunpouInPackage(currentCode, student.level, currentPackageIndex, unitId, correct, unit.quiz.length);
-    if(result.passed){
-      banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score}. Unit Bunpou ini lulus!
-        ${result.packageCompleted ? ' Paket minggu ini sudah lengkap (Bunpou + Kanji) ✓.' : ' Lanjutkan unit / kuis Kanji lain di paket minggu ini.'}
-        ${result.allPackagesDone ? ' Semua paket level ini sudah selesai — kamu bisa mengerjakan Ujian Akhir!' : ''}</div>
-        <button class="btn ghost" style="margin-top:10px;" onclick="showPage('unitlist')">← Kembali ke daftar minggu</button>`;
-    } else {
-      banner.innerHTML = `<div class="resultBanner fail">Nilai kamu ${result.score}. Minimal ${PASS_SCORE} untuk lulus — coba lagi ya!</div>`;
-    }
-    return;
-  }
-
-  // Only the student's active level (mode non-paket, mis. N3) records real progress.
-  if(viewingLevel !== student.level){
-    const score = Math.round((correct / unit.quiz.length) * 100);
-    banner.innerHTML = `<div class="resultBanner ${correct === unit.quiz.length ? "pass" : "fail"}">
-      Nilai kamu ${score} (mode telusur — tidak disimpan). Progress hanya dicatat di level aktif kamu (${student.level}).
-    </div>`;
-    return;
-  }
-
-  const result = TekiStore.submitUnitResult(currentCode, unitId, correct, unit.quiz.length);
-  if(result.passed){
-    if(result.leveledUp){
-      banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score}. Level ${viewingLevel} selesai — selamat, kamu naik ke level ${result.newLevel}!</div>`;
-      viewingLevel = result.newLevel;
-      updateLevelPill();
-    } else {
-      banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score}. Unit selesai! Unit berikutnya sudah terbuka.</div>`;
-    }
-  } else {
-    banner.innerHTML = `<div class="resultBanner fail">Nilai kamu ${result.score}. Minimal ${PASS_SCORE} untuk lulus — coba lagi ya!</div>`;
-  }
-}
-
-/* ================= KUIS KANJI (PILIHAN GANDA) ================= */
+/* ================= KUIS KANJI MINGGUAN (PILIHAN GANDA) ================= */
 function openKanjiQuiz(packageIndex){
   currentPackageIndex = packageIndex;
   const student = TekiStore.getStudent(currentCode);
