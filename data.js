@@ -1,451 +1,890 @@
-/* ============================================================
-   TEKIPAKI — LAPISAN DATA (PLACEHOLDER)
-   ------------------------------------------------------------
-   Semua fungsi di bawah ini SAAT INI menyimpan data di
-   localStorage (artinya baru tersimpan per-browser, belum
-   sinkron antar perangkat).
+<!DOCTYPE html>
+<html lang="id" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tekipaki Japanese Learning — Siswa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0a1f3d; --navy2:#001530; --navy3:#132c52;
+  --gold:#e0b52a; --gold-dim:#c4a02a;
+  --paper:#f6f0e2; --paper2:#efe6d0;
+  --ink:#1c2541; --ink-soft:#4a5875;
+  --seal:#b3382e; --muted:#9fb0c9;
+  --pass:#3f7d52; --pass-bg:#e7f1ea;
+  --warn-bg:#faf1d9; --fail-bg:#f8e7e5;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif;background:var(--paper);color:var(--ink);}
+h1,h2,h3,.display{font-family:"Shippori Mincho",serif;}
+.mono{font-family:"JetBrains Mono",monospace;}
+.hidden{display:none!important;}
+button,input{font:inherit;}
 
-   Saat siap pakai backend sungguhan (Google Sheets / Firebase /
-   Supabase / dll), yang perlu diubah CUKUP isi fungsi-fungsi di
-   bagian "STORE API" ini saja (idealnya jadi `async function`
-   yang memanggil API). Kode di siswa.html dan guru.html tidak
-   perlu diubah karena semuanya memanggil lewat objek TekiStore.
-   ============================================================ */
+/* ---------- LOGIN ---------- */
+#loginPage{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;
+  background:radial-gradient(120% 140% at 15% -10%, var(--navy3), var(--navy) 55%, var(--navy2) 100%);
+  position:relative;overflow:hidden;
+}
+#loginPage::before{
+  content:"学";position:absolute;font-family:"Shippori Mincho",serif;font-weight:800;
+  font-size:min(60vw,520px);color:rgba(224,181,42,.06);right:-8%;top:50%;transform:translateY(-50%);
+  pointer-events:none;user-select:none;
+}
+.login{position:relative;z-index:2;width:420px;max-width:100%;background:#fff;padding:42px 34px;
+  border-radius:18px;text-align:center;box-shadow:0 30px 70px rgba(0,0,0,.35);border-top:4px solid var(--gold);}
+.logo{width:60px;height:60px;margin:auto;background:var(--navy);color:var(--gold);border-radius:14px;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;font-family:"Shippori Mincho",serif;}
+.login h1{color:var(--navy);margin:16px 0 4px;font-size:1.6rem;}
+.login p{color:var(--ink-soft);font-size:.9rem;margin-bottom:6px;}
+.login input{width:100%;padding:13px 14px;border:1px solid var(--paper2);border-radius:10px;margin-top:16px;
+  outline:none;text-transform:uppercase;font-family:"JetBrains Mono",monospace;letter-spacing:1px;text-align:center;}
+.login input:focus{border-color:var(--gold);}
+.login button{width:100%;padding:13px;border:0;border-radius:10px;background:var(--navy);color:var(--gold);
+  font-weight:bold;margin-top:12px;cursor:pointer;letter-spacing:1px;}
+.login button:hover{background:var(--navy3);}
+.error{color:var(--seal);font-size:.82rem;min-height:20px;margin-top:10px;}
+.hint{color:#9aa4b5;font-size:.76rem;margin-top:8px;}
 
-const STORAGE_KEY = "tekipaki_students_v1";
-const PASS_SCORE = 70;          // nilai minimal supaya unit/kanji/paket dianggap lulus
-const UNIT_DEADLINE_DAYS = 7;   // (level non-paket, mis. N3) setiap unit harus selesai dalam 1 minggu
+/* ---------- APP SHELL ---------- */
+header{height:64px;background:var(--navy2);border-bottom:2px solid rgba(224,181,42,.3);
+  display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:10;color:#fff;}
+.brand{font-family:"Shippori Mincho",serif;font-weight:800;color:var(--gold);font-size:18px;letter-spacing:.5px;}
+.headRight{display:flex;align-items:center;gap:14px;font-size:.85rem;color:var(--muted);}
+.logout{border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;border-radius:8px;padding:7px 13px;cursor:pointer;}
+.logout:hover{border-color:var(--gold);color:var(--gold);}
 
-/* ---------------------------------------------------------
-   ATURAN PAKET MINGGUAN (dipakai untuk level yang punya data
-   Kanji, misalnya N5): setiap minggu siswa dapat 1 PAKET berisi
-   3 unit Bunpou + 12 Kanji, dengan 1 deadline gabungan. Paket
-   dianggap lulus kalau SEMUA unit Bunpou di paket itu lulus DAN
-   kuis Kanji-nya lulus. Paket berikutnya baru terbuka setelah
-   paket sekarang lulus.
---------------------------------------------------------- */
-const WEEK_DEADLINE_DAYS = 7;   // deadline 1 paket mingguan (bunpou + kanji)
-const BUNPOU_PER_WEEK = 3;      // target unit bunpou baru / minggu
-const KANJI_PER_WEEK = 12;      // target kanji hafalan baru / minggu
-const FINAL_EXAM_PASS_SCORE = 70; // nilai minimal ujian akhir level supaya naik level
+.layout{display:flex;min-height:calc(100vh - 64px);}
+.sidebar{width:230px;background:var(--navy);padding:18px 12px;color:#fff;flex:none;}
+.nav{width:100%;border:0;background:transparent;color:#cbd6e8;text-align:left;padding:11px 12px;border-radius:8px;
+  cursor:pointer;margin:3px 0;font-size:.9rem;display:flex;align-items:center;gap:8px;}
+.nav:hover{background:rgba(255,255,255,.06);}
+.nav.active{background:rgba(224,181,42,.14);color:var(--gold);font-weight:700;}
+.sideDivider{font-family:"JetBrains Mono",monospace;font-size:.65rem;letter-spacing:1px;color:var(--muted);
+  text-transform:uppercase;padding:16px 12px 6px;}
 
-// Berapa hari 1 level harus tuntas total, dihitung sejak siswa mulai level
-// tsb (student.levelStartedAt). Level yang belum diisi di sini dianggap
-// belum punya batas waktu keseluruhan (hanya deadline per unit/paket).
-const LEVEL_DURATION_DAYS = {
-  N5: 90,   // N5 harus selesai dalam 3 bulan
-};
+/* clickable "level aktif" pill in sidebar -> opens level picker */
+.levelPill{
+  margin:0 12px;padding:10px 12px;border-radius:10px;background:rgba(224,181,42,.08);
+  border:1px solid rgba(224,181,42,.25);cursor:pointer;text-align:left;width:calc(100% - 24px);
+  color:var(--gold);font-family:"JetBrains Mono",monospace;font-size:.75rem;display:flex;
+  align-items:center;justify-content:space-between;gap:6px;
+}
+.levelPill:hover{background:rgba(224,181,42,.16);}
+.levelPill .chev{opacity:.7;}
 
-// Kode akses guru/admin — ganti / tambahkan sesuai kebutuhan
-const TEACHER_CODES = ["GURU2026", "ADMINTP"];
-function isValidTeacherCode(code){ return TEACHER_CODES.includes((code || "").trim().toUpperCase()); }
+.main{flex:1;padding:30px;max-width:1100px;width:100%;margin:0 auto;}
+.title{color:var(--navy);margin:0 0 6px;}
+.desc{color:var(--ink-soft);margin-top:0;margin-bottom:22px;}
 
-/* ---------------------------------------------------------
-   1. STRUKTUR LEVEL & UNIT
-   ------------------------------------------------------------
-   LEVEL_ORDER menentukan urutan level dari paling dasar ke
-   paling mahir. Status tiap level (selesai/aktif/terkunci)
-   TIDAK lagi disimpan di sini secara global — status itu
-   dihitung PER SISWA lewat TekiStore.getLevelStates(student),
-   berdasarkan field `student.level` (level yang sedang aktif
-   dijalani siswa itu).
+/* ---------- CARDS ---------- */
+.card{background:#fff;border:1px solid var(--paper2);border-radius:15px;padding:22px;box-shadow:0 2px 10px rgba(10,31,61,.04);}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px;}
+.number{font-family:"JetBrains Mono",monospace;font-size:26px;font-weight:700;color:var(--navy);}
+.label{font-size:12.5px;color:var(--ink-soft);margin-top:5px;}
 
-   UNITS_BY_LEVEL menyimpan materi & latihan Bunpou untuk tiap
-   level. KANJI_BY_LEVEL menyimpan daftar Kanji hafalan tiap
-   level. Level yang array-nya kosong [] berarti "materi belum
-   tersedia" dan akan ditampilkan sebagai demikian di siswa.html.
+.grid2{display:grid;grid-template-columns:2fr 1fr;gap:18px;}
+@media(max-width:860px){.grid2{grid-template-columns:1fr;}.cards{grid-template-columns:repeat(2,1fr);}}
 
-   Field `materialUrl` (opsional) di tiap unit Bunpou adalah
-   link ke materi lengkap di website/tempat lain — kalau diisi,
-   akan muncul tombol "Buka Materi ↗" yang membuka link tsb di
-   tab baru.
---------------------------------------------------------- */
-const LEVEL_ORDER = ["N5", "N4", "N3", "N2", "N1"];
+.progress-track{height:10px;background:var(--paper);border-radius:20px;overflow:hidden;border:1px solid var(--paper2);}
+.progress-fill{display:block;height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));border-radius:20px;}
 
-const LEVEL_META = [
-  { id: "N5", title: "Dasar Bahasa Jepang" },
-  { id: "N4", title: "Pemahaman dasar" },
-  { id: "N3", title: "Tata bahasa tingkat menengah" },
-  { id: "N2", title: "Tingkat menengah atas" },
-  { id: "N1", title: "Tingkat mahir" },
-];
+.level-row{padding:13px 0;border-bottom:1px solid var(--paper2);display:flex;justify-content:space-between;align-items:center;}
+.level-row:last-child{border-bottom:none;}
+.badge{padding:6px 11px;background:var(--pass-bg);color:var(--pass);border-radius:20px;font-size:11.5px;font-weight:700;}
+.badge.active{background:var(--warn-bg);color:var(--gold-dim);}
+.badge.lock{background:#eee;color:#999;}
 
-const UNITS_N3 = [
-  {
-    id: "n3u1",
-    order: 1,
-    grammar: "〜代わりに",
-    reading: "~kawari ni",
-    meaning: "sebagai ganti ~／alih-alih ~／sebagai imbalan atas ~",
-    explanation: [
-      "〜代わりに berasal dari kata benda 代わり (pengganti).",
-      "Digunakan untuk menyatakan pengganti atau kontras antara dua tindakan / hal."
-    ],
-    pattern: [
-      "[Kata Benda] ＋ の代わりに ＝ sebagai ganti ~",
-      "[Kata Kerja bentuk kamus] ＋ 代わりに ＝ alih-alih ~"
-    ],
-    examples: [
-      { jp: "今日は先生の代わりに、私が授業をします。", reading: "きょうはせんせいのかわりに、わたしがじゅぎょうをします。", meaning: "Hari ini, sebagai ganti guru, saya yang akan mengajar." },
-      { jp: "彼は謝る代わりに、プレゼントを送ってきた。", reading: "かれはあやまるかわりに、プレゼントをおくってきた。", meaning: "Alih-alih meminta maaf, dia malah mengirimkan hadiah." }
-    ],
-    quiz: [
-      { id: "q1", words: ["今日は先生の代わりに、", "私が", "授業をします"], answer: ["今日は先生の代わりに、", "私が", "授業をします"] },
-      { id: "q2", words: ["彼は謝る代わりに、", "プレゼントを", "送ってきた"], answer: ["彼は謝る代わりに、", "プレゼントを", "送ってきた"] }
-    ]
-  },
-  {
-    id: "n3u2",
-    order: 2,
-    grammar: "〜抜きで",
-    reading: "~nuki de",
-    meaning: "tanpa ~／mengesampingkan ~",
-    explanation: [
-      "〜抜きで berasal dari kata kerja 抜く (mencabut/menghilangkan).",
-      "Dipakai untuk menyatakan sesuatu dilakukan tanpa unsur tertentu yang biasanya ada."
-    ],
-    pattern: [
-      "[Kata Benda] ＋ 抜きで ＝ tanpa ~",
-      "[Kata Benda] ＋ 抜きの ＋ [Kata Benda] ＝ ~ tanpa ~ (sebagai frasa)"
-    ],
-    examples: [
-      { jp: "冗談抜きで、この計画は難しいと思う。", reading: "じょうだんぬきで、このけいかくはむずかしいとおもう。", meaning: "Bukan bercanda, saya pikir rencana ini sulit." },
-      { jp: "今日は朝ご飯抜きで学校に来た。", reading: "きょうはあさごはんぬきでがっこうにきた。", meaning: "Hari ini saya ke sekolah tanpa sarapan." }
-    ],
-    quiz: [
-      { id: "q1", words: ["冗談抜きで、", "この計画は", "難しいと思う"], answer: ["冗談抜きで、", "この計画は", "難しいと思う"] },
-      { id: "q2", words: ["今日は", "朝ご飯抜きで", "学校に来た"], answer: ["今日は", "朝ご飯抜きで", "学校に来た"] }
-    ]
-  },
-  {
-    id: "n3u3",
-    order: 3,
-    grammar: "〜たびに",
-    reading: "~tabi ni",
-    meaning: "setiap kali melakukan ~",
-    explanation: [
-      "〜たびに berasal dari kata benda 度 (kali/setiap kesempatan).",
-      "Menyatakan sesuatu yang selalu terjadi setiap kali suatu peristiwa berlangsung."
-    ],
-    pattern: [
-      "[Kata Kerja bentuk kamus] ＋ たびに ＝ setiap kali ~",
-      "[Kata Benda] ＋ のたびに ＝ setiap kali ~"
-    ],
-    examples: [
-      { jp: "彼女に会うたびに、元気をもらう。", reading: "かのじょにあうたびに、げんきをもらう。", meaning: "Setiap kali bertemu dengannya, saya mendapat semangat." },
-      { jp: "旅行のたびに、写真をたくさん撮る。", reading: "りょこうのたびに、しゃしんをたくさんとる。", meaning: "Setiap kali bepergian, saya mengambil banyak foto." }
-    ],
-    quiz: [
-      { id: "q1", words: ["彼女に会うたびに、", "元気を", "もらう"], answer: ["彼女に会うたびに、", "元気を", "もらう"] },
-      { id: "q2", words: ["旅行のたびに、", "写真を", "たくさん撮る"], answer: ["旅行のたびに、", "写真を", "たくさん撮る"] }
-    ]
-  },
-  {
-    id: "n3u4",
-    order: 4,
-    grammar: "〜さえ",
-    reading: "~sae",
-    meaning: "bahkan ~／bahkan ~ pun",
-    explanation: [
-      "〜さえ dipakai untuk menekankan hal ekstrem sebagai contoh dari suatu keadaan.",
-      "Menyiratkan bahwa hal lain yang lebih ringan pun otomatis berlaku."
-    ],
-    pattern: [
-      "[Kata Benda] ＋ さえ ＝ bahkan ~",
-      "[Kata Kerja bentuk -te] ＋ さえいれば ＝ asalkan ~ saja"
-    ],
-    examples: [
-      { jp: "疲れて、水を飲む力さえなかった。", reading: "つかれて、みずをのむちからさえなかった。", meaning: "Saya sangat lelah, bahkan untuk minum air pun tidak ada tenaga." },
-      { jp: "彼は自分の名前さえ書けなかった。", reading: "かれはじぶんのなまえさえかけなかった。", meaning: "Dia bahkan tidak bisa menulis namanya sendiri." }
-    ],
-    quiz: [
-      { id: "q1", words: ["疲れて、", "水を飲む力さえ", "なかった"], answer: ["疲れて、", "水を飲む力さえ", "なかった"] },
-      { id: "q2", words: ["彼は", "自分の名前さえ", "書けなかった"], answer: ["彼は", "自分の名前さえ", "書けなかった"] }
-    ]
-  },
-  {
-    id: "n3u5",
-    order: 5,
-    grammar: "〜わけではない",
-    reading: "~wake dewa nai",
-    meaning: "bukan berarti ~／tidak sepenuhnya berarti ~",
-    explanation: [
-      "Dipakai untuk menyangkal kesimpulan yang mungkin diambil orang lain secara berlebihan.",
-      "Sering muncul untuk mengoreksi asumsi, bukan menyangkal fakta secara total."
-    ],
-    pattern: [
-      "[Kata Kerja/Kata Sifat bentuk biasa] ＋ わけではない ＝ bukan berarti ~",
-      "[Kata Benda] ＋ というわけではない ＝ bukan berarti ~"
-    ],
-    examples: [
-      { jp: "嫌いなわけではないが、あまり食べたくない。", reading: "きらいなわけではないが、あまりたべたくない。", meaning: "Bukan berarti tidak suka, hanya saja tidak terlalu ingin makan." },
-      { jp: "全部わかるわけではないけど、大体理解できた。", reading: "ぜんぶわかるわけではないけど、だいたいりかいできた。", meaning: "Bukan berarti mengerti semuanya, tapi secara garis besar saya paham." }
-    ],
-    quiz: [
-      { id: "q1", words: ["嫌いなわけではないが、", "あまり", "食べたくない"], answer: ["嫌いなわけではないが、", "あまり", "食べたくない"] },
-      { id: "q2", words: ["全部わかるわけではないけど、", "大体", "理解できた"], answer: ["全部わかるわけではないけど、", "大体", "理解できた"] }
-    ]
+.btn{border:0;background:var(--navy);color:var(--gold);padding:10px 16px;border-radius:9px;cursor:pointer;font-weight:700;font-size:.85rem;}
+.btn:hover{background:var(--navy3);}
+.btn.ghost{background:transparent;color:var(--navy);border:1px solid var(--paper2);}
+.btn.ghost:hover{border-color:var(--navy);}
+.btn:disabled{opacity:.4;cursor:not-allowed;}
+.btn.gold{background:var(--gold);color:var(--navy2);}
+.btn.gold:hover{background:var(--gold-dim);}
+.btn.small{padding:7px 12px;font-size:.78rem;}
+
+/* ---------- UNIT LIST ---------- */
+.unitList{display:flex;flex-direction:column;gap:10px;}
+.unitItem{display:flex;align-items:center;gap:14px;padding:15px 16px;border:1px solid var(--paper2);border-radius:13px;
+  cursor:pointer;background:#fff;transition:.15s;}
+.unitItem:hover{border-color:var(--gold);}
+.unitItem.locked{opacity:.55;cursor:not-allowed;}
+.unitItem.locked:hover{border-color:var(--paper2);}
+.unitIcon{width:40px;height:40px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;
+  font-family:"Shippori Mincho",serif;font-weight:800;font-size:16px;background:var(--paper);color:var(--navy);}
+.unitItem.done .unitIcon{background:var(--pass-bg);color:var(--pass);}
+.unitItem.current .unitIcon{background:var(--navy);color:var(--gold);}
+.unitInfo{flex:1;min-width:0;}
+.unitInfo .g{font-weight:700;font-size:1rem;}
+.unitInfo .m{font-size:.78rem;color:var(--ink-soft);margin-top:2px;}
+.unitRight{text-align:right;flex:none;display:flex;align-items:center;gap:10px;}
+.deadline{font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--ink-soft);}
+.deadline.overdue{color:var(--seal);font-weight:700;}
+.unitScore{font-family:"JetBrains Mono",monospace;font-weight:700;color:var(--pass);}
+.materialLink{font-size:.72rem;color:var(--navy);border:1px solid var(--paper2);border-radius:7px;padding:6px 9px;
+  text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;}
+.materialLink:hover{border-color:var(--gold);color:var(--gold-dim);}
+
+/* ---------- PAKET MINGGUAN (WEEK PACKAGE) ---------- */
+.deadlineBanner{padding:14px 18px;border-radius:13px;margin-bottom:18px;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--warn-bg);color:var(--gold-dim);font-size:.85rem;}
+.deadlineBanner.overdue{background:var(--fail-bg);color:var(--seal);}
+.deadlineBanner b{font-family:"JetBrains Mono",monospace;}
+.weekList{display:flex;flex-direction:column;gap:12px;}
+.weekCard{border:1px solid var(--paper2);border-radius:14px;padding:18px 20px;background:#fff;}
+.weekCard.locked{opacity:.55;}
+.weekCard.selesai{border-color:var(--pass);background:var(--pass-bg);}
+.weekHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
+.weekHead h3{font-size:1.05rem;color:var(--navy);}
+.weekSub{display:flex;gap:10px;flex-wrap:wrap;}
+.miniItem{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--paper2);border-radius:10px;
+  flex:1;min-width:220px;background:var(--paper);cursor:pointer;}
+.miniItem:hover{border-color:var(--gold);}
+.miniItem.locked{cursor:not-allowed;opacity:.5;}
+.miniItem .mi-icon{width:30px;height:30px;border-radius:8px;flex:none;display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;background:#fff;color:var(--navy);}
+.miniItem.done .mi-icon{background:var(--pass-bg);color:var(--pass);}
+.miniItem .mi-text{flex:1;min-width:0;}
+.miniItem .mi-text .t1{font-weight:700;font-size:.85rem;}
+.miniItem .mi-text .t2{font-size:.7rem;color:var(--ink-soft);}
+
+/* ---------- MATERI / LATIHAN ---------- */
+.hero{background:linear-gradient(135deg,var(--navy),var(--navy3));color:#fff;padding:26px;border-radius:16px;margin-bottom:18px;}
+.hero small{font-family:"JetBrains Mono",monospace;letter-spacing:2px;color:var(--gold);}
+.hero h2{font-size:2rem;margin:8px 0 4px;}
+.hero .reading{color:var(--muted);font-family:"JetBrains Mono",monospace;}
+.hero p{margin-top:8px;color:#e6ecf5;}
+.hero .heroLink{display:inline-flex;align-items:center;gap:6px;margin-top:14px;color:var(--gold);border:1px solid rgba(224,181,42,.4);
+  padding:8px 14px;border-radius:9px;text-decoration:none;font-size:.82rem;}
+.hero .heroLink:hover{background:rgba(224,181,42,.12);}
+
+.example{border-bottom:1px solid var(--paper2);padding:16px 0;}
+.example:last-child{border-bottom:none;}
+.jp{font-size:19px;font-weight:700;}
+.reading{color:var(--gold-dim);font-size:.85rem;margin-top:2px;}
+.meaning{color:var(--ink-soft);margin-top:2px;}
+
+.quiz{margin:14px 0;padding:18px;border:1px solid var(--paper2);border-radius:13px;}
+.slot{min-height:52px;border:2px dashed var(--paper2);border-radius:10px;padding:9px;display:flex;gap:7px;flex-wrap:wrap;margin:12px 0;}
+.words{display:flex;gap:8px;flex-wrap:wrap;}
+.word{padding:9px 12px;background:var(--paper);border:1px solid var(--paper2);border-radius:8px;cursor:pointer;font-size:.92rem;}
+.word.used{opacity:.25;pointer-events:none;}
+.placed{padding:9px 12px;background:#eaf3fb;border:1px solid #cfe0f3;border-radius:8px;cursor:pointer;font-size:.92rem;}
+.qresult{margin-top:8px;font-weight:700;font-size:.88rem;}
+.qresult.correct{color:var(--pass);}
+.qresult.wrong{color:var(--seal);}
+
+.resultBanner{padding:18px 20px;border-radius:13px;margin-top:18px;font-weight:700;}
+.resultBanner.pass{background:var(--pass-bg);color:var(--pass);}
+.resultBanner.fail{background:var(--fail-bg);color:var(--seal);}
+
+/* ---------- KUIS KANJI (PILIHAN GANDA) ---------- */
+.kanjiQuizCard{padding:20px;border:1px solid var(--paper2);border-radius:13px;margin-bottom:12px;}
+.kanjiChar{font-family:"Shippori Mincho",serif;font-size:44px;font-weight:800;color:var(--navy);text-align:center;
+  background:var(--paper);border-radius:12px;padding:14px 0;margin-bottom:14px;}
+.mcOptions{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+@media(max-width:560px){.mcOptions{grid-template-columns:1fr;}}
+.mcOption{padding:11px 13px;border:1px solid var(--paper2);border-radius:9px;cursor:pointer;font-size:.88rem;background:#fff;text-align:left;}
+.mcOption:hover{border-color:var(--gold);}
+.mcOption.selected{border-color:var(--navy);background:#eaf1fb;}
+.mcOption.correct{border-color:var(--pass);background:var(--pass-bg);color:var(--pass);font-weight:700;}
+.mcOption.wrong{border-color:var(--seal);background:var(--fail-bg);color:var(--seal);font-weight:700;}
+.mcOption:disabled{cursor:not-allowed;}
+
+/* ---------- SOAL UNIT (20 SOAL: KANJI + TATA BAHASA, PG + ESAI) ---------- */
+.sectionHead{display:flex;align-items:center;justify-content:space-between;margin:22px 0 10px;}
+.sectionHead h2{color:var(--navy);}
+.sectionHead .cnt{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--ink-soft);
+  background:var(--paper);border:1px solid var(--paper2);border-radius:20px;padding:5px 11px;}
+.qCard{padding:18px 20px;border:1px solid var(--paper2);border-radius:13px;margin-bottom:12px;}
+.qCard .qTag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:.65rem;letter-spacing:.5px;
+  color:var(--gold-dim);background:var(--warn-bg);border-radius:20px;padding:3px 9px;margin-bottom:8px;}
+.qCard .qPrompt{font-weight:700;margin-bottom:12px;line-height:1.5;}
+.essayBox{width:100%;min-height:70px;border:1px solid var(--paper2);border-radius:9px;padding:10px 12px;
+  outline:none;resize:vertical;font-family:inherit;}
+.essayBox:focus{border-color:var(--gold);}
+.essayKey{display:none;margin-top:12px;padding:12px 14px;background:var(--paper);border-radius:9px;font-size:.85rem;}
+.essayKey.show{display:block;}
+.essayKey b{color:var(--navy);}
+.selfCheck{display:flex;gap:8px;margin-top:10px;}
+.selfBtn{flex:1;padding:8px 10px;border-radius:8px;border:1px solid var(--paper2);background:#fff;cursor:pointer;font-size:.8rem;font-weight:700;}
+.selfBtn.benar{color:var(--pass);}
+.selfBtn.benar.active{background:var(--pass-bg);border-color:var(--pass);}
+.selfBtn.salah{color:var(--seal);}
+.selfBtn.salah.active{background:var(--fail-bg);border-color:var(--seal);}
+.scoreBar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--paper);
+  border-radius:12px;margin:16px 0;font-size:.85rem;flex-wrap:wrap;gap:8px;}
+.scoreBar b{font-family:"JetBrains Mono",monospace;color:var(--navy);font-size:1.1rem;}
+
+/* ---------- PROGRESS PAGE ---------- */
+.chart-wrap{display:flex;align-items:flex-end;gap:10px;height:130px;padding:10px 6px 0;border-bottom:1px solid var(--paper2);}
+.chart-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;}
+.chart-bar .fill{width:100%;max-width:34px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--gold),var(--gold-dim));transition:height .4s ease;}
+.chart-bar.pending .fill{background:var(--paper2);}
+.chart-bar .cv{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--ink-soft);margin-bottom:4px;}
+.chart-labels{display:flex;gap:10px;margin-top:6px;}
+.chart-labels span{flex:1;text-align:center;font-family:"JetBrains Mono",monospace;font-size:.62rem;color:var(--muted);}
+
+.backLink{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);cursor:pointer;font-size:.85rem;margin-bottom:14px;}
+.backLink:hover{color:var(--navy);}
+
+/* ---------- LEVEL PICKER PANEL ---------- */
+.levelGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media(max-width:860px){.levelGrid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.levelGrid{grid-template-columns:1fr;}}
+.levelCard{
+  border:1px solid var(--paper2);border-radius:14px;padding:18px;background:#fff;cursor:pointer;
+  transition:.15s;position:relative;overflow:hidden;
+}
+.levelCard:hover{border-color:var(--gold);transform:translateY(-2px);}
+.levelCard.locked{cursor:not-allowed;opacity:.55;}
+.levelCard.locked:hover{border-color:var(--paper2);transform:none;}
+.levelCard.viewing{border-color:var(--gold);box-shadow:0 0 0 2px rgba(224,181,42,.25) inset;}
+.levelCard .lid{font-family:"Shippori Mincho",serif;font-weight:800;font-size:1.6rem;color:var(--navy);}
+.levelCard .ltitle{font-size:.82rem;color:var(--ink-soft);margin:4px 0 12px;}
+.levelCard .lstatus{font-size:11px;}
+.levelCard::after{
+  content:"学";position:absolute;font-family:"Shippori Mincho",serif;font-weight:800;font-size:70px;
+  color:rgba(10,31,61,.04);right:-6px;bottom:-14px;pointer-events:none;
+}
+
+@media(max-width:650px){
+  header{padding:0 14px;}
+  .layout{display:block;}
+  .sidebar{width:100%;display:flex;overflow:auto;padding:8px;gap:6px;}
+  .nav{white-space:nowrap;width:auto;}
+  .sideDivider{display:none;}
+  .levelPill{width:auto;white-space:nowrap;margin:0;}
+  .main{padding:16px;}
+  .cards{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<section id="loginPage">
+<div class="login">
+<div class="logo">TP</div>
+<h1>TEKIPAKI</h1>
+<p>Japanese Learning · E-Learning Siswa</p>
+<input id="studentCode" placeholder="MASUKKAN KODE SISWA" maxlength="20" autocomplete="off">
+<button onclick="login()">MASUK</button>
+<div id="loginError" class="error"></div>
+<div class="hint">Gunakan kode siswa yang diberikan oleh guru.</div>
+</div>
+</section>
+
+<section id="app" class="hidden">
+<header>
+<div class="brand">TEKIPAKI · SISWA</div>
+<div class="headRight"><span id="headerName"></span><button class="logout" onclick="logout()">Keluar</button></div>
+</header>
+<div class="layout">
+<aside class="sidebar">
+<button class="nav active" data-page="dashboard">🏠 Dashboard</button>
+<button class="nav" data-page="unitlist">📚 Unit Pembelajaran</button>
+<button class="nav" data-page="progresspage">📊 Progress Saya</button>
+<div class="sideDivider">Level</div>
+<button class="levelPill" id="levelPillBtn" onclick="showPage('levelpicker')">
+  <span id="levelPillText">— · Tata Bahasa</span><span class="chev">▸</span>
+</button>
+</aside>
+
+<main class="main" id="mainArea"></main>
+</div>
+</section>
+
+<script src="data.js"></script>
+<script>
+let currentCode = null;
+let currentUnitId = null;
+let currentPackageIndex = null; // paket mingguan yang sedang dibuka (mode paket)
+/* level currently being browsed in "Unit Pembelajaran" — defaults to student's active level */
+let viewingLevel = null;
+const quizState = {}; // { unitId: { qId: [words...] } }
+const kanjiQuizState = {}; // { qId: selectedOption }
+
+/* ===== state untuk halaman "20 soal per unit" (10 kanji + 10 tata bahasa) ===== */
+let currentUnitQuiz = null;      // { grammarQuestions:[...], kanjiQuestions:[...] }
+const unitAnswers = {};          // { qId: { given, mcSelected, selfMark } }
+let unitGraded = false;          // sudah tekan "Kumpulkan Jawaban"?
+
+function login(){
+  const code = document.getElementById("studentCode").value.trim().toUpperCase();
+  const err = document.getElementById("loginError");
+  const student = TekiStore.getStudent(code);
+  if(student){
+    currentCode = code;
+    sessionStorage.setItem("tekipaki_current_code", code);
+    TekiStore.touchLastActive(code);
+    openApp();
+  }else{
+    err.textContent = "❌ Kode siswa tidak ditemukan.";
   }
-];
+}
 
-/* ---------------------------------------------------------
-   UNITS_N5 — CONTOH / SAMPEL (2 minggu pertama = 6 unit).
-   ------------------------------------------------------------
-   ⚠️ INI BARU CONTOH supaya sistem paket mingguan bisa langsung
-   dicoba. Untuk cakupan N5 penuh (kira-kira 12–13 minggu / ~36–39
-   unit selama 3 bulan), tambahkan unit lagi dengan pola yang
-   SAMA PERSIS seperti di bawah (id unik, order berurut, lalu isi
-   explanation/pattern/examples/quiz). Urutan array = urutan buka
-   unit, dan tiap 3 unit berturutan otomatis jadi 1 paket mingguan.
+function logout(){
+  sessionStorage.removeItem("tekipaki_current_code");
+  currentCode = null;
+  viewingLevel = null;
+  document.getElementById("app").classList.add("hidden");
+  document.getElementById("loginPage").classList.remove("hidden");
+  document.getElementById("studentCode").value = "";
+  document.getElementById("loginError").textContent = "";
+}
 
-   `materialUrl`: ganti dengan link materi asli di website Anda —
-   kalau diisi, akan muncul tombol "Buka Materi ↗" di daftar unit
-   dan di halaman unit.
---------------------------------------------------------- */
-const UNITS_N5 = [
-  {
-    id: "n5u1",
-    order: 1,
-    grammar: "〜は〜です",
-    reading: "~wa ~desu",
-    meaning: "A adalah B (pola kalimat paling dasar)",
-    materialUrl: "https://tekipaki.example.com/materi/n5/unit-1", // TODO: ganti link asli
-    explanation: [
-      "です berfungsi sebagai kata kerja bantu untuk menyatakan 'adalah' pada akhir kalimat.",
-      "は menandai topik kalimat (dibaca 'wa', bukan 'ha')."
-    ],
-    pattern: [
-      "[Topik] ＋ は ＋ [Keterangan] ＋ です ＝ [Topik] adalah [Keterangan]"
-    ],
-    examples: [
-      { jp: "私は学生です。", reading: "わたしはがくせいです。", meaning: "Saya adalah pelajar." },
-      { jp: "これは本です。", reading: "これはほんです。", meaning: "Ini adalah buku." }
-    ],
-    quiz: [
-      { id: "q1", words: ["私は", "学生です"], answer: ["私は", "学生です"] },
-      { id: "q2", words: ["これは", "本です"], answer: ["これは", "本です"] }
-    ]
-  },
-  {
-    id: "n5u2",
-    order: 2,
-    grammar: "〜を〜ます",
-    reading: "~o ~masu",
-    meaning: "melakukan sesuatu terhadap objek",
-    materialUrl: "https://tekipaki.example.com/materi/n5/unit-2", // TODO: ganti link asli
-    explanation: [
-      "を menandai objek dari kata kerja.",
-      "ます adalah akhiran kata kerja bentuk sopan untuk waktu sekarang/akan datang."
-    ],
-    pattern: [
-      "[Objek] ＋ を ＋ [Kata Kerja]ます ＝ melakukan [Kata Kerja] terhadap [Objek]"
-    ],
-    examples: [
-      { jp: "ご飯を食べます。", reading: "ごはんをたべます。", meaning: "Makan nasi." },
-      { jp: "本を読みます。", reading: "ほんをよみます。", meaning: "Membaca buku." }
-    ],
-    quiz: [
-      { id: "q1", words: ["ご飯を", "食べます"], answer: ["ご飯を", "食べます"] },
-      { id: "q2", words: ["本を", "読みます"], answer: ["本を", "読みます"] }
-    ]
-  },
-  {
-    id: "n5u3",
-    order: 3,
-    grammar: "〜に行きます",
-    reading: "~ni ikimasu",
-    meaning: "pergi ke ~",
-    materialUrl: "https://tekipaki.example.com/materi/n5/unit-3", // TODO: ganti link asli
-    explanation: [
-      "に menandai tujuan/arah tempat pada kata kerja pergerakan seperti 行きます (pergi).",
-      "Pola ini dipakai untuk menyatakan tujuan perjalanan sehari-hari."
-    ],
-    pattern: [
-      "[Tempat] ＋ に ＋ 行きます ＝ pergi ke [Tempat]"
-    ],
-    examples: [
-      { jp: "学校に行きます。", reading: "がっこうにいきます。", meaning: "Pergi ke sekolah." },
-      { jp: "日本に行きます。", reading: "にほんにいきます。", meaning: "Pergi ke Jepang." }
-    ],
-    quiz: [
-      { id: "q1", words: ["学校に", "行きます"], answer: ["学校に", "行きます"] },
-      { id: "q2", words: ["日本に", "行きます"], answer: ["日本に", "行きます"] }
-    ]
-  },
-  {
-    id: "n5u4",
-    order: 4,
-    grammar: "〜があります／います",
-    reading: "~ga arimasu / imasu",
-    meaning: "ada ~ (benda mati / makhluk hidup)",
-    materialUrl: "https://tekipaki.example.com/materi/n5/unit-4", // TODO: ganti link asli
-    explanation: [
-      "あります dipakai untuk benda mati/tak bergerak, います untuk manusia/hewan (makhluk hidup).",
-      "が menandai subjek yang keberadaannya sedang dinyatakan."
-    ],
-    pattern: [
-      "[Benda mati] ＋ が ＋ あります ＝ ada [Benda]",
-      "[Makhluk hidup] ＋ が ＋ います ＝ ada [Makhluk hidup]"
-    ],
-    examples: [
-      { jp: "机の上に本があります。", reading: "つくえのうえにほんがあります。", meaning: "Ada buku di atas meja." },
-      { jp: "教室に学生がいます。", reading: "きょうしつにがくせいがいます。", meaning: "Ada murid di kelas." }
-    ],
-    quiz: [
-      { id: "q1", words: ["机の上に", "本が", "あります"], answer: ["机の上に", "本が", "あります"] },
-      { id: "q2", words: ["教室に", "学生が", "います"], answer: ["教室に", "学生が", "います"] }
-    ]
-  },
-  {
-    id: "n5u5",
-    order: 5,
-    grammar: "〜てください",
-    reading: "~te kudasai",
-    meaning: "tolong lakukan ~",
-    materialUrl: "https://tekipaki.example.com/materi/n5/unit-5", // TODO: ganti link asli
-    explanation: [
-      "Dibentuk dari kata kerja bentuk -te ditambah ください.",
-      "Dipakai untuk meminta atau menyuruh seseorang melakukan sesuatu secara sopan."
-    ],
-    pattern: [
-      "[Kata Kerja bentuk -te] ＋ ください ＝ tolong ~"
-    ],
-    examples: [
-      { jp: "ここに座ってください。", reading: "ここにすわってください。", meaning: "Tolong duduk di sini." },
-      { jp: "名前を書いてください。", reading: "なまえをかいてください。", meaning: "Tolong tulis namanya." }
-    ],
-    quiz: [
-      { id: "q1", words: ["ここに", "座って", "ください"], answer: ["ここに", "座って", "ください"] },
-      { id: "q2", words: ["名前を", "書いて", "ください"], answer: ["名前を", "書いて", "ください"] }
-    ]
-  },
-  {
-    id: "n5u6",
-    order: 6,
-    grammar: "〜たいです",
-    reading: "~tai desu",
-    meaning: "ingin melakukan ~",
-    materialUrl: "https://tekipaki.example.com/materi/n5/unit-6", // TODO: ganti link asli
-    explanation: [
-      "Dibentuk dari kata kerja bentuk ます (buang ます) ditambah たい.",
-      "Menyatakan keinginan pembicara untuk melakukan suatu tindakan."
-    ],
-    pattern: [
-      "[Kata Kerja bentuk ます tanpa ます] ＋ たいです ＝ ingin ~"
-    ],
-    examples: [
-      { jp: "日本に行きたいです。", reading: "にほんにいきたいです。", meaning: "Saya ingin pergi ke Jepang." },
-      { jp: "水を飲みたいです。", reading: "みずをのみたいです。", meaning: "Saya ingin minum air." }
-    ],
-    quiz: [
-      { id: "q1", words: ["日本に", "行きたいです"], answer: ["日本に", "行きたいです"] },
-      { id: "q2", words: ["水を", "飲みたいです"], answer: ["水を", "飲みたいです"] }
-    ]
+function openApp(){
+  const student = TekiStore.getStudent(currentCode);
+  viewingLevel = student.level || (LEVELS[0] && LEVELS[0].id);
+  document.getElementById("loginPage").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
+  document.getElementById("headerName").textContent = "👤 " + student.name;
+  document.querySelectorAll(".nav").forEach(n => n.addEventListener("click", () => showPage(n.dataset.page)));
+  updateLevelPill();
+  showPage("dashboard");
+}
+
+function updateLevelPill(){
+  document.getElementById("levelPillText").textContent = viewingLevel + " · Tata Bahasa";
+}
+
+function showPage(id){
+  document.querySelectorAll(".nav").forEach(n => n.classList.toggle("active", n.dataset.page === id));
+  if(id === "dashboard") renderDashboard();
+  else if(id === "unitlist") renderUnitList();
+  else if(id === "progresspage") renderProgressPage();
+  else if(id === "levelpicker") renderLevelPicker();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+/* ================= HELPERS: MULTI-LEVEL DATA ================= */
+/* Looks for a global `UNITS_<LEVELID>` array (e.g. UNITS_N3, UNITS_N4).
+   This keeps the app working with whatever levels currently have content
+   in data.js, and degrades gracefully for levels that don't have units yet. */
+function getUnitsForLevel(levelId){
+  if(typeof UNITS_BY_LEVEL !== "undefined" && UNITS_BY_LEVEL[levelId]){
+    return UNITS_BY_LEVEL[levelId].length ? UNITS_BY_LEVEL[levelId] : null;
   }
-];
-
-// TODO: isi UNITS_N4 dengan pola yang sama seperti UNITS_N3/UNITS_N5 di
-// atas supaya siswa yang sudah naik ke N4 punya materi sungguhan.
-const UNITS_N4 = [];
-const UNITS_N2 = [];
-const UNITS_N1 = [];
-
-const UNITS_BY_LEVEL = {
-  N5: UNITS_N5,
-  N4: UNITS_N4,
-  N3: UNITS_N3,
-  N2: UNITS_N2,
-  N1: UNITS_N1,
-};
-
-function unitsForLevel(levelId){
-  return UNITS_BY_LEVEL[levelId] || [];
+  const key = "UNITS_" + levelId;
+  return (typeof window[key] !== "undefined" && window[key].length) ? window[key] : null;
 }
 
-/* ---------------------------------------------------------
-   KANJI_N5 — CONTOH / SAMPEL (2 minggu pertama = 24 kanji).
-   ------------------------------------------------------------
-   ⚠️ Sama seperti UNITS_N5, ini baru contoh. Tambahkan kanji lagi
-   dengan pola {id, kanji, reading, meaning} — setiap 12 kanji
-   berturutan otomatis jadi kebutuhan hafalan 1 paket mingguan.
---------------------------------------------------------- */
-const KANJI_N5 = [
-  // Minggu 1 — angka dasar
-  { id: "k01", kanji: "一", reading: "いち", meaning: "satu" },
-  { id: "k02", kanji: "二", reading: "に", meaning: "dua" },
-  { id: "k03", kanji: "三", reading: "さん", meaning: "tiga" },
-  { id: "k04", kanji: "四", reading: "し・よん", meaning: "empat" },
-  { id: "k05", kanji: "五", reading: "ご", meaning: "lima" },
-  { id: "k06", kanji: "六", reading: "ろく", meaning: "enam" },
-  { id: "k07", kanji: "七", reading: "しち・なな", meaning: "tujuh" },
-  { id: "k08", kanji: "八", reading: "はち", meaning: "delapan" },
-  { id: "k09", kanji: "九", reading: "きゅう・く", meaning: "sembilan" },
-  { id: "k10", kanji: "十", reading: "じゅう", meaning: "sepuluh" },
-  { id: "k11", kanji: "百", reading: "ひゃく", meaning: "seratus" },
-  { id: "k12", kanji: "千", reading: "せん", meaning: "seribu" },
-  // Minggu 2 — kata benda dasar sehari-hari
-  { id: "k13", kanji: "日", reading: "にち・ひ", meaning: "hari / matahari" },
-  { id: "k14", kanji: "月", reading: "げつ・つき", meaning: "bulan (kalender) / bulan (langit)" },
-  { id: "k15", kanji: "火", reading: "か", meaning: "api" },
-  { id: "k16", kanji: "水", reading: "すい", meaning: "air" },
-  { id: "k17", kanji: "木", reading: "もく", meaning: "pohon / kayu" },
-  { id: "k18", kanji: "金", reading: "きん", meaning: "emas / uang" },
-  { id: "k19", kanji: "土", reading: "ど", meaning: "tanah" },
-  { id: "k20", kanji: "人", reading: "ひと・じん", meaning: "orang" },
-  { id: "k21", kanji: "本", reading: "ほん", meaning: "buku / asal" },
-  { id: "k22", kanji: "年", reading: "ねん", meaning: "tahun" },
-  { id: "k23", kanji: "時", reading: "じ", meaning: "waktu / jam" },
-  { id: "k24", kanji: "分", reading: "ふん・ぶん", meaning: "menit / bagian" },
-];
-
-// TODO: isi kanji level lain dengan pola yang sama.
-const KANJI_N4 = [];
-const KANJI_N3 = [];
-const KANJI_N2 = [];
-const KANJI_N1 = [];
-
-const KANJI_BY_LEVEL = {
-  N5: KANJI_N5,
-  N4: KANJI_N4,
-  N3: KANJI_N3,
-  N2: KANJI_N2,
-  N1: KANJI_N1,
-};
-
-function kanjiForLevel(levelId){
-  return KANJI_BY_LEVEL[levelId] || [];
+function fmtDeadline(daysLeft){
+  if(daysLeft < 0) return `⚠ Lewat ${Math.abs(daysLeft)} hari`;
+  if(daysLeft === 0) return "Tenggat hari ini";
+  return daysLeft + " hari lagi";
 }
 
-/* Dipertahankan untuk kompatibilitas mundur — ini metadata level statis
-   (tanpa status, karena status sekarang dihitung per siswa). Kalau ada
-   kode lama yang masih membaca `LEVELS` langsung, sebaiknya diganti ke
-   `TekiStore.getLevelStates(student)`. */
-const LEVELS = LEVEL_META.map(l => ({ ...l, status: "aktif" }));
+/* ================= DASHBOARD ================= */
+function renderDashboard(){
+  const student = TekiStore.getStudent(currentCode);
+  const weekly = TekiStore.usesWeeklyPackages(student.level);
+  const sum = weekly ? TekiStore.summarizeWeekly(student) : TekiStore.summarize(student);
 
-/* ---------------------------------------------------------
-   2. UTIL TANGGAL & ARRAY
---------------------------------------------------------- */
-function nowISO() { return new Date().toISOString(); }
-function addDays(iso, days) {
-  const d = new Date(iso);
-  d.setDate(d.getDate() + days);
-  return d.toISOString();
+  let continueHTML;
+  if(weekly){
+    const week = sum.weeks.find(w => w.state !== "selesai" && w.state !== "terkunci");
+    if(week){
+      const nextBunpou = week.bunpouUnits.find(u => !week.progress?.bunpou?.[u.id]?.passed);
+      if(nextBunpou){
+        continueHTML = `
+          <div class="mono" style="font-size:.7rem;color:var(--gold-dim);margin-bottom:4px;">MINGGU ${week.week} · BUNPOU</div>
+          <h3 style="font-size:1.3rem;">${nextBunpou.grammar}</h3>
+          <p style="color:var(--ink-soft);margin:6px 0 14px;">${nextBunpou.meaning}</p>
+          <button class="btn" onclick="viewingLevel='${student.level}';updateLevelPill();openUnit('${nextBunpou.id}', ${week.index})">Buka Unit →</button>`;
+      } else {
+        continueHTML = `
+          <div class="mono" style="font-size:.7rem;color:var(--gold-dim);margin-bottom:4px;">MINGGU ${week.week} · KANJI</div>
+          <h3 style="font-size:1.3rem;">Hafalan ${week.kanjiBatch.length} Kanji</h3>
+          <p style="color:var(--ink-soft);margin:6px 0 14px;">Semua Bunpou minggu ini sudah lulus — tinggal kuis Kanji.</p>
+          <button class="btn" onclick="viewingLevel='${student.level}';updateLevelPill();openKanjiQuiz(${week.index})">Kerjakan Kuis Kanji →</button>`;
+      }
+    } else if(sum.canFinalExam){
+      continueHTML = `
+        <h3 style="font-size:1.3rem;">🎓 Ujian Akhir Level ${student.level}</h3>
+        <p style="color:var(--ink-soft);margin:6px 0 14px;">Semua paket mingguan sudah lulus. Kerjakan ujian akhir untuk naik ke level berikutnya.</p>
+        <button class="btn gold" onclick="viewingLevel='${student.level}';updateLevelPill();openFinalExam()">Mulai Ujian Akhir →</button>`;
+    } else {
+      continueHTML = `<p style="color:var(--pass);font-weight:700;">🎉 Semua paket level ${student.level} selesai!</p>`;
+    }
+  } else {
+    const currentUnit = sum.units.find(u => u.state !== "selesai" && u.state !== "terkunci");
+    continueHTML = currentUnit ? `
+        <h3 style="font-size:1.3rem;">${currentUnit.grammar}</h3>
+        <p style="color:var(--ink-soft);margin:6px 0 14px;">${currentUnit.meaning}</p>
+        <button class="btn" onclick="viewingLevel='${student.level}';updateLevelPill();openUnit('${currentUnit.id}')">Buka Unit →</button>
+      ` : `<p style="color:var(--pass);font-weight:700;">🎉 Semua unit level ${student.level} selesai! Level berikutnya akan segera dibuka.</p>`;
+  }
+
+  let deadlineBannerHTML = "";
+  if(weekly && sum.deadlineInfo){
+    const di = sum.deadlineInfo;
+    deadlineBannerHTML = `
+      <div class="deadlineBanner ${di.overdue ? 'overdue' : ''}">
+        <span>⏳ Target level <b>${student.level}</b>: selesai dalam <b>${di.totalDays} hari</b> (mulai ${fmtDate(student.levelStartedAt)})</span>
+        <span><b>${di.overdue ? 'Lewat ' + Math.abs(di.daysLeft) + ' hari dari target' : di.daysLeft + ' hari tersisa'}</b></span>
+      </div>`;
+  }
+
+  document.getElementById("mainArea").innerHTML = `
+    <h1 class="title">Selamat datang, ${student.name} 👋</h1>
+    <p class="desc">Berikut perkembangan belajar kamu di level ${student.level}.</p>
+    ${deadlineBannerHTML}
+    <div class="cards">
+      <div class="card"><div class="number">${student.level}</div><div class="label">Level saat ini</div></div>
+      <div class="card"><div class="number">${sum.percent}%</div><div class="label">Progress level ${student.level}</div></div>
+      <div class="card"><div class="number">${weekly ? sum.doneWeeks + '/' + sum.totalWeeks : sum.completedCount + '/' + sum.totalUnits}</div><div class="label">${weekly ? 'Paket minggu selesai' : 'Unit selesai'}</div></div>
+      <div class="card"><div class="number">${sum.avg === null ? "-" : sum.avg}</div><div class="label">Nilai rata-rata</div></div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <h2 style="color:var(--navy);">Progress Level</h2>
+          <button class="btn ghost" onclick="showPage('levelpicker')">Pilih Level</button>
+        </div>
+        ${TekiStore.getLevelStates(student).map(l => `
+          <div class="level-row">
+            <div><b>${l.id}</b><br><small style="color:var(--ink-soft)">${l.title}</small></div>
+            <span class="badge ${l.status === 'aktif' ? 'active' : l.status === 'terkunci' ? 'lock' : ''}">
+              ${l.status === 'selesai' ? 'Selesai ✓' : l.status === 'aktif' ? 'Sedang belajar' : '🔒 Terkunci'}
+            </span>
+          </div>`).join("")}
+      </div>
+      <div class="card">
+        <h2 style="color:var(--navy);margin-bottom:10px;">Lanjut Belajar</h2>
+        ${continueHTML}
+      </div>
+    </div>
+  `;
 }
-function daysBetween(isoA, isoB) {
-  return Math.round((new Date(isoB) - new Date(isoA)) / 86400000);
+
+/* ================= PANEL PILIH LEVEL ================= */
+function renderLevelPicker(){
+  const student = TekiStore.getStudent(currentCode);
+  const levelStates = TekiStore.getLevelStates(student);
+
+  const cards = levelStates.map(l => {
+    const locked = l.status === "terkunci";
+    const viewing = l.id === viewingLevel;
+    const statusLabel = l.status === "selesai" ? "Selesai ✓" : l.status === "aktif" ? "Sedang belajar" : "🔒 Terkunci";
+    const badgeClass = l.status === "aktif" ? "active" : l.status === "terkunci" ? "lock" : "";
+    return `
+      <div class="levelCard ${locked ? "locked" : ""} ${viewing ? "viewing" : ""}"
+           ${locked ? "" : `onclick="selectLevel('${l.id}')"`}>
+        <div class="lid">${l.id}</div>
+        <div class="ltitle">${l.title}</div>
+        <span class="badge ${badgeClass} lstatus">${statusLabel}</span>
+      </div>`;
+  }).join("");
+
+  document.getElementById("mainArea").innerHTML = `
+    <h1 class="title">Pilih Level</h1>
+    <p class="desc">Kamu sedang aktif belajar di level <b>${student.level}</b>. Pilih level di bawah untuk melihat unit-unit tata bahasanya — level yang masih terkunci perlu diselesaikan lebih dulu.</p>
+    <div class="levelGrid">${cards}</div>
+  `;
 }
-function fmtDate(iso) {
-  if (!iso) return "—";
-  const d = new Date(iso);
-  const bulan = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
-  return d.getDate() + " " + bulan[d.getMonth()] + " " + d.getFullYear();
+
+function selectLevel(levelId){
+  const student = TekiStore.getStudent(currentCode);
+  const lvl = TekiStore.getLevelStates(student).find(l => l.id === levelId);
+  if(!lvl || lvl.status === "terkunci") return;
+  viewingLevel = levelId;
+  updateLevelPill();
+  showPage("unitlist");
 }
-function chunkArray(arr, size){
-  const out = [];
-  for(let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
-  return out;
+
+/* ================= DAFTAR UNIT / PAKET MINGGUAN ================= */
+function renderUnitList(){
+  const student = TekiStore.getStudent(currentCode);
+  const isActiveLevel = viewingLevel === student.level;
+
+  if(isActiveLevel && TekiStore.usesWeeklyPackages(student.level)){
+    renderWeekList(student);
+    return;
+  }
+
+  if(isActiveLevel){
+    const sum = TekiStore.summarize(student);
+    const items = sum.units.map((u) => {
+      const locked = u.state === "terkunci";
+      const done = u.state === "selesai";
+      const cls = locked ? "locked" : done ? "done" : "current";
+      let rightHTML = "";
+      if(done){
+        rightHTML = `<div class="unitScore">${u.progress.score}</div><div class="deadline">Selesai ${fmtDate(u.progress.completedAt)}</div>`;
+      } else if(!locked && u.progress){
+        const daysLeft = daysBetween(nowISO(), u.progress.deadline);
+        rightHTML = u.overdue
+          ? `<div class="deadline overdue">⚠ Lewat tenggat</div>`
+          : `<div class="deadline">${daysLeft <= 0 ? 'Tenggat hari ini' : daysLeft + ' hari lagi'}</div>`;
+      } else {
+        rightHTML = `<div class="deadline">🔒 Selesaikan unit sebelumnya</div>`;
+      }
+      const linkHTML = u.materialUrl ? `<a class="materialLink" href="${u.materialUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">📄 Materi ↗</a>` : "";
+      return `
+        <div class="unitItem ${cls}" ${locked ? "" : `onclick="openUnit('${u.id}')"`}>
+          <div class="unitIcon">${done ? "✓" : locked ? "🔒" : u.order}</div>
+          <div class="unitInfo">
+            <div class="g">${u.grammar} <span style="color:var(--ink-soft);font-weight:400;font-size:.8rem;">(${u.reading})</span></div>
+            <div class="m">${u.meaning}</div>
+          </div>
+          <div class="unitRight">${linkHTML}${rightHTML}</div>
+        </div>`;
+    }).join("");
+
+    document.getElementById("mainArea").innerHTML = `
+      <div class="backLink" onclick="showPage('levelpicker')">← Ganti level</div>
+      <h1 class="title">Unit Pembelajaran · ${viewingLevel}</h1>
+      <p class="desc">Selesaikan unit secara berurutan. Setiap unit harus diselesaikan dalam 1 minggu sejak dibuka.</p>
+      <div class="unitList">${items}</div>
+    `;
+    return;
+  }
+
+  // Browsing a level that isn't the student's current active level.
+  const units = getUnitsForLevel(viewingLevel);
+  if(!units){
+    document.getElementById("mainArea").innerHTML = `
+      <div class="backLink" onclick="showPage('levelpicker')">← Ganti level</div>
+      <h1 class="title">Unit Pembelajaran · ${viewingLevel}</h1>
+      <div class="card"><p class="desc" style="margin:0;">Materi untuk level ini belum tersedia.</p></div>
+    `;
+    return;
+  }
+  const items = units.map(u => `
+    <div class="unitItem current" onclick="openUnit('${u.id}')">
+      <div class="unitIcon">${u.order}</div>
+      <div class="unitInfo">
+        <div class="g">${u.grammar} <span style="color:var(--ink-soft);font-weight:400;font-size:.8rem;">(${u.reading})</span></div>
+        <div class="m">${u.meaning}</div>
+      </div>
+      <div class="unitRight"><div class="deadline">Mode telusur</div></div>
+    </div>`).join("");
+
+  document.getElementById("mainArea").innerHTML = `
+    <div class="backLink" onclick="showPage('levelpicker')">← Ganti level</div>
+    <h1 class="title">Unit Pembelajaran · ${viewingLevel}</h1>
+    <p class="desc">Kamu sedang menelusuri materi level ${viewingLevel}. Progress hanya dicatat di level aktif kamu (${student.level}).</p>
+    <div class="unitList">${items}</div>
+  `;
 }
-function shuffleArray(arr){
+
+/* ---- Daftar PAKET MINGGUAN (3 Bunpou + 12 Kanji / minggu), untuk level
+   aktif siswa yang sudah punya data Kanji (mis. N5). ---- */
+function renderWeekList(student){
+  const sum = TekiStore.summarizeWeekly(student);
+
+  let deadlineBannerHTML = "";
+  if(sum.deadlineInfo){
+    const di = sum.deadlineInfo;
+    deadlineBannerHTML = `
+      <div class="deadlineBanner ${di.overdue ? 'overdue' : ''}">
+        <span>⏳ Target level <b>${student.level}</b>: tuntas dalam <b>${di.totalDays} hari</b> (3 bulan, mulai ${fmtDate(student.levelStartedAt)})</span>
+        <span><b>${di.overdue ? 'Lewat ' + Math.abs(di.daysLeft) + ' hari dari target' : di.daysLeft + ' hari tersisa'}</b></span>
+      </div>`;
+  }
+
+  const weekCards = sum.weeks.map(w => {
+    const locked = w.state === "terkunci";
+    const done = w.state === "selesai";
+    const daysLeft = w.progress ? daysBetween(nowISO(), w.progress.deadline) : null;
+    let deadlineHTML = "";
+    if(done){
+      deadlineHTML = `<span class="deadline">Selesai ${fmtDate(w.progress.completedAt)}</span>`;
+    } else if(!locked){
+      deadlineHTML = w.overdue
+        ? `<span class="deadline overdue">⚠ Lewat tenggat minggu ini</span>`
+        : `<span class="deadline">${fmtDeadline(daysLeft)}</span>`;
+    } else {
+      deadlineHTML = `<span class="deadline">🔒 Selesaikan minggu sebelumnya</span>`;
+    }
+
+    const bunpouItems = w.bunpouUnits.map(u => {
+      const passed = !!w.progress?.bunpou?.[u.id]?.passed;
+      const itemLocked = locked;
+      return `
+        <div class="miniItem ${passed ? 'done' : ''} ${itemLocked ? 'locked' : ''}" ${itemLocked ? '' : `onclick="openUnit('${u.id}', ${w.index})"`}>
+          <div class="mi-icon">${passed ? '✓' : '文'}</div>
+          <div class="mi-text"><div class="t1">${u.grammar}</div><div class="t2">${u.meaning}</div></div>
+        </div>`;
+    }).join("");
+
+    const kanjiItem = w.kanjiBatch.length ? `
+      <div class="miniItem ${w.kanjiDone ? 'done' : ''} ${locked ? 'locked' : ''}" ${locked ? '' : `onclick="openKanjiQuiz(${w.index})"`}>
+        <div class="mi-icon">${w.kanjiDone ? '✓' : '漢'}</div>
+        <div class="mi-text"><div class="t1">Kuis Kanji (${w.kanjiBatch.length} kanji)</div><div class="t2">Pilihan ganda arti / bacaan</div></div>
+      </div>` : "";
+
+    return `
+      <div class="weekCard ${locked ? 'locked' : ''} ${done ? 'selesai' : ''}">
+        <div class="weekHead">
+          <h3>📅 Minggu ${w.week} ${done ? '· Selesai ✓' : ''}</h3>
+          ${deadlineHTML}
+        </div>
+        <div class="weekSub">
+          ${bunpouItems}
+          ${kanjiItem}
+        </div>
+      </div>`;
+  }).join("");
+
+  let finalExamHTML = "";
+  if(sum.canFinalExam && (!sum.finalExam || sum.finalExam.status !== "selesai")){
+    finalExamHTML = `
+      <div class="card" style="margin-top:16px;border-color:var(--gold);">
+        <h2 style="color:var(--navy);margin-bottom:6px;">🎓 Ujian Akhir Level ${student.level}</h2>
+        <p class="desc" style="margin-bottom:10px;">Semua paket mingguan sudah lulus. Kerjakan ujian akhir (gabungan Bunpou + Kanji) untuk naik ke level berikutnya.</p>
+        <button class="btn gold" onclick="openFinalExam()">Mulai Ujian Akhir →</button>
+      </div>`;
+  }
+
+  document.getElementById("mainArea").innerHTML = `
+    <div class="backLink" onclick="showPage('levelpicker')">← Ganti level</div>
+    <h1 class="title">Unit Pembelajaran · ${viewingLevel}</h1>
+    <p class="desc">Target: <b>${BUNPOU_PER_WEEK} unit Bunpou</b> + <b>${KANJI_PER_WEEK} Kanji</b> per minggu. Satu paket minggu dianggap lulus kalau semua Bunpou-nya lulus <b>dan</b> kuis Kanji-nya lulus.</p>
+    ${deadlineBannerHTML}
+    <div class="weekList">${weekCards}</div>
+    ${finalExamHTML}
+  `;
+}
+
+/* ================= HALAMAN UNIT (MATERI + 20 SOAL LATIHAN) ================= */
+function openUnit(unitId, packageIndex){
+  currentUnitId = unitId;
+  currentPackageIndex = (typeof packageIndex === "number") ? packageIndex : null;
+  const units = getUnitsForLevel(viewingLevel) || (typeof UNITS_N3 !== "undefined" ? UNITS_N3 : []);
+  const unit = units.find(u => u.id === unitId);
+  if(!unit) return;
+
+  currentUnitQuiz = TekiStore.buildUnitQuiz(viewingLevel, unitId);
+  Object.keys(unitAnswers).forEach(k => delete unitAnswers[k]);
+  unitGraded = false;
+
+  const examplesHTML = unit.examples.map(e => `
+    <div class="example">
+      <div class="jp">${e.jp}</div>
+      <div class="reading">${e.reading}</div>
+      <div class="meaning">${e.meaning}</div>
+    </div>`).join("");
+
+  const backTarget = "unitlist";
+  const materialLinkHTML = unit.materialUrl ? `<a class="heroLink" href="${unit.materialUrl}" target="_blank" rel="noopener">📄 Buka Materi Lengkap ↗</a>` : "";
+
+  document.getElementById("mainArea").innerHTML = `
+    <div class="backLink" onclick="showPage('${backTarget}')">← Kembali ke daftar unit</div>
+    <div class="hero">
+      <small>UNIT ${unit.order} · JLPT ${viewingLevel} · GRAMMAR</small>
+      <h2>${unit.grammar}</h2>
+      <div class="reading">${unit.reading}</div>
+      <p>${unit.meaning}</p>
+      ${materialLinkHTML}
+    </div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <h2 style="color:var(--navy);margin-bottom:10px;">ARTI · Penjelasan</h2>
+      ${unit.explanation.map(p => `<p style="margin:6px 0;color:var(--ink-soft);">${p}</p>`).join("")}
+    </div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <h2 style="color:var(--navy);margin-bottom:10px;">POLA · Rumus</h2>
+      ${unit.pattern.map(p => `<p style="margin:6px 0;"><b>${p}</b></p>`).join("")}
+    </div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <h2 style="color:var(--navy);margin-bottom:6px;">CONTOH KALIMAT</h2>
+      ${examplesHTML}
+    </div>
+
+    <p class="desc" style="margin-bottom:0;">Kerjakan 20 soal latihan di bawah ini (10 soal Tata Bahasa + 10 soal Kanji, campuran pilihan ganda &amp; esai). Kunci jawaban baru akan muncul setelah <b>semua soal selesai dikerjakan</b> dan kamu menekan "Kumpulkan Jawaban".</p>
+
+    <div class="sectionHead"><h2>文 Bagian Tata Bahasa</h2><span class="cnt">10 soal</span></div>
+    <div id="grammarQArea">${renderQuestionCards(currentUnitQuiz.grammarQuestions)}</div>
+
+    <div class="sectionHead"><h2>漢 Bagian Kanji</h2><span class="cnt">10 soal</span></div>
+    <div id="kanjiQArea">${renderQuestionCards(currentUnitQuiz.kanjiQuestions)}</div>
+
+    <div class="card">
+      <button class="btn" id="gradeBtn" onclick="gradeUnitAnswers()">Kumpulkan Jawaban</button>
+      <button class="btn gold hidden" id="finalizeBtn" onclick="finalizeUnitScore('${unit.id}')">Simpan Nilai Akhir</button>
+      <div id="scoreBarArea"></div>
+      <div id="unitResultBanner"></div>
+    </div>
+  `;
+}
+
+function renderQuestionCards(questions){
+  return questions.map((q, i) => {
+    if(q.type === "mc"){
+      const optsHTML = q.options.map(opt => `<button class="mcOption" data-qid="${q.id}" onclick="selectUnitMC('${q.id}', this, ${JSON.stringify(opt).replace(/"/g,'&quot;')})">${opt}</button>`).join("");
+      return `
+        <div class="qCard" id="qcard_${q.id}">
+          <span class="qTag">PILIHAN GANDA</span>
+          <div class="qPrompt">${i + 1}. ${q.prompt}</div>
+          <div class="mcOptions" id="mcopts_${q.id}">${optsHTML}</div>
+          <div class="qresult" id="qres_${q.id}"></div>
+        </div>`;
+    }
+    return `
+      <div class="qCard" id="qcard_${q.id}">
+        <span class="qTag">ESAI</span>
+        <div class="qPrompt">${i + 1}. ${q.prompt}</div>
+        <textarea class="essayBox" id="essay_${q.id}" placeholder="Tulis jawabanmu di sini..." oninput="unitAnswers['${q.id}']=Object.assign(unitAnswers['${q.id}']||{},{given:this.value})"></textarea>
+        <div class="essayKey" id="key_${q.id}">
+          <b>Kunci jawaban:</b> ${q.answer}
+          <div class="selfCheck">
+            <button class="selfBtn benar" id="selfB_${q.id}" onclick="markSelf('${q.id}', true)">✓ Jawaban saya sudah benar</button>
+            <button class="selfBtn salah" id="selfS_${q.id}" onclick="markSelf('${q.id}', false)">✗ Jawaban saya masih salah</button>
+          </div>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function selectUnitMC(qId, btn, value){
+  if(unitGraded) return;
+  const wrap = document.getElementById("mcopts_" + qId);
+  wrap.querySelectorAll(".mcOption").forEach(b => b.classList.remove("selected"));
+  btn.classList.add("selected");
+  unitAnswers[qId] = Object.assign(unitAnswers[qId] || {}, { mcSelected: value });
+}
+
+function markSelf(qId, isCorrect){
+  unitAnswers[qId] = Object.assign(unitAnswers[qId] || {}, { selfMark: isCorrect });
+  const bBtn = document.getElementById("selfB_" + qId);
+  const sBtn = document.getElementById("selfS_" + qId);
+  bBtn.classList.toggle("active", isCorrect);
+  sBtn.classList.toggle("active", !isCorrect);
+  updateScoreBar();
+}
+
+function allUnitQuestions(){
+  return [...(currentUnitQuiz.grammarQuestions || []), ...(currentUnitQuiz.kanjiQuestions || [])];
+}
+
+function gradeUnitAnswers(){
+  const all = allUnitQuestions();
+
+  // Pastikan SEMUA soal sudah dikerjakan dulu — kunci jawaban baru
+  // ditampilkan setelah semua soal selesai dijawab.
+  const belumDijawab = all.filter(q => {
+    if(q.type === "mc") return !unitAnswers[q.id]?.mcSelected;
+    return !(unitAnswers[q.id]?.given || "").trim();
+  });
+  if(belumDijawab.length > 0){
+    alert(`Masih ada ${belumDijawab.length} soal yang belum kamu jawab. Jawab semua soal dulu sebelum kunci jawaban ditampilkan.`);
+    const firstEl = document.getElementById("qcard_" + belumDijawab[0].id);
+    if(firstEl) firstEl.scrollIntoView({behavior:"smooth", block:"center"});
+    return;
+  }
+
+  unitGraded = true;
+  all.forEach(q => {
+    if(q.type === "mc"){
+      const wrap = document.getElementById("mcopts_" + q.id);
+      const given = unitAnswers[q.id]?.mcSelected;
+      const rEl = document.getElementById("qres_" + q.id);
+      wrap.querySelectorAll(".mcOption").forEach(b => {
+        b.disabled = true;
+        if(b.textContent === q.correct) b.classList.add("correct");
+        else if(b.classList.contains("selected") && b.textContent !== q.correct) b.classList.add("wrong");
+      });
+      const isCorrect = given === q.correct;
+      unitAnswers[q.id] = Object.assign(unitAnswers[q.id] || {}, { mcSelected: given, isCorrect });
+      rEl.className = "qresult " + (isCorrect ? "correct" : "wrong");
+      rEl.textContent = isCorrect ? "✅ Benar!" : (given ? "❌ Belum tepat." : "⚠ Belum dijawab.");
+    } else {
+      document.getElementById("key_" + q.id).classList.add("show");
+      document.getElementById("essay_" + q.id).setAttribute("readonly", "readonly");
+    }
+  });
+  document.getElementById("gradeBtn").classList.add("hidden");
+  document.getElementById("finalizeBtn").classList.remove("hidden");
+  updateScoreBar();
+}
+
+function updateScoreBar(){
+  if(!unitGraded) return;
+  const all = allUnitQuestions();
+  let correct = 0, essayUnmarked = 0;
+  all.forEach(q => {
+    if(q.type === "mc"){
+      if(unitAnswers[q.id]?.isCorrect) correct++;
+    } else {
+      const mark = unitAnswers[q.id]?.selfMark;
+      if(mark === true) correct++;
+      if(mark === undefined) essayUnmarked++;
+    }
+  });
+  const total = all.length;
+  const score = Math.round((correct / total) * 100);
+  const area = document.getElementById("scoreBarArea");
+  area.innerHTML = `
+    <div class="scoreBar">
+      <span>Jawaban benar sejauh ini: <b>${correct}/${total}</b> ${essayUnmarked > 0 ? `<span style="color:var(--ink-soft);">(${essayUnmarked} soal esai belum kamu tandai)</span>` : ""}</span>
+      <span>Estimasi nilai: <b>${score}</b></span>
+    </div>`;
+}
+
+function finalizeUnitScore(unitId){
+  const all = allUnitQuestions();
+  let correct = 0;
+  all.forEach(q => {
+    if(q.type === "mc"){
+      if(unitAnswers[q.id]?.isCorrect) correct++;
+    } else {
+      if(unitAnswers[q.id]?.selfMark === true) correct++;
+    }
+  });
+  const total = all.length;
+
+  const student = TekiStore.getStudent(currentCode);
+  const banner = document.getElementById("unitResultBanner");
+  document.getElementById("finalizeBtn").disabled = true;
+
+  // Level aktif siswa yang memakai paket mingguan (mis. N5)
+  if(viewingLevel === student.level && TekiStore.usesWeeklyPackages(student.level) && currentPackageIndex !== null){
+    const result = TekiStore.submitBunpouInPackage(currentCode, student.level, currentPackageIndex, unitId, correct, total);
+    if(result.passed){
+      banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score} (${correct}/${total} soal). Unit Bunpou ini lulus!
+        ${result.packageCompleted ? ' Paket minggu ini sudah lengkap (Bunpou + Kanji) ✓.' : ' Lanjutkan unit / kuis Kanji lain di paket minggu ini.'}
+        ${result.allPackagesDone ? ' Semua paket level ini sudah selesai — kamu bisa mengerjakan Ujian Akhir!' : ''}</div>
+        <button class="btn ghost" style="margin-top:10px;" onclick="showPage('unitlist')">← Kembali ke daftar minggu</button>`;
+    } else {
+      banner.innerHTML = `<div class="resultBanner fail">Nilai kamu ${result.score} (${correct}/${total} soal). Minimal ${PASS_SCORE} untuk lulus — coba lagi ya!</div>`;
+    }
+    return;
+  }
+
+  // Only the student's active level (mode non-paket, mis. N3) records real progress.
+  if(viewingLevel !== student.level){
+    const score = Math.round((correct / total) * 100);
+    banner.innerHTML = `<div class="resultBanner ${score >= PASS_SCORE ? "pass" : "fail"}">
+      Nilai kamu ${score} (${correct}/${total} soal — mode telusur, tidak disimpan). Progress hanya dicatat di level aktif kamu (${student.level}).
+    </div>`;
+    return;
+  }
+
+  const result = TekiStore.submitUnitResult(currentCode, unitId, correct, total);
+  if(result.passed){
+    if(result.leveledUp){
+      banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score} (${correct}/${total} soal). Level ${viewingLevel} selesai — selamat, kamu naik ke level ${result.newLevel}!</div>`;
+      viewingLevel = result.newLevel;
+      updateLevelPill();
+    } else {
+      banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score} (${correct}/${total} soal). Unit selesai! Unit berikutnya sudah terbuka.</div>`;
+    }
+  } else {
+    banner.innerHTML = `<div class="resultBanner fail">Nilai kamu ${result.score} (${correct}/${total} soal). Minimal ${PASS_SCORE} untuk lulus — coba lagi ya!</div>`;
+  }
+}
+
+function shuffle(arr){
   const a = [...arr];
   for(let i = a.length - 1; i > 0; i--){
     const j = Math.floor(Math.random() * (i + 1));
@@ -454,469 +893,304 @@ function shuffleArray(arr){
   return a;
 }
 
-/* ---------------------------------------------------------
-   3. PAKET MINGGUAN (BUNPOU + KANJI) — dipakai untuk level yang
-   sudah punya data Kanji (lihat KANJI_BY_LEVEL), misalnya N5.
-   Level yang belum punya data Kanji (mis. N3 saat ini) tetap
-   pakai alur unit-per-unit yang lama, supaya tidak ada yang rusak.
---------------------------------------------------------- */
-function levelUsesWeeklyPackages(levelId){
-  return kanjiForLevel(levelId).length > 0;
+/* ================= KUIS KANJI MINGGUAN (PILIHAN GANDA) ================= */
+function openKanjiQuiz(packageIndex){
+  currentPackageIndex = packageIndex;
+  const student = TekiStore.getStudent(currentCode);
+  const questions = TekiStore.buildKanjiQuizForPackage(student.level, packageIndex);
+  questions.forEach(q => kanjiQuizState[q.id] = null);
+
+  const cardsHTML = questions.map((q, qi) => `
+    <div class="kanjiQuizCard">
+      <b>SOAL ${qi + 1}</b>
+      <div class="kanjiChar">${q.kanji}</div>
+      <p style="color:var(--ink-soft);margin-bottom:10px;">Apa arti / bacaan kanji di atas?</p>
+      <div class="mcOptions" id="mc_${q.id}">
+        ${q.options.map(opt => `<button class="mcOption" onclick="selectKanjiOption('${q.id}', this, '${opt.replace(/'/g,"\\'")}')">${opt}</button>`).join("")}
+      </div>
+      <div class="qresult" id="kqresult_${q.id}"></div>
+    </div>`).join("");
+
+  document.getElementById("mainArea").innerHTML = `
+    <div class="backLink" onclick="showPage('unitlist')">← Kembali ke daftar minggu</div>
+    <div class="hero">
+      <small>PAKET MINGGU ${packageIndex + 1} · JLPT ${viewingLevel} · KANJI</small>
+      <h2>Kuis Hafalan Kanji</h2>
+      <p>Pilih arti / bacaan yang benar untuk tiap kanji.</p>
+    </div>
+    <div class="card">
+      ${cardsHTML}
+      <button class="btn" onclick="submitKanjiQuiz(${packageIndex})">Kumpulkan Jawaban</button>
+      <div id="kanjiResultBanner"></div>
+    </div>
+  `;
+
+  window.__currentKanjiQuestions = questions;
 }
 
-function getWeekPackagesForLevel(levelId){
-  const bunpouChunks = chunkArray(unitsForLevel(levelId), BUNPOU_PER_WEEK);
-  const kanjiChunks = chunkArray(kanjiForLevel(levelId), KANJI_PER_WEEK);
-  const count = Math.max(bunpouChunks.length, kanjiChunks.length);
-  const packages = [];
-  for(let i = 0; i < count; i++){
-    packages.push({
-      index: i,
-      week: i + 1,
-      bunpouUnits: bunpouChunks[i] || [],
-      kanjiBatch: kanjiChunks[i] || [],
-    });
-  }
-  return packages;
+function selectKanjiOption(qId, btn, value){
+  const wrap = document.getElementById("mc_" + qId);
+  wrap.querySelectorAll(".mcOption").forEach(b => b.classList.remove("selected"));
+  btn.classList.add("selected");
+  kanjiQuizState[qId] = value;
 }
 
-/** Bikin soal pilihan ganda kanji dari 1 batch (mis. 12 kanji minggu ini).
-    Tiap soal: tampilkan karakter kanji, siswa pilih arti/bacaan yang benar
-    dari 4 opsi (distraktor diambil acak dari kanji lain di level yang sama). */
-function buildKanjiQuiz(levelId, batch){
-  const pool = kanjiForLevel(levelId);
-  return batch.map(k => {
-    const distractorPool = pool.filter(x => x.id !== k.id);
-    const distractors = shuffleArray(distractorPool).slice(0, 3).map(x => x.meaning);
-    const options = shuffleArray([k.meaning, ...distractors]);
-    return { id: k.id, kanji: k.kanji, reading: k.reading, correct: k.meaning, options };
-  });
-}
-
-/* ---------------------------------------------------------
-   4. STORE API  (localStorage — ganti ke backend di sini nanti)
---------------------------------------------------------- */
-const TekiStore = {
-
-  _readAll() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : null;
-    } catch (e) { return null; }
-  },
-
-  _writeAll(students) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
-  },
-
-  /** Seed data contoh — hanya dipakai kalau localStorage masih kosong */
-  _seed() {
-    const mk = (code, name, unitsDone, opts = {}) => {
-      const progress = {};
-      let cursor = opts.startedDaysAgo ?? (unitsDone * 6 + 3);
-      const startBase = addDays(nowISO(), -cursor);
-      let unlockAt = startBase;
-      UNITS_N3.forEach((u, i) => {
-        if (i < unitsDone) {
-          const score = opts.scores?.[i] ?? (75 + ((i * 7) % 20));
-          const completedAt = addDays(unlockAt, 2 + (i % 3));
-          progress[u.id] = {
-            status: "selesai",
-            unlockedAt: unlockAt,
-            deadline: addDays(unlockAt, UNIT_DEADLINE_DAYS),
-            score,
-            completedAt,
-            attempts: [{ date: completedAt, score }]
-          };
-          unlockAt = completedAt;
-        } else if (i === unitsDone) {
-          progress[u.id] = {
-            status: "berjalan",
-            unlockedAt: unlockAt,
-            deadline: addDays(unlockAt, UNIT_DEADLINE_DAYS),
-            score: null,
-            completedAt: null,
-            attempts: []
-          };
-        }
-      });
-      return {
-        code, name, level: "N3",
-        joinedAt: addDays(nowISO(), -(cursor + 20)),
-        levelStartedAt: addDays(nowISO(), -(cursor + 20)),
-        lastActiveAt: addDays(nowISO(), -(opts.inactiveDays ?? 0)),
-        progress,
-        weekProgress: {},
-        finalExam: {}
-      };
-    };
-
-    const students = [
-      mk("PTPR07", "NIKO",   4, { inactiveDays: 1 }),
-      mk("PTPR06", "RINGGA", 3, { inactiveDays: 2 }),
-      mk("PTPR03", "SHOMAD", 5, { inactiveDays: 3, scores:[92,95,90,88,94] }),
-      mk("PTPR01", "TRIANTO",1, { inactiveDays: 21 }),
-      mk("PTPR04", "JONI",   3, { inactiveDays: 1 }),
-      mk("PTPR05", "FERIAN", 2, { inactiveDays: 6 }),
-      mk("PTPR02", "LUKI",   0, { inactiveDays: 18, startedDaysAgo: 3 }),
-    ];
-    this._writeAll(students);
-    return students;
-  },
-
-  getAllStudents() {
-    let students = this._readAll();
-    if (!students) students = this._seed();
-    return students;
-  },
-
-  /**
-   * Daftarkan siswa baru.
-   * `level` menentukan DI LEVEL MANA siswa ini mulai belajar —
-   * ini kunci untuk siswa baru yang levelnya N5/N4 (pemula):
-   *   TekiStore.addStudent("ABCD01", "Nama Siswa", "N5")
-   *   TekiStore.addStudent("ABCD02", "Nama Siswa", "N4")
-   * Siswa akan langsung melihat unit-unit level tsb sebagai level
-   * aktifnya, dan level sebelum itu di LEVEL_ORDER otomatis
-   * dianggap "selesai" (dilewati/di luar cakupan platform ini).
-   * Return {ok:true} atau {ok:false, message}
-   */
-  addStudent(code, name, level = "N5") {
-    code = (code || "").trim().toUpperCase();
-    name = (name || "").trim();
-    level = (level || "N5").trim().toUpperCase();
-    if (!code || !name) return { ok: false, message: "Kode dan nama wajib diisi." };
-    if (!LEVEL_ORDER.includes(level)) return { ok: false, message: "Level tidak dikenali: " + level };
-    const students = this.getAllStudents();
-    if (students.some(s => s.code === code)) return { ok: false, message: "Kode siswa sudah dipakai." };
-    students.push({
-      code, name, level,
-      joinedAt: nowISO(),
-      levelStartedAt: nowISO(),
-      lastActiveAt: nowISO(),
-      progress: {},
-      weekProgress: {},
-      finalExam: {}
+function submitKanjiQuiz(packageIndex){
+  const questions = window.__currentKanjiQuestions || [];
+  let correct = 0;
+  questions.forEach(q => {
+    const given = kanjiQuizState[q.id];
+    const wrap = document.getElementById("mc_" + q.id);
+    const rEl = document.getElementById("kqresult_" + q.id);
+    wrap.querySelectorAll(".mcOption").forEach(b => {
+      b.disabled = true;
+      if(b.textContent === q.correct) b.classList.add("correct");
+      else if(b.classList.contains("selected") && b.textContent !== q.correct) b.classList.add("wrong");
     });
-    this._writeAll(students);
-    return { ok: true };
-  },
-
-  /** Hapus siswa dari daftar (opsional dipakai guru) */
-  removeStudent(code) {
-    const students = this.getAllStudents().filter(s => s.code !== code);
-    this._writeAll(students);
-  },
-
-  getStudent(code) {
-    const s = this.getAllStudents().find(s => s.code === code) || null;
-    if (s) {
-      if (!s.weekProgress) s.weekProgress = {};
-      if (!s.finalExam) s.finalExam = {};
-      if (!s.levelStartedAt) s.levelStartedAt = s.joinedAt || nowISO();
-    }
-    return s;
-  },
-
-  touchLastActive(code) {
-    const students = this.getAllStudents();
-    const s = students.find(x => x.code === code);
-    if (s) { s.lastActiveAt = nowISO(); this._writeAll(students); }
-  },
-
-  /** Status tiap level (selesai/aktif/terkunci) UNTUK SISWA INI,
-      berdasarkan posisi student.level di LEVEL_ORDER. */
-  getLevelStates(student) {
-    const currentIdx = LEVEL_ORDER.indexOf(student.level);
-    return LEVEL_META.map((l, i) => {
-      let status;
-      if (currentIdx === -1) status = "terkunci";
-      else if (i < currentIdx) status = "selesai";
-      else if (i === currentIdx) status = "aktif";
-      else status = "terkunci";
-      return { ...l, status };
-    });
-  },
-
-  /** Apakah level aktif siswa memakai sistem paket mingguan (bunpou+kanji)? */
-  usesWeeklyPackages(levelId){
-    return levelUsesWeeklyPackages(levelId);
-  },
-
-  /** Info batas waktu keseluruhan level (mis. N5 = 90 hari), dihitung
-      sejak student.levelStartedAt. Return null kalau level tsb belum
-      diatur batas waktunya. */
-  getLevelDeadlineInfo(student) {
-    const days = LEVEL_DURATION_DAYS[student.level];
-    if (!days || !student.levelStartedAt) return null;
-    const deadline = addDays(student.levelStartedAt, days);
-    const daysLeft = daysBetween(nowISO(), deadline);
-    return { totalDays: days, deadline, daysLeft, overdue: daysLeft < 0 };
-  },
-
-  /** Susun daftar unit dengan status terkunci/berjalan/selesai + tenggat,
-      untuk LEVEL AKTIF siswa (student.level). Dipakai untuk level yang
-      TIDAK memakai paket mingguan (mis. N3). */
-  getUnitStates(student) {
-    const units = unitsForLevel(student.level);
-    let previousDone = true;
-    return units.map((u) => {
-      let p = student.progress[u.id];
-      if (!p && previousDone) {
-        // Unit baru terbuka pertama kali dilihat
-        const unlockedAt = nowISO();
-        p = { status: "berjalan", unlockedAt, deadline: addDays(unlockedAt, UNIT_DEADLINE_DAYS), score: null, completedAt: null, attempts: [] };
-        student.progress[u.id] = p;
-        this._persistStudent(student);
-      }
-      const state = p ? p.status : "terkunci";
-      const overdue = p && state !== "selesai" && new Date() > new Date(p.deadline);
-      previousDone = state === "selesai";
-      return { ...u, state, overdue, progress: p || null };
-    });
-  },
-
-  /** Susun paket mingguan (3 bunpou + 12 kanji) dengan status masing-masing,
-      untuk LEVEL AKTIF siswa. Return null kalau level ini tidak memakai
-      sistem paket mingguan (pemanggil sebaiknya fallback ke getUnitStates). */
-  getWeekStates(student) {
-    const levelId = student.level;
-    if (!levelUsesWeeklyPackages(levelId)) return null;
-    const packages = getWeekPackagesForLevel(levelId);
-    if (!student.weekProgress) student.weekProgress = {};
-    if (!student.weekProgress[levelId]) student.weekProgress[levelId] = {};
-    const wp = student.weekProgress[levelId];
-
-    let previousDone = true;
-    let dirty = false;
-    const result = packages.map(pkg => {
-      let p = wp[pkg.index];
-      if (!p && previousDone) {
-        const unlockedAt = nowISO();
-        p = { status: "berjalan", unlockedAt, deadline: addDays(unlockedAt, WEEK_DEADLINE_DAYS), bunpou: {}, kanji: null, completedAt: null };
-        wp[pkg.index] = p;
-        dirty = true;
-      }
-      const state = p ? p.status : "terkunci";
-      const overdue = !!p && state !== "selesai" && new Date() > new Date(p.deadline);
-      previousDone = state === "selesai";
-      const bunpouDoneCount = pkg.bunpouUnits.filter(u => p?.bunpou?.[u.id]?.passed).length;
-      const kanjiDone = !!p?.kanji?.passed;
-      return { ...pkg, state, overdue, progress: p || null, bunpouDoneCount, bunpouTotal: pkg.bunpouUnits.length, kanjiDone };
-    });
-    if (dirty) this._persistStudent(student);
-    return result;
-  },
-
-  _persistStudent(student) {
-    const students = this.getAllStudents();
-    const idx = students.findIndex(s => s.code === student.code);
-    if (idx > -1) students[idx] = student; else students.push(student);
-    this._writeAll(students);
-  },
-
-  /** Kirim hasil latihan untuk sebuah unit di level aktif siswa
-      (hanya untuk level yang TIDAK memakai paket mingguan, mis. N3).
-      Kalau ini unit terakhir di level tsb dan lulus, siswa otomatis
-      naik ke level berikutnya di LEVEL_ORDER (kalau levelnya sudah
-      punya materi). */
-  submitUnitResult(code, unitId, correctCount, totalCount) {
-    const student = this.getStudent(code);
-    if (!student) return null;
-    const score = Math.round((correctCount / totalCount) * 100);
-    const passed = score >= PASS_SCORE;
-    const p = student.progress[unitId] || { unlockedAt: nowISO(), deadline: addDays(nowISO(), UNIT_DEADLINE_DAYS), attempts: [] };
-    p.attempts = [...(p.attempts || []), { date: nowISO(), score }];
-    p.score = score;
-    if (passed) {
-      p.status = "selesai";
-      p.completedAt = nowISO();
+    if(given === q.correct){
+      correct++;
+      rEl.className = "qresult correct"; rEl.textContent = "✅ Benar!";
     } else {
-      p.status = "berjalan";
+      rEl.className = "qresult wrong"; rEl.textContent = given ? "❌ Belum tepat." : "⚠ Belum dijawab.";
     }
-    student.progress[unitId] = p;
-    student.lastActiveAt = nowISO();
+  });
 
-    let leveledUp = false;
-    if (passed) {
-      const levelUnits = unitsForLevel(student.level);
-      const allDone = levelUnits.length > 0 && levelUnits.every(u => student.progress[u.id]?.status === "selesai");
-      if (allDone) {
-        const idx = LEVEL_ORDER.indexOf(student.level);
-        const nextLevel = idx > -1 ? LEVEL_ORDER[idx + 1] : null;
-        if (nextLevel && unitsForLevel(nextLevel).length > 0) {
-          student.level = nextLevel;
-          student.levelStartedAt = nowISO();
-          leveledUp = true;
-        }
-      }
-    }
-
-    this._persistStudent(student);
-    return { score, passed, leveledUp, newLevel: student.level };
-  },
-
-  /** Kirim hasil kuis 1 unit Bunpou DI DALAM sebuah paket mingguan
-      (level yang memakai sistem paket, mis. N5). */
-  submitBunpouInPackage(code, levelId, packageIndex, unitId, correctCount, totalCount) {
-    const student = this.getStudent(code);
-    if (!student) return null;
-    const score = Math.round((correctCount / totalCount) * 100);
-    const passed = score >= PASS_SCORE;
-    this.getWeekStates(student); // pastikan paket sudah ter-inisialisasi
-    const p = student.weekProgress[levelId]?.[packageIndex];
-    if (!p) return null;
-    p.bunpou[unitId] = { score, passed, date: nowISO() };
-    student.lastActiveAt = nowISO();
-    const done = this._checkPackageCompletion(student, levelId, packageIndex);
-    this._persistStudent(student);
-    return { score, passed, ...done };
-  },
-
-  /** Kirim hasil kuis Kanji (pilihan ganda) untuk 1 paket mingguan. */
-  submitKanjiInPackage(code, levelId, packageIndex, correctCount, totalCount) {
-    const student = this.getStudent(code);
-    if (!student) return null;
-    const score = Math.round((correctCount / totalCount) * 100);
-    const passed = score >= PASS_SCORE;
-    this.getWeekStates(student);
-    const p = student.weekProgress[levelId]?.[packageIndex];
-    if (!p) return null;
-    p.kanji = { score, passed, date: nowISO() };
-    student.lastActiveAt = nowISO();
-    const done = this._checkPackageCompletion(student, levelId, packageIndex);
-    this._persistStudent(student);
-    return { score, passed, ...done };
-  },
-
-  _checkPackageCompletion(student, levelId, packageIndex) {
-    const packages = getWeekPackagesForLevel(levelId);
-    const pkg = packages[packageIndex];
-    const p = student.weekProgress[levelId][packageIndex];
-    if (!pkg || !p) return { packageCompleted: false, allPackagesDone: false };
-    const allBunpouPassed = pkg.bunpouUnits.every(u => p.bunpou[u.id]?.passed);
-    const kanjiPassed = pkg.kanjiBatch.length === 0 || !!p.kanji?.passed;
-    let packageCompleted = false;
-    if (allBunpouPassed && kanjiPassed && p.status !== "selesai") {
-      p.status = "selesai";
-      p.completedAt = nowISO();
-      packageCompleted = true;
-    }
-    const allPackagesDone = packages.length > 0 && packages.every((_, i) => student.weekProgress[levelId][i]?.status === "selesai");
-    return { packageCompleted, allPackagesDone };
-  },
-
-  /** Apakah siswa sudah boleh mengambil Ujian Akhir level (semua paket
-      mingguan levelnya sudah lulus)? */
-  canTakeFinalExam(student) {
-    const levelId = student.level;
-    if (!levelUsesWeeklyPackages(levelId)) return false;
-    const packages = getWeekPackagesForLevel(levelId);
-    const wp = student.weekProgress?.[levelId] || {};
-    return packages.length > 0 && packages.every((_, i) => wp[i]?.status === "selesai");
-  },
-
-  /** Susun soal Ujian Akhir: gabungan 1 soal susun-kalimat per unit Bunpou
-      + kuis pilihan ganda Kanji (maks 12 kanji diambil acak dari level ini). */
-  buildFinalExam(levelId) {
-    const units = unitsForLevel(levelId);
-    const kanjiPool = kanjiForLevel(levelId);
-    const bunpouQuestions = units.map(u => ({ type: "bunpou", unitId: u.id, grammar: u.grammar, ...u.quiz[0] }));
-    const kanjiSample = shuffleArray(kanjiPool).slice(0, Math.min(12, kanjiPool.length));
-    const kanjiQuestions = buildKanjiQuiz(levelId, kanjiSample);
-    return { bunpouQuestions, kanjiQuestions };
-  },
-
-  /** Kirim hasil Ujian Akhir. Kalau lulus (>= FINAL_EXAM_PASS_SCORE),
-      siswa naik ke level berikutnya di LEVEL_ORDER. */
-  submitFinalExam(code, correctCount, totalCount) {
-    const student = this.getStudent(code);
-    if (!student) return null;
-    const levelId = student.level;
-    const score = Math.round((correctCount / totalCount) * 100);
-    const passed = score >= FINAL_EXAM_PASS_SCORE;
-    if (!student.finalExam) student.finalExam = {};
-    const prevAttempts = student.finalExam[levelId]?.attempts || [];
-    student.finalExam[levelId] = {
-      status: passed ? "selesai" : "berjalan",
-      score,
-      completedAt: passed ? nowISO() : null,
-      attempts: [...prevAttempts, { date: nowISO(), score }]
-    };
-    let leveledUp = false;
-    if (passed) {
-      const idx = LEVEL_ORDER.indexOf(levelId);
-      const nextLevel = idx > -1 ? LEVEL_ORDER[idx + 1] : null;
-      if (nextLevel) {
-        student.level = nextLevel;
-        student.levelStartedAt = nowISO();
-        leveledUp = true;
-      }
-    }
-    student.lastActiveAt = nowISO();
-    this._persistStudent(student);
-    return { score, passed, leveledUp, newLevel: student.level };
-  },
-
-  buildKanjiQuizForPackage(levelId, packageIndex) {
-    const packages = getWeekPackagesForLevel(levelId);
-    const pkg = packages[packageIndex];
-    if (!pkg) return [];
-    return buildKanjiQuiz(levelId, pkg.kanjiBatch);
-  },
-
-  getWeekPackagesForLevel(levelId){
-    return getWeekPackagesForLevel(levelId);
-  },
-
-  /** Ringkasan progres 1 siswa untuk level yang TIDAK memakai paket
-      mingguan (mis. N3) — dipakai untuk kartu / panel guru. */
-  summarize(student) {
-    const units = this.getUnitStates(student);
-    const totalUnits = unitsForLevel(student.level).length;
-    const done = units.filter(u => u.state === "selesai");
-    const scores = done.map(u => u.progress.score);
-    const avg = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null;
-    const inactiveDays = Math.max(0, daysBetween(student.lastActiveAt, nowISO()));
-    const anyOverdue = units.some(u => u.overdue);
-    let status;
-    if (totalUnits === 0) status = { key: "warn", label: "○ Materi belum tersedia" };
-    else if (avg === null || inactiveDays > 14) status = { key: "fail", label: "⚠ Perlu Perhatian" };
-    else if (avg < PASS_SCORE || inactiveDays > 7 || anyOverdue) status = { key: "warn", label: "● Perlu Didorong" };
-    else status = { key: "pass", label: "✓ Aktif Baik" };
-    return {
-      units, avg, inactiveDays, anyOverdue, status,
-      completedCount: done.length, totalUnits,
-      percent: totalUnits ? Math.round((done.length / totalUnits) * 100) : 0
-    };
-  },
-
-  /** Ringkasan progres 1 siswa untuk level yang MEMAKAI paket mingguan
-      (mis. N5) — dipakai untuk dashboard / progress siswa. */
-  summarizeWeekly(student) {
-    const weeks = this.getWeekStates(student) || [];
-    const totalWeeks = weeks.length;
-    const doneWeeks = weeks.filter(w => w.state === "selesai").length;
-    const scores = [];
-    weeks.forEach(w => {
-      Object.values(w.progress?.bunpou || {}).forEach(b => scores.push(b.score));
-      if (w.progress?.kanji) scores.push(w.progress.kanji.score);
-    });
-    const avg = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null;
-    const inactiveDays = Math.max(0, daysBetween(student.lastActiveAt, nowISO()));
-    const anyOverdue = weeks.some(w => w.overdue);
-    const percent = totalWeeks ? Math.round((doneWeeks / totalWeeks) * 100) : 0;
-    const deadlineInfo = this.getLevelDeadlineInfo(student);
-    const finalExam = student.finalExam?.[student.level] || null;
-    const canFinalExam = this.canTakeFinalExam(student);
-    let status;
-    if (totalWeeks === 0) status = { key: "warn", label: "○ Materi belum tersedia" };
-    else if (avg === null || inactiveDays > 14) status = { key: "fail", label: "⚠ Perlu Perhatian" };
-    else if ((deadlineInfo && deadlineInfo.overdue) || avg < PASS_SCORE || inactiveDays > 7 || anyOverdue) status = { key: "warn", label: "● Perlu Didorong" };
-    else status = { key: "pass", label: "✓ Aktif Baik" };
-    return {
-      weeks, totalWeeks, doneWeeks, avg, inactiveDays, anyOverdue, status,
-      percent, deadlineInfo, finalExam, canFinalExam
-    };
+  const student = TekiStore.getStudent(currentCode);
+  const banner = document.getElementById("kanjiResultBanner");
+  const result = TekiStore.submitKanjiInPackage(currentCode, student.level, packageIndex, correct, questions.length);
+  if(!result){ return; }
+  if(result.passed){
+    banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score}. Kuis Kanji lulus!
+      ${result.packageCompleted ? ' Paket minggu ini sudah lengkap (Bunpou + Kanji) ✓.' : ' Selesaikan juga unit Bunpou di minggu ini.'}
+      ${result.allPackagesDone ? ' Semua paket level ini sudah selesai — kamu bisa mengerjakan Ujian Akhir!' : ''}</div>
+      <button class="btn ghost" style="margin-top:10px;" onclick="showPage('unitlist')">← Kembali ke daftar minggu</button>`;
+  } else {
+    banner.innerHTML = `<div class="resultBanner fail">Nilai kamu ${result.score}. Minimal ${PASS_SCORE} untuk lulus — coba lagi ya!</div>`;
   }
-};
+}
+
+/* ================= UJIAN AKHIR LEVEL ================= */
+function openFinalExam(){
+  const student = TekiStore.getStudent(currentCode);
+  if(!TekiStore.canTakeFinalExam(student)) return;
+  const exam = TekiStore.buildFinalExam(student.level);
+  window.__finalExam = exam;
+  quizState["__final"] = {};
+  exam.bunpouQuestions.forEach(q => quizState["__final"][q.id + "_" + q.unitId] = []);
+  exam.kanjiQuestions.forEach(q => kanjiQuizState["final_" + q.id] = null);
+
+  const bunpouHTML = exam.bunpouQuestions.map((q, qi) => {
+    const slotId = `fslot_${qi}`;
+    const bankId = `fbank_${qi}`;
+    return `
+    <div class="quiz">
+      <b>BUNPOU ${qi + 1} · ${q.grammar}</b>
+      <p style="color:var(--ink-soft);margin:4px 0 0;">Susun kata menjadi kalimat yang benar:</p>
+      <div class="slot" id="${slotId}"></div>
+      <div class="words" id="${bankId}">
+        ${shuffle([...q.words]).map(w => `<span class="word" data-word="${w}" onclick="placeFinalWord(${qi}, this)">${w}</span>`).join("")}
+      </div>
+      <div class="qresult" id="fqresult_${qi}"></div>
+    </div>`;
+  }).join("");
+
+  const kanjiHTML = exam.kanjiQuestions.map((q, qi) => `
+    <div class="kanjiQuizCard">
+      <b>KANJI ${qi + 1}</b>
+      <div class="kanjiChar">${q.kanji}</div>
+      <div class="mcOptions" id="fmc_${q.id}">
+        ${q.options.map(opt => `<button class="mcOption" onclick="selectFinalKanjiOption('${q.id}', this, '${opt.replace(/'/g,"\\'")}')">${opt}</button>`).join("")}
+      </div>
+      <div class="qresult" id="fkqresult_${q.id}"></div>
+    </div>`).join("");
+
+  document.getElementById("mainArea").innerHTML = `
+    <div class="backLink" onclick="showPage('unitlist')">← Kembali ke daftar minggu</div>
+    <div class="hero">
+      <small>UJIAN AKHIR · JLPT ${student.level}</small>
+      <h2>Ujian Akhir Level ${student.level}</h2>
+      <p>Gabungan soal Bunpou (${exam.bunpouQuestions.length} soal) dan Kanji (${exam.kanjiQuestions.length} soal). Nilai minimal ${FINAL_EXAM_PASS_SCORE} untuk naik level.</p>
+    </div>
+    <div class="card" style="margin-bottom:16px;">
+      <h2 style="color:var(--navy);margin-bottom:6px;">Bagian Tata Bahasa</h2>
+      ${bunpouHTML}
+    </div>
+    <div class="card">
+      <h2 style="color:var(--navy);margin-bottom:6px;">Bagian Kanji</h2>
+      ${kanjiHTML}
+      <button class="btn gold" onclick="submitFinalExam()">Kumpulkan Ujian Akhir</button>
+      <div id="finalExamBanner"></div>
+    </div>
+  `;
+}
+
+function placeFinalWord(qi, el){
+  if(el.classList.contains("used")) return;
+  el.classList.add("used");
+  const key = "final_" + qi;
+  if(!quizState["__final"][key]) quizState["__final"][key] = [];
+  quizState["__final"][key].push(el.dataset.word);
+  const placed = document.createElement("span");
+  placed.className = "placed";
+  placed.textContent = el.dataset.word;
+  placed.onclick = () => {
+    placed.remove();
+    const arr = quizState["__final"][key];
+    const idx = arr.indexOf(el.dataset.word);
+    if(idx > -1) arr.splice(idx, 1);
+    el.classList.remove("used");
+  };
+  document.getElementById("fslot_" + qi).appendChild(placed);
+}
+
+function selectFinalKanjiOption(qId, btn, value){
+  const wrap = document.getElementById("fmc_" + qId);
+  wrap.querySelectorAll(".mcOption").forEach(b => b.classList.remove("selected"));
+  btn.classList.add("selected");
+  kanjiQuizState["final_" + qId] = value;
+}
+
+function submitFinalExam(){
+  const exam = window.__finalExam;
+  if(!exam) return;
+  let correct = 0;
+  const total = exam.bunpouQuestions.length + exam.kanjiQuestions.length;
+
+  exam.bunpouQuestions.forEach((q, qi) => {
+    const given = (quizState["__final"]["final_" + qi] || []).join("");
+    const answer = q.answer.join("");
+    const rEl = document.getElementById("fqresult_" + qi);
+    if(given === answer){
+      correct++;
+      rEl.className = "qresult correct"; rEl.textContent = "✅ Benar!";
+    } else {
+      rEl.className = "qresult wrong"; rEl.textContent = "❌ Belum tepat.";
+    }
+  });
+
+  exam.kanjiQuestions.forEach(q => {
+    const given = kanjiQuizState["final_" + q.id];
+    const wrap = document.getElementById("fmc_" + q.id);
+    const rEl = document.getElementById("fkqresult_" + q.id);
+    wrap.querySelectorAll(".mcOption").forEach(b => {
+      b.disabled = true;
+      if(b.textContent === q.correct) b.classList.add("correct");
+      else if(b.classList.contains("selected") && b.textContent !== q.correct) b.classList.add("wrong");
+    });
+    if(given === q.correct){
+      correct++;
+      rEl.className = "qresult correct"; rEl.textContent = "✅ Benar!";
+    } else {
+      rEl.className = "qresult wrong"; rEl.textContent = given ? "❌ Belum tepat." : "⚠ Belum dijawab.";
+    }
+  });
+
+  const banner = document.getElementById("finalExamBanner");
+  const result = TekiStore.submitFinalExam(currentCode, correct, total);
+  if(result.passed){
+    banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score}. Selamat, kamu lulus Ujian Akhir dan naik ke level ${result.newLevel}!</div>
+      <button class="btn ghost" style="margin-top:10px;" onclick="viewingLevel='${result.newLevel}';updateLevelPill();showPage('dashboard')">Lanjut ke Dashboard →</button>`;
+  } else {
+    banner.innerHTML = `<div class="resultBanner fail">Nilai kamu ${result.score}. Minimal ${FINAL_EXAM_PASS_SCORE} untuk lulus — pelajari lagi materi yang masih salah, lalu coba lagi.</div>`;
+  }
+}
+
+/* ================= PROGRESS PAGE ================= */
+function renderProgressPage(){
+  const student = TekiStore.getStudent(currentCode);
+  const weekly = TekiStore.usesWeeklyPackages(student.level);
+
+  if(weekly){
+    renderProgressPageWeekly(student);
+    return;
+  }
+
+  const sum = TekiStore.summarize(student);
+
+  const bars = sum.units.map(u => {
+    const val = u.progress?.score ?? null;
+    const h = val === null ? 4 : Math.max(6, val);
+    const pending = val === null ? "pending" : "";
+    return `<div class="chart-bar ${pending}"><div class="cv">${val === null ? "-" : val}</div><div class="fill" style="height:${h}%;"></div></div>`;
+  }).join("");
+  const labels = sum.units.map(u => `<span>U${u.order}</span>`).join("");
+
+  document.getElementById("mainArea").innerHTML = `
+    <h1 class="title">Progress Belajar Saya</h1>
+    <p class="desc">Ringkasan progres kamu di level ${student.level}.</p>
+    <div class="cards">
+      <div class="card"><div class="number">${sum.percent}%</div><div class="label">Progress level</div></div>
+      <div class="card"><div class="number">${sum.completedCount}/${sum.totalUnits}</div><div class="label">Unit selesai</div></div>
+      <div class="card"><div class="number">${sum.avg === null ? "-" : sum.avg}</div><div class="label">Nilai rata-rata</div></div>
+      <div class="card"><div class="number">${sum.status.label.replace(/[^\wÀ-ÿ ]/g,'').trim()}</div><div class="label">Status belajar</div></div>
+    </div>
+    <div class="card" style="margin-bottom:16px;">
+      <h2 style="color:var(--navy);margin-bottom:6px;">Progress keseluruhan</h2>
+      <div class="progress-track"><span class="progress-fill" style="width:${sum.percent}%;"></span></div>
+      <p style="color:var(--ink-soft);margin-top:8px;">${sum.percent}% dari level ${student.level} selesai</p>
+    </div>
+    <div class="card">
+      <h2 style="color:var(--navy);margin-bottom:6px;">Nilai per Unit</h2>
+      <div class="chart-wrap">${bars}</div>
+      <div class="chart-labels">${labels}</div>
+    </div>
+  `;
+}
+
+function renderProgressPageWeekly(student){
+  const sum = TekiStore.summarizeWeekly(student);
+
+  const bars = sum.weeks.map(w => {
+    const scores = [];
+    Object.values(w.progress?.bunpou || {}).forEach(b => scores.push(b.score));
+    if(w.progress?.kanji) scores.push(w.progress.kanji.score);
+    const val = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : null;
+    const h = val === null ? 4 : Math.max(6, val);
+    const pending = val === null ? "pending" : "";
+    return `<div class="chart-bar ${pending}"><div class="cv">${val === null ? "-" : val}</div><div class="fill" style="height:${h}%;"></div></div>`;
+  }).join("");
+  const labels = sum.weeks.map(w => `<span>M${w.week}</span>`).join("");
+
+  let deadlineBannerHTML = "";
+  if(sum.deadlineInfo){
+    const di = sum.deadlineInfo;
+    deadlineBannerHTML = `
+      <div class="deadlineBanner ${di.overdue ? 'overdue' : ''}">
+        <span>⏳ Target level <b>${student.level}</b>: tuntas dalam <b>${di.totalDays} hari</b> (mulai ${fmtDate(student.levelStartedAt)})</span>
+        <span><b>${di.overdue ? 'Lewat ' + Math.abs(di.daysLeft) + ' hari dari target' : di.daysLeft + ' hari tersisa'}</b></span>
+      </div>`;
+  }
+
+  document.getElementById("mainArea").innerHTML = `
+    <h1 class="title">Progress Belajar Saya</h1>
+    <p class="desc">Ringkasan progres kamu di level ${student.level} (paket mingguan: ${BUNPOU_PER_WEEK} Bunpou + ${KANJI_PER_WEEK} Kanji).</p>
+    ${deadlineBannerHTML}
+    <div class="cards">
+      <div class="card"><div class="number">${sum.percent}%</div><div class="label">Progress level</div></div>
+      <div class="card"><div class="number">${sum.doneWeeks}/${sum.totalWeeks}</div><div class="label">Paket minggu selesai</div></div>
+      <div class="card"><div class="number">${sum.avg === null ? "-" : sum.avg}</div><div class="label">Nilai rata-rata</div></div>
+      <div class="card"><div class="number">${sum.status.label.replace(/[^\wÀ-ÿ ]/g,'').trim()}</div><div class="label">Status belajar</div></div>
+    </div>
+    <div class="card" style="margin-bottom:16px;">
+      <h2 style="color:var(--navy);margin-bottom:6px;">Progress keseluruhan</h2>
+      <div class="progress-track"><span class="progress-fill" style="width:${sum.percent}%;"></span></div>
+      <p style="color:var(--ink-soft);margin-top:8px;">${sum.percent}% dari level ${student.level} selesai</p>
+    </div>
+    <div class="card">
+      <h2 style="color:var(--navy);margin-bottom:6px;">Nilai per Paket Minggu</h2>
+      <div class="chart-wrap">${bars}</div>
+      <div class="chart-labels">${labels}</div>
+    </div>
+  `;
+}
+
+/* ================= INIT ================= */
+document.getElementById("studentCode").addEventListener("keydown", e => { if(e.key === "Enter") login(); });
+const savedCode = sessionStorage.getItem("tekipaki_current_code");
+if(savedCode && TekiStore.getStudent(savedCode)){
+  currentCode = savedCode;
+  openApp();
+}
+</script>
+</body>
+</html>
