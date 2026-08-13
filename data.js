@@ -13,8 +13,28 @@
    ============================================================ */
 
 const STORAGE_KEY = "tekipaki_students_v1";
-const PASS_SCORE = 70;          // nilai minimal supaya unit dianggap lulus
-const UNIT_DEADLINE_DAYS = 7;   // setiap unit harus selesai dalam 1 minggu
+const PASS_SCORE = 70;          // nilai minimal supaya unit/kanji/paket dianggap lulus
+const UNIT_DEADLINE_DAYS = 7;   // (level non-paket, mis. N3) setiap unit harus selesai dalam 1 minggu
+
+/* ---------------------------------------------------------
+   ATURAN PAKET MINGGUAN (dipakai untuk level yang punya data
+   Kanji, misalnya N5): setiap minggu siswa dapat 1 PAKET berisi
+   3 unit Bunpou + 12 Kanji, dengan 1 deadline gabungan. Paket
+   dianggap lulus kalau SEMUA unit Bunpou di paket itu lulus DAN
+   kuis Kanji-nya lulus. Paket berikutnya baru terbuka setelah
+   paket sekarang lulus.
+--------------------------------------------------------- */
+const WEEK_DEADLINE_DAYS = 7;   // deadline 1 paket mingguan (bunpou + kanji)
+const BUNPOU_PER_WEEK = 3;      // target unit bunpou baru / minggu
+const KANJI_PER_WEEK = 12;      // target kanji hafalan baru / minggu
+const FINAL_EXAM_PASS_SCORE = 70; // nilai minimal ujian akhir level supaya naik level
+
+// Berapa hari 1 level harus tuntas total, dihitung sejak siswa mulai level
+// tsb (student.levelStartedAt). Level yang belum diisi di sini dianggap
+// belum punya batas waktu keseluruhan (hanya deadline per unit/paket).
+const LEVEL_DURATION_DAYS = {
+  N5: 90,   // N5 harus selesai dalam 3 bulan
+};
 
 // Kode akses guru/admin — ganti / tambahkan sesuai kebutuhan
 const TEACHER_CODES = ["GURU2026", "ADMINTP"];
@@ -30,11 +50,15 @@ function isValidTeacherCode(code){ return TEACHER_CODES.includes((code || "").tr
    berdasarkan field `student.level` (level yang sedang aktif
    dijalani siswa itu).
 
-   UNITS_BY_LEVEL menyimpan materi & latihan untuk tiap level.
-   Materi & latihan sudah lengkap untuk level N3. Level lain
-   tinggal ditambahkan dengan pola yang sama — array unit kosong
-   [] berarti "materi belum tersedia" dan akan ditampilkan
-   sebagai demikian di siswa.html.
+   UNITS_BY_LEVEL menyimpan materi & latihan Bunpou untuk tiap
+   level. KANJI_BY_LEVEL menyimpan daftar Kanji hafalan tiap
+   level. Level yang array-nya kosong [] berarti "materi belum
+   tersedia" dan akan ditampilkan sebagai demikian di siswa.html.
+
+   Field `materialUrl` (opsional) di tiap unit Bunpou adalah
+   link ke materi lengkap di website/tempat lain — kalau diisi,
+   akan muncul tombol "Buka Materi ↗" yang membuka link tsb di
+   tab baru.
 --------------------------------------------------------- */
 const LEVEL_ORDER = ["N5", "N4", "N3", "N2", "N1"];
 
@@ -164,11 +188,165 @@ const UNITS_N3 = [
   }
 ];
 
-// TODO: isi UNITS_N4 dan UNITS_N5 dengan pola yang sama seperti UNITS_N3
-// di atas (id, order, grammar, reading, meaning, explanation, pattern,
-// examples, quiz) supaya siswa yang start di N4/N5 punya materi sungguhan.
+/* ---------------------------------------------------------
+   UNITS_N5 — CONTOH / SAMPEL (2 minggu pertama = 6 unit).
+   ------------------------------------------------------------
+   ⚠️ INI BARU CONTOH supaya sistem paket mingguan bisa langsung
+   dicoba. Untuk cakupan N5 penuh (kira-kira 12–13 minggu / ~36–39
+   unit selama 3 bulan), tambahkan unit lagi dengan pola yang
+   SAMA PERSIS seperti di bawah (id unik, order berurut, lalu isi
+   explanation/pattern/examples/quiz). Urutan array = urutan buka
+   unit, dan tiap 3 unit berturutan otomatis jadi 1 paket mingguan.
+
+   `materialUrl`: ganti dengan link materi asli di website Anda —
+   kalau diisi, akan muncul tombol "Buka Materi ↗" di daftar unit
+   dan di halaman unit.
+--------------------------------------------------------- */
+const UNITS_N5 = [
+  {
+    id: "n5u1",
+    order: 1,
+    grammar: "〜は〜です",
+    reading: "~wa ~desu",
+    meaning: "A adalah B (pola kalimat paling dasar)",
+    materialUrl: "https://tekipaki.example.com/materi/n5/unit-1", // TODO: ganti link asli
+    explanation: [
+      "です berfungsi sebagai kata kerja bantu untuk menyatakan 'adalah' pada akhir kalimat.",
+      "は menandai topik kalimat (dibaca 'wa', bukan 'ha')."
+    ],
+    pattern: [
+      "[Topik] ＋ は ＋ [Keterangan] ＋ です ＝ [Topik] adalah [Keterangan]"
+    ],
+    examples: [
+      { jp: "私は学生です。", reading: "わたしはがくせいです。", meaning: "Saya adalah pelajar." },
+      { jp: "これは本です。", reading: "これはほんです。", meaning: "Ini adalah buku." }
+    ],
+    quiz: [
+      { id: "q1", words: ["私は", "学生です"], answer: ["私は", "学生です"] },
+      { id: "q2", words: ["これは", "本です"], answer: ["これは", "本です"] }
+    ]
+  },
+  {
+    id: "n5u2",
+    order: 2,
+    grammar: "〜を〜ます",
+    reading: "~o ~masu",
+    meaning: "melakukan sesuatu terhadap objek",
+    materialUrl: "https://tekipaki.example.com/materi/n5/unit-2", // TODO: ganti link asli
+    explanation: [
+      "を menandai objek dari kata kerja.",
+      "ます adalah akhiran kata kerja bentuk sopan untuk waktu sekarang/akan datang."
+    ],
+    pattern: [
+      "[Objek] ＋ を ＋ [Kata Kerja]ます ＝ melakukan [Kata Kerja] terhadap [Objek]"
+    ],
+    examples: [
+      { jp: "ご飯を食べます。", reading: "ごはんをたべます。", meaning: "Makan nasi." },
+      { jp: "本を読みます。", reading: "ほんをよみます。", meaning: "Membaca buku." }
+    ],
+    quiz: [
+      { id: "q1", words: ["ご飯を", "食べます"], answer: ["ご飯を", "食べます"] },
+      { id: "q2", words: ["本を", "読みます"], answer: ["本を", "読みます"] }
+    ]
+  },
+  {
+    id: "n5u3",
+    order: 3,
+    grammar: "〜に行きます",
+    reading: "~ni ikimasu",
+    meaning: "pergi ke ~",
+    materialUrl: "https://tekipaki.example.com/materi/n5/unit-3", // TODO: ganti link asli
+    explanation: [
+      "に menandai tujuan/arah tempat pada kata kerja pergerakan seperti 行きます (pergi).",
+      "Pola ini dipakai untuk menyatakan tujuan perjalanan sehari-hari."
+    ],
+    pattern: [
+      "[Tempat] ＋ に ＋ 行きます ＝ pergi ke [Tempat]"
+    ],
+    examples: [
+      { jp: "学校に行きます。", reading: "がっこうにいきます。", meaning: "Pergi ke sekolah." },
+      { jp: "日本に行きます。", reading: "にほんにいきます。", meaning: "Pergi ke Jepang." }
+    ],
+    quiz: [
+      { id: "q1", words: ["学校に", "行きます"], answer: ["学校に", "行きます"] },
+      { id: "q2", words: ["日本に", "行きます"], answer: ["日本に", "行きます"] }
+    ]
+  },
+  {
+    id: "n5u4",
+    order: 4,
+    grammar: "〜があります／います",
+    reading: "~ga arimasu / imasu",
+    meaning: "ada ~ (benda mati / makhluk hidup)",
+    materialUrl: "https://tekipaki.example.com/materi/n5/unit-4", // TODO: ganti link asli
+    explanation: [
+      "あります dipakai untuk benda mati/tak bergerak, います untuk manusia/hewan (makhluk hidup).",
+      "が menandai subjek yang keberadaannya sedang dinyatakan."
+    ],
+    pattern: [
+      "[Benda mati] ＋ が ＋ あります ＝ ada [Benda]",
+      "[Makhluk hidup] ＋ が ＋ います ＝ ada [Makhluk hidup]"
+    ],
+    examples: [
+      { jp: "机の上に本があります。", reading: "つくえのうえにほんがあります。", meaning: "Ada buku di atas meja." },
+      { jp: "教室に学生がいます。", reading: "きょうしつにがくせいがいます。", meaning: "Ada murid di kelas." }
+    ],
+    quiz: [
+      { id: "q1", words: ["机の上に", "本が", "あります"], answer: ["机の上に", "本が", "あります"] },
+      { id: "q2", words: ["教室に", "学生が", "います"], answer: ["教室に", "学生が", "います"] }
+    ]
+  },
+  {
+    id: "n5u5",
+    order: 5,
+    grammar: "〜てください",
+    reading: "~te kudasai",
+    meaning: "tolong lakukan ~",
+    materialUrl: "https://tekipaki.example.com/materi/n5/unit-5", // TODO: ganti link asli
+    explanation: [
+      "Dibentuk dari kata kerja bentuk -te ditambah ください.",
+      "Dipakai untuk meminta atau menyuruh seseorang melakukan sesuatu secara sopan."
+    ],
+    pattern: [
+      "[Kata Kerja bentuk -te] ＋ ください ＝ tolong ~"
+    ],
+    examples: [
+      { jp: "ここに座ってください。", reading: "ここにすわってください。", meaning: "Tolong duduk di sini." },
+      { jp: "名前を書いてください。", reading: "なまえをかいてください。", meaning: "Tolong tulis namanya." }
+    ],
+    quiz: [
+      { id: "q1", words: ["ここに", "座って", "ください"], answer: ["ここに", "座って", "ください"] },
+      { id: "q2", words: ["名前を", "書いて", "ください"], answer: ["名前を", "書いて", "ください"] }
+    ]
+  },
+  {
+    id: "n5u6",
+    order: 6,
+    grammar: "〜たいです",
+    reading: "~tai desu",
+    meaning: "ingin melakukan ~",
+    materialUrl: "https://tekipaki.example.com/materi/n5/unit-6", // TODO: ganti link asli
+    explanation: [
+      "Dibentuk dari kata kerja bentuk ます (buang ます) ditambah たい.",
+      "Menyatakan keinginan pembicara untuk melakukan suatu tindakan."
+    ],
+    pattern: [
+      "[Kata Kerja bentuk ます tanpa ます] ＋ たいです ＝ ingin ~"
+    ],
+    examples: [
+      { jp: "日本に行きたいです。", reading: "にほんにいきたいです。", meaning: "Saya ingin pergi ke Jepang." },
+      { jp: "水を飲みたいです。", reading: "みずをのみたいです。", meaning: "Saya ingin minum air." }
+    ],
+    quiz: [
+      { id: "q1", words: ["日本に", "行きたいです"], answer: ["日本に", "行きたいです"] },
+      { id: "q2", words: ["水を", "飲みたいです"], answer: ["水を", "飲みたいです"] }
+    ]
+  }
+];
+
+// TODO: isi UNITS_N4 dengan pola yang sama seperti UNITS_N3/UNITS_N5 di
+// atas supaya siswa yang sudah naik ke N4 punya materi sungguhan.
 const UNITS_N4 = [];
-const UNITS_N5 = [];
 const UNITS_N2 = [];
 const UNITS_N1 = [];
 
@@ -184,6 +362,60 @@ function unitsForLevel(levelId){
   return UNITS_BY_LEVEL[levelId] || [];
 }
 
+/* ---------------------------------------------------------
+   KANJI_N5 — CONTOH / SAMPEL (2 minggu pertama = 24 kanji).
+   ------------------------------------------------------------
+   ⚠️ Sama seperti UNITS_N5, ini baru contoh. Tambahkan kanji lagi
+   dengan pola {id, kanji, reading, meaning} — setiap 12 kanji
+   berturutan otomatis jadi kebutuhan hafalan 1 paket mingguan.
+--------------------------------------------------------- */
+const KANJI_N5 = [
+  // Minggu 1 — angka dasar
+  { id: "k01", kanji: "一", reading: "いち", meaning: "satu" },
+  { id: "k02", kanji: "二", reading: "に", meaning: "dua" },
+  { id: "k03", kanji: "三", reading: "さん", meaning: "tiga" },
+  { id: "k04", kanji: "四", reading: "し・よん", meaning: "empat" },
+  { id: "k05", kanji: "五", reading: "ご", meaning: "lima" },
+  { id: "k06", kanji: "六", reading: "ろく", meaning: "enam" },
+  { id: "k07", kanji: "七", reading: "しち・なな", meaning: "tujuh" },
+  { id: "k08", kanji: "八", reading: "はち", meaning: "delapan" },
+  { id: "k09", kanji: "九", reading: "きゅう・く", meaning: "sembilan" },
+  { id: "k10", kanji: "十", reading: "じゅう", meaning: "sepuluh" },
+  { id: "k11", kanji: "百", reading: "ひゃく", meaning: "seratus" },
+  { id: "k12", kanji: "千", reading: "せん", meaning: "seribu" },
+  // Minggu 2 — kata benda dasar sehari-hari
+  { id: "k13", kanji: "日", reading: "にち・ひ", meaning: "hari / matahari" },
+  { id: "k14", kanji: "月", reading: "げつ・つき", meaning: "bulan (kalender) / bulan (langit)" },
+  { id: "k15", kanji: "火", reading: "か", meaning: "api" },
+  { id: "k16", kanji: "水", reading: "すい", meaning: "air" },
+  { id: "k17", kanji: "木", reading: "もく", meaning: "pohon / kayu" },
+  { id: "k18", kanji: "金", reading: "きん", meaning: "emas / uang" },
+  { id: "k19", kanji: "土", reading: "ど", meaning: "tanah" },
+  { id: "k20", kanji: "人", reading: "ひと・じん", meaning: "orang" },
+  { id: "k21", kanji: "本", reading: "ほん", meaning: "buku / asal" },
+  { id: "k22", kanji: "年", reading: "ねん", meaning: "tahun" },
+  { id: "k23", kanji: "時", reading: "じ", meaning: "waktu / jam" },
+  { id: "k24", kanji: "分", reading: "ふん・ぶん", meaning: "menit / bagian" },
+];
+
+// TODO: isi kanji level lain dengan pola yang sama.
+const KANJI_N4 = [];
+const KANJI_N3 = [];
+const KANJI_N2 = [];
+const KANJI_N1 = [];
+
+const KANJI_BY_LEVEL = {
+  N5: KANJI_N5,
+  N4: KANJI_N4,
+  N3: KANJI_N3,
+  N2: KANJI_N2,
+  N1: KANJI_N1,
+};
+
+function kanjiForLevel(levelId){
+  return KANJI_BY_LEVEL[levelId] || [];
+}
+
 /* Dipertahankan untuk kompatibilitas mundur — ini metadata level statis
    (tanpa status, karena status sekarang dihitung per siswa). Kalau ada
    kode lama yang masih membaca `LEVELS` langsung, sebaiknya diganti ke
@@ -191,7 +423,7 @@ function unitsForLevel(levelId){
 const LEVELS = LEVEL_META.map(l => ({ ...l, status: "aktif" }));
 
 /* ---------------------------------------------------------
-   2. UTIL TANGGAL
+   2. UTIL TANGGAL & ARRAY
 --------------------------------------------------------- */
 function nowISO() { return new Date().toISOString(); }
 function addDays(iso, days) {
@@ -208,9 +440,61 @@ function fmtDate(iso) {
   const bulan = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
   return d.getDate() + " " + bulan[d.getMonth()] + " " + d.getFullYear();
 }
+function chunkArray(arr, size){
+  const out = [];
+  for(let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
+function shuffleArray(arr){
+  const a = [...arr];
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 /* ---------------------------------------------------------
-   3. STORE API  (localStorage — ganti ke backend di sini nanti)
+   3. PAKET MINGGUAN (BUNPOU + KANJI) — dipakai untuk level yang
+   sudah punya data Kanji (lihat KANJI_BY_LEVEL), misalnya N5.
+   Level yang belum punya data Kanji (mis. N3 saat ini) tetap
+   pakai alur unit-per-unit yang lama, supaya tidak ada yang rusak.
+--------------------------------------------------------- */
+function levelUsesWeeklyPackages(levelId){
+  return kanjiForLevel(levelId).length > 0;
+}
+
+function getWeekPackagesForLevel(levelId){
+  const bunpouChunks = chunkArray(unitsForLevel(levelId), BUNPOU_PER_WEEK);
+  const kanjiChunks = chunkArray(kanjiForLevel(levelId), KANJI_PER_WEEK);
+  const count = Math.max(bunpouChunks.length, kanjiChunks.length);
+  const packages = [];
+  for(let i = 0; i < count; i++){
+    packages.push({
+      index: i,
+      week: i + 1,
+      bunpouUnits: bunpouChunks[i] || [],
+      kanjiBatch: kanjiChunks[i] || [],
+    });
+  }
+  return packages;
+}
+
+/** Bikin soal pilihan ganda kanji dari 1 batch (mis. 12 kanji minggu ini).
+    Tiap soal: tampilkan karakter kanji, siswa pilih arti/bacaan yang benar
+    dari 4 opsi (distraktor diambil acak dari kanji lain di level yang sama). */
+function buildKanjiQuiz(levelId, batch){
+  const pool = kanjiForLevel(levelId);
+  return batch.map(k => {
+    const distractorPool = pool.filter(x => x.id !== k.id);
+    const distractors = shuffleArray(distractorPool).slice(0, 3).map(x => x.meaning);
+    const options = shuffleArray([k.meaning, ...distractors]);
+    return { id: k.id, kanji: k.kanji, reading: k.reading, correct: k.meaning, options };
+  });
+}
+
+/* ---------------------------------------------------------
+   4. STORE API  (localStorage — ganti ke backend di sini nanti)
 --------------------------------------------------------- */
 const TekiStore = {
 
@@ -259,8 +543,11 @@ const TekiStore = {
       return {
         code, name, level: "N3",
         joinedAt: addDays(nowISO(), -(cursor + 20)),
+        levelStartedAt: addDays(nowISO(), -(cursor + 20)),
         lastActiveAt: addDays(nowISO(), -(opts.inactiveDays ?? 0)),
-        progress
+        progress,
+        weekProgress: {},
+        finalExam: {}
       };
     };
 
@@ -305,8 +592,11 @@ const TekiStore = {
     students.push({
       code, name, level,
       joinedAt: nowISO(),
+      levelStartedAt: nowISO(),
       lastActiveAt: nowISO(),
-      progress: {}
+      progress: {},
+      weekProgress: {},
+      finalExam: {}
     });
     this._writeAll(students);
     return { ok: true };
@@ -319,7 +609,13 @@ const TekiStore = {
   },
 
   getStudent(code) {
-    return this.getAllStudents().find(s => s.code === code) || null;
+    const s = this.getAllStudents().find(s => s.code === code) || null;
+    if (s) {
+      if (!s.weekProgress) s.weekProgress = {};
+      if (!s.finalExam) s.finalExam = {};
+      if (!s.levelStartedAt) s.levelStartedAt = s.joinedAt || nowISO();
+    }
+    return s;
   },
 
   touchLastActive(code) {
@@ -342,8 +638,25 @@ const TekiStore = {
     });
   },
 
+  /** Apakah level aktif siswa memakai sistem paket mingguan (bunpou+kanji)? */
+  usesWeeklyPackages(levelId){
+    return levelUsesWeeklyPackages(levelId);
+  },
+
+  /** Info batas waktu keseluruhan level (mis. N5 = 90 hari), dihitung
+      sejak student.levelStartedAt. Return null kalau level tsb belum
+      diatur batas waktunya. */
+  getLevelDeadlineInfo(student) {
+    const days = LEVEL_DURATION_DAYS[student.level];
+    if (!days || !student.levelStartedAt) return null;
+    const deadline = addDays(student.levelStartedAt, days);
+    const daysLeft = daysBetween(nowISO(), deadline);
+    return { totalDays: days, deadline, daysLeft, overdue: daysLeft < 0 };
+  },
+
   /** Susun daftar unit dengan status terkunci/berjalan/selesai + tenggat,
-      untuk LEVEL AKTIF siswa (student.level). */
+      untuk LEVEL AKTIF siswa (student.level). Dipakai untuk level yang
+      TIDAK memakai paket mingguan (mis. N3). */
   getUnitStates(student) {
     const units = unitsForLevel(student.level);
     let previousDone = true;
@@ -363,6 +676,38 @@ const TekiStore = {
     });
   },
 
+  /** Susun paket mingguan (3 bunpou + 12 kanji) dengan status masing-masing,
+      untuk LEVEL AKTIF siswa. Return null kalau level ini tidak memakai
+      sistem paket mingguan (pemanggil sebaiknya fallback ke getUnitStates). */
+  getWeekStates(student) {
+    const levelId = student.level;
+    if (!levelUsesWeeklyPackages(levelId)) return null;
+    const packages = getWeekPackagesForLevel(levelId);
+    if (!student.weekProgress) student.weekProgress = {};
+    if (!student.weekProgress[levelId]) student.weekProgress[levelId] = {};
+    const wp = student.weekProgress[levelId];
+
+    let previousDone = true;
+    let dirty = false;
+    const result = packages.map(pkg => {
+      let p = wp[pkg.index];
+      if (!p && previousDone) {
+        const unlockedAt = nowISO();
+        p = { status: "berjalan", unlockedAt, deadline: addDays(unlockedAt, WEEK_DEADLINE_DAYS), bunpou: {}, kanji: null, completedAt: null };
+        wp[pkg.index] = p;
+        dirty = true;
+      }
+      const state = p ? p.status : "terkunci";
+      const overdue = !!p && state !== "selesai" && new Date() > new Date(p.deadline);
+      previousDone = state === "selesai";
+      const bunpouDoneCount = pkg.bunpouUnits.filter(u => p?.bunpou?.[u.id]?.passed).length;
+      const kanjiDone = !!p?.kanji?.passed;
+      return { ...pkg, state, overdue, progress: p || null, bunpouDoneCount, bunpouTotal: pkg.bunpouUnits.length, kanjiDone };
+    });
+    if (dirty) this._persistStudent(student);
+    return result;
+  },
+
   _persistStudent(student) {
     const students = this.getAllStudents();
     const idx = students.findIndex(s => s.code === student.code);
@@ -370,10 +715,11 @@ const TekiStore = {
     this._writeAll(students);
   },
 
-  /** Kirim hasil latihan untuk sebuah unit di level aktif siswa.
-      correctCount/totalCount dari kuis. Kalau ini unit terakhir di
-      level tsb dan lulus, siswa otomatis naik ke level berikutnya
-      di LEVEL_ORDER (kalau levelnya sudah punya materi). */
+  /** Kirim hasil latihan untuk sebuah unit di level aktif siswa
+      (hanya untuk level yang TIDAK memakai paket mingguan, mis. N3).
+      Kalau ini unit terakhir di level tsb dan lulus, siswa otomatis
+      naik ke level berikutnya di LEVEL_ORDER (kalau levelnya sudah
+      punya materi). */
   submitUnitResult(code, unitId, correctCount, totalCount) {
     const student = this.getStudent(code);
     if (!student) return null;
@@ -400,6 +746,7 @@ const TekiStore = {
         const nextLevel = idx > -1 ? LEVEL_ORDER[idx + 1] : null;
         if (nextLevel && unitsForLevel(nextLevel).length > 0) {
           student.level = nextLevel;
+          student.levelStartedAt = nowISO();
           leveledUp = true;
         }
       }
@@ -409,8 +756,121 @@ const TekiStore = {
     return { score, passed, leveledUp, newLevel: student.level };
   },
 
-  /** Ringkasan progres 1 siswa untuk kartu / panel guru — otomatis
-      mengikuti level aktif siswa (student.level). */
+  /** Kirim hasil kuis 1 unit Bunpou DI DALAM sebuah paket mingguan
+      (level yang memakai sistem paket, mis. N5). */
+  submitBunpouInPackage(code, levelId, packageIndex, unitId, correctCount, totalCount) {
+    const student = this.getStudent(code);
+    if (!student) return null;
+    const score = Math.round((correctCount / totalCount) * 100);
+    const passed = score >= PASS_SCORE;
+    this.getWeekStates(student); // pastikan paket sudah ter-inisialisasi
+    const p = student.weekProgress[levelId]?.[packageIndex];
+    if (!p) return null;
+    p.bunpou[unitId] = { score, passed, date: nowISO() };
+    student.lastActiveAt = nowISO();
+    const done = this._checkPackageCompletion(student, levelId, packageIndex);
+    this._persistStudent(student);
+    return { score, passed, ...done };
+  },
+
+  /** Kirim hasil kuis Kanji (pilihan ganda) untuk 1 paket mingguan. */
+  submitKanjiInPackage(code, levelId, packageIndex, correctCount, totalCount) {
+    const student = this.getStudent(code);
+    if (!student) return null;
+    const score = Math.round((correctCount / totalCount) * 100);
+    const passed = score >= PASS_SCORE;
+    this.getWeekStates(student);
+    const p = student.weekProgress[levelId]?.[packageIndex];
+    if (!p) return null;
+    p.kanji = { score, passed, date: nowISO() };
+    student.lastActiveAt = nowISO();
+    const done = this._checkPackageCompletion(student, levelId, packageIndex);
+    this._persistStudent(student);
+    return { score, passed, ...done };
+  },
+
+  _checkPackageCompletion(student, levelId, packageIndex) {
+    const packages = getWeekPackagesForLevel(levelId);
+    const pkg = packages[packageIndex];
+    const p = student.weekProgress[levelId][packageIndex];
+    if (!pkg || !p) return { packageCompleted: false, allPackagesDone: false };
+    const allBunpouPassed = pkg.bunpouUnits.every(u => p.bunpou[u.id]?.passed);
+    const kanjiPassed = pkg.kanjiBatch.length === 0 || !!p.kanji?.passed;
+    let packageCompleted = false;
+    if (allBunpouPassed && kanjiPassed && p.status !== "selesai") {
+      p.status = "selesai";
+      p.completedAt = nowISO();
+      packageCompleted = true;
+    }
+    const allPackagesDone = packages.length > 0 && packages.every((_, i) => student.weekProgress[levelId][i]?.status === "selesai");
+    return { packageCompleted, allPackagesDone };
+  },
+
+  /** Apakah siswa sudah boleh mengambil Ujian Akhir level (semua paket
+      mingguan levelnya sudah lulus)? */
+  canTakeFinalExam(student) {
+    const levelId = student.level;
+    if (!levelUsesWeeklyPackages(levelId)) return false;
+    const packages = getWeekPackagesForLevel(levelId);
+    const wp = student.weekProgress?.[levelId] || {};
+    return packages.length > 0 && packages.every((_, i) => wp[i]?.status === "selesai");
+  },
+
+  /** Susun soal Ujian Akhir: gabungan 1 soal susun-kalimat per unit Bunpou
+      + kuis pilihan ganda Kanji (maks 12 kanji diambil acak dari level ini). */
+  buildFinalExam(levelId) {
+    const units = unitsForLevel(levelId);
+    const kanjiPool = kanjiForLevel(levelId);
+    const bunpouQuestions = units.map(u => ({ type: "bunpou", unitId: u.id, grammar: u.grammar, ...u.quiz[0] }));
+    const kanjiSample = shuffleArray(kanjiPool).slice(0, Math.min(12, kanjiPool.length));
+    const kanjiQuestions = buildKanjiQuiz(levelId, kanjiSample);
+    return { bunpouQuestions, kanjiQuestions };
+  },
+
+  /** Kirim hasil Ujian Akhir. Kalau lulus (>= FINAL_EXAM_PASS_SCORE),
+      siswa naik ke level berikutnya di LEVEL_ORDER. */
+  submitFinalExam(code, correctCount, totalCount) {
+    const student = this.getStudent(code);
+    if (!student) return null;
+    const levelId = student.level;
+    const score = Math.round((correctCount / totalCount) * 100);
+    const passed = score >= FINAL_EXAM_PASS_SCORE;
+    if (!student.finalExam) student.finalExam = {};
+    const prevAttempts = student.finalExam[levelId]?.attempts || [];
+    student.finalExam[levelId] = {
+      status: passed ? "selesai" : "berjalan",
+      score,
+      completedAt: passed ? nowISO() : null,
+      attempts: [...prevAttempts, { date: nowISO(), score }]
+    };
+    let leveledUp = false;
+    if (passed) {
+      const idx = LEVEL_ORDER.indexOf(levelId);
+      const nextLevel = idx > -1 ? LEVEL_ORDER[idx + 1] : null;
+      if (nextLevel) {
+        student.level = nextLevel;
+        student.levelStartedAt = nowISO();
+        leveledUp = true;
+      }
+    }
+    student.lastActiveAt = nowISO();
+    this._persistStudent(student);
+    return { score, passed, leveledUp, newLevel: student.level };
+  },
+
+  buildKanjiQuizForPackage(levelId, packageIndex) {
+    const packages = getWeekPackagesForLevel(levelId);
+    const pkg = packages[packageIndex];
+    if (!pkg) return [];
+    return buildKanjiQuiz(levelId, pkg.kanjiBatch);
+  },
+
+  getWeekPackagesForLevel(levelId){
+    return getWeekPackagesForLevel(levelId);
+  },
+
+  /** Ringkasan progres 1 siswa untuk level yang TIDAK memakai paket
+      mingguan (mis. N3) — dipakai untuk kartu / panel guru. */
   summarize(student) {
     const units = this.getUnitStates(student);
     const totalUnits = unitsForLevel(student.level).length;
@@ -428,6 +888,35 @@ const TekiStore = {
       units, avg, inactiveDays, anyOverdue, status,
       completedCount: done.length, totalUnits,
       percent: totalUnits ? Math.round((done.length / totalUnits) * 100) : 0
+    };
+  },
+
+  /** Ringkasan progres 1 siswa untuk level yang MEMAKAI paket mingguan
+      (mis. N5) — dipakai untuk dashboard / progress siswa. */
+  summarizeWeekly(student) {
+    const weeks = this.getWeekStates(student) || [];
+    const totalWeeks = weeks.length;
+    const doneWeeks = weeks.filter(w => w.state === "selesai").length;
+    const scores = [];
+    weeks.forEach(w => {
+      Object.values(w.progress?.bunpou || {}).forEach(b => scores.push(b.score));
+      if (w.progress?.kanji) scores.push(w.progress.kanji.score);
+    });
+    const avg = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null;
+    const inactiveDays = Math.max(0, daysBetween(student.lastActiveAt, nowISO()));
+    const anyOverdue = weeks.some(w => w.overdue);
+    const percent = totalWeeks ? Math.round((doneWeeks / totalWeeks) * 100) : 0;
+    const deadlineInfo = this.getLevelDeadlineInfo(student);
+    const finalExam = student.finalExam?.[student.level] || null;
+    const canFinalExam = this.canTakeFinalExam(student);
+    let status;
+    if (totalWeeks === 0) status = { key: "warn", label: "○ Materi belum tersedia" };
+    else if (avg === null || inactiveDays > 14) status = { key: "fail", label: "⚠ Perlu Perhatian" };
+    else if ((deadlineInfo && deadlineInfo.overdue) || avg < PASS_SCORE || inactiveDays > 7 || anyOverdue) status = { key: "warn", label: "● Perlu Didorong" };
+    else status = { key: "pass", label: "✓ Aktif Baik" };
+    return {
+      weeks, totalWeeks, doneWeeks, avg, inactiveDays, anyOverdue, status,
+      percent, deadlineInfo, finalExam, canFinalExam
     };
   }
 };
