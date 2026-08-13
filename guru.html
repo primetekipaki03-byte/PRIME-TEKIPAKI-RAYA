@@ -232,6 +232,13 @@ SISWA
           <input type="text" id="searchInput" placeholder="Cari nama siswa...">
         </div>
         <div class="sort-row" id="sortRow"></div>
+        <button class="btn" style="width:100%;margin-top:10px;" onclick="toggleAddForm()">+ Tambah Siswa</button>
+        <div id="addForm" class="hidden" style="margin-top:12px;padding:12px;background:var(--paper);border-radius:10px;">
+          <input id="newCode" placeholder="KODE SISWA (mis. PTPR08)" style="width:100%;padding:9px 11px;border:1px solid var(--paper2);border-radius:8px;margin-bottom:8px;text-transform:uppercase;font-family:'JetBrains Mono',monospace;font-size:.82rem;">
+          <input id="newName" placeholder="Nama Siswa" style="width:100%;padding:9px 11px;border:1px solid var(--paper2);border-radius:8px;margin-bottom:8px;font-size:.85rem;">
+          <div id="addFormError" style="color:var(--seal);font-size:.78rem;min-height:16px;"></div>
+          <button class="btn" style="width:100%;" onclick="submitAddStudent()">Daftarkan Siswa</button>
+        </div>
       </div>
       <div class="student-list" id="studentList"></div>
     </div>
@@ -295,6 +302,28 @@ function initAdmin(){
   renderStats();
   renderList();
   renderDetail();
+}
+
+/* ================= TAMBAH SISWA ================= */
+function toggleAddForm(){
+  document.getElementById("addForm").classList.toggle("hidden");
+  document.getElementById("addFormError").textContent = "";
+}
+function submitAddStudent(){
+  const code = document.getElementById("newCode").value;
+  const name = document.getElementById("newName").value;
+  const result = TekiStore.addStudent(code, name);
+  const err = document.getElementById("addFormError");
+  if(!result.ok){
+    err.textContent = "❌ " + result.message;
+    return;
+  }
+  document.getElementById("newCode").value = "";
+  document.getElementById("newName").value = "";
+  document.getElementById("addForm").classList.add("hidden");
+  err.textContent = "";
+  renderStats();
+  renderList();
 }
 
 /* ================= STATS ================= */
