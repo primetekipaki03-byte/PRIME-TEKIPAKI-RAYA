@@ -230,7 +230,6 @@ function openApp(){
   const student = TekiStore.getStudent(currentCode);
   document.getElementById("loginPage").classList.add("hidden");
   document.getElementById("app").classList.remove("hidden");
-  document.getElementById("studentName").textContent = student.name;
   document.getElementById("headerName").textContent = "👤 " + student.name;
   document.querySelectorAll(".nav").forEach(n => n.addEventListener("click", () => showPage(n.dataset.page)));
   showPage("dashboard");
