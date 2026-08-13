@@ -112,7 +112,9 @@ a{color:inherit;}
 .avatar{flex:none;width:38px;height:38px;border-radius:10px;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:"Shippori Mincho",serif;font-weight:800;font-size:1rem;}
 .student-item.active .avatar{background:var(--gold);color:var(--navy2);}
 .s-info{flex:1;min-width:0;}
-.s-name{font-weight:700;font-size:.92rem;color:var(--navy);}
+.s-name{font-weight:700;font-size:.92rem;color:var(--navy);display:flex;align-items:center;gap:6px;}
+.lvl-badge{font-family:"JetBrains Mono",monospace;font-size:.62rem;font-weight:700;letter-spacing:.5px;padding:2px 7px;border-radius:999px;background:var(--warn-bg);color:var(--gold-dim);flex:none;}
+.student-item.active .lvl-badge{background:rgba(255,255,255,.14);color:var(--gold);}
 .s-meta{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--ink-soft);margin-top:2px;}
 .s-score{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:.85rem;flex:none;padding:4px 9px;border-radius:8px;}
 .s-score.pass{background:var(--pass-bg);color:var(--pass);}
@@ -129,16 +131,19 @@ a{color:inherit;}
 .student-item.active .del-btn{opacity:1;border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#ef8f86;}
 .del-btn:hover{background:var(--seal);color:#fff;border-color:var(--seal);}
 
+.form-note{font-size:.72rem;color:var(--ink-soft);margin-top:2px;line-height:1.5;}
+
 .detail-panel{padding:26px 26px 30px;}
 .detail-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--paper2);margin-bottom:22px;}
 .detail-id{display:flex;gap:14px;align-items:center;}
 .avatar-lg{width:58px;height:58px;border-radius:14px;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:"Shippori Mincho",serif;font-weight:800;font-size:1.5rem;flex:none;}
-.detail-id h3{font-size:1.3rem;color:var(--navy);}
+.detail-id h3{font-size:1.3rem;color:var(--navy);display:flex;align-items:center;gap:8px;}
 .detail-id .sub{font-family:"JetBrains Mono",monospace;font-size:.75rem;color:var(--ink-soft);margin-top:4px;}
 .status-pill{font-family:"JetBrains Mono",monospace;font-size:.7rem;font-weight:700;letter-spacing:.5px;padding:6px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;}
 .status-pill.pass{background:var(--pass-bg);color:var(--pass);}
 .status-pill.warn{background:var(--warn-bg);color:var(--gold-dim);}
 .status-pill.fail{background:var(--fail-bg);color:var(--seal);}
+.lvl-badge-lg{font-family:"JetBrains Mono",monospace;font-size:.72rem;font-weight:700;letter-spacing:.5px;padding:4px 10px;border-radius:999px;background:var(--navy);color:var(--gold);flex:none;}
 .avg-block{text-align:right;}
 .avg-num{font-family:"JetBrains Mono",monospace;font-size:2.1rem;font-weight:700;color:var(--navy);line-height:1;}
 .avg-lbl{font-size:.7rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
@@ -172,6 +177,8 @@ a{color:inherit;}
 .chart-bar .cv{font-family:"JetBrains Mono",monospace;font-size:.65rem;color:var(--ink-soft);margin-bottom:4px;}
 .chart-labels{display:flex;gap:8px;margin-top:6px;}
 .chart-labels span{flex:1;text-align:center;font-family:"JetBrains Mono",monospace;font-size:.6rem;color:var(--muted);}
+
+.empty-level{padding:24px 18px;text-align:center;color:var(--ink-soft);font-size:.85rem;background:var(--paper);border-radius:10px;border:1px dashed var(--paper2);}
 
 .dummy-note{margin-top:36px;padding:16px 18px;background:#fff;border:1px dashed var(--paper2);border-radius:12px;font-size:.82rem;color:var(--ink-soft);line-height:1.6;}
 .dummy-note b{color:var(--navy);}
@@ -241,7 +248,8 @@ SISWA
         <div id="addForm" class="hidden" style="margin-top:12px;padding:12px;background:var(--paper);border-radius:10px;">
           <input id="newCode" placeholder="KODE SISWA (mis. PTPR08)" style="width:100%;padding:9px 11px;border:1px solid var(--paper2);border-radius:8px;margin-bottom:8px;text-transform:uppercase;font-family:'JetBrains Mono',monospace;font-size:.82rem;">
           <input id="newName" placeholder="Nama Siswa" style="width:100%;padding:9px 11px;border:1px solid var(--paper2);border-radius:8px;margin-bottom:8px;font-size:.85rem;">
-          <div id="addFormError" style="color:var(--seal);font-size:.78rem;min-height:16px;"></div>
+          <div class="form-note">Siswa baru otomatis mulai dari level <b>N5</b>.</div>
+          <div id="addFormError" style="color:var(--seal);font-size:.78rem;min-height:16px;margin-top:6px;"></div>
           <button class="btn" style="width:100%;" onclick="submitAddStudent()">Daftarkan Siswa</button>
         </div>
       </div>
@@ -317,6 +325,11 @@ function toggleAddForm(){
 function submitAddStudent(){
   const code = document.getElementById("newCode").value;
   const name = document.getElementById("newName").value;
+  // Tidak ada parameter level di sini secara sengaja — semua siswa baru
+  // otomatis masuk sebagai level N5 (default di TekiStore.addStudent,
+  // lihat data.js). Kalau ke depannya perlu opsi level lain saat
+  // mendaftarkan siswa, tinggal tambahkan dropdown level di form ini
+  // dan kirim sebagai TekiStore.addStudent(code, name, level).
   const result = TekiStore.addStudent(code, name);
   const err = document.getElementById("addFormError");
   if(!result.ok){
@@ -404,7 +417,7 @@ function renderList(){
     item.innerHTML = `
       <div class="avatar">${s.name.slice(0,2).toUpperCase()}</div>
       <div class="s-info">
-        <div class="s-name">${s.name}</div>
+        <div class="s-name">${s.name} <span class="lvl-badge">${s.level}</span></div>
         <div class="s-meta">${sum.completedCount}/${sum.totalUnits} unit · aktif ${sum.inactiveDays} hari lalu</div>
       </div>
       <div class="s-score ${sum.status.key}">${sum.avg === null ? "-" : sum.avg}</div>
@@ -422,6 +435,9 @@ function renderList(){
 
 /* ================= CHART ================= */
 function renderChart(sum){
+  if(sum.units.length === 0){
+    return `<div class="empty-level">Materi untuk level ini belum tersedia.</div>`;
+  }
   const bars = sum.units.map(u => {
     const val = u.progress?.score ?? null;
     const h = val === null ? 4 : Math.max(6, val);
@@ -458,13 +474,13 @@ function renderDetail(){
   }
   const sum = TekiStore.summarize(student);
 
-  const unitRows = sum.units.map(u => `
+  const unitRows = sum.units.length ? sum.units.map(u => `
     <tr>
       <td><b>${u.grammar}</b><br><span class="tgl">Unit ${u.order}</span></td>
       <td>${unitStatusPill(u)}</td>
       <td class="tgl">${u.progress?.deadline ? fmtDate(u.progress.deadline) : "—"}</td>
       <td class="tgl">${u.progress?.completedAt ? fmtDate(u.progress.completedAt) : "—"}</td>
-    </tr>`).join("");
+    </tr>`).join("") : `<tr><td colspan="4"><div class="empty-level">Materi untuk level ${student.level} belum tersedia.</div></td></tr>`;
 
   detailPanel.innerHTML = `
     <div class="detail-panel">
@@ -472,7 +488,7 @@ function renderDetail(){
         <div class="detail-id">
           <div class="avatar-lg">${student.name.slice(0,2).toUpperCase()}</div>
           <div>
-            <h3>${student.name}</h3>
+            <h3>${student.name} <span class="lvl-badge-lg">${student.level}</span></h3>
             <div class="sub">Kode ${student.code} · Bergabung ${fmtDate(student.joinedAt)} · Terakhir aktif ${fmtDate(student.lastActiveAt)}</div>
             <div style="margin-top:8px;"><span class="status-pill ${sum.status.key}">${sum.status.label}</span></div>
           </div>
@@ -488,10 +504,11 @@ function renderDetail(){
 
       <div class="detail-section">
         <h4>Progres Level ${student.level}</h4>
+        ${sum.totalUnits > 0 ? `
         <div class="prog-row">
           <div class="prog-top"><span class="name">Unit selesai</span><span class="val">${sum.completedCount}/${sum.totalUnits} (${sum.percent}%)</span></div>
           <div class="prog-track"><div class="prog-fill" style="width:${sum.percent}%;"></div></div>
-        </div>
+        </div>` : `<div class="empty-level">Materi untuk level ${student.level} belum tersedia — belum ada progres yang bisa dilacak.</div>`}
       </div>
 
       <div class="detail-section">
