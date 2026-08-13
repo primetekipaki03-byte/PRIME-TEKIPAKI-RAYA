@@ -243,6 +243,29 @@ const TekiStore = {
     return students;
   },
 
+  /** Daftarkan siswa baru. Return {ok:true} atau {ok:false, message} */
+  addStudent(code, name, level = "N3") {
+    code = (code || "").trim().toUpperCase();
+    name = (name || "").trim();
+    if (!code || !name) return { ok: false, message: "Kode dan nama wajib diisi." };
+    const students = this.getAllStudents();
+    if (students.some(s => s.code === code)) return { ok: false, message: "Kode siswa sudah dipakai." };
+    students.push({
+      code, name, level,
+      joinedAt: nowISO(),
+      lastActiveAt: nowISO(),
+      progress: {}
+    });
+    this._writeAll(students);
+    return { ok: true };
+  },
+
+  /** Hapus siswa dari daftar (opsional dipakai guru) */
+  removeStudent(code) {
+    const students = this.getAllStudents().filter(s => s.code !== code);
+    this._writeAll(students);
+  },
+
   getStudent(code) {
     return this.getAllStudents().find(s => s.code === code) || null;
   },
