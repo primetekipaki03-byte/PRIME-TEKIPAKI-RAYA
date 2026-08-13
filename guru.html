@@ -123,6 +123,11 @@ a{color:inherit;}
 .student-item.active .s-score.warn{color:var(--gold);}
 .student-item.active .s-score.fail{color:#ef8f86;}
 .empty-search{padding:30px 16px;text-align:center;color:var(--ink-soft);font-size:.85rem;}
+.del-btn{flex:none;width:26px;height:26px;border-radius:8px;border:1px solid var(--paper2);background:#fff;color:var(--seal);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.85rem;line-height:1;opacity:0;transition:.15s;}
+.student-item:hover .del-btn{opacity:1;}
+.student-item.active .del-btn{opacity:1;border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#ef8f86;}
+.del-btn:hover{background:var(--seal);color:#fff;border-color:var(--seal);}
 
 .detail-panel{padding:26px 26px 30px;}
 .detail-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--paper2);margin-bottom:22px;}
@@ -326,6 +331,17 @@ function submitAddStudent(){
   renderList();
 }
 
+/* ================= HAPUS SISWA ================= */
+function deleteStudent(code, name){
+  const ok = confirm(`Hapus siswa "${name}" (${code})? Semua progres unit siswa ini akan ikut terhapus dan tidak bisa dikembalikan.`);
+  if(!ok) return;
+  TekiStore.removeStudent(code);
+  if(activeCode === code) activeCode = null;
+  renderStats();
+  renderList();
+  renderDetail();
+}
+
 /* ================= STATS ================= */
 function renderStats(){
   const students = TekiStore.getAllStudents();
@@ -392,8 +408,13 @@ function renderList(){
         <div class="s-meta">${sum.completedCount}/${sum.totalUnits} unit · aktif ${sum.inactiveDays} hari lalu</div>
       </div>
       <div class="s-score ${sum.status.key}">${sum.avg === null ? "-" : sum.avg}</div>
+      <button class="del-btn" title="Hapus siswa" aria-label="Hapus siswa">✕</button>
     `;
     item.addEventListener("click", () => { activeCode = s.code; renderList(); renderDetail(); });
+    item.querySelector(".del-btn").addEventListener("click", (e) => {
+      e.stopPropagation();
+      deleteStudent(s.code, s.name);
+    });
     studentList.appendChild(item);
   });
   renderSortRow();
@@ -430,6 +451,11 @@ function renderDetail(){
   }
 
   const student = TekiStore.getStudent(activeCode);
+  if(!student){
+    activeCode = null;
+    renderDetail();
+    return;
+  }
   const sum = TekiStore.summarize(student);
 
   const unitRows = sum.units.map(u => `
@@ -451,9 +477,12 @@ function renderDetail(){
             <div style="margin-top:8px;"><span class="status-pill ${sum.status.key}">${sum.status.label}</span></div>
           </div>
         </div>
-        <div class="avg-block">
-          <div class="avg-num">${sum.avg === null ? "-" : sum.avg}</div>
-          <div class="avg-lbl">Rata-rata Nilai</div>
+        <div style="display:flex;align-items:flex-start;gap:14px;">
+          <div class="avg-block">
+            <div class="avg-num">${sum.avg === null ? "-" : sum.avg}</div>
+            <div class="avg-lbl">Rata-rata Nilai</div>
+          </div>
+          <button class="del-btn" style="width:auto;height:auto;padding:8px 12px;opacity:1;" title="Hapus siswa" onclick="deleteStudent('${student.code}', '${student.name.replace(/'/g, "\\'")}')">✕ Hapus</button>
         </div>
       </div>
 
