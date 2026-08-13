@@ -22,14 +22,28 @@ function isValidTeacherCode(code){ return TEACHER_CODES.includes((code || "").tr
 
 /* ---------------------------------------------------------
    1. STRUKTUR LEVEL & UNIT
-   Materi & latihan sudah lengkap untuk level N3.
-   Level lain tinggal ditambahkan dengan pola yang sama.
+   ------------------------------------------------------------
+   LEVEL_ORDER menentukan urutan level dari paling dasar ke
+   paling mahir. Status tiap level (selesai/aktif/terkunci)
+   TIDAK lagi disimpan di sini secara global — status itu
+   dihitung PER SISWA lewat TekiStore.getLevelStates(student),
+   berdasarkan field `student.level` (level yang sedang aktif
+   dijalani siswa itu).
+
+   UNITS_BY_LEVEL menyimpan materi & latihan untuk tiap level.
+   Materi & latihan sudah lengkap untuk level N3. Level lain
+   tinggal ditambahkan dengan pola yang sama — array unit kosong
+   [] berarti "materi belum tersedia" dan akan ditampilkan
+   sebagai demikian di siswa.html.
 --------------------------------------------------------- */
-const LEVELS = [
-  { id: "N5", title: "Dasar Bahasa Jepang",         status: "selesai" },
-  { id: "N4", title: "Pemahaman dasar",              status: "selesai" },
-  { id: "N3", title: "Tata bahasa tingkat menengah", status: "aktif"   },
-  { id: "N2", title: "Tingkat menengah atas",        status: "terkunci" },
+const LEVEL_ORDER = ["N5", "N4", "N3", "N2", "N1"];
+
+const LEVEL_META = [
+  { id: "N5", title: "Dasar Bahasa Jepang" },
+  { id: "N4", title: "Pemahaman dasar" },
+  { id: "N3", title: "Tata bahasa tingkat menengah" },
+  { id: "N2", title: "Tingkat menengah atas" },
+  { id: "N1", title: "Tingkat mahir" },
 ];
 
 const UNITS_N3 = [
@@ -150,6 +164,32 @@ const UNITS_N3 = [
   }
 ];
 
+// TODO: isi UNITS_N4 dan UNITS_N5 dengan pola yang sama seperti UNITS_N3
+// di atas (id, order, grammar, reading, meaning, explanation, pattern,
+// examples, quiz) supaya siswa yang start di N4/N5 punya materi sungguhan.
+const UNITS_N4 = [];
+const UNITS_N5 = [];
+const UNITS_N2 = [];
+const UNITS_N1 = [];
+
+const UNITS_BY_LEVEL = {
+  N5: UNITS_N5,
+  N4: UNITS_N4,
+  N3: UNITS_N3,
+  N2: UNITS_N2,
+  N1: UNITS_N1,
+};
+
+function unitsForLevel(levelId){
+  return UNITS_BY_LEVEL[levelId] || [];
+}
+
+/* Dipertahankan untuk kompatibilitas mundur — ini metadata level statis
+   (tanpa status, karena status sekarang dihitung per siswa). Kalau ada
+   kode lama yang masih membaca `LEVELS` langsung, sebaiknya diganti ke
+   `TekiStore.getLevelStates(student)`. */
+const LEVELS = LEVEL_META.map(l => ({ ...l, status: "aktif" }));
+
 /* ---------------------------------------------------------
    2. UTIL TANGGAL
 --------------------------------------------------------- */
@@ -243,11 +283,23 @@ const TekiStore = {
     return students;
   },
 
-  /** Daftarkan siswa baru. Return {ok:true} atau {ok:false, message} */
-  addStudent(code, name, level = "N3") {
+  /**
+   * Daftarkan siswa baru.
+   * `level` menentukan DI LEVEL MANA siswa ini mulai belajar —
+   * ini kunci untuk siswa baru yang levelnya N5/N4 (pemula):
+   *   TekiStore.addStudent("ABCD01", "Nama Siswa", "N5")
+   *   TekiStore.addStudent("ABCD02", "Nama Siswa", "N4")
+   * Siswa akan langsung melihat unit-unit level tsb sebagai level
+   * aktifnya, dan level sebelum itu di LEVEL_ORDER otomatis
+   * dianggap "selesai" (dilewati/di luar cakupan platform ini).
+   * Return {ok:true} atau {ok:false, message}
+   */
+  addStudent(code, name, level = "N5") {
     code = (code || "").trim().toUpperCase();
     name = (name || "").trim();
+    level = (level || "N5").trim().toUpperCase();
     if (!code || !name) return { ok: false, message: "Kode dan nama wajib diisi." };
+    if (!LEVEL_ORDER.includes(level)) return { ok: false, message: "Level tidak dikenali: " + level };
     const students = this.getAllStudents();
     if (students.some(s => s.code === code)) return { ok: false, message: "Kode siswa sudah dipakai." };
     students.push({
@@ -276,10 +328,26 @@ const TekiStore = {
     if (s) { s.lastActiveAt = nowISO(); this._writeAll(students); }
   },
 
-  /** Susun daftar unit dengan status terkunci/berjalan/selesai + tenggat, untuk 1 siswa */
+  /** Status tiap level (selesai/aktif/terkunci) UNTUK SISWA INI,
+      berdasarkan posisi student.level di LEVEL_ORDER. */
+  getLevelStates(student) {
+    const currentIdx = LEVEL_ORDER.indexOf(student.level);
+    return LEVEL_META.map((l, i) => {
+      let status;
+      if (currentIdx === -1) status = "terkunci";
+      else if (i < currentIdx) status = "selesai";
+      else if (i === currentIdx) status = "aktif";
+      else status = "terkunci";
+      return { ...l, status };
+    });
+  },
+
+  /** Susun daftar unit dengan status terkunci/berjalan/selesai + tenggat,
+      untuk LEVEL AKTIF siswa (student.level). */
   getUnitStates(student) {
+    const units = unitsForLevel(student.level);
     let previousDone = true;
-    return UNITS_N3.map((u, i) => {
+    return units.map((u) => {
       let p = student.progress[u.id];
       if (!p && previousDone) {
         // Unit baru terbuka pertama kali dilihat
@@ -302,7 +370,10 @@ const TekiStore = {
     this._writeAll(students);
   },
 
-  /** Kirim hasil latihan untuk sebuah unit. correctCount/totalCount dari kuis. */
+  /** Kirim hasil latihan untuk sebuah unit di level aktif siswa.
+      correctCount/totalCount dari kuis. Kalau ini unit terakhir di
+      level tsb dan lulus, siswa otomatis naik ke level berikutnya
+      di LEVEL_ORDER (kalau levelnya sudah punya materi). */
   submitUnitResult(code, unitId, correctCount, totalCount) {
     const student = this.getStudent(code);
     if (!student) return null;
@@ -319,26 +390,44 @@ const TekiStore = {
     }
     student.progress[unitId] = p;
     student.lastActiveAt = nowISO();
+
+    let leveledUp = false;
+    if (passed) {
+      const levelUnits = unitsForLevel(student.level);
+      const allDone = levelUnits.length > 0 && levelUnits.every(u => student.progress[u.id]?.status === "selesai");
+      if (allDone) {
+        const idx = LEVEL_ORDER.indexOf(student.level);
+        const nextLevel = idx > -1 ? LEVEL_ORDER[idx + 1] : null;
+        if (nextLevel && unitsForLevel(nextLevel).length > 0) {
+          student.level = nextLevel;
+          leveledUp = true;
+        }
+      }
+    }
+
     this._persistStudent(student);
-    return { score, passed };
+    return { score, passed, leveledUp, newLevel: student.level };
   },
 
-  /** Ringkasan progres 1 siswa untuk kartu / panel guru */
+  /** Ringkasan progres 1 siswa untuk kartu / panel guru — otomatis
+      mengikuti level aktif siswa (student.level). */
   summarize(student) {
     const units = this.getUnitStates(student);
+    const totalUnits = unitsForLevel(student.level).length;
     const done = units.filter(u => u.state === "selesai");
     const scores = done.map(u => u.progress.score);
     const avg = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null;
     const inactiveDays = Math.max(0, daysBetween(student.lastActiveAt, nowISO()));
     const anyOverdue = units.some(u => u.overdue);
     let status;
-    if (avg === null || inactiveDays > 14) status = { key: "fail", label: "⚠ Perlu Perhatian" };
+    if (totalUnits === 0) status = { key: "warn", label: "○ Materi belum tersedia" };
+    else if (avg === null || inactiveDays > 14) status = { key: "fail", label: "⚠ Perlu Perhatian" };
     else if (avg < PASS_SCORE || inactiveDays > 7 || anyOverdue) status = { key: "warn", label: "● Perlu Didorong" };
     else status = { key: "pass", label: "✓ Aktif Baik" };
     return {
       units, avg, inactiveDays, anyOverdue, status,
-      completedCount: done.length, totalUnits: UNITS_N3.length,
-      percent: Math.round((done.length / UNITS_N3.length) * 100)
+      completedCount: done.length, totalUnits,
+      percent: totalUnits ? Math.round((done.length / totalUnits) * 100) : 0
     };
   }
 };
