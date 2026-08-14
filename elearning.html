@@ -595,7 +595,7 @@ function renderWeekList(student){
     const di = sum.deadlineInfo;
     deadlineBannerHTML = `
       <div class="deadlineBanner ${di.overdue ? 'overdue' : ''}">
-        <span>⏳ Target level <b>${student.level}</b>: tuntas dalam <b>${di.totalDays} hari</b> (3 bulan, mulai ${fmtDate(student.levelStartedAt)})</span>
+        <span>⏳ Target level <b>${student.level}</b>: tuntas dalam <b>${di.totalDays} hari</b> (12 minggu / 12 minggu / 3 bulan, mulai ${fmtDate(student.levelStartedAt)})</span>
         <span><b>${di.overdue ? 'Lewat ' + Math.abs(di.daysLeft) + ' hari dari target' : di.daysLeft + ' hari tersisa'}</b></span>
       </div>`;
   }
@@ -926,7 +926,7 @@ function finalizeUnitScore(unitId){
     const result = TekiStore.submitBunpouInPackage(currentCode, student.level, currentPackageIndex, unitId, correct, total);
     if(result.passed){
       banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score} (${correct}/${total} soal). Unit Bunpou ini lulus!
-        ${result.packageCompleted ? ' Paket minggu ini sudah lengkap (Bunpou + Kanji) ✓.' : ' Lanjutkan unit / kuis Kanji lain di paket minggu ini.'}
+        ${result.packageCompleted ? ' Paket minggu ini · 3 Bunpou + 12 Kanji sudah lengkap (Bunpou + Kanji) ✓.' : ' Lanjutkan unit / kuis Kanji lain di paket minggu ini.'}
         ${result.allPackagesDone ? ' Semua paket level ini sudah selesai — kamu bisa mengerjakan Ujian Akhir!' : ''}</div>
         <button class="btn ghost" style="margin-top:10px;" onclick="showPage('unitlist')">← Kembali ke daftar minggu</button>`;
     } else {
@@ -1035,7 +1035,7 @@ function submitKanjiQuiz(packageIndex){
   if(!result){ return; }
   if(result.passed){
     banner.innerHTML = `<div class="resultBanner pass">🎉 Nilai kamu ${result.score}. Kuis Kanji lulus!
-      ${result.packageCompleted ? ' Paket minggu ini sudah lengkap (Bunpou + Kanji) ✓.' : ' Selesaikan juga unit Bunpou di minggu ini.'}
+      ${result.packageCompleted ? ' Paket minggu ini · 3 Bunpou + 12 Kanji sudah lengkap (Bunpou + Kanji) ✓.' : ' Selesaikan juga unit Bunpou di minggu ini.'}
       ${result.allPackagesDone ? ' Semua paket level ini sudah selesai — kamu bisa mengerjakan Ujian Akhir!' : ''}</div>
       <button class="btn ghost" style="margin-top:10px;" onclick="showPage('unitlist')">← Kembali ke daftar minggu</button>`;
   } else {
