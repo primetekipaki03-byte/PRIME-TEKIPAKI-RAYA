@@ -47,7 +47,7 @@ const KANJI_Q_PER_UNIT = 10;
 // belum punya batas waktu keseluruhan (hanya deadline per unit/paket).
 const LEVEL_DURATION_DAYS = {
   N5: 90,   // N5 harus selesai dalam 3 bulan
-  N4: 90,   // N4 harus selesai dalam 3 bulan (3 Bunpou + 12 Kanji / minggu)
+  N4: 90,   // N4 harus selesai dalam 3 bulan = 15 minggu
 };
 
 // Kode akses guru/admin — ganti / tambahkan sesuai kebutuhan
@@ -1014,11 +1014,41 @@ function getWeekPackagesForLevel(levelId){
     dari 4 opsi (distraktor diambil acak dari kanji lain di level yang sama). */
 function buildKanjiQuiz(levelId, batch){
   const pool = kanjiForLevel(levelId);
-  return batch.map(k => {
-    const distractorPool = pool.filter(x => x.id !== k.id);
-    const distractors = shuffleArray(distractorPool).slice(0, 3).map(x => x.meaning);
-    const options = shuffleArray([k.meaning, ...distractors]);
-    return { id: k.id, kanji: k.kanji, reading: k.reading, correct: k.meaning, options, vocab: k.vocab || null };
+
+  return batch.map((k, index) => {
+    const isReadingQuestion = index % 2 === 1;
+
+    if(isReadingQuestion){
+      const distractors = shuffleArray(
+        pool.filter(x => x.id !== k.id).map(x => x.reading)
+      ).slice(0, 3);
+
+      return {
+        id: `${k.id}_weekly_reading`,
+        kanji: k.kanji,
+        reading: k.reading,
+        questionType: "reading",
+        prompt: `Bagaimana cara membaca kanji 「${k.kanji}」?`,
+        correct: k.reading,
+        options: shuffleArray([k.reading, ...distractors]),
+        vocab: k.vocab || null
+      };
+    }
+
+    const distractors = shuffleArray(
+      pool.filter(x => x.id !== k.id).map(x => x.meaning)
+    ).slice(0, 3);
+
+    return {
+      id: `${k.id}_weekly_meaning`,
+      kanji: k.kanji,
+      reading: k.reading,
+      questionType: "meaning",
+      prompt: `Apa arti kanji 「${k.kanji}」?`,
+      correct: k.meaning,
+      options: shuffleArray([k.meaning, ...distractors]),
+      vocab: k.vocab || null
+    };
   });
 }
 
@@ -1130,28 +1160,76 @@ function buildKanjiQuestionsForUnit(levelId, unit, unitIndex){
       answer: "-"
     }];
   }
-  const selected = pickKanjiWindow(pool, (unitIndex * KANJI_Q_PER_UNIT) % pool.length, KANJI_Q_PER_UNIT);
-  const half = Math.ceil(KANJI_Q_PER_UNIT / 2);
+
+  // 10 soal Kanji per unit:
+  // 3 PG arti + 3 PG cara baca + 2 esai cara baca + 2 esai membuat kalimat.
+  const selected = pickKanjiWindow(
+    pool,
+    (unitIndex * KANJI_Q_PER_UNIT) % pool.length,
+    KANJI_Q_PER_UNIT
+  );
+
   const qs = [];
 
-  selected.slice(0, half).forEach(k => {
-    const distractorPool = pool.filter(x => x.id !== k.id).map(x => x.meaning);
-    const distractors = shuffleArray(distractorPool).slice(0, 3);
-    const vocabHint = k.vocab ? ` (Contoh kosakata: ${k.vocab.word})` : "";
+  // 3 soal arti Kanji (pilihan ganda)
+  selected.slice(0, 3).forEach(k => {
+    const distractors = shuffleArray(
+      pool.filter(x => x.id !== k.id).map(x => x.meaning)
+    ).slice(0, 3);
+
+    const vocabHint = k.vocab
+      ? ` (Contoh kosakata: ${k.vocab.word})`
+      : "";
+
     qs.push({
-      id: `${unit.id}_kmc_${k.id}`, type: "mc",
+      id: `${unit.id}_kmeaning_${k.id}`,
+      type: "mc",
       prompt: `Apa arti kanji berikut? ${k.kanji}${vocabHint}`,
       correct: k.meaning,
       options: shuffleArray([k.meaning, ...distractors])
     });
   });
 
-  selected.slice(half).forEach(k => {
-    const vocabAnswer = k.vocab ? ` — Contoh kosakata: ${k.vocab.word} (${k.vocab.reading}) = ${k.vocab.meaning}` : "";
+  // 3 soal cara baca Kanji (pilihan ganda)
+  selected.slice(3, 6).forEach(k => {
+    const distractors = shuffleArray(
+      pool.filter(x => x.id !== k.id).map(x => x.reading)
+    ).slice(0, 3);
+
     qs.push({
-      id: `${unit.id}_kes_${k.id}`, type: "essay",
-      prompt: `Tuliskan cara baca (bacaan) kanji berikut dalam hiragana/katakana, lalu sebutkan 1 contoh kosakata yang memakainya: ${k.kanji}`,
-      answer: `${k.reading} (${k.meaning})${vocabAnswer}`
+      id: `${unit.id}_kreading_${k.id}`,
+      type: "mc",
+      prompt: `Bagaimana cara membaca kanji berikut? ${k.kanji}`,
+      correct: k.reading,
+      options: shuffleArray([k.reading, ...distractors])
+    });
+  });
+
+  // 2 soal esai: siswa menulis cara baca.
+  selected.slice(6, 8).forEach(k => {
+    const vocabAnswer = k.vocab
+      ? ` Contoh kosakata: ${k.vocab.word}（${k.vocab.reading}）`
+      : "";
+
+    qs.push({
+      id: `${unit.id}_kessay_reading_${k.id}`,
+      type: "essay",
+      prompt: `Tuliskan cara baca kanji berikut dalam hiragana/katakana: ${k.kanji}`,
+      answer: `${k.reading}（${k.meaning}）.${vocabAnswer}`
+    });
+  });
+
+  // 2 soal esai: membuat kalimat memakai kosakata Kanji.
+  selected.slice(8, 10).forEach(k => {
+    const word = k.vocab?.word || k.kanji;
+    const reading = k.vocab?.reading || k.reading;
+    const meaning = k.vocab?.meaning || k.meaning;
+
+    qs.push({
+      id: `${unit.id}_kessay_sentence_${k.id}`,
+      type: "essay",
+      prompt: `Buat 1 kalimat bahasa Jepang menggunakan kosakata 「${word}」(${reading} = ${meaning}).`,
+      answer: `Jawaban bebas. Contoh penggunaan: 「${word}」を使って、kalimat bahasa Jepang yang benar.`
     });
   });
 
