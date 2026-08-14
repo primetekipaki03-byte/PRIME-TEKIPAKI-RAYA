@@ -47,8 +47,10 @@ const KANJI_Q_PER_UNIT = 10;
 // belum punya batas waktu keseluruhan (hanya deadline per unit/paket).
 const LEVEL_DURATION_DAYS = {
   N5: 90,   // N5 harus selesai dalam 3 bulan
-  N4: 90,   // N4 harus selesai dalam 3 bulan = 15 minggu
+  N4: 84,   // N4 harus selesai dalam 12 minggu (3 bulan pembelajaran)
 };
+const N4_WEEKS = 12; // 12 minggu pembelajaran N4
+
 
 // Kode akses guru/admin — ganti / tambahkan sesuai kebutuhan
 const TEACHER_CODES = ["GURU2026", "ADMINTP"];
@@ -365,7 +367,7 @@ const UNITS_N5 = [
    ------------------------------------------------------------
    ⚠️ Ini adalah 18 dari total 45 pola tata bahasa N4 yang sudah
    ada di web Anda (lihat daftar lengkap `grammarList` di
-   materitatabahasa.html). Supaya target "3 bulan / 15 minggu"
+   materitatabahasa.html). Supaya target "3 bulan / 12 minggu"
    tercapai penuh, tambahkan 27 unit sisanya (n4u19 s.d. n4u45)
    dengan pola yang SAMA PERSIS seperti contoh di bawah:
    { id, order, grammar, reading, meaning, materialUrl,
@@ -840,7 +842,7 @@ const KANJI_N3 = [
    bukan cuma karakter kanji sendirian.
 
    ⚠️ Ini baru 72 dari sekitar 168 kanji N4 yang umum diajarkan.
-   Untuk menutupi 15 minggu penuh (45 unit ÷ 3), tambahkan kanji
+   Untuk menutupi 12 minggu penuh (45 unit ÷ 3), tambahkan kanji
    lagi dengan pola {id, kanji, reading, meaning, vocab} yang sama.
 --------------------------------------------------------- */
 const KANJI_N4 = [
