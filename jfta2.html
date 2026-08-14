@@ -104,7 +104,7 @@ a{
 
   gap:8px;
 
-  flex-wrap:nowrap;
+  flex-wrap:wrap;
 
   margin-left:auto;
 }
@@ -151,6 +151,11 @@ a{
 .dropdown{
   position:relative;
   flex-shrink:0;
+  z-index:1;
+}
+
+.dropdown.open{
+  z-index:20;
 }
 
 .dropdown-btn{
@@ -899,13 +904,19 @@ footer .fseal{
 @media(max-width:1000px){
 
   .navbar-inner{
-    padding:8px 12px;
+    flex-wrap:wrap;
+
+    padding:10px 12px;
 
     gap:10px;
   }
 
   .nav-right{
-    gap:5px;
+    justify-content:flex-start;
+
+    gap:6px;
+
+    margin-left:0;
   }
 
   .dropdown-btn{
@@ -950,9 +961,7 @@ footer .fseal{
 
     justify-content:flex-start;
 
-    overflow-x:auto;
-
-    padding-bottom:3px;
+    flex-wrap:wrap;
   }
 
   .dropdown{
