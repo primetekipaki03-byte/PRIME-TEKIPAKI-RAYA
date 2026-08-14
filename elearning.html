@@ -222,13 +222,6 @@ header{height:64px;background:var(--navy2);border-bottom:2px solid rgba(224,181,
   border-radius:12px;margin:16px 0;font-size:.85rem;flex-wrap:wrap;gap:8px;}
 .scoreBar b{font-family:"JetBrains Mono",monospace;color:var(--navy);font-size:1.1rem;}
 
-/* ---------- PREVIEW MODE (review soal tanpa harus menjawab) ---------- */
-.previewBar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
-  padding:12px 16px;background:#eaf1fb;border:1px solid #cfe0f3;border-radius:12px;margin-bottom:16px;}
-.previewBar span{font-size:.82rem;color:var(--navy);}
-.previewTag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:.62rem;letter-spacing:.5px;
-  color:#2b5c9e;background:#dbe9fb;border-radius:20px;padding:3px 9px;margin-left:6px;vertical-align:middle;}
-.qCard.previewOnly .qPrompt{opacity:.95;}
 
 /* ---------- PROGRESS PAGE ---------- */
 .chart-wrap{display:flex;align-items:flex-end;gap:10px;height:130px;padding:10px 6px 0;border-bottom:1px solid var(--paper2);}
@@ -322,7 +315,7 @@ const kanjiQuizState = {}; // { qId: selectedOption }
 let currentUnitQuiz = null;      // { grammarQuestions:[...], kanjiQuestions:[...] }
 const unitAnswers = {};          // { qId: { given, mcSelected, selfMark } }
 let unitGraded = false;          // sudah tekan "Kumpulkan Jawaban"?
-let previewMode = false;         // sedang pratinjau kunci jawaban (tanpa menjawab)?
+
 
 function login(){
   const code = document.getElementById("studentCode").value.trim().toUpperCase();
@@ -536,7 +529,6 @@ function renderUnitList(){
         rightHTML = `<div class="deadline">🔒 Selesaikan unit sebelumnya</div>`;
       }
       const linkHTML = u.materialUrl ? `<a class="materialLink" href="${u.materialUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">📄 Materi ↗</a>` : "";
-      const previewLinkHTML = `<button class="materialLink" onclick="event.stopPropagation();openUnit('${u.id}', undefined, true)">👁️ Pratinjau Soal</button>`;
       return `
         <div class="unitItem ${cls}" ${locked ? "" : `onclick="openUnit('${u.id}')"`}>
           <div class="unitIcon">${done ? "✓" : locked ? "🔒" : u.order}</div>
@@ -544,14 +536,14 @@ function renderUnitList(){
             <div class="g">${u.grammar} <span style="color:var(--ink-soft);font-weight:400;font-size:.8rem;">(${u.reading})</span></div>
             <div class="m">${u.meaning}</div>
           </div>
-          <div class="unitRight">${linkHTML}${previewLinkHTML}${rightHTML}</div>
+          <div class="unitRight">${linkHTML}${rightHTML}</div>
         </div>`;
     }).join("");
 
     document.getElementById("mainArea").innerHTML = `
       <div class="backLink" onclick="showPage('levelpicker')">← Ganti level</div>
       <h1 class="title">Unit Pembelajaran · ${viewingLevel}</h1>
-      <p class="desc">Selesaikan unit secara berurutan. Setiap unit harus diselesaikan dalam 1 minggu sejak dibuka. Tombol "👁️ Pratinjau Soal" bisa dipakai untuk melihat soal &amp; kunci jawaban tanpa memengaruhi nilai/progress kamu.</p>
+      <p class="desc">Selesaikan unit secara berurutan. Setiap unit harus diselesaikan dalam 1 minggu sejak dibuka.</p>
       <div class="unitList">${items}</div>
     `;
     return;
@@ -665,10 +657,9 @@ function renderWeekList(student){
 }
 
 /* ================= HALAMAN UNIT (MATERI + 20 SOAL LATIHAN) ================= */
-function openUnit(unitId, packageIndex, asPreview){
+function openUnit(unitId, packageIndex){
   currentUnitId = unitId;
   currentPackageIndex = (typeof packageIndex === "number") ? packageIndex : null;
-  previewMode = !!asPreview;
   const units = getUnitsForLevel(viewingLevel) || (typeof UNITS_N3 !== "undefined" ? UNITS_N3 : []);
   const unit = units.find(u => u.id === unitId);
   if(!unit) return;
@@ -687,20 +678,10 @@ function openUnit(unitId, packageIndex, asPreview){
   const backTarget = "unitlist";
   const materialLinkHTML = unit.materialUrl ? `<a class="heroLink" href="${unit.materialUrl}" target="_blank" rel="noopener">📄 Buka Materi Lengkap ↗</a>` : "";
 
-  const previewBarHTML = previewMode ? `
-    <div class="previewBar">
-      <span>👁️ <b>Mode Pratinjau</b> — semua kunci jawaban ditampilkan langsung untuk keperluan review, tidak dihitung sebagai nilai/progress siswa.</span>
-      <button class="btn ghost small" onclick="exitPreviewMode('${unit.id}')">✕ Keluar Pratinjau</button>
-    </div>` : `
-    <div class="previewBar">
-      <span>Mau cek dulu isi soal &amp; kunci jawabannya tanpa menjawab? Gunakan mode pratinjau.</span>
-      <button class="btn ghost small" onclick="previewAllAnswers()">👁️ Pratinjau Kunci Jawaban</button>
-    </div>`;
-
   document.getElementById("mainArea").innerHTML = `
     <div class="backLink" onclick="showPage('${backTarget}')">← Kembali ke daftar unit</div>
     <div class="hero">
-      <small>UNIT ${unit.order} · JLPT ${viewingLevel} · GRAMMAR${previewMode ? '<span class="previewTag">PRATINJAU</span>' : ''}</small>
+      <small>UNIT ${unit.order} · JLPT ${viewingLevel} · GRAMMAR</small>
       <h2>${unit.grammar}</h2>
       <div class="reading">${unit.reading}</div>
       <p>${unit.meaning}</p>
@@ -722,9 +703,7 @@ function openUnit(unitId, packageIndex, asPreview){
       ${examplesHTML}
     </div>
 
-    ${previewBarHTML}
-
-    <p class="desc" style="margin-bottom:0;">Kerjakan 20 soal latihan di bawah ini (10 soal Tata Bahasa + 10 soal Kanji). Soal Kanji terdiri dari arti, cara baca, dan esai membuat kalimat. Kunci jawaban baru akan muncul setelah <b>semua soal selesai dikerjakan</b> dan kamu menekan "Kumpulkan Jawaban" — atau langsung lewat tombol pratinjau di atas.</p>
+    <p class="desc" style="margin-bottom:0;">Kerjakan 20 soal latihan di bawah ini (10 soal Tata Bahasa + 10 soal Kanji). Soal Kanji terdiri dari arti, cara baca, dan esai membuat kalimat. Kunci jawaban akan muncul setelah <b>semua soal selesai dikerjakan</b> dan kamu menekan "Kumpulkan Jawaban".</p>
 
     <div class="sectionHead"><h2>文 Bagian Tata Bahasa</h2><span class="cnt">10 soal</span></div>
     <div id="grammarQArea">${renderQuestionCards(currentUnitQuiz.grammarQuestions)}</div>
@@ -742,52 +721,6 @@ function openUnit(unitId, packageIndex, asPreview){
     </div>
   `;
 
-  if(previewMode) previewAllAnswers();
-}
-
-function exitPreviewMode(unitId){
-  openUnit(unitId, currentPackageIndex, false);
-}
-
-/* Tampilkan semua kunci jawaban & jawaban benar tanpa perlu mengisi
-   jawaban terlebih dahulu — dipakai untuk mereview isi soal. Tidak
-   mengubah nilai/progress siswa (tidak memanggil TekiStore.submit*). */
-function previewAllAnswers(){
-  previewMode = true;
-  const all = allUnitQuestions();
-  all.forEach(q => {
-    if(q.type === "mc"){
-      const wrap = document.getElementById("mcopts_" + q.id);
-      if(!wrap) return;
-      wrap.querySelectorAll(".mcOption").forEach(b => {
-        b.disabled = true;
-        if(b.textContent === q.correct) b.classList.add("correct");
-      });
-    } else {
-      const keyEl = document.getElementById("key_" + q.id);
-      const boxEl = document.getElementById("essay_" + q.id);
-      if(keyEl) keyEl.classList.add("show");
-      if(boxEl){
-        boxEl.setAttribute("readonly", "readonly");
-        boxEl.placeholder = "(Mode pratinjau — kunci jawaban ditampilkan di bawah)";
-      }
-    }
-  });
-  // Sembunyikan tombol "Kumpulkan Jawaban" biasa dan area skor kalau ada,
-  // supaya jelas ini bukan alur pengerjaan sungguhan.
-  const gradeBtn = document.getElementById("gradeBtn");
-  if(gradeBtn) gradeBtn.classList.add("hidden");
-  const finalizeBtn = document.getElementById("finalizeBtn");
-  if(finalizeBtn) finalizeBtn.classList.add("hidden");
-  // Tampilkan bar previewMode kalau belum ada (misal dipanggil dari halaman non-preview)
-  const bar = document.querySelector(".previewBar");
-  if(bar && !document.querySelector(".previewTag")){
-    bar.outerHTML = `
-      <div class="previewBar">
-        <span>👁️ <b>Mode Pratinjau</b> — semua kunci jawaban ditampilkan langsung untuk keperluan review, tidak dihitung sebagai nilai/progress siswa.</span>
-        <button class="btn ghost small" onclick="exitPreviewMode('${currentUnitId}')">✕ Keluar Pratinjau</button>
-      </div>`;
-  }
 }
 
 function renderQuestionCards(questions){
@@ -819,7 +752,7 @@ function renderQuestionCards(questions){
 }
 
 function selectUnitMC(qId, btn, value){
-  if(unitGraded || previewMode) return;
+  if(unitGraded) return;
   const wrap = document.getElementById("mcopts_" + qId);
   wrap.querySelectorAll(".mcOption").forEach(b => b.classList.remove("selected"));
   btn.classList.add("selected");
@@ -827,7 +760,6 @@ function selectUnitMC(qId, btn, value){
 }
 
 function markSelf(qId, isCorrect){
-  if(previewMode) return;
   unitAnswers[qId] = Object.assign(unitAnswers[qId] || {}, { selfMark: isCorrect });
   const bBtn = document.getElementById("selfB_" + qId);
   const sBtn = document.getElementById("selfS_" + qId);
@@ -850,7 +782,7 @@ function gradeUnitAnswers(){
     return !(unitAnswers[q.id]?.given || "").trim();
   });
   if(belumDijawab.length > 0){
-    alert(`Masih ada ${belumDijawab.length} soal yang belum kamu jawab. Jawab semua soal dulu sebelum kunci jawaban ditampilkan. (Atau gunakan tombol "Pratinjau Kunci Jawaban" di atas kalau hanya ingin melihat-lihat soal.)`);
+    alert(`Masih ada ${belumDijawab.length} soal yang belum kamu jawab. Jawab semua soal dulu sebelum kunci jawaban ditampilkan.`);
     const firstEl = document.getElementById("qcard_" + belumDijawab[0].id);
     if(firstEl) firstEl.scrollIntoView({behavior:"smooth", block:"center"});
     return;
@@ -882,7 +814,7 @@ function gradeUnitAnswers(){
 }
 
 function updateScoreBar(){
-  if(!unitGraded || previewMode) return;
+  if(!unitGraded) return;
   const all = allUnitQuestions();
   let correct = 0, essayUnmarked = 0;
   all.forEach(q => {
@@ -905,7 +837,6 @@ function updateScoreBar(){
 }
 
 function finalizeUnitScore(unitId){
-  if(previewMode) return;
   const all = allUnitQuestions();
   let correct = 0;
   all.forEach(q => {
