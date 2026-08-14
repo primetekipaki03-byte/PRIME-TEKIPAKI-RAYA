@@ -13,6 +13,19 @@
    ============================================================ */
 
 const STORAGE_KEY = "tekipaki_students_v1";
+
+/* =========================================================
+   CLOUD DATABASE — Google Apps Script Web App
+   Ganti CLOUD_API_URL dengan URL Web App Google Apps Script.
+   Data tetap dicache di localStorage agar aplikasi tetap cepat.
+========================================================= */
+const CLOUD_API_URL = "PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+const CLOUD_API_KEY = "TEKIPAKI_PUBLIC_2026";
+
+function cloudEnabled(){
+  return !!CLOUD_API_URL && !CLOUD_API_URL.includes("PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE");
+}
+
 const PASS_SCORE = 70;          // nilai minimal supaya unit/kanji/paket dianggap lulus
 const UNIT_DEADLINE_DAYS = 7;   // (level non-paket, mis. N3) setiap unit harus selesai dalam 1 minggu
 
@@ -47,10 +60,8 @@ const KANJI_Q_PER_UNIT = 10;
 // belum punya batas waktu keseluruhan (hanya deadline per unit/paket).
 const LEVEL_DURATION_DAYS = {
   N5: 90,   // N5 harus selesai dalam 3 bulan
-  N4: 84,   // N4 harus selesai dalam 12 minggu (3 bulan pembelajaran)
+  N4: 90,   // N4 harus selesai dalam 3 bulan = 15 minggu
 };
-const N4_WEEKS = 12; // 12 minggu pembelajaran N4
-
 
 // Kode akses guru/admin — ganti / tambahkan sesuai kebutuhan
 const TEACHER_CODES = ["GURU2026", "ADMINTP"];
@@ -361,13 +372,13 @@ const UNITS_N5 = [
 ];
 
 /* ---------------------------------------------------------
-   UNITS_N4 — 36 unit (12 minggu x 3 Bunpou/minggu),
+   UNITS_N4 — 18 unit pertama (6 minggu pertama x 3 Bunpou/minggu),
    sesuai dengan halaman-halaman "Tata Bahasa N4" yang sudah ada di
    website (materitatabahasa.html → link tatabahasan4_xxx.html).
    ------------------------------------------------------------
-   ⚠️ Ini adalah 36 unit dari daftar pola tata bahasa N4 yang digunakan untuk target 12 minggu.
+   ⚠️ Ini adalah 18 dari total 45 pola tata bahasa N4 yang sudah
    ada di web Anda (lihat daftar lengkap `grammarList` di
-   materitatabahasa.html). Supaya target "3 bulan / 12 minggu"
+   materitatabahasa.html). Supaya target "3 bulan / 15 minggu"
    tercapai penuh, tambahkan 27 unit sisanya (n4u19 s.d. n4u45)
    dengan pola yang SAMA PERSIS seperti contoh di bawah:
    { id, order, grammar, reading, meaning, materialUrl,
@@ -746,294 +757,6 @@ const UNITS_N4 = [
       { id: "q1", words: ["週末は", "本を読んだり、映画を見たり", "します"], answer: ["週末は", "本を読んだり、映画を見たり", "します"] },
       { id: "q2", words: ["部屋を", "掃除したり、洗濯したり", "しました"], answer: ["部屋を", "掃除したり、洗濯したり", "しました"] }
     ]
-  },
-{
-    id: "n4u19", order: 19,
-    grammar: "〜つもり", reading: "~tsumori",
-    meaning: "berniat / berencana ~",
-    materialUrl: "tatabahasan4_tsumori.html",
-    explanation: ["つもり digunakan untuk menyatakan niat atau rencana.", "Untuk rencana melakukan sesuatu, gunakan kata kerja bentuk kamus + つもりです."],
-    pattern: ["[Kata Kerja bentuk kamus] ＋ つもりです ＝ berniat/berencana ~"],
-    examples: [
-      { jp: "来年、日本へ行くつもりです。", reading: "らいねん、にほんへいくつもりです。", meaning: "Saya berencana pergi ke Jepang tahun depan." },
-      { jp: "週末は家で勉強するつもりです。", reading: "しゅうまつはいえでべんきょうするつもりです。", meaning: "Saya berencana belajar di rumah akhir pekan ini." }
-    ],
-    quiz: [
-      { id: "q1", words: ["来年、", "日本へ行く", "つもりです"], answer: ["来年、", "日本へ行く", "つもりです"] },
-      { id: "q2", words: ["週末は家で", "勉強する", "つもりです"], answer: ["週末は家で", "勉強する", "つもりです"] }
-    ]
-  },
-  {
-    id: "n4u20", order: 20,
-    grammar: "〜かもしれない", reading: "~kamoshirenai",
-    meaning: "mungkin / bisa jadi ~",
-    materialUrl: "tatabahasan4_kamoshirenai.html",
-    explanation: ["かもしれない menyatakan kemungkinan.", "Bentuk biasa dapat langsung diikuti かもしれない."],
-    pattern: ["[Kalimat bentuk biasa] ＋ かもしれない ＝ mungkin ~"],
-    examples: [
-      { jp: "明日は雨かもしれません。", reading: "あしたはあめかもしれません。", meaning: "Besok mungkin hujan." },
-      { jp: "彼は来ないかもしれません。", reading: "かれはこないかもしれません。", meaning: "Dia mungkin tidak datang." }
-    ],
-    quiz: [
-      { id: "q1", words: ["明日は", "雨かも", "しれません"], answer: ["明日は", "雨かも", "しれません"] },
-      { id: "q2", words: ["彼は", "来ないかも", "しれません"], answer: ["彼は", "来ないかも", "しれません"] }
-    ]
-  },
-  {
-    id: "n4u21", order: 21,
-    grammar: "〜でしょう", reading: "~deshou",
-    meaning: "mungkin / saya kira ~",
-    materialUrl: "tatabahasan4_deshou.html",
-    explanation: ["でしょう digunakan untuk dugaan atau perkiraan.", "Sering digunakan saat pembicara memperkirakan sesuatu."],
-    pattern: ["[Kalimat bentuk biasa] ＋ でしょう ＝ mungkin/saya kira ~"],
-    examples: [
-      { jp: "明日は晴れるでしょう。", reading: "あしたははれるでしょう。", meaning: "Besok mungkin akan cerah." },
-      { jp: "この問題は難しいでしょう。", reading: "このもんだいはむずかしいでしょう。", meaning: "Soal ini mungkin sulit." }
-    ],
-    quiz: [
-      { id: "q1", words: ["明日は", "晴れる", "でしょう"], answer: ["明日は", "晴れる", "でしょう"] },
-      { id: "q2", words: ["この問題は", "難しい", "でしょう"], answer: ["この問題は", "難しい", "でしょう"] }
-    ]
-  },
-  {
-    id: "n4u22", order: 22,
-    grammar: "〜のに", reading: "~noni",
-    meaning: "padahal / meskipun ~",
-    materialUrl: "tatabahasan4_noni.html",
-    explanation: ["のに menghubungkan dua keadaan yang berlawanan dengan harapan.", "Artinya dapat berupa 'padahal' atau 'meskipun' sesuai konteks."],
-    pattern: ["[Kalimat biasa] ＋ のに ＝ padahal/meskipun ~"],
-    examples: [
-      { jp: "勉強したのに、忘れてしまいました。", reading: "べんきょうしたのに、わすれてしまいました。", meaning: "Padahal sudah belajar, tetapi saya lupa." },
-      { jp: "雨なのに、出かけました。", reading: "あめなのに、でかけました。", meaning: "Meskipun hujan, saya pergi keluar." }
-    ],
-    quiz: [
-      { id: "q1", words: ["勉強したのに、", "忘れて", "しまいました"], answer: ["勉強したのに、", "忘れて", "しまいました"] },
-      { id: "q2", words: ["雨なのに、", "出かけ", "ました"], answer: ["雨なのに、", "出かけ", "ました"] }
-    ]
-  },
-  {
-    id: "n4u23", order: 23,
-    grammar: "〜し", reading: "~shi",
-    meaning: "lagipula / selain itu ~",
-    materialUrl: "tatabahasan4_shi.html",
-    explanation: ["し digunakan untuk menyebutkan beberapa alasan atau karakteristik.", "Biasanya beberapa alasan dihubungkan dengan し."],
-    pattern: ["[Alasan 1] し、[alasan 2] し、〜 ＝ selain itu/lagipula ~"],
-    examples: [
-      { jp: "この店は安いし、おいしいです。", reading: "このみせはやすいし、おいしいです。", meaning: "Toko ini murah dan juga enak." },
-      { jp: "今日は雨だし、家にいます。", reading: "きょうはあめだし、いえにいます。", meaning: "Hari ini hujan, jadi saya di rumah." }
-    ],
-    quiz: [
-      { id: "q1", words: ["この店は", "安いし、", "おいしいです"], answer: ["この店は", "安いし、", "おいしいです"] },
-      { id: "q2", words: ["今日は", "雨だし、", "家にいます"], answer: ["今日は", "雨だし、", "家にいます"] }
-    ]
-  },
-  {
-    id: "n4u24", order: 24,
-    grammar: "〜ばかり", reading: "~bakari",
-    meaning: "baru saja / hanya ~ terus",
-    materialUrl: "tatabahasan4_bakari.html",
-    explanation: ["〜たばかり menyatakan baru saja selesai melakukan sesuatu.", "ばかり juga dapat menyatakan keadaan yang didominasi satu hal, sesuai pola yang digunakan."],
-    pattern: ["[Kata Kerja bentuk た] ＋ ばかり ＝ baru saja ~"],
-    examples: [
-      { jp: "日本へ来たばかりです。", reading: "にほんへきたばかりです。", meaning: "Saya baru saja datang ke Jepang." },
-      { jp: "昼ご飯を食べたばかりです。", reading: "ひるごはんをたべたばかりです。", meaning: "Saya baru saja makan siang." }
-    ],
-    quiz: [
-      { id: "q1", words: ["日本へ", "来たばかり", "です"], answer: ["日本へ", "来たばかり", "です"] },
-      { id: "q2", words: ["昼ご飯を", "食べたばかり", "です"], answer: ["昼ご飯を", "食べたばかり", "です"] }
-    ]
-  },
-  {
-    id: "n4u25", order: 25,
-    grammar: "〜てもいい", reading: "~temo ii",
-    meaning: "boleh melakukan ~",
-    materialUrl: "tatabahasan4_temoii.html",
-    explanation: ["〜てもいい digunakan untuk meminta atau memberi izin.", "Bentuknya adalah kata kerja bentuk て + もいい."],
-    pattern: ["[Kata Kerja bentuk て] ＋ もいいですか ＝ bolehkah ~?"],
-    examples: [
-      { jp: "ここに座ってもいいですか。", reading: "ここにすわってもいいですか。", meaning: "Bolehkah saya duduk di sini?" },
-      { jp: "写真を撮ってもいいです。", reading: "しゃしんをとってもいいです。", meaning: "Boleh mengambil foto." }
-    ],
-    quiz: [
-      { id: "q1", words: ["ここに", "座っても", "いいですか"], answer: ["ここに", "座っても", "いいですか"] },
-      { id: "q2", words: ["写真を", "撮っても", "いいです"], answer: ["写真を", "撮っても", "いいです"] }
-    ]
-  },
-  {
-    id: "n4u26", order: 26,
-    grammar: "〜てはいけない", reading: "~tewa ikenai",
-    meaning: "tidak boleh melakukan ~",
-    materialUrl: "tatabahasan4_tewaikenai.html",
-    explanation: ["〜てはいけない digunakan untuk melarang suatu tindakan.", "Bentuknya adalah kata kerja bentuk て + はいけない."],
-    pattern: ["[Kata Kerja bentuk て] ＋ はいけません ＝ tidak boleh ~"],
-    examples: [
-      { jp: "ここで写真を撮ってはいけません。", reading: "ここでしゃしんをとってはいけません。", meaning: "Tidak boleh mengambil foto di sini." },
-      { jp: "この部屋に入ってはいけません。", reading: "このへやにはいってはいけません。", meaning: "Tidak boleh masuk ruangan ini." }
-    ],
-    quiz: [
-      { id: "q1", words: ["ここで", "写真を撮っては", "いけません"], answer: ["ここで", "写真を撮っては", "いけません"] },
-      { id: "q2", words: ["この部屋に", "入っては", "いけません"], answer: ["この部屋に", "入っては", "いけません"] }
-    ]
-  },
-  {
-    id: "n4u27", order: 27,
-    grammar: "命令形", reading: "meireikei",
-    meaning: "bentuk perintah",
-    materialUrl: "tatabahasan4_meireikei.html",
-    explanation: ["命令形 adalah bentuk perintah langsung.", "Bentuk ini perlu digunakan sesuai situasi karena terdengar tegas."],
-    pattern: ["Kata kerja diubah ke bentuk perintah ＝ lakukan!"],
-    examples: [
-      { jp: "早く来い！", reading: "はやくこい！", meaning: "Cepat datang!" },
-      { jp: "よく見ろ！", reading: "よくみろ！", meaning: "Lihat baik-baik!" }
-    ],
-    quiz: [
-      { id: "q1", words: ["早く", "来い"], answer: ["早く", "来い"] },
-      { id: "q2", words: ["よく", "見ろ"], answer: ["よく", "見ろ"] }
-    ]
-  },
-  {
-    id: "n4u28", order: 28,
-    grammar: "使役形（させる）", reading: "shiekikei",
-    meaning: "menyuruh / membiarkan seseorang melakukan ~",
-    materialUrl: "tatabahasan4_saseru.html",
-    explanation: ["使役形 menyatakan membuat, menyuruh, atau membiarkan seseorang melakukan sesuatu.", "Perubahan bentuk kata kerja bergantung pada kelompok kata kerja."],
-    pattern: ["[Pelaku] は [orang] に [使役形] ＝ menyuruh/membiarkan ~"],
-    examples: [
-      { jp: "先生は学生に作文を書かせました。", reading: "せんせいはがくせいにさくぶんをかかせました。", meaning: "Guru menyuruh siswa menulis karangan." },
-      { jp: "母は子どもに野菜を食べさせました。", reading: "はははこどもにやさいをたべさせました。", meaning: "Ibu menyuruh anak makan sayur." }
-    ],
-    quiz: [
-      { id: "q1", words: ["先生は学生に", "作文を書かせ", "ました"], answer: ["先生は学生に", "作文を書かせ", "ました"] },
-      { id: "q2", words: ["母は子どもに", "野菜を食べさせ", "ました"], answer: ["母は子どもに", "野菜を食べさせ", "ました"] }
-    ]
-  },
-  {
-    id: "n4u29", order: 29,
-    grammar: "受身形（られる）", reading: "ukemikei",
-    meaning: "bentuk pasif",
-    materialUrl: "tatabahasan4_rareru.html",
-    explanation: ["受身形 digunakan saat subjek menerima suatu tindakan.", "Pola umum: A は B に V-られる."],
-    pattern: ["[Subjek] は [pelaku] に [kata kerja pasif] ＝ dikenai tindakan ~"],
-    examples: [
-      { jp: "私は先生にほめられました。", reading: "わたしはせんせいにほめられました。", meaning: "Saya dipuji oleh guru." },
-      { jp: "弟は母に叱られました。", reading: "おとうとはははにしかられました。", meaning: "Adik dimarahi ibu." }
-    ],
-    quiz: [
-      { id: "q1", words: ["私は先生に", "ほめられ", "ました"], answer: ["私は先生に", "ほめられ", "ました"] },
-      { id: "q2", words: ["弟は母に", "叱られ", "ました"], answer: ["弟は母に", "叱られ", "ました"] }
-    ]
-  },
-  {
-    id: "n4u30", order: 30,
-    grammar: "れる／られる（可能）", reading: "kanoukei",
-    meaning: "bisa / dapat melakukan ~",
-    materialUrl: "tatabahasan4_kanoukei.html",
-    explanation: ["可能形 menyatakan kemampuan atau kemungkinan melakukan suatu tindakan.", "Dalam kalimat kemampuan, objek sering ditandai が."],
-    pattern: ["Kata kerja bentuk potensial ＝ bisa/dapat ~"],
-    examples: [
-      { jp: "日本語が話せます。", reading: "にほんごがはなせます。", meaning: "Saya bisa berbicara bahasa Jepang." },
-      { jp: "漢字が読めます。", reading: "かんじがよめます。", meaning: "Saya bisa membaca kanji." }
-    ],
-    quiz: [
-      { id: "q1", words: ["日本語が", "話せ", "ます"], answer: ["日本語が", "話せ", "ます"] },
-      { id: "q2", words: ["漢字が", "読め", "ます"], answer: ["漢字が", "読め", "ます"] }
-    ]
-  },
-  {
-    id: "n4u31", order: 31,
-    grammar: "〜てみる", reading: "~te miru",
-    meaning: "mencoba melakukan ~",
-    materialUrl: "tatabahasan4_temiru.html",
-    explanation: ["〜てみる digunakan untuk menyatakan mencoba melakukan sesuatu.", "Gunakan kata kerja bentuk て + みる."],
-    pattern: ["[Kata Kerja bentuk て] ＋ みる ＝ mencoba ~"],
-    examples: [
-      { jp: "この料理を食べてみます。", reading: "このりょうりをたべてみます。", meaning: "Saya akan mencoba makan masakan ini." },
-      { jp: "日本語で話してみてください。", reading: "にほんごではなしてみてください。", meaning: "Tolong coba berbicara dalam bahasa Jepang." }
-    ],
-    quiz: [
-      { id: "q1", words: ["この料理を", "食べて", "みます"], answer: ["この料理を", "食べて", "みます"] },
-      { id: "q2", words: ["日本語で", "話してみて", "ください"], answer: ["日本語で", "話してみて", "ください"] }
-    ]
-  },
-  {
-    id: "n4u32", order: 32,
-    grammar: "（よ）うと思う", reading: "(y)ou to omou",
-    meaning: "berniat / bermaksud ~",
-    materialUrl: "tatabahasan4_youtoomou.html",
-    explanation: ["〜ようと思う digunakan untuk menyatakan niat pembicara.", "Bentuknya adalah volitional + と思う."],
-    pattern: ["[Bentuk volisional] ＋ と思います ＝ saya berniat ~"],
-    examples: [
-      { jp: "来年、日本へ行こうと思います。", reading: "らいねん、にほんへいこうとおもいます。", meaning: "Saya berniat pergi ke Jepang tahun depan." },
-      { jp: "もっと日本語を勉強しようと思います。", reading: "もっとにほんごをべんきょうしようとおもいます。", meaning: "Saya berniat belajar bahasa Jepang lebih banyak." }
-    ],
-    quiz: [
-      { id: "q1", words: ["来年、", "日本へ行こうと", "思います"], answer: ["来年、", "日本へ行こうと", "思います"] },
-      { id: "q2", words: ["もっと日本語を", "勉強しようと", "思います"], answer: ["もっと日本語を", "勉強しようと", "思います"] }
-    ]
-  },
-  {
-    id: "n4u33", order: 33,
-    grammar: "〜ことにする", reading: "~koto ni suru",
-    meaning: "memutuskan untuk ~",
-    materialUrl: "tatabahasan4_kotonisuru.html",
-    explanation: ["〜ことにする menyatakan keputusan yang dibuat oleh pembicara.", "Kata kerja bentuk kamus atau negatif dapat digunakan sebelum ことにする."],
-    pattern: ["[Kata Kerja bentuk kamus/ない] ＋ ことにする ＝ memutuskan untuk ~"],
-    examples: [
-      { jp: "毎日漢字を勉強することにしました。", reading: "まいにちかんじをべんきょうすることにしました。", meaning: "Saya memutuskan untuk belajar kanji setiap hari." },
-      { jp: "お酒を飲まないことにしました。", reading: "おさけをのまないことにしました。", meaning: "Saya memutuskan untuk tidak minum alkohol." }
-    ],
-    quiz: [
-      { id: "q1", words: ["毎日漢字を", "勉強することに", "しました"], answer: ["毎日漢字を", "勉強することに", "しました"] },
-      { id: "q2", words: ["お酒を", "飲まないことに", "しました"], answer: ["お酒を", "飲まないことに", "しました"] }
-    ]
-  },
-  {
-    id: "n4u34", order: 34,
-    grammar: "〜ことになる", reading: "~koto ni naru",
-    meaning: "telah diputuskan / menjadi ketentuan",
-    materialUrl: "tatabahasan4_kotoninaru.html",
-    explanation: ["〜ことになる menyatakan keputusan atau hasil yang ditentukan.", "Fokusnya pada keputusan/ketentuan yang terjadi, bukan keputusan pribadi."],
-    pattern: ["[Kata Kerja bentuk kamus/ない] ＋ ことになる ＝ diputuskan menjadi ~"],
-    examples: [
-      { jp: "来月、日本へ行くことになりました。", reading: "らいげつ、にほんへいくことになりました。", meaning: "Diputuskan bahwa bulan depan saya akan pergi ke Jepang." },
-      { jp: "会議は午後三時に始まることになりました。", reading: "かいぎはごごさんじにはじまることになりました。", meaning: "Diputuskan rapat dimulai pukul 3 sore." }
-    ],
-    quiz: [
-      { id: "q1", words: ["来月、", "日本へ行くことに", "なりました"], answer: ["来月、", "日本へ行くことに", "なりました"] },
-      { id: "q2", words: ["会議は午後三時に", "始まることに", "なりました"], answer: ["会議は午後三時に", "始まることに", "なりました"] }
-    ]
-  },
-  {
-    id: "n4u35", order: 35,
-    grammar: "〜ようにする", reading: "~you ni suru",
-    meaning: "berusaha / membiasakan diri untuk ~",
-    materialUrl: "tatabahasan4_younisuru.html",
-    explanation: ["〜ようにする menyatakan usaha sadar untuk menjadikan sesuatu sebagai kebiasaan.", "Sering digunakan untuk target kebiasaan sehari-hari."],
-    pattern: ["[Kata Kerja] ＋ ようにする ＝ berusaha membiasakan ~"],
-    examples: [
-      { jp: "毎日日本語を話すようにしています。", reading: "まいにちにほんごをはなすようにしています。", meaning: "Saya berusaha berbicara bahasa Jepang setiap hari." },
-      { jp: "遅れないようにします。", reading: "おくれないようにします。", meaning: "Saya akan berusaha agar tidak terlambat." }
-    ],
-    quiz: [
-      { id: "q1", words: ["毎日日本語を", "話すように", "しています"], answer: ["毎日日本語を", "話すように", "しています"] },
-      { id: "q2", words: ["遅れない", "ように", "します"], answer: ["遅れない", "ように", "します"] }
-    ]
-  },
-  {
-    id: "n4u36", order: 36,
-    grammar: "〜てあげる／〜てもらう／〜てくれる", reading: "~te ageru / ~te morau / ~te kureru",
-    meaning: "memberi / menerima bantuan / orang lain melakukan untuk saya",
-    materialUrl: "tatabahasan4_teageru.html",
-    explanation: ["〜てあげる menyatakan melakukan sesuatu untuk orang lain.", "〜てもらう menyatakan menerima bantuan.", "〜てくれる menyatakan orang lain melakukan sesuatu untuk pembicara atau pihaknya."],
-    pattern: ["Vて＋あげる／もらう／くれる ＝ hubungan memberi dan menerima bantuan"],
-    examples: [
-      { jp: "私は友達に日本語を教えてあげました。", reading: "わたしはともだちににほんごをおしえてあげました。", meaning: "Saya mengajari bahasa Jepang kepada teman." },
-      { jp: "友達に宿題を手伝ってもらいました。", reading: "ともだちにしゅくだいをてつだってもらいました。", meaning: "Saya mendapat bantuan teman mengerjakan PR." }
-    ],
-    quiz: [
-      { id: "q1", words: ["私は友達に", "日本語を教えて", "あげました"], answer: ["私は友達に", "日本語を教えて", "あげました"] },
-      { id: "q2", words: ["友達に宿題を", "手伝って", "もらいました"], answer: ["友達に宿題を", "手伝って", "もらいました"] }
-    ]
   }
 ];
 
@@ -1120,8 +843,8 @@ const KANJI_N3 = [
 ];
 
 /* ---------------------------------------------------------
-   KANJI_N4 — 144 kanji (12 minggu x 12 kanji/minggu),
-   selaras dengan 36 unit UNITS_N4 di atas.
+   KANJI_N4 — 72 kanji pertama (6 minggu pertama x 12 kanji/minggu),
+   selaras dengan 18 unit UNITS_N4 di atas.
    ------------------------------------------------------------
    Setiap kanji sekarang punya field `vocab` (contoh kosakata):
    { word, reading, meaning } — dipakai otomatis oleh
@@ -1130,7 +853,7 @@ const KANJI_N3 = [
    bukan cuma karakter kanji sendirian.
 
    ⚠️ Ini baru 72 dari sekitar 168 kanji N4 yang umum diajarkan.
-   Untuk menutupi 12 minggu penuh (45 unit ÷ 3), tambahkan kanji
+   Untuk menutupi 15 minggu penuh (45 unit ÷ 3), tambahkan kanji
    lagi dengan pola {id, kanji, reading, meaning, vocab} yang sama.
 --------------------------------------------------------- */
 const KANJI_N4 = [
@@ -1217,80 +940,6 @@ const KANJI_N4 = [
   { id: "n4k70", kanji: "髪", reading: "かみ・はつ", meaning: "rambut", vocab: { word: "髪", reading: "かみ", meaning: "rambut" } },
   { id: "n4k71", kanji: "若", reading: "わか(い)・じゃく", meaning: "muda", vocab: { word: "若い", reading: "わかい", meaning: "muda" } },
   { id: "n4k72", kanji: "老", reading: "ろう・お(いる)", meaning: "tua", vocab: { word: "老人", reading: "ろうじん", meaning: "orang tua / lansia" } },
-
-  // Minggu 7–12
-  { id: "n4k73", kanji: "進", reading: "すす(む)・しん", meaning: "maju / melanjutkan", vocab: { word: "進む", reading: "すすむ", meaning: "maju" } },
-  { id: "n4k74", kanji: "運", reading: "はこ(ぶ)・うん", meaning: "membawa / keberuntungan", vocab: { word: "運ぶ", reading: "はこぶ", meaning: "membawa" } },
-  { id: "n4k75", kanji: "送", reading: "おく(る)・そう", meaning: "mengirim", vocab: { word: "送る", reading: "おくる", meaning: "mengirim" } },
-  { id: "n4k76", kanji: "返", reading: "かえ(す)・へん", meaning: "mengembalikan", vocab: { word: "返す", reading: "かえす", meaning: "mengembalikan" } },
-  { id: "n4k77", kanji: "借", reading: "か(りる)・しゃく", meaning: "meminjam", vocab: { word: "借りる", reading: "かりる", meaning: "meminjam" } },
-  { id: "n4k78", kanji: "貸", reading: "か(す)・たい", meaning: "meminjamkan", vocab: { word: "貸す", reading: "かす", meaning: "meminjamkan" } },
-  { id: "n4k79", kanji: "住", reading: "す(む)・じゅう", meaning: "tinggal", vocab: { word: "住む", reading: "すむ", meaning: "tinggal" } },
-  { id: "n4k80", kanji: "働", reading: "はたら(く)・どう", meaning: "bekerja", vocab: { word: "働く", reading: "はたらく", meaning: "bekerja" } },
-  { id: "n4k81", kanji: "働", reading: "はたら(く)・どう", meaning: "bekerja", vocab: { word: "働きます", reading: "はたらきます", meaning: "bekerja" } },
-  { id: "n4k82", kanji: "考", reading: "かんが(える)・こう", meaning: "berpikir", vocab: { word: "考える", reading: "かんがえる", meaning: "berpikir" } },
-  { id: "n4k83", kanji: "知", reading: "し(る)・ち", meaning: "mengetahui", vocab: { word: "知る", reading: "しる", meaning: "mengetahui" } },
-  { id: "n4k84", kanji: "思", reading: "おも(う)・し", meaning: "berpikir", vocab: { word: "思う", reading: "おもう", meaning: "berpikir" } },
-  { id: "n4k85", kanji: "決", reading: "き(める)・けつ", meaning: "memutuskan", vocab: { word: "決める", reading: "きめる", meaning: "memutuskan" } },
-  { id: "n4k86", kanji: "変", reading: "か(わる)・へん", meaning: "berubah", vocab: { word: "変わる", reading: "かわる", meaning: "berubah" } },
-  { id: "n4k87", kanji: "始", reading: "はじ(める)・し", meaning: "memulai", vocab: { word: "始める", reading: "はじめる", meaning: "memulai" } },
-  { id: "n4k88", kanji: "終", reading: "お(わる)・しゅう", meaning: "selesai", vocab: { word: "終わる", reading: "おわる", meaning: "selesai" } },
-  { id: "n4k89", kanji: "続", reading: "つづ(く)・ぞく", meaning: "berlanjut", vocab: { word: "続く", reading: "つづく", meaning: "berlanjut" } },
-  { id: "n4k90", kanji: "止", reading: "と(まる)・し", meaning: "berhenti", vocab: { word: "止まる", reading: "とまる", meaning: "berhenti" } },
-  { id: "n4k91", kanji: "動", reading: "うご(く)・どう", meaning: "bergerak", vocab: { word: "動く", reading: "うごく", meaning: "bergerak" } },
-  { id: "n4k92", kanji: "開", reading: "あ(く)・かい", meaning: "membuka / terbuka", vocab: { word: "開く", reading: "あく", meaning: "terbuka" } },
-  { id: "n4k93", kanji: "閉", reading: "し(める)・へい", meaning: "menutup", vocab: { word: "閉める", reading: "しめる", meaning: "menutup" } },
-  { id: "n4k94", kanji: "使", reading: "つか(う)・し", meaning: "menggunakan", vocab: { word: "使う", reading: "つかう", meaning: "menggunakan" } },
-  { id: "n4k95", kanji: "作", reading: "つく(る)・さく", meaning: "membuat", vocab: { word: "作る", reading: "つくる", meaning: "membuat" } },
-  { id: "n4k96", kanji: "持", reading: "も(つ)・じ", meaning: "membawa / memiliki", vocab: { word: "持つ", reading: "もつ", meaning: "membawa" } },
-  { id: "n4k97", kanji: "置", reading: "お(く)・ち", meaning: "meletakkan", vocab: { word: "置く", reading: "おく", meaning: "meletakkan" } },
-  { id: "n4k98", kanji: "取", reading: "と(る)・しゅ", meaning: "mengambil", vocab: { word: "取る", reading: "とる", meaning: "mengambil" } },
-  { id: "n4k99", kanji: "売", reading: "う(る)・ばい", meaning: "menjual", vocab: { word: "売る", reading: "うる", meaning: "menjual" } },
-  { id: "n4k100", kanji: "買", reading: "か(う)・ばい", meaning: "membeli", vocab: { word: "買う", reading: "かう", meaning: "membeli" } },
-  { id: "n4k101", kanji: "払", reading: "はら(う)・ふつ", meaning: "membayar", vocab: { word: "払う", reading: "はらう", meaning: "membayar" } },
-  { id: "n4k102", kanji: "着", reading: "き(る)・ちゃく", meaning: "memakai / tiba", vocab: { word: "着る", reading: "きる", meaning: "memakai" } },
-  { id: "n4k103", kanji: "脱", reading: "ぬ(ぐ)・だつ", meaning: "melepas pakaian", vocab: { word: "脱ぐ", reading: "ぬぐ", meaning: "melepas" } },
-  { id: "n4k104", kanji: "洗", reading: "あら(う)・せん", meaning: "mencuci", vocab: { word: "洗う", reading: "あらう", meaning: "mencuci" } },
-  { id: "n4k105", kanji: "掃", reading: "そう(じする)・そう", meaning: "menyapu / membersihkan", vocab: { word: "掃除", reading: "そうじ", meaning: "membersihkan" } },
-  { id: "n4k106", kanji: "集", reading: "あつ(める)・しゅう", meaning: "mengumpulkan", vocab: { word: "集める", reading: "あつめる", meaning: "mengumpulkan" } },
-  { id: "n4k107", kanji: "別", reading: "わか(れる)・べつ", meaning: "berpisah / berbeda", vocab: { word: "別れる", reading: "わかれる", meaning: "berpisah" } },
-  { id: "n4k108", kanji: "近", reading: "ちか(い)・きん", meaning: "dekat", vocab: { word: "近い", reading: "ちかい", meaning: "dekat" } },
-  { id: "n4k109", kanji: "遠", reading: "とお(い)・えん", meaning: "jauh", vocab: { word: "遠い", reading: "とおい", meaning: "jauh" } },
-  { id: "n4k110", kanji: "重", reading: "おも(い)・じゅう", meaning: "berat", vocab: { word: "重い", reading: "おもい", meaning: "berat" } },
-  { id: "n4k111", kanji: "軽", reading: "かる(い)・けい", meaning: "ringan", vocab: { word: "軽い", reading: "かるい", meaning: "ringan" } },
-  { id: "n4k112", kanji: "強", reading: "つよ(い)・きょう", meaning: "kuat", vocab: { word: "強い", reading: "つよい", meaning: "kuat" } },
-  { id: "n4k113", kanji: "弱", reading: "よわ(い)・じゃく", meaning: "lemah", vocab: { word: "弱い", reading: "よわい", meaning: "lemah" } },
-  { id: "n4k114", kanji: "長", reading: "なが(い)・ちょう", meaning: "panjang", vocab: { word: "長い", reading: "ながい", meaning: "panjang" } },
-  { id: "n4k115", kanji: "短", reading: "みじか(い)・たん", meaning: "pendek", vocab: { word: "短い", reading: "みじかい", meaning: "pendek" } },
-  { id: "n4k116", kanji: "広", reading: "ひろ(い)・こう", meaning: "luas", vocab: { word: "広い", reading: "ひろい", meaning: "luas" } },
-  { id: "n4k117", kanji: "狭", reading: "せま(い)・きょう", meaning: "sempit", vocab: { word: "狭い", reading: "せまい", meaning: "sempit" } },
-  { id: "n4k118", kanji: "明", reading: "あか(るい)・めい", meaning: "terang", vocab: { word: "明るい", reading: "あかるい", meaning: "terang" } },
-  { id: "n4k119", kanji: "暗", reading: "くら(い)・あん", meaning: "gelap", vocab: { word: "暗い", reading: "くらい", meaning: "gelap" } },
-  { id: "n4k120", kanji: "新", reading: "あたら(しい)・しん", meaning: "baru", vocab: { word: "新しい", reading: "あたらしい", meaning: "baru" } },
-  { id: "n4k121", kanji: "古", reading: "ふる(い)・こ", meaning: "lama / tua", vocab: { word: "古い", reading: "ふるい", meaning: "lama" } },
-  { id: "n4k122", kanji: "多", reading: "おお(い)・た", meaning: "banyak", vocab: { word: "多い", reading: "おおい", meaning: "banyak" } },
-  { id: "n4k123", kanji: "少", reading: "すく(ない)・しょう", meaning: "sedikit", vocab: { word: "少ない", reading: "すくない", meaning: "sedikit" } },
-  { id: "n4k124", kanji: "早", reading: "はや(い)・そう", meaning: "cepat / awal", vocab: { word: "早い", reading: "はやい", meaning: "cepat" } },
-  { id: "n4k125", kanji: "遅", reading: "おそ(い)・ち", meaning: "lambat / terlambat", vocab: { word: "遅い", reading: "おそい", meaning: "lambat" } },
-  { id: "n4k126", kanji: "高", reading: "たか(い)・こう", meaning: "tinggi / mahal", vocab: { word: "高い", reading: "たかい", meaning: "tinggi" } },
-  { id: "n4k127", kanji: "安", reading: "やす(い)・あん", meaning: "murah / aman", vocab: { word: "安い", reading: "やすい", meaning: "murah" } },
-  { id: "n4k128", kanji: "低", reading: "ひく(い)・てい", meaning: "rendah", vocab: { word: "低い", reading: "ひくい", meaning: "rendah" } },
-  { id: "n4k129", kanji: "楽", reading: "たの(しい)・らく", meaning: "menyenangkan", vocab: { word: "楽しい", reading: "たのしい", meaning: "menyenangkan" } },
-  { id: "n4k130", kanji: "忙", reading: "いそが(しい)・ぼう", meaning: "sibuk", vocab: { word: "忙しい", reading: "いそがしい", meaning: "sibuk" } },
-  { id: "n4k131", kanji: "有", reading: "あ(る)・ゆう", meaning: "ada / memiliki", vocab: { word: "有る", reading: "ある", meaning: "ada" } },
-  { id: "n4k132", kanji: "無", reading: "な(い)・む", meaning: "tidak ada", vocab: { word: "無い", reading: "ない", meaning: "tidak ada" } },
-  { id: "n4k133", kanji: "同", reading: "おな(じ)・どう", meaning: "sama", vocab: { word: "同じ", reading: "おなじ", meaning: "sama" } },
-  { id: "n4k134", kanji: "違", reading: "ちが(う)・い", meaning: "berbeda / salah", vocab: { word: "違う", reading: "ちがう", meaning: "berbeda" } },
-  { id: "n4k135", kanji: "正", reading: "ただ(しい)・せい", meaning: "benar", vocab: { word: "正しい", reading: "ただしい", meaning: "benar" } },
-  { id: "n4k136", kanji: "悪", reading: "わる(い)・あく", meaning: "buruk", vocab: { word: "悪い", reading: "わるい", meaning: "buruk" } },
-  { id: "n4k137", kanji: "元", reading: "もと・げん", meaning: "asal / sehat", vocab: { word: "元気", reading: "げんき", meaning: "sehat/bersemangat" } },
-  { id: "n4k138", kanji: "気", reading: "き・け", meaning: "perasaan / energi", vocab: { word: "元気", reading: "げんき", meaning: "sehat/bersemangat" } },
-  { id: "n4k139", kanji: "心", reading: "こころ・しん", meaning: "hati / perasaan", vocab: { word: "心", reading: "こころ", meaning: "hati" } },
-  { id: "n4k140", kanji: "体", reading: "からだ・たい", meaning: "tubuh", vocab: { word: "体", reading: "からだ", meaning: "tubuh" } },
-  { id: "n4k141", kanji: "頭", reading: "あたま・とう", meaning: "kepala", vocab: { word: "頭", reading: "あたま", meaning: "kepala" } },
-  { id: "n4k142", kanji: "目", reading: "め・もく", meaning: "mata", vocab: { word: "目", reading: "め", meaning: "mata" } },
-  { id: "n4k143", kanji: "耳", reading: "みみ・じ", meaning: "telinga", vocab: { word: "耳", reading: "みみ", meaning: "telinga" } },
-  { id: "n4k144", kanji: "口", reading: "くち・こう", meaning: "mulut", vocab: { word: "口", reading: "くち", meaning: "mulut" } },
 ];
 
 // TODO: isi kanji level lain dengan pola yang sama.
@@ -1625,8 +1274,81 @@ const TekiStore = {
     } catch (e) { return null; }
   },
 
-  _writeAll(students) {
+  _writeAll(students, options = {}) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
+    if(options.remote !== false) this._queueCloudSave(students);
+  },
+
+  _queueCloudSave(students){
+    if(!cloudEnabled()) return;
+    clearTimeout(this._cloudTimer);
+    this._cloudTimer = setTimeout(() => this.saveAllRemote(students).catch(() => {}), 250);
+  },
+
+  async _postRemote(payload){
+    if(!cloudEnabled()) return null;
+    const body = new URLSearchParams();
+    Object.entries({...payload, key:CLOUD_API_KEY}).forEach(([k,v]) => body.append(k, typeof v === "object" ? JSON.stringify(v) : String(v)));
+    // Apps Script ContentService may redirect its response URL. We do not need
+    // to read the response for writes, so no-cors keeps the POST simple and
+    // avoids browser preflight/CORS issues.
+    await fetch(CLOUD_API_URL, { method:"POST", body, mode:"no-cors", keepalive:true });
+    return {ok:true};
+  },
+
+  async _getRemote(params = {}){
+    if(!cloudEnabled()) return null;
+    return await new Promise((resolve, reject) => {
+      const callback = "__tekipaki_cb_" + Date.now() + "_" + Math.random().toString(36).slice(2);
+      const script = document.createElement("script");
+      const q = new URLSearchParams({...params, key:CLOUD_API_KEY, callback});
+      let finished = false;
+      const cleanup = () => { finished = true; delete window[callback]; script.remove(); };
+      const timer = setTimeout(() => { if(!finished){ cleanup(); reject(new Error("Database online timeout")); } }, 12000);
+      window[callback] = data => {
+        clearTimeout(timer);
+        if(!data || !data.ok){ cleanup(); reject(new Error((data && data.message) || "Cloud request gagal")); return; }
+        cleanup(); resolve(data);
+      };
+      script.onerror = () => { clearTimeout(timer); cleanup(); reject(new Error("Tidak dapat menghubungi database online")); };
+      script.src = CLOUD_API_URL + "?" + q.toString();
+      document.head.appendChild(script);
+    });
+  },
+
+  async refreshFromCloud(){
+    if(!cloudEnabled()) return {ok:false, skipped:true};
+    const data = await this._getRemote({action:"list"});
+    const students = Array.isArray(data.students) ? data.students : [];
+    const local = this._readAll() || [];
+    // Migrasi sekali: bila database masih kosong tetapi browser guru sudah
+    // punya daftar siswa lama, kirim daftar lama ke database online.
+    if(students.length === 0 && local.length > 0){
+      await this.saveAllRemote(local);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(local));
+      return {ok:true, students:local, migrated:true};
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
+    return {ok:true, students};
+  },
+
+  async getStudentRemote(code){
+    if(!cloudEnabled()) return null;
+    code = (code || "").trim().toUpperCase();
+    const data = await this._getRemote({action:"get", code});
+    const student = data.student || null;
+    if(student){
+      const students = this._readAll() || [];
+      const idx = students.findIndex(s => s.code === code);
+      if(idx >= 0) students[idx] = student; else students.push(student);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
+    }
+    return student;
+  },
+
+  async saveAllRemote(students){
+    if(!cloudEnabled()) return {ok:false, skipped:true};
+    return this._postRemote({action:"saveAll", data:JSON.stringify(students)});
   },
 
   /** Seed data contoh — hanya dipakai kalau localStorage masih kosong */
@@ -1680,7 +1402,7 @@ const TekiStore = {
       mk("PTPR05", "FERIAN", 2, { inactiveDays: 6 }),
       mk("PTPR02", "LUKI",   0, { inactiveDays: 18, startedDaysAgo: 3 }),
     ];
-    this._writeAll(students);
+    this._writeAll(students, {remote:false});
     return students;
   },
 
