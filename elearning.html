@@ -724,7 +724,7 @@ function openUnit(unitId, packageIndex, asPreview){
 
     ${previewBarHTML}
 
-    <p class="desc" style="margin-bottom:0;">Kerjakan 20 soal latihan di bawah ini (10 soal Tata Bahasa + 10 soal Kanji, campuran pilihan ganda &amp; esai). Kunci jawaban baru akan muncul setelah <b>semua soal selesai dikerjakan</b> dan kamu menekan "Kumpulkan Jawaban" — atau langsung lewat tombol pratinjau di atas.</p>
+    <p class="desc" style="margin-bottom:0;">Kerjakan 20 soal latihan di bawah ini (10 soal Tata Bahasa + 10 soal Kanji). Soal Kanji terdiri dari arti, cara baca, dan esai membuat kalimat. Kunci jawaban baru akan muncul setelah <b>semua soal selesai dikerjakan</b> dan kamu menekan "Kumpulkan Jawaban" — atau langsung lewat tombol pratinjau di atas.</p>
 
     <div class="sectionHead"><h2>文 Bagian Tata Bahasa</h2><span class="cnt">10 soal</span></div>
     <div id="grammarQArea">${renderQuestionCards(currentUnitQuiz.grammarQuestions)}</div>
@@ -978,7 +978,7 @@ function openKanjiQuiz(packageIndex){
     <div class="kanjiQuizCard">
       <b>SOAL ${qi + 1}</b>
       <div class="kanjiChar">${q.kanji}</div>
-      <p style="color:var(--ink-soft);margin-bottom:10px;">Apa arti / bacaan kanji di atas?</p>
+      <p style="color:var(--ink-soft);margin-bottom:10px;">${q.prompt || "Pilih jawaban yang benar."}</p>
       <div class="mcOptions" id="mc_${q.id}">
         ${q.options.map(opt => `<button class="mcOption" onclick="selectKanjiOption('${q.id}', this, '${opt.replace(/'/g,"\\'")}')">${opt}</button>`).join("")}
       </div>
