@@ -268,11 +268,8 @@ HOME
     </div>
   </div>
 
-  <div class="dummy-note">
-    ⚠️ <b>Catatan:</b> Data di panel ini saat ini disimpan sementara (localStorage) di browser masing-masing perangkat,
-    berdasarkan progres unit yang dikerjakan siswa lewat <b>siswa.html</b>. Untuk sinkronisasi nyata antar perangkat
-    (agar progres siswa yang mengerjakan dari HP langsung terlihat oleh guru dari laptop manapun), lapisan data ini
-    perlu dihubungkan ke backend sungguhan — lihat komentar di <b>data.js</b>.
+  <div class="dummy-note" id="cloudStatus">
+    ☁️ <b>Sinkronisasi:</b> menyiapkan koneksi database online...
   </div>
 </div>
 
@@ -317,11 +314,27 @@ const sortRow = document.getElementById("sortRow");
 const studentList = document.getElementById("studentList");
 const detailPanel = document.getElementById("detailPanel");
 
-function initAdmin(){
-  document.getElementById("searchInput").addEventListener("input", e => { searchQuery = e.target.value; renderList(); });
+async function initAdmin(){
+  const search = document.getElementById("searchInput");
+  if(!search.dataset.bound){
+    search.addEventListener("input", e => { searchQuery = e.target.value; renderList(); });
+    search.dataset.bound = "1";
+  }
   renderStats();
   renderList();
   renderDetail();
+  const status = document.getElementById("cloudStatus");
+  try{
+    const result = await TekiStore.refreshFromCloud();
+    if(result.ok){
+      status.innerHTML = "☁️ <b>Sinkronisasi aktif:</b> daftar siswa dan progres terbaru sudah diambil dari database online.";
+      renderStats(); renderList(); renderDetail();
+    }else{
+      status.innerHTML = "⚠️ <b>Mode lokal:</b> URL database online belum dipasang di data.js.";
+    }
+  }catch(err){
+    status.innerHTML = "⚠️ <b>Database online belum tersambung.</b> Cek URL Web App Google Apps Script di data.js.";
+  }
 }
 
 /* ================= TAMBAH SISWA ================= */
@@ -329,7 +342,7 @@ function toggleAddForm(){
   document.getElementById("addForm").classList.toggle("hidden");
   document.getElementById("addFormError").textContent = "";
 }
-function submitAddStudent(){
+async function submitAddStudent(){
   const code = document.getElementById("newCode").value;
   const name = document.getElementById("newName").value;
   const level = document.getElementById("newLevel").value;
@@ -344,15 +357,17 @@ function submitAddStudent(){
   document.getElementById("newLevel").value = "N5";
   document.getElementById("addForm").classList.add("hidden");
   err.textContent = "";
+  try{ await TekiStore.saveAllRemote(TekiStore.getAllStudents()); }catch(e){}
   renderStats();
   renderList();
 }
 
 /* ================= HAPUS SISWA ================= */
-function deleteStudent(code, name){
+async function deleteStudent(code, name){
   const ok = confirm(`Hapus siswa "${name}" (${code})? Semua progres unit siswa ini akan ikut terhapus dan tidak bisa dikembalikan.`);
   if(!ok) return;
   TekiStore.removeStudent(code);
+  try{ await TekiStore.saveAllRemote(TekiStore.getAllStudents()); }catch(e){}
   if(activeCode === code) activeCode = null;
   renderStats();
   renderList();
