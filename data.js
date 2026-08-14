@@ -1120,7 +1120,7 @@ const KANJI_N3 = [
 ];
 
 /* ---------------------------------------------------------
-   KANJI_N4 — 72 kanji pertama (6 minggu pertama x 12 kanji/minggu),
+   KANJI_N4 — 144 kanji (12 minggu x 12 kanji/minggu),
    selaras dengan 36 unit UNITS_N4 di atas.
    ------------------------------------------------------------
    Setiap kanji sekarang punya field `vocab` (contoh kosakata):
