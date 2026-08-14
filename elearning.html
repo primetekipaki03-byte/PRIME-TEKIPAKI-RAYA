@@ -4,506 +4,3796 @@
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Tekipaki Japanese Learning — Siswa</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
+
 :root{
-  --navy:#0a1f3d; --navy2:#001530; --navy3:#132c52;
-  --gold:#e0b52a; --gold-dim:#c4a02a;
-  --paper:#f6f0e2; --paper2:#efe6d0;
-  --ink:#1c2541; --ink-soft:#4a5875;
-  --seal:#b3382e; --muted:#9fb0c9;
-  --pass:#3f7d52; --pass-bg:#e7f1ea;
-  --warn-bg:#faf1d9; --fail-bg:#f8e7e5;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif;background:var(--paper);color:var(--ink);}
-h1,h2,h3,.display{font-family:"Shippori Mincho",serif;}
-.mono{font-family:"JetBrains Mono",monospace;}
-.hidden{display:none!important;}
-button,input{font:inherit;}
-a{color:inherit;}
+  --navy:#0a1f3d;
+  --navy2:#001530;
+  --navy3:#132c52;
 
-/* ---------- LOGIN ---------- */
+  --gold:#e0b52a;
+  --gold-dim:#c4a02a;
+
+  --paper:#f6f0e2;
+  --paper2:#efe6d0;
+
+  --ink:#1c2541;
+  --ink-soft:#4a5875;
+
+  --seal:#b3382e;
+  --muted:#9fb0c9;
+
+  --pass:#3f7d52;
+  --pass-bg:#e7f1ea;
+
+  --warn-bg:#faf1d9;
+  --fail-bg:#f8e7e5;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+}
+
+h1,h2,h3,.display{
+  font-family:"Shippori Mincho",serif;
+}
+
+.mono{
+  font-family:"JetBrains Mono",monospace;
+}
+
+.hidden{
+  display:none!important;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+a{
+  color:inherit;
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
 #loginPage{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;
-  background:radial-gradient(120% 140% at 15% -10%, var(--navy3), var(--navy) 55%, var(--navy2) 100%);
-  position:relative;overflow:hidden;
+  min-height:100vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  background:
+    radial-gradient(
+      120% 140% at 15% -10%,
+      var(--navy3),
+      var(--navy) 55%,
+      var(--navy2) 100%
+    );
+
+  position:relative;
+  overflow:hidden;
 }
+
 #loginPage::before{
-  content:"学";position:absolute;font-family:"Shippori Mincho",serif;font-weight:800;
-  font-size:min(60vw,520px);color:rgba(224,181,42,.06);right:-8%;top:50%;transform:translateY(-50%);
-  pointer-events:none;user-select:none;
+  content:"学";
+
+  position:absolute;
+
+  font-family:"Shippori Mincho",serif;
+  font-weight:800;
+
+  font-size:min(60vw,520px);
+
+  color:rgba(224,181,42,.06);
+
+  right:-8%;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  pointer-events:none;
+  user-select:none;
 }
-.login{position:relative;z-index:2;width:420px;max-width:100%;background:#fff;padding:42px 34px;
-  border-radius:18px;text-align:center;box-shadow:0 30px 70px rgba(0,0,0,.35);border-top:4px solid var(--gold);}
-.logo{width:60px;height:60px;margin:auto;background:var(--navy);color:var(--gold);border-radius:14px;
-  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;font-family:"Shippori Mincho",serif;}
-.login h1{color:var(--navy);margin:16px 0 4px;font-size:1.6rem;}
-.login p{color:var(--ink-soft);font-size:.9rem;margin-bottom:6px;}
-.login input{width:100%;padding:13px 14px;border:1px solid var(--paper2);border-radius:10px;margin-top:16px;
-  outline:none;text-transform:uppercase;font-family:"JetBrains Mono",monospace;letter-spacing:1px;text-align:center;}
-.login input:focus{border-color:var(--gold);}
-.login button{width:100%;padding:13px;border:0;border-radius:10px;background:var(--navy);color:var(--gold);
-  font-weight:bold;margin-top:12px;cursor:pointer;letter-spacing:1px;}
-.login button:hover{background:var(--navy3);}
-.error{color:var(--seal);font-size:.82rem;min-height:20px;margin-top:10px;}
-.hint{color:#9aa4b5;font-size:.76rem;margin-top:8px;}
 
-/* ---------- APP SHELL ---------- */
-header{height:64px;background:var(--navy2);border-bottom:2px solid rgba(224,181,42,.3);
-  display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:10;color:#fff;}
-.brand{font-family:"Shippori Mincho",serif;font-weight:800;color:#fff;font-size:18px;letter-spacing:.5px;}
-.headRight{display:flex;align-items:center;gap:14px;font-size:.85rem;color:var(--muted);}
-.logout{border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;border-radius:8px;padding:7px 13px;cursor:pointer;}
-.logout:hover{border-color:var(--gold);color:var(--gold);}
+.login{
+  position:relative;
+  z-index:2;
 
-.layout{display:flex;min-height:calc(100vh - 64px);}
-.sidebar{width:230px;background:var(--navy);padding:18px 12px;color:#fff;flex:none;}
-.nav{width:100%;border:0;background:transparent;color:#cbd6e8;text-align:left;padding:11px 12px;border-radius:8px;
-  cursor:pointer;margin:3px 0;font-size:.9rem;display:flex;align-items:center;gap:8px;}
-.nav:hover{background:rgba(255,255,255,.06);}
-.nav.active{background:rgba(224,181,42,.14);color:var(--gold);font-weight:700;}
-.sideDivider{font-family:"JetBrains Mono",monospace;font-size:.65rem;letter-spacing:1px;color:var(--muted);
-  text-transform:uppercase;padding:16px 12px 6px;}
+  width:420px;
+  max-width:100%;
+
+  background:#fff;
+
+  padding:42px 34px;
+
+  border-radius:18px;
+
+  text-align:center;
+
+  box-shadow:
+    0 30px 70px rgba(0,0,0,.35);
+
+  border-top:4px solid var(--gold);
+}
+
+.logo{
+  width:60px;
+  height:60px;
+
+  margin:auto;
+
+  background:var(--navy);
+  color:var(--gold);
+
+  border-radius:14px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-weight:800;
+  font-size:20px;
+
+  font-family:"Shippori Mincho",serif;
+}
+
+.login h1{
+  color:var(--navy);
+
+  margin:16px 0 4px;
+
+  font-size:1.6rem;
+}
+
+.login p{
+  color:var(--ink-soft);
+
+  font-size:.9rem;
+
+  margin-bottom:6px;
+}
+
+.login input{
+  width:100%;
+
+  padding:13px 14px;
+
+  border:1px solid var(--paper2);
+
+  border-radius:10px;
+
+  margin-top:16px;
+
+  outline:none;
+
+  text-transform:uppercase;
+
+  font-family:"JetBrains Mono",monospace;
+
+  letter-spacing:1px;
+
+  text-align:center;
+}
+
+.login input:focus{
+  border-color:var(--gold);
+
+  box-shadow:
+    0 0 0 3px rgba(224,181,42,.12);
+}
+
+.login button{
+  width:100%;
+
+  padding:13px;
+
+  border:0;
+
+  border-radius:10px;
+
+  background:var(--navy);
+
+  color:var(--gold);
+
+  font-weight:bold;
+
+  margin-top:12px;
+
+  cursor:pointer;
+
+  letter-spacing:1px;
+
+  transition:.2s;
+}
+
+.login button:hover{
+  background:var(--navy3);
+
+  transform:translateY(-1px);
+}
+
+.login button:disabled{
+  opacity:.6;
+
+  cursor:not-allowed;
+
+  transform:none;
+}
+
+.error{
+  color:var(--seal);
+
+  font-size:.82rem;
+
+  min-height:20px;
+
+  margin-top:10px;
+}
+
+.error.success{
+  color:var(--pass);
+}
+
+.hint{
+  color:#9aa4b5;
+
+  font-size:.76rem;
+
+  margin-top:8px;
+}
+
+
+/* =========================================================
+   APP HEADER
+========================================================= */
+
+header{
+  height:64px;
+
+  background:var(--navy2);
+
+  border-bottom:2px solid rgba(224,181,42,.3);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 22px;
+
+  position:sticky;
+  top:0;
+
+  z-index:10;
+
+  color:#fff;
+}
+
+.brand{
+  font-family:"Shippori Mincho",serif;
+
+  font-weight:800;
+
+  color:#fff;
+
+  font-size:18px;
+
+  letter-spacing:.5px;
+}
+
+.headRight{
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+
+  font-size:.85rem;
+
+  color:var(--muted);
+}
+
+.logout{
+  border:1px solid rgba(255,255,255,.25);
+
+  background:transparent;
+
+  color:#fff;
+
+  border-radius:8px;
+
+  padding:7px 13px;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.logout:hover{
+  border-color:var(--gold);
+
+  color:var(--gold);
+}
+
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.layout{
+  display:flex;
+
+  min-height:calc(100vh - 64px);
+}
+
+.sidebar{
+  width:230px;
+
+  background:var(--navy);
+
+  padding:18px 12px;
+
+  color:#fff;
+
+  flex:none;
+}
+
+.nav{
+  width:100%;
+
+  border:0;
+
+  background:transparent;
+
+  color:#cbd6e8;
+
+  text-align:left;
+
+  padding:11px 12px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+  margin:3px 0;
+
+  font-size:.9rem;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  transition:.2s;
+}
+
+.nav:hover{
+  background:rgba(255,255,255,.06);
+}
+
+.nav.active{
+  background:rgba(224,181,42,.14);
+
+  color:var(--gold);
+
+  font-weight:700;
+}
+
+.sideDivider{
+  font-family:"JetBrains Mono",monospace;
+
+  font-size:.65rem;
+
+  letter-spacing:1px;
+
+  color:var(--muted);
+
+  text-transform:uppercase;
+
+  padding:16px 12px 6px;
+}
 
 .levelPill{
-  margin:0 12px;padding:10px 12px;border-radius:10px;background:rgba(224,181,42,.08);
-  border:1px solid rgba(224,181,42,.25);cursor:pointer;text-align:left;width:calc(100% - 24px);
-  color:var(--gold);font-family:"JetBrains Mono",monospace;font-size:.75rem;display:flex;
-  align-items:center;justify-content:space-between;gap:6px;
+  margin:0 12px;
+
+  padding:10px 12px;
+
+  border-radius:10px;
+
+  background:rgba(224,181,42,.08);
+
+  border:1px solid rgba(224,181,42,.25);
+
+  cursor:pointer;
+
+  text-align:left;
+
+  width:calc(100% - 24px);
+
+  color:var(--gold);
+
+  font-family:"JetBrains Mono",monospace;
+
+  font-size:.75rem;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:6px;
 }
-.levelPill:hover{background:rgba(224,181,42,.16);}
-.levelPill .chev{opacity:.7;}
 
-.main{flex:1;padding:30px;max-width:1000px;width:100%;margin:0 auto;}
-.title{color:var(--navy);margin:0 0 6px;}
-.desc{color:var(--ink-soft);margin-top:0;margin-bottom:22px;}
+.levelPill:hover{
+  background:rgba(224,181,42,.16);
+}
 
-/* ---------- CARDS ---------- */
-.card{background:#fff;border:1px solid var(--paper2);border-radius:15px;padding:22px;box-shadow:0 2px 10px rgba(10,31,61,.04);}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px;}
-.number{font-family:"JetBrains Mono",monospace;font-size:26px;font-weight:700;color:var(--navy);}
-.label{font-size:12.5px;color:var(--ink-soft);margin-top:5px;}
+.levelPill .chev{
+  opacity:.7;
+}
 
-.grid2{display:grid;grid-template-columns:2fr 1fr;gap:18px;}
-@media(max-width:860px){.grid2{grid-template-columns:1fr;}.cards{grid-template-columns:repeat(2,1fr);}}
 
-.progress-track{height:10px;background:var(--paper);border-radius:20px;overflow:hidden;border:1px solid var(--paper2);}
-.progress-fill{display:block;height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));border-radius:20px;}
+/* =========================================================
+   MAIN
+========================================================= */
 
-.level-row{padding:13px 0;border-bottom:1px solid var(--paper2);display:flex;justify-content:space-between;align-items:center;}
-.level-row:last-child{border-bottom:none;}
-.badge{padding:6px 11px;background:var(--pass-bg);color:var(--pass);border-radius:20px;font-size:11.5px;font-weight:700;}
-.badge.active{background:var(--warn-bg);color:var(--gold-dim);}
-.badge.lock{background:#eee;color:#999;}
+.main{
+  flex:1;
 
-.btn{border:0;background:var(--navy);color:var(--gold);padding:10px 16px;border-radius:9px;cursor:pointer;font-weight:700;font-size:.85rem;}
-.btn:hover{background:var(--navy3);}
-.btn.ghost{background:transparent;color:var(--navy);border:1px solid var(--paper2);}
-.btn.ghost:hover{border-color:var(--navy);}
-.btn:disabled{opacity:.5;cursor:not-allowed;}
-.btn.gold{background:var(--gold);color:var(--navy2);}
-.btn.gold:hover{background:var(--gold-dim);}
-.btn.small{padding:7px 12px;font-size:.78rem;}
+  padding:30px;
 
-.backLink{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);cursor:pointer;font-size:.85rem;margin-bottom:14px;}
-.backLink:hover{color:var(--navy);}
+  max-width:1000px;
 
-/* ---------- DEADLINE BANNER ---------- */
-.deadlineBanner{padding:14px 18px;border-radius:13px;margin-bottom:18px;display:flex;align-items:center;
-  justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--warn-bg);color:var(--gold-dim);font-size:.85rem;}
-.deadlineBanner.overdue{background:var(--fail-bg);color:var(--seal);}
-.deadlineBanner b{font-family:"JetBrains Mono",monospace;}
+  width:100%;
 
-/* ---------- WEEK LIST (12 minggu x 4 materi) ---------- */
-.weekList{display:flex;flex-direction:column;gap:12px;}
-.weekCard{border:1px solid var(--paper2);border-radius:14px;padding:18px 20px;background:#fff;}
-.weekCard.locked{opacity:.55;}
-.weekCard.selesai{border-color:var(--pass);background:var(--pass-bg);}
-.weekHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
-.weekHead h3{font-size:1.05rem;color:var(--navy);}
-.weekSub{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-@media(max-width:640px){.weekSub{grid-template-columns:1fr;}}
+  margin:0 auto;
+}
 
-.materiItem{display:flex;align-items:center;gap:10px;padding:11px 12px;border:1px solid var(--paper2);border-radius:10px;
-  background:var(--paper);}
-.materiItem.locked{opacity:.5;}
-.materiItem.done{border-color:var(--pass);background:var(--pass-bg);}
-.materiItem .mi-icon{width:30px;height:30px;border-radius:8px;flex:none;display:flex;align-items:center;justify-content:center;
-  font-size:13px;font-weight:800;background:#fff;color:var(--navy);}
-.materiItem.done .mi-icon{background:var(--pass);color:#fff;}
-.materiItem .mi-text{flex:1;min-width:0;}
-.materiItem .mi-text .t1{font-weight:700;font-size:.85rem;}
-.materiItem .mi-actions{display:flex;flex-direction:column;gap:6px;align-items:stretch;}
-.materiLink{font-size:.72rem;color:var(--navy);border:1px solid var(--paper2);border-radius:7px;padding:6px 9px;
-  text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;justify-content:center;}
-.materiLink:hover{border-color:var(--gold);color:var(--gold-dim);}
-.doneBtn{font-size:.72rem;border-radius:7px;padding:6px 9px;border:1px solid var(--paper2);background:#fff;cursor:pointer;
-  white-space:nowrap;font-weight:700;}
-.doneBtn.marked{background:var(--pass);border-color:var(--pass);color:#fff;}
-.doneBtn:disabled{cursor:not-allowed;opacity:.5;}
+.title{
+  color:var(--navy);
 
-/* ---------- PROGRESS PAGE ---------- */
-.chart-wrap{display:flex;align-items:flex-end;gap:8px;height:130px;padding:10px 6px 0;border-bottom:1px solid var(--paper2);overflow-x:auto;}
-.chart-bar{flex:1;min-width:22px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;}
-.chart-bar .fill{width:100%;max-width:26px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--gold),var(--gold-dim));transition:height .4s ease;}
-.chart-bar.pending .fill{background:var(--paper2);}
-.chart-bar .cv{font-family:"JetBrains Mono",monospace;font-size:.62rem;color:var(--ink-soft);margin-bottom:4px;}
-.chart-labels{display:flex;gap:8px;margin-top:6px;overflow-x:auto;}
-.chart-labels span{flex:1;min-width:22px;text-align:center;font-family:"JetBrains Mono",monospace;font-size:.6rem;color:var(--muted);}
+  margin:0 0 6px;
+}
 
-/* ---------- LEVEL PICKER ---------- */
-.levelGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-@media(max-width:860px){.levelGrid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:560px){.levelGrid{grid-template-columns:1fr;}}
+.desc{
+  color:var(--ink-soft);
+
+  margin-top:0;
+
+  margin-bottom:22px;
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.card{
+  background:#fff;
+
+  border:1px solid var(--paper2);
+
+  border-radius:15px;
+
+  padding:22px;
+
+  box-shadow:
+    0 2px 10px rgba(10,31,61,.04);
+}
+
+.cards{
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  gap:14px;
+
+  margin-bottom:22px;
+}
+
+.number{
+  font-family:"JetBrains Mono",monospace;
+
+  font-size:26px;
+
+  font-weight:700;
+
+  color:var(--navy);
+}
+
+.label{
+  font-size:12.5px;
+
+  color:var(--ink-soft);
+
+  margin-top:5px;
+}
+
+.grid2{
+  display:grid;
+
+  grid-template-columns:2fr 1fr;
+
+  gap:18px;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-track{
+  height:10px;
+
+  background:var(--paper);
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  border:1px solid var(--paper2);
+}
+
+.progress-fill{
+  display:block;
+
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--gold-dim),
+      var(--gold)
+    );
+
+  border-radius:20px;
+
+  transition:width .4s ease;
+}
+
+
+/* =========================================================
+   LEVEL
+========================================================= */
+
+.level-row{
+  padding:13px 0;
+
+  border-bottom:1px solid var(--paper2);
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:10px;
+}
+
+.level-row:last-child{
+  border-bottom:none;
+}
+
+.badge{
+  padding:6px 11px;
+
+  background:var(--pass-bg);
+
+  color:var(--pass);
+
+  border-radius:20px;
+
+  font-size:11.5px;
+
+  font-weight:700;
+
+  white-space:nowrap;
+}
+
+.badge.active{
+  background:var(--warn-bg);
+
+  color:var(--gold-dim);
+}
+
+.badge.lock{
+  background:#eee;
+
+  color:#999;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.btn{
+  border:0;
+
+  background:var(--navy);
+
+  color:var(--gold);
+
+  padding:10px 16px;
+
+  border-radius:9px;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+  font-size:.85rem;
+
+  transition:.2s;
+}
+
+.btn:hover{
+  background:var(--navy3);
+}
+
+.btn.ghost{
+  background:transparent;
+
+  color:var(--navy);
+
+  border:1px solid var(--paper2);
+}
+
+.btn.ghost:hover{
+  border-color:var(--navy);
+}
+
+.btn:disabled{
+  opacity:.5;
+
+  cursor:not-allowed;
+}
+
+.btn.gold{
+  background:var(--gold);
+
+  color:var(--navy2);
+}
+
+.btn.gold:hover{
+  background:var(--gold-dim);
+}
+
+.btn.small{
+  padding:7px 12px;
+
+  font-size:.78rem;
+}
+
+.backLink{
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:6px;
+
+  color:var(--ink-soft);
+
+  cursor:pointer;
+
+  font-size:.85rem;
+
+  margin-bottom:14px;
+}
+
+.backLink:hover{
+  color:var(--navy);
+}
+
+
+/* =========================================================
+   DEADLINE
+========================================================= */
+
+.deadlineBanner{
+  padding:14px 18px;
+
+  border-radius:13px;
+
+  margin-bottom:18px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:12px;
+
+  flex-wrap:wrap;
+
+  background:var(--warn-bg);
+
+  color:var(--gold-dim);
+
+  font-size:.85rem;
+}
+
+.deadlineBanner.overdue{
+  background:var(--fail-bg);
+
+  color:var(--seal);
+}
+
+.deadlineBanner b{
+  font-family:"JetBrains Mono",monospace;
+}
+
+
+/* =========================================================
+   WEEK
+========================================================= */
+
+.weekList{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:12px;
+}
+
+.weekCard{
+  border:1px solid var(--paper2);
+
+  border-radius:14px;
+
+  padding:18px 20px;
+
+  background:#fff;
+}
+
+.weekCard.locked{
+  opacity:.55;
+}
+
+.weekCard.selesai{
+  border-color:var(--pass);
+
+  background:var(--pass-bg);
+}
+
+.weekHead{
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:12px;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+}
+
+.weekHead h3{
+  font-size:1.05rem;
+
+  color:var(--navy);
+}
+
+.weekSub{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:10px;
+}
+
+.materiItem{
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  padding:11px 12px;
+
+  border:1px solid var(--paper2);
+
+  border-radius:10px;
+
+  background:var(--paper);
+}
+
+.materiItem.locked{
+  opacity:.5;
+}
+
+.materiItem.done{
+  border-color:var(--pass);
+
+  background:var(--pass-bg);
+}
+
+.materiItem .mi-icon{
+  width:30px;
+  height:30px;
+
+  border-radius:8px;
+
+  flex:none;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:13px;
+
+  font-weight:800;
+
+  background:#fff;
+
+  color:var(--navy);
+}
+
+.materiItem.done .mi-icon{
+  background:var(--pass);
+
+  color:#fff;
+}
+
+.materiItem .mi-text{
+  flex:1;
+
+  min-width:0;
+}
+
+.materiItem .mi-text .t1{
+  font-weight:700;
+
+  font-size:.85rem;
+}
+
+.materiItem .mi-actions{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:6px;
+
+  align-items:stretch;
+}
+
+.materiLink{
+  font-size:.72rem;
+
+  color:var(--navy);
+
+  border:1px solid var(--paper2);
+
+  border-radius:7px;
+
+  padding:6px 9px;
+
+  text-decoration:none;
+
+  white-space:nowrap;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:4px;
+
+  justify-content:center;
+
+  background:#fff;
+}
+
+.materiLink:hover{
+  border-color:var(--gold);
+
+  color:var(--gold-dim);
+}
+
+.doneBtn{
+  font-size:.72rem;
+
+  border-radius:7px;
+
+  padding:6px 9px;
+
+  border:1px solid var(--paper2);
+
+  background:#fff;
+
+  cursor:pointer;
+
+  white-space:nowrap;
+
+  font-weight:700;
+}
+
+.doneBtn.marked{
+  background:var(--pass);
+
+  border-color:var(--pass);
+
+  color:#fff;
+}
+
+.doneBtn:disabled{
+  cursor:not-allowed;
+
+  opacity:.5;
+}
+
+
+/* =========================================================
+   CHART
+========================================================= */
+
+.chart-wrap{
+  display:flex;
+
+  align-items:flex-end;
+
+  gap:8px;
+
+  height:130px;
+
+  padding:10px 6px 0;
+
+  border-bottom:1px solid var(--paper2);
+
+  overflow-x:auto;
+}
+
+.chart-bar{
+  flex:1;
+
+  min-width:22px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:flex-end;
+
+  height:100%;
+}
+
+.chart-bar .fill{
+  width:100%;
+
+  max-width:26px;
+
+  border-radius:6px 6px 0 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--gold),
+      var(--gold-dim)
+    );
+
+  transition:height .4s ease;
+}
+
+.chart-bar.pending .fill{
+  background:var(--paper2);
+}
+
+.chart-bar .cv{
+  font-family:"JetBrains Mono",monospace;
+
+  font-size:.62rem;
+
+  color:var(--ink-soft);
+
+  margin-bottom:4px;
+}
+
+.chart-labels{
+  display:flex;
+
+  gap:8px;
+
+  margin-top:6px;
+
+  overflow-x:auto;
+}
+
+.chart-labels span{
+  flex:1;
+
+  min-width:22px;
+
+  text-align:center;
+
+  font-family:"JetBrains Mono",monospace;
+
+  font-size:.6rem;
+
+  color:var(--muted);
+}
+
+
+/* =========================================================
+   LEVEL PICKER
+========================================================= */
+
+.levelGrid{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:14px;
+}
+
 .levelCard{
-  border:1px solid var(--paper2);border-radius:14px;padding:18px;background:#fff;cursor:pointer;
-  transition:.15s;position:relative;overflow:hidden;
+  border:1px solid var(--paper2);
+
+  border-radius:14px;
+
+  padding:18px;
+
+  background:#fff;
+
+  cursor:pointer;
+
+  transition:.15s;
+
+  position:relative;
+
+  overflow:hidden;
 }
-.levelCard:hover{border-color:var(--gold);transform:translateY(-2px);}
-.levelCard.locked{cursor:not-allowed;opacity:.55;}
-.levelCard.locked:hover{border-color:var(--paper2);transform:none;}
-.levelCard.viewing{border-color:var(--gold);box-shadow:0 0 0 2px rgba(224,181,42,.25) inset;}
-.levelCard .lid{font-family:"Shippori Mincho",serif;font-weight:800;font-size:1.6rem;color:var(--navy);}
-.levelCard .ltitle{font-size:.82rem;color:var(--ink-soft);margin:4px 0 12px;}
+
+.levelCard:hover{
+  border-color:var(--gold);
+
+  transform:translateY(-2px);
+}
+
+.levelCard.locked{
+  cursor:not-allowed;
+
+  opacity:.55;
+}
+
+.levelCard.locked:hover{
+  border-color:var(--paper2);
+
+  transform:none;
+}
+
+.levelCard.viewing{
+  border-color:var(--gold);
+
+  box-shadow:
+    0 0 0 2px rgba(224,181,42,.25) inset;
+}
+
+.levelCard .lid{
+  font-family:"Shippori Mincho",serif;
+
+  font-weight:800;
+
+  font-size:1.6rem;
+
+  color:var(--navy);
+}
+
+.levelCard .ltitle{
+  font-size:.82rem;
+
+  color:var(--ink-soft);
+
+  margin:4px 0 12px;
+}
+
 .levelCard::after{
-  content:"学";position:absolute;font-family:"Shippori Mincho",serif;font-weight:800;font-size:70px;
-  color:rgba(10,31,61,.04);right:-6px;bottom:-14px;pointer-events:none;
+  content:"学";
+
+  position:absolute;
+
+  font-family:"Shippori Mincho",serif;
+
+  font-weight:800;
+
+  font-size:70px;
+
+  color:rgba(10,31,61,.04);
+
+  right:-6px;
+
+  bottom:-14px;
+
+  pointer-events:none;
+}
+
+
+/* =========================================================
+   ERROR PANEL
+========================================================= */
+
+.systemError{
+  background:var(--fail-bg);
+
+  border:1px solid rgba(179,56,46,.25);
+
+  color:var(--seal);
+
+  border-radius:12px;
+
+  padding:16px;
+
+  margin-bottom:18px;
+
+  font-size:.85rem;
+
+  line-height:1.6;
+}
+
+.systemError code{
+  background:rgba(0,0,0,.05);
+
+  padding:2px 5px;
+
+  border-radius:4px;
+
+  font-family:"JetBrains Mono",monospace;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:860px){
+
+  .grid2{
+    grid-template-columns:1fr;
+  }
+
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .levelGrid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
 }
 
 @media(max-width:650px){
-  header{padding:0 14px;}
-  .layout{display:block;}
-  .sidebar{width:100%;display:flex;overflow:auto;padding:8px;gap:6px;}
-  .nav{white-space:nowrap;width:auto;}
-  .sideDivider{display:none;}
-  .levelPill{width:auto;white-space:nowrap;margin:0;}
-  .main{padding:16px;}
-  .cards{grid-template-columns:1fr 1fr;}
+
+  header{
+    padding:0 14px;
+  }
+
+  .layout{
+    display:block;
+  }
+
+  .sidebar{
+    width:100%;
+
+    display:flex;
+
+    overflow:auto;
+
+    padding:8px;
+
+    gap:6px;
+  }
+
+  .nav{
+    white-space:nowrap;
+
+    width:auto;
+  }
+
+  .sideDivider{
+    display:none;
+  }
+
+  .levelPill{
+    width:auto;
+
+    white-space:nowrap;
+
+    margin:0;
+  }
+
+  .main{
+    padding:16px;
+  }
+
+  .cards{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .weekSub{
+    grid-template-columns:1fr;
+  }
+
 }
+
+@media(max-width:560px){
+
+  .levelGrid{
+    grid-template-columns:1fr;
+  }
+
+  .login{
+    padding:32px 22px;
+  }
+
+  .brand{
+    font-size:15px;
+  }
+
+  .headRight{
+    font-size:.72rem;
+  }
+
+  .logout{
+    padding:6px 9px;
+  }
+
+}
+
 </style>
 </head>
+
+
 <body>
 
+
+<!-- ========================================================
+     LOGIN PAGE
+========================================================= -->
+
 <section id="loginPage">
-<div class="login">
-<div class="logo">TP</div>
-<h1>TEKIPAKI</h1>
-<p>Japanese Learning · E-Learning Siswa</p>
-<input id="studentCode" placeholder="MASUKKAN KODE SISWA" maxlength="20" autocomplete="off">
-<button onclick="login()">MASUK</button>
-<div id="loginError" class="error"></div>
-<div class="hint">Gunakan kode siswa yang diberikan oleh guru.</div>
-</div>
+
+  <div class="login">
+
+    <div class="logo">
+      TP
+    </div>
+
+    <h1>
+      TEKIPAKI
+    </h1>
+
+    <p>
+      Japanese Learning · E-Learning Siswa
+    </p>
+
+    <input
+      id="studentCode"
+      placeholder="MASUKKAN KODE SISWA"
+      maxlength="20"
+      autocomplete="off"
+      spellcheck="false"
+    >
+
+    <button
+      id="loginButton"
+      type="button"
+      onclick="login()"
+    >
+      MASUK
+    </button>
+
+    <div
+      id="loginError"
+      class="error"
+    ></div>
+
+    <div class="hint">
+      Gunakan kode siswa yang diberikan oleh guru.
+    </div>
+
+  </div>
+
 </section>
 
-<section id="app" class="hidden">
-<header>
-<div class="brand">TEKIPAKI · SISWA</div>
-<div class="headRight"><span id="headerName"></span><button class="logout" onclick="logout()">Keluar</button></div>
-</header>
-<div class="layout">
-<aside class="sidebar">
-<button class="nav active" data-page="dashboard">🏠 Dashboard</button>
-<button class="nav" data-page="weeklist">📚 Materi Mingguan</button>
-<button class="nav" data-page="progresspage">📊 Progress Saya</button>
-<div class="sideDivider">Level</div>
-<button class="levelPill" id="levelPillBtn" onclick="showPage('levelpicker')">
-  <span id="levelPillText">—</span><span class="chev">▸</span>
-</button>
-</aside>
 
-<main class="main" id="mainArea"></main>
-</div>
+<!-- ========================================================
+     APPLICATION
+========================================================= -->
+
+<section
+  id="app"
+  class="hidden"
+>
+
+  <header>
+
+    <div class="brand">
+      TEKIPAKI · SISWA
+    </div>
+
+    <div class="headRight">
+
+      <span id="headerName"></span>
+
+      <button
+        class="logout"
+        type="button"
+        onclick="logout()"
+      >
+        Keluar
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <div class="layout">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <button
+        class="nav active"
+        data-page="dashboard"
+        type="button"
+      >
+        🏠 Dashboard
+      </button>
+
+      <button
+        class="nav"
+        data-page="weeklist"
+        type="button"
+      >
+        📚 Materi Mingguan
+      </button>
+
+      <button
+        class="nav"
+        data-page="progresspage"
+        type="button"
+      >
+        📊 Progress Saya
+      </button>
+
+      <div class="sideDivider">
+        Level
+      </div>
+
+      <button
+        class="levelPill"
+        id="levelPillBtn"
+        type="button"
+        onclick="showPage('levelpicker')"
+      >
+
+        <span id="levelPillText">
+          —
+        </span>
+
+        <span class="chev">
+          ▸
+        </span>
+
+      </button>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main
+      class="main"
+      id="mainArea"
+    ></main>
+
+
+  </div>
+
 </section>
 
-<script src="data.js"></script>
+
+<!-- ========================================================
+     DATA.JS
+     
+     PENTING:
+     File data.js harus berada di folder yang sama.
+========================================================= -->
+
+<script src="./data.js"></script>
+
+
 <script>
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
 let currentCode = null;
-let viewingLevel = null; // level yang sedang ditelusuri di "Materi Mingguan"
+
+let currentStudent = null;
+
+let viewingLevel = null;
+
+
+/* =========================================================
+   HELPER: CEK TEKI STORE
+========================================================= */
+
+function checkTekiStore(){
+
+  if(
+    typeof TekiStore === "undefined"
+  ){
+
+    return false;
+
+  }
+
+  if(
+    typeof TekiStore.getStudent !== "function"
+  ){
+
+    return false;
+
+  }
+
+  return true;
+
+}
+
+
+/* =========================================================
+   HELPER: ERROR LOGIN
+========================================================= */
+
+function showLoginError(message){
+
+  const err =
+    document.getElementById("loginError");
+
+  if(err){
+
+    err.textContent = message;
+
+    err.classList.remove("success");
+
+  }
+
+}
+
+
+/* =========================================================
+   HELPER: SUCCESS LOGIN
+========================================================= */
+
+function showLoginSuccess(message){
+
+  const err =
+    document.getElementById("loginError");
+
+  if(err){
+
+    err.textContent = message;
+
+    err.classList.add("success");
+
+  }
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
 
 async function login(){
-  const code = document.getElementById("studentCode").value.trim().toUpperCase();
-  const err = document.getElementById("loginError");
-  if(!code){ err.textContent = "❌ Masukkan kode siswa."; return; }
-  err.textContent = "⏳ Memeriksa kode siswa...";
+
+  const input =
+    document.getElementById("studentCode");
+
+  const button =
+    document.getElementById("loginButton");
+
+  const code =
+    input.value
+      .trim()
+      .toUpperCase();
+
+  if(!code){
+
+    showLoginError(
+      "❌ Masukkan kode siswa."
+    );
+
+    input.focus();
+
+    return;
+
+  }
+
+
+  /*
+   * Pastikan data.js berhasil dimuat
+   */
+
+  if(!checkTekiStore()){
+
+    showLoginError(
+      "❌ Sistem data siswa tidak berhasil dimuat. Pastikan file data.js berada di folder yang sama dengan file HTML."
+    );
+
+    console.error(
+      "TekiStore tidak ditemukan. Periksa data.js."
+    );
+
+    return;
+
+  }
+
+
+  /*
+   * Disable tombol sementara
+   */
+
+  button.disabled = true;
+
+  button.textContent =
+    "MEMERIKSA...";
+
+  showLoginSuccess(
+    "⏳ Memeriksa kode siswa..."
+  );
+
 
   let student = null;
+
+
   try{
-    student = (typeof cloudEnabled === "function" && cloudEnabled())
-      ? await TekiStore.getStudentRemote(code)
-      : TekiStore.getStudent(code);
-  }catch(e){
-    err.textContent = "❌ Terjadi kesalahan. Coba lagi.";
-    return;
+
+    /*
+     * Jika tersedia sistem cloud,
+     * gunakan data remote.
+     */
+
+    if(
+      typeof cloudEnabled === "function" &&
+      cloudEnabled() === true &&
+      typeof TekiStore.getStudentRemote === "function"
+    ){
+
+      console.log(
+        "Login menggunakan data cloud..."
+      );
+
+      student =
+        await TekiStore.getStudentRemote(code);
+
+    }
+
+    /*
+     * Jika cloud tidak tersedia,
+     * gunakan data lokal.
+     */
+
+    else{
+
+      console.log(
+        "Login menggunakan data lokal..."
+      );
+
+      student =
+        TekiStore.getStudent(code);
+
+    }
+
   }
+
+  catch(error){
+
+    console.error(
+      "LOGIN ERROR:",
+      error
+    );
+
+    showLoginError(
+      "❌ Terjadi kesalahan saat memeriksa kode siswa. Periksa data.js atau koneksi cloud."
+    );
+
+    button.disabled = false;
+
+    button.textContent =
+      "MASUK";
+
+    return;
+
+  }
+
+
+  /*
+   * Siswa ditemukan
+   */
 
   if(student){
-    currentCode = code;
-    sessionStorage.setItem("tekipaki_current_code", code);
-    TekiStore.touchLastActive(code);
-    openApp();
-  }else{
-    err.textContent = "❌ Kode siswa tidak ditemukan. Pastikan guru sudah mendaftarkan kode ini.";
+
+    console.log(
+      "SISWA DITEMUKAN:",
+      student
+    );
+
+
+    currentCode =
+      code;
+
+    currentStudent =
+      student;
+
+
+    sessionStorage.setItem(
+      "tekipaki_current_code",
+      code
+    );
+
+
+    /*
+     * Update aktivitas hanya jika fungsi tersedia.
+     */
+
+    try{
+
+      if(
+        typeof TekiStore.touchLastActive === "function"
+      ){
+
+        TekiStore.touchLastActive(
+          code
+        );
+
+      }
+
+    }
+
+    catch(error){
+
+      console.warn(
+        "touchLastActive gagal:",
+        error
+      );
+
+    }
+
+
+    /*
+     * Langsung buka aplikasi
+     *
+     * PENTING:
+     * Tidak lagi mengambil siswa dari
+     * TekiStore.getStudent() ulang.
+     */
+
+    openApp(student);
+
+    return;
+
   }
+
+
+  /*
+   * Siswa tidak ditemukan
+   */
+
+  showLoginError(
+    "❌ Kode siswa tidak ditemukan. Pastikan guru sudah mendaftarkan kode ini."
+  );
+
+
+  button.disabled = false;
+
+  button.textContent =
+    "MASUK";
+
 }
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
 
 function logout(){
-  sessionStorage.removeItem("tekipaki_current_code");
+
+  sessionStorage.removeItem(
+    "tekipaki_current_code"
+  );
+
   currentCode = null;
+
+  currentStudent = null;
+
   viewingLevel = null;
-  document.getElementById("app").classList.add("hidden");
-  document.getElementById("loginPage").classList.remove("hidden");
-  document.getElementById("studentCode").value = "";
-  document.getElementById("loginError").textContent = "";
+
+
+  document
+    .getElementById("app")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("loginPage")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("studentCode")
+    .value = "";
+
+
+  document
+    .getElementById("loginError")
+    .textContent = "";
+
+
+  document
+    .getElementById("loginButton")
+    .disabled = false;
+
+
+  document
+    .getElementById("loginButton")
+    .textContent = "MASUK";
+
+
+  document
+    .getElementById("studentCode")
+    .focus();
+
 }
 
-function openApp(){
-  const student = TekiStore.getStudent(currentCode);
-  viewingLevel = student.level;
-  document.getElementById("loginPage").classList.add("hidden");
-  document.getElementById("app").classList.remove("hidden");
-  document.getElementById("headerName").textContent = "👤 " + student.name;
-  document.querySelectorAll(".nav").forEach(n => n.addEventListener("click", () => showPage(n.dataset.page)));
+
+/* =========================================================
+   OPEN APP
+========================================================= */
+
+function openApp(student){
+
+  /*
+   * Kalau student tidak diberikan,
+   * coba ambil dari local storage.
+   */
+
+  if(!student){
+
+    if(!checkTekiStore()){
+
+      logout();
+
+      showLoginError(
+        "❌ Sistem data tidak tersedia."
+      );
+
+      return;
+
+    }
+
+
+    student =
+      TekiStore.getStudent(
+        currentCode
+      );
+
+  }
+
+
+  /*
+   * Jika tetap tidak ada
+   */
+
+  if(!student){
+
+    logout();
+
+    showLoginError(
+      "❌ Data siswa tidak ditemukan."
+    );
+
+    return;
+
+  }
+
+
+  currentStudent =
+    student;
+
+
+  /*
+   * Pastikan level tersedia
+   */
+
+  if(!student.level){
+
+    student.level = "N5";
+
+  }
+
+
+  viewingLevel =
+    student.level;
+
+
+  /*
+   * Tampilkan aplikasi
+   */
+
+  document
+    .getElementById("loginPage")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("app")
+    .classList.remove("hidden");
+
+
+  /*
+   * Nama siswa
+   */
+
+  document
+    .getElementById("headerName")
+    .textContent =
+      "👤 " +
+      (
+        student.name ||
+        "Siswa"
+      );
+
+
+  /*
+   * Update level
+   */
+
   updateLevelPill();
-  showPage("dashboard");
+
+
+  /*
+   * Event menu
+   *
+   * Hapus event listener lama terlebih dahulu
+   * agar tidak terpasang berkali-kali.
+   */
+
+  document
+    .querySelectorAll(".nav")
+    .forEach(nav => {
+
+      nav.onclick = function(){
+
+        showPage(
+          this.dataset.page
+        );
+
+      };
+
+    });
+
+
+  /*
+   * Dashboard
+   */
+
+  showPage(
+    "dashboard"
+  );
+
 }
+
+
+/* =========================================================
+   LEVEL PILL
+========================================================= */
 
 function updateLevelPill(){
-  document.getElementById("levelPillText").textContent = viewingLevel;
+
+  const pill =
+    document.getElementById(
+      "levelPillText"
+    );
+
+  if(pill){
+
+    pill.textContent =
+      viewingLevel || "—";
+
+  }
+
 }
+
+
+/* =========================================================
+   SHOW PAGE
+========================================================= */
 
 function showPage(id){
-  document.querySelectorAll(".nav").forEach(n => n.classList.toggle("active", n.dataset.page === id));
-  if(id === "dashboard") renderDashboard();
-  else if(id === "weeklist") renderWeekList();
-  else if(id === "progresspage") renderProgressPage();
-  else if(id === "levelpicker") renderLevelPicker();
-  window.scrollTo({top:0, behavior:"smooth"});
+
+  document
+    .querySelectorAll(".nav")
+    .forEach(nav => {
+
+      nav.classList.toggle(
+        "active",
+        nav.dataset.page === id
+      );
+
+    });
+
+
+  try{
+
+    if(id === "dashboard"){
+
+      renderDashboard();
+
+    }
+
+    else if(id === "weeklist"){
+
+      renderWeekList();
+
+    }
+
+    else if(id === "progresspage"){
+
+      renderProgressPage();
+
+    }
+
+    else if(id === "levelpicker"){
+
+      renderLevelPicker();
+
+    }
+
+  }
+
+  catch(error){
+
+    console.error(
+      "PAGE ERROR:",
+      error
+    );
+
+    showSystemError(
+      "Terjadi kesalahan saat membuka halaman.",
+      error
+    );
+
+  }
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
 }
 
-/* ================= DASHBOARD ================= */
+
+/* =========================================================
+   SYSTEM ERROR
+========================================================= */
+
+function showSystemError(
+  message,
+  error
+){
+
+  const main =
+    document.getElementById(
+      "mainArea"
+    );
+
+  if(!main){
+
+    return;
+
+  }
+
+
+  const detail =
+    error && error.message
+      ? error.message
+      : "Unknown error";
+
+
+  main.innerHTML = `
+
+    <div class="systemError">
+
+      <b>❌ ${message}</b>
+
+      <br><br>
+
+      Detail:
+
+      <code>
+        ${escapeHTML(detail)}
+      </code>
+
+      <br><br>
+
+      Silakan periksa file
+      <code>data.js</code>.
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
 function renderDashboard(){
-  const student = TekiStore.getStudent(currentCode);
-  const sum = TekiStore.summarizeWeeks(student, student.level);
-  const nextWeek = sum.weeks.find(w => !w.selesai);
+
+  const student =
+    getStudentSafe();
+
+  if(!student){
+
+    return;
+
+  }
+
+
+  const sum =
+    TekiStore.summarizeWeeks(
+      student,
+      student.level
+    );
+
+
+  const nextWeek =
+    sum.weeks.find(
+      w => !w.selesai
+    );
+
 
   let deadlineBannerHTML = "";
+
+
   if(sum.deadlineInfo){
-    const di = sum.deadlineInfo;
+
+    const di =
+      sum.deadlineInfo;
+
+
     deadlineBannerHTML = `
-      <div class="deadlineBanner ${di.overdue ? 'overdue' : ''}">
-        <span>⏳ Target level <b>${student.level}</b>: selesai dalam <b>${di.totalDays} hari</b> (mulai ${fmtDate(student.levelStartedAt)})</span>
-        <span><b>${di.overdue ? 'Lewat ' + Math.abs(di.daysLeft) + ' hari dari target' : di.daysLeft + ' hari tersisa'}</b></span>
-      </div>`;
+
+      <div class="deadlineBanner ${
+        di.overdue
+          ? "overdue"
+          : ""
+      }">
+
+        <span>
+
+          ⏳ Target level
+
+          <b>
+            ${student.level}
+          </b>
+
+          : selesai dalam
+
+          <b>
+            ${di.totalDays} hari
+          </b>
+
+          ${
+            student.levelStartedAt
+              ? `(mulai ${fmtDateSafe(student.levelStartedAt)})`
+              : ""
+          }
+
+        </span>
+
+        <span>
+
+          <b>
+
+            ${
+              di.overdue
+                ? "Lewat " +
+                  Math.abs(di.daysLeft) +
+                  " hari dari target"
+
+                : di.daysLeft +
+                  " hari tersisa"
+            }
+
+          </b>
+
+        </span>
+
+      </div>
+
+    `;
+
   }
+
 
   let continueHTML;
+
+
   if(nextWeek){
-    const belum = nextWeek.materi.filter(m => !m.done).length;
+
+    const belum =
+      nextWeek.materi
+        .filter(m => !m.done)
+        .length;
+
+
     continueHTML = `
-      <div class="mono" style="font-size:.7rem;color:var(--gold-dim);margin-bottom:4px;">MINGGU ${nextWeek.week}</div>
-      <h3 style="font-size:1.3rem;">${belum} materi belum ditandai selesai</h3>
-      <p style="color:var(--ink-soft);margin:6px 0 14px;">Buka materi minggu ini dan tandai satu-satu setelah kamu pelajari.</p>
-      <button class="btn" onclick="viewingLevel='${student.level}';updateLevelPill();showPage('weeklist')">Buka Minggu Ini →</button>`;
-  } else {
-    continueHTML = `<p style="color:var(--pass);font-weight:700;">🎉 Semua 12 minggu level ${student.level} selesai!</p>`;
+
+      <div
+        class="mono"
+        style="
+          font-size:.7rem;
+          color:var(--gold-dim);
+          margin-bottom:4px;
+        "
+      >
+        MINGGU ${nextWeek.week}
+      </div>
+
+
+      <h3
+        style="
+          font-size:1.3rem;
+        "
+      >
+        ${belum}
+        materi belum ditandai selesai
+      </h3>
+
+
+      <p
+        style="
+          color:var(--ink-soft);
+          margin:6px 0 14px;
+        "
+      >
+        Buka materi minggu ini dan tandai satu-satu setelah kamu pelajari.
+      </p>
+
+
+      <button
+        class="btn"
+        type="button"
+        onclick="
+          viewingLevel='${student.level}';
+          updateLevelPill();
+          showPage('weeklist');
+        "
+      >
+        Buka Minggu Ini →
+      </button>
+
+    `;
+
   }
 
-  document.getElementById("mainArea").innerHTML = `
-    <h1 class="title">Selamat datang, ${student.name} 👋</h1>
-    <p class="desc">Berikut perkembangan belajar kamu di level ${student.level}.</p>
+  else{
+
+    continueHTML = `
+
+      <p
+        style="
+          color:var(--pass);
+          font-weight:700;
+        "
+      >
+        🎉 Semua 12 minggu level
+        ${student.level}
+        selesai!
+      </p>
+
+    `;
+
+  }
+
+
+  let levelStates = [];
+
+
+  if(
+    typeof TekiStore.getLevelStates === "function"
+  ){
+
+    levelStates =
+      TekiStore.getLevelStates(
+        student
+      ) || [];
+
+  }
+
+
+  document
+    .getElementById("mainArea")
+    .innerHTML = `
+
+    <h1 class="title">
+
+      Selamat datang,
+      ${escapeHTML(student.name || "Siswa")}
+      👋
+
+    </h1>
+
+
+    <p class="desc">
+
+      Berikut perkembangan belajar kamu
+      di level
+      <b>${escapeHTML(student.level)}</b>.
+
+    </p>
+
+
     ${deadlineBannerHTML}
+
+
     <div class="cards">
-      <div class="card"><div class="number">${student.level}</div><div class="label">Level saat ini</div></div>
-      <div class="card"><div class="number">${sum.percent}%</div><div class="label">Progress level ${student.level}</div></div>
-      <div class="card"><div class="number">${sum.doneWeeks}/${sum.totalWeeks}</div><div class="label">Minggu selesai</div></div>
-      <div class="card"><div class="number">${sum.doneMateriTotal}/${sum.totalMateri}</div><div class="label">Materi ditandai selesai</div></div>
-    </div>
-    <div class="grid2">
+
       <div class="card">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-          <h2 style="color:var(--navy);">Progress Level</h2>
-          <button class="btn ghost" onclick="showPage('levelpicker')">Pilih Level</button>
+
+        <div class="number">
+          ${student.level}
         </div>
-        ${TekiStore.getLevelStates(student).map(l => `
-          <div class="level-row">
-            <div><b>${l.id}</b><br><small style="color:var(--ink-soft)">${l.title}</small></div>
-            <span class="badge ${l.status === 'aktif' ? 'active' : l.status === 'terkunci' ? 'lock' : ''}">
-              ${l.status === 'selesai' ? 'Selesai ✓' : l.status === 'aktif' ? 'Sedang belajar' : '🔒 Terkunci'}
-            </span>
-          </div>`).join("")}
+
+        <div class="label">
+          Level saat ini
+        </div>
+
       </div>
+
+
       <div class="card">
-        <h2 style="color:var(--navy);margin-bottom:10px;">Lanjut Belajar</h2>
-        ${continueHTML}
+
+        <div class="number">
+          ${sum.percent}%
+        </div>
+
+        <div class="label">
+          Progress level
+          ${student.level}
+        </div>
+
       </div>
+
+
+      <div class="card">
+
+        <div class="number">
+          ${sum.doneWeeks}/${sum.totalWeeks}
+        </div>
+
+        <div class="label">
+          Minggu selesai
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="number">
+          ${sum.doneMateriTotal}/${sum.totalMateri}
+        </div>
+
+        <div class="label">
+          Materi ditandai selesai
+        </div>
+
+      </div>
+
     </div>
+
+
+    <div class="grid2">
+
+
+      <div class="card">
+
+        <div
+          style="
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            margin-bottom:14px;
+            gap:10px;
+          "
+        >
+
+          <h2
+            style="color:var(--navy);"
+          >
+            Progress Level
+          </h2>
+
+
+          <button
+            class="btn ghost"
+            type="button"
+            onclick="
+              showPage('levelpicker')
+            "
+          >
+            Pilih Level
+          </button>
+
+        </div>
+
+
+        ${
+          levelStates.length
+            ? levelStates.map(l => `
+
+              <div class="level-row">
+
+                <div>
+
+                  <b>
+                    ${escapeHTML(l.id)}
+                  </b>
+
+                  <br>
+
+                  <small
+                    style="
+                      color:var(--ink-soft)
+                    "
+                  >
+                    ${escapeHTML(l.title || "")}
+                  </small>
+
+                </div>
+
+
+                <span
+                  class="
+                    badge
+                    ${
+                      l.status === "aktif"
+                        ? "active"
+                        : l.status === "terkunci"
+                          ? "lock"
+                          : ""
+                    }
+                  "
+                >
+
+                  ${
+                    l.status === "selesai"
+                      ? "Selesai ✓"
+
+                      : l.status === "aktif"
+                        ? "Sedang belajar"
+
+                        : "🔒 Terkunci"
+                  }
+
+                </span>
+
+              </div>
+
+            `).join("")
+
+            : `
+
+              <p
+                style="
+                  color:var(--ink-soft)
+                "
+              >
+                Data level belum tersedia.
+              </p>
+
+            `
+        }
+
+      </div>
+
+
+      <div class="card">
+
+        <h2
+          style="
+            color:var(--navy);
+            margin-bottom:10px;
+          "
+        >
+          Lanjut Belajar
+        </h2>
+
+        ${continueHTML}
+
+      </div>
+
+
+    </div>
+
   `;
+
 }
 
-/* ================= PANEL PILIH LEVEL ================= */
+
+/* =========================================================
+   LEVEL PICKER
+========================================================= */
+
 function renderLevelPicker(){
-  const student = TekiStore.getStudent(currentCode);
-  const levelStates = TekiStore.getLevelStates(student);
 
-  const cards = levelStates.map(l => {
-    const locked = l.status === "terkunci";
-    const viewing = l.id === viewingLevel;
-    const statusLabel = l.status === "selesai" ? "Selesai ✓" : l.status === "aktif" ? "Sedang belajar" : "🔒 Terkunci";
-    const badgeClass = l.status === "aktif" ? "active" : l.status === "terkunci" ? "lock" : "";
-    return `
-      <div class="levelCard ${locked ? "locked" : ""} ${viewing ? "viewing" : ""}"
-           ${locked ? "" : `onclick="selectLevel('${l.id}')"`}>
-        <div class="lid">${l.id}</div>
-        <div class="ltitle">${l.title}</div>
-        <span class="badge ${badgeClass}">${statusLabel}</span>
-      </div>`;
-  }).join("");
+  const student =
+    getStudentSafe();
 
-  document.getElementById("mainArea").innerHTML = `
-    <h1 class="title">Pilih Level</h1>
-    <p class="desc">Kamu sedang aktif belajar di level <b>${student.level}</b>. Level yang masih terkunci perlu diselesaikan lebih dulu (otomatis naik setelah 12 minggu tuntas).</p>
-    <div class="levelGrid">${cards}</div>
-  `;
+  if(!student){
+
+    return;
+
+  }
+
+
+  if(
+    typeof TekiStore.getLevelStates !== "function"
+  ){
+
+    showSystemError(
+      "Fungsi getLevelStates tidak ditemukan.",
+      new Error(
+        "TekiStore.getLevelStates tidak tersedia"
+      )
+    );
+
+    return;
+
+  }
+
+
+  const levelStates =
+    TekiStore.getLevelStates(
+      student
+    ) || [];
+
+
+  const cards =
+    levelStates
+      .map(l => {
+
+        const locked =
+          l.status === "terkunci";
+
+        const viewing =
+          l.id === viewingLevel;
+
+
+        const statusLabel =
+          l.status === "selesai"
+            ? "Selesai ✓"
+
+            : l.status === "aktif"
+              ? "Sedang belajar"
+
+              : "🔒 Terkunci";
+
+
+        const badgeClass =
+          l.status === "aktif"
+            ? "active"
+
+            : l.status === "terkunci"
+              ? "lock"
+
+              : "";
+
+
+        return `
+
+          <div
+            class="
+              levelCard
+              ${locked ? "locked" : ""}
+              ${viewing ? "viewing" : ""}
+            "
+
+            ${
+              locked
+                ? ""
+                : `
+                  onclick="
+                    selectLevel('${escapeJS(l.id)}')
+                  "
+                `
+            }
+          >
+
+            <div class="lid">
+              ${escapeHTML(l.id)}
+            </div>
+
+
+            <div class="ltitle">
+              ${escapeHTML(l.title || "")}
+            </div>
+
+
+            <span
+              class="badge ${badgeClass}"
+            >
+              ${statusLabel}
+            </span>
+
+          </div>
+
+        `;
+
+      })
+      .join("");
+
+
+  document
+    .getElementById("mainArea")
+    .innerHTML = `
+
+      <h1 class="title">
+        Pilih Level
+      </h1>
+
+
+      <p class="desc">
+
+        Kamu sedang aktif belajar di level
+
+        <b>
+          ${escapeHTML(student.level)}
+        </b>.
+
+        Level yang masih terkunci perlu
+        diselesaikan lebih dulu.
+
+      </p>
+
+
+      <div class="levelGrid">
+
+        ${cards}
+
+      </div>
+
+    `;
+
 }
+
+
+/* =========================================================
+   SELECT LEVEL
+========================================================= */
 
 function selectLevel(levelId){
-  const student = TekiStore.getStudent(currentCode);
-  const lvl = TekiStore.getLevelStates(student).find(l => l.id === levelId);
-  if(!lvl || lvl.status === "terkunci") return;
-  viewingLevel = levelId;
+
+  const student =
+    getStudentSafe();
+
+  if(!student){
+
+    return;
+
+  }
+
+
+  const levelStates =
+    TekiStore.getLevelStates(
+      student
+    ) || [];
+
+
+  const lvl =
+    levelStates.find(
+      l => l.id === levelId
+    );
+
+
+  if(
+    !lvl ||
+    lvl.status === "terkunci"
+  ){
+
+    return;
+
+  }
+
+
+  viewingLevel =
+    levelId;
+
+
   updateLevelPill();
-  showPage("weeklist");
+
+
+  showPage(
+    "weeklist"
+  );
+
 }
 
-/* ================= DAFTAR MATERI MINGGUAN (12 minggu x 4 materi) ================= */
+
+/* =========================================================
+   WEEK LIST
+========================================================= */
+
 function renderWeekList(){
-  const student = TekiStore.getStudent(currentCode);
-  const sum = TekiStore.summarizeWeeks(student, viewingLevel);
-  const isActive = sum.isActive;
 
-  let deadlineBannerHTML = "";
-  if(isActive && sum.deadlineInfo){
-    const di = sum.deadlineInfo;
-    deadlineBannerHTML = `
-      <div class="deadlineBanner ${di.overdue ? 'overdue' : ''}">
-        <span>⏳ Target level <b>${viewingLevel}</b>: tuntas dalam <b>${di.totalDays} hari</b> (12 minggu, mulai ${fmtDate(student.levelStartedAt)})</span>
-        <span><b>${di.overdue ? 'Lewat ' + Math.abs(di.daysLeft) + ' hari dari target' : di.daysLeft + ' hari tersisa'}</b></span>
-      </div>`;
+  const student =
+    getStudentSafe();
+
+  if(!student){
+
+    return;
+
   }
 
-  const weekCards = sum.weeks.map(w => {
-    const locked = w.locked;
-    const done = w.selesai;
-    const materiHTML = w.materi.map((m, mi) => {
-      const itemLocked = locked || !isActive;
-      const disabledAttr = itemLocked ? "disabled" : "";
-      return `
-        <div class="materiItem ${m.done ? 'done' : ''} ${itemLocked ? 'locked' : ''}">
-          <div class="mi-icon">${m.done ? '✓' : (mi + 1)}</div>
-          <div class="mi-text"><div class="t1">${m.title}</div></div>
-          <div class="mi-actions">
-            <a class="materiLink" href="${m.link}" target="_blank" rel="noopener">📄 Buka</a>
-            <button class="doneBtn ${m.done ? 'marked' : ''}" ${disabledAttr}
-              onclick="handleToggleMateri('${viewingLevel}', ${w.index}, ${mi})">
-              ${m.done ? '✓ Selesai' : 'Tandai Selesai'}
-            </button>
+
+  if(!viewingLevel){
+
+    viewingLevel =
+      student.level;
+
+  }
+
+
+  const sum =
+    TekiStore.summarizeWeeks(
+      student,
+      viewingLevel
+    );
+
+
+  const isActive =
+    sum.isActive;
+
+
+  let deadlineBannerHTML = "";
+
+
+  if(
+    isActive &&
+    sum.deadlineInfo
+  ){
+
+    const di =
+      sum.deadlineInfo;
+
+
+    deadlineBannerHTML = `
+
+      <div
+        class="
+          deadlineBanner
+          ${di.overdue ? "overdue" : ""}
+        "
+      >
+
+        <span>
+
+          ⏳ Target level
+
+          <b>
+            ${escapeHTML(viewingLevel)}
+          </b>
+
+          : tuntas dalam
+
+          <b>
+            ${di.totalDays} hari
+          </b>
+
+        </span>
+
+
+        <span>
+
+          <b>
+
+            ${
+              di.overdue
+                ? "Lewat " +
+                  Math.abs(di.daysLeft) +
+                  " hari dari target"
+
+                : di.daysLeft +
+                  " hari tersisa"
+            }
+
+          </b>
+
+        </span>
+
+      </div>
+
+    `;
+
+  }
+
+
+  const weekCards =
+    sum.weeks
+      .map(w => {
+
+        const locked =
+          w.locked;
+
+        const done =
+          w.selesai;
+
+
+        const materiHTML =
+          w.materi
+            .map((m, mi) => {
+
+              const itemLocked =
+                locked ||
+                !isActive;
+
+
+              const disabledAttr =
+                itemLocked
+                  ? "disabled"
+                  : "";
+
+
+              const safeLink =
+                m.link || "#";
+
+
+              return `
+
+                <div
+                  class="
+                    materiItem
+                    ${m.done ? "done" : ""}
+                    ${itemLocked ? "locked" : ""}
+                  "
+                >
+
+                  <div class="mi-icon">
+
+                    ${
+                      m.done
+                        ? "✓"
+                        : mi + 1
+                    }
+
+                  </div>
+
+
+                  <div class="mi-text">
+
+                    <div class="t1">
+
+                      ${escapeHTML(
+                        m.title ||
+                        "Materi"
+                      )}
+
+                    </div>
+
+                  </div>
+
+
+                  <div class="mi-actions">
+
+                    <a
+                      class="materiLink"
+                      href="${escapeAttribute(safeLink)}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      📄 Buka
+                    </a>
+
+
+                    <button
+                      class="
+                        doneBtn
+                        ${m.done ? "marked" : ""}
+                      "
+                      ${disabledAttr}
+
+                      type="button"
+
+                      onclick="
+                        handleToggleMateri(
+                          '${escapeJS(viewingLevel)}',
+                          ${w.index},
+                          ${mi}
+                        )
+                      "
+                    >
+
+                      ${
+                        m.done
+                          ? "✓ Selesai"
+                          : "Tandai Selesai"
+                      }
+
+                    </button>
+
+                  </div>
+
+                </div>
+
+              `;
+
+            })
+            .join("");
+
+
+        return `
+
+          <div
+            class="
+              weekCard
+              ${locked ? "locked" : ""}
+              ${done ? "selesai" : ""}
+            "
+          >
+
+            <div class="weekHead">
+
+              <h3>
+
+                📅 Minggu
+                ${w.week}
+
+                ${
+                  done
+                    ? " · Selesai ✓"
+                    : ""
+                }
+
+              </h3>
+
+
+              <span
+                class="deadline mono"
+                style="
+                  font-size:.72rem;
+                  color:var(--ink-soft);
+                "
+              >
+
+                ${w.doneCount}/${MATERI_PER_WEEK_SAFE()}
+                materi selesai
+
+              </span>
+
+            </div>
+
+
+            <div class="weekSub">
+
+              ${materiHTML}
+
+            </div>
+
+
+            ${
+              locked
+                ? `
+                  <p
+                    style="
+                      margin-top:10px;
+                      font-size:.78rem;
+                      color:var(--ink-soft);
+                    "
+                  >
+                    🔒 Selesaikan semua materi
+                    minggu sebelumnya untuk
+                    membuka minggu ini.
+                  </p>
+                `
+                : ""
+            }
+
           </div>
-        </div>`;
-    }).join("");
 
-    return `
-      <div class="weekCard ${locked ? 'locked' : ''} ${done ? 'selesai' : ''}">
-        <div class="weekHead">
-          <h3>📅 Minggu ${w.week} ${done ? '· Selesai ✓' : ''}</h3>
-          <span class="deadline mono" style="font-size:.72rem;color:var(--ink-soft);">${w.doneCount}/${MATERI_PER_WEEK} materi selesai</span>
-        </div>
-        <div class="weekSub">${materiHTML}</div>
-        ${locked ? `<p style="margin-top:10px;font-size:.78rem;color:var(--ink-soft);">🔒 Selesaikan semua materi minggu sebelumnya untuk membuka minggu ini.</p>` : ""}
-      </div>`;
-  }).join("");
+        `;
 
-  const modeNote = isActive
-    ? `<p class="desc">Target: <b>${MATERI_PER_WEEK} materi</b> per minggu selama <b>${WEEKS_PER_LEVEL} minggu</b>. Buka link materi, pelajari, lalu tekan "Tandai Selesai". Minggu berikutnya otomatis terbuka setelah semua materi minggu ini ditandai selesai.</p>`
-    : `<p class="desc">Kamu sedang menelusuri materi level ${viewingLevel} (mode telusur). Progress hanya dicatat di level aktif kamu (${student.level}) — link tetap bisa dibuka.</p>`;
+      })
+      .join("");
 
-  document.getElementById("mainArea").innerHTML = `
-    <div class="backLink" onclick="showPage('levelpicker')">← Ganti level</div>
-    <h1 class="title">Materi Mingguan · ${viewingLevel}</h1>
-    ${modeNote}
-    ${deadlineBannerHTML}
-    <div class="weekList">${weekCards}</div>
-  `;
+
+  const modeNote =
+    isActive
+
+      ? `
+
+        <p class="desc">
+
+          Target:
+
+          <b>
+            ${MATERI_PER_WEEK_SAFE()} materi
+          </b>
+
+          per minggu selama
+
+          <b>
+            ${WEEKS_PER_LEVEL_SAFE()} minggu
+          </b>.
+
+          Buka link materi, pelajari,
+          lalu tekan "Tandai Selesai".
+
+        </p>
+
+      `
+
+      : `
+
+        <p class="desc">
+
+          Kamu sedang menelusuri materi level
+
+          <b>
+            ${escapeHTML(viewingLevel)}
+          </b>
+
+          dalam mode telusur.
+
+          Progress hanya dicatat pada
+          level aktif kamu
+
+          <b>
+            ${escapeHTML(student.level)}
+          </b>.
+
+        </p>
+
+      `;
+
+
+  document
+    .getElementById("mainArea")
+    .innerHTML = `
+
+      <div
+        class="backLink"
+        onclick="
+          showPage('levelpicker')
+        "
+      >
+        ← Ganti level
+      </div>
+
+
+      <h1 class="title">
+
+        Materi Mingguan ·
+        ${escapeHTML(viewingLevel)}
+
+      </h1>
+
+
+      ${modeNote}
+
+
+      ${deadlineBannerHTML}
+
+
+      <div class="weekList">
+
+        ${weekCards}
+
+      </div>
+
+    `;
+
 }
 
-function handleToggleMateri(levelId, weekIndex, materiIndex){
-  const updated = TekiStore.toggleMateri(currentCode, levelId, weekIndex, materiIndex);
-  if(!updated) return;
-  // Kalau level baru saja naik, ikut pindah tampilan ke level baru.
-  if(updated.level !== levelId){
-    viewingLevel = updated.level;
-    updateLevelPill();
+
+/* =========================================================
+   TOGGLE MATERI
+========================================================= */
+
+function handleToggleMateri(
+  levelId,
+  weekIndex,
+  materiIndex
+){
+
+  if(
+    typeof TekiStore.toggleMateri !== "function"
+  ){
+
+    showSystemError(
+      "Fungsi toggleMateri tidak ditemukan.",
+      new Error(
+        "TekiStore.toggleMateri tidak tersedia"
+      )
+    );
+
+    return;
+
   }
-  renderWeekList();
+
+
+  try{
+
+    const updated =
+      TekiStore.toggleMateri(
+        currentCode,
+        levelId,
+        weekIndex,
+        materiIndex
+      );
+
+
+    if(!updated){
+
+      return;
+
+    }
+
+
+    /*
+     * Jika siswa naik level,
+     * otomatis pindah ke level baru.
+     */
+
+    if(
+      updated.level &&
+      updated.level !== levelId
+    ){
+
+      viewingLevel =
+        updated.level;
+
+
+      updateLevelPill();
+
+    }
+
+
+    /*
+     * Ambil data terbaru jika tersedia.
+     */
+
+    try{
+
+      if(
+        typeof TekiStore.getStudent === "function"
+      ){
+
+        const refreshed =
+          TekiStore.getStudent(
+            currentCode
+          );
+
+        if(refreshed){
+
+          currentStudent =
+            refreshed;
+
+        }
+
+      }
+
+    }
+
+    catch(error){
+
+      console.warn(
+        "Refresh student gagal:",
+        error
+      );
+
+    }
+
+
+    renderWeekList();
+
+  }
+
+  catch(error){
+
+    console.error(
+      "TOGGLE MATERI ERROR:",
+      error
+    );
+
+    showSystemError(
+      "Materi tidak dapat diperbarui.",
+      error
+    );
+
+  }
+
 }
 
-/* ================= PROGRESS PAGE ================= */
-function renderProgressPage(){
-  const student = TekiStore.getStudent(currentCode);
-  const sum = TekiStore.summarizeWeeks(student, student.level);
 
-  const bars = sum.weeks.map(w => {
-    const val = Math.round((w.doneCount / MATERI_PER_WEEK) * 100);
-    const h = val === 0 ? 4 : Math.max(6, val);
-    const pending = val === 0 ? "pending" : "";
-    return `<div class="chart-bar ${pending}"><div class="cv">${val}%</div><div class="fill" style="height:${h}%;"></div></div>`;
-  }).join("");
-  const labels = sum.weeks.map(w => `<span>M${w.week}</span>`).join("");
+/* =========================================================
+   PROGRESS PAGE
+========================================================= */
+
+function renderProgressPage(){
+
+  const student =
+    getStudentSafe();
+
+  if(!student){
+
+    return;
+
+  }
+
+
+  const sum =
+    TekiStore.summarizeWeeks(
+      student,
+      student.level
+    );
+
+
+  const bars =
+    sum.weeks
+      .map(w => {
+
+        const val =
+          Math.round(
+            (
+              w.doneCount /
+              MATERI_PER_WEEK_SAFE()
+            ) * 100
+          );
+
+
+        const h =
+          val === 0
+            ? 4
+            : Math.max(6,val);
+
+
+        const pending =
+          val === 0
+            ? "pending"
+            : "";
+
+
+        return `
+
+          <div
+            class="
+              chart-bar
+              ${pending}
+            "
+          >
+
+            <div class="cv">
+              ${val}%
+            </div>
+
+            <div
+              class="fill"
+              style="
+                height:${h}%;
+              "
+            ></div>
+
+          </div>
+
+        `;
+
+      })
+      .join("");
+
+
+  const labels =
+    sum.weeks
+      .map(w => `
+
+        <span>
+          M${w.week}
+        </span>
+
+      `)
+      .join("");
+
 
   let deadlineBannerHTML = "";
+
+
   if(sum.deadlineInfo){
-    const di = sum.deadlineInfo;
+
+    const di =
+      sum.deadlineInfo;
+
+
     deadlineBannerHTML = `
-      <div class="deadlineBanner ${di.overdue ? 'overdue' : ''}">
-        <span>⏳ Target level <b>${student.level}</b>: tuntas dalam <b>${di.totalDays} hari</b> (mulai ${fmtDate(student.levelStartedAt)})</span>
-        <span><b>${di.overdue ? 'Lewat ' + Math.abs(di.daysLeft) + ' hari dari target' : di.daysLeft + ' hari tersisa'}</b></span>
-      </div>`;
+
+      <div
+        class="
+          deadlineBanner
+          ${di.overdue ? "overdue" : ""}
+        "
+      >
+
+        <span>
+
+          ⏳ Target level
+
+          <b>
+            ${escapeHTML(student.level)}
+          </b>
+
+          : tuntas dalam
+
+          <b>
+            ${di.totalDays} hari
+          </b>
+
+        </span>
+
+
+        <span>
+
+          <b>
+
+            ${
+              di.overdue
+                ? "Lewat " +
+                  Math.abs(di.daysLeft) +
+                  " hari dari target"
+
+                : di.daysLeft +
+                  " hari tersisa"
+            }
+
+          </b>
+
+        </span>
+
+      </div>
+
+    `;
+
   }
 
-  document.getElementById("mainArea").innerHTML = `
-    <h1 class="title">Progress Belajar Saya</h1>
-    <p class="desc">Ringkasan progres kamu di level ${student.level} (${MATERI_PER_WEEK} materi × ${WEEKS_PER_LEVEL} minggu).</p>
-    ${deadlineBannerHTML}
-    <div class="cards">
-      <div class="card"><div class="number">${sum.percent}%</div><div class="label">Progress level</div></div>
-      <div class="card"><div class="number">${sum.doneWeeks}/${sum.totalWeeks}</div><div class="label">Minggu selesai</div></div>
-      <div class="card"><div class="number">${sum.doneMateriTotal}/${sum.totalMateri}</div><div class="label">Materi selesai</div></div>
-      <div class="card"><div class="number">${student.level}</div><div class="label">Level aktif</div></div>
-    </div>
-    <div class="card" style="margin-bottom:16px;">
-      <h2 style="color:var(--navy);margin-bottom:6px;">Progress keseluruhan</h2>
-      <div class="progress-track"><span class="progress-fill" style="width:${sum.percent}%;"></span></div>
-      <p style="color:var(--ink-soft);margin-top:8px;">${sum.percent}% dari level ${student.level} selesai</p>
-    </div>
-    <div class="card">
-      <h2 style="color:var(--navy);margin-bottom:6px;">Materi Selesai per Minggu</h2>
-      <div class="chart-wrap">${bars}</div>
-      <div class="chart-labels">${labels}</div>
-    </div>
-  `;
+
+  document
+    .getElementById("mainArea")
+    .innerHTML = `
+
+      <h1 class="title">
+
+        Progress Belajar Saya
+
+      </h1>
+
+
+      <p class="desc">
+
+        Ringkasan progres kamu di level
+
+        <b>
+          ${escapeHTML(student.level)}
+        </b>
+
+        (
+
+        ${MATERI_PER_WEEK_SAFE()}
+        materi ×
+        ${WEEKS_PER_LEVEL_SAFE()}
+        minggu
+
+        ).
+
+      </p>
+
+
+      ${deadlineBannerHTML}
+
+
+      <div class="cards">
+
+
+        <div class="card">
+
+          <div class="number">
+            ${sum.percent}%
+          </div>
+
+          <div class="label">
+            Progress level
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="number">
+            ${sum.doneWeeks}/${sum.totalWeeks}
+          </div>
+
+          <div class="label">
+            Minggu selesai
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="number">
+            ${sum.doneMateriTotal}/${sum.totalMateri}
+          </div>
+
+          <div class="label">
+            Materi selesai
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="number">
+            ${escapeHTML(student.level)}
+          </div>
+
+          <div class="label">
+            Level aktif
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div
+        class="card"
+        style="margin-bottom:16px;"
+      >
+
+        <h2
+          style="
+            color:var(--navy);
+            margin-bottom:6px;
+          "
+        >
+          Progress keseluruhan
+        </h2>
+
+
+        <div class="progress-track">
+
+          <span
+            class="progress-fill"
+            style="
+              width:${sum.percent}%;
+            "
+          ></span>
+
+        </div>
+
+
+        <p
+          style="
+            color:var(--ink-soft);
+            margin-top:8px;
+          "
+        >
+
+          ${sum.percent}%
+          dari level
+          ${escapeHTML(student.level)}
+          selesai.
+
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h2
+          style="
+            color:var(--navy);
+            margin-bottom:6px;
+          "
+        >
+          Materi Selesai per Minggu
+        </h2>
+
+
+        <div class="chart-wrap">
+
+          ${bars}
+
+        </div>
+
+
+        <div class="chart-labels">
+
+          ${labels}
+
+        </div>
+
+      </div>
+
+    `;
+
 }
 
-/* ================= INIT ================= */
-document.getElementById("studentCode").addEventListener("keydown", e => { if(e.key === "Enter") login(); });
-const savedCode = sessionStorage.getItem("tekipaki_current_code");
-if(savedCode && TekiStore.getStudent(savedCode)){
-  currentCode = savedCode;
-  openApp();
+
+/* =========================================================
+   GET STUDENT SAFE
+========================================================= */
+
+function getStudentSafe(){
+
+  if(currentStudent){
+
+    return currentStudent;
+
+  }
+
+
+  if(
+    !currentCode
+  ){
+
+    return null;
+
+  }
+
+
+  if(
+    !checkTekiStore()
+  ){
+
+    showSystemError(
+      "TekiStore tidak tersedia.",
+      new Error(
+        "data.js tidak berhasil dimuat"
+      )
+    );
+
+    return null;
+
+  }
+
+
+  try{
+
+    const student =
+      TekiStore.getStudent(
+        currentCode
+      );
+
+
+    if(student){
+
+      currentStudent =
+        student;
+
+      return student;
+
+    }
+
+  }
+
+  catch(error){
+
+    showSystemError(
+      "Data siswa tidak dapat dibaca.",
+      error
+    );
+
+  }
+
+
+  return null;
+
 }
+
+
+/* =========================================================
+   SAFE CONSTANTS
+========================================================= */
+
+function MATERI_PER_WEEK_SAFE(){
+
+  if(
+    typeof MATERI_PER_WEEK !== "undefined"
+  ){
+
+    return MATERI_PER_WEEK;
+
+  }
+
+  return 4;
+
+}
+
+
+function WEEKS_PER_LEVEL_SAFE(){
+
+  if(
+    typeof WEEKS_PER_LEVEL !== "undefined"
+  ){
+
+    return WEEKS_PER_LEVEL;
+
+  }
+
+  return 12;
+
+}
+
+
+/* =========================================================
+   SAFE DATE
+========================================================= */
+
+function fmtDateSafe(date){
+
+  if(
+    typeof fmtDate === "function"
+  ){
+
+    try{
+
+      return fmtDate(date);
+
+    }
+
+    catch(error){
+
+      console.warn(
+        "fmtDate error:",
+        error
+      );
+
+    }
+
+  }
+
+
+  if(!date){
+
+    return "-";
+
+  }
+
+
+  try{
+
+    return new Date(date)
+      .toLocaleDateString(
+        "id-ID",
+        {
+          day:"2-digit",
+          month:"2-digit",
+          year:"numeric"
+        }
+      );
+
+  }
+
+  catch(error){
+
+    return String(date);
+
+  }
+
+}
+
+
+/* =========================================================
+   ESCAPE JAVASCRIPT
+========================================================= */
+
+function escapeJS(value){
+
+  return String(value)
+    .replaceAll("\\","\\\\")
+    .replaceAll("'","\\'")
+    .replaceAll('"','\\"')
+    .replaceAll("\n","\\n")
+    .replaceAll("\r","\\r");
+
+}
+
+
+/* =========================================================
+   ESCAPE ATTRIBUTE
+========================================================= */
+
+function escapeAttribute(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;");
+
+}
+
+
+/* =========================================================
+   ENTER KEY LOGIN
+========================================================= */
+
+document
+  .getElementById("studentCode")
+  .addEventListener(
+    "keydown",
+    function(e){
+
+      if(
+        e.key === "Enter"
+      ){
+
+        login();
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   AUTO LOGIN
+========================================================= */
+
+(function(){
+
+  const savedCode =
+    sessionStorage.getItem(
+      "tekipaki_current_code"
+    );
+
+
+  if(
+    !savedCode
+  ){
+
+    return;
+
+  }
+
+
+  /*
+   * Jangan auto-login jika data.js belum siap.
+   */
+
+  if(
+    !checkTekiStore()
+  ){
+
+    console.warn(
+      "Auto login dibatalkan karena TekiStore belum tersedia."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    const student =
+      TekiStore.getStudent(
+        savedCode
+      );
+
+
+    if(student){
+
+      currentCode =
+        savedCode;
+
+      currentStudent =
+        student;
+
+      openApp(
+        student
+      );
+
+    }
+
+    else{
+
+      sessionStorage.removeItem(
+        "tekipaki_current_code"
+      );
+
+    }
+
+  }
+
+  catch(error){
+
+    console.error(
+      "AUTO LOGIN ERROR:",
+      error
+    );
+
+    sessionStorage.removeItem(
+      "tekipaki_current_code"
+    );
+
+  }
+
+})();
+
 </script>
+
 </body>
 </html>
