@@ -292,7 +292,7 @@ header{height:64px;background:var(--navy2);border-bottom:2px solid rgba(224,181,
 <button class="nav" data-page="unitlist">📚 Unit Pembelajaran</button>
 <button class="nav" data-page="progresspage">📊 Progress Saya</button>
 <div class="sideDivider">Level</div>
-<button type="button" class="levelPill" id="levelPillBtn" data-page="levelpicker" onclick="openTataBahasa()">
+<button class="levelPill" id="levelPillBtn" onclick="showPage('levelpicker')">
   <span id="levelPillText">— · Tata Bahasa</span><span class="chev">▸</span>
 </button>
 </aside>
@@ -317,17 +317,36 @@ const unitAnswers = {};          // { qId: { given, mcSelected, selfMark } }
 let unitGraded = false;          // sudah tekan "Kumpulkan Jawaban"?
 
 
-function login(){
+async function login(){
   const code = document.getElementById("studentCode").value.trim().toUpperCase();
   const err = document.getElementById("loginError");
-  const student = TekiStore.getStudent(code);
+  if(!code){ err.textContent = "❌ Masukkan kode siswa."; return; }
+  err.textContent = "⏳ Memeriksa kode siswa...";
+
+  let student = null;
+  let cloudError = false;
+  try{
+    // Jika cloud aktif, database online adalah sumber utama.
+    if(typeof cloudEnabled === "function" && cloudEnabled()) {
+      student = await TekiStore.getStudentRemote(code);
+    } else {
+      student = TekiStore.getStudent(code);
+    }
+  }catch(e){
+    cloudError = true;
+  }
+
+  if(cloudError){
+    err.textContent = "❌ Database online tidak dapat dihubungi. Coba lagi.";
+    return;
+  }
   if(student){
     currentCode = code;
     sessionStorage.setItem("tekipaki_current_code", code);
     TekiStore.touchLastActive(code);
     openApp();
   }else{
-    err.textContent = "❌ Kode siswa tidak ditemukan.";
+    err.textContent = "❌ Kode siswa tidak ditemukan. Pastikan guru sudah mendaftarkan kode ini.";
   }
 }
 
@@ -353,23 +372,7 @@ function openApp(){
 }
 
 function updateLevelPill(){
-  const el = document.getElementById("levelPillText");
-  if(el) el.textContent = (viewingLevel || "Pilih Level") + " · Tata Bahasa";
-}
-
-function openTataBahasa(){
-  if(!currentCode){
-    alert("Silakan login terlebih dahulu.");
-    return;
-  }
-  const student = TekiStore.getStudent(currentCode);
-  if(!student){
-    alert("Data siswa tidak ditemukan. Silakan login kembali.");
-    return;
-  }
-  viewingLevel = student.level || "N5";
-  updateLevelPill();
-  showPage("levelpicker");
+  document.getElementById("levelPillText").textContent = viewingLevel + " · Tata Bahasa";
 }
 
 function showPage(id){
@@ -484,16 +487,7 @@ function renderDashboard(){
 
 /* ================= PANEL PILIH LEVEL ================= */
 function renderLevelPicker(){
-  const main = document.getElementById("mainArea");
-  if(typeof TekiStore === "undefined"){
-    main.innerHTML = `<div class="card"><h2>Data Tata Bahasa belum termuat</h2><p class="desc">Pastikan file <b>data.js</b> berada satu folder dengan <b>elearning.html</b>.</p></div>`;
-    return;
-  }
   const student = TekiStore.getStudent(currentCode);
-  if(!student){
-    main.innerHTML = `<div class="card"><h2>Sesi siswa tidak ditemukan</h2><p class="desc">Silakan login kembali.</p></div>`;
-    return;
-  }
   const levelStates = TekiStore.getLevelStates(student);
 
   const cards = levelStates.map(l => {
@@ -612,7 +606,7 @@ function renderWeekList(student){
     const di = sum.deadlineInfo;
     deadlineBannerHTML = `
       <div class="deadlineBanner ${di.overdue ? 'overdue' : ''}">
-        <span>⏳ Target level <b>${student.level}</b>: tuntas dalam <b>${di.totalDays} hari</b> (12 minggu / 12 minggu / 12 minggu / 3 bulan, mulai ${fmtDate(student.levelStartedAt)})</span>
+        <span>⏳ Target level <b>${student.level}</b>: tuntas dalam <b>${di.totalDays} hari</b> (12 minggu / 12 minggu / 3 bulan, mulai ${fmtDate(student.levelStartedAt)})</span>
         <span><b>${di.overdue ? 'Lewat ' + Math.abs(di.daysLeft) + ' hari dari target' : di.daysLeft + ' hari tersisa'}</b></span>
       </div>`;
   }
@@ -674,7 +668,7 @@ function renderWeekList(student){
   document.getElementById("mainArea").innerHTML = `
     <div class="backLink" onclick="showPage('levelpicker')">← Ganti level</div>
     <h1 class="title">Unit Pembelajaran · ${viewingLevel}</h1>
-    <p class="desc">Target: <b>${BUNPOU_PER_WEEK} unit Bunpou</b> + <b>${KANJI_PER_WEEK} Kanji</b> per minggu. N4 terdiri dari <b>12 minggu</b>. Satu paket minggu dianggap lulus kalau semua Bunpou-nya lulus <b>dan</b> kuis Kanji-nya lulus.</p>
+    <p class="desc">Target: <b>${BUNPOU_PER_WEEK} unit Bunpou</b> + <b>${KANJI_PER_WEEK} Kanji</b> per minggu. Satu paket minggu dianggap lulus kalau semua Bunpou-nya lulus <b>dan</b> kuis Kanji-nya lulus.</p>
     ${deadlineBannerHTML}
     <div class="weekList">${weekCards}</div>
     ${finalExamHTML}
@@ -737,8 +731,10 @@ function openUnit(unitId, packageIndex){
     <div id="kanjiQArea">${renderQuestionCards(currentUnitQuiz.kanjiQuestions)}</div>
 
     <div class="card" id="unitActionsCard">
-      <button class="btn" id="gradeBtn" onclick="gradeUnitAnswers()">Kumpulkan Jawaban</button>
-      <button class="btn gold hidden" id="finalizeBtn" onclick="finalizeUnitScore('${unit.id}')">Simpan Nilai Akhir</button>
+      ${previewMode ? "" : `
+        <button class="btn" id="gradeBtn" onclick="gradeUnitAnswers()">Kumpulkan Jawaban</button>
+        <button class="btn gold hidden" id="finalizeBtn" onclick="finalizeUnitScore('${unit.id}')">Simpan Nilai Akhir</button>
+      `}
       <div id="scoreBarArea"></div>
       <div id="unitResultBanner"></div>
     </div>
