@@ -71,6 +71,37 @@ MATERI_BY_LEVEL.N5[0][3].link = "https://drive.google.com/your-link-4";
 
 
 /* ============================================================
+   CONTOH MATERI N4 MINGGU 1
+   ------------------------------------------------------------
+   Materi 1 mengarah ke halaman n4-minggu1-materi1.html
+   (berisi link ke Materi Tata Bahasa JLPT N4 + link Kuis).
+
+   PENTING:
+   Pastikan file n4-minggu1-materi1.html berada di folder
+   yang sama dengan elearning.html dan data.js ini.
+   Kalau kamu upload ke subfolder, sesuaikan path-nya,
+   misal: "materi/n4-minggu1-materi1.html".
+   ============================================================ */
+
+MATERI_BY_LEVEL.N4[0][0].title = "Minggu 1 · Materi 1";
+MATERI_BY_LEVEL.N4[0][0].link = "n4-minggu1-materi1.html";
+
+/* Materi 2, 3, 4 di Minggu 1 N4 masih placeholder —
+   ganti title & link-nya kalau sudah siap, contoh:
+
+MATERI_BY_LEVEL.N4[0][1].title = "Minggu 1 · Materi 2";
+MATERI_BY_LEVEL.N4[0][1].link = "n4-minggu1-materi2.html";
+
+MATERI_BY_LEVEL.N4[0][2].title = "Minggu 1 · Materi 3";
+MATERI_BY_LEVEL.N4[0][2].link = "n4-minggu1-materi3.html";
+
+MATERI_BY_LEVEL.N4[0][3].title = "Minggu 1 · Materi 4";
+MATERI_BY_LEVEL.N4[0][3].link = "n4-minggu1-materi4.html";
+
+*/
+
+
+/* ============================================================
    3. DAFTAR SISWA
    ------------------------------------------------------------
    PENTING (FIX):
