@@ -409,13 +409,13 @@ a{
   background:var(--navy);
   color:#fff;
   border-radius:16px;
-  padding:30px 24px;
+  padding:26px 24px;
   margin:36px 0 20px;
   display:flex;
-  flex-direction:column;
+  flex-direction:row;
   align-items:center;
-  text-align:center;
-  gap:14px;
+  text-align:left;
+  gap:18px;
   border:1px solid rgba(224,181,42,.4);
 }
 .partHead:first-of-type{
@@ -424,15 +424,15 @@ a{
 .partHead .partBadge{
   font-family:"JetBrains Mono",monospace;
   font-weight:800;
-  font-size:1.05rem;
-  letter-spacing:3px;
-  color:var(--navy2);
-  background:var(--gold);
-  padding:12px 34px;
-  border-radius:999px;
+  font-size:.85rem;
+  letter-spacing:2px;
+  color:var(--gold);
+  background:transparent;
+  border:2px solid var(--gold);
+  padding:8px 14px;
+  border-radius:10px;
   flex:none;
   white-space:nowrap;
-  box-shadow:0 8px 18px rgba(0,0,0,.28);
 }
 .partHead .partText{
   max-width:480px;
@@ -449,6 +449,14 @@ a{
 }
 .partHead .partText p b{
   color:var(--gold);
+}
+
+@media(max-width:560px){
+  .partHead{
+    flex-direction:column;
+    align-items:flex-start;
+    text-align:left;
+  }
 }
 
 .qCard{
@@ -850,7 +858,7 @@ footer{
 
     <!-- SOAL 6 -->
     <div class="qCard">
-      <div class="qTop"><span class="qNum">6</span></div>
+      <div class="qTop"><span class="qNum">6  Pililah kalimat yang tepat!</span></div>
       <div class="opt"><input type="radio" name="q6" id="q6a" value="a"><label for="q6a">スマホを見ながら、歩くのは危ないです。</label></div>
       <div class="opt"><input type="radio" name="q6" id="q6b" value="b"><label for="q6b">運転しながら、電話で話すのはよくないです。</label></div>
       <div class="opt"><input type="radio" name="q6" id="q6c" value="c"><label for="q6c">泣きながら、映画を見ました。</label></div>
