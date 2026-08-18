@@ -550,11 +550,11 @@ a{
 
 .kanjiStrip{
   display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
   gap:8px;
-  overflow-x:auto;
   padding:6px 2px 20px;
   margin-bottom:34px;
-  scrollbar-width:thin;
 }
 .kanjiChip{
   flex:none;
@@ -584,28 +584,31 @@ a{
 
 
 /* =========================================================
-   KUIS KANJI BUTTONS
+   KUIS KANJI — SINGLE BUTTON
 ========================================================= */
 
 .quizGrid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
-  gap:14px;
+  display:flex;
+  justify-content:center;
   margin-bottom:10px;
 }
 .quizBtn{
   display:flex;
   flex-direction:column;
-  gap:10px;
+  align-items:center;
+  gap:6px;
   background:var(--navy);
   color:#fff;
   text-decoration:none;
   border:1px solid rgba(224,181,42,.35);
-  border-radius:16px;
-  padding:20px 18px;
+  border-radius:14px;
+  padding:16px 26px;
   position:relative;
   overflow:hidden;
   transition:transform .15s ease, box-shadow .15s ease;
+  width:100%;
+  max-width:260px;
+  text-align:center;
 }
 .quizBtn:hover{
   transform:translateY(-3px);
@@ -616,16 +619,17 @@ a{
   position:absolute;
   font-family:"Shippori Mincho",serif;
   font-weight:800;
-  font-size:64px;
+  font-size:44px;
   color:rgba(224,181,42,.08);
-  right:-6px;
-  bottom:-14px;
+  right:-4px;
+  bottom:-10px;
   pointer-events:none;
 }
 .quizBtn .qbTop{
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  justify-content:center;
+  gap:10px;
 }
 .quizBtn .qbBadge{
   font-family:"JetBrains Mono",monospace;
@@ -642,13 +646,13 @@ a{
 }
 .quizBtn h4{
   font-family:"Shippori Mincho",serif;
-  font-size:1.05rem;
+  font-size:1rem;
   color:#fff;
 }
 .quizBtn p{
-  font-size:.78rem;
+  font-size:.74rem;
   color:var(--muted);
-  line-height:1.5;
+  line-height:1.45;
 }
 
 footer{
@@ -806,7 +810,7 @@ footer{
   </div>
 
   <div class="infoNote">
-    <b>Uji pemahamanmu:</b> Pilih salah satu paket kuis di bawah ini untuk berlatih membaca dan mengartikan kanji yang sudah dipelajari.
+    <b>Uji pemahamanmu:</b> Klik tombol di bawah ini untuk mulai kuis membaca & mengartikan kanji yang sudah dipelajari.
   </div>
 
   <div class="quizGrid" id="quizGrid"></div>
@@ -974,11 +978,7 @@ const KANJI_DATA = [
 ];
 
 const QUIZ_LINKS = [
-  { badge:"01", title:"Kuis Kanji 1", desc:"Latihan membaca & mengartikan kanji set pertama.", href:"quizkanji1.html" },
-  { badge:"02", title:"Kuis Kanji 2", desc:"Lanjutan latihan kanji set kedua.", href:"quizkanji2.html" },
-  { badge:"03", title:"Kuis Kanji 3", desc:"Lanjutan latihan kanji set ketiga.", href:"quizkanji3.html" },
-  { badge:"04", title:"Kuis Kanji 4", desc:"Lanjutan latihan kanji set keempat.", href:"quizkanji4.html" },
-  { badge:"05", title:"Kuis Kanji 5", desc:"Latihan gabungan seluruh kanji minggu ini.", href:"quizkanji5.html" }
+  { title:"Mulai Kuis Kanji", desc:"Latihan membaca & mengartikan kanji yang sudah dipelajari minggu ini.", href:"quizkanji1.html" }
 ];
 
 let currentIndex = 0;
@@ -1035,7 +1035,7 @@ function buildQuizGrid(){
     a.className = "quizBtn";
     a.href = q.href;
     a.innerHTML =
-      '<div class="qbTop"><span class="qbBadge">' + q.badge + '</span><span class="qbArrow">→</span></div>' +
+      '<div class="qbTop"><span class="qbArrow">→</span></div>' +
       '<h4>' + q.title + '</h4>' +
       '<p>' + q.desc + '</p>';
     grid.appendChild(a);
