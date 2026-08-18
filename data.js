@@ -84,7 +84,7 @@ MATERI_BY_LEVEL.N5[0][3].link = "https://drive.google.com/your-link-4";
    ============================================================ */
 
 MATERI_BY_LEVEL.N4[0][0].title = "Minggu 1 · Materi 1";
-MATERI_BY_LEVEL.N4[0][0].link = "n4-minggu1-materi1.html";
+MATERI_BY_LEVEL.N4[0][0].link = "n4_minggu1materi1.html";
 
 /* Materi 2, 3, 4 di Minggu 1 N4 masih placeholder —
    ganti title & link-nya kalau sudah siap, contoh:
