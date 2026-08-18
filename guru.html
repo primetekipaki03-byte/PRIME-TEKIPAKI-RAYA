@@ -200,20 +200,80 @@ a{color:inherit;}
 
 footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20px;border-top:1px solid var(--paper2);}
 
+/* ================= BURGER (MOBILE) ================= */
+.burger-btn{
+  display:none;
+  flex:none;
+  width:42px;height:42px;
+  border:2px solid var(--gold);
+  border-radius:9px;
+  background:transparent;
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  flex-direction:column;
+}
+.burger-btn span{
+  display:block;
+  width:20px;height:2px;
+  background:var(--gold);
+  border-radius:2px;
+  transition:.25s ease;
+}
+.burger-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.burger-btn.open span:nth-child(2){opacity:0;}
+.burger-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+.nav-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,10,25,.5);
+  z-index:998;
+}
+.nav-overlay.show{display:block;}
+
 /* ================= RESPONSIVE NAVBAR ================= */
 @media(max-width:1000px){
-  .navbar-inner{flex-wrap:wrap;padding:10px 12px;gap:10px;}
-  .nav-right{justify-content:flex-start;gap:6px;}
-  .dropdown-btn{font-size:.72rem;padding:6px 9px;}
-  .home-btn{padding:8px 10px;font-size:.72rem;}
+  .navbar-inner{flex-wrap:nowrap;padding:10px 14px;gap:10px;}
+  .burger-btn{display:flex;}
+
+  .nav-right{
+    position:fixed;
+    top:0;right:0;
+    height:100vh;
+    width:min(78vw,320px);
+    background:var(--navy2);
+    flex-direction:column;
+    align-items:stretch;
+    justify-content:flex-start;
+    gap:10px;
+    padding:78px 18px 24px;
+    transform:translateX(100%);
+    transition:transform .28s ease;
+    z-index:999;
+    overflow-y:auto;
+    box-shadow:-8px 0 30px rgba(0,0,0,.4);
+  }
+  .nav-right.mobileOpen{transform:translateX(0);}
+
+  .dropdown{width:100%;}
+  .dropdown-btn{width:100%;justify-content:space-between;font-size:.85rem;padding:12px 14px;}
+  .dropdown-menu{
+    position:static;
+    width:100%;
+    min-width:0;
+    max-width:none;
+    margin-top:6px;
+    box-shadow:none;
+  }
+  .dropdown-menu a{padding:11px 14px;font-size:.85rem;}
+
+  .admin-tag,.logoutBtn{width:100%;text-align:center;box-sizing:border-box;}
 }
 @media(max-width:760px){
-  .navbar-inner{flex-direction:column;align-items:flex-start;gap:8px;}
-  .nav-left{width:100%;}
-  .home-btn{width:100%;}
-  .nav-right{width:100%;justify-content:flex-start;flex-wrap:wrap;}
-  .dropdown{flex-shrink:0;}
-  .dropdown-btn{font-size:.72rem;padding:6px 9px;}
+  .nav-right{width:82vw;}
 }
 </style>
 </head>
@@ -229,7 +289,11 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
     </a>
   </div>
 
-  <div class="nav-right">
+  <button class="burger-btn" id="burgerBtn" type="button" aria-label="Buka menu" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="nav-right" id="navRight">
 
     <!-- TEKIPAKI LEARNING -->
     <div class="dropdown">
@@ -278,6 +342,8 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
     <button class="logoutBtn" id="logoutBtn" style="display:none;" onclick="teacherLogout()">Keluar</button>
 
   </div>
+
+  <div class="nav-overlay" id="navOverlay" onclick="closeMobileNav()"></div>
 
 </div>
 </nav>
@@ -354,6 +420,48 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
 
 <script src="data.js"></script>
 <script>
+/* ================= BURGER MOBILE NAV ================= */
+function toggleMobileNav(){
+  const nav = document.getElementById("navRight");
+  const btn = document.getElementById("burgerBtn");
+  const overlay = document.getElementById("navOverlay");
+  const isOpen = nav.classList.contains("mobileOpen");
+
+  if(isOpen){
+    closeMobileNav();
+  }else{
+    nav.classList.add("mobileOpen");
+    btn.classList.add("open");
+    overlay.classList.add("show");
+    document.body.style.overflow = "hidden";
+  }
+}
+
+function closeMobileNav(){
+  const nav = document.getElementById("navRight");
+  const btn = document.getElementById("burgerBtn");
+  const overlay = document.getElementById("navOverlay");
+
+  nav.classList.remove("mobileOpen");
+  btn.classList.remove("open");
+  overlay.classList.remove("show");
+  document.body.style.overflow = "";
+
+  document.querySelectorAll(".dropdown-menu").forEach(menu => {
+    menu.classList.remove("show");
+    menu.classList.remove("align-right");
+  });
+  document.querySelectorAll(".dropdown").forEach(dropdown => {
+    dropdown.classList.remove("open");
+  });
+}
+
+window.addEventListener("resize", function(){
+  if(window.innerWidth > 1000){
+    closeMobileNav();
+  }
+});
+
 /* ================= NAVBAR DROPDOWN ================= */
 function toggleDropdown(id){
   document.querySelectorAll(".dropdown-menu").forEach(menu => {
