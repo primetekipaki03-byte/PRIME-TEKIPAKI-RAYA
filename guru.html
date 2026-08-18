@@ -55,14 +55,26 @@ a{color:inherit;}
 
 /* ================= NAVBAR ================= */
 #navbar{position:sticky;top:0;z-index:999;background:#001530;border-bottom:2px solid rgba(224,181,42,.3);box-shadow:0 4px 14px rgba(0,0,0,.25);}
-.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;flex-wrap:wrap;gap:10px;}
-.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy2);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:8px 20px;flex-wrap:wrap;gap:10px;min-height:64px;}
+.nav-left{display:flex;align-items:center;flex-shrink:0;}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy2);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;white-space:nowrap;}
 .home-btn:hover{opacity:.85;}
-.home-icon{width:22px;height:22px;}
-.admin-tag{font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:1.5px;color:var(--gold);border:1px solid rgba(224,181,42,.4);padding:6px 10px;border-radius:999px;}
-.logoutBtn{border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;border-radius:999px;padding:8px 14px;cursor:pointer;font-size:.8rem;}
+.home-icon{width:22px;height:22px;flex:none;}
+.admin-tag{font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:1.5px;color:var(--gold);border:1px solid rgba(224,181,42,.4);padding:6px 10px;border-radius:999px;white-space:nowrap;}
+.logoutBtn{border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;border-radius:999px;padding:8px 14px;cursor:pointer;font-weight:bold;white-space:nowrap;}
 .logoutBtn:hover{border-color:var(--gold);color:var(--gold);}
-.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+
+/* DROPDOWN */
+.dropdown{position:relative;flex-shrink:0;z-index:1;}
+.dropdown.open{z-index:20;}
+.dropdown-btn{display:flex;align-items:center;justify-content:center;background:transparent;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-family:inherit;font-weight:bold;cursor:pointer;white-space:nowrap;}
+.dropdown-btn:hover,.dropdown.open .dropdown-btn{background:var(--gold);color:var(--navy2);}
+.dropdown-menu{display:none;position:absolute;top:calc(100% + 7px);left:0;width:max-content;min-width:220px;max-width:calc(100vw - 20px);background:#1f4577;border:1px solid rgba(224,181,42,.35);border-radius:10px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.35);}
+.dropdown-menu.show{display:block;}
+.dropdown-menu.align-right{left:auto;right:0;}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none;white-space:nowrap;}
+.dropdown-menu a:hover{background:var(--gold);color:var(--navy2);}
 
 /* ================= HERO ================= */
 .hero{position:relative;background:radial-gradient(120% 140% at 15% -10%, var(--navy3), var(--navy) 55%, var(--navy2) 100%);
@@ -187,9 +199,88 @@ a{color:inherit;}
 .no-select .ic{font-size:2.2rem;margin-bottom:10px;}
 
 footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20px;border-top:1px solid var(--paper2);}
+
+/* ================= RESPONSIVE NAVBAR ================= */
+@media(max-width:1000px){
+  .navbar-inner{flex-wrap:wrap;padding:10px 12px;gap:10px;}
+  .nav-right{justify-content:flex-start;gap:6px;}
+  .dropdown-btn{font-size:.72rem;padding:6px 9px;}
+  .home-btn{padding:8px 10px;font-size:.72rem;}
+}
+@media(max-width:760px){
+  .navbar-inner{flex-direction:column;align-items:flex-start;gap:8px;}
+  .nav-left{width:100%;}
+  .home-btn{width:100%;}
+  .nav-right{width:100%;justify-content:flex-start;flex-wrap:wrap;}
+  .dropdown{flex-shrink:0;}
+  .dropdown-btn{font-size:.72rem;padding:6px 9px;}
+}
 </style>
 </head>
 <body translate="no">
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+  <div class="nav-left">
+    <a href="index.html" class="home-btn">
+      <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
+      HOME
+    </a>
+  </div>
+
+  <div class="nav-right">
+
+    <!-- TEKIPAKI LEARNING -->
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('learningDropdown')">TEKIPAKI LEARNING ▼</button>
+      <div class="dropdown-menu" id="learningDropdown">
+        <a href="guru.html">GURU</a>
+        <a href="elearning.html">SISWA</a>
+      </div>
+    </div>
+
+    <!-- MATERI -->
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('materiDropdown')">MATERI ▼</button>
+      <div class="dropdown-menu" id="materiDropdown">
+        <a href="daftarkosakata.html">Kosakata JFT</a>
+        <a href="materitatabahasa.html">Tata Bahasa</a>
+        <a href="kanjidasar.html">Kanji Flash Card</a>
+      </div>
+    </div>
+
+    <!-- QUIZ JFT -->
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('quizDropdown')">QUIZ JFT ▼</button>
+      <div class="dropdown-menu" id="quizDropdown">
+        <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+        <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+        <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+        <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+        <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+      </div>
+    </div>
+
+    <!-- QUIZ KANJI -->
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('kanjiQuizDropdown')">QUIZ KANJI ▼</button>
+      <div class="dropdown-menu" id="kanjiQuizDropdown">
+        <a href="quizkanji1.html">QUIZ KANJI 1</a>
+        <a href="quizkanji2.html">QUIZ KANJI 2</a>
+        <a href="quizkanji3.html">QUIZ KANJI 3</a>
+        <a href="quizkanji4.html">QUIZ KANJI 4</a>
+        <a href="quizkanji5.html">QUIZ KANJI 5</a>
+      </div>
+    </div>
+
+    <span class="admin-tag" id="adminTag" style="display:none;">🔒 MODE ADMIN</span>
+    <button class="logoutBtn" id="logoutBtn" style="display:none;" onclick="teacherLogout()">Keluar</button>
+
+  </div>
+
+</div>
+</nav>
 
 <section id="loginPage">
 <div class="login">
@@ -204,21 +295,6 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
 </section>
 
 <div id="app" class="hidden">
-<nav id="navbar">
-<div class="navbar-inner">
-<div class="nav-left">
-<a href="index.html" class="home-btn">
-<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
-HOME
-</a>
-</div>
-<div class="nav-right">
-<span class="admin-tag">🔒 MODE ADMIN</span>
-<button class="logoutBtn" onclick="teacherLogout()">Keluar</button>
-</div>
-</div>
-</nav>
-
 <section class="hero">
   <div class="hero-kanji" aria-hidden="true">監</div>
   <div class="hero-inner">
@@ -278,6 +354,61 @@ HOME
 
 <script src="data.js"></script>
 <script>
+/* ================= NAVBAR DROPDOWN ================= */
+function toggleDropdown(id){
+  document.querySelectorAll(".dropdown-menu").forEach(menu => {
+    if(menu.id !== id){
+      menu.classList.remove("show");
+      menu.classList.remove("align-right");
+      const parent = menu.closest(".dropdown");
+      if(parent){ parent.classList.remove("open"); }
+    }
+  });
+
+  const menu = document.getElementById(id);
+  if(!menu){ return; }
+
+  const parent = menu.closest(".dropdown");
+  const isOpen = menu.classList.contains("show");
+
+  if(isOpen){
+    menu.classList.remove("show");
+    menu.classList.remove("align-right");
+    if(parent){ parent.classList.remove("open"); }
+    return;
+  }
+
+  menu.classList.add("show");
+  if(parent){ parent.classList.add("open"); }
+
+  menu.classList.remove("align-right");
+  const rect = menu.getBoundingClientRect();
+  if(rect.right > window.innerWidth - 10){ menu.classList.add("align-right"); }
+  if(rect.left < 10){ menu.classList.remove("align-right"); }
+}
+
+document.addEventListener("click", function(e){
+  if(!e.target.closest(".dropdown")){
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+      menu.classList.remove("show");
+      menu.classList.remove("align-right");
+    });
+    document.querySelectorAll(".dropdown").forEach(dropdown => {
+      dropdown.classList.remove("open");
+    });
+  }
+});
+
+window.addEventListener("resize", function(){
+  document.querySelectorAll(".dropdown-menu").forEach(menu => {
+    menu.classList.remove("show");
+    menu.classList.remove("align-right");
+  });
+  document.querySelectorAll(".dropdown").forEach(dropdown => {
+    dropdown.classList.remove("open");
+  });
+});
+
 /* ================= LOGIN GURU ================= */
 function teacherLogin(){
   const code = document.getElementById("teacherCode").value.trim().toUpperCase();
@@ -286,6 +417,8 @@ function teacherLogin(){
     sessionStorage.setItem("tekipaki_teacher_ok", "1");
     document.getElementById("loginPage").classList.add("hidden");
     document.getElementById("app").classList.remove("hidden");
+    document.getElementById("adminTag").style.display = "";
+    document.getElementById("logoutBtn").style.display = "";
     initAdmin();
   }else{
     err.textContent = "❌ Kode guru tidak dikenali.";
@@ -296,11 +429,15 @@ function teacherLogout(){
   document.getElementById("app").classList.add("hidden");
   document.getElementById("loginPage").classList.remove("hidden");
   document.getElementById("teacherCode").value = "";
+  document.getElementById("adminTag").style.display = "none";
+  document.getElementById("logoutBtn").style.display = "none";
 }
 document.getElementById("teacherCode").addEventListener("keydown", e => { if(e.key === "Enter") teacherLogin(); });
 if(sessionStorage.getItem("tekipaki_teacher_ok") === "1"){
   document.getElementById("loginPage").classList.add("hidden");
   document.getElementById("app").classList.remove("hidden");
+  document.getElementById("adminTag").style.display = "";
+  document.getElementById("logoutBtn").style.display = "";
   initAdmin();
 }
 
