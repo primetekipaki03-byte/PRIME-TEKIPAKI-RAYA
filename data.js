@@ -393,6 +393,21 @@ const TekiStore = {
       lastActive:
         rec.lastActive || null,
 
+      /*
+         FIX (sinkron dengan Panel Guru):
+         panel-guru.html membaca field bernama
+         'joinedAt' dan 'lastActiveAt', bukan
+         'levelStartedAt' dan 'lastActive'.
+         Disediakan sebagai alias supaya kedua
+         halaman kompak tanpa perlu ubah HTML.
+      */
+
+      joinedAt:
+        rec.levelStartedAt,
+
+      lastActiveAt:
+        rec.lastActive || null,
+
       weeks:
         rec.weeks || {}
     };
