@@ -408,11 +408,13 @@ a{
 .partHead{
   background:var(--navy);
   color:#fff;
-  border-radius:14px;
-  padding:18px 22px;
-  margin:32px 0 18px;
+  border-radius:16px;
+  padding:30px 24px;
+  margin:36px 0 20px;
   display:flex;
-  align-items:flex-start;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
   gap:14px;
   border:1px solid rgba(224,181,42,.4);
 }
@@ -421,22 +423,27 @@ a{
 }
 .partHead .partBadge{
   font-family:"JetBrains Mono",monospace;
-  font-weight:700;
-  font-size:.78rem;
+  font-weight:800;
+  font-size:1.05rem;
+  letter-spacing:3px;
   color:var(--navy2);
   background:var(--gold);
-  padding:5px 10px;
-  border-radius:7px;
+  padding:12px 34px;
+  border-radius:999px;
   flex:none;
   white-space:nowrap;
+  box-shadow:0 8px 18px rgba(0,0,0,.28);
+}
+.partHead .partText{
+  max-width:480px;
 }
 .partHead .partText h3{
-  font-size:1.05rem;
+  font-size:1.2rem;
   color:#fff;
-  margin-bottom:4px;
+  margin-bottom:6px;
 }
 .partHead .partText p{
-  font-size:.86rem;
+  font-size:.88rem;
   color:var(--muted);
   line-height:1.6;
 }
@@ -833,7 +840,7 @@ footer{
 
     <!-- SOAL 5 -->
     <div class="qCard">
-      <div class="qTop"><span class="qNum">5</span></div> </p>Pilihlah kalimat yang benar!</p>
+      <div class="qTop"><span class="qNum">5</span></div>
       <div class="opt"><input type="radio" name="q5" id="q5a" value="a"><label for="q5a">アルバイトしながら、大学に通っています。</label></div>
       <div class="opt"><input type="radio" name="q5" id="q5b" value="b"><label for="q5b">アルバイトをするながら、大学に通っています。</label></div>
       <div class="opt"><input type="radio" name="q5" id="q5c" value="c"><label for="q5c">アルバイトをしたながら、大学に通っています。</label></div>
