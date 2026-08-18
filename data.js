@@ -72,9 +72,20 @@ MATERI_BY_LEVEL.N5[0][3].link = "https://drive.google.com/your-link-4";
 
 /* ============================================================
    3. DAFTAR SISWA
+   ------------------------------------------------------------
+   PENTING (FIX):
+   Sebelumnya STUDENTS cuma array biasa di memori, jadi siswa
+   yang ditambahkan lewat panel guru (addStudent) hilang lagi
+   setiap kali halaman di-refresh/dibuka ulang, walau progress
+   belajarnya sendiri tetap tersimpan di localStorage.
+
+   Sekarang daftar siswa disinkronkan ke localStorage juga,
+   supaya siswa baru tidak hilang.
    ============================================================ */
 
-const STUDENTS = [
+const STUDENTS_STORAGE_KEY = "tekipaki_students_v1";
+
+const DEFAULT_STUDENTS = [
   {
     code: "PTPRO1",
     name: "Andi Saputra",
@@ -91,6 +102,80 @@ const STUDENTS = [
     level: "N4"
   },
 ];
+
+
+function loadStudentsFromStorage() {
+
+  try {
+
+    const saved = JSON.parse(
+      localStorage.getItem(STUDENTS_STORAGE_KEY)
+    );
+
+    if (Array.isArray(saved) && saved.length) {
+      return saved;
+    }
+
+  } catch (e) {
+
+    console.warn(
+      "Gagal membaca daftar siswa dari localStorage:",
+      e
+    );
+
+  }
+
+  /*
+     Belum ada data tersimpan (pertama kali dibuka) →
+     pakai daftar default, lalu simpan supaya
+     konsisten untuk sesi berikutnya.
+  */
+
+  const defaults = DEFAULT_STUDENTS.map(s => ({ ...s }));
+
+  try {
+
+    localStorage.setItem(
+      STUDENTS_STORAGE_KEY,
+      JSON.stringify(defaults)
+    );
+
+  } catch (e) {
+
+    console.warn(
+      "Gagal menyimpan daftar siswa default:",
+      e
+    );
+
+  }
+
+  return defaults;
+
+}
+
+
+function saveStudentsToStorage() {
+
+  try {
+
+    localStorage.setItem(
+      STUDENTS_STORAGE_KEY,
+      JSON.stringify(STUDENTS)
+    );
+
+  } catch (e) {
+
+    console.warn(
+      "Gagal menyimpan daftar siswa:",
+      e
+    );
+
+  }
+
+}
+
+
+const STUDENTS = loadStudentsFromStorage();
 
 
 /* ============================================================
@@ -783,6 +868,10 @@ TekiStore.addStudent = function (
   });
 
 
+  /* FIX: simpan daftar siswa yang sudah diperbarui */
+  saveStudentsToStorage();
+
+
   const all =
     loadAllProgress();
 
@@ -851,6 +940,10 @@ TekiStore.removeStudent = function (
     index,
     1
   );
+
+
+  /* FIX: simpan daftar siswa yang sudah diperbarui */
+  saveStudentsToStorage();
 
 
   const all =
@@ -1245,4 +1338,3 @@ TekiStore.saveAllRemote = async function (
   };
 
 };
-
