@@ -5,7 +5,7 @@
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tekipaki Japanese Learning — Siswa</title>
+<title>Tekipaki Japanese Learning — Panel Guru</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,42 +38,14 @@
   --fail-bg:#f8e7e5;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif;
-  background:var(--paper);
-  color:var(--ink);
-}
-
-h1,h2,h3,.display{
-  font-family:"Shippori Mincho",serif;
-}
-
-.mono{
-  font-family:"JetBrains Mono",monospace;
-}
-
-.hidden{
-  display:none!important;
-}
-
-button,
-input{
-  font:inherit;
-}
-
-a{
-  color:inherit;
-}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{ font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif; background:var(--paper); color:var(--ink); }
+h1,h2,h3,.display{ font-family:"Shippori Mincho",serif; }
+.mono{ font-family:"JetBrains Mono",monospace; }
+.hidden{ display:none!important; }
+button, input, select{ font:inherit; }
+a{ color:inherit; }
 
 
 /* =========================================================
@@ -82,192 +54,68 @@ a{
 
 #loginPage{
   min-height:100vh;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   padding:20px;
-
-  background:
-    radial-gradient(
-      120% 140% at 15% -10%,
-      var(--navy3),
-      var(--navy) 55%,
-      var(--navy2) 100%
-    );
-
+  background:radial-gradient(120% 140% at 15% -10%, var(--navy3), var(--navy) 55%, var(--navy2) 100%);
   position:relative;
   overflow:hidden;
 }
-
 #loginPage::before{
-  content:"学";
-
+  content:"教";
   position:absolute;
-
   font-family:"Shippori Mincho",serif;
   font-weight:800;
-
   font-size:min(60vw,520px);
-
   color:rgba(224,181,42,.06);
-
   right:-8%;
   top:50%;
-
   transform:translateY(-50%);
-
   pointer-events:none;
   user-select:none;
 }
-
 .login{
   position:relative;
   z-index:2;
-
   width:420px;
   max-width:100%;
-
   background:#fff;
-
   padding:42px 34px;
-
   border-radius:18px;
-
   text-align:center;
-
-  box-shadow:
-    0 30px 70px rgba(0,0,0,.35);
-
+  box-shadow:0 30px 70px rgba(0,0,0,.35);
   border-top:4px solid var(--gold);
 }
-
 .logo{
-  width:60px;
-  height:60px;
-
-  margin:auto;
-
-  background:var(--navy);
-  color:var(--gold);
-
+  width:60px; height:60px; margin:auto;
+  background:var(--navy); color:var(--gold);
   border-radius:14px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-weight:800;
-  font-size:20px;
-
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:20px;
   font-family:"Shippori Mincho",serif;
 }
-
-.login h1{
-  color:var(--navy);
-
-  margin:16px 0 4px;
-
-  font-size:1.6rem;
-}
-
-.login p{
-  color:var(--ink-soft);
-
-  font-size:.9rem;
-
-  margin-bottom:6px;
-}
-
+.login h1{ color:var(--navy); margin:16px 0 4px; font-size:1.6rem; }
+.login p{ color:var(--ink-soft); font-size:.9rem; margin-bottom:6px; }
 .login input{
-  width:100%;
-
-  padding:13px 14px;
-
-  border:1px solid var(--paper2);
-
-  border-radius:10px;
-
-  margin-top:16px;
-
-  outline:none;
-
+  width:100%; padding:13px 14px;
+  border:1px solid var(--paper2); border-radius:10px;
+  margin-top:16px; outline:none;
   text-transform:uppercase;
-
   font-family:"JetBrains Mono",monospace;
-
-  letter-spacing:1px;
-
-  text-align:center;
+  letter-spacing:1px; text-align:center;
 }
-
-.login input:focus{
-  border-color:var(--gold);
-
-  box-shadow:
-    0 0 0 3px rgba(224,181,42,.12);
-}
-
+.login input:focus{ border-color:var(--gold); box-shadow:0 0 0 3px rgba(224,181,42,.12); }
 .login button{
-  width:100%;
-
-  padding:13px;
-
-  border:0;
-
-  border-radius:10px;
-
-  background:var(--navy);
-
-  color:var(--gold);
-
-  font-weight:bold;
-
-  margin-top:12px;
-
-  cursor:pointer;
-
-  letter-spacing:1px;
-
-  transition:.2s;
+  width:100%; padding:13px; border:0; border-radius:10px;
+  background:var(--navy); color:var(--gold); font-weight:bold;
+  margin-top:12px; cursor:pointer; letter-spacing:1px; transition:.2s;
 }
-
-.login button:hover{
-  background:var(--navy3);
-
-  transform:translateY(-1px);
-}
-
-.login button:disabled{
-  opacity:.6;
-
-  cursor:not-allowed;
-
-  transform:none;
-}
-
-.error{
-  color:var(--seal);
-
-  font-size:.82rem;
-
-  min-height:20px;
-
-  margin-top:10px;
-}
-
-.error.success{
-  color:var(--pass);
-}
-
-.hint{
-  color:#9aa4b5;
-
-  font-size:.76rem;
-
-  margin-top:8px;
-}
+.login button:hover{ background:var(--navy3); transform:translateY(-1px); }
+.login button:disabled{ opacity:.6; cursor:not-allowed; transform:none; }
+.error{ color:var(--seal); font-size:.82rem; min-height:20px; margin-top:10px; }
+.error.success{ color:var(--pass); }
+.hint{ color:#9aa4b5; font-size:.76rem; margin-top:8px; }
 
 
 /* =========================================================
@@ -275,359 +123,47 @@ a{
 ========================================================= */
 
 header{
-  height:64px;
-
-  background:var(--navy2);
-
+  height:64px; background:var(--navy2);
   border-bottom:2px solid rgba(224,181,42,.3);
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:0 22px;
-
-  position:sticky;
-  top:0;
-
-  z-index:10;
-
-  color:#fff;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 22px; position:sticky; top:0; z-index:10; color:#fff;
 }
-
-.brand{
-  font-family:"Shippori Mincho",serif;
-
-  font-weight:800;
-
-  color:#fff;
-
-  font-size:18px;
-
-  letter-spacing:.5px;
-}
-
-.headRight{
-  display:flex;
-  align-items:center;
-
-  gap:14px;
-
-  font-size:.85rem;
-
-  color:var(--muted);
-}
-
+.brand{ font-family:"Shippori Mincho",serif; font-weight:800; color:#fff; font-size:18px; letter-spacing:.5px; }
+.headRight{ display:flex; align-items:center; gap:14px; font-size:.85rem; color:var(--muted); }
 .logout{
-  border:1px solid rgba(255,255,255,.25);
-
-  background:transparent;
-
-  color:#fff;
-
-  border-radius:8px;
-
-  padding:7px 13px;
-
-  cursor:pointer;
-
-  transition:.2s;
+  border:1px solid rgba(255,255,255,.25); background:transparent; color:#fff;
+  border-radius:8px; padding:7px 13px; cursor:pointer; transition:.2s;
 }
-
-.logout:hover{
-  border-color:var(--gold);
-
-  color:var(--gold);
-}
+.logout:hover{ border-color:var(--gold); color:var(--gold); }
 
 
 /* =========================================================
    LAYOUT
 ========================================================= */
 
-.layout{
-  display:flex;
-
-  min-height:calc(100vh - 64px);
-}
-
-.sidebar{
-  width:230px;
-
-  background:var(--navy);
-
-  padding:18px 12px;
-
-  color:#fff;
-
-  flex:none;
-}
-
+.layout{ display:flex; min-height:calc(100vh - 64px); }
+.sidebar{ width:230px; background:var(--navy); padding:18px 12px; color:#fff; flex:none; }
 .nav{
-  width:100%;
-
-  border:0;
-
-  background:transparent;
-
-  color:#cbd6e8;
-
-  text-align:left;
-
-  padding:11px 12px;
-
-  border-radius:8px;
-
-  cursor:pointer;
-
-  margin:3px 0;
-
-  font-size:.9rem;
-
-  display:flex;
-
-  align-items:center;
-
-  gap:8px;
-
-  transition:.2s;
+  width:100%; border:0; background:transparent; color:#cbd6e8;
+  text-align:left; padding:11px 12px; border-radius:8px; cursor:pointer;
+  margin:3px 0; font-size:.9rem; display:flex; align-items:center; gap:8px; transition:.2s;
 }
+.nav:hover{ background:rgba(255,255,255,.06); }
+.nav.active{ background:rgba(224,181,42,.14); color:var(--gold); font-weight:700; }
 
-.nav:hover{
-  background:rgba(255,255,255,.06);
-}
-
-.nav.active{
-  background:rgba(224,181,42,.14);
-
-  color:var(--gold);
-
-  font-weight:700;
-}
-
-.sideDivider{
-  font-family:"JetBrains Mono",monospace;
-
-  font-size:.65rem;
-
-  letter-spacing:1px;
-
-  color:var(--muted);
-
-  text-transform:uppercase;
-
-  padding:16px 12px 6px;
-}
-
-.levelPill{
-  margin:0 12px;
-
-  padding:10px 12px;
-
-  border-radius:10px;
-
-  background:rgba(224,181,42,.08);
-
-  border:1px solid rgba(224,181,42,.25);
-
-  cursor:pointer;
-
-  text-align:left;
-
-  width:calc(100% - 24px);
-
-  color:var(--gold);
-
-  font-family:"JetBrains Mono",monospace;
-
-  font-size:.75rem;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:6px;
-}
-
-.levelPill:hover{
-  background:rgba(224,181,42,.16);
-}
-
-.levelPill .chev{
-  opacity:.7;
-}
-
-
-/* =========================================================
-   MAIN
-========================================================= */
-
-.main{
-  flex:1;
-
-  padding:30px;
-
-  max-width:1000px;
-
-  width:100%;
-
-  margin:0 auto;
-}
-
-.title{
-  color:var(--navy);
-
-  margin:0 0 6px;
-}
-
-.desc{
-  color:var(--ink-soft);
-
-  margin-top:0;
-
-  margin-bottom:22px;
-}
+.main{ flex:1; padding:30px; max-width:1100px; width:100%; margin:0 auto; }
+.title{ color:var(--navy); margin:0 0 6px; }
+.desc{ color:var(--ink-soft); margin-top:0; margin-bottom:22px; }
 
 
 /* =========================================================
    CARDS
 ========================================================= */
 
-.card{
-  background:#fff;
-
-  border:1px solid var(--paper2);
-
-  border-radius:15px;
-
-  padding:22px;
-
-  box-shadow:
-    0 2px 10px rgba(10,31,61,.04);
-}
-
-.cards{
-  display:grid;
-
-  grid-template-columns:repeat(4,1fr);
-
-  gap:14px;
-
-  margin-bottom:22px;
-}
-
-.number{
-  font-family:"JetBrains Mono",monospace;
-
-  font-size:26px;
-
-  font-weight:700;
-
-  color:var(--navy);
-}
-
-.label{
-  font-size:12.5px;
-
-  color:var(--ink-soft);
-
-  margin-top:5px;
-}
-
-.grid2{
-  display:grid;
-
-  grid-template-columns:2fr 1fr;
-
-  gap:18px;
-}
-
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-.progress-track{
-  height:10px;
-
-  background:var(--paper);
-
-  border-radius:20px;
-
-  overflow:hidden;
-
-  border:1px solid var(--paper2);
-}
-
-.progress-fill{
-  display:block;
-
-  height:100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--gold-dim),
-      var(--gold)
-    );
-
-  border-radius:20px;
-
-  transition:width .4s ease;
-}
-
-
-/* =========================================================
-   LEVEL
-========================================================= */
-
-.level-row{
-  padding:13px 0;
-
-  border-bottom:1px solid var(--paper2);
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  gap:10px;
-}
-
-.level-row:last-child{
-  border-bottom:none;
-}
-
-.badge{
-  padding:6px 11px;
-
-  background:var(--pass-bg);
-
-  color:var(--pass);
-
-  border-radius:20px;
-
-  font-size:11.5px;
-
-  font-weight:700;
-
-  white-space:nowrap;
-}
-
-.badge.active{
-  background:var(--warn-bg);
-
-  color:var(--gold-dim);
-}
-
-.badge.lock{
-  background:#eee;
-
-  color:#999;
-}
+.card{ background:#fff; border:1px solid var(--paper2); border-radius:15px; padding:22px; box-shadow:0 2px 10px rgba(10,31,61,.04); }
+.cards{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:22px; }
+.number{ font-family:"JetBrains Mono",monospace; font-size:26px; font-weight:700; color:var(--navy); }
+.label{ font-size:12.5px; color:var(--ink-soft); margin-top:5px; }
 
 
 /* =========================================================
@@ -635,863 +171,168 @@ header{
 ========================================================= */
 
 .btn{
-  border:0;
-
-  background:var(--navy);
-
-  color:var(--gold);
-
-  padding:10px 16px;
-
-  border-radius:9px;
-
-  cursor:pointer;
-
-  font-weight:700;
-
-  font-size:.85rem;
-
-  transition:.2s;
+  border:0; background:var(--navy); color:var(--gold);
+  padding:10px 16px; border-radius:9px; cursor:pointer; font-weight:700; font-size:.85rem; transition:.2s;
 }
-
-.btn:hover{
-  background:var(--navy3);
-}
-
-.btn.ghost{
-  background:transparent;
-
-  color:var(--navy);
-
-  border:1px solid var(--paper2);
-}
-
-.btn.ghost:hover{
-  border-color:var(--navy);
-}
-
-.btn:disabled{
-  opacity:.5;
-
-  cursor:not-allowed;
-}
-
-.btn.gold{
-  background:var(--gold);
-
-  color:var(--navy2);
-}
-
-.btn.gold:hover{
-  background:var(--gold-dim);
-}
-
-.btn.small{
-  padding:7px 12px;
-
-  font-size:.78rem;
-}
-
-.backLink{
-  display:inline-flex;
-
-  align-items:center;
-
-  gap:6px;
-
-  color:var(--ink-soft);
-
-  cursor:pointer;
-
-  font-size:.85rem;
-
-  margin-bottom:14px;
-}
-
-.backLink:hover{
-  color:var(--navy);
-}
+.btn:hover{ background:var(--navy3); }
+.btn.ghost{ background:transparent; color:var(--navy); border:1px solid var(--paper2); }
+.btn.ghost:hover{ border-color:var(--navy); }
+.btn.danger{ background:var(--fail-bg); color:var(--seal); }
+.btn.danger:hover{ background:#f3d6d2; }
+.btn:disabled{ opacity:.5; cursor:not-allowed; }
+.btn.small{ padding:7px 12px; font-size:.78rem; }
+.backLink{ display:inline-flex; align-items:center; gap:6px; color:var(--ink-soft); cursor:pointer; font-size:.85rem; margin-bottom:14px; }
+.backLink:hover{ color:var(--navy); }
 
 
 /* =========================================================
-   DEADLINE
+   TABLE
 ========================================================= */
 
-.deadlineBanner{
-  padding:14px 18px;
-
-  border-radius:13px;
-
-  margin-bottom:18px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:12px;
-
-  flex-wrap:wrap;
-
-  background:var(--warn-bg);
-
-  color:var(--gold-dim);
-
-  font-size:.85rem;
+.tableWrap{ overflow-x:auto; }
+table.studentTable{ width:100%; border-collapse:collapse; font-size:.85rem; }
+table.studentTable th{
+  text-align:left; font-family:"JetBrains Mono",monospace; font-size:.7rem;
+  letter-spacing:.5px; text-transform:uppercase; color:var(--ink-soft);
+  padding:10px 12px; border-bottom:2px solid var(--paper2); white-space:nowrap;
 }
-
-.deadlineBanner.overdue{
-  background:var(--fail-bg);
-
-  color:var(--seal);
+table.studentTable td{ padding:12px; border-bottom:1px solid var(--paper2); vertical-align:middle; white-space:nowrap; }
+table.studentTable tr:hover td{ background:#fffdf6; }
+.codeChip{
+  font-family:"JetBrains Mono",monospace; font-size:.78rem; font-weight:700;
+  background:var(--paper); border:1px solid var(--paper2); border-radius:7px; padding:4px 8px;
 }
-
-.deadlineBanner b{
-  font-family:"JetBrains Mono",monospace;
-}
+.badge{ padding:6px 11px; background:var(--pass-bg); color:var(--pass); border-radius:20px; font-size:11.5px; font-weight:700; white-space:nowrap; }
+.badge.warn{ background:var(--warn-bg); color:var(--gold-dim); }
+.badge.fail{ background:var(--fail-bg); color:var(--seal); }
+.progress-track{ height:8px; width:100px; background:var(--paper); border-radius:20px; overflow:hidden; border:1px solid var(--paper2); display:inline-block; vertical-align:middle; }
+.progress-fill{ display:block; height:100%; background:linear-gradient(90deg,var(--gold-dim),var(--gold)); border-radius:20px; }
+.actionCell{ display:flex; gap:6px; }
 
 
 /* =========================================================
-   WEEK
+   FORM TAMBAH SISWA
 ========================================================= */
 
-.weekList{
-  display:flex;
-
-  flex-direction:column;
-
-  gap:12px;
+.formCard{ max-width:460px; }
+.formGroup{ margin-bottom:16px; }
+.formGroup label{ display:block; font-size:.8rem; font-weight:700; color:var(--navy); margin-bottom:6px; }
+.formGroup input, .formGroup select{
+  width:100%; padding:11px 13px; border:1px solid var(--paper2); border-radius:9px; outline:none; font-size:.9rem;
 }
-
-.weekCard{
-  border:1px solid var(--paper2);
-
-  border-radius:14px;
-
-  padding:18px 20px;
-
-  background:#fff;
-}
-
-.weekCard.locked{
-  opacity:.55;
-}
-
-.weekCard.selesai{
-  border-color:var(--pass);
-
-  background:var(--pass-bg);
-}
-
-.weekHead{
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  margin-bottom:12px;
-
-  flex-wrap:wrap;
-
-  gap:8px;
-}
-
-.weekHead h3{
-  font-size:1.05rem;
-
-  color:var(--navy);
-}
-
-.weekSub{
-  display:grid;
-
-  grid-template-columns:1fr 1fr;
-
-  gap:10px;
-}
-
-.materiItem{
-  display:flex;
-
-  align-items:center;
-
-  gap:10px;
-
-  padding:11px 12px;
-
-  border:1px solid var(--paper2);
-
-  border-radius:10px;
-
-  background:var(--paper);
-}
-
-.materiItem.locked{
-  opacity:.5;
-}
-
-.materiItem.done{
-  border-color:var(--pass);
-
-  background:var(--pass-bg);
-}
-
-.materiItem .mi-icon{
-  width:30px;
-  height:30px;
-
-  border-radius:8px;
-
-  flex:none;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:13px;
-
-  font-weight:800;
-
-  background:#fff;
-
-  color:var(--navy);
-}
-
-.materiItem.done .mi-icon{
-  background:var(--pass);
-
-  color:#fff;
-}
-
-.materiItem .mi-text{
-  flex:1;
-
-  min-width:0;
-}
-
-.materiItem .mi-text .t1{
-  font-weight:700;
-
-  font-size:.85rem;
-}
-
-.materiItem .mi-actions{
-  display:flex;
-
-  flex-direction:column;
-
-  gap:6px;
-
-  align-items:stretch;
-}
-
-.materiLink{
-  font-size:.72rem;
-
-  color:var(--navy);
-
-  border:1px solid var(--paper2);
-
-  border-radius:7px;
-
-  padding:6px 9px;
-
-  text-decoration:none;
-
-  white-space:nowrap;
-
-  display:inline-flex;
-
-  align-items:center;
-
-  gap:4px;
-
-  justify-content:center;
-
-  background:#fff;
-}
-
-.materiLink:hover{
-  border-color:var(--gold);
-
-  color:var(--gold-dim);
-}
-
-.doneBtn{
-  font-size:.72rem;
-
-  border-radius:7px;
-
-  padding:6px 9px;
-
-  border:1px solid var(--paper2);
-
-  background:#fff;
-
-  cursor:pointer;
-
-  white-space:nowrap;
-
-  font-weight:700;
-}
-
-.doneBtn.marked{
-  background:var(--pass);
-
-  border-color:var(--pass);
-
-  color:#fff;
-}
-
-.doneBtn:disabled{
-  cursor:not-allowed;
-
-  opacity:.5;
-}
+.formGroup input:focus, .formGroup select:focus{ border-color:var(--gold); box-shadow:0 0 0 3px rgba(224,181,42,.12); }
+.formMsg{ font-size:.85rem; min-height:20px; margin-top:8px; }
+.formMsg.err{ color:var(--seal); }
+.formMsg.ok{ color:var(--pass); }
 
 
 /* =========================================================
-   CHART
+   DETAIL SISWA
 ========================================================= */
 
-.chart-wrap{
-  display:flex;
-
-  align-items:flex-end;
-
-  gap:8px;
-
-  height:130px;
-
-  padding:10px 6px 0;
-
-  border-bottom:1px solid var(--paper2);
-
-  overflow-x:auto;
+.unitList{ display:flex; flex-direction:column; gap:8px; }
+.unitRow{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:11px 14px; border:1px solid var(--paper2); border-radius:10px; background:var(--paper);
 }
-
-.chart-bar{
-  flex:1;
-
-  min-width:22px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:flex-end;
-
-  height:100%;
-}
-
-.chart-bar .fill{
-  width:100%;
-
-  max-width:26px;
-
-  border-radius:6px 6px 0 0;
-
-  background:
-    linear-gradient(
-      180deg,
-      var(--gold),
-      var(--gold-dim)
-    );
-
-  transition:height .4s ease;
-}
-
-.chart-bar.pending .fill{
-  background:var(--paper2);
-}
-
-.chart-bar .cv{
-  font-family:"JetBrains Mono",monospace;
-
-  font-size:.62rem;
-
-  color:var(--ink-soft);
-
-  margin-bottom:4px;
-}
-
-.chart-labels{
-  display:flex;
-
-  gap:8px;
-
-  margin-top:6px;
-
-  overflow-x:auto;
-}
-
-.chart-labels span{
-  flex:1;
-
-  min-width:22px;
-
-  text-align:center;
-
-  font-family:"JetBrains Mono",monospace;
-
-  font-size:.6rem;
-
-  color:var(--muted);
-}
+.unitRow.selesai{ border-color:var(--pass); background:var(--pass-bg); }
+.unitRow.overdue{ border-color:var(--seal); background:var(--fail-bg); }
+.unitRow .ut{ font-size:.85rem; font-weight:700; }
+.unitRow .us{ font-size:.72rem; color:var(--ink-soft); }
 
 
 /* =========================================================
-   LEVEL PICKER
-========================================================= */
-
-.levelGrid{
-  display:grid;
-
-  grid-template-columns:repeat(3,1fr);
-
-  gap:14px;
-}
-
-.levelCard{
-  border:1px solid var(--paper2);
-
-  border-radius:14px;
-
-  padding:18px;
-
-  background:#fff;
-
-  cursor:pointer;
-
-  transition:.15s;
-
-  position:relative;
-
-  overflow:hidden;
-}
-
-.levelCard:hover{
-  border-color:var(--gold);
-
-  transform:translateY(-2px);
-}
-
-.levelCard.locked{
-  cursor:not-allowed;
-
-  opacity:.55;
-}
-
-.levelCard.locked:hover{
-  border-color:var(--paper2);
-
-  transform:none;
-}
-
-.levelCard.viewing{
-  border-color:var(--gold);
-
-  box-shadow:
-    0 0 0 2px rgba(224,181,42,.25) inset;
-}
-
-.levelCard .lid{
-  font-family:"Shippori Mincho",serif;
-
-  font-weight:800;
-
-  font-size:1.6rem;
-
-  color:var(--navy);
-}
-
-.levelCard .ltitle{
-  font-size:.82rem;
-
-  color:var(--ink-soft);
-
-  margin:4px 0 12px;
-}
-
-.levelCard::after{
-  content:"学";
-
-  position:absolute;
-
-  font-family:"Shippori Mincho",serif;
-
-  font-weight:800;
-
-  font-size:70px;
-
-  color:rgba(10,31,61,.04);
-
-  right:-6px;
-
-  bottom:-14px;
-
-  pointer-events:none;
-}
-
-
-/* =========================================================
-   ERROR PANEL
-========================================================= */
-
-.systemError{
-  background:var(--fail-bg);
-
-  border:1px solid rgba(179,56,46,.25);
-
-  color:var(--seal);
-
-  border-radius:12px;
-
-  padding:16px;
-
-  margin-bottom:18px;
-
-  font-size:.85rem;
-
-  line-height:1.6;
-}
-
-.systemError code{
-  background:rgba(0,0,0,.05);
-
-  padding:2px 5px;
-
-  border-radius:4px;
-
-  font-family:"JetBrains Mono",monospace;
-}
-
-
-/* =========================================================
-   TOP NAVBAR (shared w/ Panel Guru)
+   TOP NAVBAR (sama seperti Siswa)
 ========================================================= */
 
 #navbar{
-  position:sticky;
-  top:0;
-  z-index:999;
-  background:#001530;
-  border-bottom:2px solid rgba(224,181,42,.3);
-  box-shadow:0 4px 14px rgba(0,0,0,.25);
+  position:sticky; top:0; z-index:999; background:#001530;
+  border-bottom:2px solid rgba(224,181,42,.3); box-shadow:0 4px 14px rgba(0,0,0,.25);
 }
-.navbar-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:8px 20px;
-  flex-wrap:wrap;
-  gap:10px;
-  min-height:64px;
-}
-.nav-left{
-  display:flex;
-  align-items:center;
-  flex-shrink:0;
-}
+.navbar-inner{ display:flex; justify-content:space-between; align-items:center; padding:8px 20px; flex-wrap:wrap; gap:10px; min-height:64px; }
+.nav-left{ display:flex; align-items:center; flex-shrink:0; }
 .home-btn{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  background:var(--gold);
-  color:var(--navy2);
-  text-decoration:none;
-  padding:8px 14px;
-  border-radius:10px;
-  font-weight:bold;
-  white-space:nowrap;
+  display:flex; align-items:center; gap:8px; background:var(--gold); color:var(--navy2);
+  text-decoration:none; padding:8px 14px; border-radius:10px; font-weight:bold; white-space:nowrap;
 }
-.home-btn:hover{
-  opacity:.85;
-}
-.home-icon{
-  width:22px;
-  height:22px;
-  flex:none;
-}
-.admin-tag{
-  font-family:"JetBrains Mono",monospace;
-  font-size:.72rem;
-  letter-spacing:1.5px;
-  color:var(--gold);
-  border:1px solid rgba(224,181,42,.4);
-  padding:6px 10px;
-  border-radius:999px;
-  white-space:nowrap;
-}
-.logoutBtn{
-  border:1px solid rgba(255,255,255,.25);
-  background:transparent;
-  color:#fff;
-  border-radius:999px;
-  padding:8px 14px;
-  cursor:pointer;
-  font-weight:bold;
-  white-space:nowrap;
-}
-.logoutBtn:hover{
-  border-color:var(--gold);
-  color:var(--gold);
-}
-.nav-right{
-  display:flex;
-  gap:8px;
-  align-items:center;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-}
-
-.dropdown{
-  position:relative;
-  flex-shrink:0;
-  z-index:1;
-}
-.dropdown.open{
-  z-index:20;
-}
+.home-btn:hover{ opacity:.85; }
+.home-icon{ width:22px; height:22px; flex:none; }
+.nav-right{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+.dropdown{ position:relative; flex-shrink:0; z-index:1; }
+.dropdown.open{ z-index:20; }
 .dropdown-btn{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:transparent;
-  border:2px solid var(--gold);
-  color:var(--gold);
-  padding:8px 14px;
-  border-radius:8px;
-  font-family:inherit;
-  font-weight:bold;
-  cursor:pointer;
-  white-space:nowrap;
+  display:flex; align-items:center; justify-content:center; background:transparent;
+  border:2px solid var(--gold); color:var(--gold); padding:8px 14px; border-radius:8px;
+  font-family:inherit; font-weight:bold; cursor:pointer; white-space:nowrap;
 }
-.dropdown-btn:hover,
-.dropdown.open .dropdown-btn{
-  background:var(--gold);
-  color:var(--navy2);
-}
+.dropdown-btn:hover, .dropdown.open .dropdown-btn{ background:var(--gold); color:var(--navy2); }
 .dropdown-menu{
-  display:none;
-  position:absolute;
-  top:calc(100% + 7px);
-  left:0;
-  width:max-content;
-  min-width:220px;
-  max-width:calc(100vw - 20px);
-  background:#1f4577;
-  border:1px solid rgba(224,181,42,.35);
-  border-radius:10px;
-  overflow:hidden;
-  box-shadow:0 10px 25px rgba(0,0,0,.35);
+  display:none; position:absolute; top:calc(100% + 7px); left:0; width:max-content;
+  min-width:220px; max-width:calc(100vw - 20px); background:#1f4577;
+  border:1px solid rgba(224,181,42,.35); border-radius:10px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,.35);
 }
-.dropdown-menu.show{
-  display:block;
-}
-.dropdown-menu.align-right{
-  left:auto;
-  right:0;
-}
-.dropdown-menu a{
-  display:block;
-  padding:12px 15px;
-  color:#ffd700;
-  text-decoration:none;
-  white-space:nowrap;
-}
-.dropdown-menu a:hover{
-  background:var(--gold);
-  color:var(--navy2);
-}
-
+.dropdown-menu.show{ display:block; }
+.dropdown-menu.align-right{ left:auto; right:0; }
+.dropdown-menu a{ display:block; padding:12px 15px; color:#ffd700; text-decoration:none; white-space:nowrap; }
+.dropdown-menu a:hover{ background:var(--gold); color:var(--navy2); }
 .burger-btn{
-  display:none;
-  flex:none;
-  width:42px;height:42px;
-  border:2px solid var(--gold);
-  border-radius:9px;
-  background:transparent;
-  cursor:pointer;
-  align-items:center;
-  justify-content:center;
-  gap:4px;
-  flex-direction:column;
+  display:none; flex:none; width:42px;height:42px; border:2px solid var(--gold); border-radius:9px;
+  background:transparent; cursor:pointer; align-items:center; justify-content:center; gap:4px; flex-direction:column;
 }
-.burger-btn span{
-  display:block;
-  width:20px;height:2px;
-  background:var(--gold);
-  border-radius:2px;
-  transition:.25s ease;
-}
+.burger-btn span{ display:block; width:20px;height:2px; background:var(--gold); border-radius:2px; transition:.25s ease; }
 .burger-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
 .burger-btn.open span:nth-child(2){opacity:0;}
 .burger-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
-
-.nav-overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,10,25,.5);
-  z-index:998;
-}
+.nav-overlay{ display:none; position:fixed; inset:0; background:rgba(0,10,25,.5); z-index:998; }
 .nav-overlay.show{display:block;}
 
 @media(max-width:1000px){
   .navbar-inner{flex-wrap:nowrap;padding:10px 14px;gap:10px;}
   .burger-btn{display:flex;}
-
   .nav-right{
-    position:fixed;
-    top:0;right:0;
-    height:100vh;
-    width:min(78vw,320px);
-    background:var(--navy2);
-    flex-direction:column;
-    align-items:stretch;
-    justify-content:flex-start;
-    gap:10px;
-    padding:78px 18px 24px;
-    transform:translateX(100%);
-    transition:transform .28s ease;
-    z-index:999;
-    overflow-y:auto;
-    box-shadow:-8px 0 30px rgba(0,0,0,.4);
+    position:fixed; top:0;right:0; height:100vh; width:min(78vw,320px); background:var(--navy2);
+    flex-direction:column; align-items:stretch; justify-content:flex-start; gap:10px;
+    padding:78px 18px 24px; transform:translateX(100%); transition:transform .28s ease;
+    z-index:999; overflow-y:auto; box-shadow:-8px 0 30px rgba(0,0,0,.4);
   }
   .nav-right.mobileOpen{transform:translateX(0);}
-
   .dropdown{width:100%;}
   .dropdown-btn{width:100%;justify-content:space-between;font-size:.85rem;padding:12px 14px;}
-  .dropdown-menu{
-    position:static;
-    width:100%;
-    min-width:0;
-    max-width:none;
-    margin-top:6px;
-    box-shadow:none;
-  }
+  .dropdown-menu{ position:static; width:100%; min-width:0; max-width:none; margin-top:6px; box-shadow:none; }
   .dropdown-menu a{padding:11px 14px;font-size:.85rem;}
-
-  .admin-tag,.logoutBtn{width:100%;text-align:center;box-sizing:border-box;}
 }
-@media(max-width:760px){
-  .nav-right{width:82vw;}
-}
+@media(max-width:760px){ .nav-right{width:82vw;} }
 
 
 /* =========================================================
    RESPONSIVE
 ========================================================= */
 
-@media(max-width:860px){
-
-  .grid2{
-    grid-template-columns:1fr;
-  }
-
-  .cards{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .levelGrid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-}
+@media(max-width:860px){ .cards{ grid-template-columns:repeat(2,1fr); } }
 
 @media(max-width:650px){
-
-  header{
-    padding:0 14px;
-  }
-
-  .layout{
-    display:block;
-  }
-
-  .sidebar{
-    width:100%;
-
-    display:flex;
-
-    overflow:auto;
-
-    padding:8px;
-
-    gap:6px;
-  }
-
-  .nav{
-    white-space:nowrap;
-
-    width:auto;
-  }
-
-  .sideDivider{
-    display:none;
-  }
-
-  .levelPill{
-    width:auto;
-
-    white-space:nowrap;
-
-    margin:0;
-  }
-
-  .main{
-    padding:16px;
-  }
-
-  .cards{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .weekSub{
-    grid-template-columns:1fr;
-  }
-
+  header{ padding:0 14px; }
+  .layout{ display:block; }
+  .sidebar{ width:100%; display:flex; overflow:auto; padding:8px; gap:6px; }
+  .nav{ white-space:nowrap; width:auto; }
+  .main{ padding:16px; }
+  .cards{ grid-template-columns:1fr 1fr; }
 }
 
 @media(max-width:560px){
-
-  .levelGrid{
-    grid-template-columns:1fr;
-  }
-
-  .login{
-    padding:32px 22px;
-  }
-
-  .brand{
-    font-size:15px;
-  }
-
-  .headRight{
-    font-size:.72rem;
-  }
-
-  .logout{
-    padding:6px 9px;
-  }
-
+  .login{ padding:32px 22px; }
+  .brand{ font-size:15px; }
+  .headRight{ font-size:.72rem; }
+  .logout{ padding:6px 9px; }
 }
 
 </style>
 </head>
 
-
 <body translate="no">
 
 <!-- ========================================================
-     TOP NAVBAR (sama seperti Panel Guru)
+     TOP NAVBAR
 ========================================================= -->
 
 <nav id="navbar">
@@ -1565,42 +406,25 @@ header{
 
   <div class="login">
 
-    <div class="logo">
-      TP
-    </div>
+    <div class="logo">TP</div>
 
-    <h1>
-      TEKIPAKI
-    </h1>
+    <h1>TEKIPAKI</h1>
 
-    <p>
-      Japanese Learning · E-Learning Siswa
-    </p>
+    <p>Japanese Learning · Panel Guru</p>
 
     <input
-      id="studentCode"
-      placeholder="MASUKKAN KODE SISWA"
+      id="teacherCode"
+      placeholder="MASUKKAN KODE GURU"
       maxlength="20"
       autocomplete="off"
       spellcheck="false"
     >
 
-    <button
-      id="loginButton"
-      type="button"
-      onclick="login()"
-    >
-      MASUK
-    </button>
+    <button id="loginButton" type="button" onclick="login()">MASUK</button>
 
-    <div
-      id="loginError"
-      class="error"
-    ></div>
+    <div id="loginError" class="error"></div>
 
-    <div class="hint">
-      Gunakan kode siswa yang diberikan oleh guru.
-    </div>
+    <div class="hint">Kode guru hanya diketahui oleh pengajar.</div>
 
   </div>
 
@@ -1611,96 +435,25 @@ header{
      APPLICATION
 ========================================================= -->
 
-<section
-  id="app"
-  class="hidden"
->
+<section id="app" class="hidden">
 
   <header>
-
-    <div class="brand">
-      TEKIPAKI · SISWA
-    </div>
-
+    <div class="brand">TEKIPAKI · GURU</div>
     <div class="headRight">
-
-      <span id="headerName"></span>
-
-      <button
-        class="logout"
-        type="button"
-        onclick="logout()"
-      >
-        Keluar
-      </button>
-
+      <span id="headerName">👤 Guru</span>
+      <button class="logout" type="button" onclick="logout()">Keluar</button>
     </div>
-
   </header>
-
 
   <div class="layout">
 
-
-    <!-- SIDEBAR -->
-
     <aside class="sidebar">
-
-      <button
-        class="nav active"
-        data-page="dashboard"
-        type="button"
-      >
-        🏠 Dashboard
-      </button>
-
-      <button
-        class="nav"
-        data-page="weeklist"
-        type="button"
-      >
-        📚 Materi Mingguan
-      </button>
-
-      <button
-        class="nav"
-        data-page="progresspage"
-        type="button"
-      >
-        📊 Progress Saya
-      </button>
-
-      <div class="sideDivider">
-        Level
-      </div>
-
-      <button
-        class="levelPill"
-        id="levelPillBtn"
-        type="button"
-        onclick="showPage('levelpicker')"
-      >
-
-        <span id="levelPillText">
-          —
-        </span>
-
-        <span class="chev">
-          ▸
-        </span>
-
-      </button>
-
+      <button class="nav active" data-page="dashboard" type="button">🏠 Dashboard</button>
+      <button class="nav" data-page="students" type="button">👥 Daftar Siswa</button>
+      <button class="nav" data-page="addstudent" type="button">➕ Tambah Siswa</button>
     </aside>
 
-
-    <!-- MAIN -->
-
-    <main
-      class="main"
-      id="mainArea"
-    ></main>
-
+    <main class="main" id="mainArea"></main>
 
   </div>
 
@@ -1709,9 +462,7 @@ header{
 
 <!-- ========================================================
      DATA.JS
-     
-     PENTING:
-     File data.js harus berada di folder yang sama.
+     PENTING: file data.js harus berada di folder yang sama.
 ========================================================= -->
 
 <script src="./data.js"></script>
@@ -1728,172 +479,107 @@ function toggleMobileNav(){
   const btn = document.getElementById("burgerBtn");
   const overlay = document.getElementById("navOverlay");
   const isOpen = nav.classList.contains("mobileOpen");
-
-  if(isOpen){
-    closeMobileNav();
-  }else{
+  if(isOpen){ closeMobileNav(); }
+  else{
     nav.classList.add("mobileOpen");
     btn.classList.add("open");
     overlay.classList.add("show");
     document.body.style.overflow = "hidden";
   }
 }
-
 function closeMobileNav(){
   const nav = document.getElementById("navRight");
   const btn = document.getElementById("burgerBtn");
   const overlay = document.getElementById("navOverlay");
-
   nav.classList.remove("mobileOpen");
   btn.classList.remove("open");
   overlay.classList.remove("show");
   document.body.style.overflow = "";
-
   document.querySelectorAll(".dropdown-menu").forEach(menu => {
-    menu.classList.remove("show");
-    menu.classList.remove("align-right");
+    menu.classList.remove("show"); menu.classList.remove("align-right");
   });
-  document.querySelectorAll(".dropdown").forEach(dropdown => {
-    dropdown.classList.remove("open");
-  });
+  document.querySelectorAll(".dropdown").forEach(dropdown => dropdown.classList.remove("open"));
 }
-
-window.addEventListener("resize", function(){
-  if(window.innerWidth > 1000){
-    closeMobileNav();
-  }
-});
+window.addEventListener("resize", function(){ if(window.innerWidth > 1000){ closeMobileNav(); } });
 
 function toggleDropdown(id){
   document.querySelectorAll(".dropdown-menu").forEach(menu => {
     if(menu.id !== id){
-      menu.classList.remove("show");
-      menu.classList.remove("align-right");
+      menu.classList.remove("show"); menu.classList.remove("align-right");
       const parent = menu.closest(".dropdown");
       if(parent){ parent.classList.remove("open"); }
     }
   });
-
   const menu = document.getElementById(id);
   if(!menu){ return; }
-
   const parent = menu.closest(".dropdown");
   const isOpen = menu.classList.contains("show");
-
   if(isOpen){
-    menu.classList.remove("show");
-    menu.classList.remove("align-right");
+    menu.classList.remove("show"); menu.classList.remove("align-right");
     if(parent){ parent.classList.remove("open"); }
     return;
   }
-
   menu.classList.add("show");
   if(parent){ parent.classList.add("open"); }
-
   menu.classList.remove("align-right");
   const rect = menu.getBoundingClientRect();
   if(rect.right > window.innerWidth - 10){ menu.classList.add("align-right"); }
   if(rect.left < 10){ menu.classList.remove("align-right"); }
 }
-
 document.addEventListener("click", function(e){
   if(!e.target.closest(".dropdown")){
     document.querySelectorAll(".dropdown-menu").forEach(menu => {
-      menu.classList.remove("show");
-      menu.classList.remove("align-right");
+      menu.classList.remove("show"); menu.classList.remove("align-right");
     });
-    document.querySelectorAll(".dropdown").forEach(dropdown => {
-      dropdown.classList.remove("open");
-    });
+    document.querySelectorAll(".dropdown").forEach(dropdown => dropdown.classList.remove("open"));
   }
 });
-
 window.addEventListener("resize", function(){
   document.querySelectorAll(".dropdown-menu").forEach(menu => {
-    menu.classList.remove("show");
-    menu.classList.remove("align-right");
+    menu.classList.remove("show"); menu.classList.remove("align-right");
   });
-  document.querySelectorAll(".dropdown").forEach(dropdown => {
-    dropdown.classList.remove("open");
-  });
+  document.querySelectorAll(".dropdown").forEach(dropdown => dropdown.classList.remove("open"));
 });
 
 
 /* =========================================================
-   GLOBAL VARIABLES
-========================================================= */
-
-let currentCode = null;
-
-let currentStudent = null;
-
-let viewingLevel = null;
-
-
-/* =========================================================
-   HELPER: CEK TEKI STORE
+   HELPER
 ========================================================= */
 
 function checkTekiStore(){
-
-  if(
-    typeof TekiStore === "undefined"
-  ){
-
-    return false;
-
-  }
-
-  if(
-    typeof TekiStore.getStudent !== "function"
-  ){
-
-    return false;
-
-  }
-
+  if(typeof TekiStore === "undefined"){ return false; }
+  if(typeof TekiStore.getAllStudents !== "function"){ return false; }
   return true;
-
 }
 
-
-/* =========================================================
-   HELPER: ERROR LOGIN
-========================================================= */
+function checkTeacherAuth(){
+  return typeof isValidTeacherCode === "function";
+}
 
 function showLoginError(message){
-
-  const err =
-    document.getElementById("loginError");
-
-  if(err){
-
-    err.textContent = message;
-
-    err.classList.remove("success");
-
-  }
-
+  const err = document.getElementById("loginError");
+  if(err){ err.textContent = message; err.classList.remove("success"); }
+}
+function showLoginSuccess(message){
+  const err = document.getElementById("loginError");
+  if(err){ err.textContent = message; err.classList.add("success"); }
 }
 
-
-/* =========================================================
-   HELPER: SUCCESS LOGIN
-========================================================= */
-
-function showLoginSuccess(message){
-
-  const err =
-    document.getElementById("loginError");
-
-  if(err){
-
-    err.textContent = message;
-
-    err.classList.add("success");
-
-  }
-
+function escapeHTML(value){
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+function escapeJS(value){
+  return String(value)
+    .replaceAll("\\","\\\\")
+    .replaceAll("'","\\'")
+    .replaceAll('"','\\"')
+    .replaceAll("\n","\\n")
+    .replaceAll("\r","\\r");
 }
 
 
@@ -1901,211 +587,47 @@ function showLoginSuccess(message){
    LOGIN
 ========================================================= */
 
-async function login(){
-
-  const input =
-    document.getElementById("studentCode");
-
-  const button =
-    document.getElementById("loginButton");
-
-  const code =
-    input.value
-      .trim()
-      .toUpperCase();
+function login(){
+  const input = document.getElementById("teacherCode");
+  const button = document.getElementById("loginButton");
+  const code = input.value.trim().toUpperCase();
 
   if(!code){
-
-    showLoginError(
-      "❌ Masukkan kode siswa."
-    );
-
+    showLoginError("❌ Masukkan kode guru.");
     input.focus();
-
     return;
-
   }
 
-
-  /*
-   * Pastikan data.js berhasil dimuat
-   */
-
-  if(!checkTekiStore()){
-
-    showLoginError(
-      "❌ Sistem data siswa tidak berhasil dimuat. Pastikan file data.js berada di folder yang sama dengan file HTML."
-    );
-
-    console.error(
-      "TekiStore tidak ditemukan. Periksa data.js."
-    );
-
+  if(!checkTekiStore() || !checkTeacherAuth()){
+    showLoginError("❌ Sistem data tidak berhasil dimuat. Pastikan file data.js berada di folder yang sama dengan file HTML ini.");
+    console.error("TekiStore / isValidTeacherCode tidak ditemukan. Periksa data.js.");
     return;
-
   }
-
-
-  /*
-   * Disable tombol sementara
-   */
 
   button.disabled = true;
+  button.textContent = "MEMERIKSA...";
+  showLoginSuccess("⏳ Memeriksa kode guru...");
 
-  button.textContent =
-    "MEMERIKSA...";
-
-  showLoginSuccess(
-    "⏳ Memeriksa kode siswa..."
-  );
-
-
-  let student = null;
-
-
+  let valid = false;
   try{
-
-    /*
-     * Jika tersedia sistem cloud,
-     * gunakan data remote.
-     */
-
-    if(
-      typeof cloudEnabled === "function" &&
-      cloudEnabled() === true &&
-      typeof TekiStore.getStudentRemote === "function"
-    ){
-
-      console.log(
-        "Login menggunakan data cloud..."
-      );
-
-      student =
-        await TekiStore.getStudentRemote(code);
-
-    }
-
-    /*
-     * Jika cloud tidak tersedia,
-     * gunakan data lokal.
-     */
-
-    else{
-
-      console.log(
-        "Login menggunakan data lokal..."
-      );
-
-      student =
-        TekiStore.getStudent(code);
-
-    }
-
-  }
-
-  catch(error){
-
-    console.error(
-      "LOGIN ERROR:",
-      error
-    );
-
-    showLoginError(
-      "❌ Terjadi kesalahan saat memeriksa kode siswa. Periksa data.js atau koneksi cloud."
-    );
-
+    valid = isValidTeacherCode(code);
+  }catch(error){
+    console.error("LOGIN ERROR:", error);
+    showLoginError("❌ Terjadi kesalahan saat memeriksa kode guru.");
     button.disabled = false;
-
-    button.textContent =
-      "MASUK";
-
+    button.textContent = "MASUK";
     return;
-
   }
 
-
-  /*
-   * Siswa ditemukan
-   */
-
-  if(student){
-
-    console.log(
-      "SISWA DITEMUKAN:",
-      student
-    );
-
-
-    currentCode =
-      code;
-
-    currentStudent =
-      student;
-
-
-    sessionStorage.setItem(
-      "tekipaki_current_code",
-      code
-    );
-
-
-    /*
-     * Update aktivitas hanya jika fungsi tersedia.
-     */
-
-    try{
-
-      if(
-        typeof TekiStore.touchLastActive === "function"
-      ){
-
-        TekiStore.touchLastActive(
-          code
-        );
-
-      }
-
-    }
-
-    catch(error){
-
-      console.warn(
-        "touchLastActive gagal:",
-        error
-      );
-
-    }
-
-
-    /*
-     * Langsung buka aplikasi
-     *
-     * PENTING:
-     * Tidak lagi mengambil siswa dari
-     * TekiStore.getStudent() ulang.
-     */
-
-    openApp(student);
-
+  if(valid){
+    sessionStorage.setItem("tekipaki_teacher_code", code);
+    openApp();
     return;
-
   }
 
-
-  /*
-   * Siswa tidak ditemukan
-   */
-
-  showLoginError(
-    "❌ Kode siswa tidak ditemukan. Pastikan guru sudah mendaftarkan kode ini."
-  );
-
-
+  showLoginError("❌ Kode guru tidak valid.");
   button.disabled = false;
-
-  button.textContent =
-    "MASUK";
-
+  button.textContent = "MASUK";
 }
 
 
@@ -2114,52 +636,15 @@ async function login(){
 ========================================================= */
 
 function logout(){
+  sessionStorage.removeItem("tekipaki_teacher_code");
 
-  sessionStorage.removeItem(
-    "tekipaki_current_code"
-  );
-
-  currentCode = null;
-
-  currentStudent = null;
-
-  viewingLevel = null;
-
-
-  document
-    .getElementById("app")
-    .classList.add("hidden");
-
-
-  document
-    .getElementById("loginPage")
-    .classList.remove("hidden");
-
-
-  document
-    .getElementById("studentCode")
-    .value = "";
-
-
-  document
-    .getElementById("loginError")
-    .textContent = "";
-
-
-  document
-    .getElementById("loginButton")
-    .disabled = false;
-
-
-  document
-    .getElementById("loginButton")
-    .textContent = "MASUK";
-
-
-  document
-    .getElementById("studentCode")
-    .focus();
-
+  document.getElementById("app").classList.add("hidden");
+  document.getElementById("loginPage").classList.remove("hidden");
+  document.getElementById("teacherCode").value = "";
+  document.getElementById("loginError").textContent = "";
+  document.getElementById("loginButton").disabled = false;
+  document.getElementById("loginButton").textContent = "MASUK";
+  document.getElementById("teacherCode").focus();
 }
 
 
@@ -2167,158 +652,15 @@ function logout(){
    OPEN APP
 ========================================================= */
 
-function openApp(student){
+function openApp(){
+  document.getElementById("loginPage").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
 
-  /*
-   * Kalau student tidak diberikan,
-   * coba ambil dari local storage.
-   */
+  document.querySelectorAll(".nav").forEach(nav => {
+    nav.onclick = function(){ showPage(this.dataset.page); };
+  });
 
-  if(!student){
-
-    if(!checkTekiStore()){
-
-      logout();
-
-      showLoginError(
-        "❌ Sistem data tidak tersedia."
-      );
-
-      return;
-
-    }
-
-
-    student =
-      TekiStore.getStudent(
-        currentCode
-      );
-
-  }
-
-
-  /*
-   * Jika tetap tidak ada
-   */
-
-  if(!student){
-
-    logout();
-
-    showLoginError(
-      "❌ Data siswa tidak ditemukan."
-    );
-
-    return;
-
-  }
-
-
-  currentStudent =
-    student;
-
-
-  /*
-   * Pastikan level tersedia
-   */
-
-  if(!student.level){
-
-    student.level = "N5";
-
-  }
-
-
-  viewingLevel =
-    student.level;
-
-
-  /*
-   * Tampilkan aplikasi
-   */
-
-  document
-    .getElementById("loginPage")
-    .classList.add("hidden");
-
-
-  document
-    .getElementById("app")
-    .classList.remove("hidden");
-
-
-  /*
-   * Nama siswa
-   */
-
-  document
-    .getElementById("headerName")
-    .textContent =
-      "👤 " +
-      (
-        student.name ||
-        "Siswa"
-      );
-
-
-  /*
-   * Update level
-   */
-
-  updateLevelPill();
-
-
-  /*
-   * Event menu
-   *
-   * Hapus event listener lama terlebih dahulu
-   * agar tidak terpasang berkali-kali.
-   */
-
-  document
-    .querySelectorAll(".nav")
-    .forEach(nav => {
-
-      nav.onclick = function(){
-
-        showPage(
-          this.dataset.page
-        );
-
-      };
-
-    });
-
-
-  /*
-   * Dashboard
-   */
-
-  showPage(
-    "dashboard"
-  );
-
-}
-
-
-/* =========================================================
-   LEVEL PILL
-========================================================= */
-
-function updateLevelPill(){
-
-  const pill =
-    document.getElementById(
-      "levelPillText"
-    );
-
-  if(pill){
-
-    pill.textContent =
-      viewingLevel || "—";
-
-  }
-
+  showPage("dashboard");
 }
 
 
@@ -2327,1741 +669,367 @@ function updateLevelPill(){
 ========================================================= */
 
 function showPage(id){
-
-  document
-    .querySelectorAll(".nav")
-    .forEach(nav => {
-
-      nav.classList.toggle(
-        "active",
-        nav.dataset.page === id
-      );
-
-    });
-
-
-  try{
-
-    if(id === "dashboard"){
-
-      renderDashboard();
-
-    }
-
-    else if(id === "weeklist"){
-
-      renderWeekList();
-
-    }
-
-    else if(id === "progresspage"){
-
-      renderProgressPage();
-
-    }
-
-    else if(id === "levelpicker"){
-
-      renderLevelPicker();
-
-    }
-
-  }
-
-  catch(error){
-
-    console.error(
-      "PAGE ERROR:",
-      error
-    );
-
-    showSystemError(
-      "Terjadi kesalahan saat membuka halaman.",
-      error
-    );
-
-  }
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
+  document.querySelectorAll(".nav").forEach(nav => {
+    nav.classList.toggle("active", nav.dataset.page === id);
   });
 
-}
-
-
-/* =========================================================
-   SYSTEM ERROR
-========================================================= */
-
-function showSystemError(
-  message,
-  error
-){
-
-  const main =
-    document.getElementById(
-      "mainArea"
-    );
-
-  if(!main){
-
-    return;
-
+  try{
+    if(id === "dashboard"){ renderGuruDashboard(); }
+    else if(id === "students"){ renderStudentList(); }
+    else if(id === "addstudent"){ renderAddStudentForm(); }
+    else if(id === "studentdetail"){ /* dipanggil manual dari viewStudent() */ }
+  }catch(error){
+    console.error("PAGE ERROR:", error);
+    showSystemError("Terjadi kesalahan saat membuka halaman.", error);
   }
 
+  window.scrollTo({ top:0, behavior:"smooth" });
+}
 
-  const detail =
-    error && error.message
-      ? error.message
-      : "Unknown error";
-
-
+function showSystemError(message, error){
+  const main = document.getElementById("mainArea");
+  if(!main){ return; }
+  const detail = error && error.message ? error.message : "Unknown error";
   main.innerHTML = `
-
-    <div class="systemError">
-
-      <b>❌ ${message}</b>
-
-      <br><br>
-
-      Detail:
-
-      <code>
-        ${escapeHTML(detail)}
-      </code>
-
-      <br><br>
-
-      Silakan periksa file
-      <code>data.js</code>.
-
+    <div class="card" style="border-color:rgba(179,56,46,.25);background:var(--fail-bg);color:var(--seal);">
+      <b>❌ ${message}</b><br><br>
+      Detail: <code class="mono">${escapeHTML(detail)}</code><br><br>
+      Silakan periksa file <code class="mono">data.js</code>.
     </div>
-
   `;
-
 }
 
 
 /* =========================================================
-   ESCAPE HTML
+   DASHBOARD GURU
 ========================================================= */
 
-function escapeHTML(value){
-
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-function renderDashboard(){
-
-  const student =
-    getStudentSafe();
-
-  if(!student){
-
+function renderGuruDashboard(){
+  if(!checkTekiStore()){
+    showSystemError("TekiStore tidak tersedia.", new Error("data.js tidak berhasil dimuat"));
     return;
-
   }
 
+  const students = TekiStore.getAllStudents();
 
-  const sum =
-    TekiStore.summarizeWeeks(
-      student,
-      student.level
-    );
+  let totalOk = 0, totalWarn = 0, totalFail = 0;
+  const perLevel = {};
+  LEVELS.forEach(l => perLevel[l.id] = 0);
 
+  students.forEach(s => {
+    const sum = TekiStore.summarize(s);
+    if(sum.status.key === "pass"){ totalOk++; }
+    else if(sum.status.key === "warn"){ totalWarn++; }
+    else{ totalFail++; }
+    if(perLevel[s.level] !== undefined){ perLevel[s.level]++; }
+  });
 
-  const nextWeek =
-    sum.weeks.find(
-      w => !w.selesai
-    );
-
-
-  let deadlineBannerHTML = "";
-
-
-  if(sum.deadlineInfo){
-
-    const di =
-      sum.deadlineInfo;
-
-
-    deadlineBannerHTML = `
-
-      <div class="deadlineBanner ${
-        di.overdue
-          ? "overdue"
-          : ""
-      }">
-
-        <span>
-
-          ⏳ Target level
-
-          <b>
-            ${student.level}
-          </b>
-
-          : selesai dalam
-
-          <b>
-            ${di.totalDays} hari
-          </b>
-
-          ${
-            student.levelStartedAt
-              ? `(mulai ${fmtDateSafe(student.levelStartedAt)})`
-              : ""
-          }
-
-        </span>
-
-        <span>
-
-          <b>
-
-            ${
-              di.overdue
-                ? "Lewat " +
-                  Math.abs(di.daysLeft) +
-                  " hari dari target"
-
-                : di.daysLeft +
-                  " hari tersisa"
-            }
-
-          </b>
-
-        </span>
-
+  const levelRowsHTML = LEVELS.map(l => `
+    <div class="unitRow">
+      <div>
+        <span class="ut">${escapeHTML(l.id)}</span>
+        <span class="us"> · ${escapeHTML(l.title)}</span>
       </div>
+      <span class="badge">${perLevel[l.id] || 0} siswa</span>
+    </div>
+  `).join("");
 
-    `;
+  document.getElementById("mainArea").innerHTML = `
 
-  }
-
-
-  let continueHTML;
-
-
-  if(nextWeek){
-
-    const belum =
-      nextWeek.materi
-        .filter(m => !m.done)
-        .length;
-
-
-    continueHTML = `
-
-      <div
-        class="mono"
-        style="
-          font-size:.7rem;
-          color:var(--gold-dim);
-          margin-bottom:4px;
-        "
-      >
-        MINGGU ${nextWeek.week}
-      </div>
-
-
-      <h3
-        style="
-          font-size:1.3rem;
-        "
-      >
-        ${belum}
-        materi belum ditandai selesai
-      </h3>
-
-
-      <p
-        style="
-          color:var(--ink-soft);
-          margin:6px 0 14px;
-        "
-      >
-        Buka materi minggu ini dan tandai satu-satu setelah kamu pelajari.
-      </p>
-
-
-      <button
-        class="btn"
-        type="button"
-        onclick="
-          viewingLevel='${student.level}';
-          updateLevelPill();
-          showPage('weeklist');
-        "
-      >
-        Buka Minggu Ini →
-      </button>
-
-    `;
-
-  }
-
-  else{
-
-    continueHTML = `
-
-      <p
-        style="
-          color:var(--pass);
-          font-weight:700;
-        "
-      >
-        🎉 Semua 12 minggu level
-        ${student.level}
-        selesai!
-      </p>
-
-    `;
-
-  }
-
-
-  let levelStates = [];
-
-
-  if(
-    typeof TekiStore.getLevelStates === "function"
-  ){
-
-    levelStates =
-      TekiStore.getLevelStates(
-        student
-      ) || [];
-
-  }
-
-
-  document
-    .getElementById("mainArea")
-    .innerHTML = `
-
-    <h1 class="title">
-
-      Selamat datang,
-      ${escapeHTML(student.name || "Siswa")}
-      👋
-
-    </h1>
-
-
-    <p class="desc">
-
-      Berikut perkembangan belajar kamu
-      di level
-      <b>${escapeHTML(student.level)}</b>.
-
-    </p>
-
-
-    ${deadlineBannerHTML}
-
+    <h1 class="title">Dashboard Guru</h1>
+    <p class="desc">Ringkasan seluruh siswa terdaftar di Tekipaki Japanese Learning.</p>
 
     <div class="cards">
-
       <div class="card">
-
-        <div class="number">
-          ${student.level}
-        </div>
-
-        <div class="label">
-          Level saat ini
-        </div>
-
+        <div class="number">${students.length}</div>
+        <div class="label">Total siswa</div>
       </div>
-
-
       <div class="card">
-
-        <div class="number">
-          ${sum.percent}%
-        </div>
-
-        <div class="label">
-          Progress level
-          ${student.level}
-        </div>
-
+        <div class="number">${totalOk}</div>
+        <div class="label">Status baik</div>
       </div>
-
-
       <div class="card">
-
-        <div class="number">
-          ${sum.doneWeeks}/${sum.totalWeeks}
-        </div>
-
-        <div class="label">
-          Minggu selesai
-        </div>
-
+        <div class="number">${totalWarn}</div>
+        <div class="label">Perlu ditingkatkan</div>
       </div>
-
-
       <div class="card">
-
-        <div class="number">
-          ${sum.doneMateriTotal}/${sum.totalMateri}
-        </div>
-
-        <div class="label">
-          Materi ditandai selesai
-        </div>
-
+        <div class="number">${totalFail}</div>
+        <div class="label">Perlu perhatian</div>
       </div>
-
     </div>
 
+    <div class="card">
+      <h2 style="color:var(--navy);margin-bottom:12px;">Siswa per Level</h2>
+      <div class="unitList">
+        ${levelRowsHTML}
+      </div>
+    </div>
 
-    <div class="grid2">
-
-
-      <div class="card">
-
-        <div
-          style="
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            margin-bottom:14px;
-            gap:10px;
-          "
-        >
-
-          <h2
-            style="color:var(--navy);"
-          >
-            Progress Level
-          </h2>
+  `;
+}
 
 
-          <button
-            class="btn ghost"
-            type="button"
-            onclick="
-              showPage('levelpicker')
-            "
-          >
-            Pilih Level
-          </button>
+/* =========================================================
+   DAFTAR SISWA
+========================================================= */
 
+function renderStudentList(){
+  if(!checkTekiStore()){
+    showSystemError("TekiStore tidak tersedia.", new Error("data.js tidak berhasil dimuat"));
+    return;
+  }
+
+  const students = TekiStore.getAllStudents();
+
+  const rowsHTML = students.map(s => {
+    const sum = TekiStore.summarize(s);
+
+    const badgeClass =
+      sum.status.key === "pass" ? "" :
+      sum.status.key === "warn" ? "warn" : "fail";
+
+    return `
+      <tr>
+        <td><span class="codeChip">${escapeHTML(s.code)}</span></td>
+        <td>${escapeHTML(s.name || "-")}</td>
+        <td>${escapeHTML(s.level)}</td>
+        <td>
+          <div class="progress-track">
+            <span class="progress-fill" style="width:${sum.percent}%;"></span>
+          </div>
+          <span class="mono" style="font-size:.72rem;color:var(--ink-soft);"> ${sum.percent}%</span>
+        </td>
+        <td><span class="badge ${badgeClass}">${escapeHTML(sum.status.label)}</span></td>
+        <td class="mono" style="font-size:.75rem;color:var(--ink-soft);">
+          ${sum.inactiveDays >= 999 ? "-" : sum.inactiveDays + " hari lalu"}
+        </td>
+        <td>
+          <div class="actionCell">
+            <button class="btn ghost small" type="button" onclick="viewStudent('${escapeJS(s.code)}')">Detail</button>
+            <button class="btn danger small" type="button" onclick="deleteStudent('${escapeJS(s.code)}')">Hapus</button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join("");
+
+  document.getElementById("mainArea").innerHTML = `
+
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px;">
+      <h1 class="title" style="margin-bottom:0;">Daftar Siswa</h1>
+      <button class="btn" type="button" onclick="showPage('addstudent')">➕ Tambah Siswa</button>
+    </div>
+
+    <p class="desc">Total ${students.length} siswa terdaftar.</p>
+
+    <div class="card">
+      <div class="tableWrap">
+        <table class="studentTable">
+          <thead>
+            <tr>
+              <th>Kode</th>
+              <th>Nama</th>
+              <th>Level</th>
+              <th>Progress</th>
+              <th>Status</th>
+              <th>Aktivitas</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${
+              rowsHTML ||
+              `<tr><td colspan="7" style="text-align:center;color:var(--ink-soft);padding:24px;">Belum ada siswa terdaftar.</td></tr>`
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  `;
+}
+
+
+/* =========================================================
+   HAPUS SISWA
+========================================================= */
+
+function deleteStudent(code){
+  if(!checkTekiStore() || typeof TekiStore.removeStudent !== "function"){
+    showSystemError("Fungsi hapus siswa tidak tersedia.", new Error("TekiStore.removeStudent tidak ditemukan"));
+    return;
+  }
+
+  const ok = window.confirm("Yakin ingin menghapus siswa dengan kode " + code + "? Semua progress belajarnya akan ikut terhapus.");
+  if(!ok){ return; }
+
+  const result = TekiStore.removeStudent(code);
+
+  if(!result.ok){
+    alert("❌ " + result.message);
+    return;
+  }
+
+  renderStudentList();
+}
+
+
+/* =========================================================
+   DETAIL SISWA
+========================================================= */
+
+function viewStudent(code){
+  if(!checkTekiStore()){
+    showSystemError("TekiStore tidak tersedia.", new Error("data.js tidak berhasil dimuat"));
+    return;
+  }
+
+  document.querySelectorAll(".nav").forEach(nav => nav.classList.remove("active"));
+
+  const student = TekiStore.getStudent(code);
+
+  if(!student){
+    showSystemError("Siswa tidak ditemukan.", new Error("Kode: " + code));
+    return;
+  }
+
+  const sum = TekiStore.summarize(student);
+
+  const unitsHTML = sum.units.map(u => {
+    const rowClass = u.state === "selesai" ? "selesai" : (u.overdue ? "overdue" : "");
+    const stateLabel =
+      u.state === "selesai" ? "Selesai ✓" :
+      u.state === "berjalan" ? "Sedang berjalan" : "Belum dimulai";
+
+    const scoreLabel =
+      u.progress && u.progress.score !== null
+        ? u.progress.score + "%"
+        : "-";
+
+    return `
+      <div class="unitRow ${rowClass}">
+        <div>
+          <div class="ut">Minggu ${u.order} · ${escapeHTML(u.grammar)}</div>
+          <div class="us">${stateLabel}${u.overdue ? " · Lewat tenggat" : ""}</div>
         </div>
-
-
-        ${
-          levelStates.length
-            ? levelStates.map(l => `
-
-              <div class="level-row">
-
-                <div>
-
-                  <b>
-                    ${escapeHTML(l.id)}
-                  </b>
-
-                  <br>
-
-                  <small
-                    style="
-                      color:var(--ink-soft)
-                    "
-                  >
-                    ${escapeHTML(l.title || "")}
-                  </small>
-
-                </div>
-
-
-                <span
-                  class="
-                    badge
-                    ${
-                      l.status === "aktif"
-                        ? "active"
-                        : l.status === "terkunci"
-                          ? "lock"
-                          : ""
-                    }
-                  "
-                >
-
-                  ${
-                    l.status === "selesai"
-                      ? "Selesai ✓"
-
-                      : l.status === "aktif"
-                        ? "Sedang belajar"
-
-                        : "🔒 Terkunci"
-                  }
-
-                </span>
-
-              </div>
-
-            `).join("")
-
-            : `
-
-              <p
-                style="
-                  color:var(--ink-soft)
-                "
-              >
-                Data level belum tersedia.
-              </p>
-
-            `
-        }
-
+        <span class="badge ${u.state === 'selesai' ? '' : (u.overdue ? 'fail' : 'warn')}">${scoreLabel}</span>
       </div>
+    `;
+  }).join("");
 
+  document.getElementById("mainArea").innerHTML = `
 
+    <div class="backLink" onclick="showPage('students')">← Kembali ke Daftar Siswa</div>
+
+    <h1 class="title">${escapeHTML(student.name || "Siswa")}</h1>
+    <p class="desc">
+      Kode: <span class="codeChip">${escapeHTML(student.code)}</span>
+      &nbsp;·&nbsp; Level aktif: <b>${escapeHTML(student.level)}</b>
+    </p>
+
+    <div class="cards">
       <div class="card">
+        <div class="number">${sum.percent}%</div>
+        <div class="label">Progress level</div>
+      </div>
+      <div class="card">
+        <div class="number">${sum.completedCount}/${sum.totalUnits}</div>
+        <div class="label">Minggu selesai</div>
+      </div>
+      <div class="card">
+        <div class="number">${sum.avg !== null ? sum.avg : "-"}</div>
+        <div class="label">Rata-rata skor</div>
+      </div>
+      <div class="card">
+        <div class="number">${sum.inactiveDays >= 999 ? "-" : sum.inactiveDays}</div>
+        <div class="label">Hari tidak aktif</div>
+      </div>
+    </div>
 
-        <h2
-          style="
-            color:var(--navy);
-            margin-bottom:10px;
-          "
-        >
-          Lanjut Belajar
-        </h2>
+    <div class="card">
+      <h2 style="color:var(--navy);margin-bottom:12px;">Progress per Minggu</h2>
+      <div class="unitList">
+        ${unitsHTML}
+      </div>
+    </div>
 
-        ${continueHTML}
+  `;
+}
 
+
+/* =========================================================
+   FORM TAMBAH SISWA
+========================================================= */
+
+function renderAddStudentForm(){
+  if(!checkTekiStore()){
+    showSystemError("TekiStore tidak tersedia.", new Error("data.js tidak berhasil dimuat"));
+    return;
+  }
+
+  const levelOptionsHTML = LEVELS.map(l => `<option value="${escapeHTML(l.id)}">${escapeHTML(l.id)} — ${escapeHTML(l.title)}</option>`).join("");
+
+  document.getElementById("mainArea").innerHTML = `
+
+    <div class="backLink" onclick="showPage('students')">← Kembali ke Daftar Siswa</div>
+
+    <h1 class="title">Tambah Siswa</h1>
+    <p class="desc">Kode siswa akan dipakai untuk login di halaman Siswa. Pastikan kodenya unik dan mudah dibagikan.</p>
+
+    <div class="card formCard">
+
+      <div class="formGroup">
+        <label for="newCode">Kode Siswa</label>
+        <input id="newCode" placeholder="Contoh: PTPRO4" maxlength="20" autocomplete="off" spellcheck="false" style="text-transform:uppercase;font-family:'JetBrains Mono',monospace;">
       </div>
 
+      <div class="formGroup">
+        <label for="newName">Nama Siswa</label>
+        <input id="newName" placeholder="Contoh: Rina Wijaya" maxlength="60" autocomplete="off">
+      </div>
+
+      <div class="formGroup">
+        <label for="newLevel">Level Awal</label>
+        <select id="newLevel">
+          ${levelOptionsHTML}
+        </select>
+      </div>
+
+      <button class="btn" type="button" onclick="submitAddStudent()">✓ Tambah Siswa</button>
+
+      <div id="addStudentMsg" class="formMsg"></div>
 
     </div>
 
   `;
-
 }
 
-
-/* =========================================================
-   LEVEL PICKER
-========================================================= */
-
-function renderLevelPicker(){
-
-  const student =
-    getStudentSafe();
-
-  if(!student){
-
+function submitAddStudent(){
+  if(!checkTekiStore() || typeof TekiStore.addStudent !== "function"){
+    showSystemError("Fungsi tambah siswa tidak tersedia.", new Error("TekiStore.addStudent tidak ditemukan"));
     return;
-
   }
 
+  const code = document.getElementById("newCode").value;
+  const name = document.getElementById("newName").value;
+  const level = document.getElementById("newLevel").value;
+  const msg = document.getElementById("addStudentMsg");
 
-  if(
-    typeof TekiStore.getLevelStates !== "function"
-  ){
+  const result = TekiStore.addStudent(code, name, level);
 
-    showSystemError(
-      "Fungsi getLevelStates tidak ditemukan.",
-      new Error(
-        "TekiStore.getLevelStates tidak tersedia"
-      )
-    );
-
+  if(!result.ok){
+    msg.textContent = "❌ " + result.message;
+    msg.classList.remove("ok");
+    msg.classList.add("err");
     return;
-
   }
 
-
-  const levelStates =
-    TekiStore.getLevelStates(
-      student
-    ) || [];
-
-
-  const cards =
-    levelStates
-      .map(l => {
-
-        const locked =
-          l.status === "terkunci";
-
-        const viewing =
-          l.id === viewingLevel;
-
-
-        const statusLabel =
-          l.status === "selesai"
-            ? "Selesai ✓"
-
-            : l.status === "aktif"
-              ? "Sedang belajar"
-
-              : "🔒 Terkunci";
-
-
-        const badgeClass =
-          l.status === "aktif"
-            ? "active"
-
-            : l.status === "terkunci"
-              ? "lock"
-
-              : "";
-
-
-        return `
-
-          <div
-            class="
-              levelCard
-              ${locked ? "locked" : ""}
-              ${viewing ? "viewing" : ""}
-            "
-
-            ${
-              locked
-                ? ""
-                : `
-                  onclick="
-                    selectLevel('${escapeJS(l.id)}')
-                  "
-                `
-            }
-          >
-
-            <div class="lid">
-              ${escapeHTML(l.id)}
-            </div>
-
-
-            <div class="ltitle">
-              ${escapeHTML(l.title || "")}
-            </div>
-
-
-            <span
-              class="badge ${badgeClass}"
-            >
-              ${statusLabel}
-            </span>
-
-          </div>
-
-        `;
-
-      })
-      .join("");
-
-
-  document
-    .getElementById("mainArea")
-    .innerHTML = `
-
-      <h1 class="title">
-        Pilih Level
-      </h1>
-
-
-      <p class="desc">
-
-        Kamu sedang aktif belajar di level
-
-        <b>
-          ${escapeHTML(student.level)}
-        </b>.
-
-        Level yang masih terkunci perlu
-        diselesaikan lebih dulu.
-
-      </p>
-
-
-      <div class="levelGrid">
-
-        ${cards}
-
-      </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   SELECT LEVEL
-========================================================= */
-
-function selectLevel(levelId){
-
-  const student =
-    getStudentSafe();
-
-  if(!student){
-
-    return;
-
-  }
-
-
-  const levelStates =
-    TekiStore.getLevelStates(
-      student
-    ) || [];
-
-
-  const lvl =
-    levelStates.find(
-      l => l.id === levelId
-    );
-
-
-  if(
-    !lvl ||
-    lvl.status === "terkunci"
-  ){
-
-    return;
-
-  }
-
-
-  viewingLevel =
-    levelId;
-
-
-  updateLevelPill();
-
-
-  showPage(
-    "weeklist"
-  );
-
-}
-
-
-/* =========================================================
-   WEEK LIST
-========================================================= */
-
-function renderWeekList(){
-
-  const student =
-    getStudentSafe();
-
-  if(!student){
-
-    return;
-
-  }
-
-
-  if(!viewingLevel){
-
-    viewingLevel =
-      student.level;
-
-  }
-
-
-  const sum =
-    TekiStore.summarizeWeeks(
-      student,
-      viewingLevel
-    );
-
-
-  const isActive =
-    sum.isActive;
-
-
-  let deadlineBannerHTML = "";
-
-
-  if(
-    isActive &&
-    sum.deadlineInfo
-  ){
-
-    const di =
-      sum.deadlineInfo;
-
-
-    deadlineBannerHTML = `
-
-      <div
-        class="
-          deadlineBanner
-          ${di.overdue ? "overdue" : ""}
-        "
-      >
-
-        <span>
-
-          ⏳ Target level
-
-          <b>
-            ${escapeHTML(viewingLevel)}
-          </b>
-
-          : tuntas dalam
-
-          <b>
-            ${di.totalDays} hari
-          </b>
-
-        </span>
-
-
-        <span>
-
-          <b>
-
-            ${
-              di.overdue
-                ? "Lewat " +
-                  Math.abs(di.daysLeft) +
-                  " hari dari target"
-
-                : di.daysLeft +
-                  " hari tersisa"
-            }
-
-          </b>
-
-        </span>
-
-      </div>
-
-    `;
-
-  }
-
-
-  const weekCards =
-    sum.weeks
-      .map(w => {
-
-        const locked =
-          w.locked;
-
-        const done =
-          w.selesai;
-
-
-        const materiHTML =
-          w.materi
-            .map((m, mi) => {
-
-              const itemLocked =
-                locked ||
-                !isActive;
-
-
-              const disabledAttr =
-                itemLocked
-                  ? "disabled"
-                  : "";
-
-
-              const safeLink =
-                m.link || "#";
-
-
-              return `
-
-                <div
-                  class="
-                    materiItem
-                    ${m.done ? "done" : ""}
-                    ${itemLocked ? "locked" : ""}
-                  "
-                >
-
-                  <div class="mi-icon">
-
-                    ${
-                      m.done
-                        ? "✓"
-                        : mi + 1
-                    }
-
-                  </div>
-
-
-                  <div class="mi-text">
-
-                    <div class="t1">
-
-                      ${escapeHTML(
-                        m.title ||
-                        "Materi"
-                      )}
-
-                    </div>
-
-                  </div>
-
-
-                  <div class="mi-actions">
-
-                    <a
-                      class="materiLink"
-                      href="${escapeAttribute(safeLink)}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      📄 Buka
-                    </a>
-
-
-                    <button
-                      class="
-                        doneBtn
-                        ${m.done ? "marked" : ""}
-                      "
-                      ${disabledAttr}
-
-                      type="button"
-
-                      onclick="
-                        handleToggleMateri(
-                          '${escapeJS(viewingLevel)}',
-                          ${w.index},
-                          ${mi}
-                        )
-                      "
-                    >
-
-                      ${
-                        m.done
-                          ? "✓ Selesai"
-                          : "Tandai Selesai"
-                      }
-
-                    </button>
-
-                  </div>
-
-                </div>
-
-              `;
-
-            })
-            .join("");
-
-
-        return `
-
-          <div
-            class="
-              weekCard
-              ${locked ? "locked" : ""}
-              ${done ? "selesai" : ""}
-            "
-          >
-
-            <div class="weekHead">
-
-              <h3>
-
-                📅 Minggu
-                ${w.week}
-
-                ${
-                  done
-                    ? " · Selesai ✓"
-                    : ""
-                }
-
-              </h3>
-
-
-              <span
-                class="deadline mono"
-                style="
-                  font-size:.72rem;
-                  color:var(--ink-soft);
-                "
-              >
-
-                ${w.doneCount}/${MATERI_PER_WEEK_SAFE()}
-                materi selesai
-
-              </span>
-
-            </div>
-
-
-            <div class="weekSub">
-
-              ${materiHTML}
-
-            </div>
-
-
-            ${
-              locked
-                ? `
-                  <p
-                    style="
-                      margin-top:10px;
-                      font-size:.78rem;
-                      color:var(--ink-soft);
-                    "
-                  >
-                    🔒 Selesaikan semua materi
-                    minggu sebelumnya untuk
-                    membuka minggu ini.
-                  </p>
-                `
-                : ""
-            }
-
-          </div>
-
-        `;
-
-      })
-      .join("");
-
-
-  const modeNote =
-    isActive
-
-      ? `
-
-        <p class="desc">
-
-          Target:
-
-          <b>
-            ${MATERI_PER_WEEK_SAFE()} materi
-          </b>
-
-          per minggu selama
-
-          <b>
-            ${WEEKS_PER_LEVEL_SAFE()} minggu
-          </b>.
-
-          Buka link materi, pelajari,
-          lalu tekan "Tandai Selesai".
-
-        </p>
-
-      `
-
-      : `
-
-        <p class="desc">
-
-          Kamu sedang menelusuri materi level
-
-          <b>
-            ${escapeHTML(viewingLevel)}
-          </b>
-
-          dalam mode telusur.
-
-          Progress hanya dicatat pada
-          level aktif kamu
-
-          <b>
-            ${escapeHTML(student.level)}
-          </b>.
-
-        </p>
-
-      `;
-
-
-  document
-    .getElementById("mainArea")
-    .innerHTML = `
-
-      <div
-        class="backLink"
-        onclick="
-          showPage('levelpicker')
-        "
-      >
-        ← Ganti level
-      </div>
-
-
-      <h1 class="title">
-
-        Materi Mingguan ·
-        ${escapeHTML(viewingLevel)}
-
-      </h1>
-
-
-      ${modeNote}
-
-
-      ${deadlineBannerHTML}
-
-
-      <div class="weekList">
-
-        ${weekCards}
-
-      </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   TOGGLE MATERI
-========================================================= */
-
-function handleToggleMateri(
-  levelId,
-  weekIndex,
-  materiIndex
-){
-
-  if(
-    typeof TekiStore.toggleMateri !== "function"
-  ){
-
-    showSystemError(
-      "Fungsi toggleMateri tidak ditemukan.",
-      new Error(
-        "TekiStore.toggleMateri tidak tersedia"
-      )
-    );
-
-    return;
-
-  }
-
-
-  try{
-
-    const updated =
-      TekiStore.toggleMateri(
-        currentCode,
-        levelId,
-        weekIndex,
-        materiIndex
-      );
-
-
-    if(!updated){
-
-      return;
-
-    }
-
-
-    /*
-     * Jika siswa naik level,
-     * otomatis pindah ke level baru.
-     */
-
-    if(
-      updated.level &&
-      updated.level !== levelId
-    ){
-
-      viewingLevel =
-        updated.level;
-
-
-      updateLevelPill();
-
-    }
-
-
-    /*
-     * Ambil data terbaru jika tersedia.
-     */
-
-    try{
-
-      if(
-        typeof TekiStore.getStudent === "function"
-      ){
-
-        const refreshed =
-          TekiStore.getStudent(
-            currentCode
-          );
-
-        if(refreshed){
-
-          currentStudent =
-            refreshed;
-
-        }
-
-      }
-
-    }
-
-    catch(error){
-
-      console.warn(
-        "Refresh student gagal:",
-        error
-      );
-
-    }
-
-
-    renderWeekList();
-
-  }
-
-  catch(error){
-
-    console.error(
-      "TOGGLE MATERI ERROR:",
-      error
-    );
-
-    showSystemError(
-      "Materi tidak dapat diperbarui.",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   PROGRESS PAGE
-========================================================= */
-
-function renderProgressPage(){
-
-  const student =
-    getStudentSafe();
-
-  if(!student){
-
-    return;
-
-  }
-
-
-  const sum =
-    TekiStore.summarizeWeeks(
-      student,
-      student.level
-    );
-
-
-  const bars =
-    sum.weeks
-      .map(w => {
-
-        const val =
-          Math.round(
-            (
-              w.doneCount /
-              MATERI_PER_WEEK_SAFE()
-            ) * 100
-          );
-
-
-        const h =
-          val === 0
-            ? 4
-            : Math.max(6,val);
-
-
-        const pending =
-          val === 0
-            ? "pending"
-            : "";
-
-
-        return `
-
-          <div
-            class="
-              chart-bar
-              ${pending}
-            "
-          >
-
-            <div class="cv">
-              ${val}%
-            </div>
-
-            <div
-              class="fill"
-              style="
-                height:${h}%;
-              "
-            ></div>
-
-          </div>
-
-        `;
-
-      })
-      .join("");
-
-
-  const labels =
-    sum.weeks
-      .map(w => `
-
-        <span>
-          M${w.week}
-        </span>
-
-      `)
-      .join("");
-
-
-  let deadlineBannerHTML = "";
-
-
-  if(sum.deadlineInfo){
-
-    const di =
-      sum.deadlineInfo;
-
-
-    deadlineBannerHTML = `
-
-      <div
-        class="
-          deadlineBanner
-          ${di.overdue ? "overdue" : ""}
-        "
-      >
-
-        <span>
-
-          ⏳ Target level
-
-          <b>
-            ${escapeHTML(student.level)}
-          </b>
-
-          : tuntas dalam
-
-          <b>
-            ${di.totalDays} hari
-          </b>
-
-        </span>
-
-
-        <span>
-
-          <b>
-
-            ${
-              di.overdue
-                ? "Lewat " +
-                  Math.abs(di.daysLeft) +
-                  " hari dari target"
-
-                : di.daysLeft +
-                  " hari tersisa"
-            }
-
-          </b>
-
-        </span>
-
-      </div>
-
-    `;
-
-  }
-
-
-  document
-    .getElementById("mainArea")
-    .innerHTML = `
-
-      <h1 class="title">
-
-        Progress Belajar Saya
-
-      </h1>
-
-
-      <p class="desc">
-
-        Ringkasan progres kamu di level
-
-        <b>
-          ${escapeHTML(student.level)}
-        </b>
-
-        (
-
-        ${MATERI_PER_WEEK_SAFE()}
-        materi ×
-        ${WEEKS_PER_LEVEL_SAFE()}
-        minggu
-
-        ).
-
-      </p>
-
-
-      ${deadlineBannerHTML}
-
-
-      <div class="cards">
-
-
-        <div class="card">
-
-          <div class="number">
-            ${sum.percent}%
-          </div>
-
-          <div class="label">
-            Progress level
-          </div>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="number">
-            ${sum.doneWeeks}/${sum.totalWeeks}
-          </div>
-
-          <div class="label">
-            Minggu selesai
-          </div>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="number">
-            ${sum.doneMateriTotal}/${sum.totalMateri}
-          </div>
-
-          <div class="label">
-            Materi selesai
-          </div>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="number">
-            ${escapeHTML(student.level)}
-          </div>
-
-          <div class="label">
-            Level aktif
-          </div>
-
-        </div>
-
-
-      </div>
-
-
-      <div
-        class="card"
-        style="margin-bottom:16px;"
-      >
-
-        <h2
-          style="
-            color:var(--navy);
-            margin-bottom:6px;
-          "
-        >
-          Progress keseluruhan
-        </h2>
-
-
-        <div class="progress-track">
-
-          <span
-            class="progress-fill"
-            style="
-              width:${sum.percent}%;
-            "
-          ></span>
-
-        </div>
-
-
-        <p
-          style="
-            color:var(--ink-soft);
-            margin-top:8px;
-          "
-        >
-
-          ${sum.percent}%
-          dari level
-          ${escapeHTML(student.level)}
-          selesai.
-
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <h2
-          style="
-            color:var(--navy);
-            margin-bottom:6px;
-          "
-        >
-          Materi Selesai per Minggu
-        </h2>
-
-
-        <div class="chart-wrap">
-
-          ${bars}
-
-        </div>
-
-
-        <div class="chart-labels">
-
-          ${labels}
-
-        </div>
-
-      </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   GET STUDENT SAFE
-========================================================= */
-
-function getStudentSafe(){
-
-  if(currentStudent){
-
-    return currentStudent;
-
-  }
-
-
-  if(
-    !currentCode
-  ){
-
-    return null;
-
-  }
-
-
-  if(
-    !checkTekiStore()
-  ){
-
-    showSystemError(
-      "TekiStore tidak tersedia.",
-      new Error(
-        "data.js tidak berhasil dimuat"
-      )
-    );
-
-    return null;
-
-  }
-
-
-  try{
-
-    const student =
-      TekiStore.getStudent(
-        currentCode
-      );
-
-
-    if(student){
-
-      currentStudent =
-        student;
-
-      return student;
-
-    }
-
-  }
-
-  catch(error){
-
-    showSystemError(
-      "Data siswa tidak dapat dibaca.",
-      error
-    );
-
-  }
-
-
-  return null;
-
-}
-
-
-/* =========================================================
-   SAFE CONSTANTS
-========================================================= */
-
-function MATERI_PER_WEEK_SAFE(){
-
-  if(
-    typeof MATERI_PER_WEEK !== "undefined"
-  ){
-
-    return MATERI_PER_WEEK;
-
-  }
-
-  return 4;
-
-}
-
-
-function WEEKS_PER_LEVEL_SAFE(){
-
-  if(
-    typeof WEEKS_PER_LEVEL !== "undefined"
-  ){
-
-    return WEEKS_PER_LEVEL;
-
-  }
-
-  return 12;
-
-}
-
-
-/* =========================================================
-   SAFE DATE
-========================================================= */
-
-function fmtDateSafe(date){
-
-  if(
-    typeof fmtDate === "function"
-  ){
-
-    try{
-
-      return fmtDate(date);
-
-    }
-
-    catch(error){
-
-      console.warn(
-        "fmtDate error:",
-        error
-      );
-
-    }
-
-  }
-
-
-  if(!date){
-
-    return "-";
-
-  }
-
-
-  try{
-
-    return new Date(date)
-      .toLocaleDateString(
-        "id-ID",
-        {
-          day:"2-digit",
-          month:"2-digit",
-          year:"numeric"
-        }
-      );
-
-  }
-
-  catch(error){
-
-    return String(date);
-
-  }
-
-}
-
-
-/* =========================================================
-   ESCAPE JAVASCRIPT
-========================================================= */
-
-function escapeJS(value){
-
-  return String(value)
-    .replaceAll("\\","\\\\")
-    .replaceAll("'","\\'")
-    .replaceAll('"','\\"')
-    .replaceAll("\n","\\n")
-    .replaceAll("\r","\\r");
-
-}
-
-
-/* =========================================================
-   ESCAPE ATTRIBUTE
-========================================================= */
-
-function escapeAttribute(value){
-
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;");
-
+  msg.textContent = "✓ " + result.message + " Kode: " + result.student.code;
+  msg.classList.remove("err");
+  msg.classList.add("ok");
+
+  document.getElementById("newCode").value = "";
+  document.getElementById("newName").value = "";
 }
 
 
@@ -4069,22 +1037,9 @@ function escapeAttribute(value){
    ENTER KEY LOGIN
 ========================================================= */
 
-document
-  .getElementById("studentCode")
-  .addEventListener(
-    "keydown",
-    function(e){
-
-      if(
-        e.key === "Enter"
-      ){
-
-        login();
-
-      }
-
-    }
-  );
+document.getElementById("teacherCode").addEventListener("keydown", function(e){
+  if(e.key === "Enter"){ login(); }
+});
 
 
 /* =========================================================
@@ -4092,84 +1047,24 @@ document
 ========================================================= */
 
 (function(){
+  const savedCode = sessionStorage.getItem("tekipaki_teacher_code");
+  if(!savedCode){ return; }
 
-  const savedCode =
-    sessionStorage.getItem(
-      "tekipaki_current_code"
-    );
-
-
-  if(
-    !savedCode
-  ){
-
+  if(!checkTekiStore() || !checkTeacherAuth()){
+    console.warn("Auto login guru dibatalkan karena data.js belum tersedia.");
     return;
-
   }
-
-
-  /*
-   * Jangan auto-login jika data.js belum siap.
-   */
-
-  if(
-    !checkTekiStore()
-  ){
-
-    console.warn(
-      "Auto login dibatalkan karena TekiStore belum tersedia."
-    );
-
-    return;
-
-  }
-
 
   try{
-
-    const student =
-      TekiStore.getStudent(
-        savedCode
-      );
-
-
-    if(student){
-
-      currentCode =
-        savedCode;
-
-      currentStudent =
-        student;
-
-      openApp(
-        student
-      );
-
+    if(isValidTeacherCode(savedCode)){
+      openApp();
+    }else{
+      sessionStorage.removeItem("tekipaki_teacher_code");
     }
-
-    else{
-
-      sessionStorage.removeItem(
-        "tekipaki_current_code"
-      );
-
-    }
-
+  }catch(error){
+    console.error("AUTO LOGIN GURU ERROR:", error);
+    sessionStorage.removeItem("tekipaki_teacher_code");
   }
-
-  catch(error){
-
-    console.error(
-      "AUTO LOGIN ERROR:",
-      error
-    );
-
-    sessionStorage.removeItem(
-      "tekipaki_current_code"
-    );
-
-  }
-
 })();
 
 </script>
