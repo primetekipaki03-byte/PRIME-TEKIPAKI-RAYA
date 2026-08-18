@@ -404,13 +404,68 @@ a{
   white-space:nowrap;
 }
 
+/* --- Part header (instruksi sekali per bagian) --- */
+.partHead{
+  background:var(--navy);
+  color:#fff;
+  border-radius:16px;
+  padding:26px 24px;
+  margin:36px 0 20px;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  text-align:left;
+  gap:18px;
+  border:1px solid rgba(224,181,42,.4);
+}
+.partHead:first-of-type{
+  margin-top:0;
+}
+.partHead .partBadge{
+  font-family:"JetBrains Mono",monospace;
+  font-weight:800;
+  font-size:.85rem;
+  letter-spacing:2px;
+  color:var(--gold);
+  background:transparent;
+  border:2px solid var(--gold);
+  padding:8px 14px;
+  border-radius:10px;
+  flex:none;
+  white-space:nowrap;
+}
+.partHead .partText{
+  max-width:480px;
+}
+.partHead .partText h3{
+  font-size:1.2rem;
+  color:#fff;
+  margin-bottom:6px;
+}
+.partHead .partText p{
+  font-size:.88rem;
+  color:var(--muted);
+  line-height:1.6;
+}
+.partHead .partText p b{
+  color:var(--gold);
+}
+
+@media(max-width:560px){
+  .partHead{
+    flex-direction:column;
+    align-items:flex-start;
+    text-align:left;
+  }
+}
+
 .qCard{
   background:#fff;
   border:1px solid var(--paper2);
   border-radius:16px;
-  padding:26px 24px;
+  padding:24px 24px;
   box-shadow:0 2px 10px rgba(10,31,61,.05);
-  margin-bottom:20px;
+  margin-bottom:16px;
   position:relative;
   overflow:hidden;
 }
@@ -429,7 +484,7 @@ a{
   display:flex;
   align-items:center;
   gap:10px;
-  margin-bottom:12px;
+  margin-bottom:14px;
   flex-wrap:wrap;
 }
 .qNum{
@@ -441,23 +496,7 @@ a{
   padding:3px 9px;
   font-size:.8rem;
 }
-.qType{
-  font-family:"JetBrains Mono",monospace;
-  font-size:.68rem;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  padding:3px 9px;
-  border-radius:7px;
-  font-weight:700;
-}
-.qType.pg{
-  background:#e6ecf5;
-  color:var(--navy);
-}
-.qType.esai{
-  background:#f7e9e7;
-  color:var(--seal);
-}
+
 .qText{
   font-size:1.02rem;
   line-height:1.6;
@@ -466,6 +505,18 @@ a{
 }
 .qText b{
   color:var(--navy);
+}
+
+.essayPrompt{
+  font-family:"Shippori Mincho",serif;
+  font-size:1.15rem;
+  color:var(--navy);
+  background:var(--paper);
+  border:1px dashed var(--paper2);
+  border-radius:10px;
+  padding:14px 16px;
+  margin-bottom:14px;
+  line-height:1.8;
 }
 
 .opt{
@@ -490,7 +541,7 @@ a{
 }
 .opt label{
   cursor:pointer;
-  font-size:.92rem;
+  font-size:.95rem;
   line-height:1.5;
 }
 .opt.correct{
@@ -516,24 +567,6 @@ a{
 .essayBox:focus{
   outline:none;
   border-color:var(--gold);
-}
-
-.revealBtn{
-  margin-top:12px;
-  background:transparent;
-  border:1.5px solid var(--seal);
-  color:var(--seal);
-  font-family:"JetBrains Mono",monospace;
-  font-weight:700;
-  font-size:.75rem;
-  letter-spacing:.5px;
-  padding:8px 14px;
-  border-radius:8px;
-  cursor:pointer;
-}
-.revealBtn:hover{
-  background:var(--seal);
-  color:#fff;
 }
 
 .answerKey{
@@ -632,22 +665,6 @@ a{
   font-size:.75rem;
   letter-spacing:.5px;
   color:var(--gold);
-}
-.retryBtn{
-  margin-top:16px;
-  background:transparent;
-  border:1.5px solid var(--gold);
-  color:var(--gold);
-  font-family:"JetBrains Mono",monospace;
-  font-weight:700;
-  font-size:.78rem;
-  padding:9px 18px;
-  border-radius:8px;
-  cursor:pointer;
-}
-.retryBtn:hover{
-  background:var(--gold);
-  color:var(--navy2);
 }
 
 .infoNote{
@@ -752,7 +769,7 @@ footer{
   <div class="hero-inner">
     <div class="eyebrow"><span class="dot"></span> N4 · MINGGU 1 · KUIS MATERI 1</div>
     <h1>Kuis <span>～たら</span></h1>
-    <p>Uji pemahamanmu tentang pola tata bahasa <b style="color:#fff;">～たら (kalau / seandainya / setelah)</b>. Kuis ini terdiri dari 6 soal pilihan ganda dan 4 soal esai singkat.</p>
+    <p>Uji pemahamanmu tentang pola tata bahasa <b style="color:#fff;">～たら (kalau / seandainya / setelah)</b>. Kuis ini terdiri dari 2 bagian: pilihan ganda dan esai.</p>
   </div>
 </section>
 
@@ -772,12 +789,12 @@ footer{
   </div>
 
   <div class="infoNote">
-    <b>Petunjuk:</b> Jawab semua soal pilihan ganda dan tulis jawabanmu untuk semua soal esai. Kunci jawaban esai dan hasil nilai PG baru akan muncul setelah kamu menekan tombol <b>"Selesai & Periksa Jawaban"</b> di bagian bawah. <b>Kuis hanya bisa dikerjakan satu kali</b> — setelah diperiksa, jawaban akan terkunci.
+    <b>Petunjuk umum:</b> Kuis ini terbagi menjadi 2 bagian dengan instruksi masing-masing di atas soalnya. Isi semua soal, lalu tekan tombol <b>"Selesai & Periksa Jawaban"</b> di bagian paling bawah untuk melihat nilai dan kunci jawaban. <b>Kuis hanya bisa dikerjakan satu kali</b> — setelah diperiksa, jawaban akan terkunci.
   </div>
 
   <div class="progressWrap">
     <div class="progressBar"><div class="progressFill" id="progressFill"></div></div>
-    <div class="progressText" id="progressText">0 / 6 PG terjawab</div>
+    <div class="progressText" id="progressText">0 / 10 soal terisi</div>
   </div>
 
   <div class="resultCard" id="resultCard">
@@ -790,10 +807,18 @@ footer{
 
   <form id="quizForm">
 
-    <!-- SOAL 1 - PG -->
+    <!-- ===================== BAGIAN A — PILIHAN GANDA ===================== -->
+    <div class="partHead">
+      <span class="partBadge">BAGIAN A</span>
+      <div class="partText">
+        <h3>Pilihan Ganda</h3>
+        <p>Pilih jawaban yang tepat sesuai dengan <b>bunpou ～たら</b>.</p>
+      </div>
+    </div>
+
+    <!-- SOAL 1 -->
     <div class="qCard">
-      <div class="qTop"><span class="qNum">1</span><span class="qType pg">Pilihan Ganda</span></div>
-      <div class="qText">Pilih kalimat yang menggunakan pola <b>～たら</b> dengan benar untuk mengungkapkan "Kalau besok cerah, saya akan pergi berenang."</div>
+      <div class="qTop"><span class="qNum">1 Pilihlah kalimat yang tepat!</span></div>
       <div class="opt"><input type="radio" name="q1" id="q1a" value="a"><label for="q1a">明日晴れると、泳ぎに行きます。</label></div>
       <div class="opt"><input type="radio" name="q1" id="q1b" value="b"><label for="q1b">明日晴れたら、泳ぎに行きます。</label></div>
       <div class="opt"><input type="radio" name="q1" id="q1c" value="c"><label for="q1c">明日晴れれば、泳ぎに行きません。</label></div>
@@ -801,9 +826,9 @@ footer{
       <div class="explain" id="ex1"><b>Penjelasan:</b> Pola たら dibentuk dari bentuk lampau (た形) + ら. 晴れる → 晴れた → 晴れたら, sehingga kalimatnya menjadi「明日晴れたら、泳ぎに行きます」.</div>
     </div>
 
-    <!-- SOAL 2 - PG -->
+    <!-- SOAL 2 -->
     <div class="qCard">
-      <div class="qTop"><span class="qNum">2</span><span class="qType pg">Pilihan Ganda</span></div>
+      <div class="qTop"><span class="qNum">2 Pilihlah kalimat yang tepat!</span></div>
       <div class="qText">Apa arti dari kalimat「雨が降ったら、出かけません。」?</div>
       <div class="opt"><input type="radio" name="q2" id="q2a" value="a"><label for="q2a">Karena hujan turun, saya tidak pergi keluar.</label></div>
       <div class="opt"><input type="radio" name="q2" id="q2b" value="b"><label for="q2b">Kalau hujan turun, saya tidak akan pergi keluar.</label></div>
@@ -812,9 +837,9 @@ footer{
       <div class="explain" id="ex2"><b>Penjelasan:</b> ～たら di sini menunjukkan syarat pengandaian: "kalau/seandainya X terjadi, maka Y". Jadi artinya adalah pengandaian, bukan alasan (karena) atau perlawanan (meskipun).</div>
     </div>
 
-    <!-- SOAL 3 - PG -->
+    <!-- SOAL 3 -->
     <div class="qCard">
-      <div class="qTop"><span class="qNum">3</span><span class="qType pg">Pilihan Ganda</span></div>
+      <div class="qTop"><span class="qNum">3</span></div>
       <div class="qText">Bentuk ～たら yang benar dari kata kerja「食べる」(makan) adalah...</div>
       <div class="opt"><input type="radio" name="q3" id="q3a" value="a"><label for="q3a">食べたら</label></div>
       <div class="opt"><input type="radio" name="q3" id="q3b" value="b"><label for="q3b">食べったら</label></div>
@@ -823,10 +848,10 @@ footer{
       <div class="explain" id="ex3"><b>Penjelasan:</b> 食べる adalah kata kerja golongan 2 (ru-verb). Bentuk lampau (た形)-nya adalah 食べた, sehingga bentuk たら-nya adalah 食べたら.</div>
     </div>
 
-    <!-- SOAL 4 - PG -->
+    <!-- SOAL 4 -->
     <div class="qCard">
-      <div class="qTop"><span class="qNum">4</span><span class="qType pg">Pilihan Ganda</span></div>
-      <div class="qText">Bentuk ～たら yang benar dari kata sifat-i「寒い」(dingin) adalah...</div>
+      <div class="qTop"><span class="qNum">4 Pilihlah kalimat yang tepat!</span></div>
+      <div class="qText">寒い</div>
       <div class="opt"><input type="radio" name="q4" id="q4a" value="a"><label for="q4a">寒いたら</label></div>
       <div class="opt"><input type="radio" name="q4" id="q4b" value="b"><label for="q4b">寒かったら</label></div>
       <div class="opt"><input type="radio" name="q4" id="q4c" value="c"><label for="q4c">寒くたら</label></div>
@@ -834,10 +859,10 @@ footer{
       <div class="explain" id="ex4"><b>Penjelasan:</b> Kata sifat-i mengikuti pola bentuk lampau biasa: 寒い → 寒かった → 寒かったら (ganti い dengan かった, lalu tambahkan ら).</div>
     </div>
 
-    <!-- SOAL 5 - PG -->
+    <!-- SOAL 5 -->
     <div class="qCard">
-      <div class="qTop"><span class="qNum">5</span><span class="qType pg">Pilihan Ganda</span></div>
-      <div class="qText">Kalimat「駅に着いたら、電話してください。」paling tepat menunjukkan makna たら sebagai...</div>
+      <div class="qTop"><span class="qNum">5 Pilihlah kalimat yang tepat!</span></div>
+      <div class="qText">駅に着いたら、電話してください。</div>
       <div class="opt"><input type="radio" name="q5" id="q5a" value="a"><label for="q5a">Pengandaian yang mungkin tidak terjadi</label></div>
       <div class="opt"><input type="radio" name="q5" id="q5b" value="b"><label for="q5b">Kejadian pasti yang berurutan waktu ("setelah/ketika")</label></div>
       <div class="opt"><input type="radio" name="q5" id="q5c" value="c"><label for="q5c">Perbandingan dua hal</label></div>
@@ -845,9 +870,9 @@ footer{
       <div class="explain" id="ex5"><b>Penjelasan:</b> Selain untuk pengandaian, ～たら juga sering dipakai untuk kejadian yang pasti terjadi lalu diikuti kejadian lain, mirip arti "setelah/ketika". Di sini artinya "Setelah sampai di stasiun, tolong telepon saya."</div>
     </div>
 
-    <!-- SOAL 6 - PG -->
+    <!-- SOAL 6 -->
     <div class="qCard">
-      <div class="qTop"><span class="qNum">6</span><span class="qType pg">Pilihan Ganda</span></div>
+      <div class="qTop"><span class="qNum">6 Pilihlah kalimat yang tepat!</span></div>
       <div class="qText">Manakah kalimat berikut yang <b>salah/tidak alami</b> secara tata bahasa?</div>
       <div class="opt"><input type="radio" name="q6" id="q6a" value="a"><label for="q6a">お金があったら、旅行に行きたいです。</label></div>
       <div class="opt"><input type="radio" name="q6" id="q6b" value="b"><label for="q6b">安かったら、買います。</label></div>
@@ -856,33 +881,43 @@ footer{
       <div class="explain" id="ex6"><b>Penjelasan:</b> Pilihan D tidak masuk akal secara tata bahasa maupun makna — たら dipakai berulang tanpa struktur kalimat pengandaian yang jelas. Pilihan A, B, dan C semuanya adalah pola たら yang benar (kata benda + だったら untuk C).</div>
     </div>
 
-    <!-- SOAL 7 - ESAI -->
+
+    <!-- ===================== BAGIAN B — ESAI ===================== -->
+    <div class="partHead">
+      <span class="partBadge">BAGIAN B</span>
+      <div class="partText">
+        <h3>Esai</h3>
+        <p>Buat atau terjemahkan kalimat sesuai instruksi menggunakan pola <b>～たら</b>.</p>
+      </div>
+    </div>
+
+    <!-- SOAL 7 -->
     <div class="qCard">
-      <div class="qTop"><span class="qNum">7</span><span class="qType esai">Esai</span></div>
+      <div class="qTop"><span class="qNum">7</span></div>
       <div class="qText">Buatlah satu kalimat bahasa Jepang menggunakan pola <b>～たら</b> dengan kata kerja「家に着く」(sampai di rumah) dan kata「電話します」(menelepon).</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="7"></textarea>
       <div class="answerKey" id="key7"><b>Contoh jawaban:</b> 家に着いたら、電話します。<br>(Kalau/setelah sampai di rumah, saya akan menelepon.)<br><br><b>Poin penting:</b> 着く → 着いた → 着いたら. Jawabanmu boleh berbeda kata-katanya, yang penting pola たら-nya benar dan maknanya sesuai.</div>
     </div>
 
-    <!-- SOAL 8 - ESAI -->
+    <!-- SOAL 8 -->
     <div class="qCard">
-      <div class="qTop"><span class="qNum">8</span><span class="qType esai">Esai</span></div>
+      <div class="qTop"><span class="qNum">8</span></div>
       <div class="qText">Terjemahkan kalimat berikut ke bahasa Jepang menggunakan ～たら: <br><b>"Kalau saya punya banyak uang, saya ingin membeli mobil."</b></div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="8"></textarea>
       <div class="answerKey" id="key8"><b>Contoh jawaban:</b> お金がたくさんあったら、車を買いたいです。<br><br><b>Poin penting:</b> ある → あった → あったら. Perhatikan juga partikel が untuk menunjukkan subjek お金, dan ～たいです untuk menyatakan keinginan.</div>
     </div>
 
-    <!-- SOAL 9 - ESAI -->
+    <!-- SOAL 9 -->
     <div class="qCard">
-      <div class="qTop"><span class="qNum">9</span><span class="qType esai">Esai</span></div>
+      <div class="qTop"><span class="qNum">9</span></div>
       <div class="qText">Buatlah satu kalimat bahasa Jepang menggunakan ～たら yang berarti: <b>"Kalau besok hujan, saya tidak akan pergi."</b></div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="9"></textarea>
       <div class="answerKey" id="key9"><b>Contoh jawaban:</b> 明日雨が降ったら、行きません。<br><br><b>Poin penting:</b> 降る → 降った → 降ったら. Bentuk negatif kata kerja tetap di bagian akibat (行きません), bukan di bagian たら.</div>
     </div>
 
-    <!-- SOAL 10 - ESAI -->
+    <!-- SOAL 10 -->
     <div class="qCard">
-      <div class="qTop"><span class="qNum">10</span><span class="qType esai">Esai</span></div>
+      <div class="qTop"><span class="qNum">10</span></div>
       <div class="qText">Jelaskan dengan kata-katamu sendiri: apa <b>dua fungsi utama</b> dari pola ～たら yang sudah kamu pelajari? Berikan sedikit penjelasan untuk masing-masing.</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="10"></textarea>
       <div class="answerKey" id="key10"><b>Contoh jawaban:</b><br>1) <b>Pengandaian (kalau/seandainya)</b> — dipakai untuk kondisi yang mungkin atau belum pasti terjadi, misalnya「お金があったら、旅行に行きたいです」(kalau ada uang, ingin pergi liburan).<br>2) <b>Urutan waktu (setelah/ketika)</b> — dipakai untuk kejadian yang pasti terjadi, lalu diikuti kejadian berikutnya, misalnya「駅に着いたら、電話してください」(setelah sampai stasiun, tolong telepon).</div>
@@ -1085,7 +1120,7 @@ function checkAnswers(){
   });
 
   if(unansweredPG.length > 0 || emptyEssay.length > 0){
-    alert("Masih ada soal yang belum diisi (" + (unansweredPG.length + emptyEssay.length) + " soal). Lengkapi semua soal pilihan ganda dan esai dulu ya sebelum diperiksa — kuis ini hanya bisa dikerjakan satu kali.");
+    alert("Masih ada soal yang belum diisi (" + (unansweredPG.length + emptyEssay.length) + " soal). Lengkapi semua soal di Bagian A dan Bagian B dulu ya sebelum diperiksa — kuis ini hanya bisa dikerjakan satu kali.");
     return;
   }
 
