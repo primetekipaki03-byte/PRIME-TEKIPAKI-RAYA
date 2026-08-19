@@ -5,7 +5,7 @@
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Kanji Flash Card · Minggu 2 — Tekipaki Japanese Learning</title>
+<title>Kanji Flash Card · Minggu 3 — Tekipaki Japanese Learning</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -741,9 +741,9 @@ footer{
 <section class="hero">
   <div class="hero-kanji" aria-hidden="true">字</div>
   <div class="hero-inner">
-    <div class="eyebrow"><span class="dot"></span> N4 · MINGGU 2 · KANJI FLASH CARD</div>
+    <div class="eyebrow"><span class="dot"></span> N4 · MINGGU 3 · KANJI FLASH CARD</div>
     <h1>Kanji <span>Dasar</span></h1>
-    <p>Pelajari 12 kanji minggu ini beserta contoh kosakatanya. Geser atau klik kartu untuk berpindah, lalu uji pemahamanmu lewat kuis kanji di bagian bawah.</p>
+    <p>Pelajari 15 kanji minggu ini beserta contoh kosakatanya. Geser atau klik kartu untuk berpindah, lalu uji pemahamanmu lewat kuis kanji di bagian bawah.</p>
   </div>
 </section>
 
@@ -758,7 +758,7 @@ footer{
 
   <div class="section-head">
     <div class="stamp-mini">字</div>
-    <h2>Kanji Flash Card · Minggu 2</h2>
+    <h2>Kanji Flash Card · Minggu 3</h2>
     <span class="jp">かんじフラッシュカード</span>
   </div>
 
@@ -767,7 +767,7 @@ footer{
   </div>
 
   <!-- ===================== SLIDESHOW ===================== -->
-  <div class="stageProgress" id="stageProgress">1 / 12</div>
+  <div class="stageProgress" id="stageProgress">1 / 15</div>
 
   <div class="kanjiStage">
     <button class="stageArrow prevBtn" id="prevBtn" aria-label="Sebelumnya">
@@ -778,10 +778,10 @@ footer{
     </button>
 
     <div class="stageInner">
-      <div class="kanjiReading" id="kanjiReading">じゅうしょ</div>
-      <div class="kanjiBig" id="kanjiBig" title="Klik untuk lanjut ke kanji berikutnya">住所</div>
-      <div class="kanjiRomaji" id="kanjiRomaji">juusho</div>
-      <div class="kanjiMeaning" id="kanjiMeaning">alamat</div>
+      <div class="kanjiReading" id="kanjiReading">ひろば</div>
+      <div class="kanjiBig" id="kanjiBig" title="Klik untuk lanjut ke kanji berikutnya">広場</div>
+      <div class="kanjiRomaji" id="kanjiRomaji">hiroba</div>
+      <div class="kanjiMeaning" id="kanjiMeaning">lapangan / alun-alun</div>
 
       <div class="vocabWrap">
         <div class="vocabLabel">Contoh Kosakata</div>
@@ -926,59 +926,59 @@ window.addEventListener("resize", function(){
 ========================================================= */
 
 const KANJI_DATA = [
-  { kanji:"住所", reading:"じゅうしょ", romaji:"juusho", meaning:"alamat", vocab:[
-    { word:"住所録", reading:"じゅうしょろく", meaning:"buku catatan alamat" },
-    { word:"現住所", reading:"げんじゅうしょ", meaning:"alamat tempat tinggal sekarang" }
+  { kanji:"広場", reading:"ひろば", romaji:"hiroba", meaning:"lapangan / alun-alun", vocab:[
+    { word:"駅前広場", reading:"えきまえひろば", meaning:"alun-alun depan stasiun" },
+    { word:"広場に集まる", reading:"ひろばにあつまる", meaning:"berkumpul di lapangan" }
   ]},
-  { kanji:"会社", reading:"かいしゃ", romaji:"kaisha", meaning:"perusahaan", vocab:[
-    { word:"会社員", reading:"かいしゃいん", meaning:"karyawan perusahaan" },
-    { word:"会社に行く", reading:"かいしゃにいく", meaning:"pergi ke perusahaan/kantor" }
+  { kanji:"地図", reading:"ちず", romaji:"chizu", meaning:"peta", vocab:[
+    { word:"地図を見る", reading:"ちずをみる", meaning:"melihat peta" },
+    { word:"世界地図", reading:"せかいちず", meaning:"peta dunia" }
   ]},
-  { kanji:"仕事", reading:"しごと", romaji:"shigoto", meaning:"pekerjaan", vocab:[
-    { word:"仕事をする", reading:"しごとをする", meaning:"bekerja" },
-    { word:"仕事場", reading:"しごとば", meaning:"tempat kerja" }
+  { kanji:"食堂", reading:"しょくどう", romaji:"shokudou", meaning:"kantin / rumah makan", vocab:[
+    { word:"学校の食堂", reading:"がっこうのしょくどう", meaning:"kantin sekolah" },
+    { word:"食堂で食べる", reading:"しょくどうでたべる", meaning:"makan di kantin" }
   ]},
-  { kanji:"社員", reading:"しゃいん", romaji:"shain", meaning:"karyawan / pegawai", vocab:[
-    { word:"新入社員", reading:"しんにゅうしゃいん", meaning:"karyawan baru" },
-    { word:"社員食堂", reading:"しゃいんしょくどう", meaning:"kantin karyawan" }
+  { kanji:"見つける", reading:"みつける", romaji:"mitsukeru", meaning:"menemukan", vocab:[
+    { word:"財布を見つける", reading:"さいふをみつける", meaning:"menemukan dompet" },
+    { word:"答えを見つける", reading:"こたえをみつける", meaning:"menemukan jawaban" }
   ]},
-  { kanji:"最近", reading:"さいきん", romaji:"saikin", meaning:"akhir-akhir ini / belakangan ini", vocab:[
-    { word:"最近忙しい", reading:"さいきんいそがしい", meaning:"akhir-akhir ini sibuk" },
-    { word:"最近のニュース", reading:"さいきんのニュース", meaning:"berita terbaru" }
+  { kanji:"選ぶ", reading:"えらぶ", romaji:"erabu", meaning:"memilih", vocab:[
+    { word:"服を選ぶ", reading:"ふくをえらぶ", meaning:"memilih baju" },
+    { word:"好きな物を選ぶ", reading:"すきなものをえらぶ", meaning:"memilih barang yang disukai" }
   ]},
-  { kanji:"困る", reading:"こまる", romaji:"komaru", meaning:"kesulitan / bingung / repot", vocab:[
-    { word:"お金に困る", reading:"おかねにこまる", meaning:"kesulitan uang" },
-    { word:"困ったこと", reading:"こまったこと", meaning:"hal yang merepotkan" }
+  { kanji:"休む", reading:"やすむ", romaji:"yasumu", meaning:"istirahat / libur", vocab:[
+    { word:"仕事を休む", reading:"しごとをやすむ", meaning:"libur kerja" },
+    { word:"少し休む", reading:"すこしやすむ", meaning:"istirahat sebentar" }
   ]},
-  { kanji:"駅", reading:"えき", romaji:"eki", meaning:"stasiun", vocab:[
-    { word:"駅前", reading:"えきまえ", meaning:"depan stasiun" },
-    { word:"駅員", reading:"えきいん", meaning:"petugas stasiun" }
+  { kanji:"必要", reading:"ひつよう", romaji:"hitsuyou", meaning:"perlu / diperlukan", vocab:[
+    { word:"必要な物", reading:"ひつようなもの", meaning:"barang yang diperlukan" },
+    { word:"お金が必要だ", reading:"おかねがひつようだ", meaning:"perlu uang" }
   ]},
-  { kanji:"薬", reading:"くすり", romaji:"kusuri", meaning:"obat", vocab:[
-    { word:"薬を飲む", reading:"くすりをのむ", meaning:"minum obat" },
-    { word:"薬局", reading:"やっきょく", meaning:"apotek" }
+  { kanji:"注意", reading:"ちゅうい", romaji:"chuui", meaning:"perhatian / hati-hati", vocab:[
+    { word:"注意する", reading:"ちゅういする", meaning:"berhati-hati" },
+    { word:"交通に注意する", reading:"こうつうにちゅういする", meaning:"hati-hati terhadap lalu lintas" }
   ]},
-  { kanji:"建物", reading:"たてもの", romaji:"tatemono", meaning:"bangunan", vocab:[
-    { word:"高い建物", reading:"たかいたてもの", meaning:"bangunan tinggi" },
-    { word:"古い建物", reading:"ふるいたてもの", meaning:"bangunan tua" }
+  { kanji:"必ず", reading:"かならず", romaji:"kanarazu", meaning:"pasti / tentu", vocab:[
+    { word:"必ず来る", reading:"かならずくる", meaning:"pasti datang" },
+    { word:"約束を必ず守る", reading:"やくそくをかならずまもる", meaning:"pasti menepati janji" }
   ]},
-  { kanji:"探す", reading:"さがす", romaji:"sagasu", meaning:"mencari", vocab:[
-    { word:"仕事を探す", reading:"しごとをさがす", meaning:"mencari pekerjaan" },
-    { word:"道を探す", reading:"みちをさがす", meaning:"mencari jalan" }
+  { kanji:"約束", reading:"やくそく", romaji:"yakusoku", meaning:"janji", vocab:[
+    { word:"約束を守る", reading:"やくそくをまもる", meaning:"menepati janji" },
+    { word:"友達と約束する", reading:"ともだちとやくそくする", meaning:"berjanji dengan teman" }
   ]},
-  { kanji:"周り", reading:"まわり", romaji:"mawari", meaning:"sekitar / sekeliling", vocab:[
-    { word:"周りの人", reading:"まわりのひと", meaning:"orang di sekitar" },
-    { word:"家の周り", reading:"いえのまわり", meaning:"sekitar rumah" }
+  { kanji:"戻る", reading:"もどる", romaji:"modoru", meaning:"kembali", vocab:[
+    { word:"家に戻る", reading:"いえにもどる", meaning:"kembali ke rumah" },
+    { word:"元の場所に戻る", reading:"もとのばしょにもどる", meaning:"kembali ke tempat semula" }
   ]},
-  { kanji:"窓口", reading:"まどぐち", romaji:"madoguchi", meaning:"loket", vocab:[
-    { word:"受付窓口", reading:"うけつけまどぐち", meaning:"loket resepsionis" },
-    { word:"窓口で聞く", reading:"まどぐちできく", meaning:"bertanya di loket" }
+  { kanji:"近く", reading:"ちかく", romaji:"chikaku", meaning:"dekat", vocab:[
+    { word:"駅の近く", reading:"えきのちかく", meaning:"dekat stasiun" },
+    { word:"近くに住む", reading:"ちかくにすむ", meaning:"tinggal di dekat sini" }
   ]},
 
 ];
 
 const QUIZ_LINKS = [
-  { title:"Mulai Kuis Kanji", desc:"Latihan membaca & mengartikan kanji yang sudah dipelajari minggu ini.", href:"n4_minggu2materi4_kuiskanji.html" }
+  { title:"Mulai Kuis Kanji", desc:"Latihan membaca & mengartikan kanji yang sudah dipelajari minggu ini.", href:"n4_minggu3materi4_kuiskanji.html" }
 ];
 
 let currentIndex = 0;
