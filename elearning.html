@@ -867,6 +867,12 @@ header{
   color:#fff;
 }
 
+.materiItem.locked .mi-icon{
+  background:#eee;
+
+  color:#999;
+}
+
 .materiItem .mi-text{
   flex:1;
 
@@ -919,6 +925,12 @@ header{
   border-color:var(--gold);
 
   color:var(--gold-dim);
+}
+
+.materiLink.disabledLink{
+  pointer-events:none;
+
+  opacity:.5;
 }
 
 .doneBtn{
@@ -3186,6 +3198,14 @@ function renderWeekList(){
                 m.link || "#";
 
 
+              const iconContent =
+                m.done
+                  ? "✓"
+                  : itemLocked
+                    ? "🔒"
+                    : mi + 1;
+
+
               return `
 
                 <div
@@ -3198,11 +3218,7 @@ function renderWeekList(){
 
                   <div class="mi-icon">
 
-                    ${
-                      m.done
-                        ? "✓"
-                        : mi + 1
-                    }
+                    ${iconContent}
 
                   </div>
 
@@ -3224,12 +3240,13 @@ function renderWeekList(){
                   <div class="mi-actions">
 
                     <a
-                      class="materiLink"
+                      class="materiLink${itemLocked ? " disabledLink" : ""}"
                       href="${escapeAttribute(safeLink)}"
                       target="_blank"
                       rel="noopener noreferrer"
+                      ${itemLocked ? 'aria-disabled="true" tabindex="-1"' : ""}
                     >
-                      📄 Buka
+                      ${itemLocked ? "🔒 Terkunci" : "📄 Buka"}
                     </a>
 
 
