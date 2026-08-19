@@ -612,6 +612,10 @@ a{
 .submitBtn:hover{
   opacity:.9;
 }
+.submitBtn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
 
 .resultCard{
   display:none;
@@ -669,6 +673,20 @@ a{
 }
 .infoNote b{
   color:var(--navy);
+}
+
+.warnNote{
+  background:var(--fail-bg);
+  border:1px solid rgba(179,56,46,.3);
+  color:var(--seal);
+  border-radius:14px;
+  padding:16px 20px;
+  font-size:.85rem;
+  line-height:1.7;
+  margin-bottom:24px;
+}
+.warnNote b{
+  color:var(--seal);
 }
 
 footer{
@@ -771,7 +789,7 @@ footer{
 <div id="appMain">
 
   <a href="n4_minggu1materi4.html" class="backLink">← Kembali ke Minggu 1  Materi 4</a>
-4
+
   <div class="section-head">
     <div class="stamp-mini">問</div>
     <h2>Quiz Kanji 1 · Minggu 1</h2>
@@ -779,7 +797,11 @@ footer{
   </div>
 
   <div class="infoNote">
-    <b>Petunjuk umum:</b> Kuis ini terbagi menjadi 2 bagian dengan instruksi masing-masing di atas soalnya. Isi semua soal, lalu tekan tombol <b>"Selesai & Periksa Jawaban"</b> di bagian paling bawah untuk melihat nilai dan kunci jawaban. <b>Kuis hanya bisa dikerjakan satu kali</b> — setelah diperiksa, jawaban akan terkunci.
+    <b>Petunjuk umum:</b> Kuis ini terbagi menjadi 2 bagian dengan instruksi masing-masing di atas soalnya. Isi semua soal, lalu tekan tombol <b>"Selesai & Periksa Jawaban"</b> di bagian paling bawah untuk melihat nilai dan kunci jawaban. <b>Kuis hanya bisa dikerjakan satu kali per akun siswa</b> — setelah diperiksa, jawaban akan terkunci untuk akun tersebut.
+  </div>
+
+  <div class="warnNote" id="noLoginWarn" style="display:none;">
+    <b>⚠️ Kamu belum login sebagai siswa.</b> Silakan login terlebih dahulu lewat halaman <a href="elearning.html" style="text-decoration:underline;">E-Learning Siswa</a> sebelum mengerjakan kuis ini, supaya hasil kuismu tersimpan atas namamu sendiri dan tidak tertukar dengan siswa lain.
   </div>
 
   <div class="progressWrap">
@@ -1027,7 +1049,44 @@ window.addEventListener("resize", function(){
 const ANSWER_KEY = { q1:"a", q2:"a", q3:"a", q4:"a", q5:"a", q6:"a" };
 const TOTAL_PG = Object.keys(ANSWER_KEY).length;
 const ESSAY_IDS = ["7","8","9","10"];
-const STORAGE_KEY = "tekipaki_quizkanji1_done";
+
+/*
+ * PERBAIKAN UTAMA:
+ * Sebelumnya STORAGE_KEY bersifat statis ("tekipaki_quizkanji1_done"),
+ * sehingga status "sudah mengerjakan" tersimpan per-BROWSER, bukan
+ * per-SISWA. Akibatnya siswa lain yang login di browser/perangkat
+ * yang sama akan otomatis terkunci walaupun belum pernah mengerjakan.
+ *
+ * Sekarang STORAGE_KEY disusun berdasarkan kode siswa yang sedang
+ * login (disimpan oleh elearning.html di sessionStorage dengan key
+ * "tekipaki_current_code"). Dengan begitu, setiap kode siswa punya
+ * status pengerjaan kuisnya masing-masing, meskipun dibuka di
+ * browser yang sama.
+ */
+
+const QUIZ_ID = "quizkanji1";
+
+function getStudentCode(){
+  try{
+    const code = sessionStorage.getItem("tekipaki_current_code");
+    return code ? code.trim().toUpperCase() : null;
+  }catch(e){
+    return null;
+  }
+}
+
+const studentCode = getStudentCode();
+
+// Jika tidak ada siswa yang login, kuis tetap bisa dicoba (mode tamu)
+// tapi hasilnya TIDAK disimpan permanen dan akan tampil peringatan.
+const STORAGE_KEY = studentCode
+  ? "tekipaki_" + QUIZ_ID + "_done_" + studentCode
+  : null;
+
+if(!studentCode){
+  const warn = document.getElementById("noLoginWarn");
+  if(warn){ warn.style.display = "block"; }
+}
 
 function totalAnswered(){
   let answered = 0;
@@ -1142,14 +1201,21 @@ function checkAnswers(){
   lockQuiz();
   revealAll(score);
 
-  try{
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      done:true, score:score, pg:savedPG, essay:savedEssay
-    }));
-  }catch(e){ /* localStorage unavailable, quiz still works for this session */ }
+  // Hanya simpan status "selesai" jika ada siswa yang login (STORAGE_KEY per-siswa tersedia).
+  if(STORAGE_KEY){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        done:true, score:score, pg:savedPG, essay:savedEssay,
+        studentCode:studentCode, savedAt:new Date().toISOString()
+      }));
+    }catch(e){ /* localStorage tidak tersedia, kuis tetap berjalan untuk sesi ini */ }
+  }
 }
 
 function restoreIfDone(){
+  // Tanpa kode siswa (belum login), tidak ada status tersimpan yang perlu dipulihkan.
+  if(!STORAGE_KEY){ return; }
+
   let saved = null;
   try{
     const raw = localStorage.getItem(STORAGE_KEY);
