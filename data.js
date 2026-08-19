@@ -101,6 +101,15 @@ MATERI_BY_LEVEL.N4[1][0].link = "n4_minggu2materi1.html";
 MATERI_BY_LEVEL.N4[1][1].title = "Minggu 2 · Materi 2";
 MATERI_BY_LEVEL.N4[1][1].link = "n4_minggu2materi2.html";
 
+MATERI_BY_LEVEL.N4[1][2].title = "Minggu 2 · Materi 3";
+MATERI_BY_LEVEL.N4[1][2].link = "n4_minggu2materi3.html";
+
+MATERI_BY_LEVEL.N4[1][3].title = "Minggu 2 · Materi 4";
+MATERI_BY_LEVEL.N4[1][3].link = "n4_minggu2materi4.html";
+
+
+
+
 /* Materi 2, 3, 4 di Minggu 1 N4 masih placeholder —
    ganti title & link-nya kalau sudah siap, contoh:
 
