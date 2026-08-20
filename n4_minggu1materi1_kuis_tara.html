@@ -841,6 +841,7 @@ footer{
     <h3>Hasil Kuis</h3>
     <div class="resultScore" id="resultScore">0 / 6</div>
     <p id="resultMsg">Terus berlatih ya!</p>
+    <p class="lockedNote mono" id="finishedAtNote" style="color:var(--muted);"></p>
     <p class="lockedNote" id="lockedNote">🔒 Kuis ini sudah kamu kerjakan dan tidak bisa dikerjakan ulang.</p>
   </div>
 
@@ -900,13 +901,13 @@ footer{
 
     <!-- SOAL 5 -->
     <div class="qCard">
-      <div class="qTop"><span class="qNum">5 Pilihlah kalimat yang tepat!</span></div>
-      <div class="qText">駅に着いたら、電話してください。</div>
-      <div class="opt"><input type="radio" name="q5" id="q5a" value="a"><label for="q5a">Pengandaian yang mungkin tidak terjadi</label></div>
-      <div class="opt"><input type="radio" name="q5" id="q5b" value="b"><label for="q5b">Kejadian pasti yang berurutan waktu ("setelah/ketika")</label></div>
-      <div class="opt"><input type="radio" name="q5" id="q5c" value="c"><label for="q5c">Perbandingan dua hal</label></div>
-      <div class="opt"><input type="radio" name="q5" id="q5d" value="d"><label for="q5d">Larangan melakukan sesuatu</label></div>
-      <div class="explain" id="ex5"><b>Penjelasan:</b> Selain untuk pengandaian, ～たら juga sering dipakai untuk kejadian yang pasti terjadi lalu diikuti kejadian lain, mirip arti "setelah/ketika". Di sini artinya "Setelah sampai di stasiun, tolong telepon saya."</div>
+      <div class="qTop"><span class="qNum">5 Apa arti kalimat berikut?</span></div>
+      <div class="essayPrompt">駅に着いたら、電話してください。</div>
+      <div class="opt"><input type="radio" name="q5" id="q5a" value="a"><label for="q5a">Karena sudah sampai di stasiun, saya menelepon.</label></div>
+      <div class="opt"><input type="radio" name="q5" id="q5b" value="b"><label for="q5b">Setelah sampai di stasiun, tolong telepon saya.</label></div>
+      <div class="opt"><input type="radio" name="q5" id="q5c" value="c"><label for="q5c">Meskipun sudah sampai di stasiun, jangan menelepon.</label></div>
+      <div class="opt"><input type="radio" name="q5" id="q5d" value="d"><label for="q5d">Sebelum sampai di stasiun, saya akan menelepon.</label></div>
+      <div class="explain" id="ex5"><b>Penjelasan:</b> Di sini ～たら dipakai untuk kejadian yang pasti terjadi, diikuti kejadian/instruksi lain, mirip arti "setelah/ketika". してください berarti "tolong lakukan...". Jadi artinya "Setelah sampai di stasiun, tolong telepon saya." Bukan alasan (karena), bukan perlawanan (meskipun), dan bukan "sebelum".</div>
     </div>
 
     <!-- SOAL 6 -->
@@ -933,7 +934,8 @@ footer{
     <!-- SOAL 7 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">7</span></div>
-      <div class="qText">Buatlah satu kalimat bahasa Jepang menggunakan pola <b>～たら</b> dengan kata kerja「家に着く」(sampai di rumah) dan kata「電話します」(menelepon).</div>
+      <div class="qText">Ubahlah kalimat berikut ke dalam bentuk <b>～たら</b>!</div>
+      <div class="essayPrompt">家に着きます。電話します。</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="7"></textarea>
       <div class="answerKey" id="key7"><b>Contoh jawaban:</b> 家に着いたら、電話します。<br>(Kalau/setelah sampai di rumah, saya akan menelepon.)<br><br><b>Poin penting:</b> 着く → 着いた → 着いたら. Jawabanmu boleh berbeda kata-katanya, yang penting pola たら-nya benar dan maknanya sesuai.</div>
     </div>
@@ -957,9 +959,10 @@ footer{
     <!-- SOAL 10 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">10</span></div>
-      <div class="qText">Jelaskan dengan kata-katamu sendiri: apa <b>dua fungsi utama</b> dari pola ～たら yang sudah kamu pelajari? Berikan sedikit penjelasan untuk masing-masing.</div>
+      <div class="qText">Ubahlah kalimat berikut ke dalam bentuk <b>～たら</b>!</div>
+      <div class="essayPrompt">天気がいいです。散歩します。</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="10"></textarea>
-      <div class="answerKey" id="key10"><b>Contoh jawaban:</b><br>1) <b>Pengandaian (kalau/seandainya)</b> — dipakai untuk kondisi yang mungkin atau belum pasti terjadi, misalnya「お金があったら、旅行に行きたいです」(kalau ada uang, ingin pergi liburan).<br>2) <b>Urutan waktu (setelah/ketika)</b> — dipakai untuk kejadian yang pasti terjadi, lalu diikuti kejadian berikutnya, misalnya「駅に着いたら、電話してください」(setelah sampai stasiun, tolong telepon).</div>
+      <div class="answerKey" id="key10"><b>Contoh jawaban:</b> 天気がよかったら、散歩します。<br>(Kalau cuacanya bagus, saya akan jalan-jalan.)<br><br><b>Poin penting:</b> いい adalah kata sifat tidak beraturan. Bentuk lampaunya <b>bukan</b> いかった, tapi <b>よかった</b>, sehingga bentuk たら-nya adalah <b>よかったら</b> (bukan いかったら).</div>
     </div>
 
     <div class="submitWrap">
@@ -1161,7 +1164,23 @@ function lockQuiz(){
   document.getElementById("submitBtn").style.display = "none";
 }
 
-function revealAll(score){
+function fmtFinishedAt(iso){
+  if(!iso){ return ""; }
+  try{
+    const d = new Date(iso);
+    const tanggal = d.toLocaleDateString("id-ID", {
+      day:"2-digit", month:"long", year:"numeric"
+    });
+    const jam = d.toLocaleTimeString("id-ID", {
+      hour:"2-digit", minute:"2-digit"
+    });
+    return "Diselesaikan pada " + tanggal + " · " + jam + " WIB";
+  }catch(e){
+    return "";
+  }
+}
+
+function revealAll(score, finishedAtISO){
   Object.keys(ANSWER_KEY).forEach(name => {
     const num = name.replace("q","");
     document.getElementById("ex" + num).classList.add("show");
@@ -1182,6 +1201,11 @@ function revealAll(score){
     msg = "💪 Yuk baca ulang materi ～たら. Cek penjelasan dan kunci jawaban esai di bawah untuk belajar lagi.";
   }
   document.getElementById("resultMsg").textContent = msg;
+
+  const finishedAtNote = document.getElementById("finishedAtNote");
+  if(finishedAtNote){
+    finishedAtNote.textContent = fmtFinishedAt(finishedAtISO);
+  }
 
   const lockedNote = document.getElementById("lockedNote");
   if(lockedNote){
@@ -1241,14 +1265,16 @@ function checkAnswers(){
     savedEssay[id] = box.value;
   });
 
+  const finishedAt = new Date().toISOString();
+
   lockQuiz();
-  revealAll(score);
+  revealAll(score, finishedAt);
 
   try{
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       code: CURRENT_CODE || "GUEST",
       done:true, score:score, pg:savedPG, essay:savedEssay,
-      finishedAt: new Date().toISOString()
+      finishedAt: finishedAt
     }));
   }catch(e){ /* localStorage unavailable, quiz still works for this session */ }
 }
@@ -1283,7 +1309,7 @@ function restoreIfDone(){
   });
 
   lockQuiz();
-  revealAll(saved.score);
+  revealAll(saved.score, saved.finishedAt);
   updateProgress();
 }
 
