@@ -404,6 +404,35 @@ a{
   white-space:nowrap;
 }
 
+/* --- Info siswa yang login --- */
+.studentBadge{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#fff;
+  border:1px solid var(--paper2);
+  border-radius:12px;
+  padding:12px 16px;
+  margin-bottom:18px;
+  font-size:.85rem;
+  color:var(--ink-soft);
+}
+.studentBadge b{
+  color:var(--navy);
+}
+.studentBadge.warn{
+  background:var(--fail-bg);
+  border-color:var(--fail);
+  color:var(--seal);
+}
+.studentBadge .dotOk{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--pass);flex:none;
+}
+.studentBadge.warn .dotOk{
+  background:var(--fail);
+}
+
 /* --- Part header (instruksi sekali per bagian) --- */
 .partHead{
   background:var(--navy);
@@ -622,6 +651,10 @@ a{
 .submitBtn:hover{
   opacity:.9;
 }
+.submitBtn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
 
 .resultCard{
   display:none;
@@ -788,8 +821,14 @@ footer{
     <span class="jp">だい１しゅう・きょうざい１・クイズ</span>
   </div>
 
+  <!-- Status siswa yang sedang login -->
+  <div class="studentBadge" id="studentBadge">
+    <span class="dotOk"></span>
+    <span id="studentBadgeText">Memeriksa status login...</span>
+  </div>
+
   <div class="infoNote">
-    <b>Petunjuk umum:</b> Kuis ini terbagi menjadi 2 bagian dengan instruksi masing-masing di atas soalnya. Isi semua soal, lalu tekan tombol <b>"Selesai & Periksa Jawaban"</b> di bagian paling bawah untuk melihat nilai dan kunci jawaban. <b>Kuis hanya bisa dikerjakan satu kali</b> — setelah diperiksa, jawaban akan terkunci.
+    <b>Petunjuk umum:</b> Kuis ini terbagi menjadi 2 bagian dengan instruksi masing-masing di atas soalnya. Isi semua soal, lalu tekan tombol <b>"Selesai & Periksa Jawaban"</b> di bagian paling bawah untuk melihat nilai dan kunci jawaban. <b>Kuis hanya bisa dikerjakan satu kali per siswa</b> — setelah diperiksa, jawaban akan terkunci untuk akun tersebut.
   </div>
 
   <div class="progressWrap">
@@ -802,7 +841,7 @@ footer{
     <h3>Hasil Kuis</h3>
     <div class="resultScore" id="resultScore">0 / 6</div>
     <p id="resultMsg">Terus berlatih ya!</p>
-    <p class="lockedNote">🔒 Kuis ini sudah kamu kerjakan dan tidak bisa dikerjakan ulang.</p>
+    <p class="lockedNote" id="lockedNote">🔒 Kuis ini sudah kamu kerjakan dan tidak bisa dikerjakan ulang.</p>
   </div>
 
   <form id="quizForm">
@@ -1042,7 +1081,48 @@ window.addEventListener("resize", function(){
 const ANSWER_KEY = { q1:"b", q2:"b", q3:"a", q4:"b", q5:"b", q6:"d" };
 const TOTAL_PG = Object.keys(ANSWER_KEY).length;
 const ESSAY_IDS = ["7","8","9","10"];
-const STORAGE_KEY = "tekipaki_kuistara_done";
+
+/* ---------------------------------------------------------
+   PERBAIKAN UTAMA:
+   Sebelumnya STORAGE_KEY berupa string tetap
+   ("tekipaki_kuistara_done"), sehingga localStorage-nya
+   sama untuk SIAPA SAJA yang membuka kuis ini di browser
+   yang sama. Akibatnya begitu satu siswa selesai mengerjakan,
+   siswa lain yang login di device/browser yang sama akan
+   melihat kuis sudah terkunci juga.
+
+   Sekarang STORAGE_KEY dibuat unik per siswa, dengan
+   menambahkan kode siswa yang sedang login (disimpan oleh
+   elearning.html di sessionStorage dengan key
+   "tekipaki_current_code").
+--------------------------------------------------------- */
+
+const CURRENT_CODE = (function(){
+  try{
+    const code = sessionStorage.getItem("tekipaki_current_code");
+    return code ? code.trim().toUpperCase() : null;
+  }catch(e){
+    return null;
+  }
+})();
+
+const IS_LOGGED_IN = !!CURRENT_CODE;
+
+const STORAGE_KEY = "tekipaki_kuistara_done_" + (CURRENT_CODE || "GUEST");
+
+function updateStudentBadge(){
+  const badge = document.getElementById("studentBadge");
+  const text = document.getElementById("studentBadgeText");
+  if(!badge || !text){ return; }
+
+  if(IS_LOGGED_IN){
+    badge.classList.remove("warn");
+    text.innerHTML = 'Kuis ini akan tersimpan untuk akun: <b>' + CURRENT_CODE + '</b>';
+  }else{
+    badge.classList.add("warn");
+    text.innerHTML = '⚠️ Kamu belum login lewat halaman <b>Siswa</b>. Hasil kuis ini akan tersimpan sebagai tamu (GUEST) dan bisa tercampur dengan siswa lain di device ini. <a href="elearning.html" style="color:inherit;text-decoration:underline;">Login dulu di sini</a>, lalu buka kuis ini lagi dari menu materi.';
+  }
+}
 
 function totalAnswered(){
   let answered = 0;
@@ -1103,6 +1183,13 @@ function revealAll(score){
   }
   document.getElementById("resultMsg").textContent = msg;
 
+  const lockedNote = document.getElementById("lockedNote");
+  if(lockedNote){
+    lockedNote.textContent = IS_LOGGED_IN
+      ? "🔒 Kuis ini sudah dikerjakan oleh akun " + CURRENT_CODE + " dan tidak bisa dikerjakan ulang di akun ini."
+      : "🔒 Kuis ini sudah kamu kerjakan sebagai tamu (GUEST) di device ini dan tidak bisa dikerjakan ulang.";
+  }
+
   resultCard.classList.add("show");
   resultCard.scrollIntoView({ behavior:"smooth", block:"start" });
 }
@@ -1120,7 +1207,7 @@ function checkAnswers(){
   });
 
   if(unansweredPG.length > 0 || emptyEssay.length > 0){
-    alert("Masih ada soal yang belum diisi (" + (unansweredPG.length + emptyEssay.length) + " soal). Lengkapi semua soal di Bagian A dan Bagian B dulu ya sebelum diperiksa — kuis ini hanya bisa dikerjakan satu kali.");
+    alert("Masih ada soal yang belum diisi (" + (unansweredPG.length + emptyEssay.length) + " soal). Lengkapi semua soal di Bagian A dan Bagian B dulu ya sebelum diperiksa — kuis ini hanya bisa dikerjakan satu kali per akun.");
     return;
   }
 
@@ -1159,7 +1246,9 @@ function checkAnswers(){
 
   try{
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      done:true, score:score, pg:savedPG, essay:savedEssay
+      code: CURRENT_CODE || "GUEST",
+      done:true, score:score, pg:savedPG, essay:savedEssay,
+      finishedAt: new Date().toISOString()
     }));
   }catch(e){ /* localStorage unavailable, quiz still works for this session */ }
 }
@@ -1198,6 +1287,7 @@ function restoreIfDone(){
   updateProgress();
 }
 
+updateStudentBadge();
 restoreIfDone();
 updateProgress();
 </script>
