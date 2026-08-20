@@ -863,7 +863,6 @@ footer{
       <div class="opt"><input type="radio" name="q1" id="q1b" value="b"><label for="q1b">明日晴れたら、泳ぎに行きます。</label></div>
       <div class="opt"><input type="radio" name="q1" id="q1c" value="c"><label for="q1c">明日晴れれば、泳ぎに行きません。</label></div>
       <div class="opt"><input type="radio" name="q1" id="q1d" value="d"><label for="q1d">明日晴れなら、泳ぎに行った。</label></div>
-      <div class="explain" id="ex1"><b>Penjelasan:</b> Pola たら dibentuk dari bentuk lampau (た形) + ら. 晴れる → 晴れた → 晴れたら, sehingga kalimatnya menjadi「明日晴れたら、泳ぎに行きます」.</div>
     </div>
 
     <!-- SOAL 2 -->
@@ -874,7 +873,6 @@ footer{
       <div class="opt"><input type="radio" name="q2" id="q2b" value="b"><label for="q2b">Kalau hujan turun, saya tidak akan pergi keluar.</label></div>
       <div class="opt"><input type="radio" name="q2" id="q2c" value="c"><label for="q2c">Meskipun hujan turun, saya tetap pergi keluar.</label></div>
       <div class="opt"><input type="radio" name="q2" id="q2d" value="d"><label for="q2d">Hujan turun setelah saya pergi keluar.</label></div>
-      <div class="explain" id="ex2"><b>Penjelasan:</b> ～たら di sini menunjukkan syarat pengandaian: "kalau/seandainya X terjadi, maka Y". Jadi artinya adalah pengandaian, bukan alasan (karena) atau perlawanan (meskipun).</div>
     </div>
 
     <!-- SOAL 3 -->
@@ -885,7 +883,6 @@ footer{
       <div class="opt"><input type="radio" name="q3" id="q3b" value="b"><label for="q3b">食べったら</label></div>
       <div class="opt"><input type="radio" name="q3" id="q3c" value="c"><label for="q3c">食べれたら</label></div>
       <div class="opt"><input type="radio" name="q3" id="q3d" value="d"><label for="q3d">食べるたら</label></div>
-      <div class="explain" id="ex3"><b>Penjelasan:</b> 食べる adalah kata kerja golongan 2 (ru-verb). Bentuk lampau (た形)-nya adalah 食べた, sehingga bentuk たら-nya adalah 食べたら.</div>
     </div>
 
     <!-- SOAL 4 -->
@@ -896,7 +893,6 @@ footer{
       <div class="opt"><input type="radio" name="q4" id="q4b" value="b"><label for="q4b">寒かったら</label></div>
       <div class="opt"><input type="radio" name="q4" id="q4c" value="c"><label for="q4c">寒くたら</label></div>
       <div class="opt"><input type="radio" name="q4" id="q4d" value="d"><label for="q4d">寒であったら</label></div>
-      <div class="explain" id="ex4"><b>Penjelasan:</b> Kata sifat-i mengikuti pola bentuk lampau biasa: 寒い → 寒かった → 寒かったら (ganti い dengan かった, lalu tambahkan ら).</div>
     </div>
 
     <!-- SOAL 5 -->
@@ -907,7 +903,6 @@ footer{
       <div class="opt"><input type="radio" name="q5" id="q5b" value="b"><label for="q5b">Setelah sampai di stasiun, tolong telepon saya.</label></div>
       <div class="opt"><input type="radio" name="q5" id="q5c" value="c"><label for="q5c">Meskipun sudah sampai di stasiun, jangan menelepon.</label></div>
       <div class="opt"><input type="radio" name="q5" id="q5d" value="d"><label for="q5d">Sebelum sampai di stasiun, saya akan menelepon.</label></div>
-      <div class="explain" id="ex5"><b>Penjelasan:</b> Di sini ～たら dipakai untuk kejadian yang pasti terjadi, diikuti kejadian/instruksi lain, mirip arti "setelah/ketika". してください berarti "tolong lakukan...". Jadi artinya "Setelah sampai di stasiun, tolong telepon saya." Bukan alasan (karena), bukan perlawanan (meskipun), dan bukan "sebelum".</div>
     </div>
 
     <!-- SOAL 6 -->
@@ -918,7 +913,6 @@ footer{
       <div class="opt"><input type="radio" name="q6" id="q6b" value="b"><label for="q6b">安かったら、買います。</label></div>
       <div class="opt"><input type="radio" name="q6" id="q6c" value="c"><label for="q6c">先生だったら、質問があります。</label></div>
       <div class="opt"><input type="radio" name="q6" id="q6d" value="d"><label for="q6d">これは日本語のたら形とても難しいたらです。</label></div>
-      <div class="explain" id="ex6"><b>Penjelasan:</b> Pilihan D tidak masuk akal secara tata bahasa maupun makna — たら dipakai berulang tanpa struktur kalimat pengandaian yang jelas. Pilihan A, B, dan C semuanya adalah pola たら yang benar (kata benda + だったら untuk C).</div>
     </div>
 
 
@@ -1181,10 +1175,6 @@ function fmtFinishedAt(iso){
 }
 
 function revealAll(score, finishedAtISO){
-  Object.keys(ANSWER_KEY).forEach(name => {
-    const num = name.replace("q","");
-    document.getElementById("ex" + num).classList.add("show");
-  });
   ESSAY_IDS.forEach(id => {
     document.getElementById("key" + id).classList.add("show");
   });
