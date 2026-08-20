@@ -404,6 +404,35 @@ a{
   white-space:nowrap;
 }
 
+/* --- Info siswa yang login --- */
+.studentBadge{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#fff;
+  border:1px solid var(--paper2);
+  border-radius:12px;
+  padding:12px 16px;
+  margin-bottom:18px;
+  font-size:.85rem;
+  color:var(--ink-soft);
+}
+.studentBadge b{
+  color:var(--navy);
+}
+.studentBadge.warn{
+  background:var(--fail-bg);
+  border-color:var(--fail);
+  color:var(--seal);
+}
+.studentBadge .dotOk{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--pass);flex:none;
+}
+.studentBadge.warn .dotOk{
+  background:var(--fail);
+}
+
 /* --- Part header (instruksi sekali per bagian) --- */
 .partHead{
   background:var(--navy);
@@ -495,6 +524,16 @@ a{
   border-radius:7px;
   padding:3px 9px;
   font-size:.8rem;
+}
+
+.qText{
+  font-size:1.02rem;
+  line-height:1.6;
+  color:var(--ink);
+  margin-bottom:16px;
+}
+.qText b{
+  color:var(--navy);
 }
 
 .essayPrompt{
@@ -611,6 +650,10 @@ a{
 }
 .submitBtn:hover{
   opacity:.9;
+}
+.submitBtn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
 }
 
 .resultCard{
@@ -778,8 +821,14 @@ footer{
     <span class="jp">ておく・クイズ</span>
   </div>
 
+  <!-- Status siswa yang sedang login -->
+  <div class="studentBadge" id="studentBadge">
+    <span class="dotOk"></span>
+    <span id="studentBadgeText">Memeriksa status login...</span>
+  </div>
+
   <div class="infoNote">
-    <b>Petunjuk umum:</b> Kuis ini terbagi menjadi 2 bagian dengan instruksi masing-masing di atas soalnya. Isi semua soal, lalu tekan tombol <b>"Selesai & Periksa Jawaban"</b> di bagian paling bawah untuk melihat nilai dan kunci jawaban. <b>Kuis hanya bisa dikerjakan satu kali</b> — setelah diperiksa, jawaban akan terkunci.
+    <b>Petunjuk umum:</b> Kuis ini terbagi menjadi 2 bagian dengan instruksi masing-masing di atas soalnya. Isi semua soal, lalu tekan tombol <b>"Selesai & Periksa Jawaban"</b> di bagian paling bawah untuk melihat nilai dan kunci jawaban. <b>Kuis hanya bisa dikerjakan satu kali per siswa</b> — setelah diperiksa, jawaban akan terkunci untuk akun tersebut.
   </div>
 
   <div class="progressWrap">
@@ -792,7 +841,8 @@ footer{
     <h3>Hasil Kuis</h3>
     <div class="resultScore" id="resultScore">0 / 6</div>
     <p id="resultMsg">Terus berlatih ya!</p>
-    <p class="lockedNote">🔒 Kuis ini sudah kamu kerjakan dan tidak bisa dikerjakan ulang.</p>
+    <p class="lockedNote mono" id="finishedAtNote" style="color:var(--muted);"></p>
+    <p class="lockedNote" id="lockedNote">🔒 Kuis ini sudah kamu kerjakan dan tidak bisa dikerjakan ulang.</p>
   </div>
 
   <form id="quizForm">
@@ -809,60 +859,60 @@ footer{
     <!-- SOAL 1 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">1 Pilihlah kalimat yang tepat!</span></div>
-      <div class="opt"><input type="radio" name="q1" id="q1a" value="a"><label for="q1a">資料を準備しておきます。</label></div>
-      <div class="opt"><input type="radio" name="q1" id="q1b" value="b"><label for="q1b">資料を準備するおきます。</label></div>
-      <div class="opt"><input type="radio" name="q1" id="q1c" value="c"><label for="q1c">資料を準備しおきます。</label></div>
-      <div class="opt"><input type="radio" name="q1" id="q1d" value="d"><label for="q1d">資料を準備しましたおきます。</label></div>
+      <div class="opt"><input type="radio" name="q1" id="q1a" value="a"><label for="q1a"><b>A.</b> 資料を準備しておきます。</label></div>
+      <div class="opt"><input type="radio" name="q1" id="q1b" value="b"><label for="q1b"><b>B.</b> 資料を準備するおきます。</label></div>
+      <div class="opt"><input type="radio" name="q1" id="q1c" value="c"><label for="q1c"><b>C.</b> 資料を準備しおきます。</label></div>
+      <div class="opt"><input type="radio" name="q1" id="q1d" value="d"><label for="q1d"><b>D.</b> 資料を準備しましたおきます。</label></div>
       <div class="explain" id="ex1"><b>Penjelasan:</b> ～ておく menempel pada bentuk て kata kerja, jadi 準備する → 準備して → 準備しておく. Bentuk kamus atau bentuk ます tidak bisa digabung langsung dengan おく.</div>
     </div>
 
     <!-- SOAL 2 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">2 Pilihlah kalimat yang tepat!</span></div>
-      <div class="opt"><input type="radio" name="q2" id="q2a" value="a"><label for="q2a">ケーキを冷蔵庫に入れるおきます。</label></div>
-      <div class="opt"><input type="radio" name="q2" id="q2b" value="b"><label for="q2b">ケーキを冷蔵庫に入れおきます。</label></div>
-      <div class="opt"><input type="radio" name="q2" id="q2c" value="c"><label for="q2c">ケーキを冷蔵庫に入れておきます。</label></div>
-      <div class="opt"><input type="radio" name="q2" id="q2d" value="d"><label for="q2d">ケーキを冷蔵庫に入れたおきます。</label></div>
+      <div class="opt"><input type="radio" name="q2" id="q2a" value="a"><label for="q2a"><b>A.</b> ケーキを冷蔵庫に入れるおきます。</label></div>
+      <div class="opt"><input type="radio" name="q2" id="q2b" value="b"><label for="q2b"><b>B.</b> ケーキを冷蔵庫に入れおきます。</label></div>
+      <div class="opt"><input type="radio" name="q2" id="q2c" value="c"><label for="q2c"><b>C.</b> ケーキを冷蔵庫に入れておきます。</label></div>
+      <div class="opt"><input type="radio" name="q2" id="q2d" value="d"><label for="q2d"><b>D.</b> ケーキを冷蔵庫に入れたおきます。</label></div>
       <div class="explain" id="ex2"><b>Penjelasan:</b> 入れる → て形 入れて → 入れておきます. Jawaban yang benar adalah ケーキを冷蔵庫に入れておきます (menyimpan kue di kulkas terlebih dahulu, supaya nanti siap dimakan).</div>
     </div>
 
     <!-- SOAL 3 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">3 Pilihlah kalimat yang tepat!</span></div>
-      <div class="opt"><input type="radio" name="q3" id="q3a" value="a"><label for="q3a">飲み物を買うおきます。</label></div>
-      <div class="opt"><input type="radio" name="q3" id="q3b" value="b"><label for="q3b">飲み物を買っておきます。</label></div>
-      <div class="opt"><input type="radio" name="q3" id="q3c" value="c"><label for="q3c">飲み物を買いておきます。</label></div>
-      <div class="opt"><input type="radio" name="q3" id="q3d" value="d"><label for="q3d">飲み物を買ったおきます。</label></div>
+      <div class="opt"><input type="radio" name="q3" id="q3a" value="a"><label for="q3a"><b>A.</b> 飲み物を買うおきます。</label></div>
+      <div class="opt"><input type="radio" name="q3" id="q3b" value="b"><label for="q3b"><b>B.</b> 飲み物を買っておきます。</label></div>
+      <div class="opt"><input type="radio" name="q3" id="q3c" value="c"><label for="q3c"><b>C.</b> 飲み物を買いておきます。</label></div>
+      <div class="opt"><input type="radio" name="q3" id="q3d" value="d"><label for="q3d"><b>D.</b> 飲み物を買ったおきます。</label></div>
       <div class="explain" id="ex3"><b>Penjelasan:</b> Kata kerja yang berakhiran う seperti 買う menggunakan て形 って, jadi 買う → 買って → 買っておきます. Jawaban benar adalah 飲み物を買っておきます (membeli minuman terlebih dahulu).</div>
     </div>
 
     <!-- SOAL 4 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">4 Pilihlah kalimat yang tepat!</span></div>
-      <div class="opt"><input type="radio" name="q4" id="q4a" value="a"><label for="q4a">ビールを冷やすおきます。</label></div>
-      <div class="opt"><input type="radio" name="q4" id="q4b" value="b"><label for="q4b">ビールを冷やしておきます。</label></div>
-      <div class="opt"><input type="radio" name="q4" id="q4c" value="c"><label for="q4c">ビールを冷やしますおきます。</label></div>
-      <div class="opt"><input type="radio" name="q4" id="q4d" value="d"><label for="q4d">ビールを冷やしおきます。</label></div>
+      <div class="opt"><input type="radio" name="q4" id="q4a" value="a"><label for="q4a"><b>A.</b> ビールを冷やすおきます。</label></div>
+      <div class="opt"><input type="radio" name="q4" id="q4b" value="b"><label for="q4b"><b>B.</b> ビールを冷やしておきます。</label></div>
+      <div class="opt"><input type="radio" name="q4" id="q4c" value="c"><label for="q4c"><b>C.</b> ビールを冷やしますおきます。</label></div>
+      <div class="opt"><input type="radio" name="q4" id="q4d" value="d"><label for="q4d"><b>D.</b> ビールを冷やしおきます。</label></div>
       <div class="explain" id="ex4"><b>Penjelasan:</b> 冷やす → て形 冷やして → 冷やしておきます. Jawaban benar adalah ビールを冷やしておきます (mendinginkan bir terlebih dahulu, supaya nanti sudah dingin saat diminum).</div>
     </div>
 
     <!-- SOAL 5 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">5 Pilihlah kalimat yang tepat!</span></div>
-      <div class="opt"><input type="radio" name="q5" id="q5a" value="a"><label for="q5a">メモを書くおきます。</label></div>
-      <div class="opt"><input type="radio" name="q5" id="q5b" value="b"><label for="q5b">メモを書きおきます。</label></div>
-      <div class="opt"><input type="radio" name="q5" id="q5c" value="c"><label for="q5c">メモを書いておきます。</label></div>
-      <div class="opt"><input type="radio" name="q5" id="q5d" value="d"><label for="q5d">メモを書いたおきます。</label></div>
+      <div class="opt"><input type="radio" name="q5" id="q5a" value="a"><label for="q5a"><b>A.</b> メモを書くおきます。</label></div>
+      <div class="opt"><input type="radio" name="q5" id="q5b" value="b"><label for="q5b"><b>B.</b> メモを書きおきます。</label></div>
+      <div class="opt"><input type="radio" name="q5" id="q5c" value="c"><label for="q5c"><b>C.</b> メモを書いておきます。</label></div>
+      <div class="opt"><input type="radio" name="q5" id="q5d" value="d"><label for="q5d"><b>D.</b> メモを書いたおきます。</label></div>
       <div class="explain" id="ex5"><b>Penjelasan:</b> 書く → て形 書いて → 書いておきます. Jawaban benar adalah メモを書いておきます (menulis catatan terlebih dahulu, supaya nanti tidak lupa).</div>
     </div>
 
     <!-- SOAL 6 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">6 Pilihlah kalimat yang paling tepat dan alami!</span></div>
-      <div class="opt"><input type="radio" name="q6" id="q6a" value="a"><label for="q6a">明日会議があるので、資料を準備しておきます。</label></div>
-      <div class="opt"><input type="radio" name="q6" id="q6b" value="b"><label for="q6b">暑いので、飲み物を冷やしておきます。</label></div>
-      <div class="opt"><input type="radio" name="q6" id="q6c" value="c"><label for="q6c">出かける前に、電気を消しておきます。</label></div>
-      <div class="opt"><input type="radio" name="q6" id="q6d" value="d"><label for="q6d">これは日本語のておく形とても難しいておくです。</label></div>
+      <div class="opt"><input type="radio" name="q6" id="q6a" value="a"><label for="q6a"><b>A.</b> 明日会議があるので、資料を準備しておきます。</label></div>
+      <div class="opt"><input type="radio" name="q6" id="q6b" value="b"><label for="q6b"><b>B.</b> 暑いので、飲み物を冷やしておきます。</label></div>
+      <div class="opt"><input type="radio" name="q6" id="q6c" value="c"><label for="q6c"><b>C.</b> 出かける前に、電気を消しておきます。</label></div>
+      <div class="opt"><input type="radio" name="q6" id="q6d" value="d"><label for="q6d"><b>D.</b> これは日本語のておく形とても難しいておくです。</label></div>
       <div class="explain" id="ex6"><b>Penjelasan:</b> Pilihan D tidak masuk akal secara tata bahasa — ておく dipakai berulang tanpa struktur kalimat yang jelas. Pilihan A, B, dan C semuanya adalah kalimat ておく yang benar dan alami, menunjukkan persiapan untuk sesuatu di masa depan.</div>
     </div>
 
@@ -879,6 +929,7 @@ footer{
     <!-- SOAL 7 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">7</span></div>
+      <div class="qText">Ubahlah kalimat di bawah ini menggunakan <b>～ておく</b>!</div>
       <div class="essayPrompt">電気を消します。</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="7"></textarea>
       <div class="answerKey" id="key7"><b>Contoh jawaban:</b> 電気を消しておきます。</div>
@@ -887,6 +938,7 @@ footer{
     <!-- SOAL 8 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">8</span></div>
+      <div class="qText">Ubahlah kalimat di bawah ini menggunakan <b>～ておく</b>!</div>
       <div class="essayPrompt">資料をコピーします。</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="8"></textarea>
       <div class="answerKey" id="key8"><b>Contoh jawaban:</b> 資料をコピーしておきます。</div>
@@ -895,6 +947,7 @@ footer{
     <!-- SOAL 9 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">9</span></div>
+      <div class="qText">Ubahlah kalimat di bawah ini menggunakan <b>～ておく</b>!</div>
       <div class="essayPrompt">部屋を掃除します。</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="9"></textarea>
       <div class="answerKey" id="key9"><b>Contoh jawaban:</b> 部屋を掃除しておきます。</div>
@@ -903,6 +956,7 @@ footer{
     <!-- SOAL 10 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">10</span></div>
+      <div class="qText">Ubahlah kalimat di bawah ini menggunakan <b>～ておく</b>!</div>
       <div class="essayPrompt">飲み物を買います。</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="10"></textarea>
       <div class="answerKey" id="key10"><b>Contoh jawaban:</b> 飲み物を買っておきます。</div>
@@ -1027,7 +1081,59 @@ window.addEventListener("resize", function(){
 const ANSWER_KEY = { q1:"a", q2:"c", q3:"b", q4:"b", q5:"c", q6:"d" };
 const TOTAL_PG = Object.keys(ANSWER_KEY).length;
 const ESSAY_IDS = ["7","8","9","10"];
-const STORAGE_KEY = "tekipaki_kuisteoku_done";
+
+/* ---------------------------------------------------------
+   PERBAIKAN UTAMA (disamakan dengan kuis ながら & てしまう):
+   STORAGE_KEY sekarang unik per siswa, mengikuti kode siswa
+   yang sedang login (disimpan oleh elearning.html di
+   sessionStorage dengan key "tekipaki_current_code").
+   Sebelumnya STORAGE_KEY tetap ("tekipaki_kuisteoku_done"),
+   sehingga hasil kuis satu siswa akan mengunci kuis untuk
+   siswa lain yang login di device/browser yang sama.
+--------------------------------------------------------- */
+
+const CURRENT_CODE = (function(){
+  try{
+    const code = sessionStorage.getItem("tekipaki_current_code");
+    return code ? code.trim().toUpperCase() : null;
+  }catch(e){
+    return null;
+  }
+})();
+
+const IS_LOGGED_IN = !!CURRENT_CODE;
+
+const STORAGE_KEY = "tekipaki_kuisteoku_done_" + (CURRENT_CODE || "GUEST");
+
+function updateStudentBadge(){
+  const badge = document.getElementById("studentBadge");
+  const text = document.getElementById("studentBadgeText");
+  if(!badge || !text){ return; }
+
+  if(IS_LOGGED_IN){
+    badge.classList.remove("warn");
+    text.innerHTML = 'Kuis ini akan tersimpan untuk akun: <b>' + CURRENT_CODE + '</b>';
+  }else{
+    badge.classList.add("warn");
+    text.innerHTML = '⚠️ Kamu belum login lewat halaman <b>Siswa</b>. Hasil kuis ini akan tersimpan sebagai tamu (GUEST) dan bisa tercampur dengan siswa lain di device ini. <a href="elearning.html" style="color:inherit;text-decoration:underline;">Login dulu di sini</a>, lalu buka kuis ini lagi dari menu materi.';
+  }
+}
+
+function fmtFinishedAt(iso){
+  if(!iso){ return ""; }
+  try{
+    const d = new Date(iso);
+    const tanggal = d.toLocaleDateString("id-ID", {
+      day:"2-digit", month:"long", year:"numeric"
+    });
+    const jam = d.toLocaleTimeString("id-ID", {
+      hour:"2-digit", minute:"2-digit"
+    });
+    return "Diselesaikan pada " + tanggal + " · " + jam + " WIB";
+  }catch(e){
+    return "";
+  }
+}
 
 function totalAnswered(){
   let answered = 0;
@@ -1066,7 +1172,7 @@ function lockQuiz(){
   document.getElementById("submitBtn").style.display = "none";
 }
 
-function revealAll(score){
+function revealAll(score, finishedAtISO){
   Object.keys(ANSWER_KEY).forEach(name => {
     const num = name.replace("q","");
     document.getElementById("ex" + num).classList.add("show");
@@ -1088,6 +1194,18 @@ function revealAll(score){
   }
   document.getElementById("resultMsg").textContent = msg;
 
+  const finishedAtNote = document.getElementById("finishedAtNote");
+  if(finishedAtNote){
+    finishedAtNote.textContent = fmtFinishedAt(finishedAtISO);
+  }
+
+  const lockedNote = document.getElementById("lockedNote");
+  if(lockedNote){
+    lockedNote.textContent = IS_LOGGED_IN
+      ? "🔒 Kuis ini sudah dikerjakan oleh akun " + CURRENT_CODE + " dan tidak bisa dikerjakan ulang di akun ini."
+      : "🔒 Kuis ini sudah kamu kerjakan sebagai tamu (GUEST) di device ini dan tidak bisa dikerjakan ulang.";
+  }
+
   resultCard.classList.add("show");
   resultCard.scrollIntoView({ behavior:"smooth", block:"start" });
 }
@@ -1105,7 +1223,7 @@ function checkAnswers(){
   });
 
   if(unansweredPG.length > 0 || emptyEssay.length > 0){
-    alert("Masih ada soal yang belum diisi (" + (unansweredPG.length + emptyEssay.length) + " soal). Lengkapi semua soal di Bagian A dan Bagian B dulu ya sebelum diperiksa — kuis ini hanya bisa dikerjakan satu kali.");
+    alert("Masih ada soal yang belum diisi (" + (unansweredPG.length + emptyEssay.length) + " soal). Lengkapi semua soal di Bagian A dan Bagian B dulu ya sebelum diperiksa — kuis ini hanya bisa dikerjakan satu kali per akun.");
     return;
   }
 
@@ -1139,12 +1257,16 @@ function checkAnswers(){
     savedEssay[id] = box.value;
   });
 
+  const finishedAt = new Date().toISOString();
+
   lockQuiz();
-  revealAll(score);
+  revealAll(score, finishedAt);
 
   try{
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      done:true, score:score, pg:savedPG, essay:savedEssay
+      code: CURRENT_CODE || "GUEST",
+      done:true, score:score, pg:savedPG, essay:savedEssay,
+      finishedAt: finishedAt
     }));
   }catch(e){ /* localStorage unavailable, quiz still works for this session */ }
 }
@@ -1179,10 +1301,11 @@ function restoreIfDone(){
   });
 
   lockQuiz();
-  revealAll(saved.score);
+  revealAll(saved.score, saved.finishedAt);
   updateProgress();
 }
 
+updateStudentBadge();
 restoreIfDone();
 updateProgress();
 </script>
