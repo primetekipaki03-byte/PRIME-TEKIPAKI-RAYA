@@ -497,6 +497,16 @@ a{
   font-size:.8rem;
 }
 
+.qText{
+  font-size:1.02rem;
+  line-height:1.6;
+  color:var(--ink);
+  margin-bottom:16px;
+}
+.qText b{
+  color:var(--navy);
+}
+
 .essayPrompt{
   font-family:"Shippori Mincho",serif;
   font-size:1.15rem;
@@ -831,60 +841,65 @@ footer{
     <!-- SOAL 1 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">1 Pilihlah kalimat yang tepat!</span></div>
-      <div class="opt"><input type="radio" name="q1" id="q1a" value="a"><label for="q1a">明日、早く起きるなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q1" id="q1b" value="b"><label for="q1b">明日、早く起きなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q1" id="q1c" value="c"><label for="q1c">明日、早く起きましたなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q1" id="q1d" value="d"><label for="q1d">明日、早く起きてなければなりません。</label></div>
+      <div class="essayPrompt">明日、早く起きます。</div>
+      <div class="opt"><input type="radio" name="q1" id="q1a" value="a"><label for="q1a"><b>A.</b> 明日、早く起きるなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q1" id="q1b" value="b"><label for="q1b"><b>B.</b> 明日、早く起きなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q1" id="q1c" value="c"><label for="q1c"><b>C.</b> 明日、早く起きましたなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q1" id="q1d" value="d"><label for="q1d"><b>D.</b> 明日、早く起きてなければなりません。</label></div>
       <div class="explain" id="ex1"><b>Penjelasan:</b> ～なければならない menempel pada bentuk ～ない kata kerja (tanpa い). 起きる → 起きない → 起きなければなりません. Bentuk kamus, bentuk ます, atau bentuk て tidak bisa digabung langsung dengan なければならない.</div>
     </div>
 
     <!-- SOAL 2 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">2 Pilihlah kalimat yang tepat!</span></div>
-      <div class="opt"><input type="radio" name="q2" id="q2a" value="a"><label for="q2a">今日中に宿題をしなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q2" id="q2b" value="b"><label for="q2b">今日中に宿題をするなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q2" id="q2c" value="c"><label for="q2c">今日中に宿題をしませんなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q2" id="q2d" value="d"><label for="q2d">今日中に宿題をしないなければなりません。</label></div>
+      <div class="essayPrompt">今日中に宿題をします。</div>
+      <div class="opt"><input type="radio" name="q2" id="q2a" value="a"><label for="q2a"><b>A.</b> 今日中に宿題をしなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q2" id="q2b" value="b"><label for="q2b"><b>B.</b> 今日中に宿題をするなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q2" id="q2c" value="c"><label for="q2c"><b>C.</b> 今日中に宿題をしませんなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q2" id="q2d" value="d"><label for="q2d"><b>D.</b> 今日中に宿題をしないなければなりません。</label></div>
       <div class="explain" id="ex2"><b>Penjelasan:</b> する adalah kata kerja tidak beraturan. する → しない → しなければなりません. Jawaban yang benar adalah 今日中に宿題をしなければなりません (harus mengerjakan PR hari ini juga).</div>
     </div>
 
     <!-- SOAL 3 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">3 Pilihlah kalimat yang tepat!</span></div>
-      <div class="opt"><input type="radio" name="q3" id="q3a" value="a"><label for="q3a">パスポートを持って行くなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q3" id="q3b" value="b"><label for="q3b">パスポートを持って行かなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q3" id="q3c" value="c"><label for="q3c">パスポートを持って行きなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q3" id="q3d" value="d"><label for="q3d">パスポートを持って行ったなければなりません。</label></div>
+      <div class="essayPrompt">パスポートを持って行きます。</div>
+      <div class="opt"><input type="radio" name="q3" id="q3a" value="a"><label for="q3a"><b>A.</b> パスポートを持って行くなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q3" id="q3b" value="b"><label for="q3b"><b>B.</b> パスポートを持って行かなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q3" id="q3c" value="c"><label for="q3c"><b>C.</b> パスポートを持って行きなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q3" id="q3d" value="d"><label for="q3d"><b>D.</b> パスポートを持って行ったなければなりません。</label></div>
       <div class="explain" id="ex3"><b>Penjelasan:</b> Kata kerja golongan I yang berakhiran く seperti 行く memiliki bentuk ～ない: 行く → 行かない. Jadi bentuknya menjadi 行かなければなりません (harus pergi/membawa).</div>
     </div>
 
     <!-- SOAL 4 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">4 Pilihlah kalimat yang tepat!</span></div>
-      <div class="opt"><input type="radio" name="q4" id="q4a" value="a"><label for="q4a">図書館では静かなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q4" id="q4b" value="b"><label for="q4b">図書館では静かにしなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q4" id="q4c" value="c"><label for="q4c">図書館では静かだなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q4" id="q4d" value="d"><label for="q4d">図書館では静かでなければなりません。</label></div>
+      <div class="essayPrompt">図書館では静かです。</div>
+      <div class="opt"><input type="radio" name="q4" id="q4a" value="a"><label for="q4a"><b>A.</b> 図書館では静かなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q4" id="q4b" value="b"><label for="q4b"><b>B.</b> 図書館では静かにしなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q4" id="q4c" value="c"><label for="q4c"><b>C.</b> 図書館では静かだなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q4" id="q4d" value="d"><label for="q4d"><b>D.</b> 図書館では静かでなければなりません。</label></div>
       <div class="explain" id="ex4"><b>Penjelasan:</b> Untuk kata sifat -na seperti 静か, bentuk negatifnya adalah 静かではない, sehingga dengan なければならない menjadi 静かでなければなりません (harus tenang).</div>
     </div>
 
     <!-- SOAL 5 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">5 Pilihlah kalimat yang tepat!</span></div>
-      <div class="opt"><input type="radio" name="q5" id="q5a" value="a"><label for="q5a">薬を飲む前に、ご飯を食べるなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q5" id="q5b" value="b"><label for="q5b">薬を飲む前に、ご飯を食べなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q5" id="q5c" value="c"><label for="q5c">薬を飲む前に、ご飯を食べましたなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q5" id="q5d" value="d"><label for="q5d">薬を飲む前に、ご飯を食べたなければなりません。</label></div>
+      <div class="essayPrompt">薬を飲む前に、ご飯を食べます。</div>
+      <div class="opt"><input type="radio" name="q5" id="q5a" value="a"><label for="q5a"><b>A.</b> 薬を飲む前に、ご飯を食べるなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q5" id="q5b" value="b"><label for="q5b"><b>B.</b> 薬を飲む前に、ご飯を食べなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q5" id="q5c" value="c"><label for="q5c"><b>C.</b> 薬を飲む前に、ご飯を食べましたなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q5" id="q5d" value="d"><label for="q5d"><b>D.</b> 薬を飲む前に、ご飯を食べたなければなりません。</label></div>
       <div class="explain" id="ex5"><b>Penjelasan:</b> 食べる (golongan II) → 食べない → 食べなければなりません. Jawaban benar adalah 薬を飲む前に、ご飯を食べなければなりません (harus makan dulu sebelum minum obat).</div>
     </div>
 
     <!-- SOAL 6 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">6 Pilihlah kalimat yang paling tepat dan alami!</span></div>
-      <div class="opt"><input type="radio" name="q6" id="q6a" value="a"><label for="q6a">明日は試験があるので、たくさん勉強しなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q6" id="q6b" value="b"><label for="q6b">寒いので、コートを着なければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q6" id="q6c" value="c"><label for="q6c">会議の前に、資料を準備しなければなりません。</label></div>
-      <div class="opt"><input type="radio" name="q6" id="q6d" value="d"><label for="q6d">これはなければならないのなければならないという文法です。</label></div>
+      <div class="opt"><input type="radio" name="q6" id="q6a" value="a"><label for="q6a"><b>A.</b> 明日は試験があるので、たくさん勉強しなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q6" id="q6b" value="b"><label for="q6b"><b>B.</b> 寒いので、コートを着なければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q6" id="q6c" value="c"><label for="q6c"><b>C.</b> 会議の前に、資料を準備しなければなりません。</label></div>
+      <div class="opt"><input type="radio" name="q6" id="q6d" value="d"><label for="q6d"><b>D.</b> これはなければならないのなければならないという文法です。</label></div>
       <div class="explain" id="ex6"><b>Penjelasan:</b> Pilihan D tidak masuk akal secara tata bahasa — なければならない dipakai berulang tanpa struktur kalimat yang jelas. Pilihan A, B, dan C semuanya adalah kalimat なければならない yang benar dan alami, menunjukkan kewajiban atau keharusan melakukan sesuatu.</div>
     </div>
 
@@ -901,6 +916,7 @@ footer{
     <!-- SOAL 7 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">7</span></div>
+      <div class="qText">Ubahlah kalimat di bawah ini menggunakan <b>～なければならない</b>!</div>
       <div class="essayPrompt">薬を飲みます。</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="7"></textarea>
       <div class="answerKey" id="key7"><b>Contoh jawaban:</b> 薬を飲まなければなりません。</div>
@@ -909,6 +925,7 @@ footer{
     <!-- SOAL 8 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">8</span></div>
+      <div class="qText">Ubahlah kalimat di bawah ini menggunakan <b>～なければならない</b>!</div>
       <div class="essayPrompt">明日、学校に行きます。</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="8"></textarea>
       <div class="answerKey" id="key8"><b>Contoh jawaban:</b> 明日、学校に行かなければなりません。</div>
@@ -917,6 +934,7 @@ footer{
     <!-- SOAL 9 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">9</span></div>
+      <div class="qText">Ubahlah kalimat di bawah ini menggunakan <b>～なければならない</b>!</div>
       <div class="essayPrompt">部屋を掃除します。</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="9"></textarea>
       <div class="answerKey" id="key9"><b>Contoh jawaban:</b> 部屋を掃除しなければなりません。</div>
@@ -925,6 +943,7 @@ footer{
     <!-- SOAL 10 -->
     <div class="qCard">
       <div class="qTop"><span class="qNum">10</span></div>
+      <div class="qText">Ubahlah kalimat di bawah ini menggunakan <b>～なければならない</b>!</div>
       <div class="essayPrompt">早く寝ます。</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="10"></textarea>
       <div class="answerKey" id="key10"><b>Contoh jawaban:</b> 早く寝なければなりません。</div>
