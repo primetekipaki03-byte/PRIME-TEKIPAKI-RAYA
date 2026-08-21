@@ -1,0 +1,6494 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar Kanji JLPT N2</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy-deep:#001530;
+    --navy2:#022655;
+    --gold:#e0b52a;
+    --gold-bright:#facc15;
+    --paper:#fffdf7;
+    --ink:#001f3f;
+    --muted:#5b6b7d;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins","Segoe UI",Arial,sans-serif;}
+.jp{font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif;}
+body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
+
+/* =======================
+        NAVBAR
+======================= */
+#navbar{position:sticky;top:0;z-index:999;background:var(--navy-deep);
+    border-bottom:2px solid rgba(250,204,21,.25);box-shadow:0 4px 14px rgba(0,0,0,.35);}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;}
+.nav-left{display:flex;align-items:center;}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy-deep);
+    text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;}
+.home-btn:hover{opacity:.85;}
+.home-icon{width:24px;height:24px;object-fit:cover;border-radius:4px;}
+.dropdown{position:relative;}
+.dropdown-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;
+    border-radius:8px;font-weight:bold;cursor:pointer;}
+.dropdown-btn:hover{background:var(--gold);color:var(--navy-deep);}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:var(--navy2);border-radius:10px;
+    overflow:hidden;min-width:220px;max-width:90vw;box-shadow:0 8px 20px rgba(0,0,0,.4);}
+.dropdown-menu.align-right{left:auto;right:0;}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none;}
+.dropdown-menu a:hover{background:var(--gold);color:var(--navy-deep);}
+.show{display:block;}
+
+/* Hamburger button (mobile only) */
+.hamburger-btn{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+  width:40px;height:40px;
+  background:none;
+  border:2px solid var(--gold);
+  border-radius:8px;
+  cursor:pointer;
+  padding:0;
+}
+.hamburger-btn span{
+  display:block;
+  width:20px;height:2px;
+  background:var(--gold);
+  margin:0 auto;
+  border-radius:2px;
+  transition:transform .25s ease, opacity .25s ease;
+}
+.hamburger-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger-btn.open span:nth-child(2){opacity:0;}
+.hamburger-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* Mobile slide-down menu */
+.mobile-menu{
+  display:none;
+  background:var(--navy-deep);
+  border-top:1px solid rgba(250,204,21,.2);
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .3s ease;
+}
+.mobile-menu.open{max-height:80vh;overflow-y:auto;}
+.mobile-section{border-bottom:1px solid rgba(255,255,255,.08);}
+.mobile-section-btn{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:none;
+  border:none;
+  color:var(--gold-bright);
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:.06em;
+  padding:14px 20px;
+  cursor:pointer;
+}
+.mobile-section-btn .chevron{transition:transform .2s ease;}
+.mobile-section-btn.open .chevron{transform:rotate(180deg);}
+.mobile-section-links{
+  display:none;
+  flex-direction:column;
+  background:rgba(0,0,0,.15);
+}
+.mobile-section-links.show{display:flex;}
+.mobile-section-links a{
+  padding:12px 30px;
+  color:#dbe4f0;
+  text-decoration:none;
+  font-size:13.5px;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.mobile-section-links a:hover{background:rgba(250,204,21,.12);color:var(--gold-bright);}
+
+@media(max-width:600px){
+  .nav-right{display:none;}
+  .hamburger-btn{display:flex;}
+  .mobile-menu{display:block;}
+}
+
+/* =======================
+        HEADER
+======================= */
+header{
+  position:relative;
+  background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 55%,#003366 100%);
+  color:#fff;
+  padding:50px 20px 40px;
+  text-align:center;
+  overflow:hidden;
+}
+header .kanji-watermark{
+  position:absolute;
+  font-size:min(40vw,320px);
+  font-weight:900;
+  color:rgba(255,255,255,.04);
+  top:50%;left:50%;
+  transform:translate(-50%,-46%);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+  white-space:nowrap;
+}
+.header-inner{position:relative;z-index:2;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.4);
+  color:var(--gold-bright);font-size:12px;font-weight:700;letter-spacing:.14em;
+  padding:6px 14px;border-radius:999px;margin-bottom:16px;
+}
+header h1{font-size:clamp(1.7rem,4.5vw,2.5rem);margin-bottom:10px;}
+header p{
+  color:#cdd8ea;
+  max-width:680px;
+  margin:0 auto;
+  font-size:14.5px;
+  line-height:1.7;
+}
+
+/* =======================
+        SEARCH
+======================= */
+.search-wrap{
+  max-width:520px;
+  margin:22px auto 0;
+  position:relative;
+  z-index:2;
+}
+.search-wrap input{
+  width:100%;
+  padding:13px 18px 13px 42px;
+  border-radius:12px;
+  border:none;
+  font-size:14.5px;
+  color:var(--navy);
+  background:#fff;
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+.search-wrap input:focus{outline:2px solid var(--gold-bright);}
+.search-wrap::before{
+  content:"🔍";
+  position:absolute;
+  left:15px;top:50%;
+  transform:translateY(-50%);
+  font-size:15px;
+  z-index:3;
+}
+.search-count{
+  text-align:center;
+  color:var(--muted);
+  font-size:12.5px;
+  margin-top:10px;
+}
+
+/* =======================
+        KANJI GRID
+======================= */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:34px 20px 20px;
+}
+
+.kanji-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:14px;
+}
+
+.kanji-card{
+  position:relative;
+  background:var(--paper);
+  border:2px solid rgba(0,31,63,.08);
+  border-radius:14px;
+  padding:16px 10px 14px;
+  text-align:center;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.kanji-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--gold);
+  box-shadow:0 10px 22px rgba(0,31,63,.15);
+}
+.k-kanji{
+  font-size:2rem;
+  font-weight:700;
+  color:var(--navy);
+  line-height:1.15;
+  margin-bottom:6px;
+}
+.k-reading{
+  font-size:12.5px;
+  color:#a4780a;
+  font-weight:600;
+  margin-bottom:6px;
+}
+.k-meaning{
+  font-size:11.5px;
+  color:var(--muted);
+  line-height:1.4;
+}
+.kanji-card.hide{display:none;}
+
+@media(max-width:1100px){ .kanji-grid{grid-template-columns:repeat(5,1fr);} }
+@media(max-width:900px){ .kanji-grid{grid-template-columns:repeat(4,1fr);} }
+@media(max-width:700px){ .kanji-grid{grid-template-columns:repeat(3,1fr);} }
+@media(max-width:460px){
+  .kanji-grid{grid-template-columns:repeat(2,1fr);}
+  header h1{font-size:1.5rem;}
+  .k-kanji{font-size:1.7rem;}
+}
+
+footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 40px;}
+
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+<div class="dropdown-menu" id="materi">
+<a href="daftarkosakata.html">Kosakata JFT</a>
+<a href="materitatabahasa.html">Tata Bahasa</a>
+<a href="daftarkanji.html">Daftar Kanji</a>
+<a href="kanjidasar.html">Kanji Flash Card</a>
+</div>
+</div>
+
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+<div class="dropdown-menu" id="quiz">
+<a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+<a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+<a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+<a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+<a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+</div>
+</div>
+
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+<div class="dropdown-menu" id="kanjiquiz">
+<a href="quizkanji1.html">QUIZ KANJI 1</a>
+<a href="quizkanji2.html">QUIZ KANJI 2</a>
+<a href="quizkanji3.html">QUIZ KANJI 3</a>
+<a href="quizkanji4.html">QUIZ KANJI 4</a>
+<a href="quizkanji5.html">QUIZ KANJI 5</a>
+</div>
+</div>
+</div>
+
+<button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+
+<div class="mobile-section">
+<button class="mobile-section-btn" onclick="toggleMobileSection('m-materi')">MATERI <span class="chevron">▼</span></button>
+<div class="mobile-section-links" id="m-materi">
+<a href="daftarkosakata.html">Kosakata JFT</a>
+<a href="materitatabahasa.html">Tata Bahasa</a>
+<a href="daftarkanji.html">Daftar Kanji</a>
+<a href="kanjidasar.html">Kanji Flash Card</a>
+</div>
+</div>
+
+<div class="mobile-section">
+<button class="mobile-section-btn" onclick="toggleMobileSection('m-quiz')">QUIZ JFT <span class="chevron">▼</span></button>
+<div class="mobile-section-links" id="m-quiz">
+<a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+<a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+<a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+<a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+<a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+</div>
+</div>
+
+<div class="mobile-section">
+<button class="mobile-section-btn" onclick="toggleMobileSection('m-kanjiquiz')">QUIZ KANJI <span class="chevron">▼</span></button>
+<div class="mobile-section-links" id="m-kanjiquiz">
+<a href="quizkanji1.html">QUIZ KANJI 1</a>
+<a href="quizkanji2.html">QUIZ KANJI 2</a>
+<a href="quizkanji3.html">QUIZ KANJI 3</a>
+<a href="quizkanji4.html">QUIZ KANJI 4</a>
+<a href="quizkanji5.html">QUIZ KANJI 5</a>
+</div>
+</div>
+
+</div>
+</nav>
+
+<header>
+  <div class="kanji-watermark jp">漢字</div>
+  <div class="header-inner">
+    <div class="eyebrow">🈷️ MATERI · KANJI N2</div>
+    <h1>Daftar Kanji JLPT N2</h1>
+    <p>Kumpulan kosakata kanji tingkat N2 lengkap dengan cara baca dan artinya. Gunakan kolom pencarian untuk menemukan kanji tertentu dengan cepat.</p>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" placeholder="Cari kanji, cara baca, atau arti..." oninput="filterKanji()">
+    </div>
+    <div class="search-count" id="searchCount"></div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="kanji-grid" id="kanjiGrid">
+<div class="kanji-card">
+<div class="k-kanji jp">経験</div>
+<div class="k-reading jp">けいけん</div>
+<div class="k-meaning">pengalaman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">改善</div>
+<div class="k-reading jp">かいぜん</div>
+<div class="k-meaning">perbaikan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">確認</div>
+<div class="k-reading jp">かくにん</div>
+<div class="k-meaning">konfirmasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">状況</div>
+<div class="k-reading jp">じょうきょう</div>
+<div class="k-meaning">situasi / keadaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">原因</div>
+<div class="k-reading jp">げんいん</div>
+<div class="k-meaning">penyebab</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">結果</div>
+<div class="k-reading jp">けっか</div>
+<div class="k-meaning">hasil</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">関係</div>
+<div class="k-reading jp">かんけい</div>
+<div class="k-meaning">hubungan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">影響</div>
+<div class="k-reading jp">えいきょう</div>
+<div class="k-meaning">pengaruh</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">効果</div>
+<div class="k-reading jp">こうか</div>
+<div class="k-meaning">efek</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">判断</div>
+<div class="k-reading jp">はんだん</div>
+<div class="k-meaning">penilaian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">責任</div>
+<div class="k-reading jp">せきにん</div>
+<div class="k-meaning">tanggung jawab</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">提案</div>
+<div class="k-reading jp">ていあん</div>
+<div class="k-meaning">usulan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">協力</div>
+<div class="k-reading jp">きょうりょく</div>
+<div class="k-meaning">kerja sama</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">努力</div>
+<div class="k-reading jp">どりょく</div>
+<div class="k-meaning">usaha / kerja keras</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">成功</div>
+<div class="k-reading jp">せいこう</div>
+<div class="k-meaning">keberhasilan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">失敗</div>
+<div class="k-reading jp">しっぱい</div>
+<div class="k-meaning">kegagalan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">目的</div>
+<div class="k-reading jp">もくてき</div>
+<div class="k-meaning">tujuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">方法</div>
+<div class="k-reading jp">ほうほう</div>
+<div class="k-meaning">cara / metode</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">理由</div>
+<div class="k-reading jp">りゆう</div>
+<div class="k-meaning">alasan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">可能</div>
+<div class="k-reading jp">かのう</div>
+<div class="k-meaning">mungkin / memungkinkan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">重要</div>
+<div class="k-reading jp">じゅうよう</div>
+<div class="k-meaning">penting</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">特別</div>
+<div class="k-reading jp">とくべつ</div>
+<div class="k-meaning">istimewa</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">複雑</div>
+<div class="k-reading jp">ふくざつ</div>
+<div class="k-meaning">rumit / kompleks</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">安全</div>
+<div class="k-reading jp">あんぜん</div>
+<div class="k-meaning">aman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">危険</div>
+<div class="k-reading jp">きけん</div>
+<div class="k-meaning">bahaya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">便利</div>
+<div class="k-reading jp">べんり</div>
+<div class="k-meaning">praktis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">自由</div>
+<div class="k-reading jp">じゆう</div>
+<div class="k-meaning">bebas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">解決</div>
+<div class="k-reading jp">かいけつ</div>
+<div class="k-meaning">penyelesaian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">説明</div>
+<div class="k-reading jp">せつめい</div>
+<div class="k-meaning">penjelasan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">案内</div>
+<div class="k-reading jp">あんない</div>
+<div class="k-meaning">panduan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">準備</div>
+<div class="k-reading jp">じゅんび</div>
+<div class="k-meaning">persiapan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">変更</div>
+<div class="k-reading jp">へんこう</div>
+<div class="k-meaning">perubahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">決定</div>
+<div class="k-reading jp">けってい</div>
+<div class="k-meaning">keputusan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">選択</div>
+<div class="k-reading jp">せんたく</div>
+<div class="k-meaning">pilihan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">比較</div>
+<div class="k-reading jp">ひかく</div>
+<div class="k-meaning">perbandingan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">利用</div>
+<div class="k-reading jp">りよう</div>
+<div class="k-meaning">penggunaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">使用</div>
+<div class="k-reading jp">しよう</div>
+<div class="k-meaning">pemakaian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">参加</div>
+<div class="k-reading jp">さんか</div>
+<div class="k-meaning">partisipasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">出席</div>
+<div class="k-reading jp">しゅっせき</div>
+<div class="k-meaning">kehadiran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">欠席</div>
+<div class="k-reading jp">けっせき</div>
+<div class="k-meaning">ketidakhadiran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">開始</div>
+<div class="k-reading jp">かいし</div>
+<div class="k-meaning">awal / permulaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">終了</div>
+<div class="k-reading jp">しゅうりょう</div>
+<div class="k-meaning">berakhir / selesai</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">中止</div>
+<div class="k-reading jp">ちゅうし</div>
+<div class="k-meaning">pembatalan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">延期</div>
+<div class="k-reading jp">えんき</div>
+<div class="k-meaning">penundaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">到着</div>
+<div class="k-reading jp">とうちゃく</div>
+<div class="k-meaning">kedatangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">出発</div>
+<div class="k-reading jp">しゅっぱつ</div>
+<div class="k-meaning">keberangkatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">移動</div>
+<div class="k-reading jp">いどう</div>
+<div class="k-meaning">perpindahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">習慣</div>
+<div class="k-reading jp">しゅうかん</div>
+<div class="k-meaning">kebiasaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">文化</div>
+<div class="k-reading jp">ぶんか</div>
+<div class="k-meaning">budaya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">社会</div>
+<div class="k-reading jp">しゃかい</div>
+<div class="k-meaning">masyarakat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">経済</div>
+<div class="k-reading jp">けいざい</div>
+<div class="k-meaning">ekonomi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">政治</div>
+<div class="k-reading jp">せいじ</div>
+<div class="k-meaning">politik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">環境</div>
+<div class="k-reading jp">かんきょう</div>
+<div class="k-meaning">lingkungan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">教育</div>
+<div class="k-reading jp">きょういく</div>
+<div class="k-meaning">pendidikan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">研究</div>
+<div class="k-reading jp">けんきゅう</div>
+<div class="k-meaning">penelitian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">技術</div>
+<div class="k-reading jp">ぎじゅつ</div>
+<div class="k-meaning">teknik / teknologi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">情報</div>
+<div class="k-reading jp">じょうほう</div>
+<div class="k-meaning">informasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">知識</div>
+<div class="k-reading jp">ちしき</div>
+<div class="k-meaning">pengetahuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">能力</div>
+<div class="k-reading jp">のうりょく</div>
+<div class="k-meaning">kemampuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">機会</div>
+<div class="k-reading jp">きかい</div>
+<div class="k-meaning">kesempatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">条件</div>
+<div class="k-reading jp">じょうけん</div>
+<div class="k-meaning">syarat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">内容</div>
+<div class="k-reading jp">ないよう</div>
+<div class="k-meaning">isi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意味</div>
+<div class="k-reading jp">いみ</div>
+<div class="k-meaning">makna</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意見</div>
+<div class="k-reading jp">いけん</div>
+<div class="k-meaning">pendapat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">希望</div>
+<div class="k-reading jp">きぼう</div>
+<div class="k-meaning">harapan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">将来</div>
+<div class="k-reading jp">しょうらい</div>
+<div class="k-meaning">masa depan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">現在</div>
+<div class="k-reading jp">げんざい</div>
+<div class="k-meaning">saat ini</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">以前</div>
+<div class="k-reading jp">いぜん</div>
+<div class="k-meaning">sebelumnya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">以後</div>
+<div class="k-reading jp">いご</div>
+<div class="k-meaning">setelah ini</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">途中</div>
+<div class="k-reading jp">とちゅう</div>
+<div class="k-meaning">di tengah jalan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">最初</div>
+<div class="k-reading jp">さいしょ</div>
+<div class="k-meaning">pertama / awal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">最後</div>
+<div class="k-reading jp">さいご</div>
+<div class="k-meaning">terakhir</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">実際</div>
+<div class="k-reading jp">じっさい</div>
+<div class="k-meaning">kenyataan / sebenarnya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">十分</div>
+<div class="k-reading jp">じゅうぶん</div>
+<div class="k-meaning">cukup</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">職場</div>
+<div class="k-reading jp">しょくば</div>
+<div class="k-meaning">tempat kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">給料</div>
+<div class="k-reading jp">きゅうりょう</div>
+<div class="k-meaning">gaji</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">残業</div>
+<div class="k-reading jp">ざんぎょう</div>
+<div class="k-meaning">lembur</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">面接</div>
+<div class="k-reading jp">めんせつ</div>
+<div class="k-meaning">wawancara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">会議</div>
+<div class="k-reading jp">かいぎ</div>
+<div class="k-meaning">rapat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">面談</div>
+<div class="k-reading jp">めんだん</div>
+<div class="k-meaning">konsultasi / wawancara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">相談</div>
+<div class="k-reading jp">そうだん</div>
+<div class="k-meaning">konsultasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">報告</div>
+<div class="k-reading jp">ほうこく</div>
+<div class="k-meaning">laporan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">連続</div>
+<div class="k-reading jp">れんぞく</div>
+<div class="k-meaning">berturut-turut</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">確実</div>
+<div class="k-reading jp">かくじつ</div>
+<div class="k-meaning">pasti / tepat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">正確</div>
+<div class="k-reading jp">せいかく</div>
+<div class="k-meaning">akurat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">原則</div>
+<div class="k-reading jp">げんそく</div>
+<div class="k-meaning">prinsip / asas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">結論</div>
+<div class="k-reading jp">けつろん</div>
+<div class="k-meaning">kesimpulan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意識</div>
+<div class="k-reading jp">いしき</div>
+<div class="k-meaning">kesadaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">理解</div>
+<div class="k-reading jp">りかい</div>
+<div class="k-meaning">pemahaman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">解釈</div>
+<div class="k-reading jp">かいしゃく</div>
+<div class="k-meaning">interpretasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">記憶</div>
+<div class="k-reading jp">きおく</div>
+<div class="k-meaning">ingatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">選挙</div>
+<div class="k-reading jp">せんきょ</div>
+<div class="k-meaning">pemilihan umum</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">政府</div>
+<div class="k-reading jp">せいふ</div>
+<div class="k-meaning">pemerintah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">国家</div>
+<div class="k-reading jp">こっか</div>
+<div class="k-meaning">negara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">国際</div>
+<div class="k-reading jp">こくさい</div>
+<div class="k-meaning">internasional</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">地域</div>
+<div class="k-reading jp">ちいき</div>
+<div class="k-meaning">wilayah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">地方</div>
+<div class="k-reading jp">ちほう</div>
+<div class="k-meaning">daerah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">都市</div>
+<div class="k-reading jp">とし</div>
+<div class="k-meaning">kota</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">住宅</div>
+<div class="k-reading jp">じゅうたく</div>
+<div class="k-meaning">perumahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">建設</div>
+<div class="k-reading jp">けんせつ</div>
+<div class="k-meaning">pembangunan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">工事</div>
+<div class="k-reading jp">こうじ</div>
+<div class="k-meaning">proyek konstruksi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">道路</div>
+<div class="k-reading jp">どうろ</div>
+<div class="k-meaning">jalan raya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">交通</div>
+<div class="k-reading jp">こうつう</div>
+<div class="k-meaning">lalu lintas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">鉄道</div>
+<div class="k-reading jp">てつどう</div>
+<div class="k-meaning">kereta api</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">運転</div>
+<div class="k-reading jp">うんてん</div>
+<div class="k-meaning">mengemudi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">荷物</div>
+<div class="k-reading jp">にもつ</div>
+<div class="k-meaning">barang bawaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">配達</div>
+<div class="k-reading jp">はいたつ</div>
+<div class="k-meaning">pengiriman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">郵便</div>
+<div class="k-reading jp">ゆうびん</div>
+<div class="k-meaning">pos</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">手紙</div>
+<div class="k-reading jp">てがみ</div>
+<div class="k-meaning">surat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">番号</div>
+<div class="k-reading jp">ばんごう</div>
+<div class="k-meaning">nomor</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">新聞</div>
+<div class="k-reading jp">しんぶん</div>
+<div class="k-meaning">koran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">記事</div>
+<div class="k-reading jp">きじ</div>
+<div class="k-meaning">artikel</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">写真</div>
+<div class="k-reading jp">しゃしん</div>
+<div class="k-meaning">foto</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">映画</div>
+<div class="k-reading jp">えいが</div>
+<div class="k-meaning">film</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">音楽</div>
+<div class="k-reading jp">おんがく</div>
+<div class="k-meaning">musik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">歌手</div>
+<div class="k-reading jp">かしゅ</div>
+<div class="k-meaning">penyanyi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">作品</div>
+<div class="k-reading jp">さくひん</div>
+<div class="k-meaning">karya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">芸術</div>
+<div class="k-reading jp">げいじゅつ</div>
+<div class="k-meaning">seni</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">作家</div>
+<div class="k-reading jp">さっか</div>
+<div class="k-meaning">penulis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">小説</div>
+<div class="k-reading jp">しょうせつ</div>
+<div class="k-meaning">novel</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">趣味</div>
+<div class="k-reading jp">しゅみ</div>
+<div class="k-meaning">hobi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">興味</div>
+<div class="k-reading jp">きょうみ</div>
+<div class="k-meaning">minat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">人気</div>
+<div class="k-reading jp">にんき</div>
+<div class="k-meaning">populer</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">有名</div>
+<div class="k-reading jp">ゆうめい</div>
+<div class="k-meaning">terkenal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">世界</div>
+<div class="k-reading jp">せかい</div>
+<div class="k-meaning">dunia</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">自然</div>
+<div class="k-reading jp">しぜん</div>
+<div class="k-meaning">alam</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">動物</div>
+<div class="k-reading jp">どうぶつ</div>
+<div class="k-meaning">hewan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">植物</div>
+<div class="k-reading jp">しょくぶつ</div>
+<div class="k-meaning">tumbuhan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">野菜</div>
+<div class="k-reading jp">やさい</div>
+<div class="k-meaning">sayuran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">果物</div>
+<div class="k-reading jp">くだもの</div>
+<div class="k-meaning">buah-buahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">食品</div>
+<div class="k-reading jp">しょくひん</div>
+<div class="k-meaning">bahan makanan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">料理</div>
+<div class="k-reading jp">りょうり</div>
+<div class="k-meaning">masakan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">材料</div>
+<div class="k-reading jp">ざいりょう</div>
+<div class="k-meaning">bahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">商品</div>
+<div class="k-reading jp">しょうひん</div>
+<div class="k-meaning">barang dagangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">値段</div>
+<div class="k-reading jp">ねだん</div>
+<div class="k-meaning">harga</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">料金</div>
+<div class="k-reading jp">りょうきん</div>
+<div class="k-meaning">biaya / tarif</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">価格</div>
+<div class="k-reading jp">かかく</div>
+<div class="k-meaning">harga</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">費用</div>
+<div class="k-reading jp">ひよう</div>
+<div class="k-meaning">biaya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">無料</div>
+<div class="k-reading jp">むりょう</div>
+<div class="k-meaning">gratis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">現金</div>
+<div class="k-reading jp">げんきん</div>
+<div class="k-meaning">uang tunai</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">銀行</div>
+<div class="k-reading jp">ぎんこう</div>
+<div class="k-meaning">bank</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">貯金</div>
+<div class="k-reading jp">ちょきん</div>
+<div class="k-meaning">tabungan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">支払い</div>
+<div class="k-reading jp">しはらい</div>
+<div class="k-meaning">pembayaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">借金</div>
+<div class="k-reading jp">しゃっきん</div>
+<div class="k-meaning">hutang</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">家賃</div>
+<div class="k-reading jp">やちん</div>
+<div class="k-meaning">sewa rumah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">電気</div>
+<div class="k-reading jp">でんき</div>
+<div class="k-meaning">listrik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">水道</div>
+<div class="k-reading jp">すいどう</div>
+<div class="k-meaning">air ledeng / PDAM</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">温度</div>
+<div class="k-reading jp">おんど</div>
+<div class="k-meaning">suhu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">湿度</div>
+<div class="k-reading jp">しつど</div>
+<div class="k-meaning">kelembapan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">空気</div>
+<div class="k-reading jp">くうき</div>
+<div class="k-meaning">udara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">天気</div>
+<div class="k-reading jp">てんき</div>
+<div class="k-meaning">cuaca</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">気温</div>
+<div class="k-reading jp">きおん</div>
+<div class="k-meaning">suhu udara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">台風</div>
+<div class="k-reading jp">たいふう</div>
+<div class="k-meaning">topan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">地震</div>
+<div class="k-reading jp">じしん</div>
+<div class="k-meaning">gempa bumi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">津波</div>
+<div class="k-reading jp">つなみ</div>
+<div class="k-meaning">tsunami</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">災害</div>
+<div class="k-reading jp">さいがい</div>
+<div class="k-meaning">bencana</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">火災</div>
+<div class="k-reading jp">かさい</div>
+<div class="k-meaning">kebakaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">消防</div>
+<div class="k-reading jp">しょうぼう</div>
+<div class="k-meaning">pemadam kebakaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">救助</div>
+<div class="k-reading jp">きゅうじょ</div>
+<div class="k-meaning">pertolongan / penyelamatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">被害</div>
+<div class="k-reading jp">ひがい</div>
+<div class="k-meaning">kerusakan / korban</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">危険</div>
+<div class="k-reading jp">きけん</div>
+<div class="k-meaning">bahaya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">防止</div>
+<div class="k-reading jp">ぼうし</div>
+<div class="k-meaning">pencegahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">注意</div>
+<div class="k-reading jp">ちゅうい</div>
+<div class="k-meaning">perhatian / hati-hati</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">対策</div>
+<div class="k-reading jp">たいさく</div>
+<div class="k-meaning">langkah / tindakan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">状態</div>
+<div class="k-reading jp">じょうたい</div>
+<div class="k-meaning">kondisi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">程度</div>
+<div class="k-reading jp">ていど</div>
+<div class="k-meaning">tingkat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">原料</div>
+<div class="k-reading jp">げんりょう</div>
+<div class="k-meaning">bahan baku</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">製品</div>
+<div class="k-reading jp">せいひん</div>
+<div class="k-meaning">produk</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">工場</div>
+<div class="k-reading jp">こうじょう</div>
+<div class="k-meaning">pabrik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">生産</div>
+<div class="k-reading jp">せいさん</div>
+<div class="k-meaning">produksi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">製造</div>
+<div class="k-reading jp">せいぞう</div>
+<div class="k-meaning">pembuatan / manufaktur</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">販売</div>
+<div class="k-reading jp">はんばい</div>
+<div class="k-meaning">penjualan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">営業</div>
+<div class="k-reading jp">えいぎょう</div>
+<div class="k-meaning">operasional bisnis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">会社</div>
+<div class="k-reading jp">かいしゃ</div>
+<div class="k-meaning">perusahaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">社長</div>
+<div class="k-reading jp">しゃちょう</div>
+<div class="k-meaning">direktur</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">社員</div>
+<div class="k-reading jp">しゃいん</div>
+<div class="k-meaning">karyawan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">部長</div>
+<div class="k-reading jp">ぶちょう</div>
+<div class="k-meaning">kepala bagian / manajer</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">経営</div>
+<div class="k-reading jp">けいえい</div>
+<div class="k-meaning">manajemen / pengelolaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">企業</div>
+<div class="k-reading jp">きぎょう</div>
+<div class="k-meaning">perusahaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">業界</div>
+<div class="k-reading jp">ぎょうかい</div>
+<div class="k-meaning">industri / bidang usaha</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">職業</div>
+<div class="k-reading jp">しょくぎょう</div>
+<div class="k-meaning">profesi / pekerjaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">勤務</div>
+<div class="k-reading jp">きんむ</div>
+<div class="k-meaning">tugas kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">勤務先</div>
+<div class="k-reading jp">きんむさき</div>
+<div class="k-meaning">tempat kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">収入</div>
+<div class="k-reading jp">しゅうにゅう</div>
+<div class="k-meaning">pendapatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">給料</div>
+<div class="k-reading jp">きゅうりょう</div>
+<div class="k-meaning">gaji</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">仕事</div>
+<div class="k-reading jp">しごと</div>
+<div class="k-meaning">pekerjaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">作業</div>
+<div class="k-reading jp">さぎょう</div>
+<div class="k-meaning">pekerjaan / kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">能力</div>
+<div class="k-reading jp">のうりょく</div>
+<div class="k-meaning">kemampuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">技術</div>
+<div class="k-reading jp">ぎじゅつ</div>
+<div class="k-meaning">teknik / teknologi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">専門</div>
+<div class="k-reading jp">せんもん</div>
+<div class="k-meaning">keahlian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">資格</div>
+<div class="k-reading jp">しかく</div>
+<div class="k-meaning">kualifikasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">試験</div>
+<div class="k-reading jp">しけん</div>
+<div class="k-meaning">ujian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">合格</div>
+<div class="k-reading jp">ごうかく</div>
+<div class="k-meaning">lulus</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不合格</div>
+<div class="k-reading jp">ふごうかく</div>
+<div class="k-meaning">tidak lulus</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">学習</div>
+<div class="k-reading jp">がくしゅう</div>
+<div class="k-meaning">pembelajaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">教科書</div>
+<div class="k-reading jp">きょうかしょ</div>
+<div class="k-meaning">buku pelajaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">授業</div>
+<div class="k-reading jp">じゅぎょう</div>
+<div class="k-meaning">pelajaran / kelas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">教室</div>
+<div class="k-reading jp">きょうしつ</div>
+<div class="k-meaning">ruang kelas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">図書館</div>
+<div class="k-reading jp">としょかん</div>
+<div class="k-meaning">perpustakaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">博物館</div>
+<div class="k-reading jp">はくぶつかん</div>
+<div class="k-meaning">museum</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">医療</div>
+<div class="k-reading jp">いりょう</div>
+<div class="k-meaning">layanan medis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">医師</div>
+<div class="k-reading jp">いし</div>
+<div class="k-meaning">dokter</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">患者</div>
+<div class="k-reading jp">かんじゃ</div>
+<div class="k-meaning">pasien</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">病院</div>
+<div class="k-reading jp">びょういん</div>
+<div class="k-meaning">rumah sakit</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">病気</div>
+<div class="k-reading jp">びょうき</div>
+<div class="k-meaning">sakit / penyakit</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">健康</div>
+<div class="k-reading jp">けんこう</div>
+<div class="k-meaning">kesehatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">症状</div>
+<div class="k-reading jp">しょうじょう</div>
+<div class="k-meaning">gejala</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">治療</div>
+<div class="k-reading jp">ちりょう</div>
+<div class="k-meaning">pengobatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">手術</div>
+<div class="k-reading jp">しゅじゅつ</div>
+<div class="k-meaning">operasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">薬局</div>
+<div class="k-reading jp">やっきょく</div>
+<div class="k-meaning">apotek</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">予防</div>
+<div class="k-reading jp">よぼう</div>
+<div class="k-meaning">pencegahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">原因</div>
+<div class="k-reading jp">げんいん</div>
+<div class="k-meaning">penyebab</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">体調</div>
+<div class="k-reading jp">たいちょう</div>
+<div class="k-meaning">kondisi tubuh</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">精神</div>
+<div class="k-reading jp">せいしん</div>
+<div class="k-meaning">jiwa / mental</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">睡眠</div>
+<div class="k-reading jp">すいみん</div>
+<div class="k-meaning">tidur</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">運動</div>
+<div class="k-reading jp">うんどう</div>
+<div class="k-meaning">olahraga</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">栄養</div>
+<div class="k-reading jp">えいよう</div>
+<div class="k-meaning">nutrisi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">食事</div>
+<div class="k-reading jp">しょくじ</div>
+<div class="k-meaning">makan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">家族</div>
+<div class="k-reading jp">かぞく</div>
+<div class="k-meaning">keluarga</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">両親</div>
+<div class="k-reading jp">りょうしん</div>
+<div class="k-meaning">orang tua</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">夫婦</div>
+<div class="k-reading jp">ふうふ</div>
+<div class="k-meaning">pasangan suami istri</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">子供</div>
+<div class="k-reading jp">こども</div>
+<div class="k-meaning">anak</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">成人</div>
+<div class="k-reading jp">せいじん</div>
+<div class="k-meaning">dewasa</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">女性</div>
+<div class="k-reading jp">じょせい</div>
+<div class="k-meaning">wanita</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">男性</div>
+<div class="k-reading jp">だんせい</div>
+<div class="k-meaning">pria</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">若者</div>
+<div class="k-reading jp">わかもの</div>
+<div class="k-meaning">anak muda</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">高齢</div>
+<div class="k-reading jp">こうれい</div>
+<div class="k-meaning">lanjut usia</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">結婚</div>
+<div class="k-reading jp">けっこん</div>
+<div class="k-meaning">pernikahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">離婚</div>
+<div class="k-reading jp">りこん</div>
+<div class="k-meaning">perceraian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">出産</div>
+<div class="k-reading jp">しゅっさん</div>
+<div class="k-meaning">melahirkan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">育児</div>
+<div class="k-reading jp">いくじ</div>
+<div class="k-meaning">pengasuhan anak</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">家庭</div>
+<div class="k-reading jp">かてい</div>
+<div class="k-meaning">rumah tangga</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">夫</div>
+<div class="k-reading jp">おっと</div>
+<div class="k-meaning">suami</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">妻</div>
+<div class="k-reading jp">つま</div>
+<div class="k-meaning">istri</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">兄弟</div>
+<div class="k-reading jp">きょうだい</div>
+<div class="k-meaning">saudara laki-laki</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">姉妹</div>
+<div class="k-reading jp">しまい</div>
+<div class="k-meaning">saudara perempuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">友人</div>
+<div class="k-reading jp">ゆうじん</div>
+<div class="k-meaning">teman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">仲間</div>
+<div class="k-reading jp">なかま</div>
+<div class="k-meaning">rekan / teman sekelompok</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">社会</div>
+<div class="k-reading jp">しゃかい</div>
+<div class="k-meaning">masyarakat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">人間</div>
+<div class="k-reading jp">にんげん</div>
+<div class="k-meaning">manusia</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">性格</div>
+<div class="k-reading jp">せいかく</div>
+<div class="k-meaning">karakter</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">感情</div>
+<div class="k-reading jp">かんじょう</div>
+<div class="k-meaning">emosi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">感覚</div>
+<div class="k-reading jp">かんかく</div>
+<div class="k-meaning">indera / perasaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">気分</div>
+<div class="k-reading jp">きぶん</div>
+<div class="k-meaning">suasana hati</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">感動</div>
+<div class="k-reading jp">かんどう</div>
+<div class="k-meaning">terharu / tersentuh</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">満足</div>
+<div class="k-reading jp">まんぞく</div>
+<div class="k-meaning">kepuasan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不満</div>
+<div class="k-reading jp">ふまん</div>
+<div class="k-meaning">tidak puas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">幸福</div>
+<div class="k-reading jp">こうふく</div>
+<div class="k-meaning">kebahagiaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">悲劇</div>
+<div class="k-reading jp">ひげき</div>
+<div class="k-meaning">tragedi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">残念</div>
+<div class="k-reading jp">ざんねん</div>
+<div class="k-meaning">sayang sekali</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">希望</div>
+<div class="k-reading jp">きぼう</div>
+<div class="k-meaning">harapan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">期待</div>
+<div class="k-reading jp">きたい</div>
+<div class="k-meaning">harapan / ekspektasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">心配</div>
+<div class="k-reading jp">しんぱい</div>
+<div class="k-meaning">khawatir</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">安心</div>
+<div class="k-reading jp">あんしん</div>
+<div class="k-meaning">tenang / lega</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不安</div>
+<div class="k-reading jp">ふあん</div>
+<div class="k-meaning">cemas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">自信</div>
+<div class="k-reading jp">じしん</div>
+<div class="k-meaning">percaya diri</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">興味</div>
+<div class="k-reading jp">きょうみ</div>
+<div class="k-meaning">minat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">関心</div>
+<div class="k-reading jp">かんしん</div>
+<div class="k-meaning">perhatian / minat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">理解</div>
+<div class="k-reading jp">りかい</div>
+<div class="k-meaning">pemahaman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">誤解</div>
+<div class="k-reading jp">ごかい</div>
+<div class="k-meaning">kesalahpahaman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">記憶</div>
+<div class="k-reading jp">きおく</div>
+<div class="k-meaning">ingatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意識</div>
+<div class="k-reading jp">いしき</div>
+<div class="k-meaning">kesadaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">知識</div>
+<div class="k-reading jp">ちしき</div>
+<div class="k-meaning">pengetahuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">判断</div>
+<div class="k-reading jp">はんだん</div>
+<div class="k-meaning">penilaian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">決定</div>
+<div class="k-reading jp">けってい</div>
+<div class="k-meaning">keputusan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意見</div>
+<div class="k-reading jp">いけん</div>
+<div class="k-meaning">pendapat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">考え</div>
+<div class="k-reading jp">かんがえ</div>
+<div class="k-meaning">pemikiran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">説明</div>
+<div class="k-reading jp">せつめい</div>
+<div class="k-meaning">penjelasan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">会話</div>
+<div class="k-reading jp">かいわ</div>
+<div class="k-meaning">percakapan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">表現</div>
+<div class="k-reading jp">ひょうげん</div>
+<div class="k-meaning">ekspresi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">言葉</div>
+<div class="k-reading jp">ことば</div>
+<div class="k-meaning">kata / bahasa</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発音</div>
+<div class="k-reading jp">はつおん</div>
+<div class="k-meaning">pelafalan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">翻訳</div>
+<div class="k-reading jp">ほんやく</div>
+<div class="k-meaning">terjemahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">通訳</div>
+<div class="k-reading jp">つうやく</div>
+<div class="k-meaning">interpreter / juru bahasa</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意味</div>
+<div class="k-reading jp">いみ</div>
+<div class="k-meaning">makna</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">内容</div>
+<div class="k-reading jp">ないよう</div>
+<div class="k-meaning">isi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">文章</div>
+<div class="k-reading jp">ぶんしょう</div>
+<div class="k-meaning">tulisan / kalimat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">文法</div>
+<div class="k-reading jp">ぶんぽう</div>
+<div class="k-meaning">tata bahasa</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">語彙</div>
+<div class="k-reading jp">ごい</div>
+<div class="k-meaning">kosakata</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">表情</div>
+<div class="k-reading jp">ひょうじょう</div>
+<div class="k-meaning">ekspresi wajah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">態度</div>
+<div class="k-reading jp">たいど</div>
+<div class="k-meaning">sikap</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">行動</div>
+<div class="k-reading jp">こうどう</div>
+<div class="k-meaning">tindakan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">動作</div>
+<div class="k-reading jp">どうさ</div>
+<div class="k-meaning">gerakan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">反応</div>
+<div class="k-reading jp">はんのう</div>
+<div class="k-meaning">reaksi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">変化</div>
+<div class="k-reading jp">へんか</div>
+<div class="k-meaning">perubahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">成長</div>
+<div class="k-reading jp">せいちょう</div>
+<div class="k-meaning">pertumbuhan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発展</div>
+<div class="k-reading jp">はってん</div>
+<div class="k-meaning">perkembangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">増加</div>
+<div class="k-reading jp">ぞうか</div>
+<div class="k-meaning">peningkatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">減少</div>
+<div class="k-reading jp">げんしょう</div>
+<div class="k-meaning">penurunan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">改善</div>
+<div class="k-reading jp">かいぜん</div>
+<div class="k-meaning">perbaikan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発生</div>
+<div class="k-reading jp">はっせい</div>
+<div class="k-meaning">terjadinya sesuatu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">存在</div>
+<div class="k-reading jp">そんざい</div>
+<div class="k-meaning">keberadaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">必要</div>
+<div class="k-reading jp">ひつよう</div>
+<div class="k-meaning">perlu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不足</div>
+<div class="k-reading jp">ふそく</div>
+<div class="k-meaning">kekurangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">十分</div>
+<div class="k-reading jp">じゅうぶん</div>
+<div class="k-meaning">cukup</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">余裕</div>
+<div class="k-reading jp">よゆう</div>
+<div class="k-meaning">kelonggaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">適当</div>
+<div class="k-reading jp">てきとう</div>
+<div class="k-meaning">cocok / sembarangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">正確</div>
+<div class="k-reading jp">せいかく</div>
+<div class="k-meaning">akurat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">確実</div>
+<div class="k-reading jp">かくじつ</div>
+<div class="k-meaning">pasti / tepat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">明確</div>
+<div class="k-reading jp">めいかく</div>
+<div class="k-meaning">jelas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">達成</div>
+<div class="k-reading jp">たっせい</div>
+<div class="k-meaning">pencapaian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">実現</div>
+<div class="k-reading jp">じつげん</div>
+<div class="k-meaning">realisasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">解決</div>
+<div class="k-reading jp">かいけつ</div>
+<div class="k-meaning">penyelesaian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">成績</div>
+<div class="k-reading jp">せいせき</div>
+<div class="k-meaning">nilai / prestasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">成長</div>
+<div class="k-reading jp">せいちょう</div>
+<div class="k-meaning">pertumbuhan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発達</div>
+<div class="k-reading jp">はったつ</div>
+<div class="k-meaning">perkembangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">進歩</div>
+<div class="k-reading jp">しんぽ</div>
+<div class="k-meaning">kemajuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">改良</div>
+<div class="k-reading jp">かいりょう</div>
+<div class="k-meaning">peningkatan / penyempurnaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発見</div>
+<div class="k-reading jp">はっけん</div>
+<div class="k-meaning">penemuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発明</div>
+<div class="k-reading jp">はつめい</div>
+<div class="k-meaning">penemuan (invensi)</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発表</div>
+<div class="k-reading jp">はっぴょう</div>
+<div class="k-meaning">presentasi / pengumuman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発送</div>
+<div class="k-reading jp">はっそう</div>
+<div class="k-meaning">pengiriman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">到達</div>
+<div class="k-reading jp">とうたつ</div>
+<div class="k-meaning">mencapai</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">過程</div>
+<div class="k-reading jp">かてい</div>
+<div class="k-meaning">proses</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">経過</div>
+<div class="k-reading jp">けいか</div>
+<div class="k-meaning">perkembangan / berlalunya waktu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">結果</div>
+<div class="k-reading jp">けっか</div>
+<div class="k-meaning">hasil</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">結果的</div>
+<div class="k-reading jp">けっかてき</div>
+<div class="k-meaning">pada akhirnya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">具体</div>
+<div class="k-reading jp">ぐたい</div>
+<div class="k-meaning">konkret</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">抽象</div>
+<div class="k-reading jp">ちゅうしょう</div>
+<div class="k-meaning">abstrak</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">基本</div>
+<div class="k-reading jp">きほん</div>
+<div class="k-meaning">dasar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">基準</div>
+<div class="k-reading jp">きじゅん</div>
+<div class="k-meaning">standar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">基礎</div>
+<div class="k-reading jp">きそ</div>
+<div class="k-meaning">fondasi / dasar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">原理</div>
+<div class="k-reading jp">げんり</div>
+<div class="k-meaning">prinsip</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">原則</div>
+<div class="k-reading jp">げんそく</div>
+<div class="k-meaning">prinsip / asas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">特徴</div>
+<div class="k-reading jp">とくちょう</div>
+<div class="k-meaning">ciri khas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">特性</div>
+<div class="k-reading jp">とくせい</div>
+<div class="k-meaning">sifat khusus</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">共通</div>
+<div class="k-reading jp">きょうつう</div>
+<div class="k-meaning">kesamaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">共感</div>
+<div class="k-reading jp">きょうかん</div>
+<div class="k-meaning">empati</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">共存</div>
+<div class="k-reading jp">きょうぞん</div>
+<div class="k-meaning">koeksistensi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">個人</div>
+<div class="k-reading jp">こじん</div>
+<div class="k-meaning">individu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">個性</div>
+<div class="k-reading jp">こせい</div>
+<div class="k-meaning">kepribadian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">全体</div>
+<div class="k-reading jp">ぜんたい</div>
+<div class="k-meaning">keseluruhan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">部分</div>
+<div class="k-reading jp">ぶぶん</div>
+<div class="k-meaning">bagian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">一般</div>
+<div class="k-reading jp">いっぱん</div>
+<div class="k-meaning">umum</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">普段</div>
+<div class="k-reading jp">ふだん</div>
+<div class="k-meaning">biasanya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">通常</div>
+<div class="k-reading jp">つうじょう</div>
+<div class="k-meaning">biasanya / umumnya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">特殊</div>
+<div class="k-reading jp">とくしゅ</div>
+<div class="k-meaning">khusus</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">直接</div>
+<div class="k-reading jp">ちょくせつ</div>
+<div class="k-meaning">langsung</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">間接</div>
+<div class="k-reading jp">かんせつ</div>
+<div class="k-meaning">tidak langsung</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">積極</div>
+<div class="k-reading jp">せっきょく</div>
+<div class="k-meaning">aktif / proaktif</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">消極</div>
+<div class="k-reading jp">しょうきょく</div>
+<div class="k-meaning">pasif</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">可能</div>
+<div class="k-reading jp">かのう</div>
+<div class="k-meaning">mungkin / memungkinkan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不可能</div>
+<div class="k-reading jp">ふかのう</div>
+<div class="k-meaning">tidak mungkin</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">有効</div>
+<div class="k-reading jp">ゆうこう</div>
+<div class="k-meaning">berlaku / efektif</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">無効</div>
+<div class="k-reading jp">むこう</div>
+<div class="k-meaning">tidak berlaku</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">正常</div>
+<div class="k-reading jp">せいじょう</div>
+<div class="k-meaning">normal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">異常</div>
+<div class="k-reading jp">いじょう</div>
+<div class="k-meaning">tidak normal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">正式</div>
+<div class="k-reading jp">せいしき</div>
+<div class="k-meaning">resmi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">正当</div>
+<div class="k-reading jp">せいとう</div>
+<div class="k-meaning">sah / wajar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">適切</div>
+<div class="k-reading jp">てきせつ</div>
+<div class="k-meaning">tepat / sesuai</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不適切</div>
+<div class="k-reading jp">ふてきせつ</div>
+<div class="k-meaning">tidak tepat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">適切</div>
+<div class="k-reading jp">てきせつ</div>
+<div class="k-meaning">tepat / sesuai</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">必要</div>
+<div class="k-reading jp">ひつよう</div>
+<div class="k-meaning">perlu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不要</div>
+<div class="k-reading jp">ふよう</div>
+<div class="k-meaning">tidak perlu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">有利</div>
+<div class="k-reading jp">ゆうり</div>
+<div class="k-meaning">menguntungkan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不利</div>
+<div class="k-reading jp">ふり</div>
+<div class="k-meaning">merugikan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">平均</div>
+<div class="k-reading jp">へいきん</div>
+<div class="k-meaning">rata-rata</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">最大</div>
+<div class="k-reading jp">さいだい</div>
+<div class="k-meaning">maksimal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">最小</div>
+<div class="k-reading jp">さいしょう</div>
+<div class="k-meaning">minimal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">最高</div>
+<div class="k-reading jp">さいこう</div>
+<div class="k-meaning">tertinggi / terbaik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">最低</div>
+<div class="k-reading jp">さいてい</div>
+<div class="k-meaning">terendah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">増加</div>
+<div class="k-reading jp">ぞうか</div>
+<div class="k-meaning">peningkatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">減少</div>
+<div class="k-reading jp">げんしょう</div>
+<div class="k-meaning">penurunan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">倍</div>
+<div class="k-reading jp">ばい</div>
+<div class="k-meaning">kali lipat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">半分</div>
+<div class="k-reading jp">はんぶん</div>
+<div class="k-meaning">setengah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">全員</div>
+<div class="k-reading jp">ぜんいん</div>
+<div class="k-meaning">semua orang</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">全部</div>
+<div class="k-reading jp">ぜんぶ</div>
+<div class="k-meaning">semuanya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">一部</div>
+<div class="k-reading jp">いちぶ</div>
+<div class="k-meaning">sebagian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">大部分</div>
+<div class="k-reading jp">だいぶぶん</div>
+<div class="k-meaning">sebagian besar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">多数</div>
+<div class="k-reading jp">たすう</div>
+<div class="k-meaning">mayoritas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">少数</div>
+<div class="k-reading jp">しょうすう</div>
+<div class="k-meaning">minoritas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">数字</div>
+<div class="k-reading jp">すうじ</div>
+<div class="k-meaning">angka</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">数量</div>
+<div class="k-reading jp">すうりょう</div>
+<div class="k-meaning">jumlah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">種類</div>
+<div class="k-reading jp">しゅるい</div>
+<div class="k-meaning">jenis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">程度</div>
+<div class="k-reading jp">ていど</div>
+<div class="k-meaning">tingkat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">量</div>
+<div class="k-reading jp">りょう</div>
+<div class="k-meaning">jumlah / kuantitas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">価値</div>
+<div class="k-reading jp">かち</div>
+<div class="k-meaning">nilai</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意義</div>
+<div class="k-reading jp">いぎ</div>
+<div class="k-meaning">makna / signifikansi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">料金</div>
+<div class="k-reading jp">りょうきん</div>
+<div class="k-meaning">biaya / tarif</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">費用</div>
+<div class="k-reading jp">ひよう</div>
+<div class="k-meaning">biaya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">経費</div>
+<div class="k-reading jp">けいひ</div>
+<div class="k-meaning">biaya operasional</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">利益</div>
+<div class="k-reading jp">りえき</div>
+<div class="k-meaning">keuntungan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">損失</div>
+<div class="k-reading jp">そんしつ</div>
+<div class="k-meaning">kerugian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">資金</div>
+<div class="k-reading jp">しきん</div>
+<div class="k-meaning">dana</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">資料</div>
+<div class="k-reading jp">しりょう</div>
+<div class="k-meaning">bahan / dokumen</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">資源</div>
+<div class="k-reading jp">しげん</div>
+<div class="k-meaning">sumber daya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">財産</div>
+<div class="k-reading jp">ざいさん</div>
+<div class="k-meaning">harta</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">財政</div>
+<div class="k-reading jp">ざいせい</div>
+<div class="k-meaning">keuangan (negara)</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">貿易</div>
+<div class="k-reading jp">ぼうえき</div>
+<div class="k-meaning">perdagangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">輸入</div>
+<div class="k-reading jp">ゆにゅう</div>
+<div class="k-meaning">impor</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">輸出</div>
+<div class="k-reading jp">ゆしゅつ</div>
+<div class="k-meaning">ekspor</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">消費</div>
+<div class="k-reading jp">しょうひ</div>
+<div class="k-meaning">konsumsi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">販売</div>
+<div class="k-reading jp">はんばい</div>
+<div class="k-meaning">penjualan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">購入</div>
+<div class="k-reading jp">こうにゅう</div>
+<div class="k-meaning">pembelian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">注文</div>
+<div class="k-reading jp">ちゅうもん</div>
+<div class="k-meaning">pesanan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">製品</div>
+<div class="k-reading jp">せいひん</div>
+<div class="k-meaning">produk</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">商品</div>
+<div class="k-reading jp">しょうひん</div>
+<div class="k-meaning">barang dagangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">企業</div>
+<div class="k-reading jp">きぎょう</div>
+<div class="k-meaning">perusahaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">産業</div>
+<div class="k-reading jp">さんぎょう</div>
+<div class="k-meaning">industri</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">業務</div>
+<div class="k-reading jp">ぎょうむ</div>
+<div class="k-meaning">tugas kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">政策</div>
+<div class="k-reading jp">せいさく</div>
+<div class="k-meaning">kebijakan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">制度</div>
+<div class="k-reading jp">せいど</div>
+<div class="k-meaning">sistem / institusi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">法律</div>
+<div class="k-reading jp">ほうりつ</div>
+<div class="k-meaning">hukum</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">法則</div>
+<div class="k-reading jp">ほうそく</div>
+<div class="k-meaning">hukum alam / kaidah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">規則</div>
+<div class="k-reading jp">きそく</div>
+<div class="k-meaning">peraturan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">規定</div>
+<div class="k-reading jp">きてい</div>
+<div class="k-meaning">ketentuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">許可</div>
+<div class="k-reading jp">きょか</div>
+<div class="k-meaning">izin</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">禁止</div>
+<div class="k-reading jp">きんし</div>
+<div class="k-meaning">larangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">違反</div>
+<div class="k-reading jp">いはん</div>
+<div class="k-meaning">pelanggaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">義務</div>
+<div class="k-reading jp">ぎむ</div>
+<div class="k-meaning">kewajiban</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">権利</div>
+<div class="k-reading jp">けんり</div>
+<div class="k-meaning">hak</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">責任</div>
+<div class="k-reading jp">せきにん</div>
+<div class="k-meaning">tanggung jawab</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">条約</div>
+<div class="k-reading jp">じょうやく</div>
+<div class="k-meaning">perjanjian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">条件</div>
+<div class="k-reading jp">じょうけん</div>
+<div class="k-meaning">syarat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">契約</div>
+<div class="k-reading jp">けいやく</div>
+<div class="k-meaning">kontrak</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">証明</div>
+<div class="k-reading jp">しょうめい</div>
+<div class="k-meaning">bukti / pembuktian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">証拠</div>
+<div class="k-reading jp">しょうこ</div>
+<div class="k-meaning">bukti</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">資格</div>
+<div class="k-reading jp">しかく</div>
+<div class="k-meaning">kualifikasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">賛成</div>
+<div class="k-reading jp">さんせい</div>
+<div class="k-meaning">setuju</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">反対</div>
+<div class="k-reading jp">はんたい</div>
+<div class="k-meaning">menentang</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">主張</div>
+<div class="k-reading jp">しゅちょう</div>
+<div class="k-meaning">klaim / pendapat tegas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">反論</div>
+<div class="k-reading jp">はんろん</div>
+<div class="k-meaning">sanggahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意見</div>
+<div class="k-reading jp">いけん</div>
+<div class="k-meaning">pendapat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">議論</div>
+<div class="k-reading jp">ぎろん</div>
+<div class="k-meaning">diskusi / debat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">議会</div>
+<div class="k-reading jp">ぎかい</div>
+<div class="k-meaning">parlemen / dewan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">議員</div>
+<div class="k-reading jp">ぎいん</div>
+<div class="k-meaning">anggota dewan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">政党</div>
+<div class="k-reading jp">せいとう</div>
+<div class="k-meaning">partai politik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">選挙</div>
+<div class="k-reading jp">せんきょ</div>
+<div class="k-meaning">pemilihan umum</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">投票</div>
+<div class="k-reading jp">とうひょう</div>
+<div class="k-meaning">pemungutan suara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">候補</div>
+<div class="k-reading jp">こうほ</div>
+<div class="k-meaning">kandidat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">国民</div>
+<div class="k-reading jp">こくみん</div>
+<div class="k-meaning">warga negara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">市民</div>
+<div class="k-reading jp">しみん</div>
+<div class="k-meaning">warga kota</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">国籍</div>
+<div class="k-reading jp">こくせき</div>
+<div class="k-meaning">kewarganegaraan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">外国</div>
+<div class="k-reading jp">がいこく</div>
+<div class="k-meaning">luar negeri</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">国際</div>
+<div class="k-reading jp">こくさい</div>
+<div class="k-meaning">internasional</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">国内</div>
+<div class="k-reading jp">こくない</div>
+<div class="k-meaning">domestik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">地域</div>
+<div class="k-reading jp">ちいき</div>
+<div class="k-meaning">wilayah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">地方</div>
+<div class="k-reading jp">ちほう</div>
+<div class="k-meaning">daerah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">都道</div>
+<div class="k-reading jp">とどう</div>
+<div class="k-meaning">provinsi (istilah)</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">都市</div>
+<div class="k-reading jp">とし</div>
+<div class="k-meaning">kota</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">首都</div>
+<div class="k-reading jp">しゅと</div>
+<div class="k-meaning">ibu kota</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">中心</div>
+<div class="k-reading jp">ちゅうしん</div>
+<div class="k-meaning">pusat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">周辺</div>
+<div class="k-reading jp">しゅうへん</div>
+<div class="k-meaning">sekitar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">地区</div>
+<div class="k-reading jp">ちく</div>
+<div class="k-meaning">distrik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">現場</div>
+<div class="k-reading jp">げんば</div>
+<div class="k-meaning">lokasi kejadian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">建設</div>
+<div class="k-reading jp">けんせつ</div>
+<div class="k-meaning">pembangunan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">建築</div>
+<div class="k-reading jp">けんちく</div>
+<div class="k-meaning">arsitektur / konstruksi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">工事</div>
+<div class="k-reading jp">こうじ</div>
+<div class="k-meaning">proyek konstruksi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">設計</div>
+<div class="k-reading jp">せっけい</div>
+<div class="k-meaning">desain / rancangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">設備</div>
+<div class="k-reading jp">せつび</div>
+<div class="k-meaning">fasilitas / peralatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">施設</div>
+<div class="k-reading jp">しせつ</div>
+<div class="k-meaning">fasilitas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">建物</div>
+<div class="k-reading jp">たてもの</div>
+<div class="k-meaning">bangunan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">土地</div>
+<div class="k-reading jp">とち</div>
+<div class="k-meaning">tanah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">住宅</div>
+<div class="k-reading jp">じゅうたく</div>
+<div class="k-meaning">perumahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">家庭</div>
+<div class="k-reading jp">かてい</div>
+<div class="k-meaning">rumah tangga</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">庭園</div>
+<div class="k-reading jp">ていえん</div>
+<div class="k-meaning">taman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">道路</div>
+<div class="k-reading jp">どうろ</div>
+<div class="k-meaning">jalan raya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">通路</div>
+<div class="k-reading jp">つうろ</div>
+<div class="k-meaning">lorong / jalur</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">交差</div>
+<div class="k-reading jp">こうさ</div>
+<div class="k-meaning">persimpangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">信号</div>
+<div class="k-reading jp">しんごう</div>
+<div class="k-meaning">lampu lalu lintas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">交通</div>
+<div class="k-reading jp">こうつう</div>
+<div class="k-meaning">lalu lintas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">鉄道</div>
+<div class="k-reading jp">てつどう</div>
+<div class="k-meaning">kereta api</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">航空</div>
+<div class="k-reading jp">こうくう</div>
+<div class="k-meaning">penerbangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">空港</div>
+<div class="k-reading jp">くうこう</div>
+<div class="k-meaning">bandara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">港</div>
+<div class="k-reading jp">みなと</div>
+<div class="k-meaning">pelabuhan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">船舶</div>
+<div class="k-reading jp">せんぱく</div>
+<div class="k-meaning">kapal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">運輸</div>
+<div class="k-reading jp">うんゆ</div>
+<div class="k-meaning">transportasi / pengangkutan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">移動</div>
+<div class="k-reading jp">いどう</div>
+<div class="k-meaning">perpindahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">旅行</div>
+<div class="k-reading jp">りょこう</div>
+<div class="k-meaning">perjalanan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">観光</div>
+<div class="k-reading jp">かんこう</div>
+<div class="k-meaning">wisata</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">景色</div>
+<div class="k-reading jp">けしき</div>
+<div class="k-meaning">pemandangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">風景</div>
+<div class="k-reading jp">ふうけい</div>
+<div class="k-meaning">pemandangan alam</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">地図</div>
+<div class="k-reading jp">ちず</div>
+<div class="k-meaning">peta</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">方向</div>
+<div class="k-reading jp">ほうこう</div>
+<div class="k-meaning">arah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">距離</div>
+<div class="k-reading jp">きょり</div>
+<div class="k-meaning">jarak</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">位置</div>
+<div class="k-reading jp">いち</div>
+<div class="k-meaning">posisi / lokasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">目的地</div>
+<div class="k-reading jp">もくてきち</div>
+<div class="k-meaning">tempat tujuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">到着</div>
+<div class="k-reading jp">とうちゃく</div>
+<div class="k-meaning">kedatangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">出発</div>
+<div class="k-reading jp">しゅっぱつ</div>
+<div class="k-meaning">keberangkatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">途中</div>
+<div class="k-reading jp">とちゅう</div>
+<div class="k-meaning">di tengah jalan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">交通費</div>
+<div class="k-reading jp">こうつうひ</div>
+<div class="k-meaning">biaya transportasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">宿泊</div>
+<div class="k-reading jp">しゅくはく</div>
+<div class="k-meaning">penginapan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">旅館</div>
+<div class="k-reading jp">りょかん</div>
+<div class="k-meaning">penginapan tradisional</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">観光地</div>
+<div class="k-reading jp">かんこうち</div>
+<div class="k-meaning">tempat wisata</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">案内</div>
+<div class="k-reading jp">あんない</div>
+<div class="k-meaning">panduan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">受付</div>
+<div class="k-reading jp">うけつけ</div>
+<div class="k-meaning">resepsionis / pendaftaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">窓口</div>
+<div class="k-reading jp">まどぐち</div>
+<div class="k-meaning">loket</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">手続</div>
+<div class="k-reading jp">てつづき</div>
+<div class="k-meaning">prosedur</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">申請</div>
+<div class="k-reading jp">しんせい</div>
+<div class="k-meaning">permohonan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">登録</div>
+<div class="k-reading jp">とうろく</div>
+<div class="k-meaning">pendaftaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">提出</div>
+<div class="k-reading jp">ていしゅつ</div>
+<div class="k-meaning">pengajuan / penyerahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">書類</div>
+<div class="k-reading jp">しょるい</div>
+<div class="k-meaning">dokumen</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">記入</div>
+<div class="k-reading jp">きにゅう</div>
+<div class="k-meaning">pengisian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">必要</div>
+<div class="k-reading jp">ひつよう</div>
+<div class="k-meaning">perlu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">確認</div>
+<div class="k-reading jp">かくにん</div>
+<div class="k-meaning">konfirmasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">連絡</div>
+<div class="k-reading jp">れんらく</div>
+<div class="k-meaning">kontak / hubungan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">通知</div>
+<div class="k-reading jp">つうち</div>
+<div class="k-meaning">pemberitahuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">回答</div>
+<div class="k-reading jp">かいとう</div>
+<div class="k-meaning">jawaban</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">返事</div>
+<div class="k-reading jp">へんじ</div>
+<div class="k-meaning">balasan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">解答</div>
+<div class="k-reading jp">かいとう</div>
+<div class="k-meaning">jawaban (soal)</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">解決</div>
+<div class="k-reading jp">かいけつ</div>
+<div class="k-meaning">penyelesaian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">対応</div>
+<div class="k-reading jp">たいおう</div>
+<div class="k-meaning">penanganan / respons</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">処理</div>
+<div class="k-reading jp">しょり</div>
+<div class="k-meaning">pemrosesan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">処分</div>
+<div class="k-reading jp">しょぶん</div>
+<div class="k-meaning">pembuangan / tindakan disiplin</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">管理</div>
+<div class="k-reading jp">かんり</div>
+<div class="k-meaning">pengelolaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">担当</div>
+<div class="k-reading jp">たんとう</div>
+<div class="k-meaning">penanggung jawab tugas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">担当者</div>
+<div class="k-reading jp">たんとうしゃ</div>
+<div class="k-meaning">orang yang bertanggung jawab</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">責任者</div>
+<div class="k-reading jp">せきにんしゃ</div>
+<div class="k-meaning">penanggung jawab</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">役割</div>
+<div class="k-reading jp">やくわり</div>
+<div class="k-meaning">peran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">作業</div>
+<div class="k-reading jp">さぎょう</div>
+<div class="k-meaning">pekerjaan / kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">操作</div>
+<div class="k-reading jp">そうさ</div>
+<div class="k-meaning">pengoperasian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">機械</div>
+<div class="k-reading jp">きかい</div>
+<div class="k-meaning">mesin</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">装置</div>
+<div class="k-reading jp">そうち</div>
+<div class="k-meaning">perangkat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">道具</div>
+<div class="k-reading jp">どうぐ</div>
+<div class="k-meaning">alat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">部品</div>
+<div class="k-reading jp">ぶひん</div>
+<div class="k-meaning">komponen / suku cadang</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">材料</div>
+<div class="k-reading jp">ざいりょう</div>
+<div class="k-meaning">bahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">原料</div>
+<div class="k-reading jp">げんりょう</div>
+<div class="k-meaning">bahan baku</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">製造</div>
+<div class="k-reading jp">せいぞう</div>
+<div class="k-meaning">pembuatan / manufaktur</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">生産</div>
+<div class="k-reading jp">せいさん</div>
+<div class="k-meaning">produksi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">工業</div>
+<div class="k-reading jp">こうぎょう</div>
+<div class="k-meaning">industri manufaktur</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">農業</div>
+<div class="k-reading jp">のうぎょう</div>
+<div class="k-meaning">pertanian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">商業</div>
+<div class="k-reading jp">しょうぎょう</div>
+<div class="k-meaning">perdagangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">産業</div>
+<div class="k-reading jp">さんぎょう</div>
+<div class="k-meaning">industri</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">職業</div>
+<div class="k-reading jp">しょくぎょう</div>
+<div class="k-meaning">profesi / pekerjaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">勤務</div>
+<div class="k-reading jp">きんむ</div>
+<div class="k-meaning">tugas kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">就職</div>
+<div class="k-reading jp">しゅうしょく</div>
+<div class="k-meaning">mendapatkan pekerjaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">退職</div>
+<div class="k-reading jp">たいしょく</div>
+<div class="k-meaning">pensiun / berhenti kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">転職</div>
+<div class="k-reading jp">てんしょく</div>
+<div class="k-meaning">pindah kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">雇用</div>
+<div class="k-reading jp">こよう</div>
+<div class="k-meaning">ketenagakerjaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">労働</div>
+<div class="k-reading jp">ろうどう</div>
+<div class="k-meaning">tenaga kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">労働者</div>
+<div class="k-reading jp">ろうどうしゃ</div>
+<div class="k-meaning">pekerja / buruh</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">社員</div>
+<div class="k-reading jp">しゃいん</div>
+<div class="k-meaning">karyawan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">社長</div>
+<div class="k-reading jp">しゃちょう</div>
+<div class="k-meaning">direktur</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">上司</div>
+<div class="k-reading jp">じょうし</div>
+<div class="k-meaning">atasan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">部下</div>
+<div class="k-reading jp">ぶか</div>
+<div class="k-meaning">bawahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">同僚</div>
+<div class="k-reading jp">どうりょう</div>
+<div class="k-meaning">rekan kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">給料</div>
+<div class="k-reading jp">きゅうりょう</div>
+<div class="k-meaning">gaji</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">賃金</div>
+<div class="k-reading jp">ちんぎん</div>
+<div class="k-meaning">upah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">収入</div>
+<div class="k-reading jp">しゅうにゅう</div>
+<div class="k-meaning">pendapatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">支出</div>
+<div class="k-reading jp">ししゅつ</div>
+<div class="k-meaning">pengeluaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">貯金</div>
+<div class="k-reading jp">ちょきん</div>
+<div class="k-meaning">tabungan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">借金</div>
+<div class="k-reading jp">しゃっきん</div>
+<div class="k-meaning">hutang</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">経営</div>
+<div class="k-reading jp">けいえい</div>
+<div class="k-meaning">manajemen / pengelolaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">営業</div>
+<div class="k-reading jp">えいぎょう</div>
+<div class="k-meaning">operasional bisnis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">会計</div>
+<div class="k-reading jp">かいけい</div>
+<div class="k-meaning">akuntansi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">経理</div>
+<div class="k-reading jp">けいり</div>
+<div class="k-meaning">pembukuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">会社</div>
+<div class="k-reading jp">かいしゃ</div>
+<div class="k-meaning">perusahaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">企業</div>
+<div class="k-reading jp">きぎょう</div>
+<div class="k-meaning">perusahaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">組織</div>
+<div class="k-reading jp">そしき</div>
+<div class="k-meaning">organisasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">部門</div>
+<div class="k-reading jp">ぶもん</div>
+<div class="k-meaning">divisi / departemen</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">事業</div>
+<div class="k-reading jp">じぎょう</div>
+<div class="k-meaning">usaha / bisnis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">業務</div>
+<div class="k-reading jp">ぎょうむ</div>
+<div class="k-meaning">tugas kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">経験</div>
+<div class="k-reading jp">けいけん</div>
+<div class="k-meaning">pengalaman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">能力</div>
+<div class="k-reading jp">のうりょく</div>
+<div class="k-meaning">kemampuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">技能</div>
+<div class="k-reading jp">ぎのう</div>
+<div class="k-meaning">keterampilan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">技術</div>
+<div class="k-reading jp">ぎじゅつ</div>
+<div class="k-meaning">teknik / teknologi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">専門</div>
+<div class="k-reading jp">せんもん</div>
+<div class="k-meaning">keahlian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">知識</div>
+<div class="k-reading jp">ちしき</div>
+<div class="k-meaning">pengetahuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">資格</div>
+<div class="k-reading jp">しかく</div>
+<div class="k-meaning">kualifikasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">教育</div>
+<div class="k-reading jp">きょういく</div>
+<div class="k-meaning">pendidikan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">訓練</div>
+<div class="k-reading jp">くんれん</div>
+<div class="k-meaning">pelatihan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">練習</div>
+<div class="k-reading jp">れんしゅう</div>
+<div class="k-meaning">latihan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">試験</div>
+<div class="k-reading jp">しけん</div>
+<div class="k-meaning">ujian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">合格</div>
+<div class="k-reading jp">ごうかく</div>
+<div class="k-meaning">lulus</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">成績</div>
+<div class="k-reading jp">せいせき</div>
+<div class="k-meaning">nilai / prestasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">学力</div>
+<div class="k-reading jp">がくりょく</div>
+<div class="k-meaning">kemampuan akademik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">学問</div>
+<div class="k-reading jp">がくもん</div>
+<div class="k-meaning">ilmu pengetahuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">研究</div>
+<div class="k-reading jp">けんきゅう</div>
+<div class="k-meaning">penelitian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">調査</div>
+<div class="k-reading jp">ちょうさ</div>
+<div class="k-meaning">survei / investigasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">分析</div>
+<div class="k-reading jp">ぶんせき</div>
+<div class="k-meaning">analisis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">統計</div>
+<div class="k-reading jp">とうけい</div>
+<div class="k-meaning">statistik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">資料</div>
+<div class="k-reading jp">しりょう</div>
+<div class="k-meaning">bahan / dokumen</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">論文</div>
+<div class="k-reading jp">ろんぶん</div>
+<div class="k-meaning">makalah / tesis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">課題</div>
+<div class="k-reading jp">かだい</div>
+<div class="k-meaning">tugas / permasalahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">問題</div>
+<div class="k-reading jp">もんだい</div>
+<div class="k-meaning">masalah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">解答</div>
+<div class="k-reading jp">かいとう</div>
+<div class="k-meaning">jawaban (soal)</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">正解</div>
+<div class="k-reading jp">せいかい</div>
+<div class="k-meaning">jawaban benar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">間違い</div>
+<div class="k-reading jp">まちがい</div>
+<div class="k-meaning">kesalahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">理解</div>
+<div class="k-reading jp">りかい</div>
+<div class="k-meaning">pemahaman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">説明</div>
+<div class="k-reading jp">せつめい</div>
+<div class="k-meaning">penjelasan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">表現</div>
+<div class="k-reading jp">ひょうげん</div>
+<div class="k-meaning">ekspresi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">会話</div>
+<div class="k-reading jp">かいわ</div>
+<div class="k-meaning">percakapan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発言</div>
+<div class="k-reading jp">はつげん</div>
+<div class="k-meaning">pernyataan / ucapan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意見</div>
+<div class="k-reading jp">いけん</div>
+<div class="k-meaning">pendapat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">主張</div>
+<div class="k-reading jp">しゅちょう</div>
+<div class="k-meaning">klaim / pendapat tegas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">質問</div>
+<div class="k-reading jp">しつもん</div>
+<div class="k-meaning">pertanyaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">回答</div>
+<div class="k-reading jp">かいとう</div>
+<div class="k-meaning">jawaban</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">内容</div>
+<div class="k-reading jp">ないよう</div>
+<div class="k-meaning">isi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">文章</div>
+<div class="k-reading jp">ぶんしょう</div>
+<div class="k-meaning">tulisan / kalimat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">文書</div>
+<div class="k-reading jp">ぶんしょ</div>
+<div class="k-meaning">dokumen</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">記録</div>
+<div class="k-reading jp">きろく</div>
+<div class="k-meaning">catatan / rekaman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">記事</div>
+<div class="k-reading jp">きじ</div>
+<div class="k-meaning">artikel</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">報告</div>
+<div class="k-reading jp">ほうこく</div>
+<div class="k-meaning">laporan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発表</div>
+<div class="k-reading jp">はっぴょう</div>
+<div class="k-meaning">presentasi / pengumuman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">連絡</div>
+<div class="k-reading jp">れんらく</div>
+<div class="k-meaning">kontak / hubungan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">通知</div>
+<div class="k-reading jp">つうち</div>
+<div class="k-meaning">pemberitahuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">情報</div>
+<div class="k-reading jp">じょうほう</div>
+<div class="k-meaning">informasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">通信</div>
+<div class="k-reading jp">つうしん</div>
+<div class="k-meaning">komunikasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">放送</div>
+<div class="k-reading jp">ほうそう</div>
+<div class="k-meaning">siaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">出版</div>
+<div class="k-reading jp">しゅっぱん</div>
+<div class="k-meaning">penerbitan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">状態</div>
+<div class="k-reading jp">じょうたい</div>
+<div class="k-meaning">kondisi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">性質</div>
+<div class="k-reading jp">せいしつ</div>
+<div class="k-meaning">sifat / karakteristik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">特徴</div>
+<div class="k-reading jp">とくちょう</div>
+<div class="k-meaning">ciri khas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">性格</div>
+<div class="k-reading jp">せいかく</div>
+<div class="k-meaning">karakter</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">能力</div>
+<div class="k-reading jp">のうりょく</div>
+<div class="k-meaning">kemampuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">才能</div>
+<div class="k-reading jp">さいのう</div>
+<div class="k-meaning">bakat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">感情</div>
+<div class="k-reading jp">かんじょう</div>
+<div class="k-meaning">emosi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">感覚</div>
+<div class="k-reading jp">かんかく</div>
+<div class="k-meaning">indera / perasaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">印象</div>
+<div class="k-reading jp">いんしょう</div>
+<div class="k-meaning">kesan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">表情</div>
+<div class="k-reading jp">ひょうじょう</div>
+<div class="k-meaning">ekspresi wajah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">態度</div>
+<div class="k-reading jp">たいど</div>
+<div class="k-meaning">sikap</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">行動</div>
+<div class="k-reading jp">こうどう</div>
+<div class="k-meaning">tindakan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">動作</div>
+<div class="k-reading jp">どうさ</div>
+<div class="k-meaning">gerakan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">反応</div>
+<div class="k-reading jp">はんのう</div>
+<div class="k-meaning">reaksi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意識</div>
+<div class="k-reading jp">いしき</div>
+<div class="k-meaning">kesadaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意志</div>
+<div class="k-reading jp">いし</div>
+<div class="k-meaning">kemauan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">決意</div>
+<div class="k-reading jp">けつい</div>
+<div class="k-meaning">tekad</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">希望</div>
+<div class="k-reading jp">きぼう</div>
+<div class="k-meaning">harapan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">期待</div>
+<div class="k-reading jp">きたい</div>
+<div class="k-meaning">harapan / ekspektasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不安</div>
+<div class="k-reading jp">ふあん</div>
+<div class="k-meaning">cemas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">心配</div>
+<div class="k-reading jp">しんぱい</div>
+<div class="k-meaning">khawatir</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">安心</div>
+<div class="k-reading jp">あんしん</div>
+<div class="k-meaning">tenang / lega</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">満足</div>
+<div class="k-reading jp">まんぞく</div>
+<div class="k-meaning">kepuasan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不満</div>
+<div class="k-reading jp">ふまん</div>
+<div class="k-meaning">tidak puas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">幸福</div>
+<div class="k-reading jp">こうふく</div>
+<div class="k-meaning">kebahagiaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">喜び</div>
+<div class="k-reading jp">よろこび</div>
+<div class="k-meaning">kegembiraan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">悲しみ</div>
+<div class="k-reading jp">かなしみ</div>
+<div class="k-meaning">kesedihan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">怒り</div>
+<div class="k-reading jp">いかり</div>
+<div class="k-meaning">kemarahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">感謝</div>
+<div class="k-reading jp">かんしゃ</div>
+<div class="k-meaning">rasa syukur</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">感動</div>
+<div class="k-reading jp">かんどう</div>
+<div class="k-meaning">terharu / tersentuh</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">興味</div>
+<div class="k-reading jp">きょうみ</div>
+<div class="k-meaning">minat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">関心</div>
+<div class="k-reading jp">かんしん</div>
+<div class="k-meaning">perhatian / minat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">理解</div>
+<div class="k-reading jp">りかい</div>
+<div class="k-meaning">pemahaman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">誤解</div>
+<div class="k-reading jp">ごかい</div>
+<div class="k-meaning">kesalahpahaman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">記憶</div>
+<div class="k-reading jp">きおく</div>
+<div class="k-meaning">ingatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">思考</div>
+<div class="k-reading jp">しこう</div>
+<div class="k-meaning">pemikiran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">判断</div>
+<div class="k-reading jp">はんだん</div>
+<div class="k-meaning">penilaian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">考慮</div>
+<div class="k-reading jp">こうりょ</div>
+<div class="k-meaning">pertimbangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意識</div>
+<div class="k-reading jp">いしき</div>
+<div class="k-meaning">kesadaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">想像</div>
+<div class="k-reading jp">そうぞう</div>
+<div class="k-meaning">imajinasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">予想</div>
+<div class="k-reading jp">よそう</div>
+<div class="k-meaning">perkiraan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">予測</div>
+<div class="k-reading jp">よそく</div>
+<div class="k-meaning">prediksi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">推測</div>
+<div class="k-reading jp">すいそく</div>
+<div class="k-meaning">dugaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">原因</div>
+<div class="k-reading jp">げんいん</div>
+<div class="k-meaning">penyebab</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">結果</div>
+<div class="k-reading jp">けっか</div>
+<div class="k-meaning">hasil</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">結論</div>
+<div class="k-reading jp">けつろん</div>
+<div class="k-meaning">kesimpulan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">理由</div>
+<div class="k-reading jp">りゆう</div>
+<div class="k-meaning">alasan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">根拠</div>
+<div class="k-reading jp">こんきょ</div>
+<div class="k-meaning">dasar / landasan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">事実</div>
+<div class="k-reading jp">じじつ</div>
+<div class="k-meaning">fakta</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">現実</div>
+<div class="k-reading jp">げんじつ</div>
+<div class="k-meaning">kenyataan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">内容</div>
+<div class="k-reading jp">ないよう</div>
+<div class="k-meaning">isi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">目的</div>
+<div class="k-reading jp">もくてき</div>
+<div class="k-meaning">tujuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">方法</div>
+<div class="k-reading jp">ほうほう</div>
+<div class="k-meaning">cara / metode</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">手段</div>
+<div class="k-reading jp">しゅだん</div>
+<div class="k-meaning">sarana / cara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">条件</div>
+<div class="k-reading jp">じょうけん</div>
+<div class="k-meaning">syarat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">基準</div>
+<div class="k-reading jp">きじゅん</div>
+<div class="k-meaning">standar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">原則</div>
+<div class="k-reading jp">げんそく</div>
+<div class="k-meaning">prinsip / asas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">基本</div>
+<div class="k-reading jp">きほん</div>
+<div class="k-meaning">dasar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">程度</div>
+<div class="k-reading jp">ていど</div>
+<div class="k-meaning">tingkat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">範囲</div>
+<div class="k-reading jp">はんい</div>
+<div class="k-meaning">cakupan / jangkauan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">部分</div>
+<div class="k-reading jp">ぶぶん</div>
+<div class="k-meaning">bagian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">全体</div>
+<div class="k-reading jp">ぜんたい</div>
+<div class="k-meaning">keseluruhan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">共通</div>
+<div class="k-reading jp">きょうつう</div>
+<div class="k-meaning">kesamaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">個人</div>
+<div class="k-reading jp">こじん</div>
+<div class="k-meaning">individu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">一般</div>
+<div class="k-reading jp">いっぱん</div>
+<div class="k-meaning">umum</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">特別</div>
+<div class="k-reading jp">とくべつ</div>
+<div class="k-meaning">istimewa</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">具体</div>
+<div class="k-reading jp">ぐたい</div>
+<div class="k-meaning">konkret</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">抽象</div>
+<div class="k-reading jp">ちゅうしょう</div>
+<div class="k-meaning">abstrak</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">直接</div>
+<div class="k-reading jp">ちょくせつ</div>
+<div class="k-meaning">langsung</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">間接</div>
+<div class="k-reading jp">かんせつ</div>
+<div class="k-meaning">tidak langsung</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">積極</div>
+<div class="k-reading jp">せっきょく</div>
+<div class="k-meaning">aktif / proaktif</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">消極</div>
+<div class="k-reading jp">しょうきょく</div>
+<div class="k-meaning">pasif</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">正常</div>
+<div class="k-reading jp">せいじょう</div>
+<div class="k-meaning">normal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">異常</div>
+<div class="k-reading jp">いじょう</div>
+<div class="k-meaning">tidak normal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">正確</div>
+<div class="k-reading jp">せいかく</div>
+<div class="k-meaning">akurat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">確実</div>
+<div class="k-reading jp">かくじつ</div>
+<div class="k-meaning">pasti / tepat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">明確</div>
+<div class="k-reading jp">めいかく</div>
+<div class="k-meaning">jelas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">適切</div>
+<div class="k-reading jp">てきせつ</div>
+<div class="k-meaning">tepat / sesuai</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">有効</div>
+<div class="k-reading jp">ゆうこう</div>
+<div class="k-meaning">berlaku / efektif</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">無効</div>
+<div class="k-reading jp">むこう</div>
+<div class="k-meaning">tidak berlaku</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">必要</div>
+<div class="k-reading jp">ひつよう</div>
+<div class="k-meaning">perlu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不要</div>
+<div class="k-reading jp">ふよう</div>
+<div class="k-meaning">tidak perlu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">可能</div>
+<div class="k-reading jp">かのう</div>
+<div class="k-meaning">mungkin / memungkinkan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不可能</div>
+<div class="k-reading jp">ふかのう</div>
+<div class="k-meaning">tidak mungkin</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">有利</div>
+<div class="k-reading jp">ゆうり</div>
+<div class="k-meaning">menguntungkan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不利</div>
+<div class="k-reading jp">ふり</div>
+<div class="k-meaning">merugikan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">平均</div>
+<div class="k-reading jp">へいきん</div>
+<div class="k-meaning">rata-rata</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">最大</div>
+<div class="k-reading jp">さいだい</div>
+<div class="k-meaning">maksimal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">最小</div>
+<div class="k-reading jp">さいしょう</div>
+<div class="k-meaning">minimal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">増加</div>
+<div class="k-reading jp">ぞうか</div>
+<div class="k-meaning">peningkatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">減少</div>
+<div class="k-reading jp">げんしょう</div>
+<div class="k-meaning">penurunan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">変化</div>
+<div class="k-reading jp">へんか</div>
+<div class="k-meaning">perubahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発展</div>
+<div class="k-reading jp">はってん</div>
+<div class="k-meaning">perkembangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">成長</div>
+<div class="k-reading jp">せいちょう</div>
+<div class="k-meaning">pertumbuhan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">進歩</div>
+<div class="k-reading jp">しんぽ</div>
+<div class="k-meaning">kemajuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">改善</div>
+<div class="k-reading jp">かいぜん</div>
+<div class="k-meaning">perbaikan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">改良</div>
+<div class="k-reading jp">かいりょう</div>
+<div class="k-meaning">peningkatan / penyempurnaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発生</div>
+<div class="k-reading jp">はっせい</div>
+<div class="k-meaning">terjadinya sesuatu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">存在</div>
+<div class="k-reading jp">そんざい</div>
+<div class="k-meaning">keberadaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">達成</div>
+<div class="k-reading jp">たっせい</div>
+<div class="k-meaning">pencapaian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">実現</div>
+<div class="k-reading jp">じつげん</div>
+<div class="k-meaning">realisasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発見</div>
+<div class="k-reading jp">はっけん</div>
+<div class="k-meaning">penemuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発明</div>
+<div class="k-reading jp">はつめい</div>
+<div class="k-meaning">penemuan (invensi)</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発達</div>
+<div class="k-reading jp">はったつ</div>
+<div class="k-meaning">perkembangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">成立</div>
+<div class="k-reading jp">せいりつ</div>
+<div class="k-meaning">terbentuk / terwujud</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">維持</div>
+<div class="k-reading jp">いじ</div>
+<div class="k-meaning">mempertahankan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">保持</div>
+<div class="k-reading jp">ほじ</div>
+<div class="k-meaning">mempertahankan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">保存</div>
+<div class="k-reading jp">ほぞん</div>
+<div class="k-meaning">penyimpanan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">保護</div>
+<div class="k-reading jp">ほご</div>
+<div class="k-meaning">perlindungan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">防止</div>
+<div class="k-reading jp">ぼうし</div>
+<div class="k-meaning">pencegahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">対策</div>
+<div class="k-reading jp">たいさく</div>
+<div class="k-meaning">langkah / tindakan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">対応</div>
+<div class="k-reading jp">たいおう</div>
+<div class="k-meaning">penanganan / respons</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">処理</div>
+<div class="k-reading jp">しょり</div>
+<div class="k-meaning">pemrosesan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">処分</div>
+<div class="k-reading jp">しょぶん</div>
+<div class="k-meaning">pembuangan / tindakan disiplin</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">管理</div>
+<div class="k-reading jp">かんり</div>
+<div class="k-meaning">pengelolaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">担当</div>
+<div class="k-reading jp">たんとう</div>
+<div class="k-meaning">penanggung jawab tugas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">役割</div>
+<div class="k-reading jp">やくわり</div>
+<div class="k-meaning">peran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">責任</div>
+<div class="k-reading jp">せきにん</div>
+<div class="k-meaning">tanggung jawab</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">協力</div>
+<div class="k-reading jp">きょうりょく</div>
+<div class="k-meaning">kerja sama</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">支援</div>
+<div class="k-reading jp">しえん</div>
+<div class="k-meaning">dukungan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">援助</div>
+<div class="k-reading jp">えんじょ</div>
+<div class="k-meaning">bantuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">救助</div>
+<div class="k-reading jp">きゅうじょ</div>
+<div class="k-meaning">pertolongan / penyelamatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">保証</div>
+<div class="k-reading jp">ほしょう</div>
+<div class="k-meaning">jaminan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">許可</div>
+<div class="k-reading jp">きょか</div>
+<div class="k-meaning">izin</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">禁止</div>
+<div class="k-reading jp">きんし</div>
+<div class="k-meaning">larangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">違反</div>
+<div class="k-reading jp">いはん</div>
+<div class="k-meaning">pelanggaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">義務</div>
+<div class="k-reading jp">ぎむ</div>
+<div class="k-meaning">kewajiban</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">権利</div>
+<div class="k-reading jp">けんり</div>
+<div class="k-meaning">hak</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">契約</div>
+<div class="k-reading jp">けいやく</div>
+<div class="k-meaning">kontrak</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">条約</div>
+<div class="k-reading jp">じょうやく</div>
+<div class="k-meaning">perjanjian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">証明</div>
+<div class="k-reading jp">しょうめい</div>
+<div class="k-meaning">bukti / pembuktian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">証拠</div>
+<div class="k-reading jp">しょうこ</div>
+<div class="k-meaning">bukti</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">主張</div>
+<div class="k-reading jp">しゅちょう</div>
+<div class="k-meaning">klaim / pendapat tegas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">反論</div>
+<div class="k-reading jp">はんろん</div>
+<div class="k-meaning">sanggahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">賛成</div>
+<div class="k-reading jp">さんせい</div>
+<div class="k-meaning">setuju</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">反対</div>
+<div class="k-reading jp">はんたい</div>
+<div class="k-meaning">menentang</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">議論</div>
+<div class="k-reading jp">ぎろん</div>
+<div class="k-meaning">diskusi / debat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">議会</div>
+<div class="k-reading jp">ぎかい</div>
+<div class="k-meaning">parlemen / dewan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">議員</div>
+<div class="k-reading jp">ぎいん</div>
+<div class="k-meaning">anggota dewan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">政策</div>
+<div class="k-reading jp">せいさく</div>
+<div class="k-meaning">kebijakan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">制度</div>
+<div class="k-reading jp">せいど</div>
+<div class="k-meaning">sistem / institusi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">法律</div>
+<div class="k-reading jp">ほうりつ</div>
+<div class="k-meaning">hukum</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">法則</div>
+<div class="k-reading jp">ほうそく</div>
+<div class="k-meaning">hukum alam / kaidah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">規則</div>
+<div class="k-reading jp">きそく</div>
+<div class="k-meaning">peraturan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">規定</div>
+<div class="k-reading jp">きてい</div>
+<div class="k-meaning">ketentuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">政府</div>
+<div class="k-reading jp">せいふ</div>
+<div class="k-meaning">pemerintah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">国家</div>
+<div class="k-reading jp">こっか</div>
+<div class="k-meaning">negara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">国民</div>
+<div class="k-reading jp">こくみん</div>
+<div class="k-meaning">warga negara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">市民</div>
+<div class="k-reading jp">しみん</div>
+<div class="k-meaning">warga kota</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">国籍</div>
+<div class="k-reading jp">こくせき</div>
+<div class="k-meaning">kewarganegaraan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">国際</div>
+<div class="k-reading jp">こくさい</div>
+<div class="k-meaning">internasional</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">国内</div>
+<div class="k-reading jp">こくない</div>
+<div class="k-meaning">domestik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">外国</div>
+<div class="k-reading jp">がいこく</div>
+<div class="k-meaning">luar negeri</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">地域</div>
+<div class="k-reading jp">ちいき</div>
+<div class="k-meaning">wilayah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">地方</div>
+<div class="k-reading jp">ちほう</div>
+<div class="k-meaning">daerah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">都市</div>
+<div class="k-reading jp">とし</div>
+<div class="k-meaning">kota</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">首都</div>
+<div class="k-reading jp">しゅと</div>
+<div class="k-meaning">ibu kota</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">中心</div>
+<div class="k-reading jp">ちゅうしん</div>
+<div class="k-meaning">pusat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">周辺</div>
+<div class="k-reading jp">しゅうへん</div>
+<div class="k-meaning">sekitar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">地区</div>
+<div class="k-reading jp">ちく</div>
+<div class="k-meaning">distrik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">現場</div>
+<div class="k-reading jp">げんば</div>
+<div class="k-meaning">lokasi kejadian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">建築</div>
+<div class="k-reading jp">けんちく</div>
+<div class="k-meaning">arsitektur / konstruksi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">設計</div>
+<div class="k-reading jp">せっけい</div>
+<div class="k-meaning">desain / rancangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">設備</div>
+<div class="k-reading jp">せつび</div>
+<div class="k-meaning">fasilitas / peralatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">施設</div>
+<div class="k-reading jp">しせつ</div>
+<div class="k-meaning">fasilitas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">土地</div>
+<div class="k-reading jp">とち</div>
+<div class="k-meaning">tanah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">庭園</div>
+<div class="k-reading jp">ていえん</div>
+<div class="k-meaning">taman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">通路</div>
+<div class="k-reading jp">つうろ</div>
+<div class="k-meaning">lorong / jalur</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">交差</div>
+<div class="k-reading jp">こうさ</div>
+<div class="k-meaning">persimpangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">信号</div>
+<div class="k-reading jp">しんごう</div>
+<div class="k-meaning">lampu lalu lintas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">航空</div>
+<div class="k-reading jp">こうくう</div>
+<div class="k-meaning">penerbangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">空港</div>
+<div class="k-reading jp">くうこう</div>
+<div class="k-meaning">bandara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">港</div>
+<div class="k-reading jp">みなと</div>
+<div class="k-meaning">pelabuhan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">船舶</div>
+<div class="k-reading jp">せんぱく</div>
+<div class="k-meaning">kapal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">運輸</div>
+<div class="k-reading jp">うんゆ</div>
+<div class="k-meaning">transportasi / pengangkutan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">観光</div>
+<div class="k-reading jp">かんこう</div>
+<div class="k-meaning">wisata</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">風景</div>
+<div class="k-reading jp">ふうけい</div>
+<div class="k-meaning">pemandangan alam</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">方向</div>
+<div class="k-reading jp">ほうこう</div>
+<div class="k-meaning">arah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">距離</div>
+<div class="k-reading jp">きょり</div>
+<div class="k-meaning">jarak</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">位置</div>
+<div class="k-reading jp">いち</div>
+<div class="k-meaning">posisi / lokasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">目的地</div>
+<div class="k-reading jp">もくてきち</div>
+<div class="k-meaning">tempat tujuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">宿泊</div>
+<div class="k-reading jp">しゅくはく</div>
+<div class="k-meaning">penginapan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">旅館</div>
+<div class="k-reading jp">りょかん</div>
+<div class="k-meaning">penginapan tradisional</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">受付</div>
+<div class="k-reading jp">うけつけ</div>
+<div class="k-meaning">resepsionis / pendaftaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">申請</div>
+<div class="k-reading jp">しんせい</div>
+<div class="k-meaning">permohonan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">登録</div>
+<div class="k-reading jp">とうろく</div>
+<div class="k-meaning">pendaftaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">提出</div>
+<div class="k-reading jp">ていしゅつ</div>
+<div class="k-meaning">pengajuan / penyerahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">記入</div>
+<div class="k-reading jp">きにゅう</div>
+<div class="k-meaning">pengisian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">通知</div>
+<div class="k-reading jp">つうち</div>
+<div class="k-meaning">pemberitahuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">回答</div>
+<div class="k-reading jp">かいとう</div>
+<div class="k-meaning">jawaban</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">返事</div>
+<div class="k-reading jp">へんじ</div>
+<div class="k-meaning">balasan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">解答</div>
+<div class="k-reading jp">かいとう</div>
+<div class="k-meaning">jawaban (soal)</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">対象</div>
+<div class="k-reading jp">たいしょう</div>
+<div class="k-meaning">objek / sasaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">分析</div>
+<div class="k-reading jp">ぶんせき</div>
+<div class="k-meaning">analisis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">統計</div>
+<div class="k-reading jp">とうけい</div>
+<div class="k-meaning">statistik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">調査</div>
+<div class="k-reading jp">ちょうさ</div>
+<div class="k-meaning">survei / investigasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">資料</div>
+<div class="k-reading jp">しりょう</div>
+<div class="k-meaning">bahan / dokumen</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">論文</div>
+<div class="k-reading jp">ろんぶん</div>
+<div class="k-meaning">makalah / tesis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">課題</div>
+<div class="k-reading jp">かだい</div>
+<div class="k-meaning">tugas / permasalahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">成績</div>
+<div class="k-reading jp">せいせき</div>
+<div class="k-meaning">nilai / prestasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">医療</div>
+<div class="k-reading jp">いりょう</div>
+<div class="k-meaning">layanan medis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">医師</div>
+<div class="k-reading jp">いし</div>
+<div class="k-meaning">dokter</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">患者</div>
+<div class="k-reading jp">かんじゃ</div>
+<div class="k-meaning">pasien</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">健康</div>
+<div class="k-reading jp">けんこう</div>
+<div class="k-meaning">kesehatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">症状</div>
+<div class="k-reading jp">しょうじょう</div>
+<div class="k-meaning">gejala</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">治療</div>
+<div class="k-reading jp">ちりょう</div>
+<div class="k-meaning">pengobatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">手術</div>
+<div class="k-reading jp">しゅじゅつ</div>
+<div class="k-meaning">operasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">薬局</div>
+<div class="k-reading jp">やっきょく</div>
+<div class="k-meaning">apotek</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">予防</div>
+<div class="k-reading jp">よぼう</div>
+<div class="k-meaning">pencegahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">精神</div>
+<div class="k-reading jp">せいしん</div>
+<div class="k-meaning">jiwa / mental</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">睡眠</div>
+<div class="k-reading jp">すいみん</div>
+<div class="k-meaning">tidur</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">運動</div>
+<div class="k-reading jp">うんどう</div>
+<div class="k-meaning">olahraga</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">栄養</div>
+<div class="k-reading jp">えいよう</div>
+<div class="k-meaning">nutrisi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">家族</div>
+<div class="k-reading jp">かぞく</div>
+<div class="k-meaning">keluarga</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">両親</div>
+<div class="k-reading jp">りょうしん</div>
+<div class="k-meaning">orang tua</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">夫婦</div>
+<div class="k-reading jp">ふうふ</div>
+<div class="k-meaning">pasangan suami istri</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">成人</div>
+<div class="k-reading jp">せいじん</div>
+<div class="k-meaning">dewasa</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">女性</div>
+<div class="k-reading jp">じょせい</div>
+<div class="k-meaning">wanita</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">男性</div>
+<div class="k-reading jp">だんせい</div>
+<div class="k-meaning">pria</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">若者</div>
+<div class="k-reading jp">わかもの</div>
+<div class="k-meaning">anak muda</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">高齢</div>
+<div class="k-reading jp">こうれい</div>
+<div class="k-meaning">lanjut usia</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">結婚</div>
+<div class="k-reading jp">けっこん</div>
+<div class="k-meaning">pernikahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">離婚</div>
+<div class="k-reading jp">りこん</div>
+<div class="k-meaning">perceraian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">出産</div>
+<div class="k-reading jp">しゅっさん</div>
+<div class="k-meaning">melahirkan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">育児</div>
+<div class="k-reading jp">いくじ</div>
+<div class="k-meaning">pengasuhan anak</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">家庭</div>
+<div class="k-reading jp">かてい</div>
+<div class="k-meaning">rumah tangga</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">夫</div>
+<div class="k-reading jp">おっと</div>
+<div class="k-meaning">suami</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">妻</div>
+<div class="k-reading jp">つま</div>
+<div class="k-meaning">istri</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">兄弟</div>
+<div class="k-reading jp">きょうだい</div>
+<div class="k-meaning">saudara laki-laki</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">姉妹</div>
+<div class="k-reading jp">しまい</div>
+<div class="k-meaning">saudara perempuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">友人</div>
+<div class="k-reading jp">ゆうじん</div>
+<div class="k-meaning">teman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">仲間</div>
+<div class="k-reading jp">なかま</div>
+<div class="k-meaning">rekan / teman sekelompok</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">人間</div>
+<div class="k-reading jp">にんげん</div>
+<div class="k-meaning">manusia</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">性格</div>
+<div class="k-reading jp">せいかく</div>
+<div class="k-meaning">karakter</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">感情</div>
+<div class="k-reading jp">かんじょう</div>
+<div class="k-meaning">emosi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">感覚</div>
+<div class="k-reading jp">かんかく</div>
+<div class="k-meaning">indera / perasaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">印象</div>
+<div class="k-reading jp">いんしょう</div>
+<div class="k-meaning">kesan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">表情</div>
+<div class="k-reading jp">ひょうじょう</div>
+<div class="k-meaning">ekspresi wajah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">態度</div>
+<div class="k-reading jp">たいど</div>
+<div class="k-meaning">sikap</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">行動</div>
+<div class="k-reading jp">こうどう</div>
+<div class="k-meaning">tindakan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">反応</div>
+<div class="k-reading jp">はんのう</div>
+<div class="k-meaning">reaksi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">感謝</div>
+<div class="k-reading jp">かんしゃ</div>
+<div class="k-meaning">rasa syukur</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">幸福</div>
+<div class="k-reading jp">こうふく</div>
+<div class="k-meaning">kebahagiaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">悲劇</div>
+<div class="k-reading jp">ひげき</div>
+<div class="k-meaning">tragedi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">希望</div>
+<div class="k-reading jp">きぼう</div>
+<div class="k-meaning">harapan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">期待</div>
+<div class="k-reading jp">きたい</div>
+<div class="k-meaning">harapan / ekspektasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">自信</div>
+<div class="k-reading jp">じしん</div>
+<div class="k-meaning">percaya diri</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">興味</div>
+<div class="k-reading jp">きょうみ</div>
+<div class="k-meaning">minat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">関心</div>
+<div class="k-reading jp">かんしん</div>
+<div class="k-meaning">perhatian / minat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">思考</div>
+<div class="k-reading jp">しこう</div>
+<div class="k-meaning">pemikiran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">想像</div>
+<div class="k-reading jp">そうぞう</div>
+<div class="k-meaning">imajinasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">予想</div>
+<div class="k-reading jp">よそう</div>
+<div class="k-meaning">perkiraan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">予測</div>
+<div class="k-reading jp">よそく</div>
+<div class="k-meaning">prediksi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">推測</div>
+<div class="k-reading jp">すいそく</div>
+<div class="k-meaning">dugaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">根拠</div>
+<div class="k-reading jp">こんきょ</div>
+<div class="k-meaning">dasar / landasan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">事実</div>
+<div class="k-reading jp">じじつ</div>
+<div class="k-meaning">fakta</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">現実</div>
+<div class="k-reading jp">げんじつ</div>
+<div class="k-meaning">kenyataan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">手段</div>
+<div class="k-reading jp">しゅだん</div>
+<div class="k-meaning">sarana / cara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">基準</div>
+<div class="k-reading jp">きじゅん</div>
+<div class="k-meaning">standar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">範囲</div>
+<div class="k-reading jp">はんい</div>
+<div class="k-meaning">cakupan / jangkauan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">全体</div>
+<div class="k-reading jp">ぜんたい</div>
+<div class="k-meaning">keseluruhan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">共通</div>
+<div class="k-reading jp">きょうつう</div>
+<div class="k-meaning">kesamaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">個人</div>
+<div class="k-reading jp">こじん</div>
+<div class="k-meaning">individu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">一般</div>
+<div class="k-reading jp">いっぱん</div>
+<div class="k-meaning">umum</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">具体</div>
+<div class="k-reading jp">ぐたい</div>
+<div class="k-meaning">konkret</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">抽象</div>
+<div class="k-reading jp">ちゅうしょう</div>
+<div class="k-meaning">abstrak</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">積極</div>
+<div class="k-reading jp">せっきょく</div>
+<div class="k-meaning">aktif / proaktif</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">消極</div>
+<div class="k-reading jp">しょうきょく</div>
+<div class="k-meaning">pasif</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">正常</div>
+<div class="k-reading jp">せいじょう</div>
+<div class="k-meaning">normal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">異常</div>
+<div class="k-reading jp">いじょう</div>
+<div class="k-meaning">tidak normal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">有効</div>
+<div class="k-reading jp">ゆうこう</div>
+<div class="k-meaning">berlaku / efektif</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">無効</div>
+<div class="k-reading jp">むこう</div>
+<div class="k-meaning">tidak berlaku</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">有利</div>
+<div class="k-reading jp">ゆうり</div>
+<div class="k-meaning">menguntungkan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不利</div>
+<div class="k-reading jp">ふり</div>
+<div class="k-meaning">merugikan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">平均</div>
+<div class="k-reading jp">へいきん</div>
+<div class="k-meaning">rata-rata</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">最大</div>
+<div class="k-reading jp">さいだい</div>
+<div class="k-meaning">maksimal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">最小</div>
+<div class="k-reading jp">さいしょう</div>
+<div class="k-meaning">minimal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">倍</div>
+<div class="k-reading jp">ばい</div>
+<div class="k-meaning">kali lipat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">半分</div>
+<div class="k-reading jp">はんぶん</div>
+<div class="k-meaning">setengah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">多数</div>
+<div class="k-reading jp">たすう</div>
+<div class="k-meaning">mayoritas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">少数</div>
+<div class="k-reading jp">しょうすう</div>
+<div class="k-meaning">minoritas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">数量</div>
+<div class="k-reading jp">すうりょう</div>
+<div class="k-meaning">jumlah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">種類</div>
+<div class="k-reading jp">しゅるい</div>
+<div class="k-meaning">jenis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">価値</div>
+<div class="k-reading jp">かち</div>
+<div class="k-meaning">nilai</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意義</div>
+<div class="k-reading jp">いぎ</div>
+<div class="k-meaning">makna / signifikansi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">経費</div>
+<div class="k-reading jp">けいひ</div>
+<div class="k-meaning">biaya operasional</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">利益</div>
+<div class="k-reading jp">りえき</div>
+<div class="k-meaning">keuntungan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">損失</div>
+<div class="k-reading jp">そんしつ</div>
+<div class="k-meaning">kerugian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">資金</div>
+<div class="k-reading jp">しきん</div>
+<div class="k-meaning">dana</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">資源</div>
+<div class="k-reading jp">しげん</div>
+<div class="k-meaning">sumber daya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">財産</div>
+<div class="k-reading jp">ざいさん</div>
+<div class="k-meaning">harta</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">財政</div>
+<div class="k-reading jp">ざいせい</div>
+<div class="k-meaning">keuangan (negara)</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">貿易</div>
+<div class="k-reading jp">ぼうえき</div>
+<div class="k-meaning">perdagangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">輸入</div>
+<div class="k-reading jp">ゆにゅう</div>
+<div class="k-meaning">impor</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">輸出</div>
+<div class="k-reading jp">ゆしゅつ</div>
+<div class="k-meaning">ekspor</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">消費</div>
+<div class="k-reading jp">しょうひ</div>
+<div class="k-meaning">konsumsi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">購入</div>
+<div class="k-reading jp">こうにゅう</div>
+<div class="k-meaning">pembelian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">注文</div>
+<div class="k-reading jp">ちゅうもん</div>
+<div class="k-meaning">pesanan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">製品</div>
+<div class="k-reading jp">せいひん</div>
+<div class="k-meaning">produk</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">産業</div>
+<div class="k-reading jp">さんぎょう</div>
+<div class="k-meaning">industri</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">組織</div>
+<div class="k-reading jp">そしき</div>
+<div class="k-meaning">organisasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">部門</div>
+<div class="k-reading jp">ぶもん</div>
+<div class="k-meaning">divisi / departemen</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">事業</div>
+<div class="k-reading jp">じぎょう</div>
+<div class="k-meaning">usaha / bisnis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">業務</div>
+<div class="k-reading jp">ぎょうむ</div>
+<div class="k-meaning">tugas kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">就職</div>
+<div class="k-reading jp">しゅうしょく</div>
+<div class="k-meaning">mendapatkan pekerjaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">退職</div>
+<div class="k-reading jp">たいしょく</div>
+<div class="k-meaning">pensiun / berhenti kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">転職</div>
+<div class="k-reading jp">てんしょく</div>
+<div class="k-meaning">pindah kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">雇用</div>
+<div class="k-reading jp">こよう</div>
+<div class="k-meaning">ketenagakerjaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">労働</div>
+<div class="k-reading jp">ろうどう</div>
+<div class="k-meaning">tenaga kerja</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">賃金</div>
+<div class="k-reading jp">ちんぎん</div>
+<div class="k-meaning">upah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">収入</div>
+<div class="k-reading jp">しゅうにゅう</div>
+<div class="k-meaning">pendapatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">支出</div>
+<div class="k-reading jp">ししゅつ</div>
+<div class="k-meaning">pengeluaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">経営</div>
+<div class="k-reading jp">けいえい</div>
+<div class="k-meaning">manajemen / pengelolaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">会計</div>
+<div class="k-reading jp">かいけい</div>
+<div class="k-meaning">akuntansi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">経理</div>
+<div class="k-reading jp">けいり</div>
+<div class="k-meaning">pembukuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">技能</div>
+<div class="k-reading jp">ぎのう</div>
+<div class="k-meaning">keterampilan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">訓練</div>
+<div class="k-reading jp">くんれん</div>
+<div class="k-meaning">pelatihan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">学習</div>
+<div class="k-reading jp">がくしゅう</div>
+<div class="k-meaning">pembelajaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">学力</div>
+<div class="k-reading jp">がくりょく</div>
+<div class="k-meaning">kemampuan akademik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">学問</div>
+<div class="k-reading jp">がくもん</div>
+<div class="k-meaning">ilmu pengetahuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発表</div>
+<div class="k-reading jp">はっぴょう</div>
+<div class="k-meaning">presentasi / pengumuman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">出版</div>
+<div class="k-reading jp">しゅっぱん</div>
+<div class="k-meaning">penerbitan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">放送</div>
+<div class="k-reading jp">ほうそう</div>
+<div class="k-meaning">siaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">通信</div>
+<div class="k-reading jp">つうしん</div>
+<div class="k-meaning">komunikasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">表現</div>
+<div class="k-reading jp">ひょうげん</div>
+<div class="k-meaning">ekspresi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発言</div>
+<div class="k-reading jp">はつげん</div>
+<div class="k-meaning">pernyataan / ucapan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">質問</div>
+<div class="k-reading jp">しつもん</div>
+<div class="k-meaning">pertanyaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">文書</div>
+<div class="k-reading jp">ぶんしょ</div>
+<div class="k-meaning">dokumen</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">記録</div>
+<div class="k-reading jp">きろく</div>
+<div class="k-meaning">catatan / rekaman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">通知</div>
+<div class="k-reading jp">つうち</div>
+<div class="k-meaning">pemberitahuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">対象</div>
+<div class="k-reading jp">たいしょう</div>
+<div class="k-meaning">objek / sasaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">分析</div>
+<div class="k-reading jp">ぶんせき</div>
+<div class="k-meaning">analisis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">統計</div>
+<div class="k-reading jp">とうけい</div>
+<div class="k-meaning">statistik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">実験</div>
+<div class="k-reading jp">じっけん</div>
+<div class="k-meaning">eksperimen</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">観察</div>
+<div class="k-reading jp">かんさつ</div>
+<div class="k-meaning">pengamatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">証拠</div>
+<div class="k-reading jp">しょうこ</div>
+<div class="k-meaning">bukti</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">根拠</div>
+<div class="k-reading jp">こんきょ</div>
+<div class="k-meaning">dasar / landasan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">結論</div>
+<div class="k-reading jp">けつろん</div>
+<div class="k-meaning">kesimpulan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">解釈</div>
+<div class="k-reading jp">かいしゃく</div>
+<div class="k-meaning">interpretasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意識</div>
+<div class="k-reading jp">いしき</div>
+<div class="k-meaning">kesadaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">意志</div>
+<div class="k-reading jp">いし</div>
+<div class="k-meaning">kemauan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">決意</div>
+<div class="k-reading jp">けつい</div>
+<div class="k-meaning">tekad</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">考慮</div>
+<div class="k-reading jp">こうりょ</div>
+<div class="k-meaning">pertimbangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">想像</div>
+<div class="k-reading jp">そうぞう</div>
+<div class="k-meaning">imajinasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">予測</div>
+<div class="k-reading jp">よそく</div>
+<div class="k-meaning">prediksi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">推測</div>
+<div class="k-reading jp">すいそく</div>
+<div class="k-meaning">dugaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">実感</div>
+<div class="k-reading jp">じっかん</div>
+<div class="k-meaning">merasakan secara nyata</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">感覚</div>
+<div class="k-reading jp">かんかく</div>
+<div class="k-meaning">indera / perasaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">印象</div>
+<div class="k-reading jp">いんしょう</div>
+<div class="k-meaning">kesan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">性質</div>
+<div class="k-reading jp">せいしつ</div>
+<div class="k-meaning">sifat / karakteristik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">特徴</div>
+<div class="k-reading jp">とくちょう</div>
+<div class="k-meaning">ciri khas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">特性</div>
+<div class="k-reading jp">とくせい</div>
+<div class="k-meaning">sifat khusus</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">状態</div>
+<div class="k-reading jp">じょうたい</div>
+<div class="k-meaning">kondisi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">程度</div>
+<div class="k-reading jp">ていど</div>
+<div class="k-meaning">tingkat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">範囲</div>
+<div class="k-reading jp">はんい</div>
+<div class="k-meaning">cakupan / jangkauan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">基本</div>
+<div class="k-reading jp">きほん</div>
+<div class="k-meaning">dasar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">基礎</div>
+<div class="k-reading jp">きそ</div>
+<div class="k-meaning">fondasi / dasar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">原理</div>
+<div class="k-reading jp">げんり</div>
+<div class="k-meaning">prinsip</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">共通</div>
+<div class="k-reading jp">きょうつう</div>
+<div class="k-meaning">kesamaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">個性</div>
+<div class="k-reading jp">こせい</div>
+<div class="k-meaning">kepribadian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">全体</div>
+<div class="k-reading jp">ぜんたい</div>
+<div class="k-meaning">keseluruhan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">部分</div>
+<div class="k-reading jp">ぶぶん</div>
+<div class="k-meaning">bagian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">普段</div>
+<div class="k-reading jp">ふだん</div>
+<div class="k-meaning">biasanya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">通常</div>
+<div class="k-reading jp">つうじょう</div>
+<div class="k-meaning">biasanya / umumnya</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">特殊</div>
+<div class="k-reading jp">とくしゅ</div>
+<div class="k-meaning">khusus</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">直接</div>
+<div class="k-reading jp">ちょくせつ</div>
+<div class="k-meaning">langsung</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">間接</div>
+<div class="k-reading jp">かんせつ</div>
+<div class="k-meaning">tidak langsung</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">正式</div>
+<div class="k-reading jp">せいしき</div>
+<div class="k-meaning">resmi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">正当</div>
+<div class="k-reading jp">せいとう</div>
+<div class="k-meaning">sah / wajar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">適切</div>
+<div class="k-reading jp">てきせつ</div>
+<div class="k-meaning">tepat / sesuai</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不適切</div>
+<div class="k-reading jp">ふてきせつ</div>
+<div class="k-meaning">tidak tepat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">不足</div>
+<div class="k-reading jp">ふそく</div>
+<div class="k-meaning">kekurangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">余裕</div>
+<div class="k-reading jp">よゆう</div>
+<div class="k-meaning">kelonggaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">適当</div>
+<div class="k-reading jp">てきとう</div>
+<div class="k-meaning">cocok / sembarangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">明確</div>
+<div class="k-reading jp">めいかく</div>
+<div class="k-meaning">jelas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">確実</div>
+<div class="k-reading jp">かくじつ</div>
+<div class="k-meaning">pasti / tepat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">正確</div>
+<div class="k-reading jp">せいかく</div>
+<div class="k-meaning">akurat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">維持</div>
+<div class="k-reading jp">いじ</div>
+<div class="k-meaning">mempertahankan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">保持</div>
+<div class="k-reading jp">ほじ</div>
+<div class="k-meaning">mempertahankan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">保存</div>
+<div class="k-reading jp">ほぞん</div>
+<div class="k-meaning">penyimpanan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">保護</div>
+<div class="k-reading jp">ほご</div>
+<div class="k-meaning">perlindungan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">支援</div>
+<div class="k-reading jp">しえん</div>
+<div class="k-meaning">dukungan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">援助</div>
+<div class="k-reading jp">えんじょ</div>
+<div class="k-meaning">bantuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">保証</div>
+<div class="k-reading jp">ほしょう</div>
+<div class="k-meaning">jaminan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">達成</div>
+<div class="k-reading jp">たっせい</div>
+<div class="k-meaning">pencapaian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">実現</div>
+<div class="k-reading jp">じつげん</div>
+<div class="k-meaning">realisasi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">成立</div>
+<div class="k-reading jp">せいりつ</div>
+<div class="k-meaning">terbentuk / terwujud</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発展</div>
+<div class="k-reading jp">はってん</div>
+<div class="k-meaning">perkembangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">進歩</div>
+<div class="k-reading jp">しんぽ</div>
+<div class="k-meaning">kemajuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発達</div>
+<div class="k-reading jp">はったつ</div>
+<div class="k-meaning">perkembangan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">改良</div>
+<div class="k-reading jp">かいりょう</div>
+<div class="k-meaning">peningkatan / penyempurnaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発見</div>
+<div class="k-reading jp">はっけん</div>
+<div class="k-meaning">penemuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発明</div>
+<div class="k-reading jp">はつめい</div>
+<div class="k-meaning">penemuan (invensi)</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">発生</div>
+<div class="k-reading jp">はっせい</div>
+<div class="k-meaning">terjadinya sesuatu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">存在</div>
+<div class="k-reading jp">そんざい</div>
+<div class="k-meaning">keberadaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">維持</div>
+<div class="k-reading jp">いじ</div>
+<div class="k-meaning">mempertahankan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">防止</div>
+<div class="k-reading jp">ぼうし</div>
+<div class="k-meaning">pencegahan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">対策</div>
+<div class="k-reading jp">たいさく</div>
+<div class="k-meaning">langkah / tindakan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">対応</div>
+<div class="k-reading jp">たいおう</div>
+<div class="k-meaning">penanganan / respons</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">管理</div>
+<div class="k-reading jp">かんり</div>
+<div class="k-meaning">pengelolaan</div>
+</div>
+  </div>
+</div>
+
+<footer>© 2026 Tekipaki Japanese Learning | Daftar Kanji JLPT N2</footer>
+
+<script>
+function toggleDropdown(id){
+  document.querySelectorAll('.dropdown-menu').forEach(m=>{
+    if(m.id!==id){
+      m.classList.remove('show');
+      m.classList.remove('align-right');
+      m.closest('.dropdown').classList.remove('open');
+    }
+  });
+  const menu = document.getElementById(id);
+  const wrap = menu.closest('.dropdown');
+  const willShow = !menu.classList.contains('show');
+
+  menu.classList.toggle('show');
+  wrap.classList.toggle('open');
+
+  if(willShow){
+    menu.classList.remove('align-right');
+    const rect = menu.getBoundingClientRect();
+    if(rect.right > window.innerWidth - 8){
+      menu.classList.add('align-right');
+    }
+    const rect2 = menu.getBoundingClientRect();
+    if(rect2.left < 8){
+      menu.style.left = (8 - wrap.getBoundingClientRect().left) + 'px';
+      menu.style.right = 'auto';
+    }
+  }
+}
+
+window.addEventListener('resize', ()=>{
+  document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
+    m.classList.remove('show');
+    m.classList.remove('align-right');
+    m.style.left = '';
+    m.style.right = '';
+    m.closest('.dropdown').classList.remove('open');
+  });
+  if(window.innerWidth > 600){
+    closeMobileMenu();
+  }
+});
+
+function toggleMobileMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburgerBtn');
+  const willOpen = !menu.classList.contains('open');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+  if(!willOpen){
+    document.querySelectorAll('.mobile-section-links.show').forEach(l=>l.classList.remove('show'));
+    document.querySelectorAll('.mobile-section-btn.open').forEach(b=>b.classList.remove('open'));
+  }
+}
+
+function closeMobileMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburgerBtn');
+  menu.classList.remove('open');
+  btn.classList.remove('open');
+  document.querySelectorAll('.mobile-section-links.show').forEach(l=>l.classList.remove('show'));
+  document.querySelectorAll('.mobile-section-btn.open').forEach(b=>b.classList.remove('open'));
+}
+
+function toggleMobileSection(id){
+  const links = document.getElementById(id);
+  const btn = links.previousElementSibling;
+  const willShow = !links.classList.contains('show');
+  links.classList.toggle('show');
+  btn.classList.toggle('open');
+  if(willShow){
+    document.querySelectorAll('.mobile-section-links.show').forEach(l=>{
+      if(l.id !== id){
+        l.classList.remove('show');
+        l.previousElementSibling.classList.remove('open');
+      }
+    });
+  }
+}
+
+document.addEventListener('click', e=>{
+  if(!e.target.closest('.dropdown')){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+      m.classList.remove('show');
+      m.classList.remove('align-right');
+      m.style.left = '';
+      m.style.right = '';
+    });
+    document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
+  }
+});
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy',        e => e.preventDefault());
+document.addEventListener('cut',         e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('dragstart',   e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if(
+    (e.ctrlKey && ['c','u','s','p','a'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase()))
+  ){ e.preventDefault(); }
+});
+
+function filterKanji(){
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const cards = document.querySelectorAll('.kanji-card');
+  let visible = 0;
+  cards.forEach(card=>{
+    const text = card.innerText.toLowerCase();
+    if(text.includes(q)){
+      card.classList.remove('hide');
+      visible++;
+    } else {
+      card.classList.add('hide');
+    }
+  });
+  const countEl = document.getElementById('searchCount');
+  countEl.textContent = q ? (visible + ' dari ' + cards.length + ' kanji ditemukan') : '';
+}
+</script>
+
+</body>
+</html>
