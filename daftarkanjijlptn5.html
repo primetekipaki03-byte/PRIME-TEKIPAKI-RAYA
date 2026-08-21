@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar Kanji JLPT N5</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy-deep:#001530;
+    --navy2:#022655;
+    --gold:#e0b52a;
+    --gold-bright:#facc15;
+    --paper:#fffdf7;
+    --ink:#001f3f;
+    --muted:#5b6b7d;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins","Segoe UI",Arial,sans-serif;}
+.jp{font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif;}
+body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
+
+/* =======================
+        NAVBAR
+======================= */
+#navbar{position:sticky;top:0;z-index:999;background:var(--navy-deep);
+    border-bottom:2px solid rgba(250,204,21,.25);box-shadow:0 4px 14px rgba(0,0,0,.35);}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;}
+.nav-left{display:flex;align-items:center;}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy-deep);
+    text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;}
+.home-btn:hover{opacity:.85;}
+.home-icon{width:24px;height:24px;object-fit:cover;border-radius:4px;}
+.dropdown{position:relative;}
+.dropdown-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;
+    border-radius:8px;font-weight:bold;cursor:pointer;}
+.dropdown-btn:hover{background:var(--gold);color:var(--navy-deep);}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:var(--navy2);border-radius:10px;
+    overflow:hidden;min-width:220px;max-width:90vw;box-shadow:0 8px 20px rgba(0,0,0,.4);}
+.dropdown-menu.align-right{left:auto;right:0;}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none;}
+.dropdown-menu a:hover{background:var(--gold);color:var(--navy-deep);}
+.show{display:block;}
+
+/* Hamburger button (mobile only) */
+.hamburger-btn{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+  width:40px;height:40px;
+  background:none;
+  border:2px solid var(--gold);
+  border-radius:8px;
+  cursor:pointer;
+  padding:0;
+}
+.hamburger-btn span{
+  display:block;
+  width:20px;height:2px;
+  background:var(--gold);
+  margin:0 auto;
+  border-radius:2px;
+  transition:transform .25s ease, opacity .25s ease;
+}
+.hamburger-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger-btn.open span:nth-child(2){opacity:0;}
+.hamburger-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* Mobile slide-down menu */
+.mobile-menu{
+  display:none;
+  background:var(--navy-deep);
+  border-top:1px solid rgba(250,204,21,.2);
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .3s ease;
+}
+.mobile-menu.open{max-height:80vh;overflow-y:auto;}
+.mobile-section{border-bottom:1px solid rgba(255,255,255,.08);}
+.mobile-section-btn{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:none;
+  border:none;
+  color:var(--gold-bright);
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:.06em;
+  padding:14px 20px;
+  cursor:pointer;
+}
+.mobile-section-btn .chevron{transition:transform .2s ease;}
+.mobile-section-btn.open .chevron{transform:rotate(180deg);}
+.mobile-section-links{
+  display:none;
+  flex-direction:column;
+  background:rgba(0,0,0,.15);
+}
+.mobile-section-links.show{display:flex;}
+.mobile-section-links a{
+  padding:12px 30px;
+  color:#dbe4f0;
+  text-decoration:none;
+  font-size:13.5px;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.mobile-section-links a:hover{background:rgba(250,204,21,.12);color:var(--gold-bright);}
+
+@media(max-width:600px){
+  .nav-right{display:none;}
+  .hamburger-btn{display:flex;}
+  .mobile-menu{display:block;}
+}
+
+/* =======================
+        HEADER
+======================= */
+header{
+  position:relative;
+  background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 55%,#003366 100%);
+  color:#fff;
+  padding:50px 20px 40px;
+  text-align:center;
+  overflow:hidden;
+}
+header .kanji-watermark{
+  position:absolute;
+  font-size:min(40vw,320px);
+  font-weight:900;
+  color:rgba(255,255,255,.04);
+  top:50%;left:50%;
+  transform:translate(-50%,-46%);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+  white-space:nowrap;
+}
+.header-inner{position:relative;z-index:2;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.4);
+  color:var(--gold-bright);font-size:12px;font-weight:700;letter-spacing:.14em;
+  padding:6px 14px;border-radius:999px;margin-bottom:16px;
+}
+header h1{font-size:clamp(1.7rem,4.5vw,2.5rem);margin-bottom:10px;}
+header p{
+  color:#cdd8ea;
+  max-width:680px;
+  margin:0 auto;
+  font-size:14.5px;
+  line-height:1.7;
+}
+
+/* =======================
+        SEARCH
+======================= */
+.search-wrap{
+  max-width:520px;
+  margin:22px auto 0;
+  position:relative;
+  z-index:2;
+}
+.search-wrap input{
+  width:100%;
+  padding:13px 18px 13px 42px;
+  border-radius:12px;
+  border:none;
+  font-size:14.5px;
+  color:var(--navy);
+  background:#fff;
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+.search-wrap input:focus{outline:2px solid var(--gold-bright);}
+.search-wrap::before{
+  content:"🔍";
+  position:absolute;
+  left:15px;top:50%;
+  transform:translateY(-50%);
+  font-size:15px;
+  z-index:3;
+}
+.search-count{
+  text-align:center;
+  color:var(--muted);
+  font-size:12.5px;
+  margin-top:10px;
+}
+
+/* =======================
+        KANJI GRID
+======================= */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:34px 20px 20px;
+}
+
+.kanji-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:14px;
+}
+
+.kanji-card{
+  position:relative;
+  background:var(--paper);
+  border:2px solid rgba(0,31,63,.08);
+  border-radius:14px;
+  padding:16px 10px 14px;
+  text-align:center;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.kanji-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--gold);
+  box-shadow:0 10px 22px rgba(0,31,63,.15);
+}
+.k-kanji{
+  font-size:2rem;
+  font-weight:700;
+  color:var(--navy);
+  line-height:1.15;
+  margin-bottom:6px;
+}
+.k-reading{
+  font-size:12.5px;
+  color:#a4780a;
+  font-weight:600;
+  margin-bottom:6px;
+}
+.k-meaning{
+  font-size:11.5px;
+  color:var(--muted);
+  line-height:1.4;
+}
+.kanji-card.hide{display:none;}
+
+@media(max-width:1100px){ .kanji-grid{grid-template-columns:repeat(5,1fr);} }
+@media(max-width:900px){ .kanji-grid{grid-template-columns:repeat(4,1fr);} }
+@media(max-width:700px){ .kanji-grid{grid-template-columns:repeat(3,1fr);} }
+@media(max-width:460px){
+  .kanji-grid{grid-template-columns:repeat(2,1fr);}
+  header h1{font-size:1.5rem;}
+  .k-kanji{font-size:1.7rem;}
+}
+
+footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 40px;}
+
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+<div class="dropdown-menu" id="materi">
+<a href="daftarkosakata.html">Kosakata JFT</a>
+<a href="materitatabahasa.html">Tata Bahasa</a>
+<a href="daftarkanji.html">Daftar Kanji</a>
+<a href="kanjidasar.html">Kanji Flash Card</a>
+</div>
+</div>
+
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+<div class="dropdown-menu" id="quiz">
+<a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+<a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+<a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+<a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+<a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+</div>
+</div>
+
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+<div class="dropdown-menu" id="kanjiquiz">
+<a href="quizkanji1.html">QUIZ KANJI 1</a>
+<a href="quizkanji2.html">QUIZ KANJI 2</a>
+<a href="quizkanji3.html">QUIZ KANJI 3</a>
+<a href="quizkanji4.html">QUIZ KANJI 4</a>
+<a href="quizkanji5.html">QUIZ KANJI 5</a>
+</div>
+</div>
+</div>
+
+<button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+
+<div class="mobile-section">
+<button class="mobile-section-btn" onclick="toggleMobileSection('m-materi')">MATERI <span class="chevron">▼</span></button>
+<div class="mobile-section-links" id="m-materi">
+<a href="daftarkosakata.html">Kosakata JFT</a>
+<a href="materitatabahasa.html">Tata Bahasa</a>
+<a href="daftarkanji.html">Daftar Kanji</a>
+<a href="kanjidasar.html">Kanji Flash Card</a>
+</div>
+</div>
+
+<div class="mobile-section">
+<button class="mobile-section-btn" onclick="toggleMobileSection('m-quiz')">QUIZ JFT <span class="chevron">▼</span></button>
+<div class="mobile-section-links" id="m-quiz">
+<a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+<a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+<a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+<a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+<a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+</div>
+</div>
+
+<div class="mobile-section">
+<button class="mobile-section-btn" onclick="toggleMobileSection('m-kanjiquiz')">QUIZ KANJI <span class="chevron">▼</span></button>
+<div class="mobile-section-links" id="m-kanjiquiz">
+<a href="quizkanji1.html">QUIZ KANJI 1</a>
+<a href="quizkanji2.html">QUIZ KANJI 2</a>
+<a href="quizkanji3.html">QUIZ KANJI 3</a>
+<a href="quizkanji4.html">QUIZ KANJI 4</a>
+<a href="quizkanji5.html">QUIZ KANJI 5</a>
+</div>
+</div>
+
+</div>
+</nav>
+
+<header>
+  <div class="kanji-watermark jp">漢字</div>
+  <div class="header-inner">
+    <div class="eyebrow">🈷️ MATERI · KANJI N5</div>
+    <h1>Daftar Kanji JLPT N5</h1>
+    <p>Kumpulan kanji tingkat N5 lengkap dengan cara baca dan artinya. Gunakan kolom pencarian untuk menemukan kanji tertentu dengan cepat.</p>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" placeholder="Cari kanji, cara baca, atau arti..." oninput="filterKanji()">
+    </div>
+    <div class="search-count" id="searchCount"></div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="kanji-grid" id="kanjiGrid">
+<div class="kanji-card">
+<div class="k-kanji jp">一</div>
+<div class="k-reading jp">いち／ひとつ</div>
+<div class="k-meaning">satu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">二</div>
+<div class="k-reading jp">に／ふたつ</div>
+<div class="k-meaning">dua</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">三</div>
+<div class="k-reading jp">さん／みっつ</div>
+<div class="k-meaning">tiga</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">四</div>
+<div class="k-reading jp">し／よん／よっつ</div>
+<div class="k-meaning">empat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">五</div>
+<div class="k-reading jp">ご／いつつ</div>
+<div class="k-meaning">lima</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">六</div>
+<div class="k-reading jp">ろく／むっつ</div>
+<div class="k-meaning">enam</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">七</div>
+<div class="k-reading jp">しち／なな</div>
+<div class="k-meaning">tujuh</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">八</div>
+<div class="k-reading jp">はち／やっつ</div>
+<div class="k-meaning">delapan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">九</div>
+<div class="k-reading jp">きゅう／く</div>
+<div class="k-meaning">sembilan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">十</div>
+<div class="k-reading jp">じゅう／とお</div>
+<div class="k-meaning">sepuluh</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">百</div>
+<div class="k-reading jp">ひゃく</div>
+<div class="k-meaning">seratus</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">千</div>
+<div class="k-reading jp">せん</div>
+<div class="k-meaning">seribu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">万</div>
+<div class="k-reading jp">まん</div>
+<div class="k-meaning">sepuluh ribu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">円</div>
+<div class="k-reading jp">えん</div>
+<div class="k-meaning">yen / lingkaran</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">日</div>
+<div class="k-reading jp">ひ／にち</div>
+<div class="k-meaning">hari / matahari</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">月</div>
+<div class="k-reading jp">つき／げつ</div>
+<div class="k-meaning">bulan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">火</div>
+<div class="k-reading jp">ひ／か</div>
+<div class="k-meaning">api</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">水</div>
+<div class="k-reading jp">みず／すい</div>
+<div class="k-meaning">air</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">木</div>
+<div class="k-reading jp">き／もく</div>
+<div class="k-meaning">pohon / kayu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">金</div>
+<div class="k-reading jp">きん／かね</div>
+<div class="k-meaning">emas / uang</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">土</div>
+<div class="k-reading jp">つち／ど</div>
+<div class="k-meaning">tanah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">年</div>
+<div class="k-reading jp">とし／ねん</div>
+<div class="k-meaning">tahun</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">時</div>
+<div class="k-reading jp">じ／とき</div>
+<div class="k-meaning">waktu / jam</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">分</div>
+<div class="k-reading jp">ふん／ぶん</div>
+<div class="k-meaning">menit / bagian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">午</div>
+<div class="k-reading jp">ご</div>
+<div class="k-meaning">tengah hari</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">前</div>
+<div class="k-reading jp">まえ／ぜん</div>
+<div class="k-meaning">depan / sebelum</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">後</div>
+<div class="k-reading jp">あと／うしろ／ご</div>
+<div class="k-meaning">belakang / sesudah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">今</div>
+<div class="k-reading jp">いま／こん</div>
+<div class="k-meaning">sekarang</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">毎</div>
+<div class="k-reading jp">まい</div>
+<div class="k-meaning">setiap</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">週</div>
+<div class="k-reading jp">しゅう</div>
+<div class="k-meaning">minggu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">上</div>
+<div class="k-reading jp">うえ／じょう</div>
+<div class="k-meaning">atas</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">下</div>
+<div class="k-reading jp">した／げ</div>
+<div class="k-meaning">bawah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">中</div>
+<div class="k-reading jp">なか／ちゅう</div>
+<div class="k-meaning">dalam / tengah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">外</div>
+<div class="k-reading jp">そと／がい</div>
+<div class="k-meaning">luar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">左</div>
+<div class="k-reading jp">ひだり</div>
+<div class="k-meaning">kiri</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">右</div>
+<div class="k-reading jp">みぎ</div>
+<div class="k-meaning">kanan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">東</div>
+<div class="k-reading jp">ひがし／とう</div>
+<div class="k-meaning">timur</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">西</div>
+<div class="k-reading jp">にし／せい</div>
+<div class="k-meaning">barat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">南</div>
+<div class="k-reading jp">みなみ／なん</div>
+<div class="k-meaning">selatan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">北</div>
+<div class="k-reading jp">きた／ほく</div>
+<div class="k-meaning">utara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">大</div>
+<div class="k-reading jp">おおきい／だい</div>
+<div class="k-meaning">besar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">小</div>
+<div class="k-reading jp">ちいさい／しょう</div>
+<div class="k-meaning">kecil</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">長</div>
+<div class="k-reading jp">ながい／ちょう</div>
+<div class="k-meaning">panjang</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">高</div>
+<div class="k-reading jp">たかい／こう</div>
+<div class="k-meaning">tinggi / mahal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">安</div>
+<div class="k-reading jp">やすい／あん</div>
+<div class="k-meaning">murah / aman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">新</div>
+<div class="k-reading jp">あたらしい／しん</div>
+<div class="k-meaning">baru</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">古</div>
+<div class="k-reading jp">ふるい／こ</div>
+<div class="k-meaning">lama / kuno</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">多</div>
+<div class="k-reading jp">おおい／た</div>
+<div class="k-meaning">banyak</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">少</div>
+<div class="k-reading jp">すくない／しょう</div>
+<div class="k-meaning">sedikit</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">白</div>
+<div class="k-reading jp">しろい／はく</div>
+<div class="k-meaning">putih</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">黒</div>
+<div class="k-reading jp">くろい／こく</div>
+<div class="k-meaning">hitam</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">赤</div>
+<div class="k-reading jp">あかい／せき</div>
+<div class="k-meaning">merah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">青</div>
+<div class="k-reading jp">あおい／せい</div>
+<div class="k-meaning">biru</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">男</div>
+<div class="k-reading jp">おとこ／だん</div>
+<div class="k-meaning">laki-laki</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">女</div>
+<div class="k-reading jp">おんな／じょ</div>
+<div class="k-meaning">perempuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">子</div>
+<div class="k-reading jp">こ／し</div>
+<div class="k-meaning">anak</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">人</div>
+<div class="k-reading jp">ひと／じん</div>
+<div class="k-meaning">orang</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">父</div>
+<div class="k-reading jp">ちち／ふ</div>
+<div class="k-meaning">ayah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">母</div>
+<div class="k-reading jp">はは／ぼ</div>
+<div class="k-meaning">ibu</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">友</div>
+<div class="k-reading jp">とも／ゆう</div>
+<div class="k-meaning">teman</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">先</div>
+<div class="k-reading jp">さき／せん</div>
+<div class="k-meaning">sebelum / duluan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">生</div>
+<div class="k-reading jp">うまれる／せい</div>
+<div class="k-meaning">lahir / murid</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">学</div>
+<div class="k-reading jp">まなぶ／がく</div>
+<div class="k-meaning">belajar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">校</div>
+<div class="k-reading jp">こう</div>
+<div class="k-meaning">sekolah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">本</div>
+<div class="k-reading jp">ほん</div>
+<div class="k-meaning">buku / asal</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">文</div>
+<div class="k-reading jp">ぶん</div>
+<div class="k-meaning">kalimat / tulisan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">字</div>
+<div class="k-reading jp">じ</div>
+<div class="k-meaning">huruf</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">名</div>
+<div class="k-reading jp">な／めい</div>
+<div class="k-meaning">nama</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">語</div>
+<div class="k-reading jp">ご</div>
+<div class="k-meaning">bahasa</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">国</div>
+<div class="k-reading jp">くに／こく</div>
+<div class="k-meaning">negara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">外</div>
+<div class="k-reading jp">そと／がい</div>
+<div class="k-meaning">luar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">来</div>
+<div class="k-reading jp">くる／らい</div>
+<div class="k-meaning">datang</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">行</div>
+<div class="k-reading jp">いく／こう</div>
+<div class="k-meaning">pergi</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">帰</div>
+<div class="k-reading jp">かえる／き</div>
+<div class="k-meaning">pulang</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">入</div>
+<div class="k-reading jp">はいる／にゅう</div>
+<div class="k-meaning">masuk</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">出</div>
+<div class="k-reading jp">でる／しゅつ</div>
+<div class="k-meaning">keluar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">休</div>
+<div class="k-reading jp">やすむ／きゅう</div>
+<div class="k-meaning">istirahat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">見</div>
+<div class="k-reading jp">みる／けん</div>
+<div class="k-meaning">melihat</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">聞</div>
+<div class="k-reading jp">きく／ぶん</div>
+<div class="k-meaning">mendengar</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">言</div>
+<div class="k-reading jp">いう／げん</div>
+<div class="k-meaning">berkata</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">話</div>
+<div class="k-reading jp">はなす／わ</div>
+<div class="k-meaning">berbicara</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">読</div>
+<div class="k-reading jp">よむ／どく</div>
+<div class="k-meaning">membaca</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">書</div>
+<div class="k-reading jp">かく／しょ</div>
+<div class="k-meaning">menulis</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">食</div>
+<div class="k-reading jp">たべる／しょく</div>
+<div class="k-meaning">makan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">飲</div>
+<div class="k-reading jp">のむ／いん</div>
+<div class="k-meaning">minum</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">買</div>
+<div class="k-reading jp">かう／ばい</div>
+<div class="k-meaning">membeli</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">売</div>
+<div class="k-reading jp">うる／ばい</div>
+<div class="k-meaning">menjual</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">車</div>
+<div class="k-reading jp">くるま／しゃ</div>
+<div class="k-meaning">mobil</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">電</div>
+<div class="k-reading jp">でん</div>
+<div class="k-meaning">listrik</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">駅</div>
+<div class="k-reading jp">えき</div>
+<div class="k-meaning">stasiun</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">店</div>
+<div class="k-reading jp">みせ／てん</div>
+<div class="k-meaning">toko</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">道</div>
+<div class="k-reading jp">みち／どう</div>
+<div class="k-meaning">jalan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">家</div>
+<div class="k-reading jp">いえ／か</div>
+<div class="k-meaning">rumah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">部</div>
+<div class="k-reading jp">ぶ</div>
+<div class="k-meaning">bagian</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">屋</div>
+<div class="k-reading jp">や</div>
+<div class="k-meaning">toko / rumah</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">会</div>
+<div class="k-reading jp">あう／かい</div>
+<div class="k-meaning">bertemu / pertemuan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">社</div>
+<div class="k-reading jp">しゃ</div>
+<div class="k-meaning">perusahaan</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">何</div>
+<div class="k-reading jp">なに／なん</div>
+<div class="k-meaning">apa</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">間</div>
+<div class="k-reading jp">あいだ／かん</div>
+<div class="k-meaning">antara / ruang</div>
+</div>
+
+<div class="kanji-card">
+<div class="k-kanji jp">気</div>
+<div class="k-reading jp">き</div>
+<div class="k-meaning">udara / perasaan</div>
+</div>
+  </div>
+</div>
+
+<footer>© 2026 Tekipaki Japanese Learning | Daftar Kanji JLPT N5</footer>
+
+<script>
+function toggleDropdown(id){
+  document.querySelectorAll('.dropdown-menu').forEach(m=>{
+    if(m.id!==id){
+      m.classList.remove('show');
+      m.classList.remove('align-right');
+      m.closest('.dropdown').classList.remove('open');
+    }
+  });
+  const menu = document.getElementById(id);
+  const wrap = menu.closest('.dropdown');
+  const willShow = !menu.classList.contains('show');
+
+  menu.classList.toggle('show');
+  wrap.classList.toggle('open');
+
+  if(willShow){
+    menu.classList.remove('align-right');
+    const rect = menu.getBoundingClientRect();
+    if(rect.right > window.innerWidth - 8){
+      menu.classList.add('align-right');
+    }
+    const rect2 = menu.getBoundingClientRect();
+    if(rect2.left < 8){
+      menu.style.left = (8 - wrap.getBoundingClientRect().left) + 'px';
+      menu.style.right = 'auto';
+    }
+  }
+}
+
+window.addEventListener('resize', ()=>{
+  document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
+    m.classList.remove('show');
+    m.classList.remove('align-right');
+    m.style.left = '';
+    m.style.right = '';
+    m.closest('.dropdown').classList.remove('open');
+  });
+  if(window.innerWidth > 600){
+    closeMobileMenu();
+  }
+});
+
+function toggleMobileMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburgerBtn');
+  const willOpen = !menu.classList.contains('open');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+  if(!willOpen){
+    document.querySelectorAll('.mobile-section-links.show').forEach(l=>l.classList.remove('show'));
+    document.querySelectorAll('.mobile-section-btn.open').forEach(b=>b.classList.remove('open'));
+  }
+}
+
+function closeMobileMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburgerBtn');
+  menu.classList.remove('open');
+  btn.classList.remove('open');
+  document.querySelectorAll('.mobile-section-links.show').forEach(l=>l.classList.remove('show'));
+  document.querySelectorAll('.mobile-section-btn.open').forEach(b=>b.classList.remove('open'));
+}
+
+function toggleMobileSection(id){
+  const links = document.getElementById(id);
+  const btn = links.previousElementSibling;
+  const willShow = !links.classList.contains('show');
+  links.classList.toggle('show');
+  btn.classList.toggle('open');
+  if(willShow){
+    document.querySelectorAll('.mobile-section-links.show').forEach(l=>{
+      if(l.id !== id){
+        l.classList.remove('show');
+        l.previousElementSibling.classList.remove('open');
+      }
+    });
+  }
+}
+
+document.addEventListener('click', e=>{
+  if(!e.target.closest('.dropdown')){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+      m.classList.remove('show');
+      m.classList.remove('align-right');
+      m.style.left = '';
+      m.style.right = '';
+    });
+    document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
+  }
+});
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy',        e => e.preventDefault());
+document.addEventListener('cut',         e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('dragstart',   e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if(
+    (e.ctrlKey && ['c','u','s','p','a'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase()))
+  ){ e.preventDefault(); }
+});
+
+function filterKanji(){
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const cards = document.querySelectorAll('.kanji-card');
+  let visible = 0;
+  cards.forEach(card=>{
+    const text = card.innerText.toLowerCase();
+    if(text.includes(q)){
+      card.classList.remove('hide');
+      visible++;
+    } else {
+      card.classList.add('hide');
+    }
+  });
+  const countEl = document.getElementById('searchCount');
+  countEl.textContent = q ? (visible + ' dari ' + cards.length + ' kanji ditemukan') : '';
+}
+</script>
+
+</body>
+</html>
