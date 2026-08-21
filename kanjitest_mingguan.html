@@ -142,14 +142,39 @@ header p{
     padding:0 20px;
 }
 
+.student-title-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:10px;
+    flex-wrap:wrap;
+}
+
 .student-title{
     font-size:13px;
     font-weight:700;
     color:var(--muted);
     text-transform:uppercase;
     letter-spacing:.08em;
-    margin-bottom:10px;
 }
+
+.shuffle-across-btn{
+    border:2px solid var(--navy);
+    background:var(--navy);
+    color:var(--gold);
+    padding:7px 14px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:12.5px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    white-space:nowrap;
+}
+
+.shuffle-across-btn:hover{ opacity:.88; }
 
 .student-row{
     display:flex;
@@ -664,7 +689,10 @@ HOME
 </header>
 
 <div class="student-wrap">
+<div class="student-title-row">
 <div class="student-title">Pilih Siswa</div>
+<button class="shuffle-across-btn" id="shuffleAcrossBtn" title="Tukar-acak paket kanji ke semua siswa">🔀 Acak Kanji Antar Siswa</button>
+</div>
 <div class="student-row" id="studentRow"></div>
 </div>
 
@@ -1086,6 +1114,7 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const resetBtn = document.getElementById("resetBtn");
 const shuffleBtn = document.getElementById("shuffleBtn");
+const shuffleAcrossBtn = document.getElementById("shuffleAcrossBtn");
 const jumpRow = document.getElementById("jumpRow");
 const benarBtn = document.getElementById("benarBtn");
 const salahBtn = document.getElementById("salahBtn");
@@ -1183,6 +1212,53 @@ function beginExamForActiveStudent(){
 
 startTimerBtnTop.addEventListener("click", beginExamForActiveStudent);
 startTimerBtnCard.addEventListener("click", beginExamForActiveStudent);
+
+//============================
+// ACAK KANJI ANTAR SISWA
+// Mengumpulkan semua kanji dari semua siswa ke satu kantong,
+// mengacaknya, lalu membagikannya ulang ke tiap siswa (jumlah soal
+// per siswa tetap sama seperti semula, tapi isinya berbeda-beda -
+// contoh: soal yang tadinya milik Joni bisa berpindah ke Ringga, dst)
+//============================
+
+function shuffleWordsAcrossStudents(){
+    const ok = confirm(
+        "Acak kanji ke semua siswa?\n\n" +
+        "Paket soal tiap siswa akan ditukar-acak (soal milik satu siswa bisa berpindah ke siswa lain). " +
+        "Semua nilai, jawaban, dan timer yang sedang berjalan akan direset ke awal."
+    );
+    if(!ok) return;
+
+    clearActiveTimer();
+
+    // kumpulkan semua kanji dari semua siswa jadi satu kantong
+    let pool = [];
+    students.forEach(s => { pool = pool.concat(s.words); });
+
+    // acak kantong
+    pool = shuffleArray(pool);
+
+    // bagikan lagi ke tiap siswa, jumlah soal per siswa tetap sama seperti semula
+    let idx = 0;
+    students.forEach(s => {
+        const count = s.words.length;
+        s.words = pool.slice(idx, idx + count);
+        idx += count;
+
+        s.order = shuffleArray(s.words.map((_, i) => i));
+        s.current = 0;
+        s.results = s.words.map(() => null);
+        s.timeLeft = TIME_LIMIT;
+        s.finished = false;
+        s.started = false;
+    });
+
+    activeStudent = 0;
+    renderAll();
+    syncTimerForActiveStudent();
+}
+
+shuffleAcrossBtn.addEventListener("click", shuffleWordsAcrossStudents);
 
 //============================
 // RENDER
