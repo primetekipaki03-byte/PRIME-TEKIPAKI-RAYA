@@ -1149,27 +1149,90 @@ function isEssayCorrect(id, studentAnswer){
 }
 
 /* ---------------------------------------------------------
-   PERBAIKAN UTAMA (disamakan dengan kuis ながら):
-   STORAGE_KEY sekarang unik per siswa, mengikuti kode siswa
-   yang sedang login (disimpan oleh elearning.html di
-   sessionStorage dengan key "tekipaki_current_code").
-   Sebelumnya STORAGE_KEY tetap ("tekipaki_kuisteshimau_done"),
-   sehingga hasil kuis satu siswa akan mengunci kuis untuk
-   siswa lain yang login di device/browser yang sama.
+   PERBAIKAN (v2 — memperbaiki bug "akun lain dianggap sudah
+   mengerjakan"):
+
+   Bug sebelumnya: identitas siswa hanya dibaca dari
+   sessionStorage. sessionStorage itu terikat per-TAB, jadi
+   kalau kuis dibuka di tab baru (klik kanan, target="_blank",
+   dsb), identitas siswa jadi hilang dan dianggap "GUEST".
+   Parahnya, SEMUA siswa yang jatuh ke "GUEST" memakai
+   STORAGE_KEY yang SAMA PERSIS, sehingga hasil kuis siswa A
+   (yang kebetulan terdeteksi sebagai GUEST) akan "kelihatan"
+   sebagai hasil siswa B juga.
+
+   Perbaikan:
+   1) Identitas siswa sekarang dicari dari 3 sumber, berurutan:
+        a. parameter URL  ?code=KODE   (paling tahan banting,
+           tetap benar walau dibuka di tab baru — asal link
+           materi/dashboard menambahkan ?code=... di URL)
+        b. localStorage "tekipaki_current_code" (tahan lintas
+           tab dalam browser yang sama)
+        c. sessionStorage "tekipaki_current_code" (kompatibel
+           dengan cara lama)
+      Begitu ditemukan lewat URL, kode itu langsung disimpan
+      juga ke localStorage & sessionStorage supaya konsisten.
+   2) Kalau TIDAK ADA kode siswa yang valid ditemukan, kuis
+      SEKARANG DIKUNCI TOTAL (bukan lagi dianggap GUEST).
+      Siswa wajib login dulu lewat halaman Siswa. Ini
+      menghilangkan STORAGE_KEY bersama "GUEST" yang jadi
+      sumber bug.
 --------------------------------------------------------- */
 
-const CURRENT_CODE = (function(){
+function resolveCurrentCode(){
+  // 1) Kode lewat URL, misal: n4_minggu1materi3.html?code=PTPRO3
   try{
-    const code = sessionStorage.getItem("tekipaki_current_code");
-    return code ? code.trim().toUpperCase() : null;
-  }catch(e){
-    return null;
-  }
-})();
+    const params = new URLSearchParams(window.location.search);
+    const fromUrl = params.get("code");
+    if(fromUrl && fromUrl.trim()){
+      const normalized = fromUrl.trim().toUpperCase();
+      try{ localStorage.setItem("tekipaki_current_code", normalized); }catch(e){}
+      try{ sessionStorage.setItem("tekipaki_current_code", normalized); }catch(e){}
+      return normalized;
+    }
+  }catch(e){ /* ignore */ }
 
+  // 2) Kode dari localStorage (bertahan walau ganti/tab baru)
+  try{
+    const fromLocal = localStorage.getItem("tekipaki_current_code");
+    if(fromLocal && fromLocal.trim()){
+      return fromLocal.trim().toUpperCase();
+    }
+  }catch(e){ /* ignore */ }
+
+  // 3) Kode dari sessionStorage (cara lama, kompatibilitas)
+  try{
+    const fromSession = sessionStorage.getItem("tekipaki_current_code");
+    if(fromSession && fromSession.trim()){
+      return fromSession.trim().toUpperCase();
+    }
+  }catch(e){ /* ignore */ }
+
+  return null;
+}
+
+const CURRENT_CODE = resolveCurrentCode();
 const IS_LOGGED_IN = !!CURRENT_CODE;
 
-const STORAGE_KEY = "tekipaki_kuisteshimau_done_" + (CURRENT_CODE || "GUEST");
+/* STORAGE_KEY sekarang HANYA dibuat kalau siswa benar-benar
+   terdeteksi login. Tidak ada lagi kunci "GUEST" bersama. */
+const STORAGE_KEY = IS_LOGGED_IN
+  ? "tekipaki_kuisteshimau_done_" + CURRENT_CODE
+  : null;
+
+function lockQuizNoLogin(){
+  document.querySelectorAll('#quizForm input[type="radio"]').forEach(input => {
+    input.disabled = true;
+  });
+  document.querySelectorAll('.essayBox').forEach(box => {
+    box.disabled = true;
+  });
+  const submitBtn = document.getElementById("submitBtn");
+  if(submitBtn){
+    submitBtn.disabled = true;
+    submitBtn.textContent = "🔒 Login dulu untuk mengerjakan kuis";
+  }
+}
 
 function updateStudentBadge(){
   const badge = document.getElementById("studentBadge");
@@ -1181,7 +1244,8 @@ function updateStudentBadge(){
     text.innerHTML = 'Kuis ini akan tersimpan untuk akun: <b>' + CURRENT_CODE + '</b>';
   }else{
     badge.classList.add("warn");
-    text.innerHTML = '⚠️ Kamu belum login lewat halaman <b>Siswa</b>. Hasil kuis ini akan tersimpan sebagai tamu (GUEST) dan bisa tercampur dengan siswa lain di device ini. <a href="elearning.html" style="color:inherit;text-decoration:underline;">Login dulu di sini</a>, lalu buka kuis ini lagi dari menu materi.';
+    text.innerHTML = '⚠️ Kamu belum login lewat halaman <b>Siswa</b>, jadi kuis ini <b>dikunci</b> agar jawabanmu tidak tercampur dengan siswa lain. <a href="elearning.html" style="color:inherit;text-decoration:underline;">Login dulu di sini</a>, lalu buka kuis ini lagi dari menu materi (jangan lewat tab baru).';
+    lockQuizNoLogin();
   }
 }
 
@@ -1290,9 +1354,7 @@ function revealAll(score, essayScore, finishedAtISO){
 
   const lockedNote = document.getElementById("lockedNote");
   if(lockedNote){
-    lockedNote.textContent = IS_LOGGED_IN
-      ? "🔒 Kuis ini sudah dikerjakan oleh akun " + CURRENT_CODE + " dan tidak bisa dikerjakan ulang di akun ini."
-      : "🔒 Kuis ini sudah kamu kerjakan sebagai tamu (GUEST) di device ini dan tidak bisa dikerjakan ulang.";
+    lockedNote.textContent = "🔒 Kuis ini sudah dikerjakan oleh akun " + CURRENT_CODE + " dan tidak bisa dikerjakan ulang di akun ini.";
   }
 
   resultCard.classList.add("show");
@@ -1300,6 +1362,13 @@ function revealAll(score, essayScore, finishedAtISO){
 }
 
 function checkAnswers(){
+  // Jaga-jaga: tombol seharusnya sudah nonaktif kalau belum login,
+  // tapi tetap dicegah di sini supaya tidak ada hasil tanpa STORAGE_KEY.
+  if(!STORAGE_KEY){
+    alert("Kamu belum login. Silakan login dulu lewat halaman Siswa sebelum mengerjakan kuis ini.");
+    return;
+  }
+
   let unansweredPG = [];
   Object.keys(ANSWER_KEY).forEach(name => {
     if(!document.querySelector('input[name="'+name+'"]:checked')){ unansweredPG.push(name); }
@@ -1356,7 +1425,7 @@ function checkAnswers(){
 
   try{
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      code: CURRENT_CODE || "GUEST",
+      code: CURRENT_CODE,
       done:true, score:score, essayScore:essayScore, pg:savedPG, essay:savedEssay,
       finishedAt: finishedAt
     }));
@@ -1364,6 +1433,9 @@ function checkAnswers(){
 }
 
 function restoreIfDone(){
+  // Tidak login → tidak ada riwayat yang bisa/harus dipulihkan.
+  if(!STORAGE_KEY){ return; }
+
   let saved = null;
   try{
     const raw = localStorage.getItem(STORAGE_KEY);
