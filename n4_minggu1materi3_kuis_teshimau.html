@@ -597,23 +597,55 @@ a{
   outline:none;
   border-color:var(--gold);
 }
+.essayBox.correct{
+  border:2px solid var(--pass);
+  background:var(--pass-bg);
+}
+.essayBox.wrong{
+  border:2px solid var(--fail);
+  background:var(--fail-bg);
+}
+
+.essayVerdict{
+  display:none;
+  align-items:center;
+  gap:8px;
+  margin-top:10px;
+  font-size:.85rem;
+  font-weight:700;
+  padding:9px 12px;
+  border-radius:8px;
+}
+.essayVerdict.show{
+  display:flex;
+}
+.essayVerdict.correct{
+  background:var(--pass-bg);
+  color:var(--pass);
+  border:1px solid var(--pass);
+}
+.essayVerdict.wrong{
+  background:var(--fail-bg);
+  color:var(--fail);
+  border:1px solid var(--fail);
+}
 
 .answerKey{
   display:none;
-  margin-top:14px;
-  background:var(--pass-bg);
-  border:1px solid var(--pass);
+  margin-top:10px;
+  background:var(--paper);
+  border:1px solid var(--paper2);
   border-radius:10px;
   padding:14px 16px;
   font-size:.88rem;
   line-height:1.6;
-  color:#204a2c;
+  color:var(--ink-soft);
 }
 .answerKey.show{
   display:block;
 }
 .answerKey b{
-  color:var(--pass);
+  color:var(--navy);
 }
 
 .explain{
@@ -932,7 +964,8 @@ footer{
       <div class="qText">Ubahlah kalimat di bawah ini menggunakan <b>～てしまう</b>!</div>
       <div class="essayPrompt">宿題を忘れます。</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="7"></textarea>
-      <div class="answerKey" id="key7"><b>Contoh jawaban:</b> 宿題を忘れてしまいました。</div>
+      <div class="essayVerdict" id="verdict7"></div>
+      <div class="answerKey" id="key7"><b>Kunci jawaban:</b> 宿題を忘れてしまいました。</div>
     </div>
 
     <!-- SOAL 8 -->
@@ -941,7 +974,8 @@ footer{
       <div class="qText">Ubahlah kalimat di bawah ini menggunakan <b>～てしまう</b>!</div>
       <div class="essayPrompt">ケーキを全部食べます。</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="8"></textarea>
-      <div class="answerKey" id="key8"><b>Contoh jawaban:</b> ケーキを全部食べてしまいました。</div>
+      <div class="essayVerdict" id="verdict8"></div>
+      <div class="answerKey" id="key8"><b>Kunci jawaban:</b> ケーキを全部食べてしまいました。</div>
     </div>
 
     <!-- SOAL 9 -->
@@ -950,7 +984,8 @@ footer{
       <div class="qText">Ubahlah kalimat di bawah ini menggunakan <b>～てしまう</b>!</div>
       <div class="essayPrompt">財布をなくします。</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="9"></textarea>
-      <div class="answerKey" id="key9"><b>Contoh jawaban:</b> 財布をなくしてしまいました。</div>
+      <div class="essayVerdict" id="verdict9"></div>
+      <div class="answerKey" id="key9"><b>Kunci jawaban:</b> 財布をなくしてしまいました。</div>
     </div>
 
     <!-- SOAL 10 -->
@@ -959,7 +994,8 @@ footer{
       <div class="qText">Ubahlah kalimat di bawah ini menggunakan <b>～てしまう</b>!</div>
       <div class="essayPrompt">レポートを書きます。</div>
       <textarea class="essayBox" placeholder="Tulis jawabanmu di sini..." data-key="10"></textarea>
-      <div class="answerKey" id="key10"><b>Contoh jawaban:</b> レポートを書いてしまいました。</div>
+      <div class="essayVerdict" id="verdict10"></div>
+      <div class="answerKey" id="key10"><b>Kunci jawaban:</b> レポートを書いてしまいました。</div>
     </div>
 
     <div class="submitWrap">
@@ -1082,6 +1118,36 @@ const ANSWER_KEY = { q1:"a", q2:"c", q3:"c", q4:"b", q5:"c", q6:"d" };
 const TOTAL_PG = Object.keys(ANSWER_KEY).length;
 const ESSAY_IDS = ["7","8","9","10"];
 
+/* Kunci jawaban esai — dipakai untuk mengecek jawaban siswa
+   (bukan cuma ditampilkan). Boleh diisi lebih dari satu variasi
+   jawaban yang dianggap benar untuk tiap soal. */
+const ESSAY_ANSWERS = {
+  "7": ["宿題を忘れてしまいました"],
+  "8": ["ケーキを全部食べてしまいました"],
+  "9": ["財布をなくしてしまいました"],
+  "10": ["レポートを書いてしまいました"]
+};
+
+/* Menormalkan teks jawaban sebelum dibandingkan: buang spasi
+   (termasuk spasi penuh），tanda baca, dan huruf besar/kecil,
+   supaya perbedaan kecil (titik di akhir, spasi, dsb) tidak
+   dianggap salah. */
+function normalizeEssayText(str){
+  if(!str){ return ""; }
+  return str
+    .replace(/[\s　]+/g, "")
+    .replace(/[。.！!？?、,，]/g, "")
+    .trim()
+    .toLowerCase();
+}
+
+function isEssayCorrect(id, studentAnswer){
+  const accepted = ESSAY_ANSWERS[id] || [];
+  const normalizedStudent = normalizeEssayText(studentAnswer);
+  if(!normalizedStudent){ return false; }
+  return accepted.some(ans => normalizeEssayText(ans) === normalizedStudent);
+}
+
 /* ---------------------------------------------------------
    PERBAIKAN UTAMA (disamakan dengan kuis ながら):
    STORAGE_KEY sekarang unik per siswa, mengikuti kode siswa
@@ -1148,6 +1214,7 @@ function totalAnswered(){
 }
 
 const TOTAL_ITEMS = TOTAL_PG + ESSAY_IDS.length;
+const TOTAL_ALL = TOTAL_ITEMS; // total soal PG + esai, dipakai untuk skor akhir
 
 function updateProgress(){
   const answered = totalAnswered();
@@ -1172,7 +1239,27 @@ function lockQuiz(){
   document.getElementById("submitBtn").style.display = "none";
 }
 
-function revealAll(score, finishedAtISO){
+function applyEssayVerdict(id, studentAnswer){
+  const box = document.querySelector('.essayBox[data-key="'+id+'"]');
+  const verdict = document.getElementById("verdict" + id);
+  if(!box || !verdict){ return; }
+
+  const correct = isEssayCorrect(id, studentAnswer);
+
+  box.classList.remove("correct", "wrong");
+  box.classList.add(correct ? "correct" : "wrong");
+
+  verdict.classList.remove("correct", "wrong");
+  verdict.classList.add(correct ? "correct" : "wrong");
+  verdict.classList.add("show");
+  verdict.textContent = correct
+    ? "✅ Jawaban kamu benar!"
+    : "❌ Jawaban kamu belum sesuai kunci. Bandingkan dengan kunci jawaban di bawah ya.";
+
+  return correct;
+}
+
+function revealAll(score, essayScore, finishedAtISO){
   Object.keys(ANSWER_KEY).forEach(name => {
     const num = name.replace("q","");
     document.getElementById("ex" + num).classList.add("show");
@@ -1182,15 +1269,17 @@ function revealAll(score, finishedAtISO){
   });
 
   const resultCard = document.getElementById("resultCard");
-  document.getElementById("resultScore").textContent = score + " / " + TOTAL_PG;
+  const totalScore = score + essayScore;
+  document.getElementById("resultScore").textContent = totalScore + " / " + TOTAL_ALL;
 
   let msg = "";
-  if(score === TOTAL_PG){
-    msg = "🎉 Sempurna! Pemahaman kamu tentang ～てしまう sudah sangat bagus. Cek juga kunci jawaban esai di bawah.";
-  }else if(score >= TOTAL_PG * 0.6){
-    msg = "👍 Bagus! Masih ada beberapa yang perlu dipelajari ulang. Cek penjelasan dan kunci jawaban esai di bawah.";
+  const ratio = totalScore / TOTAL_ALL;
+  if(ratio === 1){
+    msg = "🎉 Sempurna! Pemahaman kamu tentang ～てしまう sudah sangat bagus, baik pilihan ganda maupun esai.";
+  }else if(ratio >= 0.6){
+    msg = "👍 Bagus! Masih ada beberapa yang perlu dipelajari ulang. Cek penjelasan dan jawaban esai yang ditandai merah di atas.";
   }else{
-    msg = "💪 Yuk baca ulang materi ～てしまう. Cek penjelasan dan kunci jawaban esai di bawah untuk belajar lagi.";
+    msg = "💪 Yuk baca ulang materi ～てしまう. Cek penjelasan dan jawaban esai yang ditandai merah di atas untuk belajar lagi.";
   }
   document.getElementById("resultMsg").textContent = msg;
 
@@ -1252,20 +1341,23 @@ function checkAnswers(){
     savedPG[name] = selected.value;
   });
 
+  let essayScore = 0;
   ESSAY_IDS.forEach(id => {
     const box = document.querySelector('.essayBox[data-key="'+id+'"]');
     savedEssay[id] = box.value;
+    const correct = applyEssayVerdict(id, box.value);
+    if(correct){ essayScore++; }
   });
 
   const finishedAt = new Date().toISOString();
 
   lockQuiz();
-  revealAll(score, finishedAt);
+  revealAll(score, essayScore, finishedAt);
 
   try{
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       code: CURRENT_CODE || "GUEST",
-      done:true, score:score, pg:savedPG, essay:savedEssay,
+      done:true, score:score, essayScore:essayScore, pg:savedPG, essay:savedEssay,
       finishedAt: finishedAt
     }));
   }catch(e){ /* localStorage unavailable, quiz still works for this session */ }
@@ -1300,8 +1392,18 @@ function restoreIfDone(){
     });
   });
 
+  let essayScore = 0;
+  ESSAY_IDS.forEach(id => {
+    const studentAnswer = (saved.essay && saved.essay[id]) || "";
+    const correct = applyEssayVerdict(id, studentAnswer);
+    if(correct){ essayScore++; }
+  });
+  // Jika data lama (sebelum perbaikan ini) belum menyimpan essayScore,
+  // hitung ulang dari jawaban yang tersimpan supaya skor tetap akurat.
+  const finalEssayScore = (typeof saved.essayScore === "number") ? saved.essayScore : essayScore;
+
   lockQuiz();
-  revealAll(saved.score, saved.finishedAt);
+  revealAll(saved.score, finalEssayScore, saved.finishedAt);
   updateProgress();
 }
 
