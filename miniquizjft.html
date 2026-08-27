@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tes Pilihan Ganda - Kanji & Tata Bahasa</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --gold-soft:#fff3c4;
+    --paper:#fffdf7;
+    --text:#001f3f;
+    --muted:#5b6b7d;
+    --green:#16a34a;
+    --red:#dc2626;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:"Poppins","Segoe UI",Arial,sans-serif; }
+
+body{ background:#f6f5f1; color:var(--text); padding-bottom:40px; }
+
+.jp{ font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif; }
+
+#navbar{
+    position:sticky; top:0; z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+
+.navbar-inner{ display:flex; justify-content:space-between; align-items:center; padding:12px 20px; flex-wrap:wrap; gap:10px; }
+
+.nav-title{ color:var(--gold); font-weight:700; font-size:15px; letter-spacing:.02em; }
+
+header{ text-align:center; padding:26px 20px 8px; }
+
+.eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--navy); color:var(--gold);
+    font-size:13px; font-weight:600; letter-spacing:.12em;
+    padding:7px 16px; border-radius:999px; margin-bottom:16px;
+}
+
+header h1{ font-size:32px; color:var(--navy); margin-bottom:8px; letter-spacing:-.01em; }
+header p{ font-size:14px; color:var(--muted); max-width:560px; margin:0 auto; line-height:1.6; }
+
+.student-wrap{ max-width:760px; margin:26px auto 0; padding:0 20px; }
+
+.student-title{ font-size:13px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+
+.student-row{ display:flex; flex-wrap:wrap; gap:8px; }
+
+.student-pill{
+    border:2px solid var(--navy); background:white; color:var(--navy);
+    padding:8px 14px; border-radius:999px; font-weight:600; font-size:13.5px;
+    cursor:pointer; display:flex; align-items:center; gap:6px;
+}
+.student-pill:hover{ background:var(--gold-soft); }
+.student-pill.active{ background:var(--navy); color:var(--gold); }
+
+.student-score{ font-size:11px; background:rgba(255,255,255,.15); padding:1px 7px; border-radius:999px; }
+.student-pill.active .student-score{ background:var(--gold); color:var(--navy); }
+
+.viewer-wrap{ max-width:760px; margin:28px auto 0; padding:0 20px; }
+
+.progress-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; gap:10px; flex-wrap:wrap; }
+.progress-text{ font-size:13px; font-weight:600; color:var(--navy); white-space:nowrap; }
+.progress-bar{ flex:1; height:6px; background:#e3e0d6; border-radius:999px; margin:0 14px; overflow:hidden; min-width:80px; }
+.progress-fill{ height:100%; background:var(--gold); border-radius:999px; transition:width .35s ease; }
+
+.timer-cluster{ display:flex; align-items:center; gap:8px; white-space:nowrap; }
+
+.timer-badge{
+    font-weight:700; font-size:13.5px; color:var(--navy);
+    background:var(--gold-soft); border:2px solid var(--gold);
+    padding:6px 13px; border-radius:999px; white-space:nowrap;
+    display:flex; align-items:center; gap:5px; transition:.2s;
+}
+.timer-badge.low{ color:white; background:var(--red); border-color:var(--red); animation:pulseTimer 1s infinite; }
+.timer-badge.done{ color:white; background:#7a7a7a; border-color:#7a7a7a; animation:none; }
+.timer-badge.waiting{ color:var(--muted); background:#eef1f5; border-color:#dde3ec; }
+
+@keyframes pulseTimer{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.06); } }
+
+.start-btn{
+    border:2px solid var(--green); background:var(--green); color:white;
+    font-weight:700; font-size:13px; padding:7px 14px; border-radius:999px;
+    cursor:pointer; display:flex; align-items:center; gap:5px; white-space:nowrap;
+    animation:pulseStart 1.4s infinite;
+}
+.start-btn:hover{ opacity:.9; }
+@keyframes pulseStart{ 0%,100%{ box-shadow:0 0 0 0 rgba(22,163,74,.35); } 50%{ box-shadow:0 0 0 6px rgba(22,163,74,0); } }
+
+.tag-row{ display:flex; justify-content:center; margin-bottom:10px; }
+.tag{
+    font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    padding:5px 14px; border-radius:999px;
+}
+.tag.kanji{ background:var(--gold-soft); color:#8a6d00; border:1.5px solid var(--gold); }
+.tag.grammar{ background:#e5edff; color:#1d4ed8; border:1.5px solid #93b4ff; }
+
+.card{
+    background:var(--paper); border:2px solid var(--navy); box-shadow:0 6px 0 var(--navy);
+    border-radius:22px; padding:44px 34px; display:flex; flex-direction:column;
+    align-items:center; justify-content:flex-start; text-align:center; width:100%;
+    min-height:min(50vh, 400px); position:relative;
+}
+
+.card.locked .word, .card.locked .subtext, .card.locked .options-grid, .card.locked .badge{
+    opacity:.25; filter:blur(1px); pointer-events:none;
+}
+
+.lock-note{
+    display:none; position:absolute; left:20px; right:20px; top:50%; transform:translateY(-50%);
+    flex-direction:column; align-items:center; gap:12px; z-index:2;
+}
+.card.locked .lock-note{ display:flex; }
+.lock-note p{ font-size:14px; color:var(--navy); font-weight:600; max-width:320px; line-height:1.5; }
+.lock-note .start-btn{ font-size:15px; padding:11px 22px; }
+
+.badge{
+    width:44px; height:44px; border-radius:50%; background:var(--gold-soft);
+    border:2px solid var(--gold); display:flex; align-items:center; justify-content:center;
+    font-size:19px; margin-bottom:14px;
+}
+
+.word{ font-size:clamp(36px, 7vw, 62px); font-weight:900; color:var(--navy); line-height:1.35; word-break:break-word; }
+
+.subtext{ margin-top:8px; font-size:14.5px; color:var(--muted); max-width:520px; }
+
+.options-grid{ margin-top:28px; display:grid; grid-template-columns:1fr 1fr; gap:12px; width:100%; }
+
+.opt-btn{
+    border:2px solid #d8d4c8; background:white; color:var(--navy);
+    padding:16px 14px; border-radius:14px; font-weight:600; font-size:16px;
+    cursor:pointer; text-align:center; transition:.15s;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.opt-btn .opt-letter{
+    width:22px; height:22px; border-radius:50%; border:1.5px solid var(--navy);
+    font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.opt-btn:hover:not(:disabled){ border-color:var(--navy); background:var(--gold-soft); }
+.opt-btn:disabled{ cursor:default; }
+
+.opt-btn.correct{ background:#e8f8ee; border-color:var(--green); color:var(--green); }
+.opt-btn.correct .opt-letter{ background:var(--green); border-color:var(--green); color:white; }
+.opt-btn.wrong{ background:#fdecec; border-color:var(--red); color:var(--red); }
+.opt-btn.wrong .opt-letter{ background:var(--red); border-color:var(--red); color:white; }
+.opt-btn.dim{ opacity:.5; }
+
+.feedback{ margin-top:18px; font-size:14px; font-weight:700; padding:8px 16px; border-radius:999px; display:none; }
+.feedback.show{ display:inline-block; }
+.feedback.correct-fb{ background:#e8f8ee; color:var(--green); }
+.feedback.wrong-fb{ background:#fdecec; color:var(--red); }
+
+.nav-row{ display:flex; align-items:center; justify-content:center; gap:16px; margin-top:24px; flex-wrap:wrap; }
+
+.nav-btn{
+    width:46px; height:46px; border-radius:50%; border:2px solid var(--navy);
+    background:white; color:var(--navy); font-size:19px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.nav-btn:hover{ background:var(--navy); color:var(--gold); }
+.nav-btn:disabled{ opacity:.3; cursor:default; }
+.nav-btn:disabled:hover{ background:white; color:var(--navy); }
+
+.reset-btn{
+    border-radius:999px; width:auto; padding:0 18px; font-size:13px; font-weight:600; gap:6px;
+    border:2px solid var(--gold); background:var(--navy); color:var(--gold);
+}
+.reset-btn:hover{ background:var(--gold); color:var(--navy); }
+
+.jump-row{ display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:24px; }
+
+.dot{
+    width:34px; height:34px; border-radius:8px; border:2px solid #d8d4c8; background:white;
+    color:var(--muted); font-size:13px; font-weight:700; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.dot:hover{ border-color:var(--navy); }
+.dot.active{ background:var(--navy); border-color:var(--navy); color:var(--gold); }
+.dot.correct{ border-color:var(--green); color:var(--green); }
+.dot.wrong{ border-color:var(--red); color:var(--red); }
+.dot.active.correct, .dot.active.wrong{ color:var(--gold); }
+
+.summary-wrap{ max-width:760px; margin:44px auto 0; padding:0 20px; }
+.summary-title{ font-size:16px; font-weight:700; color:var(--navy); margin-bottom:12px; }
+
+table{ width:100%; border-collapse:collapse; background:white; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+th, td{ padding:10px 12px; text-align:left; font-size:13.5px; border-bottom:1px solid #eee; }
+th{ background:var(--navy); color:var(--gold); font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+td.score{ font-weight:700; }
+td.score.pass{ color:var(--green); }
+td.score.fail{ color:var(--red); }
+
+footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px; }
+
+@media(max-width:480px){
+    .options-grid{ grid-template-columns:1fr; }
+    .word{ font-size:34px; }
+    header h1{ font-size:24px; }
+    .progress-row{ flex-wrap:wrap; }
+    .progress-bar{ order:3; width:100%; margin:8px 0 0; flex:1 1 100%; }
+    .card{ padding:34px 18px; min-height:320px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-title">📝 Tekipaki Japanese Learning</div>
+</div>
+</nav>
+
+<header>
+<div class="eyebrow">✅ TES PILIHAN GANDA · KANJI & TATA BAHASA</div>
+<h1>Tes Pilihan Ganda Siswa</h1>
+<p>Pilih siswa, tekan Mulai untuk menjalankan timer 10 menit, lalu klik salah satu jawaban. Benar/salah langsung terhitung otomatis dan nilai muncul di rekap di bawah.</p>
+</header>
+
+<div class="student-wrap">
+<div class="student-title">Pilih Siswa</div>
+<div class="student-row" id="studentRow"></div>
+</div>
+
+<div class="viewer-wrap">
+
+<div class="progress-row">
+<span class="progress-text" id="progressText">1 / 10</span>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="timer-cluster">
+<button class="start-btn" id="startTimerBtnTop" title="Mulai hitung mundur 10 menit">▶ Mulai</button>
+<span class="timer-badge waiting" id="timerText">⏱ 10:00</span>
+</div>
+</div>
+
+<div class="tag-row"><span class="tag" id="tagBadge">KANJI</span></div>
+
+<div class="card" id="card">
+    <div class="badge" id="cardBadge">漢</div>
+    <div class="word jp" id="cardWord"></div>
+    <div class="subtext" id="cardSub"></div>
+
+    <div class="options-grid" id="optionsGrid"></div>
+
+    <div class="feedback" id="feedback"></div>
+
+    <div class="lock-note" id="lockNote">
+        <p>⏳ Timer belum dimulai. Tekan tombol di bawah saat siswa siap mengerjakan.</p>
+        <button class="start-btn" id="startTimerBtnCard">▶ Mulai Tes (10 menit)</button>
+    </div>
+</div>
+
+<div class="nav-row">
+<button class="nav-btn" id="prevBtn" title="Sebelumnya">←</button>
+<button class="nav-btn reset-btn" id="resetBtn">↺ Ulang Tes</button>
+<button class="nav-btn" id="nextBtn" title="Berikutnya">→</button>
+</div>
+
+<div class="jump-row" id="jumpRow"></div>
+
+</div>
+
+<div class="summary-wrap">
+<div class="summary-title">📊 Rekap Nilai Semua Siswa</div>
+<table>
+<thead>
+<tr><th>Siswa</th><th>Dijawab</th><th>Benar</th><th>Salah</th><th>Nilai</th></tr>
+</thead>
+<tbody id="summaryBody"></tbody>
+</table>
+</div>
+
+<footer>
+© 2026 Tekipaki Japanese Learning | Tes Pilihan Ganda
+</footer>
+
+<script>
+
+// Setiap siswa punya 10 soal (6 kanji + 4 tata bahasa), 4 opsi jawaban, answer = index opsi yang benar (0-3)
+
+const students = [
+    { name:"Niko", questions:[
+        { type:"kanji", badge:"漢", word:"運転", sub:"Bacaan yang benar untuk kanji di atas?", options:["うんてん","うんでん","うごく","うんそう"], answer:0 },
+        { type:"kanji", badge:"漢", word:"危険", sub:"Bacaan yang benar untuk kanji di atas?", options:["きろく","きけん","きおく","きせい"], answer:1 },
+        { type:"kanji", badge:"漢", word:"給料", sub:"Bacaan yang benar untuk kanji di atas?", options:["きゅうか","きゅうじつ","きゅうりょう","きゅうこう"], answer:2 },
+        { type:"grammar", badge:"文", word:"わたしは まいあさ 7時___ おきます。", sub:"Pilih partikel yang tepat", options:["を","へ","で","に"], answer:3 },
+        { type:"grammar", badge:"文", word:"ともだち___ でんわを かけました。", sub:"Pilih partikel yang tepat", options:["に","が","を","で"], answer:0 },
+        { type:"kanji", badge:"漢", word:"図書館", sub:"Bacaan yang benar untuk kanji di atas?", options:["としょかん","とうしょかん","としょうかん","どしょかん"], answer:0 },
+        { type:"kanji", badge:"漢", word:"心配", sub:"Bacaan yang benar untuk kanji di atas?", options:["しんぱい","しんぱん","しんぱく","しんばい"], answer:0 },
+        { type:"kanji", badge:"漢", word:"信号", sub:"Bacaan yang benar untuk kanji di atas?", options:["しんごう","しんこう","しんぎょう","しんごく"], answer:0 },
+        { type:"grammar", badge:"文", word:"としょかん___ ほんを よみます。", sub:"Pilih partikel yang tepat", options:["を","に","が","で"], answer:3 },
+        { type:"grammar", badge:"文", word:"しんぱいしない___ ください。", sub:"Pilih partikel yang tepat", options:["を","に","が","で"], answer:3 },
+    ]},
+    { name:"Ringga", questions:[
+        { type:"kanji", badge:"漢", word:"財布", sub:"Bacaan yang benar untuk kanji di atas?", options:["ざいふ","さいほ","さいふ","ざいほ"], answer:2 },
+        { type:"kanji", badge:"漢", word:"借りる", sub:"Bacaan yang benar untuk kanji di atas?", options:["かえす","かす","かりる","かります"], answer:2 },
+        { type:"kanji", badge:"漢", word:"忘れる", sub:"Bacaan yang benar untuk kanji di atas?", options:["おぼえる","わかれる","わたす","わすれる"], answer:3 },
+        { type:"grammar", badge:"文", word:"まいにち にほんごを べんきょう ___ います。", sub:"Pilih bentuk kata kerja yang tepat", options:["します","した","して","する"], answer:2 },
+        { type:"grammar", badge:"文", word:"きのう ともだちと えいがを み___。", sub:"Pilih bentuk lampau yang tepat", options:["ます","ました","ましょう","ません"], answer:1 },
+        { type:"kanji", badge:"漢", word:"電車", sub:"Bacaan yang benar untuk kanji di atas?", options:["でんしゃ","でんじゃ","てんしゃ","でんちゃ"], answer:0 },
+        { type:"kanji", badge:"漢", word:"写真", sub:"Bacaan yang benar untuk kanji di atas?", options:["しゃしん","しゃじん","じゃしん","しゃせい"], answer:0 },
+        { type:"kanji", badge:"漢", word:"天気", sub:"Bacaan yang benar untuk kanji di atas?", options:["てんき","てんぎ","でんき","てんけ"], answer:0 },
+        { type:"grammar", badge:"文", word:"あしたは てんき___ いいです。", sub:"Pilih partikel yang tepat", options:["が","を","に","で"], answer:0 },
+        { type:"grammar", badge:"文", word:"でんしゃ___ のって、がっこうへ いきます。", sub:"Pilih partikel yang tepat", options:["で","を","に","が"], answer:2 },
+    ]},
+    { name:"Shomad", questions:[
+        { type:"kanji", badge:"漢", word:"病院", sub:"Bacaan yang benar untuk kanji di atas?", options:["びよういん","びょうき","びょういん","びょうし"], answer:2 },
+        { type:"kanji", badge:"漢", word:"郵便局", sub:"Bacaan yang benar untuk kanji di atas?", options:["ゆうびんこく","ゆびんきょく","ゆうびんぎょく","ゆうびんきょく"], answer:3 },
+        { type:"kanji", badge:"漢", word:"事故", sub:"Bacaan yang benar untuk kanji di atas?", options:["じけん","じっこ","じこ","じっけん"], answer:2 },
+        { type:"grammar", badge:"文", word:"すみません、この みちを しっています___。", sub:"Pilih partikel akhir yang tepat", options:["よ","か","ね","わ"], answer:1 },
+        { type:"grammar", badge:"文", word:"くもりの あと あめが ふり___です。", sub:"Pilih bentuk yang tepat untuk \"sepertinya\"", options:["よう","だろう","そう","らしい"], answer:2 },
+        { type:"kanji", badge:"漢", word:"薬", sub:"Bacaan yang benar untuk kanji di atas?", options:["くすり","やく","くすうり","くさり"], answer:0 },
+        { type:"kanji", badge:"漢", word:"公園", sub:"Bacaan yang benar untuk kanji di atas?", options:["こうえん","こうえ","こうおん","こえん"], answer:0 },
+        { type:"kanji", badge:"漢", word:"家族", sub:"Bacaan yang benar untuk kanji di atas?", options:["かぞく","かそく","がぞく","かぞぐ"], answer:0 },
+        { type:"grammar", badge:"文", word:"あたまが いたいので、くすり___ のみます。", sub:"Pilih partikel yang tepat", options:["が","に","で","を"], answer:3 },
+        { type:"grammar", badge:"文", word:"こうえん___ さんぽします。", sub:"Pilih partikel yang tepat", options:["を","に","で","が"], answer:2 },
+    ]},
+    { name:"Trianto", questions:[
+        { type:"kanji", badge:"漢", word:"教室", sub:"Bacaan yang benar untuk kanji di atas?", options:["きょうしゅつ","きょうしつ","きょうじつ","きょうしき"], answer:1 },
+        { type:"kanji", badge:"漢", word:"銀行", sub:"Bacaan yang benar untuk kanji di atas?", options:["きんこう","ぎんごう","ぎんこう","きんごう"], answer:2 },
+        { type:"kanji", badge:"漢", word:"授業", sub:"Bacaan yang benar untuk kanji di atas?", options:["じゅうぎょう","じゅぎょ","しゅぎょう","じゅぎょう"], answer:3 },
+        { type:"grammar", badge:"文", word:"まど___ あけて ください。", sub:"Pilih partikel yang tepat", options:["に","を","で","が"], answer:1 },
+        { type:"grammar", badge:"文", word:"にほんごで はなす こと___ できます。", sub:"Pilih partikel yang tepat", options:["を","に","で","が"], answer:3 },
+        { type:"kanji", badge:"漢", word:"予約", sub:"Bacaan yang benar untuk kanji di atas?", options:["よやく","よやぐ","よぅやく","よやつ"], answer:0 },
+        { type:"kanji", badge:"漢", word:"休む", sub:"Bacaan yang benar untuk kanji di atas?", options:["やすむ","やすぶ","きゅうむ","やすみ"], answer:0 },
+        { type:"kanji", badge:"漢", word:"明るい", sub:"Bacaan yang benar untuk kanji di atas?", options:["あかるい","あきらい","あかい","あかしい"], answer:0 },
+        { type:"grammar", badge:"文", word:"あした やすみ___ とりたいです。", sub:"Pilih partikel yang tepat", options:["が","を","に","で"], answer:1 },
+        { type:"grammar", badge:"文", word:"この へやは まど___ おおきくて あかるいです。", sub:"Pilih partikel yang tepat", options:["を","が","に","で"], answer:1 },
+    ]},
+    { name:"Joni", questions:[
+        { type:"kanji", badge:"漢", word:"試験", sub:"Bacaan yang benar untuk kanji di atas?", options:["じけん","しげん","しけん","じっけん"], answer:2 },
+        { type:"kanji", badge:"漢", word:"残業", sub:"Bacaan yang benar untuk kanji di atas?", options:["ざんきょう","さんぎょう","ざんごう","ざんぎょう"], answer:3 },
+        { type:"kanji", badge:"漢", word:"有名", sub:"Bacaan yang benar untuk kanji di atas?", options:["ゆめい","ゆうべい","ゆうめい","ゆうめえ"], answer:2 },
+        { type:"grammar", badge:"文", word:"この しごとは わたし___ できません。", sub:"Pilih partikel yang tepat", options:["とは","でも","には","へは"], answer:2 },
+        { type:"grammar", badge:"文", word:"あめが ふって います___、でかけません。", sub:"Pilih penghubung yang tepat", options:["のに","ので","けど","から"], answer:3 },
+        { type:"kanji", badge:"漢", word:"仕事", sub:"Bacaan yang benar untuk kanji di atas?", options:["しごと","しごつ","じごと","しこと"], answer:0 },
+        { type:"kanji", badge:"漢", word:"電話", sub:"Bacaan yang benar untuk kanji di atas?", options:["でんわ","でんは","てんわ","でんば"], answer:0 },
+        { type:"kanji", badge:"漢", word:"駅", sub:"Bacaan yang benar untuk kanji di atas?", options:["えき","やく","えぎ","へき"], answer:0 },
+        { type:"grammar", badge:"文", word:"しごとが おわったら、でんわ___ します。", sub:"Pilih partikel yang tepat", options:["を","に","で","が"], answer:0 },
+        { type:"grammar", badge:"文", word:"えき___ かいしゃまで あるいて 10ぷんです。", sub:"Pilih partikel yang tepat", options:["まで","から","に","で"], answer:1 },
+    ]},
+    { name:"Ferian", questions:[
+        { type:"kanji", badge:"漢", word:"準備", sub:"Bacaan yang benar untuk kanji di atas?", options:["しゅんび","じゅんひ","じゅんび","じゅんぴ"], answer:2 },
+        { type:"kanji", badge:"漢", word:"建物", sub:"Bacaan yang benar untuk kanji di atas?", options:["けんぶつ","たてもの","たてぶつ","けんもの"], answer:1 },
+        { type:"kanji", badge:"漢", word:"注意", sub:"Bacaan yang benar untuk kanji di atas?", options:["ちゅうし","ちゅうもく","ちゅうい","ちゅうかん"], answer:2 },
+        { type:"grammar", badge:"文", word:"うんてん する まえに シートベルトを し___ ください。", sub:"Pilih bentuk kata kerja yang tepat", options:["た","て","る","ます"], answer:1 },
+        { type:"grammar", badge:"文", word:"つかれた___、はやく ねます。", sub:"Pilih penghubung yang tepat", options:["のに","でも","ので","と"], answer:2 },
+        { type:"kanji", badge:"漢", word:"料理", sub:"Bacaan yang benar untuk kanji di atas?", options:["りょうり","りょうい","りゃうり","りょういり"], answer:0 },
+        { type:"kanji", badge:"漢", word:"会議", sub:"Bacaan yang benar untuk kanji di atas?", options:["かいぎ","かいき","がいぎ","かいご"], answer:0 },
+        { type:"kanji", badge:"漢", word:"予定", sub:"Bacaan yang benar untuk kanji di atas?", options:["よてい","よてえ","ようてい","よだい"], answer:0 },
+        { type:"grammar", badge:"文", word:"きょうは かいぎ___ あります。", sub:"Pilih partikel yang tepat", options:["を","が","に","で"], answer:1 },
+        { type:"grammar", badge:"文", word:"らいしゅうの よてい___ かくにんして ください。", sub:"Pilih partikel yang tepat", options:["が","を","に","で"], answer:1 },
+    ]},
+    { name:"Luki", questions:[
+        { type:"kanji", badge:"漢", word:"練習する", sub:"Bacaan yang benar untuk kanji di atas?", options:["れいしゅうする","れんじゅうする","れんしゆうする","れんしゅうする"], answer:3 },
+        { type:"kanji", badge:"漢", word:"便利", sub:"Bacaan yang benar untuk kanji di atas?", options:["びんり","べんい","べんりい","べんり"], answer:3 },
+        { type:"kanji", badge:"漢", word:"会話", sub:"Bacaan yang benar untuk kanji di atas?", options:["かいは","がいわ","かいわ","かいば"], answer:2 },
+        { type:"grammar", badge:"文", word:"この みちは くるまが おおくて あぶない___ おもいます。", sub:"Pilih partikel yang tepat", options:["を","に","へ","と"], answer:3 },
+        { type:"grammar", badge:"文", word:"しゅくだいを し___ から、あそびに いきます。", sub:"Pilih bentuk kata kerja yang tepat", options:["た","ます","る","て"], answer:3 },
+        { type:"kanji", badge:"漢", word:"友達", sub:"Bacaan yang benar untuk kanji di atas?", options:["ともだち","ともたち","どもだち","ともだぢ"], answer:0 },
+        { type:"kanji", badge:"漢", word:"会社", sub:"Bacaan yang benar untuk kanji di atas?", options:["かいしゃ","がいしゃ","かいじゃ","かいさ"], answer:0 },
+        { type:"kanji", badge:"漢", word:"高い", sub:"Bacaan yang benar untuk kanji di atas?", options:["たかい","だかい","たがい","たかいい"], answer:0 },
+        { type:"grammar", badge:"文", word:"これは ともだち___ もらった プレゼントです。", sub:"Pilih partikel yang tepat", options:["に","から","で","を"], answer:1 },
+        { type:"grammar", badge:"文", word:"あの かいしゃ___ はたらいて います。", sub:"Pilih partikel yang tepat", options:["に","を","が","で"], answer:3 },
+    ]},
+];
+
+const TIME_LIMIT = 10 * 60; // 10 menit per siswa
+
+students.forEach(s => {
+    s.current = 0;
+    s.picked = s.questions.map(() => null); // index opsi yang dipilih siswa, null = belum dijawab
+    s.timeLeft = TIME_LIMIT;
+    s.started = false;
+    s.finished = false;
+});
+
+let activeStudent = 0;
+let timerInterval = null;
+
+const studentRow = document.getElementById("studentRow");
+const cardEl = document.getElementById("card");
+const cardBadge = document.getElementById("cardBadge");
+const cardWord = document.getElementById("cardWord");
+const cardSub = document.getElementById("cardSub");
+const optionsGrid = document.getElementById("optionsGrid");
+const feedback = document.getElementById("feedback");
+const tagBadge = document.getElementById("tagBadge");
+const progressText = document.getElementById("progressText");
+const progressFill = document.getElementById("progressFill");
+const timerText = document.getElementById("timerText");
+const startTimerBtnTop = document.getElementById("startTimerBtnTop");
+const startTimerBtnCard = document.getElementById("startTimerBtnCard");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const resetBtn = document.getElementById("resetBtn");
+const jumpRow = document.getElementById("jumpRow");
+const summaryBody = document.getElementById("summaryBody");
+
+const letters = ["A","B","C","D"];
+
+function scoreOf(s){
+    const done = s.picked.filter(p => p !== null).length;
+    const correct = s.questions.filter((q,i) => s.picked[i] === q.answer).length;
+    const wrong = done - correct;
+    const nilai = done > 0 ? Math.round((correct / s.questions.length) * 100) : null;
+    return { done, correct, wrong, nilai };
+}
+
+//============================
+// TIMER (10 menit per siswa, mulai manual)
+//============================
+
+function formatTime(sec){
+    const m = Math.floor(sec / 60).toString().padStart(2, "0");
+    const s = (sec % 60).toString().padStart(2, "0");
+    return m + ":" + s;
+}
+
+function renderTimer(){
+    const s = students[activeStudent];
+    timerText.textContent = "⏱ " + formatTime(Math.max(s.timeLeft, 0));
+    timerText.classList.toggle("low", s.started && !s.finished && s.timeLeft > 0 && s.timeLeft <= 60);
+    timerText.classList.toggle("done", s.finished);
+    timerText.classList.toggle("waiting", !s.started && !s.finished);
+
+    const showStart = !s.started && !s.finished;
+    startTimerBtnTop.style.display = showStart ? "flex" : "none";
+    startTimerBtnCard.style.display = showStart ? "flex" : "none";
+}
+
+function clearActiveTimer(){
+    if(timerInterval){ clearInterval(timerInterval); timerInterval = null; }
+}
+
+function handleTimeUp(index){
+    const s = students[index];
+    s.finished = true;
+    s.timeLeft = 0;
+    if(index === activeStudent){
+        renderCard();
+        renderTimer();
+        alert("⏰ Waktu 10 menit untuk " + s.name + " telah habis! Soal yang belum dijawab akan tetap kosong.");
+    }
+    renderStudentRow();
+    renderSummary();
+}
+
+function startTimerForStudent(index){
+    clearActiveTimer();
+    const s = students[index];
+    if(!s.started || s.finished || s.timeLeft <= 0){
+        if(s.timeLeft <= 0){ s.finished = true; s.timeLeft = 0; }
+        renderTimer();
+        return;
+    }
+    timerInterval = setInterval(() => {
+        s.timeLeft--;
+        if(index === activeStudent) renderTimer();
+        if(s.timeLeft <= 0){
+            clearActiveTimer();
+            handleTimeUp(index);
+        }
+    }, 1000);
+}
+
+function syncTimerForActiveStudent(){
+    clearActiveTimer();
+    const s = students[activeStudent];
+    if(s.started && !s.finished){
+        startTimerForStudent(activeStudent);
+    } else {
+        renderTimer();
+    }
+}
+
+function beginExamForActiveStudent(){
+    const s = students[activeStudent];
+    if(s.started || s.finished) return;
+    s.started = true;
+    startTimerForStudent(activeStudent);
+    renderCard();
+    renderStudentRow();
+}
+
+startTimerBtnTop.addEventListener("click", beginExamForActiveStudent);
+startTimerBtnCard.addEventListener("click", beginExamForActiveStudent);
+
+//============================
+// RENDER
+//============================
+
+function renderStudentRow(){
+    studentRow.innerHTML = "";
+    students.forEach((s, i) => {
+        const sc = scoreOf(s);
+        const pill = document.createElement("button");
+        pill.className = "student-pill" + (i === activeStudent ? " active" : "");
+        const statusMark = s.finished ? " ⏰" : (s.started ? " ▶" : "");
+        pill.innerHTML = s.name + statusMark + " <span class='student-score'>" + sc.done + "/" + s.questions.length + "</span>";
+        pill.addEventListener("click", () => {
+            if(i === activeStudent) return;
+            activeStudent = i;
+            renderAll();
+            syncTimerForActiveStudent();
+        });
+        studentRow.appendChild(pill);
+    });
+}
+
+function renderCard(){
+    const s = students[activeStudent];
+    const q = s.questions[s.current];
+    const picked = s.picked[s.current];
+
+    cardBadge.textContent = q.badge;
+    cardWord.textContent = q.word;
+    cardWord.style.fontSize = q.word.length > 14 ? "clamp(22px, 4.2vw, 32px)" : (q.word.length > 6 ? "clamp(28px, 5.5vw, 44px)" : "clamp(36px, 7vw, 62px)");
+    cardSub.textContent = q.sub;
+    tagBadge.textContent = q.type === "kanji" ? "KANJI" : "TATA BAHASA";
+    tagBadge.className = "tag " + (q.type === "kanji" ? "kanji" : "grammar");
+
+    progressText.textContent = (s.current+1) + " / " + s.questions.length;
+    progressFill.style.width = ((s.current+1)/s.questions.length*100) + "%";
+
+    prevBtn.disabled = s.current === 0;
+    nextBtn.disabled = s.current === s.questions.length - 1;
+
+    optionsGrid.innerHTML = "";
+    q.options.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.className = "opt-btn";
+        btn.innerHTML = "<span class='opt-letter'>" + letters[i] + "</span><span class='jp'>" + opt + "</span>";
+        const locked = !s.started && !s.finished;
+        const timeUpUnanswered = s.finished && picked === null;
+        if(picked !== null){
+            btn.disabled = true;
+            if(i === q.answer) btn.classList.add("correct");
+            else if(i === picked) btn.classList.add("wrong");
+            else btn.classList.add("dim");
+        } else if(locked || timeUpUnanswered){
+            btn.disabled = true;
+        }
+        btn.addEventListener("click", () => {
+            if(!s.started || s.finished) return;
+            if(s.picked[s.current] !== null) return;
+            s.picked[s.current] = i;
+            renderAll();
+        });
+        optionsGrid.appendChild(btn);
+    });
+
+    feedback.classList.remove("show","correct-fb","wrong-fb");
+    if(picked !== null){
+        const isCorrect = picked === q.answer;
+        feedback.textContent = isCorrect ? "✔ Jawaban benar!" : "✘ Jawaban salah. Jawaban yang benar: " + q.options[q.answer];
+        feedback.classList.add("show", isCorrect ? "correct-fb" : "wrong-fb");
+    } else if(s.finished){
+        feedback.textContent = "⏰ Waktu habis, soal ini tidak terjawab.";
+        feedback.classList.add("show","wrong-fb");
+    }
+
+    const locked = !s.started && !s.finished;
+    cardEl.classList.toggle("locked", locked);
+
+    renderTimer();
+    renderJumpRow();
+}
+
+function renderJumpRow(){
+    const s = students[activeStudent];
+    jumpRow.innerHTML = "";
+    s.questions.forEach((q, i) => {
+        const dot = document.createElement("button");
+        let cls = "dot" + (i === s.current ? " active" : "");
+        if(s.picked[i] !== null){
+            cls += (s.picked[i] === q.answer ? " correct" : " wrong");
+        }
+        dot.className = cls;
+        dot.textContent = i + 1;
+        dot.addEventListener("click", () => {
+            s.current = i;
+            renderCard();
+        });
+        jumpRow.appendChild(dot);
+    });
+}
+
+function renderSummary(){
+    summaryBody.innerHTML = "";
+    students.forEach(s => {
+        const sc = scoreOf(s);
+        const nilaiClass = sc.nilai === null ? "" : (sc.nilai >= 70 ? "pass" : "fail");
+        const allDone = sc.done === s.questions.length;
+        const tr = document.createElement("tr");
+        tr.innerHTML =
+            "<td>" + s.name + (s.finished ? " ⏰" : "") + "</td>" +
+            "<td>" + sc.done + " / " + s.questions.length + "</td>" +
+            "<td style='color:var(--green);font-weight:700;'>" + sc.correct + "</td>" +
+            "<td style='color:var(--red);font-weight:700;'>" + sc.wrong + "</td>" +
+            "<td class='score " + nilaiClass + "'>" + (sc.nilai === null ? "-" : sc.nilai) + (allDone && sc.nilai !== null ? " ✓" : "") + "</td>";
+        summaryBody.appendChild(tr);
+    });
+}
+
+function renderAll(){
+    renderStudentRow();
+    renderCard();
+    renderSummary();
+}
+
+prevBtn.addEventListener("click", function(){
+    const s = students[activeStudent];
+    if(s.current > 0){ s.current--; renderCard(); }
+});
+
+nextBtn.addEventListener("click", function(){
+    const s = students[activeStudent];
+    if(s.current < s.questions.length - 1){ s.current++; renderCard(); }
+});
+
+resetBtn.addEventListener("click", function(){
+    const s = students[activeStudent];
+    if(confirm("Ulang tes untuk " + s.name + "? Semua jawaban akan dihapus dan timer direset (belum mulai).")){
+        clearActiveTimer();
+        s.current = 0;
+        s.picked = s.questions.map(() => null);
+        s.timeLeft = TIME_LIMIT;
+        s.started = false;
+        s.finished = false;
+        renderAll();
+        syncTimerForActiveStudent();
+    }
+});
+
+renderAll();
+syncTimerForActiveStudent();
+
+</script>
+
+</body>
+</html>
