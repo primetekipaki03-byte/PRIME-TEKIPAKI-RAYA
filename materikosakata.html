@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar Kosakata · JLPT N5–N1</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy-deep:#001530;
+    --navy2:#022655;
+    --gold:#e0b52a;
+    --gold-bright:#facc15;
+    --paper:#fffdf7;
+    --ink:#001f3f;
+    --muted:#5b6b7d;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins","Segoe UI",Arial,sans-serif;}
+.jp{font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif;}
+body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
+
+/* =======================
+        NAVBAR
+======================= */
+#navbar{position:sticky;top:0;z-index:999;background:var(--navy-deep);
+    border-bottom:2px solid rgba(250,204,21,.25);box-shadow:0 4px 14px rgba(0,0,0,.35);}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;}
+.nav-left{display:flex;align-items:center;}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy-deep);
+    text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;}
+.home-btn:hover{opacity:.85;}
+.home-icon{width:24px;height:24px;object-fit:cover;border-radius:4px;}
+.dropdown{position:relative;}
+.dropdown-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;
+    border-radius:8px;font-weight:bold;cursor:pointer;}
+.dropdown-btn:hover{background:var(--gold);color:var(--navy-deep);}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:var(--navy2);border-radius:10px;
+    overflow:hidden;min-width:220px;max-width:90vw;box-shadow:0 8px 20px rgba(0,0,0,.4);}
+.dropdown-menu.align-right{left:auto;right:0;}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none;}
+.dropdown-menu a:hover{background:var(--gold);color:var(--navy-deep);}
+.show{display:block;}
+
+/* Hamburger button (mobile only) */
+.hamburger-btn{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+  width:40px;height:40px;
+  background:none;
+  border:2px solid var(--gold);
+  border-radius:8px;
+  cursor:pointer;
+  padding:0;
+}
+.hamburger-btn span{
+  display:block;
+  width:20px;height:2px;
+  background:var(--gold);
+  margin:0 auto;
+  border-radius:2px;
+  transition:transform .25s ease, opacity .25s ease;
+}
+.hamburger-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger-btn.open span:nth-child(2){opacity:0;}
+.hamburger-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* Mobile slide-down menu */
+.mobile-menu{
+  display:none;
+  background:var(--navy-deep);
+  border-top:1px solid rgba(250,204,21,.2);
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .3s ease;
+}
+.mobile-menu.open{max-height:80vh;overflow-y:auto;}
+.mobile-section{border-bottom:1px solid rgba(255,255,255,.08);}
+.mobile-section-btn{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:none;
+  border:none;
+  color:var(--gold-bright);
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:.06em;
+  padding:14px 20px;
+  cursor:pointer;
+}
+.mobile-section-btn .chevron{transition:transform .2s ease;}
+.mobile-section-btn.open .chevron{transform:rotate(180deg);}
+.mobile-section-links{
+  display:none;
+  flex-direction:column;
+  background:rgba(0,0,0,.15);
+}
+.mobile-section-links.show{display:flex;}
+.mobile-section-links a{
+  padding:12px 30px;
+  color:#dbe4f0;
+  text-decoration:none;
+  font-size:13.5px;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.mobile-section-links a:hover{background:rgba(250,204,21,.12);color:var(--gold-bright);}
+
+@media(max-width:600px){
+  .nav-right{display:none;}
+  .hamburger-btn{display:flex;}
+  .mobile-menu{display:block;}
+}
+
+/* =======================
+        HERO
+======================= */
+.hero{
+  position:relative;
+  background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 55%,#003366 100%);
+  color:#fff;
+  padding:64px 20px 84px;
+  text-align:center;
+  overflow:hidden;
+}
+.hero .kanji-watermark{
+  position:absolute;
+  font-size:min(46vw,420px);
+  font-weight:900;
+  color:rgba(255,255,255,.04);
+  top:50%;left:50%;
+  transform:translate(-50%,-46%);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+  white-space:nowrap;
+}
+.hero-content{position:relative;z-index:2;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.4);
+  color:var(--gold-bright);font-size:12.5px;font-weight:700;letter-spacing:.14em;
+  padding:7px 16px;border-radius:999px;margin-bottom:20px;
+}
+.hero h1{
+  font-size:clamp(2rem,5vw,3rem);
+  letter-spacing:-.01em;
+  margin-bottom:10px;
+}
+.hero h1 .jp-big{
+  display:block;
+  font-size:clamp(2.4rem,7vw,3.8rem);
+  color:var(--gold-bright);
+  font-weight:900;
+  margin-bottom:6px;
+}
+.hero p{
+  color:#cdd8ea;
+  max-width:560px;
+  margin:0 auto;
+  font-size:15px;
+  line-height:1.7;
+}
+
+/* =======================
+        LEVELS
+======================= */
+.levels-wrap{
+  max-width:1040px;
+  margin:20px auto 0;
+  padding:0 20px 70px;
+  position:relative;
+  z-index:3;
+}
+.levels-intro{
+  text-align:center;
+  margin-bottom:30px;
+}
+.levels-intro h2{
+  font-size:1.5rem;
+  color:var(--navy);
+  margin-bottom:6px;
+}
+.levels-intro p{color:var(--muted);font-size:14px;}
+
+.level-grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:26px;
+}
+.ticket{
+  flex:1 1 400px;
+  max-width:480px;
+}
+@media(max-width:600px){ .ticket{flex-basis:100%;} }
+
+.ticket{
+  position:relative;
+  display:flex;
+  background:var(--paper);
+  border-radius:20px;
+  overflow:hidden;
+  text-decoration:none;
+  color:var(--ink);
+  box-shadow:0 10px 0 rgba(0,31,63,.08), 0 18px 30px rgba(0,31,63,.12);
+  transition:transform .25s ease, box-shadow .25s ease;
+  min-height:230px;
+}
+.ticket:hover{
+  transform:translateY(-6px);
+  box-shadow:0 14px 0 rgba(0,31,63,.1), 0 26px 40px rgba(0,31,63,.18);
+}
+
+.ticket-stub{
+  width:104px;
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  position:relative;
+}
+.ticket-stub .lvl-tag{
+  font-size:11px;
+  letter-spacing:.18em;
+  opacity:.75;
+  margin-bottom:6px;
+}
+.ticket-stub .lvl-num{
+  font-size:2.6rem;
+  font-weight:900;
+  line-height:1;
+}
+.ticket-stub .lvl-jp{
+  margin-top:10px;
+  font-size:13px;
+  writing-mode:vertical-rl;
+  letter-spacing:.14em;
+  opacity:.85;
+}
+/* perforated divider */
+.ticket-stub::after{
+  content:"";
+  position:absolute;
+  right:0;top:8px;bottom:8px;
+  border-right:2px dashed rgba(255,255,255,.35);
+}
+
+.n5 .ticket-stub{background:linear-gradient(160deg,var(--gold) 0%,#c99a1b 100%);color:var(--navy-deep);}
+.n5 .ticket-stub::after{border-right-color:rgba(0,21,48,.35);}
+.n4 .ticket-stub{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);}
+.n3 .ticket-stub{background:linear-gradient(160deg,#0f766e 0%,#0a4a45 100%);}
+.n2 .ticket-stub{background:linear-gradient(160deg,#7a1229 0%,#3d0713 100%);}
+.n1 .ticket-stub{background:linear-gradient(160deg,#2e1065 0%,#120426 100%);}
+
+.ticket-body{
+  flex:1;
+  padding:22px 24px;
+  display:flex;
+  flex-direction:column;
+}
+.ticket-body h3{
+  font-size:1.25rem;
+  color:var(--navy);
+  margin-bottom:6px;
+  padding-right:58px;
+}
+.ticket-body .desc{
+  font-size:13.5px;
+  color:var(--muted);
+  line-height:1.6;
+  margin-bottom:14px;
+}
+.tag-row{
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-bottom:18px;
+}
+.tag-row span{
+  background:rgba(0,31,63,.06);
+  color:var(--navy);
+  font-size:11.5px;
+  font-weight:600;
+  padding:4px 10px;
+  border-radius:999px;
+}
+.ticket-body .cta{
+  margin-top:auto;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:700;
+  font-size:13.5px;
+  color:var(--navy);
+}
+.n5 .cta{color:#a4780a;}
+.n4 .cta{color:var(--navy);}
+.n3 .cta{color:#0f766e;}
+.n2 .cta{color:#7a1229;}
+.n1 .cta{color:#2e1065;}
+.ticket-body .cta .arrow{
+  transition:transform .2s ease;
+}
+.ticket:hover .cta .arrow{transform:translateX(5px);}
+
+.stamp{
+  position:absolute;
+  top:16px;right:16px;
+  width:52px;height:52px;
+  border:2px solid rgba(225,29,72,.55);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(225,29,72,.65);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.05em;
+  transform:rotate(-14deg);
+  text-align:center;
+  line-height:1.15;
+  opacity:.85;
+}
+
+.stat-row{
+  display:flex;
+  gap:8px;
+  margin-bottom:14px;
+}
+.stat-row .stat{
+  background:rgba(0,31,63,.04);
+  border:1px solid rgba(0,31,63,.08);
+  border-radius:10px;
+  padding:6px 10px;
+  font-size:11.5px;
+  color:var(--muted);
+  font-weight:600;
+}
+.stat-row .stat b{color:var(--navy);}
+
+footer{text-align:center;color:var(--muted);font-size:13px;padding:20px 20px 40px;}
+
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+<div class="dropdown-menu" id="materi">
+<a href="daftarkosakata.html">Kosakata JFT</a>
+<a href="materitatabahasa.html">Tata Bahasa</a>
+<a href="daftarkanji.html">Daftar Kanji</a>
+<a href="kanjidasar.html">Kanji Flash Card</a>
+</div>
+</div>
+
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+<div class="dropdown-menu" id="quiz">
+<a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+<a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+<a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+<a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+<a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+</div>
+</div>
+
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+<div class="dropdown-menu" id="kanjiquiz">
+<a href="quizkanji1.html">QUIZ KANJI 1</a>
+<a href="quizkanji2.html">QUIZ KANJI 2</a>
+<a href="quizkanji3.html">QUIZ KANJI 3</a>
+<a href="quizkanji4.html">QUIZ KANJI 4</a>
+<a href="quizkanji5.html">QUIZ KANJI 5</a>
+</div>
+</div>
+</div>
+
+<button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+
+<div class="mobile-section">
+<button class="mobile-section-btn" onclick="toggleMobileSection('m-materi')">MATERI <span class="chevron">▼</span></button>
+<div class="mobile-section-links" id="m-materi">
+<a href="daftarkosakata.html">Kosakata JFT</a>
+<a href="materitatabahasa.html">Tata Bahasa</a>
+<a href="daftarkanji.html">Daftar Kanji</a>
+<a href="kanjidasar.html">Kanji Flash Card</a>
+</div>
+</div>
+
+<div class="mobile-section">
+<button class="mobile-section-btn" onclick="toggleMobileSection('m-quiz')">QUIZ JFT <span class="chevron">▼</span></button>
+<div class="mobile-section-links" id="m-quiz">
+<a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+<a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+<a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+<a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+<a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+</div>
+</div>
+
+<div class="mobile-section">
+<button class="mobile-section-btn" onclick="toggleMobileSection('m-kanjiquiz')">QUIZ KANJI <span class="chevron">▼</span></button>
+<div class="mobile-section-links" id="m-kanjiquiz">
+<a href="quizkanji1.html">QUIZ KANJI 1</a>
+<a href="quizkanji2.html">QUIZ KANJI 2</a>
+<a href="quizkanji3.html">QUIZ KANJI 3</a>
+<a href="quizkanji4.html">QUIZ KANJI 4</a>
+<a href="quizkanji5.html">QUIZ KANJI 5</a>
+</div>
+</div>
+
+</div>
+</nav>
+
+<section class="hero">
+  <div class="kanji-watermark jp">語彙</div>
+  <div class="hero-content">
+    <div class="eyebrow">📚 MATERI · DAFTAR KOSAKATA</div>
+    <h1>
+      <span class="jp-big jp">語彙</span>
+      Daftar Kosakata Jepang
+    </h1>
+    <p>Pilih level sesuai kemampuanmu. Setiap kosakata dilengkapi cara baca furigana, romaji, arti, dan jenis kata supaya lebih mudah dihafal.</p>
+  </div>
+</section>
+
+<div class="levels-wrap">
+  <div class="levels-intro">
+    <h2>Pilih Level Kosakata</h2>
+    <p>Klik salah satu tiket di bawah untuk mulai belajar daftar kosakata.</p>
+  </div>
+
+  <div class="level-grid">
+
+    <a href="daftarkosakatajlptn5.html" class="ticket n5">
+      <div class="stamp jp">初級<br>合格</div>
+      <div class="ticket-stub">
+        <div class="lvl-tag">LEVEL</div>
+        <div class="lvl-num">N5</div>
+        <div class="lvl-jp jp">初級</div>
+      </div>
+      <div class="ticket-body">
+        <h3>Kosakata JLPT N5 — Dasar</h3>
+        <p class="desc">Kosakata paling dasar untuk pemula: sapaan, angka, hari, waktu, dan kata benda sehari-hari yang sering muncul di awal pembelajaran.</p>
+        <div class="stat-row">
+          <div class="stat">± <b>800</b> kosakata</div>
+        </div>
+        <div class="tag-row">
+          <span>おはよう</span>
+          <span>たべます</span>
+          <span>がっこう</span>
+        </div>
+        <div class="cta">Lihat kosakata N5 <span class="arrow">→</span></div>
+      </div>
+    </a>
+
+    <a href="daftarkosakatajlptn4.html" class="ticket n4">
+      <div class="stamp jp">中級<br>準備</div>
+      <div class="ticket-stub">
+        <div class="lvl-tag">LEVEL</div>
+        <div class="lvl-num" style="color:var(--gold-bright)">N4</div>
+        <div class="lvl-jp jp">初中級</div>
+      </div>
+      <div class="ticket-body">
+        <h3>Kosakata JLPT N4 — Lanjutan</h3>
+        <p class="desc">Kosakata yang lebih beragam: kata kerja, sifat, dan istilah untuk percakapan sehari-hari yang lebih kompleks.</p>
+        <div class="stat-row">
+          <div class="stat">± <b>1.500</b> kosakata</div>
+        </div>
+        <div class="tag-row">
+          <span>でんわします</span>
+          <span>かいます</span>
+          <span>おもいます</span>
+        </div>
+        <div class="cta">Lihat kosakata N4 <span class="arrow">→</span></div>
+      </div>
+    </a>
+
+    <a href="daftarkosakatajlptn3.html" class="ticket n3">
+      <div class="stamp jp">中上級<br>強化</div>
+      <div class="ticket-stub">
+        <div class="lvl-tag">LEVEL</div>
+        <div class="lvl-num" style="color:var(--gold-bright)">N3</div>
+        <div class="lvl-jp jp">中上級</div>
+      </div>
+      <div class="ticket-body">
+        <h3>Kosakata JLPT N3 — Menengah</h3>
+        <p class="desc">Kosakata yang sering dipakai di media, majalah, dan percakapan menengah, mencakup istilah sosial dan lingkungan sekitar.</p>
+        <div class="stat-row">
+          <div class="stat">± <b>3.750</b> kosakata</div>
+        </div>
+        <div class="tag-row">
+          <span>かんきょう</span>
+          <span>きかい</span>
+          <span>じょうたい</span>
+        </div>
+        <div class="cta">Lihat kosakata N3 <span class="arrow">→</span></div>
+      </div>
+    </a>
+
+    <a href="kosakatan2.html" class="ticket n2">
+      <div class="stamp jp">上級<br>挑戦</div>
+      <div class="ticket-stub">
+        <div class="lvl-tag">LEVEL</div>
+        <div class="lvl-num" style="color:var(--gold-bright)">N2</div>
+        <div class="lvl-jp jp">上級</div>
+      </div>
+      <div class="ticket-body">
+        <h3>Kosakata JLPT N2 — Mahir</h3>
+        <p class="desc">Kosakata tingkat atas yang sering muncul di berita, artikel bisnis, dan dokumen formal.</p>
+        <div class="stat-row">
+          <div class="stat">± <b>6.000</b> kosakata</div>
+        </div>
+        <div class="tag-row">
+          <span>けいざい</span>
+          <span>せいど</span>
+          <span>いじ</span>
+        </div>
+        <div class="cta">Lihat kosakata N2 <span class="arrow">→</span></div>
+      </div>
+    </a>
+
+    <a href="daftarkosakatajlptn1.html" class="ticket n1">
+      <div class="stamp jp">最上級<br>達人</div>
+      <div class="ticket-stub">
+        <div class="lvl-tag">LEVEL</div>
+        <div class="lvl-num" style="color:var(--gold-bright)">N1</div>
+        <div class="lvl-jp jp">最上級</div>
+      </div>
+      <div class="ticket-body">
+        <h3>Kosakata JLPT N1 — Mahir Tinggi</h3>
+        <p class="desc">Kosakata tingkat tertinggi yang muncul di teks akademik, sastra, dan berita resmi dengan nuansa makna yang halus.</p>
+        <div class="stat-row">
+          <div class="stat">± <b>10.000</b> kosakata</div>
+        </div>
+        <div class="tag-row">
+          <span>しんちょう</span>
+          <span>けんそん</span>
+          <span>きょうい</span>
+        </div>
+        <div class="cta">Lihat kosakata N1 <span class="arrow">→</span></div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>© 2026 Tekipaki Japanese Learning | Daftar Kosakata JLPT N5–N1</footer>
+
+<script>
+function toggleDropdown(id){
+  document.querySelectorAll('.dropdown-menu').forEach(m=>{
+    if(m.id!==id){
+      m.classList.remove('show');
+      m.classList.remove('align-right');
+      m.closest('.dropdown').classList.remove('open');
+    }
+  });
+  const menu = document.getElementById(id);
+  const wrap = menu.closest('.dropdown');
+  const willShow = !menu.classList.contains('show');
+
+  menu.classList.toggle('show');
+  wrap.classList.toggle('open');
+
+  if(willShow){
+    menu.classList.remove('align-right');
+    const rect = menu.getBoundingClientRect();
+    if(rect.right > window.innerWidth - 8){
+      menu.classList.add('align-right');
+    }
+    const rect2 = menu.getBoundingClientRect();
+    if(rect2.left < 8){
+      menu.style.left = (8 - wrap.getBoundingClientRect().left) + 'px';
+      menu.style.right = 'auto';
+    }
+  }
+}
+
+window.addEventListener('resize', ()=>{
+  document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
+    m.classList.remove('show');
+    m.classList.remove('align-right');
+    m.style.left = '';
+    m.style.right = '';
+    m.closest('.dropdown').classList.remove('open');
+  });
+  if(window.innerWidth > 600){
+    closeMobileMenu();
+  }
+});
+
+function toggleMobileMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburgerBtn');
+  const willOpen = !menu.classList.contains('open');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+  if(!willOpen){
+    document.querySelectorAll('.mobile-section-links.show').forEach(l=>l.classList.remove('show'));
+    document.querySelectorAll('.mobile-section-btn.open').forEach(b=>b.classList.remove('open'));
+  }
+}
+
+function closeMobileMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburgerBtn');
+  menu.classList.remove('open');
+  btn.classList.remove('open');
+  document.querySelectorAll('.mobile-section-links.show').forEach(l=>l.classList.remove('show'));
+  document.querySelectorAll('.mobile-section-btn.open').forEach(b=>b.classList.remove('open'));
+}
+
+function toggleMobileSection(id){
+  const links = document.getElementById(id);
+  const btn = links.previousElementSibling;
+  const willShow = !links.classList.contains('show');
+  links.classList.toggle('show');
+  btn.classList.toggle('open');
+  if(willShow){
+    document.querySelectorAll('.mobile-section-links.show').forEach(l=>{
+      if(l.id !== id){
+        l.classList.remove('show');
+        l.previousElementSibling.classList.remove('open');
+      }
+    });
+  }
+}
+
+document.addEventListener('click', e=>{
+  if(!e.target.closest('.dropdown')){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+      m.classList.remove('show');
+      m.classList.remove('align-right');
+      m.style.left = '';
+      m.style.right = '';
+    });
+    document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
+  }
+});
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy',        e => e.preventDefault());
+document.addEventListener('cut',         e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('dragstart',   e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if(
+    (e.ctrlKey && ['c','u','s','p','a'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase()))
+  ){ e.preventDefault(); }
+});
+</script>
+
+</body>
+</html>
