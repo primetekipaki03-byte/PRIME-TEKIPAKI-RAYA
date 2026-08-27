@@ -396,7 +396,7 @@ const WORDS_PER_UNIT = 20;
 
 // 👇 TAMBAHKAN INI: link khusus untuk unit tertentu (opsional)
 const customLinks = {
-    // contoh: 1: "kosakatan2unit1.html",
+     1: "materikosakatan2_unit1.html"
 };
 
 const list = document.getElementById("unitList");
@@ -406,7 +406,7 @@ for(let i=1; i<=TOTAL_UNITS; i++){
     const a = document.createElement("a");
 
     // 👇 UBAH BARIS INI kalau mau pola nama file lain
-    a.href = customLinks[i] || ("kosakatan2unit" + i + ".html");
+    a.href = customLinks[i] || ("materikosakatan2_unit" + i + ".html");
 
     a.className = "unit-card";
     a.innerHTML = `
