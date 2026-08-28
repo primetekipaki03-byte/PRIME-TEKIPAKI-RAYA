@@ -1,0 +1,484 @@
+
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar Kosakata JLPT N2</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --gold-soft:#fff3c4;
+    --paper:#fffdf7;
+    --text:#001f3f;
+    --muted:#5b6b7d;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins","Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#f6f5f1;
+    color:var(--text);
+}
+
+.jp{
+    font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif;
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.home-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--gold);
+    color:#001530;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.home-btn:hover{
+    opacity:.85;
+}
+
+.home-icon{
+    width:24px;
+    height:24px;
+    object-fit:cover;
+    border-radius:4px;
+}
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown-btn{
+    background:none;
+    border:2px solid var(--gold);
+    color:var(--gold);
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.dropdown-btn:hover{
+    background:var(--gold);
+    color:#001530;
+}
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:45px;
+    left:0;
+    background:#022655;
+    border-radius:10px;
+    overflow:hidden;
+    min-width:220px;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:12px 15px;
+    color:#ffd700;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:var(--gold);
+    color:#001530;
+}
+
+.show{
+    display:block;
+}
+
+/* =======================
+       HEADER
+======================= */
+
+header{
+    text-align:center;
+    padding:52px 20px 20px;
+}
+
+.eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--navy);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.12em;
+    padding:7px 16px;
+    border-radius:999px;
+    margin-bottom:18px;
+}
+
+header h1{
+    font-size:42px;
+    color:var(--navy);
+    margin-bottom:12px;
+    letter-spacing:-.01em;
+}
+
+header p{
+    font-size:16px;
+    color:var(--muted);
+    max-width:600px;
+    margin:0 auto;
+    line-height:1.7;
+}
+
+/* =======================
+      UNIT LIST
+======================= */
+
+.container{
+    max-width:820px;
+    margin:0 auto;
+    padding:30px 24px 80px;
+}
+
+.unit-card{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    background:var(--paper);
+    border:2px solid #e7e2d3;
+    border-radius:16px;
+    padding:18px 22px;
+    margin-bottom:16px;
+    text-decoration:none;
+    color:var(--text);
+    overflow:hidden;
+    transition:.25s;
+}
+
+.unit-card::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:6px;
+    background:var(--gold);
+    transition:.25s;
+}
+
+.unit-card:hover{
+    border-color:var(--navy);
+    transform:translateX(6px);
+    box-shadow:0 8px 20px rgba(0,31,63,.12);
+}
+
+.unit-card:hover::before{
+    width:100%;
+    opacity:.06;
+}
+
+.unit-icon{
+    flex-shrink:0;
+    width:56px;
+    height:56px;
+    border-radius:14px;
+    background:var(--navy);
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    font-weight:800;
+    letter-spacing:.02em;
+    position:relative;
+    z-index:1;
+}
+
+.unit-body{
+    flex:1;
+    position:relative;
+    z-index:1;
+}
+
+.unit-tag{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.1em;
+    color:var(--gold);
+    background:var(--navy);
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:999px;
+    margin-bottom:6px;
+}
+
+.unit-title{
+    font-size:19px;
+    font-weight:700;
+    color:var(--navy);
+}
+
+.unit-desc{
+    font-size:13px;
+    color:var(--muted);
+    margin-top:2px;
+}
+
+.unit-meta{
+    flex-shrink:0;
+    text-align:right;
+    position:relative;
+    z-index:1;
+}
+
+.unit-count{
+    font-size:13px;
+    font-weight:600;
+    color:var(--navy2);
+}
+
+.unit-arrow{
+    margin-top:6px;
+    font-size:18px;
+    color:var(--navy);
+    transition:.25s;
+}
+
+.unit-card:hover .unit-arrow{
+    transform:translateX(4px);
+    color:var(--gold);
+    filter:drop-shadow(0 0 1px var(--navy));
+}
+
+@media(max-width:600px){
+    .unit-card{
+        flex-wrap:wrap;
+        padding:16px;
+    }
+    .unit-meta{
+        width:100%;
+        text-align:left;
+        margin-top:8px;
+        padding-left:76px;
+    }
+    header h1{
+        font-size:30px;
+    }
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#8a93a0;
+    font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+<div class="dropdown-menu" id="materi">
+<a href="daftarkosakata.html">Kosakata JFT</a>
+<a href="materitatabahasa.html">Tata Bahasa</a>
+<a href="daftarkanji.html">Daftar Kanji</a>
+<a href="kanjidasar.html">Kanji Flash Card</a>
+</div>
+</div>
+
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+<div class="dropdown-menu" id="quiz">
+<a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+<a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+<a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+<a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+<a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+</div>
+</div>
+
+<div class="dropdown">
+<button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+<div class="dropdown-menu" id="kanjiquiz">
+<a href="quizkanji1.html">QUIZ KANJI 1</a>
+<a href="quizkanji2.html">QUIZ KANJI 2</a>
+<a href="quizkanji3.html">QUIZ KANJI 3</a>
+<a href="quizkanji4.html">QUIZ KANJI 4</a>
+<a href="quizkanji5.html">QUIZ KANJI 5</a>
+</div>
+</div>
+
+</div>
+</div>
+</nav>
+
+<header>
+<div class="eyebrow">📚 DAFTAR KOSAKATA JLPT N2</div>
+<h1>Daftar Kosakata JLPT N2</h1>
+<p>Kosakata dibagi menjadi beberapa unit. Pilih salah satu unit di bawah untuk mulai belajar dengan flashcard interaktif.</p>
+</header>
+
+<div class="container" id="unitList"></div>
+
+<footer>
+© 2026 Tekipaki Japanese Learning | Daftar Kosakata JLPT N2
+</footer>
+
+<script>
+
+// 👇 UBAH DUA ANGKA INI SESUAI KEBUTUHANMU
+const TOTAL_UNITS = 75;
+const WORDS_PER_UNIT = 20;
+
+// 👇 TAMBAHKAN INI: link khusus untuk unit tertentu (opsional)
+const customLinks = {
+     1: "materikosakatan2_unit1.html",
+     2: "materikosakatan2_unit2.html",
+     3: "materikosakatan2_unit3.html",
+     4: "materikosakatan2_unit4.html",
+     5: "materikosakatan2_unit5.html",
+     6: "materikosakatan2_unit6.html",
+     7: "materikosakatan2_unit7.html",
+     8: "materikosakatan2_unit8.html",
+     9: "materikosakatan2_unit9.html",
+     10: "materikosakatan2_unit10.html"
+
+
+
+};
+
+const list = document.getElementById("unitList");
+
+for(let i=1; i<=TOTAL_UNITS; i++){
+    const n = String(i).padStart(2,"0");
+    const a = document.createElement("a");
+
+    // 👇 UBAH BARIS INI kalau mau pola nama file lain
+    a.href = customLinks[i] || ("materikosakatan2_unit" + i + ".html");
+
+    a.className = "unit-card";
+    a.innerHTML = `
+        <div class="unit-icon">${n}</div>
+        <div class="unit-body">
+            <div class="unit-title">Unit ${i}</div>
+        </div>
+        <div class="unit-meta">
+            <div class="unit-count">${WORDS_PER_UNIT} kosakata</div>
+            <div class="unit-arrow">→</div>
+        </div>
+    `;
+    list.appendChild(a);
+}
+
+//============================
+// DROPDOWN
+//============================
+
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+        if(menu.id!=id){
+            menu.classList.remove("show");
+        }
+    });
+    document.getElementById(id).classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+            menu.classList.remove("show");
+        });
+    }
+});
+
+//============================
+// PROTEKSI
+//============================
+
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("copy",e=>e.preventDefault());
+document.addEventListener("cut",e=>e.preventDefault());
+document.addEventListener("selectstart",e=>e.preventDefault());
+document.addEventListener("dragstart",e=>e.preventDefault());
+
+document.addEventListener("keydown",function(e){
+    if(
+        (e.ctrlKey&&["c","u","s","p"].includes(e.key.toLowerCase()))
+        ||
+        e.key==="F12"
+        ||
+        (e.ctrlKey&&e.shiftKey&&["i","j","c"].includes(e.key.toLowerCase()))
+    ){
+        e.preventDefault();
+    }
+});
+
+</script>
+
+</body>
+</html>
