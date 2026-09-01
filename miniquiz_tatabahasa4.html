@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Latihan Tata Bahasa Unit 3: ~そうです（様態） / ~そうです（伝聞） / ~すぎる</title>
+<title>Latihan Tata Bahasa Unit 4: ~やすい／にくい ・ ~ように ・ ~ようになる</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -207,8 +207,8 @@ footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px
 </nav>
 
 <header>
-<div class="eyebrow">📘 LATIHAN TATA BAHASA N4 — UNIT 3</div>
-<h1>Latihan ~そうです（様態） ・ ~そうです（伝聞） ・ ~すぎる</h1>
+<div class="eyebrow">📘 LATIHAN TATA BAHASA N4 — UNIT 4</div>
+<h1>Latihan ~やすい／にくい ・ ~ように ・ ~ようになる</h1>
 <p>Setiap pola punya 10 soal pilihan ganda, 10 soal esai, dan 10 soal merubah kalimat. Pilih pola tata bahasa dan jenis soal di bawah ini.</p>
 </header>
 
@@ -223,184 +223,175 @@ footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px
 <script>
 
 const DATA = {
-    souYoutai: {
-        label: "～そうです（様態）",
-        intro: "～そうです（様態）digunakan untuk menyatakan kesan atau perkiraan berdasarkan apa yang dilihat/dirasakan secara langsung: \"kelihatannya ~\". Berbeda dengan bentuk 伝聞 (katanya), bentuk ini tidak berdasarkan informasi dari orang lain.",
+    yasuiNikui: {
+        label: "～やすい／にくい",
+        intro: "～やすい digunakan untuk menyatakan bahwa sesuatu mudah dilakukan, sedangkan ～にくい menyatakan bahwa sesuatu sulit/susah dilakukan. Keduanya dibentuk dari bentuk ます kata kerja (hilangkan ます), lalu dikonjugasikan seperti kata sifat -i.",
         table: {
-            rule: "い形容詞: hilangkan い + そうです（いい→よさそうです、ない→なさそうです）。な形容詞: langsung + そうです。動詞: hilangkan ます + そうです.",
+            rule: "動詞: hilangkan ます, tambah やすい（mudah）atau にくい（susah）。Hasilnya dikonjugasikan seperti い形容詞（やすいです／やすかったです、dst）.",
             rows: [
-                {gol:"い形容詞 (Kata sifat -i)", note:"Hilangkan い di akhir, tambah そうです.", examples:[
-                    {dict:"おいしい", masu:"おいしいです", form:"おいしそうです"},
-                    {dict:"高い", masu:"高いです", form:"高そうです"},
-                    {dict:"忙しい", masu:"忙しいです", form:"忙しそうです"},
-                    {dict:"いい", masu:"いいです", form:"よさそうです"}
+                {gol:"動詞 (～やすい)", note:"Hilangkan ます, tambah やすい ＝ mudah untuk melakukan ~.", examples:[
+                    {dict:"食べる", masu:"食べます", form:"食べやすいです"},
+                    {dict:"読む", masu:"読みます", form:"読みやすいです"},
+                    {dict:"わかる", masu:"わかります", form:"わかりやすいです"},
+                    {dict:"使う", masu:"使います", form:"使いやすいです"}
                 ]},
-                {gol:"な形容詞 (Kata sifat -na)", note:"Langsung tambah そうです setelah kata sifat.", examples:[
-                    {dict:"元気", masu:"元気です", form:"元気そうです"},
-                    {dict:"静か", masu:"静かです", form:"静かそうです"},
-                    {dict:"便利", masu:"便利です", form:"便利そうです"}
-                ]},
-                {gol:"動詞 (Kata kerja)", note:"Hilangkan ます, tambah そうです.", examples:[
-                    {dict:"降る", masu:"降ります", form:"降りそうです"},
-                    {dict:"壊れる", masu:"壊れます", form:"壊れそうです"},
-                    {dict:"落ちる", masu:"落ちます", form:"落ちそうです"}
+                {gol:"動詞 (～にくい)", note:"Hilangkan ます, tambah にくい ＝ sulit/susah untuk melakukan ~.", examples:[
+                    {dict:"食べる", masu:"食べます", form:"食べにくいです"},
+                    {dict:"読む", masu:"読みます", form:"読みにくいです"},
+                    {dict:"書く", masu:"書きます", form:"書きにくいです"},
+                    {dict:"話す", masu:"話します", form:"話しにくいです"}
                 ]}
             ]
         },
         pg: [
-            {word:"このケーキは美味し___。", sub:"Pilih bentuk yang tepat.", options:["美味しい","美味しそうです","美味し","美味しかったです"], answer:1},
-            {word:"空が暗くて、雨が降り___。", sub:"Pilih bentuk yang tepat.", options:["そうです","ます","そう","ました"], answer:0},
-            {word:"あの人は忙し___。", sub:"Pilih bentuk yang tepat.", options:["いです","そうです","かったです","そう"], answer:1},
-            {word:"田中さんは元気___。", sub:"Pilih bentuk yang tepat.", options:["だそうです","そうです","です","でした"], answer:1},
-            {word:"この橋は壊れ___。", sub:"Pilih bentuk yang tepat.", options:["そうです","ます","そう","ました"], answer:0},
-            {word:"この問題は難し___。", sub:"Pilih bentuk yang tepat.", options:["そう","いです","そうです","かった"], answer:2},
-            {word:"その部屋は静か___。", sub:"Pilih bentuk yang tepat.", options:["だそうです","そうです","です","でした"], answer:1},
-            {word:"皿が落ち___。", sub:"Pilih bentuk yang tepat.", options:["そうです","ます","そう","ました"], answer:0},
-            {word:"この本は面白___。", sub:"Pilih bentuk yang tepat.", options:["いです","そうです","かった","そう"], answer:1},
-            {word:"天気がよくて、今日は楽し___。", sub:"Pilih bentuk yang tepat.", options:["そう","そうです","いです","かったです"], answer:1}
+            {word:"この靴は歩き___。", sub:"(sepatu ini mudah dipakai jalan)", options:["やすいです","やすかったです","にくいです","やすくないです"], answer:0},
+            {word:"この本は字が小さくて、読み___。", sub:"(karena hurufnya kecil, sulit dibaca)", options:["やすいです","にくいです","やすかったです","にくくないです"], answer:1},
+            {word:"この料理は簡単で、作り___。", sub:"(masakan ini sederhana, mudah dibuat)", options:["にくいです","やすいです","やすくなかったです","にくかったです"], answer:1},
+            {word:"この漢字は複雑で、覚え___。", sub:"(kanji ini rumit, sulit diingat)", options:["やすいです","にくいです","やすかったです","にくくないです"], answer:1},
+            {word:"このコップは軽くて、持ち___。", sub:"(gelas ini ringan, mudah dipegang)", options:["にくいです","やすいです","やすくなかったです","にくかったです"], answer:1},
+            {word:"この道は狭くて、運転し___。", sub:"(jalan ini sempit, sulit dikendarai)", options:["やすいです","にくいです","やすかったです","にくくないです"], answer:1},
+            {word:"この先生の説明はわかり___。", sub:"(penjelasan guru ini mudah dipahami)", options:["にくいです","やすいです","にくかったです","やすくなかったです"], answer:1},
+            {word:"この靴は小さくて、履き___。", sub:"(sepatu ini kecil, sulit dipakai)", options:["やすいです","にくいです","やすかったです","にくくないです"], answer:1},
+            {word:"このアプリは使い方が簡単で、使い___。", sub:"(aplikasi ini mudah cara pakainya)", options:["にくいです","やすいです","にくかったです","やすくなかったです"], answer:1},
+            {word:"この肉は硬くて、食べ___。", sub:"(daging ini keras, sulit dimakan)", options:["やすいです","にくいです","やすかったです","にくくないです"], answer:1}
         ],
         essay: [
-            {cue:"おいしいです（このケーキ）", sentence:"このケーキは＿＿＿＿。", answer:"おいしそうです"},
-            {cue:"雨が降ります（空が暗い）", sentence:"空が暗いです。＿＿＿＿。", answer:"雨が降りそうです"},
-            {cue:"忙しいです（田中さん）", sentence:"田中さんは＿＿＿＿。", answer:"忙しそうです"},
-            {cue:"元気です（山田さん）", sentence:"山田さんは＿＿＿＿。", answer:"元気そうです"},
-            {cue:"壊れます（この椅子）", sentence:"この椅子は＿＿＿＿。", answer:"壊れそうです"},
-            {cue:"難しいです（このテスト）", sentence:"このテストは＿＿＿＿。", answer:"難しそうです"},
-            {cue:"静かです（この町）", sentence:"この町は＿＿＿＿。", answer:"静かそうです"},
-            {cue:"落ちます（本棚の本）", sentence:"本棚の本が＿＿＿＿。", answer:"落ちそうです"},
-            {cue:"面白いです（この映画）", sentence:"この映画は＿＿＿＿。", answer:"面白そうです"},
-            {cue:"いいです（この店）", sentence:"この店は＿＿＿＿。", answer:"よさそうです"}
+            {cue:"歩きます（この靴・簡単）", sentence:"この靴は＿＿＿＿。", answer:"歩きやすいです"},
+            {cue:"読みます（この本・字が小さい）", sentence:"この本は＿＿＿＿。", answer:"読みにくいです"},
+            {cue:"作ります（この料理・簡単）", sentence:"この料理は＿＿＿＿。", answer:"作りやすいです"},
+            {cue:"覚えます（この漢字・複雑）", sentence:"この漢字は＿＿＿＿。", answer:"覚えにくいです"},
+            {cue:"持ちます（このコップ・軽い）", sentence:"このコップは＿＿＿＿。", answer:"持ちやすいです"},
+            {cue:"運転します（この道・狭い）", sentence:"この道は＿＿＿＿。", answer:"運転しにくいです"},
+            {cue:"わかります（この先生の説明）", sentence:"この先生の説明は＿＿＿＿。", answer:"わかりやすいです"},
+            {cue:"履きます（この靴・小さい）", sentence:"この靴は＿＿＿＿。", answer:"履きにくいです"},
+            {cue:"使います（このアプリ・簡単）", sentence:"このアプリは＿＿＿＿。", answer:"使いやすいです"},
+            {cue:"食べます（この肉・硬い）", sentence:"この肉は＿＿＿＿。", answer:"食べにくいです"}
         ],
         transform: [
-            {parts:["このケーキはおいしいです。（見て感じたこと）"], answer:"このケーキはおいしそうです。"},
-            {parts:["空が暗いです。","雨が降ります。"], answer:"空が暗くて、雨が降りそうです。"},
-            {parts:["田中さんは忙しいです。（見て感じたこと）"], answer:"田中さんは忙しそうです。"},
-            {parts:["山田さんは元気です。（見て感じたこと）"], answer:"山田さんは元気そうです。"},
-            {parts:["この椅子は壊れます。（見て感じたこと）"], answer:"この椅子は壊れそうです。"},
-            {parts:["このテストは難しいです。（見て感じたこと）"], answer:"このテストは難しそうです。"},
-            {parts:["この町は静かです。（見て感じたこと）"], answer:"この町は静かそうです。"},
-            {parts:["本棚の本が落ちます。（見て感じたこと）"], answer:"本棚の本が落ちそうです。"},
-            {parts:["この映画は面白いです。（見て感じたこと）"], answer:"この映画は面白そうです。"},
-            {parts:["この店はいいです。（見て感じたこと）"], answer:"この店はよさそうです。"}
+            {parts:["この靴は歩きます。","とても簡単です。"], answer:"この靴はとても歩きやすいです。"},
+            {parts:["この本は読みます。","字が小さくて大変です。"], answer:"この本は字が小さくて読みにくいです。"},
+            {parts:["この料理は作ります。","とても簡単です。"], answer:"この料理はとても作りやすいです。"},
+            {parts:["この漢字は覚えます。","複雑で大変です。"], answer:"この漢字は複雑で覚えにくいです。"},
+            {parts:["このコップは持ちます。","軽くて簡単です。"], answer:"このコップは軽くて持ちやすいです。"},
+            {parts:["この道は運転します。","狭くて大変です。"], answer:"この道は狭くて運転しにくいです。"},
+            {parts:["この先生の説明はわかります。","とても簡単です。"], answer:"この先生の説明はとてもわかりやすいです。"},
+            {parts:["この靴は履きます。","小さくて大変です。"], answer:"この靴は小さくて履きにくいです。"},
+            {parts:["このアプリは使います。","使い方が簡単です。"], answer:"このアプリは使い方が簡単で使いやすいです。"},
+            {parts:["この肉は食べます。","硬くて大変です。"], answer:"この肉は硬くて食べにくいです。"}
         ]
     },
-    souDenbun: {
-        label: "～そうです（伝聞）",
-        intro: "～そうです（伝聞）digunakan untuk menyampaikan informasi yang didengar dari orang lain, berita, atau sumber lain: \"katanya ~/menurut informasi ~\". Kata yang mendahului そうです adalah bentuk biasa (futsuukei), TANPA perubahan bentuk seperti pada 様態 (kata sifat tidak dipotong い-nya).",
+    youni: {
+        label: "～ように",
+        intro: "～ように digunakan untuk menyatakan tujuan atau usaha agar suatu hal terjadi (atau tidak terjadi): \"berusaha agar ~\". Biasanya diikuti します／しています untuk usaha pribadi, atau 言う／伝える untuk perintah tidak langsung \"menyuruh agar ~\".",
         table: {
-            rule: "動詞: bentuk kamus/biasa + そうです。い形容詞: bentuk biasa (tetap ada い) + そうです。な形容詞・名詞: + だ + そうです.",
+            rule: "動詞辞書形／ない形 + ように + します／しています／言います／伝えます, dst.",
             rows: [
-                {gol:"動詞 (Kata kerja)", note:"Gunakan bentuk kamus/biasa apa adanya, tambah そうです.", examples:[
-                    {dict:"降る", masu:"降ります", form:"降るそうです"},
-                    {dict:"食べる", masu:"食べます", form:"食べるそうです"},
-                    {dict:"来る（くる）", masu:"来ます", form:"来るそうです"}
+                {gol:"動詞辞書形 (肯定文)", note:"Bentuk kamus + ように + します／しています. Menyatakan usaha positif agar sesuatu terjadi.", examples:[
+                    {dict:"運動する", masu:"運動します", form:"運動するようにしています"},
+                    {dict:"起きる", masu:"起きます", form:"起きるようにしています"},
+                    {dict:"食べる", masu:"食べます", form:"食べるようにしています"}
                 ]},
-                {gol:"い形容詞 (Kata sifat -i)", note:"Bentuk biasa tetap utuh (い tidak dihilangkan), tambah そうです.", examples:[
-                    {dict:"おいしい", masu:"おいしいです", form:"おいしいそうです"},
-                    {dict:"忙しい", masu:"忙しいです", form:"忙しいそうです"}
+                {gol:"動詞ない形 (否定文)", note:"Bentuk ない + ように + します／しています. Menyatakan usaha agar sesuatu TIDAK terjadi.", examples:[
+                    {dict:"遅れる", masu:"遅れません", form:"遅れないようにしています"},
+                    {dict:"忘れる", masu:"忘れません", form:"忘れないようにしています"},
+                    {dict:"太る", masu:"太りません", form:"太らないようにしています"}
                 ]},
-                {gol:"な形容詞・名詞", note:"Tambahkan だ sebelum そうです.", examples:[
-                    {dict:"元気", masu:"元気です", form:"元気だそうです"},
-                    {dict:"学生", masu:"学生です", form:"学生だそうです"}
+                {gol:"～ように言う／伝える", note:"Digunakan untuk perintah tidak langsung: 'menyuruh agar ~'.", examples:[
+                    {dict:"来る", masu:"来ます", form:"来るように言いました"},
+                    {dict:"忘れない", masu:"忘れません", form:"忘れないように伝えてください"}
                 ]}
             ]
         },
         pg: [
-            {word:"天気予報によると、明日は雨が＿＿＿そうです。", sub:"Pilih bentuk yang tepat (dasar kata: 降ります).", options:["降り","降って","降る","降った"], answer:2},
-            {word:"友達の話によると、あの店はとても＿＿＿そうです。", sub:"Pilih bentuk yang tepat (dasar kata: おいしい).", options:["おいしそう","おいし","おいしい","おいしかった"], answer:2},
-            {word:"天気予報によると、来週は＿＿＿そうです。", sub:"Pilih bentuk yang tepat (dasar kata: 寒い).", options:["寒く","寒い","寒そう","寒かった"], answer:1},
-            {word:"聞いた話によると、田中さんは＿＿＿そうです。", sub:"Pilih bentuk yang tepat (dasar kata: 元気).", options:["元気","元気な","元気だ","元気で"], answer:2},
-            {word:"ニュースによると、あの店は＿＿＿そうです。", sub:"Pilih bentuk yang tepat (dasar kata: 有名).", options:["有名","有名だ","有名な","有名そう"], answer:1},
-            {word:"ニュースによると、昨日、事故が＿＿＿そうです。", sub:"Pilih bentuk yang tepat (dasar kata: あります／past).", options:["ある","あって","あります","あった"], answer:3},
-            {word:"聞いた話によると、彼は＿＿＿そうです。", sub:"Pilih bentuk yang tepat (dasar kata: 学生).", options:["学生","学生な","学生で","学生だ"], answer:3},
-            {word:"友達の話によると、彼は試験に＿＿＿そうです。", sub:"Pilih bentuk yang tepat (dasar kata: 落ちます／past).", options:["落ちる","落ち","落ちて","落ちた"], answer:3},
-            {word:"話によると、先週はとても＿＿＿そうです。", sub:"Pilih bentuk yang tepat (dasar kata: 忙しい／past).", options:["忙しい","忙しく","忙しそう","忙しかった"], answer:3},
-            {word:"うわさによると、隣の人は＿＿＿そうです。", sub:"Pilih bentuk yang tepat (dasar kata: 引っ越します).", options:["引っ越し","引っ越して","引っ越した","引っ越す"], answer:3}
+            {word:"毎日野菜を___ようにしています。", sub:"(berusaha makan sayur tiap hari: 食べる)", options:["食べる","食べます","食べない","食べた"], answer:0},
+            {word:"授業に___ようにしています。", sub:"(berusaha agar tidak terlambat ke kelas: 遅れる)", options:["遅れる","遅れない","遅れます","遅れた"], answer:1},
+            {word:"毎朝早く___ようにしています。", sub:"(berusaha bangun pagi tiap hari: 起きる)", options:["起きる","起きない","起きます","起きた"], answer:0},
+            {word:"漢字を___ようにしています。", sub:"(berusaha agar tidak lupa kanji: 忘れる)", options:["忘れる","忘れない","忘れます","忘れた"], answer:1},
+            {word:"甘い物を___ようにしています。", sub:"(berusaha agar tidak makan yang manis: 食べる)", options:["食べる","食べない","食べます","食べた"], answer:1},
+            {word:"毎日日本語を___ようにしています。", sub:"(berusaha belajar bahasa Jepang tiap hari: 勉強する)", options:["勉強する","勉強しない","勉強します","勉強した"], answer:0},
+            {word:"友達に早く___ように言いました。", sub:"(menyuruh datang cepat: 来る)", options:["来る","来ない","来ます","来た"], answer:0},
+            {word:"子供に野菜を___ように言いました。", sub:"(menyuruh makan sayur: 食べる)", options:["食べる","食べない","食べます","食べた"], answer:0},
+            {word:"約束を___ように伝えてください。", sub:"(tolong sampaikan agar tidak lupa janji: 忘れる)", options:["忘れる","忘れない","忘れます","忘れた"], answer:1},
+            {word:"出かけるとき、電気を___ようにしてください。", sub:"(tolong usahakan mematikan lampu saat keluar: 消す)", options:["消す","消さない","消します","消した"], answer:0}
         ],
         essay: [
-            {cue:"雨が降ります（天気予報）", sentence:"天気予報によると、明日は＿＿＿＿。", answer:"雨が降るそうです"},
-            {cue:"おいしいです（あの店・友達の話）", sentence:"友達の話によると、あの店はとても＿＿＿＿。", answer:"おいしいそうです"},
-            {cue:"寒いです（来週・天気予報）", sentence:"天気予報によると、来週は＿＿＿＿。", answer:"寒いそうです"},
-            {cue:"元気です（田中さん・聞いた話）", sentence:"聞いた話によると、田中さんは＿＿＿＿。", answer:"元気だそうです"},
-            {cue:"有名です（あの店・ニュース）", sentence:"ニュースによると、あの店は＿＿＿＿。", answer:"有名だそうです"},
-            {cue:"事故がありました（昨日・ニュース）", sentence:"ニュースによると、昨日、事故が＿＿＿＿。", answer:"あったそうです"},
-            {cue:"学生です（彼・聞いた話）", sentence:"聞いた話によると、彼は＿＿＿＿。", answer:"学生だそうです"},
-            {cue:"試験に落ちました（彼・友達の話）", sentence:"友達の話によると、彼は試験に＿＿＿＿。", answer:"落ちたそうです"},
-            {cue:"忙しかったです（先週・話）", sentence:"話によると、先週はとても＿＿＿＿。", answer:"忙しかったそうです"},
-            {cue:"引っ越します（隣の人・うわさ）", sentence:"うわさによると、隣の人は＿＿＿＿。", answer:"引っ越すそうです"}
+            {cue:"食べます（野菜・毎日）", sentence:"毎日野菜を＿＿＿＿。", answer:"食べるようにしています"},
+            {cue:"遅れます（授業・ない）", sentence:"授業に＿＿＿＿。", answer:"遅れないようにしています"},
+            {cue:"起きます（早く・毎朝）", sentence:"毎朝早く＿＿＿＿。", answer:"起きるようにしています"},
+            {cue:"忘れます（漢字・ない）", sentence:"漢字を＿＿＿＿。", answer:"忘れないようにしています"},
+            {cue:"食べます（甘い物・ない）", sentence:"甘い物を＿＿＿＿。", answer:"食べないようにしています"},
+            {cue:"勉強します（日本語・毎日）", sentence:"毎日日本語を＿＿＿＿。", answer:"勉強するようにしています"},
+            {cue:"来ます（友達に・言いました）", sentence:"友達に早く＿＿＿＿。", answer:"来るように言いました"},
+            {cue:"食べます（子供に・言いました）", sentence:"子供に野菜を＿＿＿＿。", answer:"食べるように言いました"},
+            {cue:"忘れます（約束・ない・伝えてください）", sentence:"約束を＿＿＿＿。", answer:"忘れないように伝えてください"},
+            {cue:"消します（電気・出かけるとき）", sentence:"出かけるとき、電気を＿＿＿＿。", answer:"消すようにしてください"}
         ],
         transform: [
-            {parts:["天気予報で見ました。","明日は雨が降ります。"], answer:"天気予報によると、明日は雨が降るそうです。"},
-            {parts:["友達に聞きました。","あの店はとてもおいしいです。"], answer:"友達の話によると、あの店はとてもおいしいそうです。"},
-            {parts:["天気予報で見ました。","来週は寒いです。"], answer:"天気予報によると、来週は寒いそうです。"},
-            {parts:["聞きました。","田中さんは元気です。"], answer:"聞いた話によると、田中さんは元気だそうです。"},
-            {parts:["ニュースで見ました。","あの店は有名です。"], answer:"ニュースによると、あの店は有名だそうです。"},
-            {parts:["ニュースで見ました。","昨日、事故がありました。"], answer:"ニュースによると、昨日、事故があったそうです。"},
-            {parts:["聞きました。","彼は学生です。"], answer:"聞いた話によると、彼は学生だそうです。"},
-            {parts:["友達に聞きました。","彼は試験に落ちました。"], answer:"友達の話によると、彼は試験に落ちたそうです。"},
-            {parts:["話に聞きました。","先週はとても忙しかったです。"], answer:"話によると、先週はとても忙しかったそうです。"},
-            {parts:["うわさで聞きました。","隣の人は引っ越します。"], answer:"うわさによると、隣の人は引っ越すそうです。"}
+            {parts:["毎日野菜を食べます。","健康のために努力しています。"], answer:"毎日野菜を食べるようにしています。"},
+            {parts:["授業に遅れません。","気をつけています。"], answer:"授業に遅れないようにしています。"},
+            {parts:["毎朝早く起きます。","努力しています。"], answer:"毎朝早く起きるようにしています。"},
+            {parts:["漢字を忘れません。","気をつけています。"], answer:"漢字を忘れないようにしています。"},
+            {parts:["甘い物を食べません。","気をつけています。"], answer:"甘い物を食べないようにしています。"},
+            {parts:["毎日日本語を勉強します。","努力しています。"], answer:"毎日日本語を勉強するようにしています。"},
+            {parts:["友達に早く来てほしいです。","そう言いました。"], answer:"友達に早く来るように言いました。"},
+            {parts:["子供に野菜を食べてほしいです。","そう言いました。"], answer:"子供に野菜を食べるように言いました。"},
+            {parts:["約束を忘れないでください。","そう伝えてください。"], answer:"約束を忘れないように伝えてください。"},
+            {parts:["出かけるとき、電気を消してください。","そうしてください。"], answer:"出かけるとき、電気を消すようにしてください。"}
         ]
     },
-    sugiru: {
-        label: "～すぎる",
-        intro: "～すぎる digunakan untuk menyatakan bahwa sesuatu melebihi batas wajar: \"terlalu ~/kelebihan ~\". Bisa digunakan dengan kata sifat maupun kata kerja, dan biasanya mengandung nuansa negatif.",
+    youninaru: {
+        label: "～ようになる",
+        intro: "～ようになる digunakan untuk menyatakan perubahan keadaan/kebiasaan/kemampuan: dari tidak bisa menjadi bisa, atau dari tidak melakukan menjadi terbiasa melakukan sesuatu. Biasanya digunakan dengan bentuk potensial (可能形) atau bentuk kamus (辞書形) kata kerja.",
         table: {
-            rule: "い形容詞: hilangkan い + すぎる。な形容詞: langsung + すぎる。動詞: hilangkan ます + すぎる.",
+            rule: "動詞可能形／辞書形 + ようになる（りました）。",
             rows: [
-                {gol:"い形容詞 (Kata sifat -i)", note:"Hilangkan い di akhir, tambah すぎる.", examples:[
-                    {dict:"熱い", masu:"熱いです", form:"熱すぎます"},
-                    {dict:"高い", masu:"高いです", form:"高すぎます"},
-                    {dict:"難しい", masu:"難しいです", form:"難しすぎます"},
-                    {dict:"重い", masu:"重いです", form:"重すぎます"}
+                {gol:"可能形 (Bentuk potensial) + ようになる", note:"Menyatakan perubahan dari tidak bisa menjadi bisa melakukan sesuatu.", examples:[
+                    {dict:"泳ぐ", masu:"泳げる", form:"泳げるようになりました"},
+                    {dict:"話す", masu:"話せる", form:"話せるようになりました"},
+                    {dict:"読む", masu:"読める", form:"読めるようになりました"}
                 ]},
-                {gol:"な形容詞 (Kata sifat -na)", note:"Langsung tambah すぎる setelah kata sifat.", examples:[
-                    {dict:"静か", masu:"静かです", form:"静かすぎます"},
-                    {dict:"便利", masu:"便利です", form:"便利すぎます"}
-                ]},
-                {gol:"動詞 (Kata kerja)", note:"Hilangkan ます, tambah すぎる.", examples:[
-                    {dict:"食べる", masu:"食べます", form:"食べすぎます"},
-                    {dict:"飲む", masu:"飲みます", form:"飲みすぎます"},
-                    {dict:"働く", masu:"働きます", form:"働きすぎます"},
-                    {dict:"する", masu:"します", form:"しすぎます"}
+                {gol:"動詞辞書形 + ようになる", note:"Menyatakan perubahan kebiasaan/keadaan, dari tidak pernah menjadi melakukan.", examples:[
+                    {dict:"運動する", masu:"運動します", form:"運動するようになりました"},
+                    {dict:"食べる", masu:"食べます", form:"食べるようになりました"},
+                    {dict:"起きる", masu:"起きます", form:"起きるようになりました"}
                 ]}
             ]
         },
         pg: [
-            {word:"このコーヒーは熱___。", sub:"Pilih bentuk yang tepat.", options:["すぎます","いです","すぎ","かったです"], answer:0},
-            {word:"昨日は食べ___。", sub:"Pilih bentuk yang tepat.", options:["すぎました","ます","すぎ","ました"], answer:0},
-            {word:"この服は高___。", sub:"Pilih bentuk yang tepat.", options:["いです","すぎます","すぎ","かったです"], answer:1},
-            {word:"昨日、お酒を飲み___。", sub:"Pilih bentuk yang tepat.", options:["すぎました","ました","すぎ","ます"], answer:0},
-            {word:"彼は働き___。", sub:"Pilih bentuk yang tepat.", options:["すぎます","ます","すぎ","ました"], answer:0},
-            {word:"この部屋は静か___。", sub:"Pilih bentuk yang tepat.", options:["すぎます","です","すぎ","でした"], answer:0},
-            {word:"昨日は勉強し___。", sub:"Pilih bentuk yang tepat.", options:["すぎました","ました","すぎ","します"], answer:0},
-            {word:"この問題は難し___。", sub:"Pilih bentuk yang tepat.", options:["いです","すぎます","すぎ","かったです"], answer:1},
-            {word:"荷物が重___。", sub:"Pilih bentuk yang tepat.", options:["すぎます","いです","すぎ","かったです"], answer:0},
-            {word:"子供がテレビを見___。", sub:"Pilih bentuk yang tepat.", options:["すぎます","ます","すぎ","ました"], answer:0}
+            {word:"練習して、泳___ようになりました。", sub:"(dari tidak bisa jadi bisa berenang: 泳ぐ)", options:["ぐ","げる","ぎます","いだ"], answer:1},
+            {word:"日本語が___ようになりました。", sub:"(jadi bisa bicara bahasa Jepang: 話す)", options:["話す","話せる","話します","話した"], answer:1},
+            {word:"漢字が___ようになりました。", sub:"(jadi bisa membaca kanji: 読む)", options:["読む","読める","読みます","読んだ"], answer:1},
+            {word:"自転車に___ようになりました。", sub:"(jadi bisa naik sepeda: 乗る)", options:["乗る","乗れる","乗ります","乗った"], answer:1},
+            {word:"一人で料理が___ようになりました。", sub:"(jadi bisa memasak sendiri: 作る)", options:["作る","作れる","作ります","作った"], answer:1},
+            {word:"毎日運動___ようになりました。", sub:"(jadi terbiasa olahraga tiap hari: する)", options:["する","します","した","できる"], answer:0},
+            {word:"最近、野菜を___ようになりました。", sub:"(jadi mau makan sayur: 食べる)", options:["食べる","食べます","食べれる","食べた"], answer:0},
+            {word:"毎朝早く___ようになりました。", sub:"(jadi terbiasa bangun pagi: 起きる)", options:["起きる","起きます","起きられる","起きた"], answer:0},
+            {word:"漢字を毎日勉強して、たくさん___ようになりました。", sub:"(jadi hafal banyak kanji: 覚える)", options:["覚える","覚えられる","覚えます","覚えた"], answer:1},
+            {word:"日本のドラマを見て、日本語が少し___ようになりました。", sub:"(jadi bisa paham bahasa Jepang sedikit: わかる)", options:["わかる","わからない","わかります","わかった"], answer:0}
         ],
         essay: [
-            {cue:"熱いです（コーヒー）", sentence:"このコーヒーは＿＿＿＿。", answer:"熱すぎます"},
-            {cue:"食べます（昨日）", sentence:"昨日は＿＿＿＿。", answer:"食べすぎました"},
-            {cue:"高いです（この服）", sentence:"この服は＿＿＿＿。", answer:"高すぎます"},
-            {cue:"飲みます（お酒・昨日）", sentence:"昨日、お酒を＿＿＿＿。", answer:"飲みすぎました"},
-            {cue:"働きます（彼）", sentence:"彼は＿＿＿＿。", answer:"働きすぎます"},
-            {cue:"静かです（この部屋）", sentence:"この部屋は＿＿＿＿。", answer:"静かすぎます"},
-            {cue:"勉強します（昨日）", sentence:"昨日は＿＿＿＿。", answer:"勉強しすぎました"},
-            {cue:"難しいです（この問題）", sentence:"この問題は＿＿＿＿。", answer:"難しすぎます"},
-            {cue:"重いです（荷物）", sentence:"荷物が＿＿＿＿。", answer:"重すぎます"},
-            {cue:"見ます（テレビ・子供）", sentence:"子供がテレビを＿＿＿＿。", answer:"見すぎます"}
+            {cue:"泳げる（練習）", sentence:"練習して、＿＿＿＿。", answer:"泳げるようになりました"},
+            {cue:"話せる（日本語）", sentence:"日本語が＿＿＿＿。", answer:"話せるようになりました"},
+            {cue:"読める（漢字）", sentence:"漢字が＿＿＿＿。", answer:"読めるようになりました"},
+            {cue:"乗れる（自転車）", sentence:"自転車に＿＿＿＿。", answer:"乗れるようになりました"},
+            {cue:"作れる（料理・一人で）", sentence:"一人で料理が＿＿＿＿。", answer:"作れるようになりました"},
+            {cue:"する（運動・毎日）", sentence:"毎日運動＿＿＿＿。", answer:"するようになりました"},
+            {cue:"食べる（野菜・最近）", sentence:"最近、野菜を＿＿＿＿。", answer:"食べるようになりました"},
+            {cue:"起きる（早く・毎朝）", sentence:"毎朝早く＿＿＿＿。", answer:"起きるようになりました"},
+            {cue:"覚えられる（漢字・たくさん）", sentence:"漢字を毎日勉強して、たくさん＿＿＿＿。", answer:"覚えられるようになりました"},
+            {cue:"わかる（日本語・少し）", sentence:"日本のドラマを見て、日本語が少し＿＿＿＿。", answer:"わかるようになりました"}
         ],
         transform: [
-            {parts:["このコーヒーは熱いです。（とても）"], answer:"このコーヒーは熱すぎます。"},
-            {parts:["昨日、たくさん食べました。"], answer:"昨日は食べすぎました。"},
-            {parts:["この服は高いです。（とても）"], answer:"この服は高すぎます。"},
-            {parts:["昨日、お酒をたくさん飲みました。"], answer:"昨日、お酒を飲みすぎました。"},
-            {parts:["彼はたくさん働きます。"], answer:"彼は働きすぎます。"},
-            {parts:["この部屋は静かです。（とても）"], answer:"この部屋は静かすぎます。"},
-            {parts:["昨日、たくさん勉強しました。"], answer:"昨日は勉強しすぎました。"},
-            {parts:["この問題は難しいです。（とても）"], answer:"この問題は難しすぎます。"},
-            {parts:["荷物が重いです。（とても）"], answer:"荷物が重すぎます。"},
-            {parts:["子供がテレビをたくさん見ます。"], answer:"子供がテレビを見すぎます。"}
+            {parts:["前は泳げませんでした。","練習して、今は泳げます。"], answer:"練習して、泳げるようになりました。"},
+            {parts:["前は日本語が話せませんでした。","今は話せます。"], answer:"日本語が話せるようになりました。"},
+            {parts:["前は漢字が読めませんでした。","今は読めます。"], answer:"漢字が読めるようになりました。"},
+            {parts:["前は自転車に乗れませんでした。","今は乗れます。"], answer:"自転車に乗れるようになりました。"},
+            {parts:["前は一人で料理が作れませんでした。","今は作れます。"], answer:"一人で料理が作れるようになりました。"},
+            {parts:["前は運動しませんでした。","今は毎日運動します。"], answer:"毎日運動するようになりました。"},
+            {parts:["前は野菜を食べませんでした。","最近は食べます。"], answer:"最近、野菜を食べるようになりました。"},
+            {parts:["前は早く起きませんでした。","今は毎朝早く起きます。"], answer:"毎朝早く起きるようになりました。"},
+            {parts:["前は漢字をあまり覚えられませんでした。","今はたくさん覚えられます。"], answer:"漢字を毎日勉強して、たくさん覚えられるようになりました。"},
+            {parts:["前は日本語がわかりませんでした。","日本のドラマを見て、少しわかります。"], answer:"日本のドラマを見て、日本語が少しわかるようになりました。"}
         ]
     }
 };
