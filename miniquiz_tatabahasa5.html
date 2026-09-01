@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latihan Tata Bahasa Unit 5: ~ために ・ ~について ・ ~と思う</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --gold-soft:#fff3c4;
+    --paper:#fffdf7;
+    --text:#001f3f;
+    --muted:#5b6b7d;
+    --green:#16a34a;
+    --red:#dc2626;
+    --blue:#1d4ed8;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:"Poppins","Segoe UI",Arial,sans-serif; }
+body{ background:#f6f5f1; color:var(--text); padding-bottom:50px; }
+.jp{ font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif; }
+
+#navbar{
+    position:sticky; top:0; z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+.navbar-inner{ display:flex; justify-content:space-between; align-items:center; padding:12px 20px; flex-wrap:wrap; gap:10px; }
+.nav-title{ color:var(--gold); font-weight:700; font-size:15px; letter-spacing:.02em; }
+
+header{ text-align:center; padding:26px 20px 8px; }
+.eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--navy); color:var(--gold);
+    font-size:12.5px; font-weight:600; letter-spacing:.1em;
+    padding:7px 16px; border-radius:999px; margin-bottom:16px;
+}
+header h1{ font-size:30px; color:var(--navy); margin-bottom:8px; letter-spacing:-.01em; }
+header p{ font-size:14px; color:var(--muted); max-width:600px; margin:0 auto; line-height:1.6; }
+
+.grammar-tabs{ max-width:900px; margin:26px auto 0; padding:0 20px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.gtab{
+    border:2px solid var(--navy); background:white; color:var(--navy);
+    padding:10px 22px; border-radius:999px; font-weight:700; font-size:16px;
+    cursor:pointer; font-family:"Noto Sans JP",sans-serif;
+}
+.gtab:hover{ background:var(--gold-soft); }
+.gtab.active{ background:var(--navy); color:var(--gold); }
+
+.grammar-section{ display:none; max-width:900px; margin:0 auto; padding:0 20px; }
+.grammar-section.active{ display:block; }
+
+.gram-intro{
+    background:var(--gold-soft); border:1.5px solid var(--gold); border-radius:14px;
+    padding:14px 18px; margin-top:22px; font-size:13.5px; color:#5a4a00; line-height:1.6;
+}
+
+.conj-table-wrap{ margin-top:18px; }
+.conj-table-title{ font-size:14px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+.conj-table-rule{ font-size:13px; color:var(--muted); margin-bottom:12px; }
+.conj-table{ width:100%; border-collapse:separate; border-spacing:0; background:white; border:1.5px solid #e2ddcf; border-radius:12px; overflow:hidden; }
+.conj-table th{ background:var(--navy); color:var(--gold); font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; padding:10px 12px; text-align:left; }
+.conj-table td{ padding:9px 12px; font-size:14px; border-top:1px solid #eee; vertical-align:top; }
+.conj-gol-cell{ font-weight:700; color:var(--navy); font-size:12.5px; white-space:nowrap; }
+.conj-note-cell{ font-size:12px; color:var(--muted); }
+.conj-examples{ display:flex; flex-direction:column; gap:4px; }
+.conj-ex-row{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.conj-ex-row .arrow{ color:var(--muted); font-size:12px; }
+.conj-ex-row .final{ font-weight:700; color:var(--green); }
+
+.subtab-row{ display:flex; gap:8px; margin-top:22px; flex-wrap:wrap; }
+.subtab{
+    border:2px solid #d8d4c8; background:white; color:var(--muted);
+    padding:9px 16px; border-radius:12px 12px 0 0; font-weight:600; font-size:13.5px; cursor:pointer;
+}
+.subtab:hover{ color:var(--navy); }
+.subtab.active{ border-color:var(--navy); background:var(--navy); color:var(--gold); }
+
+.subpanel{ display:none; background:white; border:2px solid var(--navy); border-radius:0 14px 14px 14px; padding:26px; }
+.subpanel.active{ display:block; }
+
+/* ===== PG (quiz card) ===== */
+.progress-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:10px; flex-wrap:wrap; }
+.progress-text{ font-size:13px; font-weight:600; color:var(--navy); white-space:nowrap; }
+.progress-bar{ flex:1; height:6px; background:#e3e0d6; border-radius:999px; margin:0 14px; overflow:hidden; min-width:80px; }
+.progress-fill{ height:100%; background:var(--gold); border-radius:999px; transition:width .35s ease; }
+
+.card{
+    background:var(--paper); border:2px solid var(--navy); box-shadow:0 6px 0 var(--navy);
+    border-radius:22px; padding:38px 28px; display:flex; flex-direction:column;
+    align-items:center; justify-content:flex-start; text-align:center; width:100%;
+}
+.badge{
+    width:40px; height:40px; border-radius:50%; background:var(--gold-soft);
+    border:2px solid var(--gold); display:flex; align-items:center; justify-content:center;
+    font-size:18px; margin-bottom:12px;
+}
+.word{ font-size:clamp(22px, 5vw, 32px); font-weight:900; color:var(--navy); line-height:1.6; word-break:break-word; }
+.subtext{ margin-top:8px; font-size:14px; color:var(--muted); max-width:520px; }
+
+.options-grid{ margin-top:26px; display:grid; grid-template-columns:1fr 1fr; gap:12px; width:100%; }
+.opt-btn{
+    border:2px solid #d8d4c8; background:white; color:var(--navy);
+    padding:15px 14px; border-radius:14px; font-weight:600; font-size:16px;
+    cursor:pointer; text-align:center; transition:.15s;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.opt-btn .opt-letter{
+    width:22px; height:22px; border-radius:50%; border:1.5px solid var(--navy);
+    font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.opt-btn:hover:not(:disabled){ border-color:var(--navy); background:var(--gold-soft); }
+.opt-btn:disabled{ cursor:default; }
+.opt-btn.correct{ background:#e8f8ee; border-color:var(--green); color:var(--green); }
+.opt-btn.correct .opt-letter{ background:var(--green); border-color:var(--green); color:white; }
+.opt-btn.wrong{ background:#fdecec; border-color:var(--red); color:var(--red); }
+.opt-btn.wrong .opt-letter{ background:var(--red); border-color:var(--red); color:white; }
+.opt-btn.dim{ opacity:.5; }
+
+.feedback{ margin-top:16px; font-size:13.5px; font-weight:700; padding:8px 16px; border-radius:999px; display:none; }
+.feedback.show{ display:inline-block; }
+.feedback.correct-fb{ background:#e8f8ee; color:var(--green); }
+.feedback.wrong-fb{ background:#fdecec; color:var(--red); }
+
+.nav-row{ display:flex; align-items:center; justify-content:center; gap:16px; margin-top:22px; flex-wrap:wrap; }
+.nav-btn{
+    width:44px; height:44px; border-radius:50%; border:2px solid var(--navy);
+    background:white; color:var(--navy); font-size:18px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.nav-btn:hover{ background:var(--navy); color:var(--gold); }
+.nav-btn:disabled{ opacity:.3; cursor:default; }
+.nav-btn:disabled:hover{ background:white; color:var(--navy); }
+.reset-btn{
+    border-radius:999px; width:auto; padding:0 18px; font-size:12.5px; font-weight:600; gap:6px;
+    border:2px solid var(--gold); background:var(--navy); color:var(--gold);
+}
+.reset-btn:hover{ background:var(--gold); color:var(--navy); }
+
+.jump-row{ display:flex; justify-content:center; flex-wrap:wrap; gap:7px; margin-top:20px; }
+.dot{
+    width:32px; height:32px; border-radius:8px; border:2px solid #d8d4c8; background:white;
+    color:var(--muted); font-size:12.5px; font-weight:700; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.dot:hover{ border-color:var(--navy); }
+.dot.active{ background:var(--navy); border-color:var(--navy); color:var(--gold); }
+.dot.correct{ border-color:var(--green); color:var(--green); }
+.dot.wrong{ border-color:var(--red); color:var(--red); }
+.dot.active.correct, .dot.active.wrong{ color:var(--gold); }
+
+.pg-score{ text-align:center; font-size:13.5px; font-weight:700; color:var(--navy); margin-top:14px; }
+
+/* ===== Esai & Merubah kalimat ===== */
+.item-list{ display:flex; flex-direction:column; gap:14px; }
+.item-card{ border:1.5px solid #e2ddcf; border-radius:14px; padding:16px 18px; background:#fffefb; }
+.item-num{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:26px; height:26px; border-radius:50%; background:var(--navy); color:var(--gold);
+    font-size:12px; font-weight:700; margin-right:8px; flex-shrink:0;
+}
+.item-prompt{ font-size:15px; font-weight:600; color:var(--navy); display:flex; align-items:flex-start; gap:2px; line-height:1.6; }
+.item-sentences{ margin-top:10px; margin-left:34px; font-size:14.5px; color:var(--text); line-height:1.8; }
+.item-sentences span{ display:block; }
+.item-textarea{
+    width:100%; margin-top:10px; border:1.5px solid #d8d4c8; border-radius:10px;
+    padding:10px 12px; font-size:14px; font-family:inherit; resize:vertical; min-height:44px;
+}
+.item-textarea:focus{ outline:none; border-color:var(--navy); }
+.reveal-btn{
+    margin-top:10px; margin-left:34px; border:1.5px solid var(--blue); background:#eef4ff; color:var(--blue);
+    padding:6px 14px; border-radius:999px; font-size:12.5px; font-weight:700; cursor:pointer;
+}
+.reveal-btn:hover{ background:var(--blue); color:white; }
+.answer-box{
+    display:none; margin-top:10px; margin-left:34px; background:#e8f8ee; border:1.5px solid var(--green);
+    color:#0f5c30; border-radius:10px; padding:10px 14px; font-size:14.5px; line-height:1.6;
+}
+.answer-box.show{ display:block; }
+
+footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px; }
+
+@media(max-width:480px){
+    .options-grid{ grid-template-columns:1fr; }
+    header h1{ font-size:22px; }
+    .card{ padding:28px 16px; }
+    .item-sentences, .reveal-btn, .answer-box{ margin-left:0; }
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-title">📝 Tekipaki Japanese Learning</div>
+</div>
+</nav>
+
+<header>
+<div class="eyebrow">📘 LATIHAN TATA BAHASA N4 — UNIT 5</div>
+<h1>Latihan ~ために ・ ~について ・ ~と思う</h1>
+<p>Setiap pola punya 10 soal pilihan ganda, 10 soal esai, dan 10 soal merubah kalimat. Pilih pola tata bahasa dan jenis soal di bawah ini.</p>
+</header>
+
+<div class="grammar-tabs" id="grammarTabs"></div>
+
+<div id="grammarSections"></div>
+
+<footer>
+© 2026 Tekipaki Japanese Learning | Latihan Tata Bahasa
+</footer>
+
+<script>
+
+const DATA = {
+    tameni: {
+        label: "～ために",
+        intro: "～ために memiliki dua makna utama: (1) menyatakan tujuan, \"untuk/demi ~\", dan (2) menyatakan alasan/sebab yang lebih formal, \"karena ~\" (biasanya ditulis ～ため tanpa に). Bentuk yang mendahuluinya berbeda tergantung jenis kata dan makna yang dimaksud.",
+        table: {
+            rule: "動詞辞書形＋ために（目的）。名詞＋の＋ために（目的）。普通形＋ため（理由）。な形容詞＋な＋ため、名詞＋の＋ため（理由）.",
+            rows: [
+                {gol:"動詞辞書形 (目的)", note:"Bentuk kamus + ために = untuk melakukan ~.", examples:[
+                    {dict:"行く", masu:"行きます", form:"行くために"},
+                    {dict:"勉強する", masu:"勉強します", form:"勉強するために"},
+                    {dict:"上手になる", masu:"上手になります", form:"上手になるために"}
+                ]},
+                {gol:"名詞＋の (目的)", note:"Kata benda + の + ために = demi ~.", examples:[
+                    {dict:"家族", masu:"家族です", form:"家族のために"},
+                    {dict:"健康", masu:"健康です", form:"健康のために"},
+                    {dict:"将来", masu:"将来です", form:"将来のために"}
+                ]},
+                {gol:"普通形 (理由)", note:"Bentuk biasa (辞書形・た形・ない形) + ため = karena ~ (alasan, agak formal).", examples:[
+                    {dict:"遅れる", masu:"遅れます", form:"遅れたため"},
+                    {dict:"来る", masu:"来ます", form:"来たため"},
+                    {dict:"降る", masu:"降ります", form:"降ったため"}
+                ]}
+            ]
+        },
+        pg: [
+            {word:"日本へ___、お金を貯めています。", sub:"(untuk pergi ke Jepang, menabung uang: 行く)", options:["ために","のために","ように","そうに"], answer:0},
+            {word:"家族___、一生懸命働いています。", sub:"(demi keluarga, bekerja keras)", options:["のために","ために","ように","のように"], answer:0},
+            {word:"健康___、毎日運動しています。", sub:"(demi kesehatan, olahraga setiap hari)", options:["のために","ために","のように","ように"], answer:0},
+            {word:"日本語が上手になる___、毎日勉強しています。", sub:"(agar mahir bahasa Jepang: 上手になる)", options:["ために","のために","ように","そうに"], answer:0},
+            {word:"電車が___、会社に遅れました。", sub:"(karena kereta terlambat: 遅れる)", options:["遅れたため","遅れるため","遅れて","遅れます"], answer:0},
+            {word:"台風が___、学校が休みになりました。", sub:"(karena topan datang: 来る)", options:["来るため","来たため","来て","来ます"], answer:1},
+            {word:"病気___、会社を休みます。", sub:"(karena sakit)", options:["のため","ため","なため","のように"], answer:0},
+            {word:"雨が___、試合が中止になりました。", sub:"(karena hujan turun: 降る)", options:["降ったため","降るため","降って","降ります"], answer:0},
+            {word:"部屋が静か___、勉強に集中できます。", sub:"(karena kamarnya tenang)", options:["なため","のため","ため","なように"], answer:0},
+            {word:"将来___、日本語を勉強しています。", sub:"(demi masa depan)", options:["のために","ために","のように","ように"], answer:0}
+        ],
+        essay: [
+            {cue:"行きます（日本へ・お金を貯めています）", sentence:"日本へ＿＿＿＿、お金を貯めています。", answer:"行くために"},
+            {cue:"家族（一生懸命働いています）", sentence:"＿＿＿＿、一生懸命働いています。", answer:"家族のために"},
+            {cue:"健康（毎日運動しています）", sentence:"＿＿＿＿、毎日運動しています。", answer:"健康のために"},
+            {cue:"上手になります（日本語が・毎日勉強しています）", sentence:"日本語が＿＿＿＿、毎日勉強しています。", answer:"上手になるために"},
+            {cue:"遅れます（電車が・過去・会社に遅れました）", sentence:"電車が＿＿＿＿、会社に遅れました。", answer:"遅れたため"},
+            {cue:"来ます（台風が・過去・学校が休みになりました）", sentence:"台風が＿＿＿＿、学校が休みになりました。", answer:"来たため"},
+            {cue:"病気（会社を休みます）", sentence:"＿＿＿＿、会社を休みます。", answer:"病気のため"},
+            {cue:"降ります（雨が・過去・試合が中止になりました）", sentence:"雨が＿＿＿＿、試合が中止になりました。", answer:"降ったため"},
+            {cue:"静か（部屋が・勉強に集中できます）", sentence:"部屋が＿＿＿＿、勉強に集中できます。", answer:"静かなため"},
+            {cue:"将来（日本語を勉強しています）", sentence:"＿＿＿＿、日本語を勉強しています。", answer:"将来のために"}
+        ],
+        transform: [
+            {parts:["日本へ行きたいです。","お金を貯めています。"], answer:"日本へ行くために、お金を貯めています。"},
+            {parts:["家族が大切です。","一生懸命働いています。"], answer:"家族のために、一生懸命働いています。"},
+            {parts:["健康でいたいです。","毎日運動しています。"], answer:"健康のために、毎日運動しています。"},
+            {parts:["日本語が上手になりたいです。","毎日勉強しています。"], answer:"日本語が上手になるために、毎日勉強しています。"},
+            {parts:["電車が遅れました。","会社に遅れました。"], answer:"電車が遅れたため、会社に遅れました。"},
+            {parts:["台風が来ました。","学校が休みになりました。"], answer:"台風が来たため、学校が休みになりました。"},
+            {parts:["病気です。","会社を休みます。"], answer:"病気のため、会社を休みます。"},
+            {parts:["雨が降りました。","試合が中止になりました。"], answer:"雨が降ったため、試合が中止になりました。"},
+            {parts:["部屋が静かです。","勉強に集中できます。"], answer:"部屋が静かなため、勉強に集中できます。"},
+            {parts:["将来が心配です。","日本語を勉強しています。"], answer:"将来のために、日本語を勉強しています。"}
+        ]
+    },
+    nitsuite: {
+        label: "～について",
+        intro: "～について digunakan setelah kata benda untuk menyatakan topik yang dibicarakan, ditulis, atau dipikirkan: \"tentang ~\". Jika digunakan untuk menerangkan kata benda lain, bentuknya berubah menjadi ～についての＋名詞.",
+        table: {
+            rule: "名詞＋について（＋話す・考える・調べる、dst）。名詞＋についての＋名詞（sebagai penjelas kata benda lain）.",
+            rows: [
+                {gol:"名詞＋について", note:"Menyatakan topik pembicaraan/tulisan/pikiran: 'tentang ~'.", examples:[
+                    {dict:"日本の文化", masu:"日本の文化です", form:"日本の文化について話す"},
+                    {dict:"この問題", masu:"この問題です", form:"この問題について考える"},
+                    {dict:"歴史", masu:"歴史です", form:"歴史について調べる"}
+                ]},
+                {gol:"名詞＋についての＋名詞", note:"Digunakan sebagai penjelas sebelum kata benda lain: 'tentang ~ (buku, メール, dst)'.", examples:[
+                    {dict:"旅行", masu:"旅行です", form:"旅行についての本"},
+                    {dict:"テストの結果", masu:"テストの結果です", form:"テストの結果についてのメール"}
+                ]}
+            ]
+        },
+        pg: [
+            {word:"日本の文化___、レポートを書きました。", sub:"(menulis laporan tentang budaya Jepang)", options:["について","にとって","にたいして","において"], answer:0},
+            {word:"この問題___、みんなで考えましょう。", sub:"(mari pikirkan bersama tentang masalah ini)", options:["にとって","について","にたいして","において"], answer:1},
+            {word:"歴史___、先生に質問しました。", sub:"(bertanya kepada guru tentang sejarah)", options:["について","にとって","において","にたいして"], answer:0},
+            {word:"旅行___本を読んでいます。", sub:"(membaca buku tentang wisata: modifier)", options:["についての","について","にとっての","にたいしての"], answer:0},
+            {word:"将来の夢___、両親と話しました。", sub:"(berbicara dengan orang tua tentang mimpi masa depan)", options:["にとって","について","において","にたいして"], answer:1},
+            {word:"テストの結果___メールが届きました。", sub:"(email tentang hasil tes datang: modifier)", options:["についての","について","にとっての","にたいしての"], answer:0},
+            {word:"日本語の勉強方法___、友達に聞きました。", sub:"(bertanya kepada teman tentang cara belajar bahasa Jepang)", options:["にとって","について","において","にたいして"], answer:1},
+            {word:"この本は動物___書かれています。", sub:"(buku ini ditulis tentang hewan)", options:["にとって","について","において","にたいして"], answer:1},
+            {word:"旅行の計画___、家族で話し合いました。", sub:"(berdiskusi bersama keluarga tentang rencana wisata)", options:["にとって","について","において","にたいして"], answer:1},
+            {word:"先週見た映画___、感想を書きました。", sub:"(menulis kesan tentang film yang ditonton minggu lalu)", options:["にとって","について","において","にたいして"], answer:1}
+        ],
+        essay: [
+            {cue:"日本の文化（レポートを書きました）", sentence:"＿＿＿＿、レポートを書きました。", answer:"日本の文化について"},
+            {cue:"この問題（考えましょう）", sentence:"＿＿＿＿、みんなで考えましょう。", answer:"この問題について"},
+            {cue:"歴史（質問しました）", sentence:"＿＿＿＿、先生に質問しました。", answer:"歴史について"},
+            {cue:"旅行（本・修飾）", sentence:"＿＿＿＿本を読んでいます。", answer:"旅行についての"},
+            {cue:"将来の夢（両親と話しました）", sentence:"＿＿＿＿、両親と話しました。", answer:"将来の夢について"},
+            {cue:"テストの結果（メール・修飾）", sentence:"＿＿＿＿メールが届きました。", answer:"テストの結果についての"},
+            {cue:"日本語の勉強方法（友達に聞きました）", sentence:"＿＿＿＿、友達に聞きました。", answer:"日本語の勉強方法について"},
+            {cue:"動物（この本は・書かれています）", sentence:"この本は＿＿＿＿書かれています。", answer:"動物について"},
+            {cue:"旅行の計画（家族で話し合いました）", sentence:"＿＿＿＿、家族で話し合いました。", answer:"旅行の計画について"},
+            {cue:"先週見た映画（感想を書きました）", sentence:"＿＿＿＿、感想を書きました。", answer:"先週見た映画について"}
+        ],
+        transform: [
+            {parts:["日本の文化がテーマです。","レポートを書きました。"], answer:"日本の文化について、レポートを書きました。"},
+            {parts:["この問題がテーマです。","みんなで考えましょう。"], answer:"この問題について、みんなで考えましょう。"},
+            {parts:["歴史がテーマです。","先生に質問しました。"], answer:"歴史について、先生に質問しました。"},
+            {parts:["旅行がテーマです。","本を読んでいます。"], answer:"旅行についての本を読んでいます。"},
+            {parts:["将来の夢がテーマです。","両親と話しました。"], answer:"将来の夢について、両親と話しました。"},
+            {parts:["テストの結果がテーマです。","メールが届きました。"], answer:"テストの結果についてのメールが届きました。"},
+            {parts:["日本語の勉強方法がテーマです。","友達に聞きました。"], answer:"日本語の勉強方法について、友達に聞きました。"},
+            {parts:["動物がテーマです。","この本は書かれています。"], answer:"この本は動物について書かれています。"},
+            {parts:["旅行の計画がテーマです。","家族で話し合いました。"], answer:"旅行の計画について、家族で話し合いました。"},
+            {parts:["先週見た映画がテーマです。","感想を書きました。"], answer:"先週見た映画について、感想を書きました。"}
+        ]
+    },
+    toomou: {
+        label: "～と思う",
+        intro: "～と思う digunakan untuk menyatakan pendapat atau pikiran pembicara: \"saya pikir ~\". Kata yang mendahului と思う harus dalam bentuk biasa (普通形). Kata sifat -na dan kata benda memerlukan tambahan だ sebelum と思う.",
+        table: {
+            rule: "動詞普通形＋と思います。い形容詞普通形（そのまま）＋と思います。な形容詞・名詞＋だ＋と思います.",
+            rows: [
+                {gol:"動詞普通形＋と思います", note:"Bentuk biasa kata kerja (辞書形・た形・ない形) + と思います.", examples:[
+                    {dict:"降る", masu:"降ります", form:"降ると思います"},
+                    {dict:"来ない", masu:"来ません", form:"来ないと思います"},
+                    {dict:"帰った", masu:"帰りました", form:"帰ったと思います"}
+                ]},
+                {gol:"い形容詞普通形＋と思います", note:"Bentuk biasa kata sifat -i (い tetap ada) + と思います.", examples:[
+                    {dict:"おいしい", masu:"おいしいです", form:"おいしいと思います"},
+                    {dict:"難しい", masu:"難しいです", form:"難しいと思います"}
+                ]},
+                {gol:"な形容詞・名詞＋だ＋と思います", note:"Tambahkan だ sebelum と思います.", examples:[
+                    {dict:"便利", masu:"便利です", form:"便利だと思います"},
+                    {dict:"学生", masu:"学生です", form:"学生だと思います"}
+                ]}
+            ]
+        },
+        pg: [
+            {word:"明日は雨が___と思います。", sub:"(saya pikir besok akan hujan: 降る)", options:["降る","降ります","降って","降た"], answer:0},
+            {word:"彼は今日___と思います。", sub:"(saya pikir dia tidak akan datang hari ini: 来ない)", options:["来る","来ない","来ます","来た"], answer:1},
+            {word:"田中さんはもう___と思います。", sub:"(saya pikir dia sudah pulang: 帰った)", options:["帰る","帰らない","帰った","帰ります"], answer:2},
+            {word:"このケーキは___と思います。", sub:"(saya pikir kue ini enak: おいしい)", options:["おいしい","おいしいです","おいしくて","おいしかった"], answer:0},
+            {word:"この問題は___と思います。", sub:"(saya pikir soal ini sulit: 難しい)", options:["難しいです","難しい","難しくて","難しかった"], answer:1},
+            {word:"このアプリは___と思います。", sub:"(saya pikir aplikasi ini praktis: 便利)", options:["便利","便利だ","便利な","便利で"], answer:1},
+            {word:"彼は___と思います。", sub:"(saya pikir dia murid: 学生)", options:["学生","学生な","学生だ","学生で"], answer:2},
+            {word:"今日のテストは___と思います。", sub:"(saya pikir tes hari ini mudah: 簡単)", options:["簡単","簡単だ","簡単な","簡単で"], answer:1},
+            {word:"彼女は___と思います。", sub:"(saya pikir dia sibuk: 忙しい)", options:["忙しいです","忙しい","忙しくて","忙しかった"], answer:1},
+            {word:"来週、天気が___と思います。", sub:"(saya pikir cuaca akan bagus: いい)", options:["いい","いいです","よさそう","よかった"], answer:0}
+        ],
+        essay: [
+            {cue:"降ります（明日・雨）", sentence:"明日は雨が＿＿＿＿と思います。", answer:"降る"},
+            {cue:"来ません（彼・今日）", sentence:"彼は今日＿＿＿＿と思います。", answer:"来ない"},
+            {cue:"帰りました（田中さん）", sentence:"田中さんはもう＿＿＿＿と思います。", answer:"帰った"},
+            {cue:"おいしいです（このケーキ）", sentence:"このケーキは＿＿＿＿と思います。", answer:"おいしい"},
+            {cue:"難しいです（この問題）", sentence:"この問題は＿＿＿＿と思います。", answer:"難しい"},
+            {cue:"便利です（このアプリ）", sentence:"このアプリは＿＿＿＿と思います。", answer:"便利だ"},
+            {cue:"学生です（彼）", sentence:"彼は＿＿＿＿と思います。", answer:"学生だ"},
+            {cue:"簡単です（今日のテスト）", sentence:"今日のテストは＿＿＿＿と思います。", answer:"簡単だ"},
+            {cue:"忙しいです（彼女）", sentence:"彼女は＿＿＿＿と思います。", answer:"忙しい"},
+            {cue:"いいです（来週・天気）", sentence:"来週、天気が＿＿＿＿と思います。", answer:"いい"}
+        ],
+        transform: [
+            {parts:["明日は雨が降ります。","私はそう思います。"], answer:"明日は雨が降ると思います。"},
+            {parts:["彼は今日来ません。","私はそう思います。"], answer:"彼は今日来ないと思います。"},
+            {parts:["田中さんはもう帰りました。","私はそう思います。"], answer:"田中さんはもう帰ったと思います。"},
+            {parts:["このケーキはおいしいです。","私はそう思います。"], answer:"このケーキはおいしいと思います。"},
+            {parts:["この問題は難しいです。","私はそう思います。"], answer:"この問題は難しいと思います。"},
+            {parts:["このアプリは便利です。","私はそう思います。"], answer:"このアプリは便利だと思います。"},
+            {parts:["彼は学生です。","私はそう思います。"], answer:"彼は学生だと思います。"},
+            {parts:["今日のテストは簡単です。","私はそう思います。"], answer:"今日のテストは簡単だと思います。"},
+            {parts:["彼女は忙しいです。","私はそう思います。"], answer:"彼女は忙しいと思います。"},
+            {parts:["来週、天気がいいです。","私はそう思います。"], answer:"来週、天気がいいと思います。"}
+        ]
+    }
+};
+
+const grammarKeys = Object.keys(DATA);
+let activeGrammar = grammarKeys[0];
+let activeSubtab = {};
+grammarKeys.forEach(k => { activeSubtab[k] = "pg"; });
+
+// state per grammar for PG quiz
+grammarKeys.forEach(k => {
+    DATA[k].current = 0;
+    DATA[k].picked = DATA[k].pg.map(() => null);
+});
+
+const letters = ["A","B","C","D"];
+const grammarTabsEl = document.getElementById("grammarTabs");
+const grammarSectionsEl = document.getElementById("grammarSections");
+
+function buildConjTableHtml(g){
+    let rowsHtml = "";
+    g.table.rows.forEach(row => {
+        const examplesHtml = row.examples.map(ex =>
+            `<div class="conj-ex-row jp"><span>${ex.dict}</span><span class="arrow">(${ex.masu})</span><span class="arrow">→</span><span class="final">${ex.form}</span></div>`
+        ).join("");
+        rowsHtml += `
+            <tr>
+                <td class="conj-gol-cell">${row.gol}</td>
+                <td class="conj-note-cell">${row.note}</td>
+                <td><div class="conj-examples">${examplesHtml}</div></td>
+            </tr>
+        `;
+    });
+    return `
+        <div class="conj-table-wrap">
+            <div class="conj-table-title">📐 Tabel Perubahan Kosakata → ${g.label}</div>
+            <div class="conj-table-rule">${g.table.rule}</div>
+            <table class="conj-table">
+                <thead>
+                    <tr><th>Kategori</th><th>Aturan</th><th>Contoh</th></tr>
+                </thead>
+                <tbody>${rowsHtml}</tbody>
+            </table>
+        </div>
+    `;
+}
+
+function buildGrammarTabs(){
+    grammarTabsEl.innerHTML = "";
+    grammarKeys.forEach(k => {
+        const btn = document.createElement("button");
+        btn.className = "gtab" + (k === activeGrammar ? " active" : "");
+        btn.textContent = DATA[k].label;
+        btn.addEventListener("click", () => { activeGrammar = k; renderAll(); });
+        grammarTabsEl.appendChild(btn);
+    });
+}
+
+function buildSections(){
+    grammarSectionsEl.innerHTML = "";
+    grammarKeys.forEach(k => {
+        const section = document.createElement("div");
+        section.className = "grammar-section" + (k === activeGrammar ? " active" : "");
+        section.id = "sec-" + k;
+
+        section.innerHTML = `
+            <div class="gram-intro">${DATA[k].intro}</div>
+            ${buildConjTableHtml(DATA[k])}
+            <div class="subtab-row" id="subtabs-${k}">
+                <button class="subtab" data-sub="pg">✅ Pilihan Ganda</button>
+                <button class="subtab" data-sub="essay">✍️ Esai</button>
+                <button class="subtab" data-sub="transform">🔄 Merubah Kalimat</button>
+            </div>
+            <div class="subpanel" id="panel-${k}-pg"></div>
+            <div class="subpanel" id="panel-${k}-essay"></div>
+            <div class="subpanel" id="panel-${k}-transform"></div>
+        `;
+        grammarSectionsEl.appendChild(section);
+
+        section.querySelectorAll(".subtab").forEach(btn => {
+            btn.addEventListener("click", () => {
+                activeSubtab[k] = btn.dataset.sub;
+                renderSubtabs(k);
+            });
+        });
+    });
+}
+
+function renderSubtabs(k){
+    const row = document.getElementById("subtabs-" + k);
+    row.querySelectorAll(".subtab").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.sub === activeSubtab[k]);
+    });
+    ["pg","essay","transform"].forEach(sub => {
+        const panel = document.getElementById("panel-" + k + "-" + sub);
+        panel.classList.toggle("active", sub === activeSubtab[k]);
+    });
+    if(activeSubtab[k] === "pg") renderPG(k);
+    if(activeSubtab[k] === "essay") renderEssay(k);
+    if(activeSubtab[k] === "transform") renderTransform(k);
+}
+
+//===================== PG =====================
+function renderPG(k){
+    const g = DATA[k];
+    const q = g.pg[g.current];
+    const picked = g.picked[g.current];
+    const panel = document.getElementById("panel-" + k + "-pg");
+
+    let optionsHtml = "";
+    q.options.forEach((opt, i) => {
+        let cls = "opt-btn";
+        let disabled = "";
+        if(picked !== null){
+            disabled = "disabled";
+            if(i === q.answer) cls += " correct";
+            else if(i === picked) cls += " wrong";
+            else cls += " dim";
+        }
+        optionsHtml += `<button class="${cls}" ${disabled} data-i="${i}"><span class="opt-letter">${letters[i]}</span><span class="jp">${opt}</span></button>`;
+    });
+
+    let feedbackHtml = "";
+    if(picked !== null){
+        const isCorrect = picked === q.answer;
+        feedbackHtml = `<div class="feedback show ${isCorrect ? "correct-fb" : "wrong-fb"}">${isCorrect ? "✔ Jawaban benar!" : "✘ Jawaban salah. Jawaban yang benar: " + q.options[q.answer]}</div>`;
+    }
+
+    let dotsHtml = "";
+    g.pg.forEach((qq, i) => {
+        let cls = "dot" + (i === g.current ? " active" : "");
+        if(g.picked[i] !== null) cls += (g.picked[i] === qq.answer ? " correct" : " wrong");
+        dotsHtml += `<button class="${cls}" data-jump="${i}">${i+1}</button>`;
+    });
+
+    const doneCount = g.picked.filter(p => p !== null).length;
+    const correctCount = g.pg.filter((qq,i) => g.picked[i] === qq.answer).length;
+
+    panel.innerHTML = `
+        <div class="progress-row">
+            <span class="progress-text">${g.current+1} / ${g.pg.length}</span>
+            <div class="progress-bar"><div class="progress-fill" style="width:${(g.current+1)/g.pg.length*100}%"></div></div>
+        </div>
+        <div class="card">
+            <div class="badge jp">文</div>
+            <div class="word jp">${q.word}</div>
+            <div class="subtext">${q.sub}</div>
+            <div class="options-grid">${optionsHtml}</div>
+            ${feedbackHtml}
+        </div>
+        <div class="nav-row">
+            <button class="nav-btn" id="pgPrev-${k}" ${g.current===0?"disabled":""}>←</button>
+            <button class="nav-btn reset-btn" id="pgReset-${k}">↺ Ulang</button>
+            <button class="nav-btn" id="pgNext-${k}" ${g.current===g.pg.length-1?"disabled":""}>→</button>
+        </div>
+        <div class="jump-row">${dotsHtml}</div>
+        <div class="pg-score">Terjawab: ${doneCount}/${g.pg.length} &nbsp;|&nbsp; Benar: ${correctCount}</div>
+    `;
+
+    panel.querySelectorAll(".opt-btn:not([disabled])").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const i = parseInt(btn.dataset.i, 10);
+            g.picked[g.current] = i;
+            renderPG(k);
+        });
+    });
+    panel.querySelectorAll("[data-jump]").forEach(btn => {
+        btn.addEventListener("click", () => { g.current = parseInt(btn.dataset.jump,10); renderPG(k); });
+    });
+    const prevBtn = document.getElementById("pgPrev-"+k);
+    const nextBtn = document.getElementById("pgNext-"+k);
+    const resetBtn = document.getElementById("pgReset-"+k);
+    if(prevBtn) prevBtn.addEventListener("click", () => { if(g.current>0){ g.current--; renderPG(k);} });
+    if(nextBtn) nextBtn.addEventListener("click", () => { if(g.current<g.pg.length-1){ g.current++; renderPG(k);} });
+    if(resetBtn) resetBtn.addEventListener("click", () => {
+        if(confirm("Ulang soal pilihan ganda " + g.label + "?")){
+            g.current = 0;
+            g.picked = g.pg.map(() => null);
+            renderPG(k);
+        }
+    });
+}
+
+//===================== ESSAY =====================
+function renderEssay(k){
+    const g = DATA[k];
+    const panel = document.getElementById("panel-" + k + "-essay");
+    let html = `<div class="item-list">`;
+    g.essay.forEach((item, i) => {
+        html += `
+            <div class="item-card">
+                <div class="item-prompt jp"><span class="item-num">${i+1}</span>（${item.cue}）</div>
+                <div class="item-sentences jp"><span>${item.sentence}</span></div>
+                <input type="text" class="item-textarea jp" style="min-height:auto;" placeholder="Tulis jawabanmu di sini...">
+                <button class="reveal-btn" data-target="essay-ans-${k}-${i}">💡 Lihat jawaban</button>
+                <div class="answer-box jp" id="essay-ans-${k}-${i}">${item.answer}</div>
+            </div>
+        `;
+    });
+    html += `</div>`;
+    panel.innerHTML = html;
+
+    panel.querySelectorAll(".reveal-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const box = document.getElementById(btn.dataset.target);
+            box.classList.toggle("show");
+            btn.textContent = box.classList.contains("show") ? "🙈 Sembunyikan jawaban" : "💡 Lihat jawaban";
+        });
+    });
+}
+
+//===================== TRANSFORM =====================
+function renderTransform(k){
+    const g = DATA[k];
+    const panel = document.getElementById("panel-" + k + "-transform");
+    let html = `<div class="item-list">`;
+    g.transform.forEach((item, i) => {
+        const instruksi = item.parts.length > 1
+            ? `Gabungkan kalimat berikut menggunakan pola <span class="jp" style="font-weight:900;">${g.label}</span>:`
+            : `Ubah kalimat berikut menggunakan pola <span class="jp" style="font-weight:900;">${g.label}</span>:`;
+        html += `
+            <div class="item-card">
+                <div class="item-prompt">
+                    <span class="item-num">${i+1}</span>
+                    ${instruksi}
+                </div>
+                <div class="item-sentences jp">
+                    ${item.parts.map(p => `<span>${p}</span>`).join("")}
+                </div>
+                <textarea class="item-textarea jp" placeholder="Tulis jawabanmu di sini..."></textarea>
+                <button class="reveal-btn" data-target="tf-ans-${k}-${i}">💡 Lihat jawaban</button>
+                <div class="answer-box jp" id="tf-ans-${k}-${i}">${item.answer}</div>
+            </div>
+        `;
+    });
+    html += `</div>`;
+    panel.innerHTML = html;
+
+    panel.querySelectorAll(".reveal-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const box = document.getElementById(btn.dataset.target);
+            box.classList.toggle("show");
+            btn.textContent = box.classList.contains("show") ? "🙈 Sembunyikan jawaban" : "💡 Lihat jawaban";
+        });
+    });
+}
+
+function renderAll(){
+    buildGrammarTabs();
+    buildSections();
+    grammarKeys.forEach(k => renderSubtabs(k));
+}
+
+renderAll();
+
+</script>
+
+</body>
+</html>
