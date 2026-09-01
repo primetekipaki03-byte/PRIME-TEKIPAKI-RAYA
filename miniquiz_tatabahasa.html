@@ -64,6 +64,19 @@ header p{ font-size:14px; color:var(--muted); max-width:600px; margin:0 auto; li
     padding:14px 18px; margin-top:22px; font-size:13.5px; color:#5a4a00; line-height:1.6;
 }
 
+.conj-table-wrap{ margin-top:18px; }
+.conj-table-title{ font-size:14px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+.conj-table-rule{ font-size:13px; color:var(--muted); margin-bottom:12px; }
+.conj-table{ width:100%; border-collapse:separate; border-spacing:0; background:white; border:1.5px solid #e2ddcf; border-radius:12px; overflow:hidden; }
+.conj-table th{ background:var(--navy); color:var(--gold); font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; padding:10px 12px; text-align:left; }
+.conj-table td{ padding:9px 12px; font-size:14px; border-top:1px solid #eee; vertical-align:top; }
+.conj-gol-cell{ font-weight:700; color:var(--navy); font-size:12.5px; white-space:nowrap; }
+.conj-note-cell{ font-size:12px; color:var(--muted); }
+.conj-examples{ display:flex; flex-direction:column; gap:4px; }
+.conj-ex-row{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.conj-ex-row .arrow{ color:var(--muted); font-size:12px; }
+.conj-ex-row .final{ font-weight:700; color:var(--green); }
+
 .subtab-row{ display:flex; gap:8px; margin-top:22px; flex-wrap:wrap; }
 .subtab{
     border:2px solid #d8d4c8; background:white; color:var(--muted);
@@ -213,6 +226,26 @@ const DATA = {
     tara: {
         label: "～たら",
         intro: "～たら digunakan untuk menyatakan syarat/kondisi: \"kalau/setelah ~, maka ~\". Cocok untuk kejadian yang terjadi sekali (bukan kebiasaan berulang).",
+        table: {
+            rule: "Bentuk ～たら dibuat dari bentuk lampau (た形) + ら.",
+            rows: [
+                {gol:"Golongan 1 (Godan)", note:"Ubah akhiran seperti bentuk た, lalu tambah ら.", examples:[
+                    {dict:"買う", masu:"買います", form:"買ったら"},
+                    {dict:"飲む", masu:"飲みます", form:"飲んだら"},
+                    {dict:"書く", masu:"書きます", form:"書いたら"},
+                    {dict:"話す", masu:"話します", form:"話したら"}
+                ]},
+                {gol:"Golongan 2 (Ichidan)", note:"Hilangkan る, tambah たら.", examples:[
+                    {dict:"食べる", masu:"食べます", form:"食べたら"},
+                    {dict:"見る", masu:"見ます", form:"見たら"},
+                    {dict:"起きる", masu:"起きます", form:"起きたら"}
+                ]},
+                {gol:"Golongan 3 (Tidak beraturan)", note:"Bentuk khusus.", examples:[
+                    {dict:"する", masu:"します", form:"したら"},
+                    {dict:"来る（くる）", masu:"来ます", form:"来たら"}
+                ]}
+            ]
+        },
         pg: [
             {word:"雨が止ん___、出かけましょう。", sub:"Pilih bentuk yang tepat.", options:["と","ば","たら","なら"], answer:2},
             {word:"宝くじが当たっ___、世界旅行に行きたいです。", sub:"Pilih bentuk yang tepat.", options:["たら","と","ば","なら"], answer:0},
@@ -253,6 +286,26 @@ const DATA = {
     nagara: {
         label: "～ながら",
         intro: "～ながら digunakan untuk menyatakan dua kegiatan yang dilakukan bersamaan oleh orang yang sama: \"sambil melakukan A, melakukan B\". Kegiatan B adalah kegiatan utama.",
+        table: {
+            rule: "Bentuk ～ながら dibuat dari bentuk ます (dihilangkan ます-nya) + ながら.",
+            rows: [
+                {gol:"Golongan 1 (Godan)", note:"Hilangkan ます, tambah ながら.", examples:[
+                    {dict:"飲む", masu:"飲みます", form:"飲みながら"},
+                    {dict:"書く", masu:"書きます", form:"書きながら"},
+                    {dict:"話す", masu:"話します", form:"話しながら"},
+                    {dict:"歩く", masu:"歩きます", form:"歩きながら"}
+                ]},
+                {gol:"Golongan 2 (Ichidan)", note:"Hilangkan ます, tambah ながら.", examples:[
+                    {dict:"食べる", masu:"食べます", form:"食べながら"},
+                    {dict:"見る", masu:"見ます", form:"見ながら"},
+                    {dict:"考える", masu:"考えます", form:"考えながら"}
+                ]},
+                {gol:"Golongan 3 (Tidak beraturan)", note:"Bentuk khusus.", examples:[
+                    {dict:"する", masu:"します", form:"しながら"},
+                    {dict:"来る（くる）", masu:"来ます", form:"来ながら"}
+                ]}
+            ]
+        },
         pg: [
             {word:"音楽を聞き___、勉強します。", sub:"Pilih bentuk yang tepat.", options:["ながら","てから","たら","ても"], answer:0},
             {word:"テレビを見___、ご飯を食べます。", sub:"Pilih bentuk yang tepat.", options:["てから","ながら","たら","ので"], answer:1},
@@ -293,6 +346,26 @@ const DATA = {
     teshimaimasu: {
         label: "～てしまいます",
         intro: "～てしまいます digunakan untuk menyatakan kejadian yang sudah selesai/tuntas, dan sering mengandung nuansa penyesalan atau ketidaksengajaan.",
+        table: {
+            rule: "Bentuk ～てしまいます dibuat dari bentuk て（て形） + しまいます.",
+            rows: [
+                {gol:"Golongan 1 (Godan)", note:"Ubah akhiran seperti bentuk て, lalu tambah しまいます.", examples:[
+                    {dict:"買う", masu:"買います", form:"買ってしまいます"},
+                    {dict:"飲む", masu:"飲みます", form:"飲んでしまいます"},
+                    {dict:"書く", masu:"書きます", form:"書いてしまいます"},
+                    {dict:"話す", masu:"話します", form:"話してしまいます"}
+                ]},
+                {gol:"Golongan 2 (Ichidan)", note:"Hilangkan る, tambah てしまいます.", examples:[
+                    {dict:"食べる", masu:"食べます", form:"食べてしまいます"},
+                    {dict:"見る", masu:"見ます", form:"見てしまいます"},
+                    {dict:"忘れる", masu:"忘れます", form:"忘れてしまいます"}
+                ]},
+                {gol:"Golongan 3 (Tidak beraturan)", note:"Bentuk khusus.", examples:[
+                    {dict:"する", masu:"します", form:"してしまいます"},
+                    {dict:"来る（くる）", masu:"来ます", form:"来てしまいます"}
+                ]}
+            ]
+        },
         pg: [
             {word:"ケーキを全部食べ___しまいました。", sub:"Pilih bentuk yang tepat.", options:["た","て","ば","たら"], answer:1},
             {word:"大切な本をなくし___しまいました。", sub:"Pilih bentuk yang tepat.", options:["て","ば","た","たら"], answer:0},
@@ -318,16 +391,16 @@ const DATA = {
             {q:"電車の中で寝てしまって、乗り過ごした経験がありますか。", a:"（例）はい、一度疲れて寝てしまって、乗り過ごしたことがあります。"}
         ],
         transform: [
-            {parts:["ケーキを全部食べました。","（後悔しています）"], answer:"ケーキを全部食べてしまいました。"},
-            {parts:["大切な本をなくしました。","（残念です）"], answer:"大切な本をなくしてしまいました。"},
-            {parts:["電車の中で寝ました。","（乗り過ごしました）"], answer:"電車の中で寝てしまいました。"},
-            {parts:["花瓶を割りました。","（わざとではありません）"], answer:"花瓶を割ってしまいました。"},
-            {parts:["宿題を忘れました。","（困っています）"], answer:"宿題を忘れてしまいました。"},
-            {parts:["財布を落としました。","（気づきませんでした）"], answer:"財布を落としてしまいました。"},
-            {parts:["パスワードを忘れました。","（もう一度作ります）"], answer:"パスワードを忘れてしまいました。"},
-            {parts:["約束の時間に遅れました。","（謝りました）"], answer:"約束の時間に遅れてしまいました。"},
-            {parts:["大事なデータを消しました。","（間違えました）"], answer:"大事なデータを消してしまいました。"},
-            {parts:["コーヒーをこぼしました。","（服が汚れました）"], answer:"コーヒーをこぼしてしまいました。"}
+            {parts:["ケーキを全部食べました。"], answer:"ケーキを全部食べてしまいました。"},
+            {parts:["大切な本をなくしました。"], answer:"大切な本をなくしてしまいました。"},
+            {parts:["電車の中で寝ました。"], answer:"電車の中で寝てしまいました。"},
+            {parts:["友達の傘を間違えました。"], answer:"友達の傘を間違えてしまいました。"},
+            {parts:["宿題を忘れました。"], answer:"宿題を忘れてしまいました。"},
+            {parts:["財布を落としました。"], answer:"財布を落としてしまいました。"},
+            {parts:["パスワードを忘れました。"], answer:"パスワードを忘れてしまいました。"},
+            {parts:["約束の時間に遅れました。"], answer:"約束の時間に遅れてしまいました。"},
+            {parts:["大事なデータを消しました。"], answer:"大事なデータを消してしまいました。"},
+            {parts:["コーヒーをこぼしました。"], answer:"コーヒーをこぼしてしまいました。"}
         ]
     }
 };
@@ -345,6 +418,34 @@ grammarKeys.forEach(k => {
 const letters = ["A","B","C","D"];
 const grammarTabsEl = document.getElementById("grammarTabs");
 const grammarSectionsEl = document.getElementById("grammarSections");
+
+function buildConjTableHtml(g){
+    let rowsHtml = "";
+    g.table.rows.forEach(row => {
+        const examplesHtml = row.examples.map(ex =>
+            `<div class="conj-ex-row jp"><span>${ex.dict}</span><span class="arrow">(${ex.masu})</span><span class="arrow">→</span><span class="final">${ex.form}</span></div>`
+        ).join("");
+        rowsHtml += `
+            <tr>
+                <td class="conj-gol-cell">${row.gol}</td>
+                <td class="conj-note-cell">${row.note}</td>
+                <td><div class="conj-examples">${examplesHtml}</div></td>
+            </tr>
+        `;
+    });
+    return `
+        <div class="conj-table-wrap">
+            <div class="conj-table-title">📐 Tabel Perubahan Kosakata → ${g.label}</div>
+            <div class="conj-table-rule">${g.table.rule}</div>
+            <table class="conj-table">
+                <thead>
+                    <tr><th>Golongan</th><th>Aturan</th><th>Contoh</th></tr>
+                </thead>
+                <tbody>${rowsHtml}</tbody>
+            </table>
+        </div>
+    `;
+}
 
 function buildGrammarTabs(){
     grammarTabsEl.innerHTML = "";
@@ -366,6 +467,7 @@ function buildSections(){
 
         section.innerHTML = `
             <div class="gram-intro">${DATA[k].intro}</div>
+            ${buildConjTableHtml(DATA[k])}
             <div class="subtab-row" id="subtabs-${k}">
                 <button class="subtab" data-sub="pg">✅ Pilihan Ganda</button>
                 <button class="subtab" data-sub="essay">✍️ Esai</button>
@@ -491,21 +593,11 @@ function renderEssay(k){
             <div class="item-card">
                 <div class="item-prompt jp"><span class="item-num">${i+1}</span>${item.q}</div>
                 <textarea class="item-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                <button class="reveal-btn" data-target="essay-ans-${k}-${i}">💡 Lihat contoh jawaban</button>
-                <div class="answer-box jp" id="essay-ans-${k}-${i}">${item.a}</div>
             </div>
         `;
     });
     html += `</div>`;
     panel.innerHTML = html;
-
-    panel.querySelectorAll(".reveal-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const box = document.getElementById(btn.dataset.target);
-            box.classList.toggle("show");
-            btn.textContent = box.classList.contains("show") ? "🙈 Sembunyikan jawaban" : "💡 Lihat contoh jawaban";
-        });
-    });
 }
 
 //===================== TRANSFORM =====================
@@ -514,11 +606,14 @@ function renderTransform(k){
     const panel = document.getElementById("panel-" + k + "-transform");
     let html = `<div class="item-list">`;
     g.transform.forEach((item, i) => {
+        const instruksi = item.parts.length > 1
+            ? `Gabungkan kalimat berikut menggunakan pola <span class="jp" style="font-weight:900;">${g.label}</span>:`
+            : `Ubah kalimat berikut menggunakan pola <span class="jp" style="font-weight:900;">${g.label}</span>:`;
         html += `
             <div class="item-card">
                 <div class="item-prompt">
                     <span class="item-num">${i+1}</span>
-                    Gabungkan kalimat berikut menggunakan pola <span class="jp" style="font-weight:900;">${g.label}</span>:
+                    ${instruksi}
                 </div>
                 <div class="item-sentences jp">
                     ${item.parts.map(p => `<span>${p}</span>`).join("")}
