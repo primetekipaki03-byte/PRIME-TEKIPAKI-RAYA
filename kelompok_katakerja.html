@@ -29,13 +29,61 @@ body{ background:#f6f5f1; color:var(--text); padding-bottom:50px; }
 .jp{ font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif; }
 
 #navbar{
-    position:sticky; top:0; z-index:999;
+    position:sticky; top:0; z-index:9999; width:100%;
     background:#001530;
-    border-bottom:2px solid rgba(250,204,21,.25);
-    box-shadow:0 4px 14px rgba(0,0,0,.35);
+    border-bottom:2px solid rgba(224,181,42,.3);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
 }
-.navbar-inner{ display:flex; justify-content:space-between; align-items:center; padding:12px 20px; flex-wrap:wrap; gap:10px; }
-.nav-title{ color:var(--gold); font-weight:700; font-size:15px; letter-spacing:.02em; }
+.navbar-inner{
+    width:100%; min-height:64px; padding:8px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+}
+.nav-left{ display:flex; align-items:center; flex-shrink:0; }
+.nav-right{ display:flex; align-items:center; justify-content:flex-end; gap:8px; flex-wrap:wrap; }
+
+.home-btn{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background:#e0b52a; color:#001530; text-decoration:none;
+    padding:8px 14px; border-radius:10px; font-weight:bold; white-space:nowrap;
+}
+.home-btn:hover{ opacity:.85; }
+.home-icon{ width:22px; height:22px; flex:none; }
+
+.dropdown{ position:relative; flex-shrink:0; z-index:1; }
+.dropdown.open{ z-index:20; }
+.dropdown-btn{
+    display:flex; align-items:center; justify-content:center;
+    background:transparent; border:2px solid #e0b52a; color:#e0b52a;
+    padding:8px 14px; border-radius:8px; font-family:inherit; font-weight:bold;
+    cursor:pointer; white-space:nowrap;
+}
+.dropdown-btn:hover, .dropdown.open .dropdown-btn{ background:#e0b52a; color:#001530; }
+
+.dropdown-menu{
+    display:none; position:absolute; top:calc(100% + 7px); left:0;
+    width:max-content; min-width:220px; max-width:calc(100vw - 20px);
+    background:#1f4577; border:1px solid rgba(224,181,42,.35);
+    border-radius:10px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+.dropdown-menu.show{ display:block; }
+.dropdown-menu.align-right{ left:auto; right:0; }
+.dropdown-menu a{ display:block; padding:12px 15px; color:#ffd700; text-decoration:none; white-space:nowrap; }
+.dropdown-menu a:hover{ background:#e0b52a; color:#001530; }
+
+@media(max-width:1000px){
+    .navbar-inner{ flex-wrap:wrap; padding:10px 12px; gap:10px; }
+    .nav-right{ justify-content:flex-start; gap:6px; }
+    .dropdown-btn{ font-size:.72rem; padding:6px 9px; }
+    .home-btn{ padding:8px 10px; font-size:.72rem; }
+}
+@media(max-width:760px){
+    .navbar-inner{ flex-direction:column; align-items:stretch; gap:8px; }
+    .nav-left{ width:100%; }
+    .home-btn{ width:100%; }
+    .nav-right{ width:100%; justify-content:flex-start; flex-wrap:wrap; }
+    .dropdown{ flex-shrink:0; }
+    .dropdown-btn{ font-size:.72rem; padding:6px 9px; }
+}
 
 header{ text-align:center; padding:26px 20px 8px; }
 .eyebrow{
@@ -109,6 +157,23 @@ header p{ font-size:14px; color:var(--muted); max-width:640px; margin:0 auto; li
 .time-legend-item .tl-form{ font-weight:900; color:var(--navy); font-size:13px; }
 .time-legend-item .tl-label{ font-weight:600; color:var(--navy2); font-size:11.5px; margin-top:2px; }
 
+@media(max-width:680px){
+    .verb-table{ min-width:0; width:100%; }
+    .verb-table-wrap{ overflow-x:visible; border:none; }
+    .verb-table thead{ display:none; }
+    .verb-table, .verb-table tbody, .verb-table tr, .verb-table td{ display:block; width:100%; }
+    .verb-table tr{
+        background:white; border:1.5px solid #e2ddcf; border-radius:14px;
+        padding:12px 14px; margin-bottom:12px;
+    }
+    .verb-table td{ border-top:none; padding:6px 0; }
+    .verb-table td[data-label]:not([data-label=""])::before{
+        content:attr(data-label); display:block; font-size:10.5px; font-weight:700;
+        color:var(--navy); text-transform:uppercase; letter-spacing:.04em; margin-bottom:3px;
+    }
+    .verb-table td:first-child{ border-bottom:1px dashed #e2ddcf; padding-bottom:10px; margin-bottom:6px; }
+}
+
 /* legend chips for gol color */
 .gol-chip{
     display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700;
@@ -131,7 +196,62 @@ footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px
 
 <nav id="navbar">
 <div class="navbar-inner">
-<div class="nav-title">📝 Tekipaki Japanese Learning</div>
+
+  <div class="nav-left">
+    <a href="index.html" class="home-btn">
+      <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+      </svg>
+      HOME
+    </a>
+  </div>
+
+  <div class="nav-right">
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('learningDropdown')">TEKIPAKI LEARNING ▼</button>
+      <div class="dropdown-menu" id="learningDropdown">
+        <a href="guru.html">GURU</a>
+        <a href="elearning.html">SISWA</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('materiDropdown')">MATERI ▼</button>
+      <div class="dropdown-menu" id="materiDropdown">
+        <a href="daftarkosakata.html">Kosakata JFT</a>
+        <a href="materitatabahasa.html">Tata Bahasa</a>
+        <a href="materikanji.html">Materi Kanji JLPT</a>
+        <a href="kanjidasar.html">Kanji Flash Card</a>
+        <a href="materikosakata.html">Materi Kosakata JLPT</a>
+        <a href="tabel-perubahan-kosakata.html">Tabel Perubahan Kosakata</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('quizDropdown')">QUIZ JFT ▼</button>
+      <div class="dropdown-menu" id="quizDropdown">
+        <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+        <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+        <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+        <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+        <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('kanjiQuizDropdown')">QUIZ KANJI ▼</button>
+      <div class="dropdown-menu" id="kanjiQuizDropdown">
+        <a href="quizkanji1.html">QUIZ KANJI 1</a>
+        <a href="quizkanji2.html">QUIZ KANJI 2</a>
+        <a href="quizkanji3.html">QUIZ KANJI 3</a>
+        <a href="quizkanji4.html">QUIZ KANJI 4</a>
+        <a href="quizkanji5.html">QUIZ KANJI 5</a>
+      </div>
+    </div>
+
+  </div>
+
 </div>
 </nav>
 
@@ -232,6 +352,64 @@ function deriveForms(v){
     };
 }
 
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+        if(menu.id !== id){
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+            const parent = menu.closest(".dropdown");
+            if(parent) parent.classList.remove("open");
+        }
+    });
+
+    const menu = document.getElementById(id);
+    if(!menu) return;
+
+    const parent = menu.closest(".dropdown");
+    const isOpen = menu.classList.contains("show");
+
+    if(isOpen){
+        menu.classList.remove("show");
+        menu.classList.remove("align-right");
+        if(parent) parent.classList.remove("open");
+        return;
+    }
+
+    menu.classList.add("show");
+    if(parent) parent.classList.add("open");
+
+    menu.classList.remove("align-right");
+    const rect = menu.getBoundingClientRect();
+    if(rect.right > window.innerWidth - 10){
+        menu.classList.add("align-right");
+    }
+    if(rect.left < 10){
+        menu.classList.remove("align-right");
+    }
+}
+
+document.addEventListener("click", function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(menu => {
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+        });
+        document.querySelectorAll(".dropdown").forEach(dropdown => {
+            dropdown.classList.remove("open");
+        });
+    }
+});
+
+window.addEventListener("resize", function(){
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+        menu.classList.remove("show");
+        menu.classList.remove("align-right");
+    });
+    document.querySelectorAll(".dropdown").forEach(dropdown => {
+        dropdown.classList.remove("open");
+    });
+});
+
 function buildTabs(){
     grammarTabsEl.innerHTML = "";
     groupKeys.forEach(k => {
@@ -305,28 +483,28 @@ function renderTable(k){
         const v = deriveForms(v0);
         rows += `
             <tr>
-                <td>
+                <td data-label="">
                     <div class="verb-dict jp">${v.kanji}</div>
                     <div class="verb-reading jp">${v.reading} (${v.romaji})</div>
                     <span class="gol-chip ${g.chip}">${g.label}</span>
                 </td>
-                <td><span class="verb-arti">${v.arti}</span></td>
-                <td>
+                <td data-label="Arti"><span class="verb-arti">${v.arti}</span></td>
+                <td data-label="～ます (${TIME_INFO.masu.short})">
                     <div class="form-jp jp">${v.masu}</div>
                     <div class="form-romaji">${v.masuR}</div>
                     <div class="form-meaning">${TIME_INFO.masu.meaning(v.arti)}</div>
                 </td>
-                <td>
+                <td data-label="～ません (${TIME_INFO.masen.short})">
                     <div class="form-jp jp">${v.masen}</div>
                     <div class="form-romaji">${v.masenR}</div>
                     <div class="form-meaning">${TIME_INFO.masen.meaning(v.arti)}</div>
                 </td>
-                <td>
+                <td data-label="～ました (${TIME_INFO.mashita.short})">
                     <div class="form-jp jp">${v.mashita}</div>
                     <div class="form-romaji">${v.mashitaR}</div>
                     <div class="form-meaning">${TIME_INFO.mashita.meaning(v.arti)}</div>
                 </td>
-                <td>
+                <td data-label="～ませんでした (${TIME_INFO.masendeshita.short})">
                     <div class="form-jp jp">${v.masendeshita}</div>
                     <div class="form-romaji">${v.masendeshitaR}</div>
                     <div class="form-meaning">${TIME_INFO.masendeshita.meaning(v.arti)}</div>
