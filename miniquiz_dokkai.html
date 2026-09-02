@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tekipaki — Dokkai (読解) JFT A2</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --navy:#0a1f3d;
+  --navy2:#001530;
+  --navy3:#132c52;
+  --gold:#e0b52a;
+  --gold-dim:#c4a02a;
+  --paper:#f6f0e2;
+  --paper2:#efe6d0;
+  --ink:#1c2541;
+  --ink-soft:#4a5875;
+  --seal:#b3382e;
+  --muted:#9fb0c9;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+
+h1,h2,h3,.display{
+  font-family:"Shippori Mincho",serif;
+}
+
+a{ color:inherit; }
+
+.mono{ font-family:"JetBrains Mono",monospace; }
+
+
+/* =========================================================
+   NAVBAR (disamakan dengan homepage utama)
+========================================================= */
+
+#navbar{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  width:100%;
+  background:#001530;
+  border-bottom:2px solid rgba(224,181,42,.3);
+  box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+
+.navbar-inner{
+  width:100%;
+  min-height:64px;
+  padding:8px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.home-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:var(--gold);
+  color:var(--navy2);
+  text-decoration:none;
+  padding:8px 14px;
+  border-radius:10px;
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+.home-btn:hover{ opacity:.85; }
+
+.home-icon{ width:22px; height:22px; flex:none; }
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+  position:relative;
+  background:
+    radial-gradient(
+      120% 140% at 15% -10%,
+      var(--navy3),
+      var(--navy) 55%,
+      var(--navy2) 100%
+    );
+  color:#fff;
+  padding:70px 20px 80px;
+  text-align:center;
+  overflow:hidden;
+}
+
+.hero-kanji{
+  position:absolute;
+  font-family:"Shippori Mincho",serif;
+  font-size:min(60vw,480px);
+  font-weight:800;
+  color:rgba(224,181,42,.06);
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  line-height:1;
+  user-select:none;
+  pointer-events:none;
+  white-space:nowrap;
+}
+
+.hero-inner{
+  position:relative;
+  z-index:2;
+  max-width:760px;
+  margin:0 auto;
+}
+
+.seal{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:78px;
+  height:78px;
+  border:3px solid var(--seal);
+  border-radius:8px;
+  color:var(--seal);
+  background:rgba(179,56,46,.08);
+  font-family:"Shippori Mincho",serif;
+  font-weight:800;
+  font-size:1.6rem;
+  transform:rotate(-8deg);
+  margin-bottom:22px;
+  letter-spacing:2px;
+  writing-mode:vertical-rl;
+  box-shadow:0 0 0 2px rgba(179,56,46,.25) inset;
+}
+
+.hero .eyebrow{
+  font-family:"JetBrains Mono",monospace;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-size:.78rem;
+  margin-bottom:14px;
+}
+
+.hero h1{
+  font-size:clamp(2rem,5vw,3.2rem);
+  color:#fff;
+  line-height:1.2;
+  margin-bottom:14px;
+}
+
+.hero h1 span{ color:var(--gold); }
+
+.hero p{
+  color:var(--muted);
+  font-size:1.02rem;
+  line-height:1.7;
+  max-width:560px;
+  margin:0 auto 10px;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+#app{
+  max-width:1180px;
+  margin:0 auto;
+  padding:56px 20px 20px;
+}
+
+.section-head{
+  display:flex;
+  align-items:baseline;
+  gap:16px;
+  margin-bottom:10px;
+  flex-wrap:wrap;
+}
+
+.section-head .stamp-mini{
+  width:34px;
+  height:34px;
+  flex:none;
+  border:2px solid var(--seal);
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--seal);
+  font-weight:800;
+  font-size:.85rem;
+  transform:rotate(-6deg);
+}
+
+.section-head h2{
+  font-size:1.55rem;
+  color:var(--navy);
+}
+
+.section-head .jp{
+  font-family:"JetBrains Mono",monospace;
+  color:var(--seal);
+  font-size:.8rem;
+  letter-spacing:1px;
+}
+
+.section-sub{
+  color:var(--ink-soft);
+  font-size:.92rem;
+  margin:0 0 30px;
+  max-width:640px;
+}
+
+
+/* =========================================================
+   UNIT GRID — melebar ke samping, bukan hanya ke bawah
+========================================================= */
+
+.unit-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:16px;
+  margin-bottom:50px;
+}
+
+.unit-card{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+
+  background:#12365e;
+  color:#fff;
+  text-decoration:none;
+
+  border-radius:14px;
+  padding:20px 16px;
+
+  position:relative;
+  overflow:hidden;
+
+  border:1px solid rgba(224,181,42,.15);
+  box-shadow:0 3px 12px rgba(10,31,61,.16);
+  transition:.2s;
+}
+
+.unit-card::before{
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:3px;
+  background:var(--gold);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:.2s;
+}
+
+.unit-card:hover{
+  transform:translateY(-4px);
+  background:#1a4271;
+  box-shadow:0 12px 26px rgba(10,31,61,.28);
+}
+
+.unit-card:hover::before{
+  transform:scaleX(1);
+}
+
+.unit-no{
+  font-family:"JetBrains Mono",monospace;
+  color:var(--gold);
+  font-size:.72rem;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.unit-card h3{
+  font-size:1.25rem;
+  color:#fff;
+  font-family:"Shippori Mincho",serif;
+}
+
+.unit-card p{
+  font-size:.78rem;
+  color:var(--muted);
+  line-height:1.5;
+  flex:1;
+}
+
+.unit-card .go{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.7rem;
+  color:var(--gold);
+  margin-top:4px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+  text-align:center;
+  color:var(--ink-soft);
+  font-size:.85rem;
+  padding:34px 20px;
+  border-top:1px solid var(--paper2);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px){
+  .unit-grid{ grid-template-columns:repeat(4,1fr); }
+}
+
+@media(max-width:860px){
+  .unit-grid{ grid-template-columns:repeat(3,1fr); }
+}
+
+@media(max-width:600px){
+  .unit-grid{ grid-template-columns:repeat(2,1fr); }
+  .hero{ padding:56px 16px 60px; }
+  .hero h1{ font-size:1.8rem; }
+  #app{ padding:36px 14px 20px; }
+}
+
+@media(max-width:380px){
+  .unit-grid{ grid-template-columns:1fr 1fr; }
+  .unit-card{ padding:16px 12px; }
+}
+
+</style>
+</head>
+
+
+<body translate="no">
+
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="home-btn">
+      <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+      </svg>
+      HOME
+    </a>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-kanji" aria-hidden="true">読</div>
+
+  <div class="hero-inner">
+
+    <div class="seal">読解</div>
+
+    <div class="eyebrow">Tekipaki Japanese Learning</div>
+
+    <h1>
+      Latihan <span>Dokkai</span>
+      <br>
+      Pemahaman Bacaan JFT A2
+    </h1>
+
+    <p>
+      15 unit latihan membaca teks pendek bahasa Jepang,
+      lengkap dengan soal pemahaman untuk mengasah
+      kemampuan membaca level A2.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- APP -->
+<div id="app">
+
+  <div class="section-head">
+    <div class="stamp-mini">読</div>
+    <h2>Daftar Unit Dokkai</h2>
+    <span class="jp">どっかい・れんしゅう</span>
+  </div>
+
+  <p class="section-sub">
+    Pilih salah satu unit di bawah untuk mulai berlatih membaca
+    teks pendek beserta soal pemahamannya.
+  </p>
+
+  <div class="unit-grid">
+
+    <a href="dokkai_unit1.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>01</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+    <a href="dokkai_unit2.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>02</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+    <a href="dokkai_unit3.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>03</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+    <a href="dokkai_unit4.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>04</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+    <a href="dokkai_unit5.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>05</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+    <a href="dokkai_unit6.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>06</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+    <a href="dokkai_unit7.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>07</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+    <a href="dokkai_unit8.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>08</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+    <a href="dokkai_unit9.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>09</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+    <a href="dokkai_unit10.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>10</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+    <a href="dokkai_unit11.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>11</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+    <a href="dokkai_unit12.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>12</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+    <a href="dokkai_unit13.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>13</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+    <a href="dokkai_unit14.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>14</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+    <a href="dokkai_unit15.html" class="unit-card">
+      <span class="unit-no">UNIT</span>
+      <h3>15</h3>
+      <p>Latihan membaca teks pendek bahasa Jepang.</p>
+      <span class="go">MULAI →</span>
+    </a>
+
+  </div>
+
+</div>
+
+
+<footer>
+  © Tekipaki Japanese Learning
+</footer>
+
+
+</body>
+</html>
