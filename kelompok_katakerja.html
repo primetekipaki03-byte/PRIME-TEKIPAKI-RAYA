@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabel Perubahan Kosakata: Gol 1 · Gol 2 · Gol 3</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --gold-soft:#fff3c4;
+    --paper:#fffdf7;
+    --text:#001f3f;
+    --muted:#5b6b7d;
+    --green:#16a34a;
+    --red:#dc2626;
+    --blue:#1d4ed8;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:"Poppins","Segoe UI",Arial,sans-serif; }
+body{ background:#f6f5f1; color:var(--text); padding-bottom:50px; }
+.jp{ font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif; }
+
+#navbar{
+    position:sticky; top:0; z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+.navbar-inner{ display:flex; justify-content:space-between; align-items:center; padding:12px 20px; flex-wrap:wrap; gap:10px; }
+.nav-title{ color:var(--gold); font-weight:700; font-size:15px; letter-spacing:.02em; }
+
+header{ text-align:center; padding:26px 20px 8px; }
+.eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--navy); color:var(--gold);
+    font-size:12.5px; font-weight:600; letter-spacing:.1em;
+    padding:7px 16px; border-radius:999px; margin-bottom:16px;
+}
+header h1{ font-size:30px; color:var(--navy); margin-bottom:8px; letter-spacing:-.01em; }
+header p{ font-size:14px; color:var(--muted); max-width:640px; margin:0 auto; line-height:1.6; }
+
+.grammar-tabs{ max-width:900px; margin:26px auto 0; padding:0 20px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.gtab{
+    border:2px solid var(--navy); background:white; color:var(--navy);
+    padding:10px 22px; border-radius:999px; font-weight:700; font-size:16px;
+    cursor:pointer; font-family:"Noto Sans JP",sans-serif;
+}
+.gtab:hover{ background:var(--gold-soft); }
+.gtab.active{ background:var(--navy); color:var(--gold); }
+
+.grammar-section{ display:none; max-width:900px; margin:0 auto; padding:0 20px; }
+.grammar-section.active{ display:block; }
+
+.gram-intro{
+    background:var(--gold-soft); border:1.5px solid var(--gold); border-radius:14px;
+    padding:14px 18px; margin-top:22px; font-size:13.5px; color:#5a4a00; line-height:1.6;
+}
+
+.rule-box{
+    background:white; border:1.5px solid #e2ddcf; border-radius:14px;
+    padding:16px 18px; margin-top:16px;
+}
+.rule-title{ font-size:14px; font-weight:700; color:var(--navy); margin-bottom:6px; }
+.rule-text{ font-size:13.5px; color:var(--muted); line-height:1.7; }
+.rule-text .hl{ color:var(--navy); font-weight:700; }
+
+/* search + table */
+.search-row{ margin-top:20px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.search-input{
+    flex:1; min-width:180px; border:2px solid #d8d4c8; border-radius:12px;
+    padding:11px 16px; font-size:14px; font-family:"Noto Sans JP",sans-serif;
+}
+.search-input:focus{ outline:none; border-color:var(--navy); }
+.count-badge{
+    font-size:12.5px; font-weight:700; color:var(--navy); background:var(--gold-soft);
+    border:1.5px solid var(--gold); border-radius:999px; padding:7px 14px; white-space:nowrap;
+}
+
+.verb-table-wrap{ margin-top:16px; overflow-x:auto; border:1.5px solid #e2ddcf; border-radius:14px; }
+.verb-table{ width:100%; border-collapse:separate; border-spacing:0; background:white; min-width:640px; }
+.verb-table th{
+    background:var(--navy); color:var(--gold); font-size:11px; text-transform:uppercase;
+    letter-spacing:.04em; padding:11px 12px; text-align:left; position:sticky; top:0;
+}
+.verb-table td{ padding:11px 12px; font-size:14px; border-top:1px solid #eee; vertical-align:top; }
+.verb-table tr:hover td{ background:#fafaf6; }
+.verb-dict{ font-weight:900; color:var(--navy); font-size:16px; }
+.verb-reading{ font-size:11.5px; color:var(--muted); margin-top:2px; }
+.verb-arti{ font-size:12.5px; color:var(--muted); font-style:italic; }
+.form-jp{ font-weight:700; color:var(--text); }
+.form-romaji{ font-size:11px; color:var(--muted); margin-top:2px; }
+.form-meaning{ font-size:12px; color:var(--navy2); margin-top:5px; padding-top:5px; border-top:1px dashed #e2ddcf; line-height:1.4; }
+.th-time{ display:block; font-size:9.5px; font-weight:600; letter-spacing:0; text-transform:none; color:var(--gold-soft); opacity:.85; margin-top:2px; }
+.no-result{ text-align:center; padding:30px; color:var(--muted); font-size:13.5px; }
+
+.time-legend{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+.time-legend-item{
+    flex:1; min-width:150px; background:white; border:1.5px solid #e2ddcf; border-radius:12px;
+    padding:10px 12px; font-size:12px; color:var(--muted); line-height:1.5;
+}
+.time-legend-item .tl-form{ font-weight:900; color:var(--navy); font-size:13px; }
+.time-legend-item .tl-label{ font-weight:600; color:var(--navy2); font-size:11.5px; margin-top:2px; }
+
+/* legend chips for gol color */
+.gol-chip{
+    display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700;
+    padding:4px 10px; border-radius:999px; margin-top:2px;
+}
+.gol-chip.g1{ background:#e8f8ee; color:var(--green); }
+.gol-chip.g2{ background:#eef4ff; color:var(--blue); }
+.gol-chip.g3{ background:#fdecec; color:var(--red); }
+
+footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px; }
+
+@media(max-width:480px){
+    header h1{ font-size:22px; }
+    .verb-table{ min-width:560px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-title">📝 Tekipaki Japanese Learning</div>
+</div>
+</nav>
+
+<header>
+<div class="eyebrow">📘 TABEL PERUBAHAN KOSAKATA — KATA KERJA</div>
+<h1>Perubahan Kata Kerja Gol 1 · Gol 2 · Gol 3</h1>
+<p>Tabel perubahan bentuk kamus (辞書形) menjadi bentuk ～ます／～ません／～ました／～ませんでした, dikelompokkan berdasarkan golongan kata kerja (Gol 1 / Gol 2 / Gol 3). Gunakan kolom pencarian untuk mencari kata kerja tertentu.</p>
+</header>
+
+<div class="grammar-tabs" id="grammarTabs"></div>
+
+<div id="grammarSections"></div>
+
+<footer>
+© 2026 Tekipaki Japanese Learning | Tabel Perubahan Kosakata
+</footer>
+
+<script>
+
+const GROUPS = {
+    gol1: {
+        label: "Gol 1 (Godan)",
+        chip: "g1",
+        intro: "Kata kerja golongan 1 (五段動詞 / godan-doushi) adalah kata kerja yang bentuk kamusnya berakhiran huruf う, く, ぐ, す, つ, ぬ, ぶ, む, る (dengan pola tertentu). Untuk membentuk ～ます, akhiran baris う diubah ke baris い, lalu ditambahkan ます／ません／ました／ませんでした.",
+        rule: "Ubah huruf terakhir dari baris う (dan) menjadi baris い (dan): う→い, く→き, ぐ→ぎ, す→し, つ→ち, ぬ→に, ぶ→び, む→み, る→り. Lalu tambahkan ます, ません, ました, ませんでした.",
+        verbs: [
+            {kanji:"行く", reading:"いく", romaji:"iku", arti:"pergi", stem:"行き", stemR:"iki"},
+            {kanji:"書く", reading:"かく", romaji:"kaku", arti:"menulis", stem:"書き", stemR:"kaki"},
+            {kanji:"泳ぐ", reading:"およぐ", romaji:"oyogu", arti:"berenang", stem:"泳ぎ", stemR:"oyogi"},
+            {kanji:"話す", reading:"はなす", romaji:"hanasu", arti:"berbicara", stem:"話し", stemR:"hanashi"},
+            {kanji:"待つ", reading:"まつ", romaji:"matsu", arti:"menunggu", stem:"待ち", stemR:"machi"},
+            {kanji:"死ぬ", reading:"しぬ", romaji:"shinu", arti:"meninggal", stem:"死に", stemR:"shini"},
+            {kanji:"遊ぶ", reading:"あそぶ", romaji:"asobu", arti:"bermain", stem:"遊び", stemR:"asobi"},
+            {kanji:"飲む", reading:"のむ", romaji:"nomu", arti:"minum", stem:"飲み", stemR:"nomi"},
+            {kanji:"作る", reading:"つくる", romaji:"tsukuru", arti:"membuat", stem:"作り", stemR:"tsukuri"},
+            {kanji:"買う", reading:"かう", romaji:"kau", arti:"membeli", stem:"買い", stemR:"kai"},
+            {kanji:"持つ", reading:"もつ", romaji:"motsu", arti:"membawa/memiliki", stem:"持ち", stemR:"mochi"}
+        ]
+    },
+    gol2: {
+        label: "Gol 2 (Ichidan)",
+        chip: "g2",
+        intro: "Kata kerja golongan 2 (一段動詞 / ichidan-doushi) adalah kata kerja yang bentuk kamusnya berakhiran ～る, dengan huruf sebelum る berada pada baris い atau え (misalnya 食べる, 見る). Untuk membentuk ～ます, cukup buang る lalu tambahkan ます／ません／ました／ませんでした.",
+        rule: "Buang huruf る di akhir kata, lalu tambahkan ます, ません, ました, ませんでした langsung ke batang kata (語幹).",
+        verbs: [
+            {kanji:"忘れる", reading:"わすれる", romaji:"wasureru", arti:"lupa", stem:"忘れ", stemR:"wasure"},
+            {kanji:"食べる", reading:"たべる", romaji:"taberu", arti:"makan", stem:"食べ", stemR:"tabe"},
+            {kanji:"見る", reading:"みる", romaji:"miru", arti:"melihat/menonton", stem:"見", stemR:"mi"},
+            {kanji:"起きる", reading:"おきる", romaji:"okiru", arti:"bangun", stem:"起き", stemR:"oki"},
+            {kanji:"寝る", reading:"ねる", romaji:"neru", arti:"tidur", stem:"寝", stemR:"ne"},
+            {kanji:"教える", reading:"おしえる", romaji:"oshieru", arti:"mengajar", stem:"教え", stemR:"oshie"},
+            {kanji:"覚える", reading:"おぼえる", romaji:"oboeru", arti:"mengingat/menghafal", stem:"覚え", stemR:"oboe"},
+            {kanji:"借りる", reading:"かりる", romaji:"kariru", arti:"meminjam", stem:"借り", stemR:"kari"},
+            {kanji:"降りる", reading:"おりる", romaji:"oriru", arti:"turun", stem:"降り", stemR:"ori"},
+            {kanji:"開ける", reading:"あける", romaji:"akeru", arti:"membuka", stem:"開け", stemR:"ake"}
+        ]
+    },
+    gol3: {
+        label: "Gol 3 (Fukisoku)",
+        chip: "g3",
+        intro: "Kata kerja golongan 3 (不規則動詞 / fukisoku-doushi) hanya terdiri dari dua kata kerja: する (melakukan) dan 来る (datang). Perubahannya tidak mengikuti pola baku Gol 1 maupun Gol 2, sehingga harus dihafalkan langsung bentuknya.",
+        rule: "する dan 来る berubah tidak beraturan. する → します／しません／しました／しませんでした. 来る → 来ます／来ません／来ました／来ませんでした (dibaca きます／きません, dst).",
+        verbs: [
+            {kanji:"する", reading:"する", romaji:"suru", arti:"melakukan", masu:"します", masuR:"shimasu", masen:"しません", masenR:"shimasen", mashita:"しました", mashitaR:"shimashita", masendeshita:"しませんでした", masendeshitaR:"shimasendeshita"},
+            {kanji:"来る", reading:"くる", romaji:"kuru", arti:"datang", masu:"来ます", masuR:"kimasu", masen:"来ません", masenR:"kimasen", mashita:"来ました", mashitaR:"kimashita", masendeshita:"来ませんでした", masendeshitaR:"kimasendeshita"},
+            {kanji:"勉強する", reading:"べんきょうする", romaji:"benkyou suru", arti:"belajar", masu:"勉強します", masuR:"benkyou shimasu", masen:"勉強しません", masenR:"benkyou shimasen", mashita:"勉強しました", mashitaR:"benkyou shimashita", masendeshita:"勉強しませんでした", masendeshitaR:"benkyou shimasendeshita"},
+            {kanji:"運動する", reading:"うんどうする", romaji:"undou suru", arti:"berolahraga", masu:"運動します", masuR:"undou shimasu", masen:"運動しません", masenR:"undou shimasen", mashita:"運動しました", mashitaR:"undou shimashita", masendeshita:"運動しませんでした", masendeshitaR:"undou shimasendeshita"},
+            {kanji:"結婚する", reading:"けっこんする", romaji:"kekkon suru", arti:"menikah", masu:"結婚します", masuR:"kekkon shimasu", masen:"結婚しません", masenR:"kekkon shimasen", mashita:"結婚しました", mashitaR:"kekkon shimashita", masendeshita:"結婚しませんでした", masendeshitaR:"kekkon shimasendeshita"}
+        ]
+    }
+};
+
+const groupKeys = Object.keys(GROUPS);
+let activeGroup = groupKeys[0];
+let searchQuery = {};
+groupKeys.forEach(k => { searchQuery[k] = ""; });
+
+const grammarTabsEl = document.getElementById("grammarTabs");
+const grammarSectionsEl = document.getElementById("grammarSections");
+
+// keterangan waktu untuk tiap bentuk (dipakai di header kolom & di tiap sel)
+const TIME_INFO = {
+    masu:  { label:"Sekarang / Akan Datang", short:"non-lampau (+)", meaning: arti => `akan ${arti} / ${arti}` },
+    masen: { label:"Negatif, Sekarang / Akan Datang", short:"non-lampau (–)", meaning: arti => `tidak akan ${arti} / tidak ${arti}` },
+    mashita: { label:"Lampau (sudah terjadi)", short:"lampau (+)", meaning: arti => `sudah ${arti}` },
+    masendeshita: { label:"Negatif, Lampau (belum/tidak terjadi)", short:"lampau (–)", meaning: arti => `tidak/belum ${arti} (waktu lampau)` }
+};
+
+// derive masu/masen/mashita/masendeshita for gol1 & gol2 from stem (Gol 3 already has fixed forms)
+function deriveForms(v){
+    if(v.masu) return v; // already has fixed forms (Gol 3)
+    return {
+        ...v,
+        masu: v.stem + "ます", masuR: v.stemR + "masu",
+        masen: v.stem + "ません", masenR: v.stemR + "masen",
+        mashita: v.stem + "ました", mashitaR: v.stemR + "mashita",
+        masendeshita: v.stem + "ませんでした", masendeshitaR: v.stemR + "masendeshita"
+    };
+}
+
+function buildTabs(){
+    grammarTabsEl.innerHTML = "";
+    groupKeys.forEach(k => {
+        const btn = document.createElement("button");
+        btn.className = "gtab" + (k === activeGroup ? " active" : "");
+        btn.textContent = GROUPS[k].label;
+        btn.addEventListener("click", () => { activeGroup = k; renderAll(); });
+        grammarTabsEl.appendChild(btn);
+    });
+}
+
+function buildSections(){
+    grammarSectionsEl.innerHTML = "";
+    groupKeys.forEach(k => {
+        const g = GROUPS[k];
+        const section = document.createElement("div");
+        section.className = "grammar-section" + (k === activeGroup ? " active" : "");
+        section.id = "sec-" + k;
+
+        section.innerHTML = `
+            <div class="gram-intro">${g.intro}</div>
+            <div class="rule-box">
+                <div class="rule-title">📐 Aturan Perubahan — ${g.label}</div>
+                <div class="rule-text">${g.rule}</div>
+            </div>
+            <div class="time-legend">
+                <div class="time-legend-item"><div class="tl-form jp">～ます</div><div class="tl-label">${TIME_INFO.masu.label}</div></div>
+                <div class="time-legend-item"><div class="tl-form jp">～ません</div><div class="tl-label">${TIME_INFO.masen.label}</div></div>
+                <div class="time-legend-item"><div class="tl-form jp">～ました</div><div class="tl-label">${TIME_INFO.mashita.label}</div></div>
+                <div class="time-legend-item"><div class="tl-form jp">～ませんでした</div><div class="tl-label">${TIME_INFO.masendeshita.label}</div></div>
+            </div>
+            <div class="search-row">
+                <input type="text" class="search-input jp" id="search-${k}" placeholder="Cari kata kerja (kanji, hiragana, romaji, atau arti)...">
+                <span class="count-badge" id="count-${k}"></span>
+            </div>
+            <div class="verb-table-wrap" id="tablewrap-${k}"></div>
+        `;
+        grammarSectionsEl.appendChild(section);
+
+        const input = section.querySelector("#search-" + k);
+        input.addEventListener("input", () => {
+            searchQuery[k] = input.value.trim().toLowerCase();
+            renderTable(k);
+        });
+    });
+}
+
+function renderTable(k){
+    const g = GROUPS[k];
+    const q = searchQuery[k];
+    const wrap = document.getElementById("tablewrap-" + k);
+    const countEl = document.getElementById("count-" + k);
+
+    const filtered = g.verbs.filter(v => {
+        if(!q) return true;
+        return v.kanji.toLowerCase().includes(q) ||
+               v.reading.toLowerCase().includes(q) ||
+               v.romaji.toLowerCase().includes(q) ||
+               v.arti.toLowerCase().includes(q);
+    });
+
+    countEl.textContent = filtered.length + " kata kerja";
+
+    if(filtered.length === 0){
+        wrap.innerHTML = `<div class="no-result">Tidak ada kata kerja yang cocok dengan pencarian.</div>`;
+        return;
+    }
+
+    let rows = "";
+    filtered.forEach(v0 => {
+        const v = deriveForms(v0);
+        rows += `
+            <tr>
+                <td>
+                    <div class="verb-dict jp">${v.kanji}</div>
+                    <div class="verb-reading jp">${v.reading} (${v.romaji})</div>
+                    <span class="gol-chip ${g.chip}">${g.label}</span>
+                </td>
+                <td><span class="verb-arti">${v.arti}</span></td>
+                <td>
+                    <div class="form-jp jp">${v.masu}</div>
+                    <div class="form-romaji">${v.masuR}</div>
+                    <div class="form-meaning">${TIME_INFO.masu.meaning(v.arti)}</div>
+                </td>
+                <td>
+                    <div class="form-jp jp">${v.masen}</div>
+                    <div class="form-romaji">${v.masenR}</div>
+                    <div class="form-meaning">${TIME_INFO.masen.meaning(v.arti)}</div>
+                </td>
+                <td>
+                    <div class="form-jp jp">${v.mashita}</div>
+                    <div class="form-romaji">${v.mashitaR}</div>
+                    <div class="form-meaning">${TIME_INFO.mashita.meaning(v.arti)}</div>
+                </td>
+                <td>
+                    <div class="form-jp jp">${v.masendeshita}</div>
+                    <div class="form-romaji">${v.masendeshitaR}</div>
+                    <div class="form-meaning">${TIME_INFO.masendeshita.meaning(v.arti)}</div>
+                </td>
+            </tr>
+        `;
+    });
+
+    wrap.innerHTML = `
+        <table class="verb-table">
+            <thead>
+                <tr>
+                    <th>Kata Kerja (辞書形)</th>
+                    <th>Arti</th>
+                    <th>～ます<span class="th-time">${TIME_INFO.masu.short}</span></th>
+                    <th>～ません<span class="th-time">${TIME_INFO.masen.short}</span></th>
+                    <th>～ました<span class="th-time">${TIME_INFO.mashita.short}</span></th>
+                    <th>～ませんでした<span class="th-time">${TIME_INFO.masendeshita.short}</span></th>
+                </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+        </table>
+    `;
+}
+
+function renderAll(){
+    buildTabs();
+    buildSections();
+    groupKeys.forEach(k => renderTable(k));
+}
+
+renderAll();
+
+</script>
+
+</body>
+</html>
