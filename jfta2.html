@@ -238,6 +238,123 @@ a{
 }
 
 
+/* BURGER */
+
+.burger-btn{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+
+  background:transparent;
+  border:2px solid var(--gold);
+  color:var(--gold);
+
+  padding:9px 12px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.burger-btn svg{
+  width:20px;
+  height:20px;
+  display:block;
+}
+
+
+/* MOBILE MENU */
+
+.mobile-menu{
+  display:none;
+  flex-direction:column;
+
+  background:#001530;
+  border-top:1px solid rgba(224,181,42,.25);
+}
+
+.mobile-menu.show{
+  display:flex;
+}
+
+.mobile-link{
+  display:block;
+  padding:15px 18px;
+
+  color:#ffd700;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14px;
+
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.mobile-link:hover{
+  background:rgba(224,181,42,.12);
+}
+
+.mobile-acc-btn{
+  width:100%;
+  text-align:left;
+
+  background:transparent;
+  border:none;
+  color:var(--gold);
+  font-weight:700;
+  font-size:14px;
+  font-family:inherit;
+
+  padding:15px 18px;
+  cursor:pointer;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.mobile-acc-btn::after{
+  content:'+';
+  font-size:18px;
+  line-height:1;
+}
+
+.mobile-acc-btn.open::after{
+  content:'\2212';
+}
+
+.mobile-acc-panel{
+  display:none;
+  flex-direction:column;
+
+  background:#0a2242;
+}
+
+.mobile-acc-panel.show{
+  display:flex;
+}
+
+.mobile-acc-panel a{
+  padding:13px 32px;
+
+  color:#ffd700;
+  text-decoration:none;
+  font-size:13px;
+
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.mobile-acc-panel a:hover{
+  background:rgba(224,181,42,.15);
+}
+
+@media(min-width:761px){
+  .mobile-menu{
+    display:none !important;
+  }
+}
+
+
 /* =========================================================
    HERO
 ========================================================= */
@@ -888,17 +1005,9 @@ footer .fseal{
 @media(max-width:1000px){
 
   .navbar-inner{
-    flex-wrap:wrap;
-
     padding:10px 12px;
 
     gap:10px;
-  }
-
-  .nav-right{
-    justify-content:flex-start;
-
-    gap:6px;
   }
 
   .dropdown-btn{
@@ -923,37 +1032,28 @@ footer .fseal{
 @media(max-width:760px){
 
   .navbar-inner{
-    flex-direction:column;
+    flex-wrap:nowrap;
 
-    align-items:stretch;
+    padding:10px 14px;
 
-    gap:8px;
+    gap:10px;
   }
 
   .nav-left{
-    width:100%;
+    flex:1;
+    min-width:0;
   }
 
   .home-btn{
-    width:100%;
+    width:auto;
   }
 
   .nav-right{
-    width:100%;
-
-    justify-content:flex-start;
-
-    flex-wrap:wrap;
+    display:none;
   }
 
-  .dropdown{
-    flex-shrink:0;
-  }
-
-  .dropdown-btn{
-    font-size:.72rem;
-
-    padding:6px 9px;
+  .burger-btn{
+    display:flex;
   }
 
   .grid3{
@@ -1193,6 +1293,57 @@ footer .fseal{
       </div>
 
 
+    </div>
+
+
+    <!-- BURGER -->
+    <button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+
+  </div>
+
+
+  <!-- MOBILE MENU PANEL -->
+  <div class="mobile-menu" id="mobileMenu">
+
+    <a class="mobile-link" href="index.html">HOME</a>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">TEKIPAKI LEARNING</button>
+    <div class="mobile-acc-panel">
+      <a href="guru.html">GURU</a>
+      <a href="elearning.html">SISWA</a>
+    </div>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+    <div class="mobile-acc-panel">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="materikanji.html">Materi Kanji JLPT</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+      <a href="materikosakata.html">Materi Kosakata JLPT</a>
+    </div>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
+    <div class="mobile-acc-panel">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
+    <div class="mobile-acc-panel">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
     </div>
 
   </div>
@@ -2121,6 +2272,31 @@ document.addEventListener("click",function(e){
 
 
 
+/* Burger menu (mobile) */
+
+function toggleMobileMenu(){
+  const menu = document.getElementById("mobileMenu");
+  if(!menu) return;
+  menu.classList.toggle("show");
+}
+
+function toggleMobileAccordion(btn){
+  const panel = btn.nextElementSibling;
+  const isOpen = btn.classList.contains("open");
+
+  document.querySelectorAll(".mobile-acc-btn").forEach(b => {
+    if(b !== btn){
+      b.classList.remove("open");
+      if(b.nextElementSibling) b.nextElementSibling.classList.remove("show");
+    }
+  });
+
+  btn.classList.toggle("open", !isOpen);
+  if(panel) panel.classList.toggle("show", !isOpen);
+}
+
+
+
 /* Saat ukuran layar berubah */
 
 window.addEventListener("resize",function(){
@@ -2143,6 +2319,14 @@ window.addEventListener("resize",function(){
       dropdown.classList.remove("open");
 
     });
+
+
+  if(window.innerWidth > 760){
+    const mobileMenu = document.getElementById("mobileMenu");
+    if(mobileMenu) mobileMenu.classList.remove("show");
+    document.querySelectorAll(".mobile-acc-btn").forEach(b => b.classList.remove("open"));
+    document.querySelectorAll(".mobile-acc-panel").forEach(p => p.classList.remove("show"));
+  }
 
 });
 
