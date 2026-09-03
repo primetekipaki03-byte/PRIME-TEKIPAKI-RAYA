@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latihan Tata Bahasa Unit 7: ~つもり ・ ~かもしれない ・ ~でしょう</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --gold-soft:#fff3c4;
+    --paper:#fffdf7;
+    --text:#001f3f;
+    --muted:#5b6b7d;
+    --green:#16a34a;
+    --red:#dc2626;
+    --blue:#1d4ed8;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:"Poppins","Segoe UI",Arial,sans-serif; }
+body{ background:#f6f5f1; color:var(--text); padding-bottom:50px; }
+.jp{ font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif; }
+
+#navbar{
+    position:sticky; top:0; z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+.navbar-inner{ display:flex; justify-content:space-between; align-items:center; padding:12px 20px; flex-wrap:wrap; gap:10px; }
+.nav-title{ color:var(--gold); font-weight:700; font-size:15px; letter-spacing:.02em; }
+
+header{ text-align:center; padding:26px 20px 8px; }
+.eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--navy); color:var(--gold);
+    font-size:12.5px; font-weight:600; letter-spacing:.1em;
+    padding:7px 16px; border-radius:999px; margin-bottom:16px;
+}
+header h1{ font-size:30px; color:var(--navy); margin-bottom:8px; letter-spacing:-.01em; }
+header p{ font-size:14px; color:var(--muted); max-width:600px; margin:0 auto; line-height:1.6; }
+
+.mini-cards{ max-width:900px; margin:22px auto 0; padding:0 20px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.mini-card{ background:white; border:2px solid var(--navy); border-radius:16px; padding:16px 14px; text-align:center; box-shadow:0 4px 0 var(--navy); }
+.mini-card .mc-jp{ font-size:19px; font-weight:900; color:var(--navy); }
+.mini-card .mc-id{ font-size:12.5px; color:var(--muted); margin-top:4px; }
+
+.grammar-tabs{ max-width:900px; margin:26px auto 0; padding:0 20px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.gtab{
+    border:2px solid var(--navy); background:white; color:var(--navy);
+    padding:10px 22px; border-radius:999px; font-weight:700; font-size:16px;
+    cursor:pointer; font-family:"Noto Sans JP",sans-serif;
+}
+.gtab:hover{ background:var(--gold-soft); }
+.gtab.active{ background:var(--navy); color:var(--gold); }
+
+.grammar-section{ display:none; max-width:900px; margin:0 auto; padding:0 20px; }
+.grammar-section.active{ display:block; }
+
+.gram-intro{
+    background:var(--gold-soft); border:1.5px solid var(--gold); border-radius:14px;
+    padding:14px 18px; margin-top:22px; font-size:13.5px; color:#5a4a00; line-height:1.6;
+}
+
+.conj-table-wrap{ margin-top:18px; }
+.conj-table-title{ font-size:14px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+.conj-table-rule{ font-size:13px; color:var(--muted); margin-bottom:12px; }
+.conj-table{ width:100%; border-collapse:separate; border-spacing:0; background:white; border:1.5px solid #e2ddcf; border-radius:12px; overflow:hidden; }
+.conj-table th{ background:var(--navy); color:var(--gold); font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; padding:10px 12px; text-align:left; }
+.conj-table td{ padding:9px 12px; font-size:14px; border-top:1px solid #eee; vertical-align:top; }
+.conj-gol-cell{ font-weight:700; color:var(--navy); font-size:12.5px; white-space:nowrap; }
+.conj-note-cell{ font-size:12px; color:var(--muted); }
+.conj-examples{ display:flex; flex-direction:column; gap:4px; }
+.conj-ex-row{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.conj-ex-row .arrow{ color:var(--muted); font-size:12px; }
+.conj-ex-row .final{ font-weight:700; color:var(--green); }
+
+.subtab-row{ display:flex; gap:8px; margin-top:22px; flex-wrap:wrap; }
+.subtab{
+    border:2px solid #d8d4c8; background:white; color:var(--muted);
+    padding:9px 16px; border-radius:12px 12px 0 0; font-weight:600; font-size:13.5px; cursor:pointer;
+}
+.subtab:hover{ color:var(--navy); }
+.subtab.active{ border-color:var(--navy); background:var(--navy); color:var(--gold); }
+
+.subpanel{ display:none; background:white; border:2px solid var(--navy); border-radius:0 14px 14px 14px; padding:26px; }
+.subpanel.active{ display:block; }
+
+/* ===== PG (quiz card) ===== */
+.progress-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:10px; flex-wrap:wrap; }
+.progress-text{ font-size:13px; font-weight:600; color:var(--navy); white-space:nowrap; }
+.progress-bar{ flex:1; height:6px; background:#e3e0d6; border-radius:999px; margin:0 14px; overflow:hidden; min-width:80px; }
+.progress-fill{ height:100%; background:var(--gold); border-radius:999px; transition:width .35s ease; }
+
+.card{
+    background:var(--paper); border:2px solid var(--navy); box-shadow:0 6px 0 var(--navy);
+    border-radius:22px; padding:38px 28px; display:flex; flex-direction:column;
+    align-items:center; justify-content:flex-start; text-align:center; width:100%;
+}
+.badge{
+    width:40px; height:40px; border-radius:50%; background:var(--gold-soft);
+    border:2px solid var(--gold); display:flex; align-items:center; justify-content:center;
+    font-size:18px; margin-bottom:12px;
+}
+.word{ font-size:clamp(22px, 5vw, 32px); font-weight:900; color:var(--navy); line-height:1.6; word-break:break-word; }
+.subtext{ margin-top:8px; font-size:14px; color:var(--muted); max-width:520px; }
+
+.options-grid{ margin-top:26px; display:grid; grid-template-columns:1fr 1fr; gap:12px; width:100%; }
+.opt-btn{
+    border:2px solid #d8d4c8; background:white; color:var(--navy);
+    padding:15px 14px; border-radius:14px; font-weight:600; font-size:16px;
+    cursor:pointer; text-align:center; transition:.15s;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.opt-btn .opt-letter{
+    width:22px; height:22px; border-radius:50%; border:1.5px solid var(--navy);
+    font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.opt-btn:hover:not(:disabled){ border-color:var(--navy); background:var(--gold-soft); }
+.opt-btn:disabled{ cursor:default; }
+.opt-btn.correct{ background:#e8f8ee; border-color:var(--green); color:var(--green); }
+.opt-btn.correct .opt-letter{ background:var(--green); border-color:var(--green); color:white; }
+.opt-btn.wrong{ background:#fdecec; border-color:var(--red); color:var(--red); }
+.opt-btn.wrong .opt-letter{ background:var(--red); border-color:var(--red); color:white; }
+.opt-btn.dim{ opacity:.5; }
+
+.feedback{ margin-top:16px; font-size:13.5px; font-weight:700; padding:8px 16px; border-radius:999px; display:none; }
+.feedback.show{ display:inline-block; }
+.feedback.correct-fb{ background:#e8f8ee; color:var(--green); }
+.feedback.wrong-fb{ background:#fdecec; color:var(--red); }
+
+.nav-row{ display:flex; align-items:center; justify-content:center; gap:16px; margin-top:22px; flex-wrap:wrap; }
+.nav-btn{
+    width:44px; height:44px; border-radius:50%; border:2px solid var(--navy);
+    background:white; color:var(--navy); font-size:18px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.nav-btn:hover{ background:var(--navy); color:var(--gold); }
+.nav-btn:disabled{ opacity:.3; cursor:default; }
+.nav-btn:disabled:hover{ background:white; color:var(--navy); }
+.reset-btn{
+    border-radius:999px; width:auto; padding:0 18px; font-size:12.5px; font-weight:600; gap:6px;
+    border:2px solid var(--gold); background:var(--navy); color:var(--gold);
+}
+.reset-btn:hover{ background:var(--gold); color:var(--navy); }
+
+.jump-row{ display:flex; justify-content:center; flex-wrap:wrap; gap:7px; margin-top:20px; }
+.dot{
+    width:32px; height:32px; border-radius:8px; border:2px solid #d8d4c8; background:white;
+    color:var(--muted); font-size:12.5px; font-weight:700; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.dot:hover{ border-color:var(--navy); }
+.dot.active{ background:var(--navy); border-color:var(--navy); color:var(--gold); }
+.dot.correct{ border-color:var(--green); color:var(--green); }
+.dot.wrong{ border-color:var(--red); color:var(--red); }
+.dot.active.correct, .dot.active.wrong{ color:var(--gold); }
+
+.pg-score{ text-align:center; font-size:13.5px; font-weight:700; color:var(--navy); margin-top:14px; }
+
+/* ===== Esai & Merubah kalimat ===== */
+.item-list{ display:flex; flex-direction:column; gap:14px; }
+.item-card{ border:1.5px solid #e2ddcf; border-radius:14px; padding:16px 18px; background:#fffefb; }
+.item-num{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:26px; height:26px; border-radius:50%; background:var(--navy); color:var(--gold);
+    font-size:12px; font-weight:700; margin-right:8px; flex-shrink:0;
+}
+.item-prompt{ font-size:15px; font-weight:600; color:var(--navy); display:flex; align-items:flex-start; gap:2px; line-height:1.6; }
+.item-sentences{ margin-top:10px; margin-left:34px; font-size:14.5px; color:var(--text); line-height:1.8; }
+.item-sentences span{ display:block; }
+.item-textarea{
+    width:100%; margin-top:10px; border:1.5px solid #d8d4c8; border-radius:10px;
+    padding:10px 12px; font-size:14px; font-family:inherit; resize:vertical; min-height:44px;
+}
+.item-textarea:focus{ outline:none; border-color:var(--navy); }
+.reveal-btn{
+    margin-top:10px; margin-left:34px; border:1.5px solid var(--blue); background:#eef4ff; color:var(--blue);
+    padding:6px 14px; border-radius:999px; font-size:12.5px; font-weight:700; cursor:pointer;
+}
+.reveal-btn:hover{ background:var(--blue); color:white; }
+.answer-box{
+    display:none; margin-top:10px; margin-left:34px; background:#e8f8ee; border:1.5px solid var(--green);
+    color:#0f5c30; border-radius:10px; padding:10px 14px; font-size:14.5px; line-height:1.6;
+}
+.answer-box.show{ display:block; }
+
+footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px; }
+
+@media(max-width:480px){
+    .options-grid{ grid-template-columns:1fr; }
+    header h1{ font-size:22px; }
+    .card{ padding:28px 16px; }
+    .item-sentences, .reveal-btn, .answer-box{ margin-left:0; }
+    .mini-cards{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-title">📝 Tekipaki Japanese Learning</div>
+</div>
+</nav>
+
+<header>
+<div class="eyebrow">📘 LATIHAN TATA BAHASA N4 — UNIT 7</div>
+<h1>Latihan ~つもり ・ ~かもしれない ・ ~でしょう</h1>
+<p>Setiap pola punya 10 soal pilihan ganda, 10 soal esai, dan 10 soal merubah kalimat. Pilih pola tata bahasa dan jenis soal di bawah ini.</p>
+</header>
+
+<div class="mini-cards">
+    <div class="mini-card"><div class="mc-jp">〜つもり</div><div class="mc-id">berniat / berencana</div></div>
+    <div class="mini-card"><div class="mc-jp">〜かもしれない</div><div class="mc-id">mungkin / bisa jadi</div></div>
+    <div class="mini-card"><div class="mc-jp">〜でしょう</div><div class="mc-id">mungkin / kan? (dugaan)</div></div>
+</div>
+
+<div class="grammar-tabs" id="grammarTabs"></div>
+
+<div id="grammarSections"></div>
+
+<footer>
+© 2026 Tekipaki Japanese Learning | Latihan Tata Bahasa
+</footer>
+
+<script>
+
+const DATA = {
+    tsumori: {
+        label: "～つもり",
+        intro: "～つもり digunakan untuk menyatakan niat atau rencana pembicara: \"berniat/berencana ~\". Melekat pada bentuk kamus kata kerja untuk niat positif, dan bentuk ない untuk niat negatif (tidak berniat melakukan). Bentuk lampau つもりだった menyatakan rencana yang sudah dibuat sebelumnya.",
+        table: {
+            rule: "動詞辞書形＋つもりです（niat positif）。動詞ない形＋つもりです（niat negatif）。動詞辞書形＋つもりだった（rencana lampau）.",
+            rows: [
+                {gol:"動詞辞書形＋つもり", note:"Bentuk kamus + つもりです = berniat melakukan ~.", examples:[
+                    {dict:"買う", masu:"買います", form:"買うつもりです"},
+                    {dict:"留学する", masu:"留学します", form:"留学するつもりです"},
+                    {dict:"なる", masu:"なります", form:"なるつもりです"}
+                ]},
+                {gol:"動詞ない形＋つもり", note:"Bentuk ない + つもりです = berniat tidak melakukan ~.", examples:[
+                    {dict:"吸わない", masu:"吸いません", form:"吸わないつもりです"},
+                    {dict:"行かない", masu:"行きません", form:"行かないつもりです"},
+                    {dict:"会わない", masu:"会いません", form:"会わないつもりです"}
+                ]},
+                {gol:"動詞辞書形＋つもりだった", note:"つもりだった = dulu berniat/berencana (biasanya rencana yang berubah).", examples:[
+                    {dict:"行く", masu:"行きます", form:"行くつもりだった"},
+                    {dict:"寝る", masu:"寝ます", form:"寝るつもりだった"},
+                    {dict:"作る", masu:"作ります", form:"作るつもりだった"}
+                ]}
+            ]
+        },
+        pg: [
+            {word:"今年、新しい車を___です。", sub:"(berniat membeli mobil baru tahun ini: 買う)", options:["買うつもり","買いますつもり","買ったつもり","買ってつもり"], answer:0},
+            {word:"今晩は早く___です。", sub:"(berniat tidur cepat malam ini: 寝る)", options:["寝ますつもり","寝るつもり","寝てつもり","寝ながらつもり"], answer:1},
+            {word:"彼はもうタバコを___です。", sub:"(berniat tidak merokok lagi: 吸う→吸わない)", options:["吸うつもり","吸いますつもり","吸わないつもり","吸わなかったつもり"], answer:2},
+            {word:"今度の休みは旅行に___です。", sub:"(berniat tidak pergi liburan kali ini: 行かない)", options:["行くつもり","行かないつもり","行ってつもり","行きますつもり"], answer:1},
+            {word:"私は将来、先生に___です。", sub:"(berniat menjadi guru di masa depan: なる)", options:["なるつもり","なりますつもり","なってつもり","なったつもり"], answer:0},
+            {word:"田中さんは大学院へ___です。", sub:"(berniat melanjutkan ke pascasarjana: 進む)", options:["進みますつもり","進むつもり","進んでつもり","進んつもり"], answer:1},
+            {word:"週末は誰にも___です。", sub:"(berniat tidak bertemu siapapun akhir pekan ini: 会わない)", options:["会うつもり","会いますつもり","会わないつもり","会ったつもり"], answer:2},
+            {word:"夏休みに国へ___です。", sub:"(berniat pulang kampung saat libur musim panas: 帰る)", options:["帰りますつもり","帰るつもり","帰ってつもり","帰らつもり"], answer:1},
+            {word:"彼女は仕事を___です。", sub:"(berniat berhenti kerja: 辞める)", options:["辞めるつもり","辞めますつもり","辞めのつもり","辞めてつもり"], answer:0},
+            {word:"私は今日中にレポートを___です。", sub:"(berniat menyelesaikan laporan hari ini juga: 終わらせる)", options:["終わらせますつもり","終わらせるつもり","終わらせてつもり","終わらせたつもり"], answer:1}
+        ],
+        essay: [
+            {cue:"買います（今年・新しい車を）", sentence:"今年、新しい車を＿＿＿＿です。", answer:"買うつもり"},
+            {cue:"寝ます（今晩・早く）", sentence:"今晩は早く＿＿＿＿です。", answer:"寝るつもり"},
+            {cue:"吸います（彼・もう・否定）", sentence:"彼はもうタバコを＿＿＿＿です。", answer:"吸わないつもり"},
+            {cue:"行きます（今度の休み・旅行・否定）", sentence:"今度の休みは旅行に＿＿＿＿です。", answer:"行かないつもり"},
+            {cue:"なります（私・将来・先生に）", sentence:"私は将来、先生に＿＿＿＿です。", answer:"なるつもり"},
+            {cue:"進みます（田中さん・大学院へ）", sentence:"田中さんは大学院へ＿＿＿＿です。", answer:"進むつもり"},
+            {cue:"会います（週末・誰にも・否定）", sentence:"週末は誰にも＿＿＿＿です。", answer:"会わないつもり"},
+            {cue:"帰ります（夏休み・国へ）", sentence:"夏休みに国へ＿＿＿＿です。", answer:"帰るつもり"},
+            {cue:"辞めます（彼女・仕事を）", sentence:"彼女は仕事を＿＿＿＿です。", answer:"辞めるつもり"},
+            {cue:"終わらせます（私・今日中に・レポートを）", sentence:"私は今日中にレポートを＿＿＿＿です。", answer:"終わらせるつもり"}
+        ],
+        transform: [
+            {parts:["今年、新しい車を買います。","そう決めました。"], answer:"今年、新しい車を買うつもりです。"},
+            {parts:["今晩は早く寝ます。","そう決めました。"], answer:"今晩は早く寝るつもりです。"},
+            {parts:["彼はもうタバコを吸いません。","そう決めました。"], answer:"彼はもうタバコを吸わないつもりです。"},
+            {parts:["今度の休みは旅行に行きません。","そう決めました。"], answer:"今度の休みは旅行に行かないつもりです。"},
+            {parts:["私は将来、先生になります。","そう考えています。"], answer:"私は将来、先生になるつもりです。"},
+            {parts:["田中さんは大学院へ進みます。","そう考えています。"], answer:"田中さんは大学院へ進むつもりです。"},
+            {parts:["週末は誰にも会いません。","そう決めました。"], answer:"週末は誰にも会わないつもりです。"},
+            {parts:["夏休みに国へ帰ります。","そう決めました。"], answer:"夏休みに国へ帰るつもりです。"},
+            {parts:["彼女は仕事を辞めます。","そう決めました。"], answer:"彼女は仕事を辞めるつもりです。"},
+            {parts:["私は今日中にレポートを終わらせます。","そう決めました。"], answer:"私は今日中にレポートを終わらせるつもりです。"}
+        ]
+    },
+    kamoshirenai: {
+        label: "～かもしれない",
+        intro: "～かもしれない digunakan untuk menyatakan kemungkinan atau dugaan yang tidak terlalu yakin: \"mungkin/bisa jadi ~\". Bentuk yang mendahuluinya adalah bentuk biasa (普通形), kecuali untuk kata sifat -na dan kata benda yang tidak memakai だ.",
+        table: {
+            rule: "動詞普通形＋かもしれない。い形容詞普通形（そのまま）＋かもしれない。な形容詞・名詞（だ抜き）＋かもしれない.",
+            rows: [
+                {gol:"動詞普通形＋かもしれない", note:"Bentuk biasa kata kerja (辞書形・た形・ない形) + かもしれない.", examples:[
+                    {dict:"降る", masu:"降ります", form:"降るかもしれません"},
+                    {dict:"来ない", masu:"来ません", form:"来ないかもしれません"},
+                    {dict:"帰った", masu:"帰りました", form:"帰ったかもしれません"}
+                ]},
+                {gol:"い形容詞普通形＋かもしれない", note:"Bentuk biasa kata sifat -i (い tetap ada) + かもしれない.", examples:[
+                    {dict:"高い", masu:"高いです", form:"高いかもしれません"},
+                    {dict:"難しい", masu:"難しいです", form:"難しいかもしれません"}
+                ]},
+                {gol:"な形容詞・名詞（だ抜き）＋かもしれない", note:"Kata sifat -na dan kata benda tanpa だ + かもしれない.", examples:[
+                    {dict:"便利", masu:"便利です", form:"便利かもしれません"},
+                    {dict:"休み", masu:"休みです", form:"休みかもしれません"}
+                ]}
+            ]
+        },
+        pg: [
+            {word:"明日は雨が___。", sub:"(mungkin besok hujan: 降る)", options:["降るかもしれません","降りますかもしれません","降ってかもしれません","降ったらかもしれません"], answer:0},
+            {word:"彼は今日パーティーに___。", sub:"(mungkin dia tidak datang ke pesta hari ini: 来ない)", options:["来ますかもしれません","来ないかもしれません","来てかもしれません","来たいかもしれません"], answer:1},
+            {word:"田中さんはもう___。", sub:"(mungkin sudah pulang: 帰った)", options:["帰るかもしれません","帰りますかもしれません","帰ったかもしれません","帰ってかもしれません"], answer:2},
+            {word:"このかばんは少し___。", sub:"(mungkin agak mahal: 高い)", options:["高いかもしれません","高くてかもしれません","高かったらかもしれません","高いですかもしれません"], answer:0},
+            {word:"今度のテストは___。", sub:"(mungkin sulit: 難しい)", options:["難しいですかもしれません","難しいかもしれません","難しくてかもしれません","難しかったかもしれません"], answer:1},
+            {word:"このアプリは意外と___。", sub:"(mungkin cukup praktis: 便利)", options:["便利ですかもしれません","便利だかもしれません","便利かもしれません","便利なかもしれません"], answer:2},
+            {word:"明日は会社が___。", sub:"(mungkin libur: 休み)", options:["休みですかもしれません","休みだかもしれません","休みかもしれません","休みなかもしれません"], answer:2},
+            {word:"彼女は今、家に___。", sub:"(mungkin tidak ada di rumah: いない)", options:["いますかもしれません","いないかもしれません","いてかもしれません","いたいかもしれません"], answer:1},
+            {word:"来週、台風が___。", sub:"(mungkin akan datang: 来る)", options:["来ますかもしれません","来るかもしれません","来てかもしれません","来たかもしれません"], answer:1},
+            {word:"このニュースは___。", sub:"(mungkin tidak benar: 本当じゃない)", options:["本当じゃないかもしれません","本当じゃなかったらかもしれません","本当じゃなくてかもしれません","本当じゃないですかもしれません"], answer:0}
+        ],
+        essay: [
+            {cue:"降ります（明日・雨）", sentence:"明日は雨が＿＿＿＿。", answer:"降るかもしれません"},
+            {cue:"来ません（彼・今日・パーティーに）", sentence:"彼は今日パーティーに＿＿＿＿。", answer:"来ないかもしれません"},
+            {cue:"帰りました（田中さん）", sentence:"田中さんはもう＿＿＿＿。", answer:"帰ったかもしれません"},
+            {cue:"高いです（このかばん・少し）", sentence:"このかばんは少し＿＿＿＿。", answer:"高いかもしれません"},
+            {cue:"難しいです（今度のテスト）", sentence:"今度のテストは＿＿＿＿。", answer:"難しいかもしれません"},
+            {cue:"便利です（このアプリ・意外と）", sentence:"このアプリは意外と＿＿＿＿。", answer:"便利かもしれません"},
+            {cue:"休みです（明日・会社が）", sentence:"明日は会社が＿＿＿＿。", answer:"休みかもしれません"},
+            {cue:"いません（彼女・今・家に）", sentence:"彼女は今、家に＿＿＿＿。", answer:"いないかもしれません"},
+            {cue:"来ます（来週・台風が）", sentence:"来週、台風が＿＿＿＿。", answer:"来るかもしれません"},
+            {cue:"本当じゃないです（このニュース）", sentence:"このニュースは＿＿＿＿。", answer:"本当じゃないかもしれません"}
+        ],
+        transform: [
+            {parts:["明日は雨が降ります。","確信はありません。"], answer:"明日は雨が降るかもしれません。"},
+            {parts:["彼は今日パーティーに来ません。","確信はありません。"], answer:"彼は今日パーティーに来ないかもしれません。"},
+            {parts:["田中さんはもう帰りました。","確信はありません。"], answer:"田中さんはもう帰ったかもしれません。"},
+            {parts:["このかばんは少し高いです。","確信はありません。"], answer:"このかばんは少し高いかもしれません。"},
+            {parts:["今度のテストは難しいです。","確信はありません。"], answer:"今度のテストは難しいかもしれません。"},
+            {parts:["このアプリは意外と便利です。","確信はありません。"], answer:"このアプリは意外と便利かもしれません。"},
+            {parts:["明日は会社が休みです。","確信はありません。"], answer:"明日は会社が休みかもしれません。"},
+            {parts:["彼女は今、家にいません。","確信はありません。"], answer:"彼女は今、家にいないかもしれません。"},
+            {parts:["来週、台風が来ます。","確信はありません。"], answer:"来週、台風が来るかもしれません。"},
+            {parts:["このニュースは本当じゃないです。","確信はありません。"], answer:"このニュースは本当じゃないかもしれません。"}
+        ]
+    },
+    deshou: {
+        label: "～でしょう",
+        intro: "～でしょう digunakan untuk menyatakan dugaan pembicara dengan tingkat keyakinan cukup tinggi, atau untuk meminta konfirmasi/persetujuan lawan bicara: \"mungkin ~\" atau \"~, kan?\". Bentuk yang mendahuluinya sama dengan かもしれない, yaitu bentuk biasa (普通形), kecuali kata sifat -na dan kata benda yang tidak memakai だ.",
+        table: {
+            rule: "動詞普通形＋でしょう。い形容詞普通形（そのまま）＋でしょう。な形容詞・名詞（だ抜き）＋でしょう.",
+            rows: [
+                {gol:"動詞普通形＋でしょう", note:"Bentuk biasa kata kerja (辞書形・た形・ない形) + でしょう.", examples:[
+                    {dict:"降る", masu:"降ります", form:"降るでしょう"},
+                    {dict:"来ない", masu:"来ません", form:"来ないでしょう"},
+                    {dict:"合格した", masu:"合格しました", form:"合格したでしょう"}
+                ]},
+                {gol:"い形容詞普通形＋でしょう", note:"Bentuk biasa kata sifat -i (い tetap ada) + でしょう.", examples:[
+                    {dict:"暑い", masu:"暑いです", form:"暑いでしょう"},
+                    {dict:"楽しい", masu:"楽しいです", form:"楽しいでしょう"}
+                ]},
+                {gol:"な形容詞・名詞（だ抜き）＋でしょう", note:"Kata sifat -na dan kata benda tanpa だ + でしょう. Nada naik di akhir kalimat digunakan untuk konfirmasi (~, kan?).", examples:[
+                    {dict:"便利", masu:"便利です", form:"便利でしょう"},
+                    {dict:"晴れ", masu:"晴れです", form:"晴れでしょう"}
+                ]}
+            ]
+        },
+        pg: [
+            {word:"明日は雪が___。", sub:"(mungkin besok akan turun salju: 降る)", options:["降るでしょう","降りますでしょう","降ってでしょう","降ったらでしょう"], answer:0},
+            {word:"彼は今日___。", sub:"(mungkin dia tidak datang hari ini: 来ない)", options:["来ますでしょう","来ないでしょう","来てでしょう","来たいでしょう"], answer:1},
+            {word:"山田さんはきっと___。", sub:"(pasti sudah lulus: 合格した)", options:["合格するでしょう","合格しますでしょう","合格したでしょう","合格してでしょう"], answer:2},
+            {word:"来週は今より___。", sub:"(mungkin lebih panas: 暑い)", options:["暑いでしょう","暑くてでしょう","暑かったらでしょう","暑いですでしょう"], answer:0},
+            {word:"この旅行はきっと___。", sub:"(pasti menyenangkan: 楽しい)", options:["楽しいですでしょう","楽しいでしょう","楽しくてでしょう","楽しかったでしょう"], answer:1},
+            {word:"新しい駅ができれば、とても___。", sub:"(pasti akan sangat praktis: 便利)", options:["便利ですでしょう","便利だでしょう","便利でしょう","便利なでしょう"], answer:2},
+            {word:"明日は多分___。", sub:"(mungkin cerah: 晴れ)", options:["晴れですでしょう","晴れだでしょう","晴れでしょう","晴れなでしょう"], answer:2},
+            {word:"今度の試合は難しい___？", sub:"(dugaan sambil minta konfirmasi)", options:["でしょう","かもしれません","つもりです","と思いますでしょう"], answer:0},
+            {word:"彼女はもうすぐ___。", sub:"(mungkin akan segera tiba: 着く)", options:["着きますでしょう","着くでしょう","着いてでしょう","着いたでしょう"], answer:1},
+            {word:"これは高橋さんの傘___？", sub:"(minta konfirmasi: itu payung Takahashi, kan?)", options:["でしょう","かもしれません","つもりです","と思いますでしょう"], answer:0}
+        ],
+        essay: [
+            {cue:"降ります（明日・雪）", sentence:"明日は雪が＿＿＿＿。", answer:"降るでしょう"},
+            {cue:"来ません（彼・今日）", sentence:"彼は今日＿＿＿＿。", answer:"来ないでしょう"},
+            {cue:"合格しました（山田さん・きっと）", sentence:"山田さんはきっと＿＿＿＿。", answer:"合格したでしょう"},
+            {cue:"暑いです（来週・今より）", sentence:"来週は今より＿＿＿＿。", answer:"暑いでしょう"},
+            {cue:"楽しいです（この旅行・きっと）", sentence:"この旅行はきっと＿＿＿＿。", answer:"楽しいでしょう"},
+            {cue:"便利です（新しい駅ができれば・とても）", sentence:"新しい駅ができれば、とても＿＿＿＿。", answer:"便利でしょう"},
+            {cue:"晴れです（明日・多分）", sentence:"明日は多分＿＿＿＿。", answer:"晴れでしょう"},
+            {cue:"難しいです（今度の試合・確認）", sentence:"今度の試合は難しい＿＿＿＿？", answer:"でしょう"},
+            {cue:"着きます（彼女・もうすぐ）", sentence:"彼女はもうすぐ＿＿＿＿。", answer:"着くでしょう"},
+            {cue:"傘です（これは高橋さんの・確認）", sentence:"これは高橋さんの傘＿＿＿＿？", answer:"でしょう"}
+        ],
+        transform: [
+            {parts:["明日は雪が降ります。","たぶんそうです。"], answer:"明日は雪が降るでしょう。"},
+            {parts:["彼は今日来ません。","たぶんそうです。"], answer:"彼は今日来ないでしょう。"},
+            {parts:["山田さんは合格しました。","きっとそうです。"], answer:"山田さんはきっと合格したでしょう。"},
+            {parts:["来週は今より暑いです。","たぶんそうです。"], answer:"来週は今より暑いでしょう。"},
+            {parts:["この旅行は楽しいです。","きっとそうです。"], answer:"この旅行はきっと楽しいでしょう。"},
+            {parts:["新しい駅ができれば、とても便利です。","たぶんそうです。"], answer:"新しい駅ができれば、とても便利でしょう。"},
+            {parts:["明日は晴れです。","たぶんそうです。"], answer:"明日は多分晴れでしょう。"},
+            {parts:["今度の試合は難しいです。","相手に確認します。"], answer:"今度の試合は難しいでしょう？"},
+            {parts:["彼女はもうすぐ着きます。","たぶんそうです。"], answer:"彼女はもうすぐ着くでしょう。"},
+            {parts:["これは高橋さんの傘です。","相手に確認します。"], answer:"これは高橋さんの傘でしょう？"}
+        ]
+    }
+};
+
+const grammarKeys = Object.keys(DATA);
+let activeGrammar = grammarKeys[0];
+let activeSubtab = {};
+grammarKeys.forEach(k => { activeSubtab[k] = "pg"; });
+
+// state per grammar for PG quiz
+grammarKeys.forEach(k => {
+    DATA[k].current = 0;
+    DATA[k].picked = DATA[k].pg.map(() => null);
+});
+
+const letters = ["A","B","C","D"];
+const grammarTabsEl = document.getElementById("grammarTabs");
+const grammarSectionsEl = document.getElementById("grammarSections");
+
+function buildConjTableHtml(g){
+    let rowsHtml = "";
+    g.table.rows.forEach(row => {
+        const examplesHtml = row.examples.map(ex =>
+            `<div class="conj-ex-row jp"><span>${ex.dict}</span><span class="arrow">(${ex.masu})</span><span class="arrow">→</span><span class="final">${ex.form}</span></div>`
+        ).join("");
+        rowsHtml += `
+            <tr>
+                <td class="conj-gol-cell">${row.gol}</td>
+                <td class="conj-note-cell">${row.note}</td>
+                <td><div class="conj-examples">${examplesHtml}</div></td>
+            </tr>
+        `;
+    });
+    return `
+        <div class="conj-table-wrap">
+            <div class="conj-table-title">📐 Tabel Perubahan Kosakata → ${g.label}</div>
+            <div class="conj-table-rule">${g.table.rule}</div>
+            <table class="conj-table">
+                <thead>
+                    <tr><th>Kategori</th><th>Aturan</th><th>Contoh</th></tr>
+                </thead>
+                <tbody>${rowsHtml}</tbody>
+            </table>
+        </div>
+    `;
+}
+
+function buildGrammarTabs(){
+    grammarTabsEl.innerHTML = "";
+    grammarKeys.forEach(k => {
+        const btn = document.createElement("button");
+        btn.className = "gtab" + (k === activeGrammar ? " active" : "");
+        btn.textContent = DATA[k].label;
+        btn.addEventListener("click", () => { activeGrammar = k; renderAll(); });
+        grammarTabsEl.appendChild(btn);
+    });
+}
+
+function buildSections(){
+    grammarSectionsEl.innerHTML = "";
+    grammarKeys.forEach(k => {
+        const section = document.createElement("div");
+        section.className = "grammar-section" + (k === activeGrammar ? " active" : "");
+        section.id = "sec-" + k;
+
+        section.innerHTML = `
+            <div class="gram-intro">${DATA[k].intro}</div>
+            ${buildConjTableHtml(DATA[k])}
+            <div class="subtab-row" id="subtabs-${k}">
+                <button class="subtab" data-sub="pg">✅ Pilihan Ganda</button>
+                <button class="subtab" data-sub="essay">✍️ Esai</button>
+                <button class="subtab" data-sub="transform">🔄 Merubah Kalimat</button>
+            </div>
+            <div class="subpanel" id="panel-${k}-pg"></div>
+            <div class="subpanel" id="panel-${k}-essay"></div>
+            <div class="subpanel" id="panel-${k}-transform"></div>
+        `;
+        grammarSectionsEl.appendChild(section);
+
+        section.querySelectorAll(".subtab").forEach(btn => {
+            btn.addEventListener("click", () => {
+                activeSubtab[k] = btn.dataset.sub;
+                renderSubtabs(k);
+            });
+        });
+    });
+}
+
+function renderSubtabs(k){
+    const row = document.getElementById("subtabs-" + k);
+    row.querySelectorAll(".subtab").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.sub === activeSubtab[k]);
+    });
+    ["pg","essay","transform"].forEach(sub => {
+        const panel = document.getElementById("panel-" + k + "-" + sub);
+        panel.classList.toggle("active", sub === activeSubtab[k]);
+    });
+    if(activeSubtab[k] === "pg") renderPG(k);
+    if(activeSubtab[k] === "essay") renderEssay(k);
+    if(activeSubtab[k] === "transform") renderTransform(k);
+}
+
+//===================== PG =====================
+function renderPG(k){
+    const g = DATA[k];
+    const q = g.pg[g.current];
+    const picked = g.picked[g.current];
+    const panel = document.getElementById("panel-" + k + "-pg");
+
+    let optionsHtml = "";
+    q.options.forEach((opt, i) => {
+        let cls = "opt-btn";
+        let disabled = "";
+        if(picked !== null){
+            disabled = "disabled";
+            if(i === q.answer) cls += " correct";
+            else if(i === picked) cls += " wrong";
+            else cls += " dim";
+        }
+        optionsHtml += `<button class="${cls}" ${disabled} data-i="${i}"><span class="opt-letter">${letters[i]}</span><span class="jp">${opt}</span></button>`;
+    });
+
+    let feedbackHtml = "";
+    if(picked !== null){
+        const isCorrect = picked === q.answer;
+        feedbackHtml = `<div class="feedback show ${isCorrect ? "correct-fb" : "wrong-fb"}">${isCorrect ? "✔ Jawaban benar!" : "✘ Jawaban salah. Jawaban yang benar: " + q.options[q.answer]}</div>`;
+    }
+
+    let dotsHtml = "";
+    g.pg.forEach((qq, i) => {
+        let cls = "dot" + (i === g.current ? " active" : "");
+        if(g.picked[i] !== null) cls += (g.picked[i] === qq.answer ? " correct" : " wrong");
+        dotsHtml += `<button class="${cls}" data-jump="${i}">${i+1}</button>`;
+    });
+
+    const doneCount = g.picked.filter(p => p !== null).length;
+    const correctCount = g.pg.filter((qq,i) => g.picked[i] === qq.answer).length;
+
+    panel.innerHTML = `
+        <div class="progress-row">
+            <span class="progress-text">${g.current+1} / ${g.pg.length}</span>
+            <div class="progress-bar"><div class="progress-fill" style="width:${(g.current+1)/g.pg.length*100}%"></div></div>
+        </div>
+        <div class="card">
+            <div class="badge jp">文</div>
+            <div class="word jp">${q.word}</div>
+            <div class="subtext">${q.sub}</div>
+            <div class="options-grid">${optionsHtml}</div>
+            ${feedbackHtml}
+        </div>
+        <div class="nav-row">
+            <button class="nav-btn" id="pgPrev-${k}" ${g.current===0?"disabled":""}>←</button>
+            <button class="nav-btn reset-btn" id="pgReset-${k}">↺ Ulang</button>
+            <button class="nav-btn" id="pgNext-${k}" ${g.current===g.pg.length-1?"disabled":""}>→</button>
+        </div>
+        <div class="jump-row">${dotsHtml}</div>
+        <div class="pg-score">Terjawab: ${doneCount}/${g.pg.length} &nbsp;|&nbsp; Benar: ${correctCount}</div>
+    `;
+
+    panel.querySelectorAll(".opt-btn:not([disabled])").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const i = parseInt(btn.dataset.i, 10);
+            g.picked[g.current] = i;
+            renderPG(k);
+        });
+    });
+    panel.querySelectorAll("[data-jump]").forEach(btn => {
+        btn.addEventListener("click", () => { g.current = parseInt(btn.dataset.jump,10); renderPG(k); });
+    });
+    const prevBtn = document.getElementById("pgPrev-"+k);
+    const nextBtn = document.getElementById("pgNext-"+k);
+    const resetBtn = document.getElementById("pgReset-"+k);
+    if(prevBtn) prevBtn.addEventListener("click", () => { if(g.current>0){ g.current--; renderPG(k);} });
+    if(nextBtn) nextBtn.addEventListener("click", () => { if(g.current<g.pg.length-1){ g.current++; renderPG(k);} });
+    if(resetBtn) resetBtn.addEventListener("click", () => {
+        if(confirm("Ulang soal pilihan ganda " + g.label + "?")){
+            g.current = 0;
+            g.picked = g.pg.map(() => null);
+            renderPG(k);
+        }
+    });
+}
+
+//===================== ESSAY =====================
+function renderEssay(k){
+    const g = DATA[k];
+    const panel = document.getElementById("panel-" + k + "-essay");
+    let html = `<div class="item-list">`;
+    g.essay.forEach((item, i) => {
+        html += `
+            <div class="item-card">
+                <div class="item-prompt jp"><span class="item-num">${i+1}</span>（${item.cue}）</div>
+                <div class="item-sentences jp"><span>${item.sentence}</span></div>
+                <input type="text" class="item-textarea jp" style="min-height:auto;" placeholder="Tulis jawabanmu di sini...">
+                <button class="reveal-btn" data-target="essay-ans-${k}-${i}">💡 Lihat jawaban</button>
+                <div class="answer-box jp" id="essay-ans-${k}-${i}">${item.answer}</div>
+            </div>
+        `;
+    });
+    html += `</div>`;
+    panel.innerHTML = html;
+
+    panel.querySelectorAll(".reveal-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const box = document.getElementById(btn.dataset.target);
+            box.classList.toggle("show");
+            btn.textContent = box.classList.contains("show") ? "🙈 Sembunyikan jawaban" : "💡 Lihat jawaban";
+        });
+    });
+}
+
+//===================== TRANSFORM =====================
+function renderTransform(k){
+    const g = DATA[k];
+    const panel = document.getElementById("panel-" + k + "-transform");
+    let html = `<div class="item-list">`;
+    g.transform.forEach((item, i) => {
+        const instruksi = item.parts.length > 1
+            ? `Gabungkan kalimat berikut menggunakan pola <span class="jp" style="font-weight:900;">${g.label}</span>:`
+            : `Ubah kalimat berikut menggunakan pola <span class="jp" style="font-weight:900;">${g.label}</span>:`;
+        html += `
+            <div class="item-card">
+                <div class="item-prompt">
+                    <span class="item-num">${i+1}</span>
+                    ${instruksi}
+                </div>
+                <div class="item-sentences jp">
+                    ${item.parts.map(p => `<span>${p}</span>`).join("")}
+                </div>
+                <textarea class="item-textarea jp" placeholder="Tulis jawabanmu di sini..."></textarea>
+                <button class="reveal-btn" data-target="tf-ans-${k}-${i}">💡 Lihat jawaban</button>
+                <div class="answer-box jp" id="tf-ans-${k}-${i}">${item.answer}</div>
+            </div>
+        `;
+    });
+    html += `</div>`;
+    panel.innerHTML = html;
+
+    panel.querySelectorAll(".reveal-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const box = document.getElementById(btn.dataset.target);
+            box.classList.toggle("show");
+            btn.textContent = box.classList.contains("show") ? "🙈 Sembunyikan jawaban" : "💡 Lihat jawaban";
+        });
+    });
+}
+
+function renderAll(){
+    buildGrammarTabs();
+    buildSections();
+    grammarKeys.forEach(k => renderSubtabs(k));
+}
+
+renderAll();
+
+</script>
+
+</body>
+</html>
