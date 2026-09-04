@@ -130,7 +130,7 @@ header h1{ font-size:30px; color:var(--navy); margin-bottom:8px; letter-spacing:
 header p{ font-size:14px; color:var(--muted); max-width:660px; margin:0 auto; line-height:1.6; }
 
 .guru-note{
-    max-width:900px; margin:18px auto 0; padding:0 20px;
+    max-width:1320px; margin:18px auto 0; padding:0 20px;
 }
 .guru-note-inner{
     background:var(--blue-soft); border:1.5px solid #a9c6ff; border-radius:14px;
@@ -139,7 +139,7 @@ header p{ font-size:14px; color:var(--muted); max-width:660px; margin:0 auto; li
 .guru-note-inner b{ color:var(--navy); }
 
 .grammar-tabs{
-    max-width:900px; margin:22px auto 0; padding:0 20px 10px;
+    max-width:1320px; margin:22px auto 0; padding:0 20px 10px;
     display:flex; gap:10px; justify-content:center;
     overflow-x:auto; overflow-y:hidden; flex-wrap:nowrap;
     scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch;
@@ -157,7 +157,7 @@ header p{ font-size:14px; color:var(--muted); max-width:660px; margin:0 auto; li
 .gtab:hover{ background:var(--gold-soft); }
 .gtab.active{ background:var(--navy); color:var(--gold); }
 
-.grammar-section{ display:none; max-width:1040px; margin:0 auto; padding:0 20px; }
+.grammar-section{ display:none; max-width:1320px; margin:0 auto; padding:0 20px; }
 .grammar-section.active{ display:block; }
 
 .gram-intro{
@@ -181,7 +181,7 @@ header p{ font-size:14px; color:var(--muted); max-width:660px; margin:0 auto; li
 
 /* TABLE */
 .flash-table-wrap{ margin-top:16px; overflow-x:auto; border:1.5px solid #e2ddcf; border-radius:14px; }
-.flash-table{ width:100%; border-collapse:separate; border-spacing:0; background:white; min-width:760px; }
+.flash-table{ width:100%; border-collapse:separate; border-spacing:0; background:white; min-width:920px; }
 .flash-table th{
     background:var(--navy); color:var(--gold); font-size:11px; text-transform:uppercase;
     letter-spacing:.04em; padding:11px 12px; text-align:left; position:sticky; top:0;
@@ -199,10 +199,11 @@ header p{ font-size:14px; color:var(--muted); max-width:660px; margin:0 auto; li
 .flash-cell{
     width:100%; min-height:46px; border-radius:999px; cursor:pointer;
     display:flex; align-items:center; justify-content:center; text-align:center;
-    padding:10px 14px; transition:.15s; border:2px solid var(--navy); background:white;
+    padding:10px 10px; transition:.15s; border:2px solid var(--navy); background:white;
+    box-sizing:border-box;
 }
 .flash-cell:hover{ background:var(--gold-soft); }
-.flash-cell .hidden-label{ font-size:12.5px; font-weight:700; color:var(--navy); letter-spacing:.02em; }
+.flash-cell .hidden-label{ font-size:12.5px; font-weight:700; color:var(--navy); letter-spacing:.02em; white-space:nowrap; }
 .flash-cell.revealed{
     border-radius:16px; border:2px solid var(--navy); background:var(--navy); cursor:pointer; flex-direction:column;
     padding:10px 10px;
@@ -365,7 +366,7 @@ footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px
 <header>
 <div class="eyebrow">🎴 MATERI KELAS · MODE FLASHCARD</div>
 <h1>Flashcard Tabel Perubahan Kata Kerja</h1>
-<p>Bentuk kamus（辞書形）selalu terlihat, tapi kolom ～ます／～ません／～ました／～ませんでした disembunyikan. Klik salah satu kotak untuk menampilkan jawabannya, klik lagi untuk menyembunyikannya kembali.</p>
+<p>Bentuk kamus（辞書形）selalu terlihat, tapi kolom ～ます／～ません／～ました／～ませんでした／～て disembunyikan. Klik salah satu kotak untuk menampilkan jawabannya, klik lagi untuk menyembunyikannya kembali.</p>
 </header>
 
 <div class="guru-note">
@@ -430,16 +431,16 @@ const GROUPS = {
         label: "Gol 3 (Fukisoku)",
         intro: "Kata kerja golongan 3 (不規則動詞 / fukisoku-doushi): する dan 来る serta turunannya, bentuknya tidak beraturan dan harus dihafalkan langsung.",
         verbs: [
-            {kanji:"する", reading:"する", romaji:"suru", arti:"melakukan", masu:"します", masuR:"shimasu", masen:"しません", masenR:"shimasen", mashita:"しました", mashitaR:"shimashita", masendeshita:"しませんでした", masendeshitaR:"shimasendeshita"},
-            {kanji:"来る", reading:"くる", romaji:"kuru", arti:"datang", masu:"来ます", masuR:"kimasu", masen:"来ません", masenR:"kimasen", mashita:"来ました", mashitaR:"kimashita", masendeshita:"来ませんでした", masendeshitaR:"kimasendeshita"},
-            {kanji:"勉強する", reading:"べんきょうする", romaji:"benkyou suru", arti:"belajar", masu:"勉強します", masuR:"benkyou shimasu", masen:"勉強しません", masenR:"benkyou shimasen", mashita:"勉強しました", mashitaR:"benkyou shimashita", masendeshita:"勉強しませんでした", masendeshitaR:"benkyou shimasendeshita"},
-            {kanji:"運動する", reading:"うんどうする", romaji:"undou suru", arti:"berolahraga", masu:"運動します", masuR:"undou shimasu", masen:"運動しません", masenR:"undou shimasen", mashita:"運動しました", mashitaR:"undou shimashita", masendeshita:"運動しませんでした", masendeshitaR:"undou shimasendeshita"},
-            {kanji:"結婚する", reading:"けっこんする", romaji:"kekkon suru", arti:"menikah", masu:"結婚します", masuR:"kekkon shimasu", masen:"結婚しません", masenR:"kekkon shimasen", mashita:"結婚しました", mashitaR:"kekkon shimashita", masendeshita:"結婚しませんでした", masendeshitaR:"kekkon shimasendeshita"}
+            {kanji:"する", reading:"する", romaji:"suru", arti:"melakukan", masu:"します", masuR:"shimasu", masen:"しません", masenR:"shimasen", mashita:"しました", mashitaR:"shimashita", masendeshita:"しませんでした", masendeshitaR:"shimasendeshita", te:"して", teR:"shite"},
+            {kanji:"来る", reading:"くる", romaji:"kuru", arti:"datang", masu:"来ます", masuR:"kimasu", masen:"来ません", masenR:"kimasen", mashita:"来ました", mashitaR:"kimashita", masendeshita:"来ませんでした", masendeshitaR:"kimasendeshita", te:"来て", teR:"kite"},
+            {kanji:"勉強する", reading:"べんきょうする", romaji:"benkyou suru", arti:"belajar", masu:"勉強します", masuR:"benkyou shimasu", masen:"勉強しません", masenR:"benkyou shimasen", mashita:"勉強しました", mashitaR:"benkyou shimashita", masendeshita:"勉強しませんでした", masendeshitaR:"benkyou shimasendeshita", te:"勉強して", teR:"benkyou shite"},
+            {kanji:"運動する", reading:"うんどうする", romaji:"undou suru", arti:"berolahraga", masu:"運動します", masuR:"undou shimasu", masen:"運動しません", masenR:"undou shimasen", mashita:"運動しました", mashitaR:"undou shimashita", masendeshita:"運動しませんでした", masendeshitaR:"undou shimasendeshita", te:"運動して", teR:"undou shite"},
+            {kanji:"結婚する", reading:"けっこんする", romaji:"kekkon suru", arti:"menikah", masu:"結婚します", masuR:"kekkon shimasu", masen:"結婚しません", masenR:"kekkon shimasen", mashita:"結婚しました", mashitaR:"kekkon shimashita", masendeshita:"結婚しませんでした", masendeshitaR:"kekkon shimasendeshita", te:"結婚して", teR:"kekkon shite"}
         ]
     }
 };
 
-// derive masu/masen/mashita/masendeshita for gol1 & gol2 from stem (Gol 3 already has fixed forms)
+// derive masu/masen/mashita/masendeshita/te for gol1 & gol2 from stem (Gol 3 already has fixed forms)
 function deriveForms(v){
     if(v.masu) return v;
     return {
@@ -447,18 +448,19 @@ function deriveForms(v){
         masu: v.stem + "ます", masuR: v.stemR + "masu",
         masen: v.stem + "ません", masenR: v.stemR + "masen",
         mashita: v.stem + "ました", mashitaR: v.stemR + "mashita",
-        masendeshita: v.stem + "ませんでした", masendeshitaR: v.stemR + "masendeshita"
+        masendeshita: v.stem + "ませんでした", masendeshitaR: v.stemR + "masendeshita",
+        te: v.teForm, teR: v.teFormR
     };
 }
 
 const groupKeys = Object.keys(GROUPS);
 let activeGroup = groupKeys[0];
-const formKeys = ["masu","masen","mashita","masendeshita"];
+const formKeys = ["masu","masen","mashita","masendeshita","te"];
 
 // revealed state: revealed[groupKey][verbIndex][formKey] = true/false
 const revealed = {};
 groupKeys.forEach(k => {
-    revealed[k] = GROUPS[k].verbs.map(() => ({masu:false, masen:false, mashita:false, masendeshita:false}));
+    revealed[k] = GROUPS[k].verbs.map(() => ({masu:false, masen:false, mashita:false, masendeshita:false, te:false}));
 });
 
 const grammarTabsEl = document.getElementById("grammarTabs");
@@ -494,6 +496,7 @@ function buildSections(){
                 <div class="time-legend-item"><div class="tl-form jp">～ません</div><div class="tl-label">${TIME_INFO.masen.label}</div></div>
                 <div class="time-legend-item"><div class="tl-form jp">～ました</div><div class="tl-label">${TIME_INFO.mashita.label}</div></div>
                 <div class="time-legend-item"><div class="tl-form jp">～ませんでした</div><div class="tl-label">${TIME_INFO.masendeshita.label}</div></div>
+                <div class="time-legend-item"><div class="tl-form jp">～て</div><div class="tl-label">${TIME_INFO.te.label}</div></div>
             </div>
             <div class="control-row">
                 <div class="control-left">
@@ -519,11 +522,11 @@ function buildSections(){
 
 function flashCellHtml(k, i, formKey, v){
     const isRevealed = revealed[k][i][formKey];
-    const label = "～" + ({masu:"ます", masen:"ません", mashita:"ました", masendeshita:"ませんでした"})[formKey];
+    const label = "～" + ({masu:"ます", masen:"ません", mashita:"ました", masendeshita:"ませんでした", te:"て"})[formKey];
     if(!isRevealed){
         return `
             <button class="flash-cell" data-k="${k}" data-i="${i}" data-form="${formKey}">
-                <span class="hidden-label">? Cek</span>
+                <span class="hidden-label">Cek</span>
             </button>
         `;
     }
@@ -557,6 +560,7 @@ function renderTable(k){
                 <td data-label="～ません">${flashCellHtml(k, i, "masen", v)}</td>
                 <td data-label="～ました">${flashCellHtml(k, i, "mashita", v)}</td>
                 <td data-label="～ませんでした">${flashCellHtml(k, i, "masendeshita", v)}</td>
+                <td data-label="～て">${flashCellHtml(k, i, "te", v)}</td>
             </tr>
         `;
     });
@@ -570,6 +574,7 @@ function renderTable(k){
                     <th>～ません<span class="th-time">${TIME_INFO.masen.short}</span></th>
                     <th>～ました<span class="th-time">${TIME_INFO.mashita.short}</span></th>
                     <th>～ませんでした<span class="th-time">${TIME_INFO.masendeshita.short}</span></th>
+                    <th>～て<span class="th-time">${TIME_INFO.te.short}</span></th>
                 </tr>
             </thead>
             <tbody>${rows}</tbody>
