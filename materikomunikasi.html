@@ -667,6 +667,347 @@ const slides = [
         `
     },
     {
+        badge: "文",
+        kanji: "一日の習慣",
+        reading: "いちにちのしゅうかん",
+        title: "Contoh Sakubun N4: Kegiatan dari Bangun sampai Tidur",
+        html: `
+            <div class="section-label">Contoh Karangan (Sakubun)</div>
+            <div class="example-box">
+                <div class="example-jp" style="line-height:1.9;">
+                    私は毎朝6時に起きます。起きてから、まず顔を洗います。それから、朝ごはんを食べます。朝ごはんを食べた後で、歯を磨きます。7時半に家を出て、学校へ行きます。授業は8時に始まります。<br><br>
+                    昼休みに、友達と一緒にお弁当を食べます。授業が終わった後、少し勉強してから、家に帰ります。<br><br>
+                    家に帰ってから、まずシャワーを浴びます。それから、晩ごはんを食べます。晩ごはんの後で、宿題をします。宿題が終わったら、テレビを見たり、スマホを見たりします。<br><br>
+                    寝る前に、明日の準備をします。そして、11時ごろ、寝ます。
+                </div>
+            </div>
+            <div class="section-label">Terjemahan</div>
+            <div class="body-text">
+                Saya bangun jam 6 setiap pagi. Setelah bangun, pertama-tama saya cuci muka. Kemudian, saya makan sarapan. Setelah makan sarapan, saya gosok gigi. Jam 7.30 saya keluar rumah dan pergi ke sekolah. Pelajaran dimulai jam 8.
+                <br><br>
+                Saat istirahat siang, saya makan bekal bersama teman. Setelah pelajaran selesai, saya belajar sebentar, lalu pulang ke rumah.
+                <br><br>
+                Setelah sampai rumah, pertama-tama saya mandi. Kemudian, saya makan malam. Setelah makan malam, saya mengerjakan PR. Setelah PR selesai, saya menonton TV dan bermain HP.
+                <br><br>
+                Sebelum tidur, saya menyiapkan keperluan besok. Lalu, saya tidur sekitar jam 11.
+            </div>
+            <div class="section-label">Pola Tata Bahasa N4 yang Dipakai</div>
+            <table class="compare-table">
+                <tr><th>Pola</th><th>Fungsi</th></tr>
+                <tr><td class="jp-cell">～てから</td><td>Melakukan sesuatu, lalu setelah itu...</td></tr>
+                <tr><td class="jp-cell">～た後で</td><td>Setelah melakukan ~ (fokus pada urutan waktu)</td></tr>
+                <tr><td class="jp-cell">～前に</td><td>Sebelum melakukan ~</td></tr>
+                <tr><td class="jp-cell">～たり～たりします</td><td>Menyebutkan beberapa kegiatan (tidak harus urut)</td></tr>
+                <tr><td class="jp-cell">～ごろ</td><td>Sekitar jam/waktu tertentu (perkiraan)</td></tr>
+            </table>
+            <div class="section-label">Kesalahan yang Sering Dilakukan Siswa</div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 6時起きます。</div>
+                <div class="example-id">Salah — lupa partikel に setelah keterangan waktu jam. Waktu jam pasti (6時, 7時半, dst) selalu diikuti に.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ 6時に起きます。</div>
+                <div class="example-id">Benar — partikel に wajib dipakai untuk jam pasti.</div>
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 寝る前に、シャワーを浴びました。（padahal maksudnya mandi lalu tidur）</div>
+                <div class="example-id">Salah konsep — banyak siswa tertukar antara 前に (sebelum) dan 後で (sesudah). "Mandi dulu baru tidur" seharusnya pakai 後で, bukan 前に.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ シャワーを浴びた後で、寝ます。</div>
+                <div class="example-id">Benar — "mandi" terjadi lebih dulu, jadi pakai bentuk た＋後で.</div>
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ テレビを見る、スマホを見るします。</div>
+                <div class="example-id">Salah — pola ～たり～たりします harus memakai bentuk た＋り pada kedua kata kerja, bukan bentuk kamus langsung digabung.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ テレビを見たり、スマホを見たりします。</div>
+                <div class="example-id">Benar — masing-masing kata kerja diubah ke bentuk た, ditambah り, dan diakhiri します.</div>
+            </div>
+            <div class="tip-box"><b>Tips menulis sakubun rutinitas:</b> Buat garis waktu dulu (bangun → pagi → sekolah/kerja → sore → malam → tidur), lalu sambungkan tiap kegiatan dengan ～てから／～た後で／～前に agar urutannya jelas dan tidak tertukar.</div>
+        `
+    },
+    {
+        badge: "動",
+        kanji: "始まる・始める・やめる",
+        reading: "はじまる・はじめる・やめる",
+        title: "Perbedaan Hajimaru, Hajimeru, dan Yameru",
+        html: `
+            <div class="section-label">1. 始まります (Hajimarimasu) vs 始めます (Hajimemasu)</div>
+            <div class="body-text">
+                Ini adalah pasangan <b>自動詞・他動詞 (jidoushi/tadoushi)</b> — kata kerja intransitif dan transitif. Bedanya terletak pada <b>siapa yang melakukan tindakan "memulai" itu</b>.
+            </div>
+            <table class="compare-table">
+                <tr><th>Kata Kerja</th><th>Jenis</th><th>Arti &amp; Pola</th></tr>
+                <tr><td class="jp-cell">始まります</td><td>自動詞 (intransitif)</td><td>"~ dimulai (dengan sendirinya)" → 〜が始まります</td></tr>
+                <tr><td class="jp-cell">始めます</td><td>他動詞 (transitif)</td><td>"seseorang memulai ~" → 〜を始めます</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">授業は9時に始まります。</div>
+                <div class="example-romaji">Jugyou wa kuji ni hajimarimasu.</div>
+                <div class="example-id">"Pelajaran dimulai jam 9." — fokus pada peristiwanya, bukan pada siapa yang memulai. Pakai partikel は／が.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">先生は9時に授業を始めます。</div>
+                <div class="example-romaji">Sensei wa kuji ni jugyou wo hajimemasu.</div>
+                <div class="example-id">"Guru memulai pelajaran jam 9." — ada pelaku yang jelas (guru), objeknya (授業) memakai partikel を.</div>
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 授業を始まります。</div>
+                <div class="example-id">Salah — 始まります (intransitif) tidak boleh memakai partikel を, karena tidak menunjukkan pelaku.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ 授業が始まります。 ／ ◯ 授業を始めます。</div>
+                <div class="example-id">Benar — が dipakai dengan 始まります, を dipakai dengan 始めます. Ini pasangan yang harus diingat bersamaan.</div>
+            </div>
+
+            <div class="section-label">2. 始めます (Hajimemasu) vs やめます (Yamemasu)</div>
+            <div class="body-text">
+                Kalau 始まる/始める tadi soal <b>jidoushi vs tadoushi</b>, sekarang bandingkan dua kata kerja transitif dengan <b>arti yang berlawanan</b>: 始めます berarti "memulai", sedangkan やめます berarti <b>"berhenti / berhenti untuk seterusnya"</b> — misalnya berhenti dari kebiasaan, pekerjaan, atau organisasi.
+            </div>
+            <table class="compare-table">
+                <tr><th>Kata Kerja</th><th>Arti</th><th>Contoh Konteks</th></tr>
+                <tr><td class="jp-cell">始めます</td><td>Memulai (sesuatu yang baru)</td><td>始める新しい趣味を始めます — memulai hobi baru</td></tr>
+                <tr><td class="jp-cell">やめます</td><td>Berhenti (dari sesuatu, biasanya permanen)</td><td>会社をやめます — berhenti dari perusahaan (resign)</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">来月から、ヨガを始めます。</div>
+                <div class="example-romaji">Raigetsu kara, yoga wo hajimemasu.</div>
+                <div class="example-id">"Mulai bulan depan, saya akan mulai yoga."</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">健康のために、たばこをやめました。</div>
+                <div class="example-romaji">Kenkou no tame ni, tabako wo yamemashita.</div>
+                <div class="example-id">"Demi kesehatan, saya berhenti merokok." — やめる cocok dipakai untuk berhenti dari kebiasaan.</div>
+            </div>
+            <div class="tip-box">
+                <b>Catatan tambahan:</b> Jangan tertukar やめる (berhenti dari kegiatan/kebiasaan/pekerjaan) dengan 止める (とめる, "menghentikan sesuatu secara fisik", misalnya 車を止めます = memberhentikan mobil). Keduanya ditulis dengan kanji yang berbeda pengucapan penekanannya, tapi konteks pemakaiannya berbeda.
+            </div>
+        `
+    },
+    {
+        badge: "注",
+        kanji: "初めて・やみます",
+        reading: "はじめて・やみます",
+        title: "Hajimete vs Hajimarimasu, Yamimasu vs Yamemasu",
+        html: `
+            <div class="section-label">1. 初めて (Hajimete) vs 始まります (Hajimarimasu)</div>
+            <div class="body-text">
+                Dua kata ini sering tertukar karena <b>bunyinya mirip</b>, padahal <b>jenis katanya berbeda total</b>.
+            </div>
+            <table class="compare-table">
+                <tr><th>Kata</th><th>Jenis Kata</th><th>Arti &amp; Pemakaian</th></tr>
+                <tr><td class="jp-cell">初めて</td><td>Kata keterangan (fukushi)</td><td>"untuk pertama kalinya" — menerangkan pengalaman baru</td></tr>
+                <tr><td class="jp-cell">始まります</td><td>Kata kerja (doushi)</td><td>"dimulai" — menyatakan sesuatu mulai terjadi</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">去年、初めて日本へ行きました。</div>
+                <div class="example-romaji">Kyonen, hajimete Nihon e ikimashita.</div>
+                <div class="example-id">"Tahun lalu, saya pergi ke Jepang untuk pertama kalinya." — 初めて menerangkan kata kerja 行きました, bukan berdiri sendiri sebagai predikat.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">映画は7時に始まります。</div>
+                <div class="example-romaji">Eiga wa shichiji ni hajimarimasu.</div>
+                <div class="example-id">"Film dimulai jam 7." — 始まります adalah predikat kalimat, berdiri sendiri sebagai kata kerja.</div>
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 映画は初めてです、7時に。</div>
+                <div class="example-id">Salah — 初めて bukan kata kerja "dimulai", jadi tidak bisa dipakai menggantikan 始まります.</div>
+            </div>
+            <div class="tip-box"><b>Cara mudah membedakan:</b> Kalau artinya "pertama kali mengalami sesuatu" → 初めて. Kalau artinya "sesuatu mulai berjalan/terjadi" → 始まります.</div>
+
+            <div class="section-label">2. やみます (Yamimasu) vs やめます (Yamemasu)</div>
+            <div class="body-text">
+                Keduanya berarti "berhenti", tapi <b>やみます hanya dipakai untuk fenomena alam yang berhenti dengan sendirinya</b> (自動詞), sedangkan <b>やめます dipakai saat seseorang sengaja memutuskan untuk berhenti melakukan sesuatu</b> (他動詞) — sudah dibahas di slide sebelumnya.
+            </div>
+            <table class="compare-table">
+                <tr><th>Kata Kerja</th><th>Jenis</th><th>Dipakai Untuk</th></tr>
+                <tr><td class="jp-cell">やみます（止みます）</td><td>自動詞</td><td>Hujan, angin, salju berhenti dengan sendirinya</td></tr>
+                <tr><td class="jp-cell">やめます（やめる）</td><td>他動詞</td><td>Seseorang sengaja berhenti dari kebiasaan/pekerjaan/kegiatan</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">雨がやみました。出かけましょう。</div>
+                <div class="example-romaji">Ame ga yamimashita. Dekakemashou.</div>
+                <div class="example-id">"Hujan sudah berhenti. Ayo pergi." — hujan berhenti dengan sendirinya, tidak ada pelaku yang sengaja menghentikannya.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">彼はタバコをやめました。</div>
+                <div class="example-romaji">Kare wa tabako wo yamemashita.</div>
+                <div class="example-id">"Dia berhenti merokok." — ada pelaku (彼) yang sengaja memutuskan untuk berhenti.</div>
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 彼はタバコをやみました。</div>
+                <div class="example-id">Salah — やみます tidak dipakai untuk keputusan seseorang, hanya untuk fenomena alam yang berhenti sendiri.</div>
+            </div>
+            <div class="tip-box"><b>Cara mudah membedakan:</b> Kalau subjeknya benda alam (雨・風・雪) yang berhenti sendiri → やみます. Kalau subjeknya orang yang sengaja berhenti melakukan sesuatu → やめます.</div>
+        `
+    },
+    {
+        badge: "は",
+        kanji: "助詞 (1)",
+        reading: "じょし",
+        title: "Partikel Dasar: は・が・を・に・で",
+        html: `
+            <div class="body-text">
+                Partikel (助詞) menentukan <b>peran sebuah kata dalam kalimat</b>. Salah pilih partikel bisa mengubah arti kalimat sepenuhnya, jadi ini bagian yang paling sering diperhatikan dalam penilaian.
+            </div>
+            <table class="compare-table">
+                <tr><th>Partikel</th><th>Fungsi</th></tr>
+                <tr><td class="jp-cell">は</td><td>Menandai <b>topik</b> kalimat ("kalau soal ~")</td></tr>
+                <tr><td class="jp-cell">が</td><td>Menandai <b>subjek</b>, terutama info baru / setelah kata tanya</td></tr>
+                <tr><td class="jp-cell">を</td><td>Menandai <b>objek langsung</b> dari kata kerja transitif</td></tr>
+                <tr><td class="jp-cell">に</td><td>Waktu pasti, <b>tujuan arah</b>, penerima tindakan</td></tr>
+                <tr><td class="jp-cell">で</td><td><b>Tempat terjadinya kegiatan</b>, alat/cara melakukan sesuatu</td></tr>
+            </table>
+            <div class="section-label">は vs が — Perbedaan Paling Sering Ditanyakan</div>
+            <div class="example-box">
+                <div class="example-jp">私は学生です。</div>
+                <div class="example-romaji">Watashi wa gakusei desu.</div>
+                <div class="example-id">"Saya (kalau soal saya) adalah pelajar." — memperkenalkan topik yang sudah diketahui/dibicarakan.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">だれが学生ですか。—　私が学生です。</div>
+                <div class="example-romaji">Dare ga gakusei desu ka. — Watashi ga gakusei desu.</div>
+                <div class="example-id">"Siapa yang pelajar?" — "Saya yang pelajar." — が dipakai karena menjawab pertanyaan dengan info baru/spesifik, bukan sekadar topik umum.</div>
+            </div>
+            <div class="section-label">を — Penanda Objek Langsung</div>
+            <div class="body-text">
+                を dipakai untuk menandai <b>objek langsung</b> dari kata kerja transitif — yaitu benda yang <b>menerima langsung tindakan</b> dari kata kerja tersebut (makan apa, minum apa, baca apa, beli apa, dsb).
+            </div>
+            <div class="example-box">
+                <div class="example-jp">私はパンを食べます。</div>
+                <div class="example-romaji">Watashi wa pan wo tabemasu.</div>
+                <div class="example-id">"Saya makan roti." — パン (roti) adalah objek yang menerima tindakan 食べます (makan), jadi diberi partikel を.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">毎日、日本語を勉強します。</div>
+                <div class="example-romaji">Mainichi, nihongo wo benkyou shimasu.</div>
+                <div class="example-id">"Setiap hari saya belajar bahasa Jepang." — 日本語 adalah objek dari 勉強します.</div>
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 私はパンが食べます。</div>
+                <div class="example-id">Salah — 食べます adalah kata kerja transitif yang butuh objek dengan を, bukan が. が dipakai untuk subjek, sedangkan パン di sini berperan sebagai objek yang dimakan.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ 私はパンを食べます。</div>
+                <div class="example-id">Benar — panda pola "S は O を V", objek makanan selalu memakai を dengan kata kerja seperti 食べます／飲みます／買います／読みます.</div>
+            </div>
+            <div class="tip-box"><b>Catatan tambahan:</b> を juga dipakai dengan beberapa kata kerja gerak untuk menyatakan "tempat yang dilewati/ditinggalkan", contohnya 公園を歩きます (berjalan melewati taman) dan 家を出ます (keluar dari rumah) — bukan objek yang "menerima tindakan" secara langsung, tapi tetap memakai を.</div>
+
+            <div class="section-label">に vs で — Kesalahan Umum Siswa</div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 図書館に勉強します。</div>
+                <div class="example-id">Salah — に dipakai untuk tujuan arah (pergi KE mana), bukan tempat berlangsungnya kegiatan.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ 図書館で勉強します。</div>
+                <div class="example-id">Benar — で dipakai karena "belajar" adalah kegiatan yang terjadi DI tempat itu.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">明日、学校に行きます。</div>
+                <div class="example-romaji">Ashita, gakkou ni ikimasu.</div>
+                <div class="example-id">"Besok saya pergi ke sekolah." — に dipakai karena 行きます (pergi) butuh penanda arah/tujuan.</div>
+            </div>
+            <div class="tip-box"><b>Cara mudah membedakan に dan で:</b> に untuk "menuju ke mana / kapan", で untuk "melakukan kegiatan di mana / dengan apa".</div>
+        `
+    },
+    {
+        badge: "や",
+        kanji: "助詞 (2)",
+        reading: "じょし",
+        title: "Partikel Dasar: と・や・も・から〜まで・の・へ",
+        html: `
+            <table class="compare-table">
+                <tr><th>Partikel</th><th>Fungsi</th></tr>
+                <tr><td class="jp-cell">と</td><td>"Dan" (daftar <b>lengkap</b>) / "bersama dengan ~"</td></tr>
+                <tr><td class="jp-cell">や</td><td>"Dan" (daftar <b>tidak lengkap</b>, hanya contoh)</td></tr>
+                <tr><td class="jp-cell">も</td><td>"Juga" — menggantikan は／が／を saat menyatakan kesamaan</td></tr>
+                <tr><td class="jp-cell">から〜まで</td><td>"Dari ~ sampai ~" (waktu atau tempat)</td></tr>
+                <tr><td class="jp-cell">の</td><td>Kepemilikan / menghubungkan dua kata benda</td></tr>
+                <tr><td class="jp-cell">へ</td><td>Arah tujuan, mirip に tapi lebih menekankan "menuju arah sana"</td></tr>
+            </table>
+            <div class="section-label">と vs や — Daftar Lengkap vs Sebagian</div>
+            <div class="example-box">
+                <div class="example-jp">りんごとバナナを買いました。</div>
+                <div class="example-romaji">Ringo to banana wo kaimashita.</div>
+                <div class="example-id">"Saya membeli apel dan pisang." — と berarti hanya membeli dua barang itu saja, daftarnya lengkap.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">りんごやバナナを買いました。</div>
+                <div class="example-romaji">Ringo ya banana wo kaimashita.</div>
+                <div class="example-id">"Saya membeli apel, pisang, dan lain-lain." — や menunjukkan itu hanya sebagian contoh, mungkin masih ada barang lain yang dibeli.</div>
+            </div>
+            <div class="section-label">Contoh Partikel Lainnya</div>
+            <div class="example-box">
+                <div class="example-jp">私も日本語を勉強しています。</div>
+                <div class="example-romaji">Watashi mo nihongo wo benkyou shite imasu.</div>
+                <div class="example-id">"Saya juga belajar bahasa Jepang." — も dipakai karena ada orang lain yang disebutkan sebelumnya melakukan hal sama.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">月曜日から金曜日まで働きます。</div>
+                <div class="example-romaji">Getsuyoubi kara kinyoubi made hatarakimasu.</div>
+                <div class="example-id">"Saya bekerja dari hari Senin sampai Jumat."</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">これは私の本です。</div>
+                <div class="example-romaji">Kore wa watashi no hon desu.</div>
+                <div class="example-id">"Ini buku saya." — の menghubungkan 私 (saya) dengan 本 (buku) sebagai penanda kepemilikan.</div>
+            </div>
+            <div class="tip-box"><b>Catatan:</b> に dan へ sering bisa saling menggantikan untuk arah tujuan (例：学校に行きます／学校へ行きます), tapi に juga dipakai untuk waktu pasti dan penerima, sedangkan へ hanya untuk arah.</div>
+        `
+    },
+    {
+        badge: "分",
+        kanji: "～分（ふん／ぷん）",
+        reading: "ふん・ぷん",
+        title: "Perbedaan Bacaan Fun dan Pun pada Penunjuk Menit",
+        html: `
+            <div class="body-text">
+                分 (penghitung menit) bisa dibaca <b>ふん (fun)</b> atau <b>ぷん (pun)</b> tergantung angka di depannya. Ini bukan pilihan bebas — setiap angka punya bacaan yang <b>sudah tetap/hafalan</b>, jadi sering jadi sumber kesalahan siswa.
+            </div>
+            <div class="section-label">Tabel Bacaan 1〜10 Menit</div>
+            <table class="compare-table">
+                <tr><th>Angka</th><th>Tulisan</th><th>Bacaan</th></tr>
+                <tr><td>1分</td><td class="jp-cell">いっぷん</td><td>ippun</td></tr>
+                <tr><td>2分</td><td class="jp-cell">にふん</td><td>nifun</td></tr>
+                <tr><td>3分</td><td class="jp-cell">さんぷん</td><td>sanpun</td></tr>
+                <tr><td>4分</td><td class="jp-cell">よんぷん</td><td>yonpun</td></tr>
+                <tr><td>5分</td><td class="jp-cell">ごふん</td><td>gofun</td></tr>
+                <tr><td>6分</td><td class="jp-cell">ろっぷん</td><td>roppun</td></tr>
+                <tr><td>7分</td><td class="jp-cell">ななふん</td><td>nanafun</td></tr>
+                <tr><td>8分</td><td class="jp-cell">はっぷん</td><td>happun</td></tr>
+                <tr><td>9分</td><td class="jp-cell">きゅうふん</td><td>kyuufun</td></tr>
+                <tr><td>10分</td><td class="jp-cell">じゅっぷん／じっぷん</td><td>juppun / jippun</td></tr>
+                <tr><td>何分</td><td class="jp-cell">なんぷん</td><td>nanpun (berapa menit)</td></tr>
+            </table>
+            <div class="section-label">Cara Mudah Mengingat</div>
+            <div class="body-text">
+                • Angka <b>2, 5, 7, 9</b> → dibaca <b>ふん (fun)</b>, mengikuti bacaan angka aslinya tanpa perubahan.<br>
+                • Angka <b>1, 3, 4, 6, 8, 10, dan 何</b> → dibaca <b>ぷん (pun)</b>, biasanya disertai perubahan bunyi kecil (っ) pada 1, 6, 8, 10.
+            </div>
+            <div class="example-box">
+                <div class="example-jp">今、3時5分です。</div>
+                <div class="example-romaji">Ima, sanji gofun desu.</div>
+                <div class="example-id">"Sekarang jam 3 lewat 5 menit." — 5分 dibaca ごふん (fun).</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">今、3時10分です。</div>
+                <div class="example-romaji">Ima, sanji juppun desu.</div>
+                <div class="example-id">"Sekarang jam 3 lewat 10 menit." — 10分 dibaca じゅっぷん (pun).</div>
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ いちふん、ろくふん、はちふん、じゅうふん</div>
+                <div class="example-id">Salah — siswa sering lupa bahwa 1分・6分・8分・10分 memakai bunyi っ dan dibaca dengan ぷん, bukan ふん biasa.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ いっぷん、ろっぷん、はっぷん、じゅっぷん</div>
+                <div class="example-id">Benar — perhatikan bunyi っ (double consonant) sebelum ぷん pada angka-angka ini.</div>
+            </div>
+            <div class="tip-box"><b>Tips:</b> Karena ini termasuk hafalan (bukan aturan tata bahasa biasa), cara paling efektif adalah <b>menghafal tabel 1–10分 di atas sampai hafal luar kepala</b>, sama seperti menghafal cara baca jam (時).</div>
+        `
+    },
+    {
         badge: "比",
         kanji: "Rangkuman",
         reading: "まとめ",
