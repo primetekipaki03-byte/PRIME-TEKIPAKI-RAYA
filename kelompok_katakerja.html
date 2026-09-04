@@ -582,14 +582,29 @@ function renderTable(k){
     `;
 
     wrap.querySelectorAll(".flash-cell").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const kk = btn.dataset.k;
-            const ii = parseInt(btn.dataset.i, 10);
-            const ff = btn.dataset.form;
-            revealed[kk][ii][ff] = !revealed[kk][ii][ff];
-            renderTable(kk);
-        });
+        attachCellListener(btn);
     });
+}
+
+function attachCellListener(btn){
+    btn.addEventListener("click", () => {
+        const kk = btn.dataset.k;
+        const ii = parseInt(btn.dataset.i, 10);
+        const ff = btn.dataset.form;
+        revealed[kk][ii][ff] = !revealed[kk][ii][ff];
+        updateCell(kk, ii, ff);
+    });
+}
+
+function updateCell(k, i, formKey){
+    const v = deriveForms(GROUPS[k].verbs[i]);
+    const oldBtn = document.querySelector(`.flash-cell[data-k="${k}"][data-i="${i}"][data-form="${formKey}"]`);
+    if(!oldBtn) return;
+    const temp = document.createElement("div");
+    temp.innerHTML = flashCellHtml(k, i, formKey, v).trim();
+    const newBtn = temp.firstElementChild;
+    attachCellListener(newBtn);
+    oldBtn.replaceWith(newBtn);
 }
 
 function renderAll(){
