@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latihan Dokkai (Membaca) N4 — Unit 6 — Tekipaki</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --gold-soft:#fff3c4;
+    --paper:#fffdf7;
+    --text:#001f3f;
+    --muted:#5b6b7d;
+    --green:#16a34a;
+    --red:#dc2626;
+    --purple:#6d28d9;
+    --purple-soft:#f0e9ff;
+    --purple-brd:#c4b5fd;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:"Poppins","Segoe UI",Arial,sans-serif; }
+body{ background:#f6f5f1; color:var(--text); padding-bottom:40px; }
+.jp{ font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif; }
+
+/* NAVBAR */
+#navbar{
+    position:sticky; top:0; z-index:9999; width:100%;
+    background:#001530;
+    border-bottom:2px solid rgba(224,181,42,.3);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+.navbar-inner{
+    width:100%; min-height:64px; padding:8px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+}
+.nav-left{ display:flex; align-items:center; flex-shrink:0; }
+.nav-right{ display:flex; align-items:center; justify-content:flex-end; gap:8px; flex-wrap:wrap; }
+
+.home-btn{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background:#e0b52a; color:#001530; text-decoration:none;
+    padding:8px 14px; border-radius:10px; font-weight:bold; white-space:nowrap;
+}
+.home-btn:hover{ opacity:.85; }
+.home-icon{ width:22px; height:22px; flex:none; }
+
+.dropdown{ position:relative; flex-shrink:0; z-index:1; }
+.dropdown.open{ z-index:20; }
+.dropdown-btn{
+    display:flex; align-items:center; justify-content:center;
+    background:transparent; border:2px solid #e0b52a; color:#e0b52a;
+    padding:8px 14px; border-radius:8px; font-family:inherit; font-weight:bold;
+    cursor:pointer; white-space:nowrap;
+}
+.dropdown-btn:hover, .dropdown.open .dropdown-btn{ background:#e0b52a; color:#001530; }
+
+.dropdown-menu{
+    display:none; position:absolute; top:calc(100% + 7px); left:0;
+    width:max-content; min-width:220px; max-width:calc(100vw - 20px);
+    background:#1f4577; border:1px solid rgba(224,181,42,.35);
+    border-radius:10px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+.dropdown-menu.show{ display:block; }
+.dropdown-menu.align-right{ left:auto; right:0; }
+.dropdown-menu a{ display:block; padding:12px 15px; color:#ffd700; text-decoration:none; white-space:nowrap; }
+.dropdown-menu a:hover{ background:#e0b52a; color:#001530; }
+
+.burger-btn{
+    display:none; align-items:center; justify-content:center; flex-shrink:0;
+    background:transparent; border:2px solid #e0b52a; color:#e0b52a;
+    padding:9px 12px; border-radius:8px; cursor:pointer;
+}
+.burger-btn svg{ width:20px; height:20px; display:block; }
+
+.mobile-menu{ display:none; flex-direction:column; background:#001530; border-top:1px solid rgba(224,181,42,.25); }
+.mobile-menu.show{ display:flex; }
+.mobile-link{
+    display:block; padding:15px 18px; color:#ffd700; text-decoration:none;
+    font-weight:700; font-size:14px; border-bottom:1px solid rgba(255,255,255,.08);
+}
+.mobile-link:hover{ background:rgba(224,181,42,.12); }
+.mobile-acc-btn{
+    width:100%; text-align:left; background:transparent; border:none;
+    color:#e0b52a; font-weight:700; font-size:14px; padding:15px 18px; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.08); font-family:inherit;
+}
+.mobile-acc-btn::after{ content:'+'; font-size:18px; line-height:1; }
+.mobile-acc-btn.open::after{ content:'\2212'; }
+.mobile-acc-panel{ display:none; flex-direction:column; background:#0a2242; }
+.mobile-acc-panel.show{ display:flex; }
+.mobile-acc-panel a{
+    padding:13px 32px; color:#ffd700; text-decoration:none; font-size:13px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+.mobile-acc-panel a:hover{ background:rgba(224,181,42,.15); }
+
+@media(min-width:761px){
+    .mobile-menu{ display:none !important; }
+}
+@media(max-width:1000px){
+    .navbar-inner{ padding:10px 12px; gap:10px; }
+    .dropdown-btn{ font-size:.72rem; padding:6px 9px; }
+    .home-btn{ padding:8px 10px; font-size:.72rem; }
+}
+@media(max-width:760px){
+    .navbar-inner{ flex-wrap:nowrap; padding:10px 14px; gap:10px; }
+    .nav-left{ flex:1; min-width:0; }
+    .home-btn{ width:auto; }
+    .nav-right{ display:none; }
+    .burger-btn{ display:flex; }
+}
+
+/* HEADER */
+header{ text-align:center; padding:26px 20px 8px; }
+.eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--navy); color:var(--gold);
+    font-size:13px; font-weight:600; letter-spacing:.12em;
+    padding:7px 16px; border-radius:999px; margin-bottom:16px;
+}
+header h1{ font-size:32px; color:var(--navy); margin-bottom:8px; letter-spacing:-.01em; }
+header p{ font-size:14px; color:var(--muted); max-width:600px; margin:0 auto; line-height:1.6; }
+
+.viewer-wrap{ max-width:760px; margin:28px auto 0; padding:0 20px; }
+
+.progress-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; gap:10px; flex-wrap:wrap; }
+.progress-text{ font-size:13px; font-weight:600; color:var(--navy); white-space:nowrap; }
+.progress-bar{ flex:1; height:6px; background:#e3e0d6; border-radius:999px; margin:0 14px; overflow:hidden; min-width:80px; }
+.progress-fill{ height:100%; background:var(--gold); border-radius:999px; transition:width .35s ease; }
+
+.tag-row{ display:flex; justify-content:center; margin-bottom:10px; }
+.tag{
+    font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    padding:5px 14px; border-radius:999px;
+}
+.tag.dokkai{ background:var(--purple-soft); color:var(--purple); border:1.5px solid var(--purple-brd); }
+
+.card{
+    background:var(--paper); border:2px solid var(--navy); box-shadow:0 6px 0 var(--navy);
+    border-radius:22px; padding:36px 30px; display:flex; flex-direction:column;
+    align-items:center; justify-content:flex-start; text-align:center; width:100%;
+    position:relative;
+}
+
+.badge{
+    width:44px; height:44px; border-radius:50%; background:var(--purple-soft);
+    border:2px solid var(--purple-brd); display:flex; align-items:center; justify-content:center;
+    font-size:19px; margin-bottom:16px; color:var(--purple); font-weight:700;
+}
+
+.passage-label{
+    font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:8px; align-self:flex-start;
+}
+
+.passage-box{
+    width:100%; background:#fff; border:1.5px solid #e2ddcf; border-radius:14px;
+    padding:20px 22px; text-align:left; font-size:15.5px; line-height:1.95;
+    color:var(--text); white-space:pre-line; margin-bottom:22px;
+}
+
+.question-text{
+    font-size:16px; font-weight:700; color:var(--navy); text-align:left; align-self:flex-start;
+    margin-bottom:18px; line-height:1.6;
+}
+
+.options-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; width:100%; }
+
+.opt-btn{
+    border:2px solid #d8d4c8; background:white; color:var(--navy);
+    padding:16px 14px; border-radius:14px; font-weight:600; font-size:16px;
+    cursor:pointer; text-align:center; transition:.15s;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.opt-btn .opt-letter{
+    width:22px; height:22px; border-radius:50%; border:1.5px solid var(--navy);
+    font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.opt-btn:hover:not(:disabled){ border-color:var(--navy); background:var(--gold-soft); }
+.opt-btn:disabled{ cursor:default; }
+
+.opt-btn.correct{ background:#e8f8ee; border-color:var(--green); color:var(--green); }
+.opt-btn.correct .opt-letter{ background:var(--green); border-color:var(--green); color:white; }
+.opt-btn.wrong{ background:#fdecec; border-color:var(--red); color:var(--red); }
+.opt-btn.wrong .opt-letter{ background:var(--red); border-color:var(--red); color:white; }
+.opt-btn.dim{ opacity:.5; }
+
+.feedback{ margin-top:18px; font-size:14px; font-weight:700; padding:8px 16px; border-radius:999px; display:none; }
+.feedback.show{ display:inline-block; }
+.feedback.correct-fb{ background:#e8f8ee; color:var(--green); }
+.feedback.wrong-fb{ background:#fdecec; color:var(--red); }
+
+.nav-row{ display:flex; align-items:center; justify-content:center; gap:16px; margin-top:24px; flex-wrap:wrap; }
+
+.nav-btn{
+    width:46px; height:46px; border-radius:50%; border:2px solid var(--navy);
+    background:white; color:var(--navy); font-size:19px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.nav-btn:hover{ background:var(--navy); color:var(--gold); }
+.nav-btn:disabled{ opacity:.3; cursor:default; }
+.nav-btn:disabled:hover{ background:white; color:var(--navy); }
+
+.reset-btn{
+    border-radius:999px; width:auto; padding:0 18px; font-size:13px; font-weight:600; gap:6px;
+    border:2px solid var(--gold); background:var(--navy); color:var(--gold);
+}
+.reset-btn:hover{ background:var(--gold); color:var(--navy); }
+
+.jump-row{ display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:24px; }
+
+.dot{
+    width:34px; height:34px; border-radius:8px; border:2px solid #d8d4c8; background:white;
+    color:var(--muted); font-size:13px; font-weight:700; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.dot:hover{ border-color:var(--navy); }
+.dot.active{ background:var(--navy); border-color:var(--navy); color:var(--gold); }
+.dot.correct{ border-color:var(--green); color:var(--green); }
+.dot.wrong{ border-color:var(--red); color:var(--red); }
+.dot.active.correct, .dot.active.wrong{ color:var(--gold); }
+
+.summary-wrap{ max-width:760px; margin:40px auto 0; padding:0 20px; }
+.summary-title{ font-size:16px; font-weight:700; color:var(--navy); margin-bottom:12px; text-align:center; }
+.stat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.stat-box{
+    background:white; border:1.5px solid #e2ddcf; border-radius:14px;
+    padding:16px 10px; text-align:center;
+}
+.stat-box .num{ font-size:24px; font-weight:900; color:var(--navy); }
+.stat-box .num.green{ color:var(--green); }
+.stat-box .num.red{ color:var(--red); }
+.stat-box .num.gold{ color:#8a6d00; }
+.stat-box .lbl{ font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-top:4px; }
+
+footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px; }
+
+@media(max-width:480px){
+    .options-grid{ grid-template-columns:1fr; }
+    header h1{ font-size:24px; }
+    .progress-row{ flex-wrap:wrap; }
+    .progress-bar{ order:3; width:100%; margin:8px 0 0; flex:1 1 100%; }
+    .card{ padding:28px 18px; }
+    .stat-grid{ grid-template-columns:repeat(2,1fr); }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+  <div class="nav-left">
+    <a href="index.html" class="home-btn">
+      <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+      </svg>
+      HOME
+    </a>
+  </div>
+
+  <div class="nav-right">
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('learningDropdown')">TEKIPAKI LEARNING ▼</button>
+      <div class="dropdown-menu" id="learningDropdown">
+        <a href="guru.html">GURU</a>
+        <a href="elearning.html">SISWA</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('materiDropdown')">MATERI ▼</button>
+      <div class="dropdown-menu" id="materiDropdown">
+        <a href="daftarkosakata.html">Kosakata JFT</a>
+        <a href="materitatabahasa.html">Tata Bahasa</a>
+        <a href="materikanji.html">Materi Kanji JLPT</a>
+        <a href="kanjidasar.html">Kanji Flash Card</a>
+        <a href="materikosakata.html">Materi Kosakata JLPT</a>
+        <a href="tabel-perubahan-kosakata.html">Tabel Perubahan Kosakata</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('quizDropdown')">QUIZ JFT ▼</button>
+      <div class="dropdown-menu" id="quizDropdown">
+        <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+        <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+        <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+        <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+        <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+        <a href="dokkai-n4.html">Latihan Dokkai N4 — Unit 1</a>
+        <a href="dokkai_unit2.html">Latihan Dokkai N4 — Unit 2</a>
+        <a href="dokkai_unit3.html">Latihan Dokkai N4 — Unit 3</a>
+        <a href="dokkai_unit4.html">Latihan Dokkai N4 — Unit 4</a>
+        <a href="dokkai_unit5.html">Latihan Dokkai N4 — Unit 5</a>
+        <a href="dokkai_unit6.html">Latihan Dokkai N4 — Unit 6</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('kanjiQuizDropdown')">QUIZ KANJI ▼</button>
+      <div class="dropdown-menu" id="kanjiQuizDropdown">
+        <a href="quizkanji1.html">QUIZ KANJI 1</a>
+        <a href="quizkanji2.html">QUIZ KANJI 2</a>
+        <a href="quizkanji3.html">QUIZ KANJI 3</a>
+        <a href="quizkanji4.html">QUIZ KANJI 4</a>
+        <a href="quizkanji5.html">QUIZ KANJI 5</a>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="index.html">HOME</a>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">TEKIPAKI LEARNING</button>
+  <div class="mobile-acc-panel">
+    <a href="guru.html">GURU</a>
+    <a href="elearning.html">SISWA</a>
+  </div>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+  <div class="mobile-acc-panel">
+    <a href="daftarkosakata.html">Kosakata JFT</a>
+    <a href="materitatabahasa.html">Tata Bahasa</a>
+    <a href="materikanji.html">Materi Kanji JLPT</a>
+    <a href="kanjidasar.html">Kanji Flash Card</a>
+    <a href="materikosakata.html">Materi Kosakata JLPT</a>
+    <a href="tabel-perubahan-kosakata.html">Tabel Perubahan Kosakata</a>
+  </div>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
+  <div class="mobile-acc-panel">
+    <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+    <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+    <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+    <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+    <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    <a href="dokkai-n4.html">Latihan Dokkai N4 — Unit 1</a>
+    <a href="dokkai_unit2.html">Latihan Dokkai N4 — Unit 2</a>
+    <a href="dokkai_unit3.html">Latihan Dokkai N4 — Unit 3</a>
+    <a href="dokkai_unit4.html">Latihan Dokkai N4 — Unit 4</a>
+    <a href="dokkai_unit5.html">Latihan Dokkai N4 — Unit 5</a>
+    <a href="dokkai_unit6.html">Latihan Dokkai N4 — Unit 6</a>
+  </div>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
+  <div class="mobile-acc-panel">
+    <a href="quizkanji1.html">QUIZ KANJI 1</a>
+    <a href="quizkanji2.html">QUIZ KANJI 2</a>
+    <a href="quizkanji3.html">QUIZ KANJI 3</a>
+    <a href="quizkanji4.html">QUIZ KANJI 4</a>
+    <a href="quizkanji5.html">QUIZ KANJI 5</a>
+  </div>
+</div>
+</nav>
+
+<header>
+<div class="eyebrow">📖 LATIHAN DOKKAI（読解）· UNIT 6 · LEVEL N4</div>
+<h1>Latihan Membaca (Dokkai) N4 — Unit 6</h1>
+<p>15 soal bacaan baru ala JFT / JLPT N4 — cerita, memo kantor, pengumuman komunitas, dan surat sehari-hari. Baca teksnya dengan teliti, lalu jawab pertanyaan di bawahnya. Tidak ada batas waktu, kerjakan santai saja.</p>
+</header>
+
+<div class="viewer-wrap">
+
+<div class="progress-row">
+<span class="progress-text" id="progressText">1 / 15</span>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="tag-row"><span class="tag dokkai" id="tagBadge">DOKKAI · UNIT 6</span></div>
+
+<div class="card" id="card">
+    <div class="badge" id="cardBadge">読</div>
+
+    <div class="passage-label">文章 · Bacaan</div>
+    <div class="passage-box jp" id="cardPassage"></div>
+
+    <div class="question-text jp" id="cardSub"></div>
+
+    <div class="options-grid" id="optionsGrid"></div>
+
+    <div class="feedback" id="feedback"></div>
+</div>
+
+<div class="nav-row">
+<button class="nav-btn" id="prevBtn" title="Sebelumnya">←</button>
+<button class="nav-btn reset-btn" id="resetBtn">↺ Ulang</button>
+<button class="nav-btn" id="nextBtn" title="Berikutnya">→</button>
+</div>
+
+<div class="jump-row" id="jumpRow"></div>
+
+</div>
+
+<div class="summary-wrap">
+<div class="summary-title">📊 Hasil Kamu</div>
+<div class="stat-grid">
+    <div class="stat-box"><div class="num" id="statTotal">0</div><div class="lbl">Terjawab</div></div>
+    <div class="stat-box"><div class="num green" id="statCorrect">0</div><div class="lbl">Benar</div></div>
+    <div class="stat-box"><div class="num red" id="statWrong">0</div><div class="lbl">Salah</div></div>
+    <div class="stat-box"><div class="num gold" id="statScore">-</div><div class="lbl">Nilai</div></div>
+</div>
+</div>
+
+<footer>
+© 2026 Tekipaki Japanese Learning | Latihan Dokkai N4 — Unit 6
+</footer>
+
+<script>
+
+const questions = [
+    {
+        passage: "私は毎朝、出勤する前に近くの公園を散歩することにしています。以前は朝が苦手で、ぎりぎりまで寝ていましたが、散歩を始めてから、頭がすっきりして、仕事にも集中できるようになりました。雨の日は少し残念ですが、それ以外の日はできるだけ続けるようにしています。健康のためにも、これからも続けていきたいです。",
+        sub: "この人は、散歩を始めてからどう変わりましたか。",
+        options: ["朝が苦手になった", "仕事に集中できるようになった", "早く寝るようになった", "公園が嫌いになった"],
+        answer: 1
+    },
+    {
+        passage: "社員各位\n下記の日程で、社内システムのメンテナンスを行います。日時は今週の土曜日、午前9時から午後6時までです。この間、社内のメールおよび共有フォルダはご利用いただけません。急ぎの連絡がある方は、あらかじめ携帯電話の番号を関係者に伝えておいてください。ご協力のほど、よろしくお願いいたします。",
+        sub: "メンテナンス中、利用できないものは何ですか。",
+        options: ["電話", "社内のメールと共有フォルダ", "会社のパソコン", "インターネット全般"],
+        answer: 1
+    },
+    {
+        passage: "山田先生\nお忙しいところ失礼いたします。中村の母でございます。息子が昨日から熱を出しており、本日はお休みさせていただきたく、ご連絡いたしました。病院にはすでに行き、薬をもらいましたので、二、三日で良くなると思います。ご迷惑をおかけしますが、よろしくお願いいたします。",
+        sub: "この手紙の内容として、正しいものはどれですか。",
+        options: ["先生が熱を出した", "中村さんの息子が休む", "病院にまだ行っていない", "もう治っている"],
+        answer: 1
+    },
+    {
+        passage: "私の趣味は写真を撮ることです。特に、旅行先で出会った風景や人々の日常を撮るのが好きです。最初は普通のスマートフォンで撮っていましたが、もっと良い写真を撮りたいと思い、去年カメラを買いました。まだ操作に慣れていない部分もありますが、写真を通して、旅の思い出をより鮮明に残せることが嬉しいです。",
+        sub: "この人が去年したことは何ですか。",
+        options: ["旅行に行った", "カメラを買った", "写真教室に通った", "スマートフォンを買った"],
+        answer: 1
+    },
+    {
+        passage: "みなと図書館からのお知らせ\n蔵書点検のため、来月1日から5日まで、当図書館は臨時休館とさせていただきます。休館中は、本の貸し出し・返却ともにできませんので、ご注意ください。なお、休館前日までに借りた本の返却期限については、休館日数分、延長いたします。皆様にはご不便をおかけしますが、ご理解のほどお願いいたします。",
+        sub: "休館中にできないことは何ですか。",
+        options: ["本を読むこと", "本の貸し出しと返却", "図書館の外に立つこと", "本を予約すること"],
+        answer: 1
+    },
+    {
+        passage: "私は先週、初めて一人で海外旅行に行きました。友達と一緒に行くことが多かったので、最初は少し不安でしたが、自分で計画を立てて行動する楽しさを知ることができました。言葉が通じないときは、身振り手振りで何とか伝えることができ、それも良い経験になりました。次はもっと長い期間、一人旅をしてみたいと思っています。",
+        sub: "この人にとって、今回の旅行はどんな旅行でしたか。",
+        options: ["友達と行く旅行", "初めての一人旅", "会社の出張", "家族旅行"],
+        answer: 1
+    },
+    {
+        passage: "町内会の皆様へ\n来週の土曜日、公園の清掃活動を行います。時間は朝8時から9時までの予定です。軍手とごみ袋はこちらで用意いたしますので、動きやすい服装でお越しください。なお、当日雨天の場合は、翌週の同じ時間に延期いたします。多くの方のご参加をお待ちしております。",
+        sub: "雨が降った場合、清掃活動はどうなりますか。",
+        options: ["中止になる", "室内で行う", "翌週に延期される", "予定通り行われる"],
+        answer: 2
+    },
+    {
+        passage: "私が大学時代に一番頑張ったことは、サークル活動です。所属していたテニスサークルでは、副部長として、部員のスケジュール管理やイベントの企画を担当していました。最初は人をまとめることの難しさに悩みましたが、周りの助けもあり、少しずつリーダーシップを身につけることができました。この経験は、今の仕事にも役立っています。",
+        sub: "この人は、サークルで何を担当していましたか。",
+        options: ["会計", "スケジュール管理とイベントの企画", "練習メニューの作成", "新入部員の勧誘"],
+        answer: 1
+    },
+    {
+        passage: "本日の天気予報\n本日は、午後から天気が急に変わり、夕方にかけて激しい雷雨が予想されます。特に、外出中の方は、雷が聞こえたら、すぐに近くの建物の中に避難してください。また、風も強くなる見込みですので、看板や植木鉢などが飛ばされないよう、ご注意ください。",
+        sub: "雷が聞こえたら、どうすればよいですか。",
+        options: ["走って家に帰る", "すぐに近くの建物に避難する", "傘をさして待つ", "そのまま外出を続ける"],
+        answer: 1
+    },
+    {
+        passage: "私は小さいころから絵を描くのが好きでした。しかし、大人になってからは仕事が忙しく、絵を描く時間がほとんどありませんでした。去年、友人に誘われて、週末だけの絵画教室に通い始めたところ、忘れていた絵を描く楽しさを思い出しました。今では、教室のない日にも、少しずつ自宅で絵を描くようにしています。",
+        sub: "この人が絵画教室に通い始めたきっかけは何ですか。",
+        options: ["自分で探して申し込んだ", "友人に誘われたから", "仕事で必要だったから", "テレビで見たから"],
+        answer: 1
+    },
+    {
+        passage: "ご来館の皆様へ\n当美術館では、来月より、写真撮影が一部の展示室で可能になります。フラッシュの使用は禁止されており、また、他のお客様のご迷惑にならないよう、撮影の際はご配慮をお願いいたします。なお、一部の特別展示については、これまで通り撮影禁止となっておりますので、ご注意ください。",
+        sub: "来月から可能になることは何ですか。",
+        options: ["すべての展示室での撮影", "一部の展示室での撮影", "フラッシュを使った撮影", "特別展示の撮影"],
+        answer: 1
+    },
+    {
+        passage: "私の兄は、去年結婚して、今は隣町に住んでいます。実家を出るまでは、よく喧嘩をしていましたが、離れて暮らすようになってから、お互いのことをより大切に思うようになりました。月に一度は家族で集まって食事をするのが、最近の楽しみの一つです。兄の奥さんも料理が上手で、いつも美味しい手料理を作ってくれます。",
+        sub: "兄は、いつ結婚しましたか。",
+        options: ["今年", "去年", "3年前", "まだ結婚していない"],
+        answer: 1
+    },
+    {
+        passage: "皆様へ\nビル内の給水設備の点検のため、来週の水曜日午後1時から3時まで、断水いたします。断水中は、トイレや給湯室の水道がご利用いただけませんので、あらかじめご了承ください。なお、飲料水が必要な方は、1階の受付にて、ペットボトルの水をご用意しておりますので、お声がけください。",
+        sub: "断水中、利用できないものは何ですか。",
+        options: ["エレベーター", "トイレや給湯室の水道", "電気", "エアコン"],
+        answer: 1
+    },
+    {
+        passage: "私は今年の春、15年間住んでいたアパートから、新しく建てた家に引っ越しました。長年の夢だったマイホームを持つことができ、とても嬉しく思っています。まだ荷物の整理が終わっていない部屋もありますが、庭にどんな花を植えようか考える時間が、今の一番の楽しみです。",
+        sub: "この人は、以前どこに何年間住んでいましたか。",
+        options: ["新しい家に5年間", "アパートに15年間", "実家に20年間", "アパートに5年間"],
+        answer: 1
+    },
+    {
+        passage: "地域スポーツ大会のお知らせ\n来月の第3日曜日、市民運動場にて、地域対抗のスポーツ大会を開催いたします。種目は、綱引き、リレー、玉入れなどで、子どもから大人まで、どなたでもご参加いただけます。参加費は無料ですが、事前の申し込みが必要です。締め切りは今月末までとなっておりますので、お早めにお申し込みください。",
+        sub: "このスポーツ大会について、正しいものはどれですか。",
+        options: ["参加費が必要である", "子どもしか参加できない", "申し込みは不要である", "参加費は無料だが、事前申し込みが必要"],
+        answer: 3
+    }
+];
+
+let current = 0;
+let picked = questions.map(() => null);
+
+const cardPassage = document.getElementById("cardPassage");
+const cardSub = document.getElementById("cardSub");
+const optionsGrid = document.getElementById("optionsGrid");
+const feedback = document.getElementById("feedback");
+const progressText = document.getElementById("progressText");
+const progressFill = document.getElementById("progressFill");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const resetBtn = document.getElementById("resetBtn");
+const jumpRow = document.getElementById("jumpRow");
+const statTotal = document.getElementById("statTotal");
+const statCorrect = document.getElementById("statCorrect");
+const statWrong = document.getElementById("statWrong");
+const statScore = document.getElementById("statScore");
+
+const letters = ["A","B","C","D"];
+
+function renderCard(){
+    const q = questions[current];
+    const ans = picked[current];
+
+    cardPassage.textContent = q.passage;
+    cardSub.textContent = q.sub;
+
+    progressText.textContent = (current+1) + " / " + questions.length;
+    progressFill.style.width = ((current+1)/questions.length*100) + "%";
+
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === questions.length - 1;
+
+    optionsGrid.innerHTML = "";
+    q.options.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.className = "opt-btn";
+        btn.innerHTML = "<span class='opt-letter'>" + letters[i] + "</span><span class='jp'>" + opt + "</span>";
+        if(ans !== null){
+            btn.disabled = true;
+            if(i === q.answer) btn.classList.add("correct");
+            else if(i === ans) btn.classList.add("wrong");
+            else btn.classList.add("dim");
+        }
+        btn.addEventListener("click", () => {
+            if(picked[current] !== null) return;
+            picked[current] = i;
+            renderAll();
+        });
+        optionsGrid.appendChild(btn);
+    });
+
+    feedback.classList.remove("show","correct-fb","wrong-fb");
+    if(ans !== null){
+        const isCorrect = ans === q.answer;
+        feedback.textContent = isCorrect ? "✔ Jawaban benar!" : "✘ Jawaban salah. Jawaban yang benar: " + q.options[q.answer];
+        feedback.classList.add("show", isCorrect ? "correct-fb" : "wrong-fb");
+    }
+
+    renderJumpRow();
+    renderStats();
+}
+
+function renderJumpRow(){
+    jumpRow.innerHTML = "";
+    questions.forEach((q, i) => {
+        const dot = document.createElement("button");
+        let cls = "dot" + (i === current ? " active" : "");
+        if(picked[i] !== null){
+            cls += (picked[i] === q.answer ? " correct" : " wrong");
+        }
+        dot.className = cls;
+        dot.textContent = i + 1;
+        dot.addEventListener("click", () => {
+            current = i;
+            renderCard();
+        });
+        jumpRow.appendChild(dot);
+    });
+}
+
+function renderStats(){
+    const done = picked.filter(p => p !== null).length;
+    const correct = questions.filter((q,i) => picked[i] === q.answer).length;
+    const wrong = done - correct;
+    const nilai = done > 0 ? Math.round((correct / questions.length) * 100) : null;
+
+    statTotal.textContent = done + " / " + questions.length;
+    statCorrect.textContent = correct;
+    statWrong.textContent = wrong;
+    statScore.textContent = nilai === null ? "-" : nilai;
+}
+
+function renderAll(){
+    renderCard();
+}
+
+prevBtn.addEventListener("click", function(){
+    if(current > 0){ current--; renderCard(); }
+});
+
+nextBtn.addEventListener("click", function(){
+    if(current < questions.length - 1){ current++; renderCard(); }
+});
+
+resetBtn.addEventListener("click", function(){
+    if(confirm("Ulang latihan? Semua jawaban akan dihapus.")){
+        current = 0;
+        picked = questions.map(() => null);
+        renderAll();
+    }
+});
+
+renderAll();
+
+/* NAVBAR */
+
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+        if(menu.id !== id){
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+            const parent = menu.closest(".dropdown");
+            if(parent) parent.classList.remove("open");
+        }
+    });
+
+    const menu = document.getElementById(id);
+    if(!menu) return;
+
+    const parent = menu.closest(".dropdown");
+    const isOpen = menu.classList.contains("show");
+
+    if(isOpen){
+        menu.classList.remove("show");
+        menu.classList.remove("align-right");
+        if(parent) parent.classList.remove("open");
+        return;
+    }
+
+    menu.classList.add("show");
+    if(parent) parent.classList.add("open");
+
+    menu.classList.remove("align-right");
+    const rect = menu.getBoundingClientRect();
+    if(rect.right > window.innerWidth - 10){
+        menu.classList.add("align-right");
+    }
+    if(rect.left < 10){
+        menu.classList.remove("align-right");
+    }
+}
+
+document.addEventListener("click", function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(menu => {
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+        });
+        document.querySelectorAll(".dropdown").forEach(dropdown => {
+            dropdown.classList.remove("open");
+        });
+    }
+});
+
+function toggleMobileMenu(){
+    const menu = document.getElementById("mobileMenu");
+    if(!menu) return;
+    menu.classList.toggle("show");
+}
+
+function toggleMobileAccordion(btn){
+    const panel = btn.nextElementSibling;
+    const isOpen = btn.classList.contains("open");
+
+    document.querySelectorAll(".mobile-acc-btn").forEach(b => {
+        if(b !== btn){
+            b.classList.remove("open");
+            if(b.nextElementSibling) b.nextElementSibling.classList.remove("show");
+        }
+    });
+
+    btn.classList.toggle("open", !isOpen);
+    if(panel) panel.classList.toggle("show", !isOpen);
+}
+
+window.addEventListener("resize", function(){
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+        menu.classList.remove("show");
+        menu.classList.remove("align-right");
+    });
+    document.querySelectorAll(".dropdown").forEach(dropdown => {
+        dropdown.classList.remove("open");
+    });
+
+    if(window.innerWidth > 760){
+        const mobileMenu = document.getElementById("mobileMenu");
+        if(mobileMenu) mobileMenu.classList.remove("show");
+        document.querySelectorAll(".mobile-acc-btn").forEach(b => b.classList.remove("open"));
+        document.querySelectorAll(".mobile-acc-panel").forEach(p => p.classList.remove("show"));
+    }
+});
+
+</script>
+
+</body>
+</html>
