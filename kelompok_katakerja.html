@@ -197,16 +197,16 @@ header p{ font-size:14px; color:var(--muted); max-width:660px; margin:0 auto; li
 .verb-arti{ font-size:12px; color:var(--muted); font-style:italic; margin-top:2px; }
 
 .flash-cell{
-    width:100%; min-height:46px; border-radius:999px; cursor:pointer;
+    width:100%; min-height:64px; border-radius:999px; cursor:pointer;
     display:flex; align-items:center; justify-content:center; text-align:center;
-    padding:10px 10px; transition:.15s; border:2px solid var(--navy); background:white;
+    padding:6px 10px; transition:background-color .1s; border:2px solid var(--navy); background:white;
     box-sizing:border-box;
 }
 .flash-cell:hover{ background:var(--gold-soft); }
 .flash-cell .hidden-label{ font-size:12.5px; font-weight:700; color:var(--navy); letter-spacing:.02em; white-space:nowrap; }
 .flash-cell.revealed{
-    border-radius:16px; border:2px solid var(--navy); background:var(--navy); cursor:pointer; flex-direction:column;
-    padding:10px 10px;
+    min-height:64px; border-radius:16px; border:2px solid var(--navy); background:var(--navy); cursor:pointer; flex-direction:column;
+    padding:6px 8px;
 }
 .flash-cell.revealed:hover{ background:var(--navy2); }
 .flash-cell.revealed .form-jp{ font-weight:900; color:var(--gold); font-size:15px; }
@@ -239,7 +239,8 @@ footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px
         color:var(--navy); text-transform:uppercase; letter-spacing:.04em; margin-bottom:5px;
     }
     .flash-table td:first-child{ border-bottom:1px dashed #e2ddcf; padding-bottom:10px; margin-bottom:8px; }
-    .flash-cell{ min-height:50px; }
+    .flash-cell{ min-height:56px; }
+    .flash-cell.revealed{ min-height:56px; }
 }
 
 @media(max-width:480px){
