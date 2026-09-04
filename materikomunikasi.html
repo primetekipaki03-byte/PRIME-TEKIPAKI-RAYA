@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Materi Cara Komunikasi (Keigo) — Tekipaki</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --gold-soft:#fff3c4;
+    --paper:#fffdf7;
+    --text:#001f3f;
+    --muted:#5b6b7d;
+    --green:#16a34a;
+    --red:#dc2626;
+    --blue:#2563eb;
+    --blue-soft:#e8f0ff;
+    --blue-brd:#a9c6ff;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:"Poppins","Segoe UI",Arial,sans-serif; }
+body{ background:#f6f5f1; color:var(--text); padding-bottom:40px; }
+.jp{ font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif; }
+
+/* NAVBAR */
+#navbar{
+    position:sticky; top:0; z-index:9999; width:100%;
+    background:#001530;
+    border-bottom:2px solid rgba(224,181,42,.3);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+.navbar-inner{
+    width:100%; min-height:64px; padding:8px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+}
+.nav-left{ display:flex; align-items:center; flex-shrink:0; }
+.nav-right{ display:flex; align-items:center; justify-content:flex-end; gap:8px; flex-wrap:wrap; }
+
+.home-btn{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background:#e0b52a; color:#001530; text-decoration:none;
+    padding:8px 14px; border-radius:10px; font-weight:bold; white-space:nowrap;
+}
+.home-btn:hover{ opacity:.85; }
+.home-icon{ width:22px; height:22px; flex:none; }
+
+.dropdown{ position:relative; flex-shrink:0; z-index:1; }
+.dropdown.open{ z-index:20; }
+.dropdown-btn{
+    display:flex; align-items:center; justify-content:center;
+    background:transparent; border:2px solid #e0b52a; color:#e0b52a;
+    padding:8px 14px; border-radius:8px; font-family:inherit; font-weight:bold;
+    cursor:pointer; white-space:nowrap;
+}
+.dropdown-btn:hover, .dropdown.open .dropdown-btn{ background:#e0b52a; color:#001530; }
+
+.dropdown-menu{
+    display:none; position:absolute; top:calc(100% + 7px); left:0;
+    width:max-content; min-width:220px; max-width:calc(100vw - 20px);
+    background:#1f4577; border:1px solid rgba(224,181,42,.35);
+    border-radius:10px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+.dropdown-menu.show{ display:block; }
+.dropdown-menu.align-right{ left:auto; right:0; }
+.dropdown-menu a{ display:block; padding:12px 15px; color:#ffd700; text-decoration:none; white-space:nowrap; }
+.dropdown-menu a:hover{ background:#e0b52a; color:#001530; }
+
+.burger-btn{
+    display:none; align-items:center; justify-content:center; flex-shrink:0;
+    background:transparent; border:2px solid #e0b52a; color:#e0b52a;
+    padding:9px 12px; border-radius:8px; cursor:pointer;
+}
+.burger-btn svg{ width:20px; height:20px; display:block; }
+
+.mobile-menu{ display:none; flex-direction:column; background:#001530; border-top:1px solid rgba(224,181,42,.25); }
+.mobile-menu.show{ display:flex; }
+.mobile-link{
+    display:block; padding:15px 18px; color:#ffd700; text-decoration:none;
+    font-weight:700; font-size:14px; border-bottom:1px solid rgba(255,255,255,.08);
+}
+.mobile-link:hover{ background:rgba(224,181,42,.12); }
+.mobile-acc-btn{
+    width:100%; text-align:left; background:transparent; border:none;
+    color:#e0b52a; font-weight:700; font-size:14px; padding:15px 18px; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.08); font-family:inherit;
+}
+.mobile-acc-btn::after{ content:'+'; font-size:18px; line-height:1; }
+.mobile-acc-btn.open::after{ content:'\2212'; }
+.mobile-acc-panel{ display:none; flex-direction:column; background:#0a2242; }
+.mobile-acc-panel.show{ display:flex; }
+.mobile-acc-panel a{
+    padding:13px 32px; color:#ffd700; text-decoration:none; font-size:13px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+.mobile-acc-panel a:hover{ background:rgba(224,181,42,.15); }
+
+@media(min-width:761px){
+    .mobile-menu{ display:none !important; }
+}
+@media(max-width:1000px){
+    .navbar-inner{ padding:10px 12px; gap:10px; }
+    .dropdown-btn{ font-size:.72rem; padding:6px 9px; }
+    .home-btn{ padding:8px 10px; font-size:.72rem; }
+}
+@media(max-width:760px){
+    .navbar-inner{ flex-wrap:nowrap; padding:10px 14px; gap:10px; }
+    .nav-left{ flex:1; min-width:0; }
+    .home-btn{ width:auto; }
+    .nav-right{ display:none; }
+    .burger-btn{ display:flex; }
+}
+
+/* HEADER */
+header{ text-align:center; padding:26px 20px 8px; }
+.eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--navy); color:var(--gold);
+    font-size:13px; font-weight:600; letter-spacing:.12em;
+    padding:7px 16px; border-radius:999px; margin-bottom:16px;
+}
+header h1{ font-size:32px; color:var(--navy); margin-bottom:8px; letter-spacing:-.01em; }
+header p{ font-size:14px; color:var(--muted); max-width:640px; margin:0 auto; line-height:1.6; }
+
+.viewer-wrap{ max-width:780px; margin:28px auto 0; padding:0 20px; }
+
+.progress-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; gap:10px; flex-wrap:wrap; }
+.progress-text{ font-size:13px; font-weight:600; color:var(--navy); white-space:nowrap; }
+.progress-bar{ flex:1; height:6px; background:#e3e0d6; border-radius:999px; margin:0 14px; overflow:hidden; min-width:80px; }
+.progress-fill{ height:100%; background:var(--gold); border-radius:999px; transition:width .35s ease; }
+
+.tag-row{ display:flex; justify-content:center; margin-bottom:10px; }
+.tag{
+    font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    padding:5px 14px; border-radius:999px;
+    background:var(--blue-soft); color:var(--blue); border:1.5px solid var(--blue-brd);
+}
+
+.card{
+    background:var(--paper); border:2px solid var(--navy); box-shadow:0 6px 0 var(--navy);
+    border-radius:22px; padding:36px 32px; display:flex; flex-direction:column;
+    align-items:flex-start; justify-content:flex-start; text-align:left; width:100%;
+    position:relative; min-height:360px;
+}
+
+.badge{
+    width:44px; height:44px; border-radius:50%; background:var(--blue-soft);
+    border:2px solid var(--blue-brd); display:flex; align-items:center; justify-content:center;
+    font-size:19px; margin-bottom:16px; color:var(--blue); font-weight:700; flex-shrink:0;
+}
+
+.slide-kanji{ font-size:30px; font-weight:900; color:var(--navy); margin-bottom:2px; }
+.slide-reading{ font-size:14px; color:var(--muted); margin-bottom:4px; font-style:italic; }
+.slide-title{ font-size:15px; font-weight:700; color:var(--blue); margin-bottom:18px; }
+
+.section-label{
+    font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:6px; margin-top:16px;
+}
+.section-label:first-of-type{ margin-top:0; }
+
+.body-text{ font-size:14.5px; line-height:1.85; color:var(--text); }
+.body-text b{ color:var(--navy); }
+
+.example-box{
+    width:100%; background:#fff; border:1.5px solid #e2ddcf; border-radius:14px;
+    padding:16px 18px; margin-top:6px;
+}
+.example-jp{ font-size:16px; font-weight:600; color:var(--navy); margin-bottom:3px; }
+.example-romaji{ font-size:12.5px; color:var(--muted); font-style:italic; margin-bottom:5px; }
+.example-id{ font-size:13.5px; color:#3a4a5c; }
+.example-box + .example-box{ margin-top:10px; }
+
+.compare-table{ width:100%; border-collapse:collapse; margin-top:6px; font-size:13.5px; }
+.compare-table th, .compare-table td{
+    border:1px solid #e2ddcf; padding:9px 10px; text-align:left;
+}
+.compare-table th{ background:var(--navy); color:var(--gold-soft); font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+.compare-table td.jp-cell{ font-weight:600; color:var(--navy); }
+
+.tip-box{
+    width:100%; background:var(--gold-soft); border:1.5px dashed #e0c34a; border-radius:14px;
+    padding:14px 16px; margin-top:16px; font-size:13.5px; color:#5c4a00; line-height:1.7;
+}
+.tip-box b{ color:#8a6d00; }
+
+.nav-row{ display:flex; align-items:center; justify-content:center; gap:16px; margin-top:24px; flex-wrap:wrap; }
+
+.nav-btn{
+    width:46px; height:46px; border-radius:50%; border:2px solid var(--navy);
+    background:white; color:var(--navy); font-size:19px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.nav-btn:hover{ background:var(--navy); color:var(--gold); }
+.nav-btn:disabled{ opacity:.3; cursor:default; }
+.nav-btn:disabled:hover{ background:white; color:var(--navy); }
+
+.jump-row{ display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:24px; }
+
+.dot{
+    width:34px; height:34px; border-radius:8px; border:2px solid #d8d4c8; background:white;
+    color:var(--muted); font-size:13px; font-weight:700; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.dot:hover{ border-color:var(--navy); }
+.dot.active{ background:var(--navy); border-color:var(--navy); color:var(--gold); }
+
+footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px; }
+
+@media(max-width:480px){
+    header h1{ font-size:24px; }
+    .progress-row{ flex-wrap:wrap; }
+    .progress-bar{ order:3; width:100%; margin:8px 0 0; flex:1 1 100%; }
+    .card{ padding:26px 20px; }
+    .slide-kanji{ font-size:24px; }
+    .compare-table{ font-size:12px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+  <div class="nav-left">
+    <a href="index.html" class="home-btn">
+      <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+      </svg>
+      HOME
+    </a>
+  </div>
+
+  <div class="nav-right">
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('learningDropdown')">TEKIPAKI LEARNING ▼</button>
+      <div class="dropdown-menu" id="learningDropdown">
+        <a href="guru.html">GURU</a>
+        <a href="elearning.html">SISWA</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('materiDropdown')">MATERI ▼</button>
+      <div class="dropdown-menu" id="materiDropdown">
+        <a href="daftarkosakata.html">Kosakata JFT</a>
+        <a href="materitatabahasa.html">Tata Bahasa</a>
+        <a href="materikanji.html">Materi Kanji JLPT</a>
+        <a href="kanjidasar.html">Kanji Flash Card</a>
+        <a href="materikosakata.html">Materi Kosakata JLPT</a>
+        <a href="tabel-perubahan-kosakata.html">Tabel Perubahan Kosakata</a>
+        <a href="materikomunikasi.html">Cara Komunikasi (Keigo)</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('quizDropdown')">QUIZ JFT ▼</button>
+      <div class="dropdown-menu" id="quizDropdown">
+        <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+        <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+        <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+        <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+        <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+        <a href="dokkai-n4.html">Latihan Dokkai N4 — Unit 1</a>
+        <a href="dokkai_unit2.html">Latihan Dokkai N4 — Unit 2</a>
+        <a href="dokkai_unit3.html">Latihan Dokkai N4 — Unit 3</a>
+        <a href="dokkai_unit4.html">Latihan Dokkai N4 — Unit 4</a>
+        <a href="dokkai_unit5.html">Latihan Dokkai N4 — Unit 5</a>
+        <a href="dokkai_unit6.html">Latihan Dokkai N4 — Unit 6</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('kanjiQuizDropdown')">QUIZ KANJI ▼</button>
+      <div class="dropdown-menu" id="kanjiQuizDropdown">
+        <a href="quizkanji1.html">QUIZ KANJI 1</a>
+        <a href="quizkanji2.html">QUIZ KANJI 2</a>
+        <a href="quizkanji3.html">QUIZ KANJI 3</a>
+        <a href="quizkanji4.html">QUIZ KANJI 4</a>
+        <a href="quizkanji5.html">QUIZ KANJI 5</a>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="index.html">HOME</a>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">TEKIPAKI LEARNING</button>
+  <div class="mobile-acc-panel">
+    <a href="guru.html">GURU</a>
+    <a href="elearning.html">SISWA</a>
+  </div>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+  <div class="mobile-acc-panel">
+    <a href="daftarkosakata.html">Kosakata JFT</a>
+    <a href="materitatabahasa.html">Tata Bahasa</a>
+    <a href="materikanji.html">Materi Kanji JLPT</a>
+    <a href="kanjidasar.html">Kanji Flash Card</a>
+    <a href="materikosakata.html">Materi Kosakata JLPT</a>
+    <a href="tabel-perubahan-kosakata.html">Tabel Perubahan Kosakata</a>
+    <a href="materikomunikasi.html">Cara Komunikasi (Keigo)</a>
+  </div>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
+  <div class="mobile-acc-panel">
+    <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+    <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+    <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+    <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+    <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    <a href="dokkai-n4.html">Latihan Dokkai N4 — Unit 1</a>
+    <a href="dokkai_unit2.html">Latihan Dokkai N4 — Unit 2</a>
+    <a href="dokkai_unit3.html">Latihan Dokkai N4 — Unit 3</a>
+    <a href="dokkai_unit4.html">Latihan Dokkai N4 — Unit 4</a>
+    <a href="dokkai_unit5.html">Latihan Dokkai N4 — Unit 5</a>
+    <a href="dokkai_unit6.html">Latihan Dokkai N4 — Unit 6</a>
+  </div>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
+  <div class="mobile-acc-panel">
+    <a href="quizkanji1.html">QUIZ KANJI 1</a>
+    <a href="quizkanji2.html">QUIZ KANJI 2</a>
+    <a href="quizkanji3.html">QUIZ KANJI 3</a>
+    <a href="quizkanji4.html">QUIZ KANJI 4</a>
+    <a href="quizkanji5.html">QUIZ KANJI 5</a>
+  </div>
+</div>
+</nav>
+
+<header>
+<div class="eyebrow">💬 MATERI KOMUNIKASI · KEIGO（敬語）</div>
+<h1>Cara Komunikasi dalam Bahasa Jepang</h1>
+<p>Penjelasan ungkapan-ungkapan penting dalam komunikasi sehari-hari dan dunia kerja Jepang: otsukaresama, osewa ni narimasu, arigatou gozaimasu, sonkeigo, dan kenjougo. Geser slide untuk membaca setiap bagian.</p>
+</header>
+
+<div class="viewer-wrap">
+
+<div class="progress-row">
+<span class="progress-text" id="progressText">1 / 8</span>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="tag-row"><span class="tag" id="tagBadge">SLIDE MATERI</span></div>
+
+<div class="card" id="card">
+    <div class="badge" id="cardBadge">敬</div>
+    <div id="slideContent"></div>
+</div>
+
+<div class="nav-row">
+<button class="nav-btn" id="prevBtn" title="Sebelumnya">←</button>
+<button class="nav-btn" id="nextBtn" title="Berikutnya">→</button>
+</div>
+
+<div class="jump-row" id="jumpRow"></div>
+
+</div>
+
+<footer>
+© 2026 Tekipaki Japanese Learning | Materi Cara Komunikasi (Keigo)
+</footer>
+
+<script>
+
+const slides = [
+    {
+        badge: "敬",
+        kanji: "Pengantar Keigo",
+        reading: "けいご",
+        title: "Mengapa Cara Bicara Itu Penting di Jepang",
+        html: `
+            <div class="body-text">
+                Dalam bahasa Jepang, cara berbicara berubah tergantung <b>siapa lawan bicara kita</b> dan <b>seberapa dekat hubungan itu</b>. Sistem ini disebut <b>敬語 (keigo)</b>, atau "bahasa hormat".
+                <br><br>
+                Keigo dibagi menjadi tiga jenis utama:
+            </div>
+            <table class="compare-table">
+                <tr><th>Jenis</th><th>Fungsi</th></tr>
+                <tr><td class="jp-cell">丁寧語 (teineigo)</td><td>Bahasa sopan standar (です・ます)</td></tr>
+                <tr><td class="jp-cell">尊敬語 (sonkeigo)</td><td>Meninggikan lawan bicara / orang lain</td></tr>
+                <tr><td class="jp-cell">謙譲語 (kenjougo)</td><td>Merendahkan diri sendiri untuk menghormati orang lain</td></tr>
+            </table>
+            <div class="tip-box"><b>Poin penting:</b> Keigo bukan soal "benar/salah" tata bahasa saja, tapi soal <b>rasa hormat dan jarak sosial</b>. Semakin formal situasinya (kantor, klien, senior), semakin penting keigo digunakan dengan tepat.</div>
+        `
+    },
+    {
+        badge: "疲",
+        kanji: "お疲れ様です",
+        reading: "おつかれさまです",
+        title: "Otsukaresama Desu — Sapaan di Tempat Kerja",
+        html: `
+            <div class="section-label">Arti &amp; Penggunaan</div>
+            <div class="body-text">
+                Secara harfiah berarti "Anda pasti lelah", tapi dalam praktiknya digunakan sebagai <b>sapaan umum antar rekan kerja</b>, baik saat bertemu, berpapasan, maupun mengakhiri percakapan di lingkungan kerja — <b>tidak peduli apakah pekerjaan sudah selesai atau belum</b>. Bentuk ini dipakai dalam bentuk sekarang/masih berlangsung.
+            </div>
+            <div class="section-label">Contoh Situasi</div>
+            <div class="example-box">
+                <div class="example-jp">お疲れ様です、田中さん。</div>
+                <div class="example-romaji">Otsukaresama desu, Tanaka-san.</div>
+                <div class="example-id">Digunakan saat bertemu Tanaka-san di kantor, kapan saja selama jam kerja.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">（電話で）お疲れ様です、営業部の佐藤です。</div>
+                <div class="example-romaji">(Denwa de) Otsukaresama desu, eigyoubu no Satou desu.</div>
+                <div class="example-id">Digunakan sebagai pembuka saat menelepon rekan kerja di perusahaan yang sama.</div>
+            </div>
+            <div class="tip-box"><b>Catatan:</b> Ungkapan ini hanya dipakai <b>antar sesama rekan kerja/perusahaan</b>, bukan kepada pelanggan atau klien dari luar perusahaan.</div>
+        `
+    },
+    {
+        badge: "疲",
+        kanji: "お疲れ様でした",
+        reading: "おつかれさまでした",
+        title: "Otsukaresama Deshita — Setelah Pekerjaan Selesai",
+        html: `
+            <div class="section-label">Arti &amp; Penggunaan</div>
+            <div class="body-text">
+                Ini adalah <b>bentuk lampau</b> dari otsukaresama desu. Digunakan setelah suatu pekerjaan, rapat, atau kegiatan <b>telah selesai</b> — misalnya saat pulang kerja, setelah rapat berakhir, atau kepada seseorang yang baru menyelesaikan tugasnya.
+            </div>
+            <div class="section-label">Contoh Situasi</div>
+            <div class="example-box">
+                <div class="example-jp">今日も一日、お疲れ様でした。</div>
+                <div class="example-romaji">Kyou mo ichinichi, otsukaresama deshita.</div>
+                <div class="example-id">Diucapkan saat berpisah di akhir hari kerja, sebagai bentuk apresiasi atas kerja keras hari itu.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">会議、お疲れ様でした。</div>
+                <div class="example-romaji">Kaigi, otsukaresama deshita.</div>
+                <div class="example-id">Diucapkan tepat setelah sebuah rapat selesai.</div>
+            </div>
+            <div class="tip-box"><b>Bedanya dengan です:</b> です dipakai saat pekerjaan <b>masih berjalan / kapan saja</b>, sedangkan でした dipakai saat pekerjaan/kegiatan tersebut <b>sudah berakhir</b>.</div>
+        `
+    },
+    {
+        badge: "世",
+        kanji: "お世話になります",
+        reading: "おせわになります",
+        title: "Osewa ni Narimasu — Ungkapan Bisnis Formal",
+        html: `
+            <div class="section-label">Arti &amp; Penggunaan</div>
+            <div class="body-text">
+                Berarti kira-kira "terima kasih atas bantuan/dukungannya", digunakan untuk menyatakan <b>rasa terima kasih atas hubungan kerja sama yang berkelanjutan</b>. Sangat sering muncul sebagai <b>kalimat pembuka email atau telepon bisnis</b>, kepada klien, mitra kerja, atau perusahaan lain.
+            </div>
+            <div class="section-label">Contoh Situasi</div>
+            <div class="example-box">
+                <div class="example-jp">いつもお世話になっております。</div>
+                <div class="example-romaji">Itsumo osewa ni natte orimasu.</div>
+                <div class="example-id">"Terima kasih atas dukungannya selama ini." — kalimat pembuka email bisnis yang paling umum dipakai.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">これから、お世話になります。</div>
+                <div class="example-romaji">Korekara, osewa ni narimasu.</div>
+                <div class="example-id">"Mohon bantuannya ke depan." — diucapkan saat memulai hubungan kerja/kerja sama baru, misalnya di hari pertama kerja.</div>
+            </div>
+            <div class="tip-box"><b>Catatan:</b> Bentuk おっております (natte orimasu) lebih sopan dan lebih sering dipakai dalam tulisan bisnis dibanding bentuk dasar なります.</div>
+        `
+    },
+    {
+        badge: "感",
+        kanji: "ありがとうございます",
+        reading: "ありがとうございます",
+        title: "Arigatou Gozaimasu — Tingkatan Ucapan Terima Kasih",
+        html: `
+            <div class="section-label">Tingkatan Kesopanan</div>
+            <table class="compare-table">
+                <tr><th>Ungkapan</th><th>Tingkat</th><th>Kapan Dipakai</th></tr>
+                <tr><td class="jp-cell">ありがとう</td><td>Santai</td><td>Ke teman dekat, keluarga</td></tr>
+                <tr><td class="jp-cell">ありがとうございます</td><td>Sopan (sekarang)</td><td>Situasi formal, ke atasan/orang baru</td></tr>
+                <tr><td class="jp-cell">ありがとうございました</td><td>Sopan (lampau)</td><td>Setelah suatu bantuan/kejadian selesai</td></tr>
+            </table>
+            <div class="section-label">Contoh</div>
+            <div class="example-box">
+                <div class="example-jp">本日はありがとうございました。</div>
+                <div class="example-romaji">Honjitsu wa arigatou gozaimashita.</div>
+                <div class="example-id">"Terima kasih untuk hari ini." — dipakai setelah pertemuan/acara selesai.</div>
+            </div>
+            <div class="tip-box"><b>Tips:</b> Gunakan ございます saat rasa terima kasih itu masih berlangsung atau bersifat umum, dan ございました saat menunjuk pada peristiwa yang sudah lewat.</div>
+        `
+    },
+    {
+        badge: "尊",
+        kanji: "尊敬語",
+        reading: "そんけいご",
+        title: "Sonkeigo — Meninggikan Lawan Bicara",
+        html: `
+            <div class="section-label">Konsep</div>
+            <div class="body-text">
+                Sonkeigo digunakan untuk <b>meninggikan/menghormati tindakan orang lain</b> — biasanya atasan, pelanggan, atau orang yang lebih senior. Kita tidak pernah memakai sonkeigo untuk tindakan diri sendiri.
+            </div>
+            <div class="section-label">Perubahan Kata Kerja Umum</div>
+            <table class="compare-table">
+                <tr><th>Kamus</th><th>Sonkeigo</th><th>Arti</th></tr>
+                <tr><td class="jp-cell">行く／来る／いる</td><td class="jp-cell">いらっしゃる</td><td>pergi / datang / ada</td></tr>
+                <tr><td class="jp-cell">する</td><td class="jp-cell">なさる</td><td>melakukan</td></tr>
+                <tr><td class="jp-cell">言う</td><td class="jp-cell">おっしゃる</td><td>mengatakan</td></tr>
+                <tr><td class="jp-cell">食べる／飲む</td><td class="jp-cell">召し上がる</td><td>makan / minum</td></tr>
+                <tr><td class="jp-cell">見る</td><td class="jp-cell">ご覧になる</td><td>melihat</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">部長は明日、大阪へいらっしゃいます。</div>
+                <div class="example-romaji">Buchou wa ashita, Oosaka e irasshaimasu.</div>
+                <div class="example-id">"Kepala bagian akan pergi ke Osaka besok." — subjeknya adalah orang yang dihormati.</div>
+            </div>
+        `
+    },
+    {
+        badge: "謙",
+        kanji: "謙譲語",
+        reading: "けんじょうご",
+        title: "Kenjougo — Merendahkan Diri Sendiri",
+        html: `
+            <div class="section-label">Konsep</div>
+            <div class="body-text">
+                Kenjougo digunakan untuk <b>merendahkan tindakan diri sendiri</b> (atau kelompok sendiri, misalnya perusahaan kita) agar lawan bicara terlihat lebih dihormati secara relatif. Dipakai untuk tindakan <b>kita sendiri</b>, bukan tindakan orang lain.
+            </div>
+            <div class="section-label">Perubahan Kata Kerja Umum</div>
+            <table class="compare-table">
+                <tr><th>Kamus</th><th>Kenjougo</th><th>Arti</th></tr>
+                <tr><td class="jp-cell">行く／来る</td><td class="jp-cell">参る（まいる）</td><td>pergi / datang</td></tr>
+                <tr><td class="jp-cell">する</td><td class="jp-cell">いたす</td><td>melakukan</td></tr>
+                <tr><td class="jp-cell">言う</td><td class="jp-cell">申し上げる</td><td>mengatakan</td></tr>
+                <tr><td class="jp-cell">食べる／飲む</td><td class="jp-cell">いただく</td><td>makan / minum</td></tr>
+                <tr><td class="jp-cell">会う</td><td class="jp-cell">お目にかかる</td><td>bertemu</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">明日、御社に参ります。</div>
+                <div class="example-romaji">Ashita, onsha ni mairimasu.</div>
+                <div class="example-id">"Besok saya akan datang ke perusahaan Anda." — subjeknya adalah diri sendiri, direndahkan untuk menghormati lawan bicara.</div>
+            </div>
+        `
+    },
+    {
+        badge: "比",
+        kanji: "Rangkuman",
+        reading: "まとめ",
+        title: "Perbandingan Singkat Sonkeigo vs Kenjougo",
+        html: `
+            <div class="body-text">
+                Cara termudah membedakan keduanya: <b>tanya dulu, siapa yang melakukan tindakan itu?</b>
+            </div>
+            <table class="compare-table">
+                <tr><th>Kamus</th><th>Sonkeigo (untuk lawan bicara)</th><th>Kenjougo (untuk diri sendiri)</th></tr>
+                <tr><td class="jp-cell">行く</td><td class="jp-cell">いらっしゃる</td><td class="jp-cell">参る</td></tr>
+                <tr><td class="jp-cell">する</td><td class="jp-cell">なさる</td><td class="jp-cell">いたす</td></tr>
+                <tr><td class="jp-cell">言う</td><td class="jp-cell">おっしゃる</td><td class="jp-cell">申し上げる</td></tr>
+                <tr><td class="jp-cell">見る</td><td class="jp-cell">ご覧になる</td><td class="jp-cell">拝見する</td></tr>
+            </table>
+            <div class="tip-box">
+                <b>Ringkasan penggunaan ungkapan di slide sebelumnya:</b><br>
+                • お疲れ様です → sapaan sesama rekan kerja, kapan saja<br>
+                • お疲れ様でした → setelah pekerjaan/kegiatan selesai<br>
+                • お世話になっております → pembuka komunikasi bisnis dengan pihak luar<br>
+                • ありがとうございます／ました → terima kasih sopan, sekarang vs lampau<br>
+                • 尊敬語 → meninggikan tindakan orang lain<br>
+                • 謙譲語 → merendahkan tindakan diri sendiri
+            </div>
+        `
+    }
+];
+
+let current = 0;
+
+const slideContent = document.getElementById("slideContent");
+const cardBadge = document.getElementById("cardBadge");
+const progressText = document.getElementById("progressText");
+const progressFill = document.getElementById("progressFill");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const jumpRow = document.getElementById("jumpRow");
+
+function renderSlide(){
+    const s = slides[current];
+
+    cardBadge.textContent = s.badge;
+
+    slideContent.innerHTML = `
+        <div class="slide-kanji jp">${s.kanji}</div>
+        <div class="slide-reading jp">${s.reading}</div>
+        <div class="slide-title">${s.title}</div>
+        ${s.html}
+    `;
+
+    progressText.textContent = (current+1) + " / " + slides.length;
+    progressFill.style.width = ((current+1)/slides.length*100) + "%";
+
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === slides.length - 1;
+
+    renderJumpRow();
+}
+
+function renderJumpRow(){
+    jumpRow.innerHTML = "";
+    slides.forEach((s, i) => {
+        const dot = document.createElement("button");
+        dot.className = "dot" + (i === current ? " active" : "");
+        dot.textContent = i + 1;
+        dot.addEventListener("click", () => {
+            current = i;
+            renderSlide();
+            window.scrollTo({ top: document.querySelector(".viewer-wrap").offsetTop - 20, behavior: "smooth" });
+        });
+        jumpRow.appendChild(dot);
+    });
+}
+
+prevBtn.addEventListener("click", function(){
+    if(current > 0){ current--; renderSlide(); }
+});
+
+nextBtn.addEventListener("click", function(){
+    if(current < slides.length - 1){ current++; renderSlide(); }
+});
+
+renderSlide();
+
+/* NAVBAR */
+
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+        if(menu.id !== id){
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+            const parent = menu.closest(".dropdown");
+            if(parent) parent.classList.remove("open");
+        }
+    });
+
+    const menu = document.getElementById(id);
+    if(!menu) return;
+
+    const parent = menu.closest(".dropdown");
+    const isOpen = menu.classList.contains("show");
+
+    if(isOpen){
+        menu.classList.remove("show");
+        menu.classList.remove("align-right");
+        if(parent) parent.classList.remove("open");
+        return;
+    }
+
+    menu.classList.add("show");
+    if(parent) parent.classList.add("open");
+
+    menu.classList.remove("align-right");
+    const rect = menu.getBoundingClientRect();
+    if(rect.right > window.innerWidth - 10){
+        menu.classList.add("align-right");
+    }
+    if(rect.left < 10){
+        menu.classList.remove("align-right");
+    }
+}
+
+document.addEventListener("click", function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(menu => {
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+        });
+        document.querySelectorAll(".dropdown").forEach(dropdown => {
+            dropdown.classList.remove("open");
+        });
+    }
+});
+
+function toggleMobileMenu(){
+    const menu = document.getElementById("mobileMenu");
+    if(!menu) return;
+    menu.classList.toggle("show");
+}
+
+function toggleMobileAccordion(btn){
+    const panel = btn.nextElementSibling;
+    const isOpen = btn.classList.contains("open");
+
+    document.querySelectorAll(".mobile-acc-btn").forEach(b => {
+        if(b !== btn){
+            b.classList.remove("open");
+            if(b.nextElementSibling) b.nextElementSibling.classList.remove("show");
+        }
+    });
+
+    btn.classList.toggle("open", !isOpen);
+    if(panel) panel.classList.toggle("show", !isOpen);
+}
+
+window.addEventListener("resize", function(){
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+        menu.classList.remove("show");
+        menu.classList.remove("align-right");
+    });
+    document.querySelectorAll(".dropdown").forEach(dropdown => {
+        dropdown.classList.remove("open");
+    });
+
+    if(window.innerWidth > 760){
+        const mobileMenu = document.getElementById("mobileMenu");
+        if(mobileMenu) mobileMenu.classList.remove("show");
+        document.querySelectorAll(".mobile-acc-btn").forEach(b => b.classList.remove("open"));
+        document.querySelectorAll(".mobile-acc-panel").forEach(p => p.classList.remove("show"));
+    }
+});
+
+</script>
+
+</body>
+</html>
