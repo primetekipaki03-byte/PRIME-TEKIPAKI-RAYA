@@ -4,2378 +4,1021 @@
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Tekipaki — Belajar & Ujian JFT A</title>
+<title>Materi Cara Komunikasi (Keigo) — Tekipaki</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
-  --navy:#0a1f3d;
-  --navy2:#001530;
-  --navy3:#132c52;
-  --gold:#e0b52a;
-  --gold-dim:#c4a02a;
-  --paper:#f6f0e2;
-  --paper2:#efe6d0;
-  --ink:#1c2541;
-  --ink-soft:#4a5875;
-  --seal:#b3382e;
-  --muted:#9fb0c9;
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --gold-soft:#fff3c4;
+    --paper:#fffdf7;
+    --text:#001f3f;
+    --muted:#5b6b7d;
+    --green:#16a34a;
+    --red:#dc2626;
+    --blue:#2563eb;
+    --blue-soft:#e8f0ff;
+    --blue-brd:#a9c6ff;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{ margin:0; padding:0; box-sizing:border-box; font-family:"Poppins","Segoe UI",Arial,sans-serif; }
+body{ background:#f6f5f1; color:var(--text); padding-bottom:40px; }
+.jp{ font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif; }
 
-body{
-  font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif;
-  background:var(--paper);
-  color:var(--ink);
-  overflow-x:hidden;
-}
-
-h1,
-h2,
-h3,
-.display{
-  font-family:"Shippori Mincho",serif;
-}
-
-a{
-  color:inherit;
-}
-
-.mono{
-  font-family:"JetBrains Mono",monospace;
-}
-
-
-/* =========================================================
-   NAVBAR
-========================================================= */
-
+/* NAVBAR */
 #navbar{
-  position:sticky;
-  top:0;
-  z-index:9999;
-  width:100%;
-
-  background:#001530;
-
-  border-bottom:2px solid rgba(224,181,42,.3);
-
-  box-shadow:0 4px 14px rgba(0,0,0,.25);
+    position:sticky; top:0; z-index:9999; width:100%;
+    background:#001530;
+    border-bottom:2px solid rgba(224,181,42,.3);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
 }
-
 .navbar-inner{
-  width:100%;
-
-  min-height:64px;
-
-  padding:8px 24px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  gap:20px;
+    width:100%; min-height:64px; padding:8px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
 }
-
-.nav-left{
-  display:flex;
-  align-items:center;
-  flex-shrink:0;
-}
-
-.nav-right{
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-
-  gap:8px;
-
-  flex-wrap:wrap;
-}
-
-
-/* HOME */
+.nav-left{ display:flex; align-items:center; flex-shrink:0; }
+.nav-right{ display:flex; align-items:center; justify-content:flex-end; gap:8px; flex-wrap:wrap; }
 
 .home-btn{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  gap:8px;
-
-  background:var(--gold);
-  color:var(--navy2);
-
-  text-decoration:none;
-
-  padding:8px 14px;
-
-  border-radius:10px;
-
-  font-weight:bold;
-
-  white-space:nowrap;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background:#e0b52a; color:#001530; text-decoration:none;
+    padding:8px 14px; border-radius:10px; font-weight:bold; white-space:nowrap;
 }
+.home-btn:hover{ opacity:.85; }
+.home-icon{ width:22px; height:22px; flex:none; }
 
-.home-btn:hover{
-  opacity:.85;
-}
-
-.home-icon{
-  width:22px;
-  height:22px;
-
-  flex:none;
-}
-
-
-/* DROPDOWN */
-
-.dropdown{
-  position:relative;
-  flex-shrink:0;
-  z-index:1;
-}
-
-.dropdown.open{
-  z-index:20;
-}
-
+.dropdown{ position:relative; flex-shrink:0; z-index:1; }
+.dropdown.open{ z-index:20; }
 .dropdown-btn{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:transparent;
-
-  border:2px solid var(--gold);
-
-  color:var(--gold);
-
-  padding:8px 14px;
-
-  border-radius:8px;
-
-  font-family:inherit;
-
-  font-weight:bold;
-
-  cursor:pointer;
-
-  white-space:nowrap;
+    display:flex; align-items:center; justify-content:center;
+    background:transparent; border:2px solid #e0b52a; color:#e0b52a;
+    padding:8px 14px; border-radius:8px; font-family:inherit; font-weight:bold;
+    cursor:pointer; white-space:nowrap;
 }
-
-.dropdown-btn:hover,
-.dropdown.open .dropdown-btn{
-  background:var(--gold);
-  color:var(--navy2);
-}
-
-
-/* DROPDOWN MENU */
+.dropdown-btn:hover, .dropdown.open .dropdown-btn{ background:#e0b52a; color:#001530; }
 
 .dropdown-menu{
-  display:none;
-
-  position:absolute;
-
-  top:calc(100% + 7px);
-
-  left:0;
-
-  width:max-content;
-
-  min-width:220px;
-
-  max-width:calc(100vw - 20px);
-
-  background:#1f4577;
-
-  border:1px solid rgba(224,181,42,.35);
-
-  border-radius:10px;
-
-  overflow:hidden;
-
-  box-shadow:0 10px 25px rgba(0,0,0,.35);
+    display:none; position:absolute; top:calc(100% + 7px); left:0;
+    width:max-content; min-width:220px; max-width:calc(100vw - 20px);
+    background:#1f4577; border:1px solid rgba(224,181,42,.35);
+    border-radius:10px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,.35);
 }
-
-.dropdown-menu.show{
-  display:block;
-}
-
-.dropdown-menu.align-right{
-  left:auto;
-  right:0;
-}
-
-.dropdown-menu a{
-  display:block;
-
-  padding:12px 15px;
-
-  color:#ffd700;
-
-  text-decoration:none;
-
-  white-space:nowrap;
-}
-
-.dropdown-menu a:hover{
-  background:var(--gold);
-  color:var(--navy2);
-}
-
-
-/* BURGER */
+.dropdown-menu.show{ display:block; }
+.dropdown-menu.align-right{ left:auto; right:0; }
+.dropdown-menu a{ display:block; padding:12px 15px; color:#ffd700; text-decoration:none; white-space:nowrap; }
+.dropdown-menu a:hover{ background:#e0b52a; color:#001530; }
 
 .burger-btn{
-  display:none;
-  align-items:center;
-  justify-content:center;
-  flex-shrink:0;
-
-  background:transparent;
-  border:2px solid var(--gold);
-  color:var(--gold);
-
-  padding:9px 12px;
-  border-radius:8px;
-  cursor:pointer;
+    display:none; align-items:center; justify-content:center; flex-shrink:0;
+    background:transparent; border:2px solid #e0b52a; color:#e0b52a;
+    padding:9px 12px; border-radius:8px; cursor:pointer;
 }
+.burger-btn svg{ width:20px; height:20px; display:block; }
 
-.burger-btn svg{
-  width:20px;
-  height:20px;
-  display:block;
-}
-
-
-/* MOBILE MENU */
-
-.mobile-menu{
-  display:none;
-  flex-direction:column;
-
-  background:#001530;
-  border-top:1px solid rgba(224,181,42,.25);
-}
-
-.mobile-menu.show{
-  display:flex;
-}
-
+.mobile-menu{ display:none; flex-direction:column; background:#001530; border-top:1px solid rgba(224,181,42,.25); }
+.mobile-menu.show{ display:flex; }
 .mobile-link{
-  display:block;
-  padding:15px 18px;
-
-  color:#ffd700;
-  text-decoration:none;
-  font-weight:700;
-  font-size:14px;
-
-  border-bottom:1px solid rgba(255,255,255,.08);
+    display:block; padding:15px 18px; color:#ffd700; text-decoration:none;
+    font-weight:700; font-size:14px; border-bottom:1px solid rgba(255,255,255,.08);
 }
-
-.mobile-link:hover{
-  background:rgba(224,181,42,.12);
-}
-
+.mobile-link:hover{ background:rgba(224,181,42,.12); }
 .mobile-acc-btn{
-  width:100%;
-  text-align:left;
-
-  background:transparent;
-  border:none;
-  color:var(--gold);
-  font-weight:700;
-  font-size:14px;
-  font-family:inherit;
-
-  padding:15px 18px;
-  cursor:pointer;
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  border-bottom:1px solid rgba(255,255,255,.08);
+    width:100%; text-align:left; background:transparent; border:none;
+    color:#e0b52a; font-weight:700; font-size:14px; padding:15px 18px; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.08); font-family:inherit;
 }
-
-.mobile-acc-btn::after{
-  content:'+';
-  font-size:18px;
-  line-height:1;
-}
-
-.mobile-acc-btn.open::after{
-  content:'\2212';
-}
-
-.mobile-acc-panel{
-  display:none;
-  flex-direction:column;
-
-  background:#0a2242;
-}
-
-.mobile-acc-panel.show{
-  display:flex;
-}
-
+.mobile-acc-btn::after{ content:'+'; font-size:18px; line-height:1; }
+.mobile-acc-btn.open::after{ content:'\2212'; }
+.mobile-acc-panel{ display:none; flex-direction:column; background:#0a2242; }
+.mobile-acc-panel.show{ display:flex; }
 .mobile-acc-panel a{
-  padding:13px 32px;
-
-  color:#ffd700;
-  text-decoration:none;
-  font-size:13px;
-
-  border-bottom:1px solid rgba(255,255,255,.05);
+    padding:13px 32px; color:#ffd700; text-decoration:none; font-size:13px;
+    border-bottom:1px solid rgba(255,255,255,.05);
 }
-
-.mobile-acc-panel a:hover{
-  background:rgba(224,181,42,.15);
-}
+.mobile-acc-panel a:hover{ background:rgba(224,181,42,.15); }
 
 @media(min-width:761px){
-  .mobile-menu{
-    display:none !important;
-  }
+    .mobile-menu{ display:none !important; }
 }
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-  position:relative;
-
-  background:
-    radial-gradient(
-      120% 140% at 15% -10%,
-      var(--navy3),
-      var(--navy) 55%,
-      var(--navy2) 100%
-    );
-
-  color:#fff;
-
-  padding:80px 20px 100px;
-
-  text-align:center;
-
-  overflow:hidden;
-}
-
-.hero-kanji{
-  position:absolute;
-
-  font-family:"Shippori Mincho",serif;
-
-  font-size:min(60vw,560px);
-
-  font-weight:800;
-
-  color:rgba(224,181,42,.06);
-
-  top:50%;
-  left:50%;
-
-  transform:translate(-50%,-50%);
-
-  line-height:1;
-
-  user-select:none;
-  pointer-events:none;
-
-  white-space:nowrap;
-}
-
-.hero-inner{
-  position:relative;
-
-  z-index:2;
-
-  max-width:760px;
-
-  margin:0 auto;
-}
-
-.seal{
-  display:inline-flex;
-
-  align-items:center;
-  justify-content:center;
-
-  width:78px;
-  height:78px;
-
-  border:3px solid var(--seal);
-
-  border-radius:8px;
-
-  color:var(--seal);
-
-  background:rgba(179,56,46,.08);
-
-  font-family:"Shippori Mincho",serif;
-
-  font-weight:800;
-
-  font-size:1.6rem;
-
-  transform:rotate(-8deg);
-
-  margin-bottom:22px;
-
-  letter-spacing:2px;
-
-  writing-mode:vertical-rl;
-
-  box-shadow:
-    0 0 0 2px rgba(179,56,46,.25) inset;
-}
-
-.hero .eyebrow{
-  font-family:"JetBrains Mono",monospace;
-
-  letter-spacing:3px;
-
-  text-transform:uppercase;
-
-  color:var(--gold);
-
-  font-size:.78rem;
-
-  margin-bottom:14px;
-}
-
-.hero h1{
-  font-size:clamp(2.1rem,5vw,3.4rem);
-
-  color:#fff;
-
-  line-height:1.2;
-
-  margin-bottom:14px;
-}
-
-.hero h1 span{
-  color:var(--gold);
-}
-
-.hero p{
-  color:var(--muted);
-
-  font-size:1.05rem;
-
-  line-height:1.7;
-
-  max-width:560px;
-
-  margin:0 auto 32px;
-}
-
-
-/* BUTTON */
-
-.hero-cta{
-  display:inline-flex;
-
-  gap:12px;
-
-  flex-wrap:wrap;
-
-  justify-content:center;
-}
-
-.btn{
-  display:inline-block;
-
-  text-decoration:none;
-
-  padding:14px 26px;
-
-  border-radius:10px;
-
-  font-weight:700;
-
-  font-size:.95rem;
-
-  transition:.18s;
-
-  cursor:pointer;
-
-  border:2px solid transparent;
-}
-
-.btn-gold{
-  background:var(--gold);
-
-  color:var(--navy2);
-}
-
-.btn-gold:hover{
-  background:#f3cc4e;
-
-  transform:translateY(-2px);
-}
-
-.btn-ghost{
-  border-color:rgba(255,255,255,.35);
-
-  color:#fff;
-}
-
-.btn-ghost:hover{
-  border-color:var(--gold);
-
-  color:var(--gold);
-}
-
-
-/* =========================================================
-   STAT
-========================================================= */
-
-.stats{
-  display:flex;
-
-  justify-content:center;
-
-  gap:0;
-
-  margin-top:46px;
-
-  flex-wrap:wrap;
-
-  border-top:1px solid rgba(255,255,255,.12);
-
-  padding-top:28px;
-}
-
-.stat{
-  padding:0 28px;
-
-  text-align:center;
-
-  border-right:1px solid rgba(255,255,255,.12);
-}
-
-.stat:last-child{
-  border-right:none;
-}
-
-.stat .num{
-  font-family:"JetBrains Mono",monospace;
-
-  font-size:1.7rem;
-
-  color:var(--gold);
-
-  font-weight:600;
-}
-
-.stat .lbl{
-  font-size:.72rem;
-
-  color:var(--muted);
-
-  letter-spacing:1px;
-
-  text-transform:uppercase;
-
-  margin-top:2px;
-}
-
-
-/* =========================================================
-   CONTENT
-========================================================= */
-
-#app{
-  max-width:1040px;
-
-  margin:0 auto;
-
-  padding:60px 20px 20px;
-}
-
-.section-head{
-  display:flex;
-
-  align-items:baseline;
-
-  gap:16px;
-
-  margin-bottom:26px;
-
-  flex-wrap:wrap;
-}
-
-.section-head .stamp-mini{
-  width:34px;
-  height:34px;
-
-  flex:none;
-
-  border:2px solid var(--seal);
-
-  border-radius:6px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  color:var(--seal);
-
-  font-weight:800;
-
-  font-size:.85rem;
-
-  transform:rotate(-6deg);
-}
-
-.section-head h2{
-  font-size:1.55rem;
-
-  color:var(--navy);
-}
-
-.section-head .jp{
-  font-family:"JetBrains Mono",monospace;
-
-  color:var(--seal);
-
-  font-size:.8rem;
-
-  letter-spacing:1px;
-}
-
-.section-sub{
-  color:var(--ink-soft);
-
-  font-size:.92rem;
-
-  margin:-14px 0 26px;
-
-  max-width:600px;
-}
-
-
-/* =========================================================
-   MATERI CARDS
-========================================================= */
-
-.grid3{
-  display:grid;
-
-  grid-template-columns:repeat(3,1fr);
-
-  gap:16px;
-
-  margin-bottom:64px;
-}
-
-.materi-card{
-  background:#fff;
-
-  border:1px solid var(--paper2);
-
-  border-radius:14px;
-
-  padding:26px 22px;
-
-  text-decoration:none;
-
-  color:var(--ink);
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:10px;
-
-  box-shadow:0 2px 10px rgba(10,31,61,.05);
-
-  transition:.2s;
-
-  position:relative;
-
-  overflow:hidden;
-}
-
-.materi-card::before{
-  content:"";
-
-  position:absolute;
-
-  top:0;
-  left:0;
-
-  width:4px;
-  height:100%;
-
-  background:var(--gold);
-
-  transform:scaleY(0);
-
-  transform-origin:top;
-
-  transition:.2s;
-}
-
-.materi-card:hover{
-  transform:translateY(-4px);
-
-  box-shadow:
-    0 10px 26px rgba(10,31,61,.14);
-}
-
-.materi-card:hover::before{
-  transform:scaleY(1);
-}
-
-.materi-card .ic{
-  font-size:1.7rem;
-}
-
-.materi-card h3{
-  font-size:1.08rem;
-
-  color:var(--navy);
-}
-
-.materi-card p{
-  font-size:.85rem;
-
-  color:var(--ink-soft);
-
-  line-height:1.5;
-}
-
-.materi-card .go{
-  font-family:"JetBrains Mono",monospace;
-
-  font-size:.75rem;
-
-  color:var(--seal);
-
-  margin-top:auto;
-}
-
-
-/* =========================================================
-   JFT TICKETS
-========================================================= */
-
-.tickets{
-  display:grid;
-
-  grid-template-columns:
-    repeat(auto-fit,minmax(280px,1fr));
-
-  gap:16px;
-
-  margin-bottom:64px;
-}
-
-.ticket{
-  display:flex;
-
-  background:#12365e;
-
-  border-radius:12px;
-
-  overflow:hidden;
-
-  text-decoration:none;
-
-  color:#fff;
-
-  box-shadow:
-    0 3px 12px rgba(10,31,61,.16);
-
-  transition:.2s;
-
-  position:relative;
-}
-
-.ticket:hover{
-  transform:translateY(-3px) scale(1.01);
-
-  box-shadow:
-    0 12px 28px rgba(10,31,61,.24);
-}
-
-.ticket-num{
-  flex:none;
-
-  width:74px;
-
-  background:var(--gold);
-
-  color:var(--navy2);
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-family:"JetBrains Mono",monospace;
-
-  position:relative;
-}
-
-.ticket-num .no{
-  font-size:1.7rem;
-
-  font-weight:700;
-}
-
-.ticket-num .lbl{
-  font-size:.6rem;
-
-  letter-spacing:1px;
-
-  text-transform:uppercase;
-}
-
-.ticket-num::after{
-  content:"";
-
-  position:absolute;
-
-  right:-8px;
-
-  top:50%;
-
-  transform:translateY(-50%);
-
-  width:16px;
-
-  height:16px;
-
-  background:var(--paper);
-
-  border-radius:50%;
-}
-
-.ticket-body{
-  padding:16px 18px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:center;
-
-  gap:4px;
-
-  flex:1;
-
-  border-left:
-    2px dashed rgba(255,255,255,.25);
-}
-
-.ticket-body .title{
-  font-weight:700;
-
-  font-size:.98rem;
-}
-
-.ticket-body .meta{
-  font-family:"JetBrains Mono",monospace;
-
-  font-size:.72rem;
-
-  color:var(--muted);
-}
-
-
-/* =========================================================
-   KANJI
-========================================================= */
-
-.kanji-grid{
-  display:grid;
-
-  grid-template-columns:repeat(5,1fr);
-
-  gap:14px;
-
-  margin-bottom:20px;
-}
-
-.kanji-tile{
-  aspect-ratio:1/1;
-
-  background:#12365e;
-
-  border-radius:12px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  text-decoration:none;
-
-  color:#fff;
-
-  position:relative;
-
-  transition:.2s;
-
-  border:1px solid rgba(224,181,42,.15);
-}
-
-.kanji-tile:hover{
-  background:#1a4271;
-
-  transform:translateY(-3px);
-}
-
-.kanji-tile .kj{
-  font-family:"Shippori Mincho",serif;
-
-  font-size:2rem;
-
-  color:var(--gold);
-}
-
-.kanji-tile .lbl2{
-  font-family:"JetBrains Mono",monospace;
-
-  font-size:.68rem;
-
-  color:var(--muted);
-
-  margin-top:6px;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer{
-  text-align:center;
-
-  color:var(--ink-soft);
-
-  font-size:.85rem;
-
-  padding:34px 20px;
-
-  border-top:1px solid var(--paper2);
-}
-
-footer .fseal{
-  color:var(--seal);
-
-  font-family:"Segoe UI",Arial,sans-serif;
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
 @media(max-width:1000px){
-
-  .navbar-inner{
-    padding:10px 12px;
-
-    gap:10px;
-  }
-
-  .dropdown-btn{
-    font-size:.72rem;
-
-    padding:6px 9px;
-  }
-
-  .home-btn{
-    padding:8px 10px;
-
-    font-size:.72rem;
-  }
-
+    .navbar-inner{ padding:10px 12px; gap:10px; }
+    .dropdown-btn{ font-size:.72rem; padding:6px 9px; }
+    .home-btn{ padding:8px 10px; font-size:.72rem; }
 }
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
 @media(max-width:760px){
-
-  .navbar-inner{
-    flex-wrap:nowrap;
-
-    padding:10px 14px;
-
-    gap:10px;
-  }
-
-  .nav-left{
-    flex:1;
-    min-width:0;
-  }
-
-  .home-btn{
-    width:auto;
-  }
-
-  .nav-right{
-    display:none;
-  }
-
-  .burger-btn{
-    display:flex;
-  }
-
-  .grid3{
-    grid-template-columns:1fr;
-  }
-
-  .kanji-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
+    .navbar-inner{ flex-wrap:nowrap; padding:10px 14px; gap:10px; }
+    .nav-left{ flex:1; min-width:0; }
+    .home-btn{ width:auto; }
+    .nav-right{ display:none; }
+    .burger-btn{ display:flex; }
 }
 
+/* HEADER */
+header{ text-align:center; padding:26px 20px 8px; }
+.eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--navy); color:var(--gold);
+    font-size:13px; font-weight:600; letter-spacing:.12em;
+    padding:7px 16px; border-radius:999px; margin-bottom:16px;
+}
+header h1{ font-size:32px; color:var(--navy); margin-bottom:8px; letter-spacing:-.01em; }
+header p{ font-size:14px; color:var(--muted); max-width:640px; margin:0 auto; line-height:1.6; }
 
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
+.viewer-wrap{ max-width:780px; margin:28px auto 0; padding:0 20px; }
+
+.progress-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; gap:10px; flex-wrap:wrap; }
+.progress-text{ font-size:13px; font-weight:600; color:var(--navy); white-space:nowrap; }
+.progress-bar{ flex:1; height:6px; background:#e3e0d6; border-radius:999px; margin:0 14px; overflow:hidden; min-width:80px; }
+.progress-fill{ height:100%; background:var(--gold); border-radius:999px; transition:width .35s ease; }
+
+.tag-row{ display:flex; justify-content:center; margin-bottom:10px; }
+.tag{
+    font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    padding:5px 14px; border-radius:999px;
+    background:var(--blue-soft); color:var(--blue); border:1.5px solid var(--blue-brd);
+}
+
+.card{
+    background:var(--paper); border:2px solid var(--navy); box-shadow:0 6px 0 var(--navy);
+    border-radius:22px; padding:36px 32px; display:flex; flex-direction:column;
+    align-items:flex-start; justify-content:flex-start; text-align:left; width:100%;
+    position:relative; min-height:360px;
+}
+
+.badge{
+    width:44px; height:44px; border-radius:50%; background:var(--blue-soft);
+    border:2px solid var(--blue-brd); display:flex; align-items:center; justify-content:center;
+    font-size:19px; margin-bottom:16px; color:var(--blue); font-weight:700; flex-shrink:0;
+}
+
+.slide-kanji{ font-size:30px; font-weight:900; color:var(--navy); margin-bottom:2px; }
+.slide-reading{ font-size:14px; color:var(--muted); margin-bottom:4px; font-style:italic; }
+.slide-title{ font-size:15px; font-weight:700; color:var(--blue); margin-bottom:18px; }
+
+.section-label{
+    font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:6px; margin-top:16px;
+}
+.section-label:first-of-type{ margin-top:0; }
+
+.body-text{ font-size:14.5px; line-height:1.85; color:var(--text); }
+.body-text b{ color:var(--navy); }
+
+.example-box{
+    width:100%; background:#fff; border:1.5px solid #e2ddcf; border-radius:14px;
+    padding:16px 18px; margin-top:6px;
+}
+.example-jp{ font-size:16px; font-weight:600; color:var(--navy); margin-bottom:3px; }
+.example-romaji{ font-size:12.5px; color:var(--muted); font-style:italic; margin-bottom:5px; }
+.example-id{ font-size:13.5px; color:#3a4a5c; }
+.example-box + .example-box{ margin-top:10px; }
+
+.compare-table{ width:100%; border-collapse:collapse; margin-top:6px; font-size:13.5px; }
+.compare-table th, .compare-table td{
+    border:1px solid #e2ddcf; padding:9px 10px; text-align:left;
+}
+.compare-table th{ background:var(--navy); color:var(--gold-soft); font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+.compare-table td.jp-cell{ font-weight:600; color:var(--navy); }
+
+.tip-box{
+    width:100%; background:var(--gold-soft); border:1.5px dashed #e0c34a; border-radius:14px;
+    padding:14px 16px; margin-top:16px; font-size:13.5px; color:#5c4a00; line-height:1.7;
+}
+.tip-box b{ color:#8a6d00; }
+
+.nav-row{ display:flex; align-items:center; justify-content:center; gap:16px; margin-top:24px; flex-wrap:wrap; }
+
+.nav-btn{
+    width:46px; height:46px; border-radius:50%; border:2px solid var(--navy);
+    background:white; color:var(--navy); font-size:19px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.nav-btn:hover{ background:var(--navy); color:var(--gold); }
+.nav-btn:disabled{ opacity:.3; cursor:default; }
+.nav-btn:disabled:hover{ background:white; color:var(--navy); }
+
+.jump-row{ display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:24px; }
+
+.dot{
+    width:34px; height:34px; border-radius:8px; border:2px solid #d8d4c8; background:white;
+    color:var(--muted); font-size:13px; font-weight:700; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.dot:hover{ border-color:var(--navy); }
+.dot.active{ background:var(--navy); border-color:var(--navy); color:var(--gold); }
+
+footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px; }
 
 @media(max-width:480px){
-
-  .hero{
-    padding:60px 16px 70px;
-  }
-
-  .hero h1{
-    font-size:2rem;
-  }
-
-  .hero p{
-    font-size:.92rem;
-  }
-
-  .stats{
-    margin-top:30px;
-  }
-
-  .stat{
-    padding:0 15px;
-    margin-bottom:15px;
-  }
-
-  #app{
-    padding:40px 14px 20px;
-  }
-
+    header h1{ font-size:24px; }
+    .progress-row{ flex-wrap:wrap; }
+    .progress-bar{ order:3; width:100%; margin:8px 0 0; flex:1 1 100%; }
+    .card{ padding:26px 20px; }
+    .slide-kanji{ font-size:24px; }
+    .compare-table{ font-size:12px; }
 }
 
 </style>
 </head>
 
-
-<body translate="no">
-
-
-<!-- =========================================================
-     NAVBAR
-========================================================= -->
+<body>
 
 <nav id="navbar">
-
-  <div class="navbar-inner">
-
-    <!-- HOME -->
-    <div class="nav-left">
-
-      <a href="index.html" class="home-btn">
-
-        <svg
-          class="home-icon"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor">
-
-          <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
-
-        </svg>
-
-        HOME
-
-      </a>
-
-    </div>
-
-
-    <!-- SEMUA MENU -->
-    <div class="nav-right">
-
-
-      <!-- TEKIPAKI LEARNING -->
-
-      <div class="dropdown">
-
-        <button
-          class="dropdown-btn"
-          onclick="toggleDropdown('learningDropdown')">
-
-          TEKIPAKI LEARNING ▼
-
-        </button>
-
-        <div
-          class="dropdown-menu"
-          id="learningDropdown">
-
-          <a href="guru.html">
-            GURU
-          </a>
-
-          <a href="elearning.html">
-            SISWA
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!-- MATERI -->
-
-      <div class="dropdown">
-
-        <button
-          class="dropdown-btn"
-          onclick="toggleDropdown('materiDropdown')">
-
-          MATERI ▼
-
-        </button>
-
-        <div
-          class="dropdown-menu"
-          id="materiDropdown">
-
-          <a href="daftarkosakata.html">
-            Kosakata JFT
-          </a>
-
-          <a href="materitatabahasa.html">
-            Tata Bahasa
-
-          </a>
-                    <a href="materikanji.html">
-            Materi Kanji JLPT
-          </a>
-
-          <a href="kanjidasar.html">
-            Kanji Flash Card
-          </a>
-                    </a>
-                    <a href="materikosakata.html">
-            Materi Kosakata JLPT
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!-- QUIZ JFT -->
-
-      <div class="dropdown">
-
-        <button
-          class="dropdown-btn"
-          onclick="toggleDropdown('quizDropdown')">
-
-          QUIZ JFT ▼
-
-        </button>
-
-        <div
-          class="dropdown-menu"
-          id="quizDropdown">
-
-          <a href="ujianjfta2test1.html">
-            SOAL JFT A — TEST 1
-          </a>
-
-          <a href="ujianjfta2test2.html">
-            SOAL JFT A — TEST 2
-          </a>
-
-          <a href="ujianjfta2test3.html">
-            SOAL JFT A — TEST 3
-          </a>
-
-          <a href="ujianjfta2test4.html">
-            SOAL JFT A — TEST 4
-          </a>
-
-          <a href="ujianjfta2test5.html">
-            SOAL JFT A — TEST 5
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!-- QUIZ KANJI -->
-
-      <div class="dropdown">
-
-        <button
-          class="dropdown-btn"
-          onclick="toggleDropdown('kanjiQuizDropdown')">
-
-          QUIZ KANJI ▼
-
-        </button>
-
-        <div
-          class="dropdown-menu"
-          id="kanjiQuizDropdown">
-
-          <a href="quizkanji1.html">
-            QUIZ KANJI 1
-          </a>
-
-          <a href="quizkanji2.html">
-            QUIZ KANJI 2
-          </a>
-
-          <a href="quizkanji3.html">
-            QUIZ KANJI 3
-          </a>
-
-          <a href="quizkanji4.html">
-            QUIZ KANJI 4
-          </a>
-
-          <a href="quizkanji5.html">
-            QUIZ KANJI 5
-          </a>
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-
-    <!-- BURGER -->
-    <button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
-        <line x1="3" y1="6" x2="21" y2="6"/>
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="18" x2="21" y2="18"/>
+<div class="navbar-inner">
+
+  <div class="nav-left">
+    <a href="index.html" class="home-btn">
+      <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
       </svg>
-    </button>
-
+      HOME
+    </a>
   </div>
 
+  <div class="nav-right">
 
-  <!-- MOBILE MENU PANEL -->
-  <div class="mobile-menu" id="mobileMenu">
-
-    <a class="mobile-link" href="index.html">HOME</a>
-
-    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">TEKIPAKI LEARNING</button>
-    <div class="mobile-acc-panel">
-      <a href="guru.html">GURU</a>
-      <a href="elearning.html">SISWA</a>
-    </div>
-
-    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
-    <div class="mobile-acc-panel">
-      <a href="daftarkosakata.html">Kosakata JFT</a>
-      <a href="materitatabahasa.html">Tata Bahasa</a>
-      <a href="materikanji.html">Materi Kanji JLPT</a>
-      <a href="kanjidasar.html">Kanji Flash Card</a>
-      <a href="materikosakata.html">Materi Kosakata JLPT</a>
-    </div>
-
-    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
-    <div class="mobile-acc-panel">
-      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
-      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
-      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
-      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
-      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
-    </div>
-
-    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
-    <div class="mobile-acc-panel">
-      <a href="quizkanji1.html">QUIZ KANJI 1</a>
-      <a href="quizkanji2.html">QUIZ KANJI 2</a>
-      <a href="quizkanji3.html">QUIZ KANJI 3</a>
-      <a href="quizkanji4.html">QUIZ KANJI 4</a>
-      <a href="quizkanji5.html">QUIZ KANJI 5</a>
-    </div>
-
-  </div>
-
-</nav>
-
-
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-
-<section class="hero">
-
-  <div
-    class="hero-kanji"
-    aria-hidden="true">
-    学
-  </div>
-
-
-  <div class="hero-inner">
-
-    <div class="seal">
-      合格
-    </div>
-
-
-    <div class="eyebrow">
-      Tekipaki Japanese Learning
-    </div>
-
-
-    <h1>
-
-      Siap menghadapi
-      <span>JFT A2</span>
-
-      <br>
-
-      selangkah demi selangkah
-
-    </h1>
-
-
-    <p>
-
-      Materi kosakata, tata bahasa, dan kanji dasar
-      yang dilengkapi dengan bank soal serta simulasi ujian.
-
-    </p>
-
-
-    <div class="hero-cta">
-
-      <a
-        href="#quiz-jft"
-        class="btn btn-gold">
-
-        ▶ Mulai Simulasi Ujian
-
-      </a>
-
-
-      <a
-        href="#materi"
-        class="btn btn-ghost">
-
-        Lihat Materi Belajar
-
-      </a>
-
-    </div>
-
-
-  </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     APP
-========================================================= -->
-
-<div id="app">
-
-
-  <!-- =======================================================
-       MATERI
-  ======================================================== -->
-
-  <div id="materi">
-
-
-    <div class="section-head">
-
-      <div class="stamp-mini">
-        学
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('learningDropdown')">TEKIPAKI LEARNING ▼</button>
+      <div class="dropdown-menu" id="learningDropdown">
+        <a href="guru.html">GURU</a>
+        <a href="elearning.html">SISWA</a>
       </div>
-
-      <h2>
-        Materi Belajar
-      </h2>
-
-      <span class="jp">
-        きそ・きほん
-      </span>
-
     </div>
 
-
-    <p class="section-sub">
-
-      Bangun fondasi sebelum masuk ke simulasi ujian —
-      kosakata, pola kalimat, dan kanji dasar yang sering
-      keluar di JFT A2.
-
-    </p>
-
-
-    <div class="grid3">
-
-
-      <!-- KOSAKATA -->
-
-      <a
-        href="daftarkosakata.html"
-        class="materi-card">
-
-        <div class="ic">
-          📖
-        </div>
-
-        <h3>
-          Kosakata JFT
-        </h3>
-
-        <p>
-          Daftar kosakata inti yang paling sering muncul
-          di ujian, dikelompokkan per tema.
-        </p>
-
-        <div class="go">
-          BUKA DAFTAR →
-        </div>
-
-      </a>
-            <a
-        href="miniquizjft.html"
-        class="materi-card">
-
-        <div class="ic">
-          📖
-        </div>
-
-        <h3>
-          Mini Quiz JFT
-        </h3>
-
-        <p>
-          Daftar kosakata inti yang paling sering muncul
-          di ujian, dikelompokkan per tema.
-        </p>
-
-        <div class="go">
-          BUKA DAFTAR →
-        </div>
-       <!----CARA BERKOMINIKASI-->
-      </a>
-                  <a
-        href="materikomunikasi.html"
-        class="materi-card">
-
-        <div class="ic">
-          📖
-        </div>
-
-        <h3>
-          Cara Berkomunikasi di Dunia Kerja
-        </h3>
-
-        <p>
-          Daftar kosakata yang sering digunakan dalam dunia pekerjaan
-        </p>
-
-        <div class="go">
-          BUKA DAFTAR →
-        </div>
-
-      </a>
-      <!-- Mini Quiz Tata Bahasa -->
-      <a
-        href="miniquiz_tatabahasa.html"
-        class="materi-card">
-
-        <div class="ic">
-          👷
-        </div>
-
-        <h3>
-          Mini Quiz Tata Bahasa
-        </h3>
-
-        <p>
-          Mini Quiz Tata Bahasa JFT A2
-        </p>
-
-        <div class="go">
-          MULAI TEST →
-        </div>
-
-        <!---Soal dokkai-->
-              <a
-        href="miniquiz_dokkai.html"
-        class="materi-card">
-
-        <div class="ic">
-          👷
-        </div>
-
-        <h3>
-          Mini Quiz Dokkai
-        </h3>
-
-        <p>
-          Mini Quiz Dokkai JFT A2
-        </p>
-
-        <div class="go">
-          MULAI TEST →
-        </div>
-
-      </a>
-
-      </a>
-      <!-- Kelompok Kata Kerja -->
-      </a>
-
-      <a
-        href="kelompok_katakerja.html"
-        class="materi-card">
-
-        <div class="ic">
-          👷
-        </div>
-
-        <h3>
-          Kelompok Kata Kerja
-        </h3>
-
-        <p>
-          Kelompok Kata Kerja JFT A2
-        </p>
-
-        <div class="go">
-          MULAI TEST →
-        </div>
-
-      </a>
-      <!-- TATA BAHASA -->
-
-      <a
-        href="materitatabahasa.html"
-        class="materi-card">
-
-        <div class="ic">
-          ✍️
-        </div>
-
-        <h3>
-          Tata Bahasa
-        </h3>
-
-        <p>
-          Pola kalimat dan partikel dasar level A2,
-          dengan contoh percakapan sehari-hari.
-        </p>
-
-        <div class="go">
-          PELAJARI →
-        </div>
-
-      </a>
-
-
-      <!-- KANJI TEST -->
-
-      <a
-        href="kanjitest_mingguan.html"
-        class="materi-card">
-
-        <div class="ic">
-          👷
-        </div>
-
-        <h3>
-          Kanji Test Kelas Magang
-        </h3>
-
-        <p>
-          Kartu Ujian kanji dasar lengkap dengan cara
-          baca dan artinya. Dan hasil ujian.
-        </p>
-
-        <div class="go">
-          MULAI TEST →
-        </div>
-
-      </a>
-       <a
-        href="quizkanji_pertanian.html"
-        class="materi-card">
-
-        <div class="ic">
-          🌱
-        </div>
-
-        <h3>
-          Kanji Test Kelas Pertanian
-        </h3>
-
-        <p>
-          Kartu Ujian kanji dasar lengkap dengan cara
-          baca dan artinya. Dan hasil ujian.
-        </p>
-
-        <div class="go">
-          MULAI TEST →
-        </div>
-
-      </a>
-
-
-      <!-- KANJI FLASH CARD -->
-
-      <a
-        href="kanjidasar.html"
-        class="materi-card">
-
-        <div class="ic">
-          🈶
-        </div>
-
-        <h3>
-          Kanji Flash Card
-        </h3>
-
-        <p>
-          Kartu hafalan kanji dasar lengkap dengan
-          cara baca dan artinya.
-        </p>
-
-        <div class="go">
-          MULAI HAFALAN →
-        </div>
-
-      </a>
-
-
-      <!-- KAIWA -->
-
-      <a
-        href="kaiwa.html"
-        class="materi-card">
-
-        <div class="ic">
-          ⭐⭐⭐⭐⭐
-        </div>
-
-        <h3>
-          日常会話練習
-        </h3>
-
-        <h3>
-          Latihan Percakapan Sehari-hari
-        </h3>
-
-        <p>
-          Latihan percakapan bahasa Jepang untuk situasi
-          sehari-hari dan dunia kerja.
-        </p>
-
-        <div class="go">
-          MULAI PERCAKAPAN →
-        </div>
-
-      </a>
-
-
-      <!-- ONOMATOPE -->
-
-      <a
-        href="onomatope.html"
-        class="materi-card">
-
-        <div class="ic">
-          💬
-        </div>
-
-        <h3>
-          オノマトペ一覧
-        </h3>
-
-        <h3>
-          Daftar Onomatopoeia Bahasa Jepang
-        </h3>
-
-        <p>
-
-          Pelajari berbagai onomatopoeia
-          (kata tiruan bunyi dan keadaan)
-          yang sering digunakan dalam percakapan
-          sehari-hari, anime, manga, hingga dunia kerja.
-
-        </p>
-
-        <div class="go">
-          LIHAT DAFTAR →
-        </div>
-
-      </a>
-
-
-      <!-- IRODORI -->
-
-      <a
-        href="kosakatairodori_homepage.html"
-        class="materi-card">
-
-        <div class="ic">
-          🔊
-        </div>
-
-        <h3>
-          Irodori A2 語彙一覧
-        </h3>
-
-        <h3>
-          Daftar Kosakata Irodori A2
-        </h3>
-
-        <p>
-
-          Kumpulan kosakata dari buku Irodori A2
-          yang disusun per bab untuk membantu belajar,
-          menghafal, dan persiapan JLPT maupun
-          percakapan sehari-hari.
-
-        </p>
-
-        <div class="go">
-          LIHAT DAFTAR →
-        </div>
-
-      </a>
-
-
-      <!-- DOA -->
-
-      <a
-        href="doabersama.html"
-        class="materi-card">
-
-        <div class="ic">
-          🔊
-        </div>
-
-        <h3>
-          DOA BERSAMA
-        </h3>
-
-        <div class="go">
-          LIHAT DAFTAR →
-        </div>
-
-      </a>
-
-
-      <!-- GOMI -->
-
-      <a
-        href="gominokanri.html"
-        class="materi-card">
-
-        <div class="ic">
-          🔊
-        </div>
-
-        <h3>
-          日本のごみ分別
-        </h3>
-
-        <h3>
-          Pemilahan Sampah di Jepang
-        </h3>
-
-        <p>
-
-          Pelajari cara memilah sampah di Jepang,
-          mulai dari sampah yang dapat dibakar,
-          tidak dapat dibakar, botol, kaleng,
-          PET bottle, hingga aturan membuang sampah
-          sesuai jadwal.
-
-          Cocok untuk persiapan tinggal,
-          bekerja, maupun belajar di Jepang.
-
-        </p>
-
-        <div class="go">
-          LIHAT DAFTAR →
-        </div>
-
-      </a>
-
-
-    </div>
-
-  </div>
-
-
-
-  <!-- =======================================================
-       QUIZ JFT
-  ======================================================== -->
-
-  <div id="quiz-jft">
-
-
-    <div class="section-head">
-
-      <div class="stamp-mini">
-        試
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('materiDropdown')">MATERI ▼</button>
+      <div class="dropdown-menu" id="materiDropdown">
+        <a href="daftarkosakata.html">Kosakata JFT</a>
+        <a href="materitatabahasa.html">Tata Bahasa</a>
+        <a href="materikanji.html">Materi Kanji JLPT</a>
+        <a href="kanjidasar.html">Kanji Flash Card</a>
+        <a href="materikosakata.html">Materi Kosakata JLPT</a>
+        <a href="tabel-perubahan-kosakata.html">Tabel Perubahan Kosakata</a>
+        <a href="materikomunikasi.html">Cara Komunikasi (Keigo)</a>
       </div>
-
-      <h2>
-        Simulasi Ujian JFT A2
-      </h2>
-
-      <span class="jp">
-        しけん・タイマー付き
-      </span>
-
     </div>
 
-
-    <p class="section-sub">
-
-      Lima paket soal setara ujian asli —
-      20 soal pilihan ganda, timer 20 menit,
-      dan pembahasan lengkap di akhir.
-
-    </p>
-
-
-    <div class="tickets">
-
-
-      <a
-        href="ujianjfta2test1.html"
-        class="ticket">
-
-        <div class="ticket-num">
-
-          <span class="no">
-            01
-          </span>
-
-          <span class="lbl">
-            Test
-          </span>
-
-        </div>
-
-        <div class="ticket-body">
-
-          <span class="title">
-            JFT A2 — Test 1
-          </span>
-
-          <span class="meta">
-            20 SOAL · 20:00
-          </span>
-
-        </div>
-
-      </a>
-
-
-      <a
-        href="ujianjfta2test2.html"
-        class="ticket">
-
-        <div class="ticket-num">
-
-          <span class="no">
-            02
-          </span>
-
-          <span class="lbl">
-            Test
-          </span>
-
-        </div>
-
-        <div class="ticket-body">
-
-          <span class="title">
-            JFT A2 — Test 2
-          </span>
-
-          <span class="meta">
-            20 SOAL · 20:00
-          </span>
-
-        </div>
-
-      </a>
-
-
-      <a
-        href="ujianjfta2test3.html"
-        class="ticket">
-
-        <div class="ticket-num">
-
-          <span class="no">
-            03
-          </span>
-
-          <span class="lbl">
-            Test
-          </span>
-
-        </div>
-
-        <div class="ticket-body">
-
-          <span class="title">
-            JFT A2 — Test 3
-          </span>
-
-          <span class="meta">
-            20 SOAL · 20:00
-          </span>
-
-        </div>
-
-      </a>
-
-
-      <a
-        href="ujianjfta2test4.html"
-        class="ticket">
-
-        <div class="ticket-num">
-
-          <span class="no">
-            04
-          </span>
-
-          <span class="lbl">
-            Test
-          </span>
-
-        </div>
-
-        <div class="ticket-body">
-
-          <span class="title">
-            JFT A2 — Test 4
-          </span>
-
-          <span class="meta">
-            20 SOAL · 20:00
-          </span>
-
-        </div>
-
-      </a>
-
-
-      <a
-        href="ujianjfta2test5.html"
-        class="ticket">
-
-        <div class="ticket-num">
-
-          <span class="no">
-            05
-          </span>
-
-          <span class="lbl">
-            Test
-          </span>
-
-        </div>
-
-        <div class="ticket-body">
-
-          <span class="title">
-            JFT A2 — Test 5
-          </span>
-
-          <span class="meta">
-            20 SOAL · 20:00
-          </span>
-
-        </div>
-
-      </a>
-
-
-    </div>
-
-  </div>
-
-
-
-  <!-- =======================================================
-       QUIZ KANJI
-  ======================================================== -->
-
-  <div id="quiz-kanji">
-
-
-    <div class="section-head">
-
-      <div class="stamp-mini">
-        漢
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('quizDropdown')">QUIZ JFT ▼</button>
+      <div class="dropdown-menu" id="quizDropdown">
+        <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+        <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+        <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+        <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+        <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+        <a href="dokkai-n4.html">Latihan Dokkai N4 — Unit 1</a>
+        <a href="dokkai_unit2.html">Latihan Dokkai N4 — Unit 2</a>
+        <a href="dokkai_unit3.html">Latihan Dokkai N4 — Unit 3</a>
+        <a href="dokkai_unit4.html">Latihan Dokkai N4 — Unit 4</a>
+        <a href="dokkai_unit5.html">Latihan Dokkai N4 — Unit 5</a>
+        <a href="dokkai_unit6.html">Latihan Dokkai N4 — Unit 6</a>
       </div>
-
-      <h2>
-        Quiz Kanji
-      </h2>
-
-      <span class="jp">
-        かんじ・れんしゅう
-      </span>
-
     </div>
 
-
-    <p class="section-sub">
-
-      Latihan cepat membaca kanji dasar,
-      dibagi jadi lima set supaya nggak bikin pusing.
-
-    </p>
-
-
-    <div class="kanji-grid">
-
-
-      <a
-        href="quizkanji1.html"
-        class="kanji-tile">
-
-        <div class="kj">
-          QUIZ
-        </div>
-
-        <div class="lbl2">
-          KANJI 1
-        </div>
-
-      </a>
-
-
-      <a
-        href="quizkanji2.html"
-        class="kanji-tile">
-
-        <div class="kj">
-          QUIZ
-        </div>
-
-        <div class="lbl2">
-          KANJI 2
-        </div>
-
-      </a>
-
-
-      <a
-        href="quizkanji3.html"
-        class="kanji-tile">
-
-        <div class="kj">
-          QUIZ
-        </div>
-
-        <div class="lbl2">
-          KANJI 3
-        </div>
-
-      </a>
-
-
-      <a
-        href="quizkanji4.html"
-        class="kanji-tile">
-
-        <div class="kj">
-          QUIZ
-        </div>
-
-        <div class="lbl2">
-          KANJI 4
-        </div>
-
-      </a>
-
-
-      <a
-        href="quizkanji5.html"
-        class="kanji-tile">
-
-        <div class="kj">
-          QUIZ
-        </div>
-
-        <div class="lbl2">
-          KANJI 5
-        </div>
-
-      </a>
-
-
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('kanjiQuizDropdown')">QUIZ KANJI ▼</button>
+      <div class="dropdown-menu" id="kanjiQuizDropdown">
+        <a href="quizkanji1.html">QUIZ KANJI 1</a>
+        <a href="quizkanji2.html">QUIZ KANJI 2</a>
+        <a href="quizkanji3.html">QUIZ KANJI 3</a>
+        <a href="quizkanji4.html">QUIZ KANJI 4</a>
+        <a href="quizkanji5.html">QUIZ KANJI 5</a>
+      </div>
     </div>
 
   </div>
 
+  <button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
 
 </div>
 
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="index.html">HOME</a>
 
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">TEKIPAKI LEARNING</button>
+  <div class="mobile-acc-panel">
+    <a href="guru.html">GURU</a>
+    <a href="elearning.html">SISWA</a>
+  </div>
 
-<!-- =========================================================
-     FOOTER
-========================================================= -->
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+  <div class="mobile-acc-panel">
+    <a href="daftarkosakata.html">Kosakata JFT</a>
+    <a href="materitatabahasa.html">Tata Bahasa</a>
+    <a href="materikanji.html">Materi Kanji JLPT</a>
+    <a href="kanjidasar.html">Kanji Flash Card</a>
+    <a href="materikosakata.html">Materi Kosakata JLPT</a>
+    <a href="tabel-perubahan-kosakata.html">Tabel Perubahan Kosakata</a>
+    <a href="materikomunikasi.html">Cara Komunikasi (Keigo)</a>
+  </div>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
+  <div class="mobile-acc-panel">
+    <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+    <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+    <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+    <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+    <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    <a href="dokkai-n4.html">Latihan Dokkai N4 — Unit 1</a>
+    <a href="dokkai_unit2.html">Latihan Dokkai N4 — Unit 2</a>
+    <a href="dokkai_unit3.html">Latihan Dokkai N4 — Unit 3</a>
+    <a href="dokkai_unit4.html">Latihan Dokkai N4 — Unit 4</a>
+    <a href="dokkai_unit5.html">Latihan Dokkai N4 — Unit 5</a>
+    <a href="dokkai_unit6.html">Latihan Dokkai N4 — Unit 6</a>
+  </div>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
+  <div class="mobile-acc-panel">
+    <a href="quizkanji1.html">QUIZ KANJI 1</a>
+    <a href="quizkanji2.html">QUIZ KANJI 2</a>
+    <a href="quizkanji3.html">QUIZ KANJI 3</a>
+    <a href="quizkanji4.html">QUIZ KANJI 4</a>
+    <a href="quizkanji5.html">QUIZ KANJI 5</a>
+  </div>
+</div>
+</nav>
+
+<header>
+<div class="eyebrow">💬 MATERI KOMUNIKASI · KEIGO（敬語）</div>
+<h1>Cara Komunikasi dalam Bahasa Jepang</h1>
+<p>Penjelasan ungkapan-ungkapan penting dalam komunikasi sehari-hari dan dunia kerja Jepang: otsukaresama, osewa ni narimasu, arigatou gozaimasu, sonkeigo, dan kenjougo. Geser slide untuk membaca setiap bagian.</p>
+</header>
+
+<div class="viewer-wrap">
+
+<div class="progress-row">
+<span class="progress-text" id="progressText">1 / 8</span>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="tag-row"><span class="tag" id="tagBadge">SLIDE MATERI</span></div>
+
+<div class="card" id="card">
+    <div class="badge" id="cardBadge">敬</div>
+    <div id="slideContent"></div>
+</div>
+
+<div class="nav-row">
+<button class="nav-btn" id="prevBtn" title="Sebelumnya">←</button>
+<button class="nav-btn" id="nextBtn" title="Berikutnya">→</button>
+</div>
+
+<div class="jump-row" id="jumpRow"></div>
+
+</div>
 
 <footer>
-
-  <span class="fseal"></span>
-
-  © Tekipaki Japanese Learning
-
+© 2026 Tekipaki Japanese Learning | Materi Cara Komunikasi (Keigo)
 </footer>
-
-
-
-<!-- =========================================================
-     JAVASCRIPT NAVBAR
-========================================================= -->
 
 <script>
 
-function toggleDropdown(id){
+const slides = [
+    {
+        badge: "敬",
+        kanji: "Pengantar Keigo",
+        reading: "けいご",
+        title: "Mengapa Cara Bicara Itu Penting di Jepang",
+        html: `
+            <div class="body-text">
+                Dalam bahasa Jepang, cara berbicara berubah tergantung <b>siapa lawan bicara kita</b> dan <b>seberapa dekat hubungan itu</b>. Sistem ini disebut <b>敬語 (keigo)</b>, atau "bahasa hormat".
+                <br><br>
+                Keigo dibagi menjadi tiga jenis utama:
+            </div>
+            <table class="compare-table">
+                <tr><th>Jenis</th><th>Fungsi</th></tr>
+                <tr><td class="jp-cell">丁寧語 (teineigo)</td><td>Bahasa sopan standar (です・ます)</td></tr>
+                <tr><td class="jp-cell">尊敬語 (sonkeigo)</td><td>Meninggikan lawan bicara / orang lain</td></tr>
+                <tr><td class="jp-cell">謙譲語 (kenjougo)</td><td>Merendahkan diri sendiri untuk menghormati orang lain</td></tr>
+            </table>
+            <div class="tip-box"><b>Poin penting:</b> Keigo bukan soal "benar/salah" tata bahasa saja, tapi soal <b>rasa hormat dan jarak sosial</b>. Semakin formal situasinya (kantor, klien, senior), semakin penting keigo digunakan dengan tepat.</div>
+        `
+    },
+    {
+        badge: "疲",
+        kanji: "お疲れ様です",
+        reading: "おつかれさまです",
+        title: "Otsukaresama Desu — Sapaan di Tempat Kerja",
+        html: `
+            <div class="section-label">Arti &amp; Penggunaan</div>
+            <div class="body-text">
+                Secara harfiah berarti "Anda pasti lelah", tapi dalam praktiknya digunakan sebagai <b>sapaan umum antar rekan kerja</b>, baik saat bertemu, berpapasan, maupun mengakhiri percakapan di lingkungan kerja — <b>tidak peduli apakah pekerjaan sudah selesai atau belum</b>. Bentuk ini dipakai dalam bentuk sekarang/masih berlangsung.
+            </div>
+            <div class="section-label">Contoh Situasi</div>
+            <div class="example-box">
+                <div class="example-jp">お疲れ様です、田中さん。</div>
+                <div class="example-romaji">Otsukaresama desu, Tanaka-san.</div>
+                <div class="example-id">Digunakan saat bertemu Tanaka-san di kantor, kapan saja selama jam kerja.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">（電話で）お疲れ様です、営業部の佐藤です。</div>
+                <div class="example-romaji">(Denwa de) Otsukaresama desu, eigyoubu no Satou desu.</div>
+                <div class="example-id">Digunakan sebagai pembuka saat menelepon rekan kerja di perusahaan yang sama.</div>
+            </div>
+            <div class="tip-box"><b>Catatan:</b> Ungkapan ini hanya dipakai <b>antar sesama rekan kerja/perusahaan</b>, bukan kepada pelanggan atau klien dari luar perusahaan.</div>
+        `
+    },
+    {
+        badge: "疲",
+        kanji: "お疲れ様でした",
+        reading: "おつかれさまでした",
+        title: "Otsukaresama Deshita — Setelah Pekerjaan Selesai",
+        html: `
+            <div class="section-label">Arti &amp; Penggunaan</div>
+            <div class="body-text">
+                Ini adalah <b>bentuk lampau</b> dari otsukaresama desu. Digunakan setelah suatu pekerjaan, rapat, atau kegiatan <b>telah selesai</b> — misalnya saat pulang kerja, setelah rapat berakhir, atau kepada seseorang yang baru menyelesaikan tugasnya.
+            </div>
+            <div class="section-label">Contoh Situasi</div>
+            <div class="example-box">
+                <div class="example-jp">今日も一日、お疲れ様でした。</div>
+                <div class="example-romaji">Kyou mo ichinichi, otsukaresama deshita.</div>
+                <div class="example-id">Diucapkan saat berpisah di akhir hari kerja, sebagai bentuk apresiasi atas kerja keras hari itu.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">会議、お疲れ様でした。</div>
+                <div class="example-romaji">Kaigi, otsukaresama deshita.</div>
+                <div class="example-id">Diucapkan tepat setelah sebuah rapat selesai.</div>
+            </div>
+            <div class="tip-box"><b>Bedanya dengan です:</b> です dipakai saat pekerjaan <b>masih berjalan / kapan saja</b>, sedangkan でした dipakai saat pekerjaan/kegiatan tersebut <b>sudah berakhir</b>.</div>
+        `
+    },
+    {
+        badge: "世",
+        kanji: "お世話になります",
+        reading: "おせわになります",
+        title: "Osewa ni Narimasu — Ungkapan Bisnis Formal",
+        html: `
+            <div class="section-label">Arti &amp; Penggunaan</div>
+            <div class="body-text">
+                Berarti kira-kira "terima kasih atas bantuan/dukungannya", digunakan untuk menyatakan <b>rasa terima kasih atas hubungan kerja sama yang berkelanjutan</b>. Sangat sering muncul sebagai <b>kalimat pembuka email atau telepon bisnis</b>, kepada klien, mitra kerja, atau perusahaan lain.
+            </div>
+            <div class="section-label">Contoh Situasi</div>
+            <div class="example-box">
+                <div class="example-jp">いつもお世話になっております。</div>
+                <div class="example-romaji">Itsumo osewa ni natte orimasu.</div>
+                <div class="example-id">"Terima kasih atas dukungannya selama ini." — kalimat pembuka email bisnis yang paling umum dipakai.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">これから、お世話になります。</div>
+                <div class="example-romaji">Korekara, osewa ni narimasu.</div>
+                <div class="example-id">"Mohon bantuannya ke depan." — diucapkan saat memulai hubungan kerja/kerja sama baru, misalnya di hari pertama kerja.</div>
+            </div>
+            <div class="tip-box"><b>Catatan:</b> Bentuk おっております (natte orimasu) lebih sopan dan lebih sering dipakai dalam tulisan bisnis dibanding bentuk dasar なります.</div>
+        `
+    },
+    {
+        badge: "感",
+        kanji: "ありがとうございます",
+        reading: "ありがとうございます",
+        title: "Arigatou Gozaimasu — Tingkatan Ucapan Terima Kasih",
+        html: `
+            <div class="section-label">Tingkatan Kesopanan</div>
+            <table class="compare-table">
+                <tr><th>Ungkapan</th><th>Tingkat</th><th>Kapan Dipakai</th></tr>
+                <tr><td class="jp-cell">ありがとう</td><td>Santai</td><td>Ke teman dekat, keluarga</td></tr>
+                <tr><td class="jp-cell">ありがとうございます</td><td>Sopan (sekarang)</td><td>Situasi formal, ke atasan/orang baru</td></tr>
+                <tr><td class="jp-cell">ありがとうございました</td><td>Sopan (lampau)</td><td>Setelah suatu bantuan/kejadian selesai</td></tr>
+            </table>
+            <div class="section-label">Contoh</div>
+            <div class="example-box">
+                <div class="example-jp">本日はありがとうございました。</div>
+                <div class="example-romaji">Honjitsu wa arigatou gozaimashita.</div>
+                <div class="example-id">"Terima kasih untuk hari ini." — dipakai setelah pertemuan/acara selesai.</div>
+            </div>
+            <div class="tip-box"><b>Tips:</b> Gunakan ございます saat rasa terima kasih itu masih berlangsung atau bersifat umum, dan ございました saat menunjuk pada peristiwa yang sudah lewat.</div>
+        `
+    },
+    {
+        badge: "L",
+        kanji: "LINEでの連絡",
+        reading: "らいんでのれんらく",
+        title: "Cara Membalas Pesan di LINE / Chat Kerja",
+        html: `
+            <div class="section-label">Kesalahan yang Sering Terjadi</div>
+            <div class="body-text">
+                Banyak siswa terbiasa membalas pesan atasan/guru di LINE dengan menyisipkan <b>jabatan atau nama orang tersebut di tengah kalimat</b> tanpa tanda baca yang benar, seperti menambahkan spasi kosong menggantikan koma. Ini terdengar kaku dan tidak natural dalam bahasa Jepang tertulis.
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ はい　社長　わかりました。</div>
+                <div class="example-romaji">Hai　shachou　wakarimashita.</div>
+                <div class="example-id">Salah — memakai spasi kosong (　) untuk memisahkan kata, bukan tanda baca. Juga menaruh jabatan (社長) di tengah kalimat balasan terkesan janggal.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ はい、わかりました。</div>
+                <div class="example-romaji">Hai, wakarimashita.</div>
+                <div class="example-id">Benar dan cukup — dalam balasan chat, tidak perlu menyebut nama/jabatan lawan bicara lagi karena sudah jelas dari konteks percakapan.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ 社長、承知いたしました。</div>
+                <div class="example-romaji">Shachou, shouchi itashimashita.</div>
+                <div class="example-id">Benar, jika memang ingin menyapa nama/jabatan di awal kalimat — gunakan koma（、）setelahnya, dan gunakan bentuk kenjougo 承知いたしました yang lebih formal daripada わかりました untuk atasan/klien.</div>
+            </div>
+            <div class="section-label">Poin Penting Chat Formal</div>
+            <div class="body-text">
+                • Gunakan tanda baca（、。）yang benar, jangan diganti spasi.<br>
+                • Tidak perlu menyebut nama/jabatan di setiap balasan — cukup sekali di awal percakapan.<br>
+                • Untuk atasan/klien, gunakan わかりました → <b>承知いたしました</b> atau <b>かしこまりました</b> yang lebih sopan.<br>
+                • Hindari singkatan/emoji berlebihan dalam chat kerja formal, meskipun LINE terasa santai.
+            </div>
+            <div class="tip-box"><b>Tips:</b> Bayangkan chat formal seperti email singkat — tetap pakai です・ます, tanda baca yang benar, dan pilih kenjougo saat membalas atasan atau klien.</div>
+        `
+    },
+    {
+        badge: "尊",
+        kanji: "尊敬語",
+        reading: "そんけいご",
+        title: "Sonkeigo — Meninggikan Lawan Bicara",
+        html: `
+            <div class="section-label">Konsep</div>
+            <div class="body-text">
+                Sonkeigo digunakan untuk <b>meninggikan/menghormati tindakan orang lain</b> — biasanya atasan, pelanggan, atau orang yang lebih senior. Kita tidak pernah memakai sonkeigo untuk tindakan diri sendiri.
+            </div>
+            <div class="section-label">Perubahan Kata Kerja Umum</div>
+            <table class="compare-table">
+                <tr><th>Kamus</th><th>Sonkeigo</th><th>Arti</th></tr>
+                <tr><td class="jp-cell">行く／来る／いる</td><td class="jp-cell">いらっしゃる</td><td>pergi / datang / ada</td></tr>
+                <tr><td class="jp-cell">する</td><td class="jp-cell">なさる</td><td>melakukan</td></tr>
+                <tr><td class="jp-cell">言う</td><td class="jp-cell">おっしゃる</td><td>mengatakan</td></tr>
+                <tr><td class="jp-cell">食べる／飲む</td><td class="jp-cell">召し上がる</td><td>makan / minum</td></tr>
+                <tr><td class="jp-cell">見る</td><td class="jp-cell">ご覧になる</td><td>melihat</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">部長は明日、大阪へいらっしゃいます。</div>
+                <div class="example-romaji">Buchou wa ashita, Oosaka e irasshaimasu.</div>
+                <div class="example-id">"Kepala bagian akan pergi ke Osaka besok." — subjeknya adalah orang yang dihormati.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">先生は何とおっしゃいましたか。</div>
+                <div class="example-romaji">Sensei wa nan to osshaimashita ka.</div>
+                <div class="example-id">"Apa yang dikatakan oleh guru?" — bentuk hormat dari 言いましたか, karena subjeknya adalah guru.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">お客様は何を召し上がりますか。</div>
+                <div class="example-romaji">Okyakusama wa nani wo meshiagarimasu ka.</div>
+                <div class="example-id">"Pelanggan mau makan/minum apa?" — dipakai pelayan restoran kepada tamu.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">こちらの資料はもうご覧になりましたか。</div>
+                <div class="example-romaji">Kochira no shiryou wa mou goran ni narimashita ka.</div>
+                <div class="example-id">"Apakah Anda sudah melihat dokumen ini?" — bentuk hormat dari 見ましたか.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">社長はもうお帰りになりました。</div>
+                <div class="example-romaji">Shachou wa mou okaeri ni narimashita.</div>
+                <div class="example-id">"Direktur sudah pulang." — pola お＋kata kerja（bentuk masu）＋になる juga sering dipakai sebagai sonkeigo untuk kata kerja yang tidak punya bentuk khusus.</div>
+            </div>
+        `
+    },
+    {
+        badge: "謙",
+        kanji: "謙譲語",
+        reading: "けんじょうご",
+        title: "Kenjougo — Merendahkan Diri Sendiri",
+        html: `
+            <div class="section-label">Konsep</div>
+            <div class="body-text">
+                Kenjougo digunakan untuk <b>merendahkan tindakan diri sendiri</b> (atau kelompok sendiri, misalnya perusahaan kita) agar lawan bicara terlihat lebih dihormati secara relatif. Dipakai untuk tindakan <b>kita sendiri</b>, bukan tindakan orang lain.
+            </div>
+            <div class="section-label">Perubahan Kata Kerja Umum</div>
+            <table class="compare-table">
+                <tr><th>Kamus</th><th>Kenjougo</th><th>Arti</th></tr>
+                <tr><td class="jp-cell">行く／来る</td><td class="jp-cell">参る（まいる）</td><td>pergi / datang</td></tr>
+                <tr><td class="jp-cell">する</td><td class="jp-cell">いたす</td><td>melakukan</td></tr>
+                <tr><td class="jp-cell">言う</td><td class="jp-cell">申し上げる</td><td>mengatakan</td></tr>
+                <tr><td class="jp-cell">食べる／飲む</td><td class="jp-cell">いただく</td><td>makan / minum</td></tr>
+                <tr><td class="jp-cell">会う</td><td class="jp-cell">お目にかかる</td><td>bertemu</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">明日、御社に参ります。</div>
+                <div class="example-romaji">Ashita, onsha ni mairimasu.</div>
+                <div class="example-id">"Besok saya akan datang ke perusahaan Anda." — subjeknya adalah diri sendiri, direndahkan untuk menghormati lawan bicara.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">では、私からご説明いたします。</div>
+                <div class="example-romaji">Dewa, watashi kara gosetsumei itashimasu.</div>
+                <div class="example-id">"Kalau begitu, saya yang akan menjelaskan." — bentuk merendah dari 説明します, umum dipakai saat presentasi ke klien.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">先生に来週お目にかかります。</div>
+                <div class="example-romaji">Sensei ni raishuu o-me ni kakarimasu.</div>
+                <div class="example-id">"Minggu depan saya akan bertemu dengan guru/sensei." — bentuk merendah dari 会います, dipakai saat menyebut pertemuan dengan orang yang dihormati.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">お荷物をお持ちいたします。</div>
+                <div class="example-romaji">Onimotsu wo omochi itashimasu.</div>
+                <div class="example-id">"Biar saya bawakan barangnya." — pola お＋kata kerja（bentuk masu）＋いたす, dipakai untuk menawarkan bantuan dengan sopan.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">頂いたメールを拝見いたしました。</div>
+                <div class="example-romaji">Itadaita meeru wo haiken itashimashita.</div>
+                <div class="example-id">"Saya sudah membaca email yang Anda kirimkan." — 拝見する adalah bentuk merendah khusus dari 見る, sering dipakai dalam email bisnis.</div>
+            </div>
+        `
+    },
+    {
+        badge: "詫",
+        kanji: "お詫びの言葉",
+        reading: "おわびのことば",
+        title: "Tingkatan Permintaan Maaf dalam Bahasa Jepang",
+        html: `
+            <div class="section-label">Konsep</div>
+            <div class="body-text">
+                Sama seperti terima kasih, permintaan maaf juga punya <b>tingkatan kesopanan</b> tergantung situasi dan seberapa besar kesalahannya. Memakai ungkapan yang terlalu santai di situasi formal bisa terkesan tidak sungguh-sungguh.
+            </div>
+            <div class="section-label">Tingkatan dari Santai ke Formal</div>
+            <table class="compare-table">
+                <tr><th>Ungkapan</th><th>Tingkat</th><th>Kapan Dipakai</th></tr>
+                <tr><td class="jp-cell">ごめん／ごめんね</td><td>Sangat santai</td><td>Ke teman dekat, keluarga</td></tr>
+                <tr><td class="jp-cell">すみません</td><td>Netral / sopan umum</td><td>Situasi sehari-hari, sedikit merepotkan orang</td></tr>
+                <tr><td class="jp-cell">申し訳ありません</td><td>Formal</td><td>Ke atasan, klien, kesalahan kerja</td></tr>
+                <tr><td class="jp-cell">申し訳ございません</td><td>Sangat formal</td><td>Bisnis resmi, tertulis (email/surat)</td></tr>
+                <tr><td class="jp-cell">大変申し訳ございません</td><td>Sangat formal + serius</td><td>Kesalahan besar / merepotkan banyak orang</td></tr>
+            </table>
+            <div class="section-label">Contoh Kalimat</div>
+            <div class="example-box">
+                <div class="example-jp">返信が遅くなり、申し訳ございません。</div>
+                <div class="example-romaji">Henshin ga osoku nari, moushiwake gozaimasen.</div>
+                <div class="example-id">"Mohon maaf balasan saya terlambat." — sering dipakai di awal email bisnis saat membalas terlambat.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">ご迷惑をおかけし、大変申し訳ございませんでした。</div>
+                <div class="example-romaji">Gomeiwaku wo okakeshi, taihen moushiwake gozaimasen deshita.</div>
+                <div class="example-id">"Mohon maaf sebesar-besarnya atas ketidaknyamanan yang ditimbulkan." — dipakai untuk kesalahan yang cukup serius, bentuk lampau karena kejadian sudah terjadi.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">先ほどは失礼いたしました。</div>
+                <div class="example-romaji">Sakihodo wa shitsurei itashimashita.</div>
+                <div class="example-id">"Mohon maaf atas sikap saya barusan." — dipakai setelah melakukan kesalahan kecil dalam sopan santun, misalnya memotong pembicaraan.</div>
+            </div>
+            <div class="tip-box"><b>Catatan:</b> すみません juga sering dipakai untuk "permisi" saat memanggil seseorang atau meminta tolong, bukan hanya untuk minta maaf — jadi maknanya cukup luas dalam percakapan sehari-hari.</div>
+        `
+    },
+    {
+        badge: "文",
+        kanji: "一日の習慣",
+        reading: "いちにちのしゅうかん",
+        title: "Contoh Sakubun N4: Kegiatan dari Bangun sampai Tidur",
+        html: `
+            <div class="section-label">Contoh Karangan (Sakubun)</div>
+            <div class="example-box">
+                <div class="example-jp" style="line-height:1.9;">
+                    私は毎朝6時に起きます。起きてから、まず顔を洗います。それから、朝ごはんを食べます。朝ごはんを食べた後で、歯を磨きます。7時半に家を出て、学校へ行きます。授業は8時に始まります。<br><br>
+                    昼休みに、友達と一緒にお弁当を食べます。授業が終わった後、少し勉強してから、家に帰ります。<br><br>
+                    家に帰ってから、まずシャワーを浴びます。それから、晩ごはんを食べます。晩ごはんの後で、宿題をします。宿題が終わったら、テレビを見たり、スマホを見たりします。<br><br>
+                    寝る前に、明日の準備をします。そして、11時ごろ、寝ます。
+                </div>
+            </div>
+            <div class="section-label">Terjemahan</div>
+            <div class="body-text">
+                Saya bangun jam 6 setiap pagi. Setelah bangun, pertama-tama saya cuci muka. Kemudian, saya makan sarapan. Setelah makan sarapan, saya gosok gigi. Jam 7.30 saya keluar rumah dan pergi ke sekolah. Pelajaran dimulai jam 8.
+                <br><br>
+                Saat istirahat siang, saya makan bekal bersama teman. Setelah pelajaran selesai, saya belajar sebentar, lalu pulang ke rumah.
+                <br><br>
+                Setelah sampai rumah, pertama-tama saya mandi. Kemudian, saya makan malam. Setelah makan malam, saya mengerjakan PR. Setelah PR selesai, saya menonton TV dan bermain HP.
+                <br><br>
+                Sebelum tidur, saya menyiapkan keperluan besok. Lalu, saya tidur sekitar jam 11.
+            </div>
+            <div class="section-label">Pola Tata Bahasa N4 yang Dipakai</div>
+            <table class="compare-table">
+                <tr><th>Pola</th><th>Fungsi</th></tr>
+                <tr><td class="jp-cell">～てから</td><td>Melakukan sesuatu, lalu setelah itu...</td></tr>
+                <tr><td class="jp-cell">～た後で</td><td>Setelah melakukan ~ (fokus pada urutan waktu)</td></tr>
+                <tr><td class="jp-cell">～前に</td><td>Sebelum melakukan ~</td></tr>
+                <tr><td class="jp-cell">～たり～たりします</td><td>Menyebutkan beberapa kegiatan (tidak harus urut)</td></tr>
+                <tr><td class="jp-cell">～ごろ</td><td>Sekitar jam/waktu tertentu (perkiraan)</td></tr>
+            </table>
+            <div class="section-label">Kesalahan yang Sering Dilakukan Siswa</div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 6時起きます。</div>
+                <div class="example-id">Salah — lupa partikel に setelah keterangan waktu jam. Waktu jam pasti (6時, 7時半, dst) selalu diikuti に.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ 6時に起きます。</div>
+                <div class="example-id">Benar — partikel に wajib dipakai untuk jam pasti.</div>
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 寝る前に、シャワーを浴びました。（padahal maksudnya mandi lalu tidur）</div>
+                <div class="example-id">Salah konsep — banyak siswa tertukar antara 前に (sebelum) dan 後で (sesudah). "Mandi dulu baru tidur" seharusnya pakai 後で, bukan 前に.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ シャワーを浴びた後で、寝ます。</div>
+                <div class="example-id">Benar — "mandi" terjadi lebih dulu, jadi pakai bentuk た＋後で.</div>
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ テレビを見る、スマホを見るします。</div>
+                <div class="example-id">Salah — pola ～たり～たりします harus memakai bentuk た＋り pada kedua kata kerja, bukan bentuk kamus langsung digabung.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ テレビを見たり、スマホを見たりします。</div>
+                <div class="example-id">Benar — masing-masing kata kerja diubah ke bentuk た, ditambah り, dan diakhiri します.</div>
+            </div>
+            <div class="tip-box"><b>Tips menulis sakubun rutinitas:</b> Buat garis waktu dulu (bangun → pagi → sekolah/kerja → sore → malam → tidur), lalu sambungkan tiap kegiatan dengan ～てから／～た後で／～前に agar urutannya jelas dan tidak tertukar.</div>
+        `
+    },
+    {
+        badge: "動",
+        kanji: "始まる・始める・やめる",
+        reading: "はじまる・はじめる・やめる",
+        title: "Perbedaan Hajimaru, Hajimeru, dan Yameru",
+        html: `
+            <div class="section-label">1. 始まります (Hajimarimasu) vs 始めます (Hajimemasu)</div>
+            <div class="body-text">
+                Ini adalah pasangan <b>自動詞・他動詞 (jidoushi/tadoushi)</b> — kata kerja intransitif dan transitif. Bedanya terletak pada <b>siapa yang melakukan tindakan "memulai" itu</b>.
+            </div>
+            <table class="compare-table">
+                <tr><th>Kata Kerja</th><th>Jenis</th><th>Arti &amp; Pola</th></tr>
+                <tr><td class="jp-cell">始まります</td><td>自動詞 (intransitif)</td><td>"~ dimulai (dengan sendirinya)" → 〜が始まります</td></tr>
+                <tr><td class="jp-cell">始めます</td><td>他動詞 (transitif)</td><td>"seseorang memulai ~" → 〜を始めます</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">授業は9時に始まります。</div>
+                <div class="example-romaji">Jugyou wa kuji ni hajimarimasu.</div>
+                <div class="example-id">"Pelajaran dimulai jam 9." — fokus pada peristiwanya, bukan pada siapa yang memulai. Pakai partikel は／が.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">先生は9時に授業を始めます。</div>
+                <div class="example-romaji">Sensei wa kuji ni jugyou wo hajimemasu.</div>
+                <div class="example-id">"Guru memulai pelajaran jam 9." — ada pelaku yang jelas (guru), objeknya (授業) memakai partikel を.</div>
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 授業を始まります。</div>
+                <div class="example-id">Salah — 始まります (intransitif) tidak boleh memakai partikel を, karena tidak menunjukkan pelaku.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ 授業が始まります。 ／ ◯ 授業を始めます。</div>
+                <div class="example-id">Benar — が dipakai dengan 始まります, を dipakai dengan 始めます. Ini pasangan yang harus diingat bersamaan.</div>
+            </div>
 
-  /* Tutup dropdown lain */
+            <div class="section-label">2. 始めます (Hajimemasu) vs やめます (Yamemasu)</div>
+            <div class="body-text">
+                Kalau 始まる/始める tadi soal <b>jidoushi vs tadoushi</b>, sekarang bandingkan dua kata kerja transitif dengan <b>arti yang berlawanan</b>: 始めます berarti "memulai", sedangkan やめます berarti <b>"berhenti / berhenti untuk seterusnya"</b> — misalnya berhenti dari kebiasaan, pekerjaan, atau organisasi.
+            </div>
+            <table class="compare-table">
+                <tr><th>Kata Kerja</th><th>Arti</th><th>Contoh Konteks</th></tr>
+                <tr><td class="jp-cell">始めます</td><td>Memulai (sesuatu yang baru)</td><td>始める新しい趣味を始めます — memulai hobi baru</td></tr>
+                <tr><td class="jp-cell">やめます</td><td>Berhenti (dari sesuatu, biasanya permanen)</td><td>会社をやめます — berhenti dari perusahaan (resign)</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">来月から、ヨガを始めます。</div>
+                <div class="example-romaji">Raigetsu kara, yoga wo hajimemasu.</div>
+                <div class="example-id">"Mulai bulan depan, saya akan mulai yoga."</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">健康のために、たばこをやめました。</div>
+                <div class="example-romaji">Kenkou no tame ni, tabako wo yamemashita.</div>
+                <div class="example-id">"Demi kesehatan, saya berhenti merokok." — やめる cocok dipakai untuk berhenti dari kebiasaan.</div>
+            </div>
+            <div class="tip-box">
+                <b>Catatan tambahan:</b> Jangan tertukar やめる (berhenti dari kegiatan/kebiasaan/pekerjaan) dengan 止める (とめる, "menghentikan sesuatu secara fisik", misalnya 車を止めます = memberhentikan mobil). Keduanya ditulis dengan kanji yang berbeda pengucapan penekanannya, tapi konteks pemakaiannya berbeda.
+            </div>
+        `
+    },
+    {
+        badge: "注",
+        kanji: "初めて・やみます",
+        reading: "はじめて・やみます",
+        title: "Hajimete vs Hajimarimasu, Yamimasu vs Yamemasu",
+        html: `
+            <div class="section-label">1. 初めて (Hajimete) vs 始まります (Hajimarimasu)</div>
+            <div class="body-text">
+                Dua kata ini sering tertukar karena <b>bunyinya mirip</b>, padahal <b>jenis katanya berbeda total</b>.
+            </div>
+            <table class="compare-table">
+                <tr><th>Kata</th><th>Jenis Kata</th><th>Arti &amp; Pemakaian</th></tr>
+                <tr><td class="jp-cell">初めて</td><td>Kata keterangan (fukushi)</td><td>"untuk pertama kalinya" — menerangkan pengalaman baru</td></tr>
+                <tr><td class="jp-cell">始まります</td><td>Kata kerja (doushi)</td><td>"dimulai" — menyatakan sesuatu mulai terjadi</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">去年、初めて日本へ行きました。</div>
+                <div class="example-romaji">Kyonen, hajimete Nihon e ikimashita.</div>
+                <div class="example-id">"Tahun lalu, saya pergi ke Jepang untuk pertama kalinya." — 初めて menerangkan kata kerja 行きました, bukan berdiri sendiri sebagai predikat.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">映画は7時に始まります。</div>
+                <div class="example-romaji">Eiga wa shichiji ni hajimarimasu.</div>
+                <div class="example-id">"Film dimulai jam 7." — 始まります adalah predikat kalimat, berdiri sendiri sebagai kata kerja.</div>
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 映画は初めてです、7時に。</div>
+                <div class="example-id">Salah — 初めて bukan kata kerja "dimulai", jadi tidak bisa dipakai menggantikan 始まります.</div>
+            </div>
+            <div class="tip-box"><b>Cara mudah membedakan:</b> Kalau artinya "pertama kali mengalami sesuatu" → 初めて. Kalau artinya "sesuatu mulai berjalan/terjadi" → 始まります.</div>
 
-  document.querySelectorAll(".dropdown-menu").forEach(menu => {
-
-    if(menu.id !== id){
-
-      menu.classList.remove("show");
-
-      menu.classList.remove("align-right");
-
-      const parent = menu.closest(".dropdown");
-
-      if(parent){
-        parent.classList.remove("open");
-      }
-
+            <div class="section-label">2. やみます (Yamimasu) vs やめます (Yamemasu)</div>
+            <div class="body-text">
+                Keduanya berarti "berhenti", tapi <b>やみます hanya dipakai untuk fenomena alam yang berhenti dengan sendirinya</b> (自動詞), sedangkan <b>やめます dipakai saat seseorang sengaja memutuskan untuk berhenti melakukan sesuatu</b> (他動詞) — sudah dibahas di slide sebelumnya.
+            </div>
+            <table class="compare-table">
+                <tr><th>Kata Kerja</th><th>Jenis</th><th>Dipakai Untuk</th></tr>
+                <tr><td class="jp-cell">やみます（止みます）</td><td>自動詞</td><td>Hujan, angin, salju berhenti dengan sendirinya</td></tr>
+                <tr><td class="jp-cell">やめます（やめる）</td><td>他動詞</td><td>Seseorang sengaja berhenti dari kebiasaan/pekerjaan/kegiatan</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">雨がやみました。出かけましょう。</div>
+                <div class="example-romaji">Ame ga yamimashita. Dekakemashou.</div>
+                <div class="example-id">"Hujan sudah berhenti. Ayo pergi." — hujan berhenti dengan sendirinya, tidak ada pelaku yang sengaja menghentikannya.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">彼はタバコをやめました。</div>
+                <div class="example-romaji">Kare wa tabako wo yamemashita.</div>
+                <div class="example-id">"Dia berhenti merokok." — ada pelaku (彼) yang sengaja memutuskan untuk berhenti.</div>
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 彼はタバコをやみました。</div>
+                <div class="example-id">Salah — やみます tidak dipakai untuk keputusan seseorang, hanya untuk fenomena alam yang berhenti sendiri.</div>
+            </div>
+            <div class="tip-box"><b>Cara mudah membedakan:</b> Kalau subjeknya benda alam (雨・風・雪) yang berhenti sendiri → やみます. Kalau subjeknya orang yang sengaja berhenti melakukan sesuatu → やめます.</div>
+        `
+    },
+    {
+        badge: "比",
+        kanji: "Rangkuman",
+        reading: "まとめ",
+        title: "Perbandingan Singkat Sonkeigo vs Kenjougo",
+        html: `
+            <div class="body-text">
+                Cara termudah membedakan keduanya: <b>tanya dulu, siapa yang melakukan tindakan itu?</b>
+            </div>
+            <table class="compare-table">
+                <tr><th>Kamus</th><th>Sonkeigo (untuk lawan bicara)</th><th>Kenjougo (untuk diri sendiri)</th></tr>
+                <tr><td class="jp-cell">行く</td><td class="jp-cell">いらっしゃる</td><td class="jp-cell">参る</td></tr>
+                <tr><td class="jp-cell">する</td><td class="jp-cell">なさる</td><td class="jp-cell">いたす</td></tr>
+                <tr><td class="jp-cell">言う</td><td class="jp-cell">おっしゃる</td><td class="jp-cell">申し上げる</td></tr>
+                <tr><td class="jp-cell">見る</td><td class="jp-cell">ご覧になる</td><td class="jp-cell">拝見する</td></tr>
+            </table>
+            <div class="tip-box">
+                <b>Ringkasan penggunaan ungkapan di slide sebelumnya:</b><br>
+                • お疲れ様です → sapaan sesama rekan kerja, kapan saja<br>
+                • お疲れ様でした → setelah pekerjaan/kegiatan selesai<br>
+                • お世話になっております → pembuka komunikasi bisnis dengan pihak luar<br>
+                • ありがとうございます／ました → terima kasih sopan, sekarang vs lampau<br>
+                • Chat/LINE formal → pakai tanda baca yang benar, jangan spasi; balas atasan dengan 承知いたしました<br>
+                • 尊敬語 → meninggikan tindakan orang lain<br>
+                • 謙譲語 → merendahkan tindakan diri sendiri<br>
+                • お詫び → pilih tingkat permintaan maaf sesuai keseriusan kesalahan（すみません → 申し訳ございません → 大変申し訳ございません）
+            </div>
+        `
     }
+];
 
-  });
+let current = 0;
 
+const slideContent = document.getElementById("slideContent");
+const cardBadge = document.getElementById("cardBadge");
+const progressText = document.getElementById("progressText");
+const progressFill = document.getElementById("progressFill");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const jumpRow = document.getElementById("jumpRow");
 
-  /* Dropdown yang dipilih */
+function renderSlide(){
+    const s = slides[current];
 
-  const menu = document.getElementById(id);
+    cardBadge.textContent = s.badge;
 
-  if(!menu){
-    return;
-  }
+    slideContent.innerHTML = `
+        <div class="slide-kanji jp">${s.kanji}</div>
+        <div class="slide-reading jp">${s.reading}</div>
+        <div class="slide-title">${s.title}</div>
+        ${s.html}
+    `;
 
+    progressText.textContent = (current+1) + " / " + slides.length;
+    progressFill.style.width = ((current+1)/slides.length*100) + "%";
 
-  const parent = menu.closest(".dropdown");
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === slides.length - 1;
 
-  const isOpen = menu.classList.contains("show");
-
-
-  if(isOpen){
-
-    menu.classList.remove("show");
-
-    menu.classList.remove("align-right");
-
-    if(parent){
-      parent.classList.remove("open");
-    }
-
-    return;
-  }
-
-
-  menu.classList.add("show");
-
-  if(parent){
-    parent.classList.add("open");
-  }
-
-
-  /* Cek apakah menu keluar layar */
-
-  menu.classList.remove("align-right");
-
-  const rect = menu.getBoundingClientRect();
-
-
-  if(rect.right > window.innerWidth - 10){
-
-    menu.classList.add("align-right");
-
-  }
-
-
-  if(rect.left < 10){
-
-    menu.classList.remove("align-right");
-
-  }
-
+    renderJumpRow();
 }
 
+function renderJumpRow(){
+    jumpRow.innerHTML = "";
+    slides.forEach((s, i) => {
+        const dot = document.createElement("button");
+        dot.className = "dot" + (i === current ? " active" : "");
+        dot.textContent = i + 1;
+        dot.addEventListener("click", () => {
+            current = i;
+            renderSlide();
+            window.scrollTo({ top: document.querySelector(".viewer-wrap").offsetTop - 20, behavior: "smooth" });
+        });
+        jumpRow.appendChild(dot);
+    });
+}
 
-
-/* Klik di luar dropdown */
-
-document.addEventListener("click",function(e){
-
-  if(!e.target.closest(".dropdown")){
-
-    document
-      .querySelectorAll(".dropdown-menu")
-      .forEach(menu => {
-
-        menu.classList.remove("show");
-
-        menu.classList.remove("align-right");
-
-      });
-
-
-    document
-      .querySelectorAll(".dropdown")
-      .forEach(dropdown => {
-
-        dropdown.classList.remove("open");
-
-      });
-
-  }
-
+prevBtn.addEventListener("click", function(){
+    if(current > 0){ current--; renderSlide(); }
 });
 
+nextBtn.addEventListener("click", function(){
+    if(current < slides.length - 1){ current++; renderSlide(); }
+});
 
+renderSlide();
 
-/* Burger menu (mobile) */
+/* NAVBAR */
+
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+        if(menu.id !== id){
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+            const parent = menu.closest(".dropdown");
+            if(parent) parent.classList.remove("open");
+        }
+    });
+
+    const menu = document.getElementById(id);
+    if(!menu) return;
+
+    const parent = menu.closest(".dropdown");
+    const isOpen = menu.classList.contains("show");
+
+    if(isOpen){
+        menu.classList.remove("show");
+        menu.classList.remove("align-right");
+        if(parent) parent.classList.remove("open");
+        return;
+    }
+
+    menu.classList.add("show");
+    if(parent) parent.classList.add("open");
+
+    menu.classList.remove("align-right");
+    const rect = menu.getBoundingClientRect();
+    if(rect.right > window.innerWidth - 10){
+        menu.classList.add("align-right");
+    }
+    if(rect.left < 10){
+        menu.classList.remove("align-right");
+    }
+}
+
+document.addEventListener("click", function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(menu => {
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+        });
+        document.querySelectorAll(".dropdown").forEach(dropdown => {
+            dropdown.classList.remove("open");
+        });
+    }
+});
 
 function toggleMobileMenu(){
-  const menu = document.getElementById("mobileMenu");
-  if(!menu) return;
-  menu.classList.toggle("show");
+    const menu = document.getElementById("mobileMenu");
+    if(!menu) return;
+    menu.classList.toggle("show");
 }
 
 function toggleMobileAccordion(btn){
-  const panel = btn.nextElementSibling;
-  const isOpen = btn.classList.contains("open");
+    const panel = btn.nextElementSibling;
+    const isOpen = btn.classList.contains("open");
 
-  document.querySelectorAll(".mobile-acc-btn").forEach(b => {
-    if(b !== btn){
-      b.classList.remove("open");
-      if(b.nextElementSibling) b.nextElementSibling.classList.remove("show");
-    }
-  });
+    document.querySelectorAll(".mobile-acc-btn").forEach(b => {
+        if(b !== btn){
+            b.classList.remove("open");
+            if(b.nextElementSibling) b.nextElementSibling.classList.remove("show");
+        }
+    });
 
-  btn.classList.toggle("open", !isOpen);
-  if(panel) panel.classList.toggle("show", !isOpen);
+    btn.classList.toggle("open", !isOpen);
+    if(panel) panel.classList.toggle("show", !isOpen);
 }
 
-
-
-/* Saat ukuran layar berubah */
-
-window.addEventListener("resize",function(){
-
-  document
-    .querySelectorAll(".dropdown-menu")
-    .forEach(menu => {
-
-      menu.classList.remove("show");
-
-      menu.classList.remove("align-right");
-
+window.addEventListener("resize", function(){
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+        menu.classList.remove("show");
+        menu.classList.remove("align-right");
+    });
+    document.querySelectorAll(".dropdown").forEach(dropdown => {
+        dropdown.classList.remove("open");
     });
 
-
-  document
-    .querySelectorAll(".dropdown")
-    .forEach(dropdown => {
-
-      dropdown.classList.remove("open");
-
-    });
-
-
-  if(window.innerWidth > 760){
-    const mobileMenu = document.getElementById("mobileMenu");
-    if(mobileMenu) mobileMenu.classList.remove("show");
-    document.querySelectorAll(".mobile-acc-btn").forEach(b => b.classList.remove("open"));
-    document.querySelectorAll(".mobile-acc-panel").forEach(p => p.classList.remove("show"));
-  }
-
+    if(window.innerWidth > 760){
+        const mobileMenu = document.getElementById("mobileMenu");
+        if(mobileMenu) mobileMenu.classList.remove("show");
+        document.querySelectorAll(".mobile-acc-btn").forEach(b => b.classList.remove("open"));
+        document.querySelectorAll(".mobile-acc-panel").forEach(p => p.classList.remove("show"));
+    }
 });
 
 </script>
-
 
 </body>
 </html>
