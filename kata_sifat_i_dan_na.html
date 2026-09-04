@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Materi Kata Sifat い・な (Keiyoushi) — Tekipaki</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --gold-soft:#fff3c4;
+    --paper:#fffdf7;
+    --text:#001f3f;
+    --muted:#5b6b7d;
+    --green:#16a34a;
+    --red:#dc2626;
+    --blue:#2563eb;
+    --blue-soft:#e8f0ff;
+    --blue-brd:#a9c6ff;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:"Poppins","Segoe UI",Arial,sans-serif; }
+body{ background:#f6f5f1; color:var(--text); padding-bottom:40px; }
+.jp{ font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif; }
+
+/* NAVBAR */
+#navbar{
+    position:sticky; top:0; z-index:9999; width:100%;
+    background:#001530;
+    border-bottom:2px solid rgba(224,181,42,.3);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+.navbar-inner{
+    width:100%; min-height:64px; padding:8px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+}
+.nav-left{ display:flex; align-items:center; flex-shrink:0; }
+.nav-right{ display:flex; align-items:center; justify-content:flex-end; gap:8px; flex-wrap:wrap; }
+
+.home-btn{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background:#e0b52a; color:#001530; text-decoration:none;
+    padding:8px 14px; border-radius:10px; font-weight:bold; white-space:nowrap;
+}
+.home-btn:hover{ opacity:.85; }
+.home-icon{ width:22px; height:22px; flex:none; }
+
+.dropdown{ position:relative; flex-shrink:0; z-index:1; }
+.dropdown.open{ z-index:20; }
+.dropdown-btn{
+    display:flex; align-items:center; justify-content:center;
+    background:transparent; border:2px solid #e0b52a; color:#e0b52a;
+    padding:8px 14px; border-radius:8px; font-family:inherit; font-weight:bold;
+    cursor:pointer; white-space:nowrap;
+}
+.dropdown-btn:hover, .dropdown.open .dropdown-btn{ background:#e0b52a; color:#001530; }
+
+.dropdown-menu{
+    display:none; position:absolute; top:calc(100% + 7px); left:0;
+    width:max-content; min-width:220px; max-width:calc(100vw - 20px);
+    background:#1f4577; border:1px solid rgba(224,181,42,.35);
+    border-radius:10px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+.dropdown-menu.show{ display:block; }
+.dropdown-menu.align-right{ left:auto; right:0; }
+.dropdown-menu a{ display:block; padding:12px 15px; color:#ffd700; text-decoration:none; white-space:nowrap; }
+.dropdown-menu a:hover{ background:#e0b52a; color:#001530; }
+
+.burger-btn{
+    display:none; align-items:center; justify-content:center; flex-shrink:0;
+    background:transparent; border:2px solid #e0b52a; color:#e0b52a;
+    padding:9px 12px; border-radius:8px; cursor:pointer;
+}
+.burger-btn svg{ width:20px; height:20px; display:block; }
+
+.mobile-menu{ display:none; flex-direction:column; background:#001530; border-top:1px solid rgba(224,181,42,.25); }
+.mobile-menu.show{ display:flex; }
+.mobile-link{
+    display:block; padding:15px 18px; color:#ffd700; text-decoration:none;
+    font-weight:700; font-size:14px; border-bottom:1px solid rgba(255,255,255,.08);
+}
+.mobile-link:hover{ background:rgba(224,181,42,.12); }
+.mobile-acc-btn{
+    width:100%; text-align:left; background:transparent; border:none;
+    color:#e0b52a; font-weight:700; font-size:14px; padding:15px 18px; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.08); font-family:inherit;
+}
+.mobile-acc-btn::after{ content:'+'; font-size:18px; line-height:1; }
+.mobile-acc-btn.open::after{ content:'\2212'; }
+.mobile-acc-panel{ display:none; flex-direction:column; background:#0a2242; }
+.mobile-acc-panel.show{ display:flex; }
+.mobile-acc-panel a{
+    padding:13px 32px; color:#ffd700; text-decoration:none; font-size:13px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+.mobile-acc-panel a:hover{ background:rgba(224,181,42,.15); }
+
+@media(min-width:761px){
+    .mobile-menu{ display:none !important; }
+}
+@media(max-width:1000px){
+    .navbar-inner{ padding:10px 12px; gap:10px; }
+    .dropdown-btn{ font-size:.72rem; padding:6px 9px; }
+    .home-btn{ padding:8px 10px; font-size:.72rem; }
+}
+@media(max-width:760px){
+    .navbar-inner{ flex-wrap:nowrap; padding:10px 14px; gap:10px; }
+    .nav-left{ flex:1; min-width:0; }
+    .home-btn{ width:auto; }
+    .nav-right{ display:none; }
+    .burger-btn{ display:flex; }
+}
+
+/* HEADER */
+header{ text-align:center; padding:26px 20px 8px; }
+.eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--navy); color:var(--gold);
+    font-size:13px; font-weight:600; letter-spacing:.12em;
+    padding:7px 16px; border-radius:999px; margin-bottom:16px;
+}
+header h1{ font-size:32px; color:var(--navy); margin-bottom:8px; letter-spacing:-.01em; }
+header p{ font-size:14px; color:var(--muted); max-width:640px; margin:0 auto; line-height:1.6; }
+
+.viewer-wrap{ max-width:780px; margin:28px auto 0; padding:0 20px; }
+
+.progress-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; gap:10px; flex-wrap:wrap; }
+.progress-text{ font-size:13px; font-weight:600; color:var(--navy); white-space:nowrap; }
+.progress-bar{ flex:1; height:6px; background:#e3e0d6; border-radius:999px; margin:0 14px; overflow:hidden; min-width:80px; }
+.progress-fill{ height:100%; background:var(--gold); border-radius:999px; transition:width .35s ease; }
+
+.tag-row{ display:flex; justify-content:center; margin-bottom:10px; }
+.tag{
+    font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    padding:5px 14px; border-radius:999px;
+    background:var(--blue-soft); color:var(--blue); border:1.5px solid var(--blue-brd);
+}
+
+.card{
+    background:var(--paper); border:2px solid var(--navy); box-shadow:0 6px 0 var(--navy);
+    border-radius:22px; padding:36px 32px; display:flex; flex-direction:column;
+    align-items:flex-start; justify-content:flex-start; text-align:left; width:100%;
+    position:relative; min-height:360px;
+}
+
+.badge{
+    width:44px; height:44px; border-radius:50%; background:var(--blue-soft);
+    border:2px solid var(--blue-brd); display:flex; align-items:center; justify-content:center;
+    font-size:19px; margin-bottom:16px; color:var(--blue); font-weight:700; flex-shrink:0;
+}
+
+.slide-kanji{ font-size:30px; font-weight:900; color:var(--navy); margin-bottom:2px; }
+.slide-reading{ font-size:14px; color:var(--muted); margin-bottom:4px; font-style:italic; }
+.slide-title{ font-size:15px; font-weight:700; color:var(--blue); margin-bottom:18px; }
+
+.section-label{
+    font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:6px; margin-top:16px;
+}
+.section-label:first-of-type{ margin-top:0; }
+
+.body-text{ font-size:14.5px; line-height:1.85; color:var(--text); }
+.body-text b{ color:var(--navy); }
+
+.example-box{
+    width:100%; background:#fff; border:1.5px solid #e2ddcf; border-radius:14px;
+    padding:16px 18px; margin-top:6px;
+}
+.example-jp{ font-size:16px; font-weight:600; color:var(--navy); margin-bottom:3px; }
+.example-romaji{ font-size:12.5px; color:var(--muted); font-style:italic; margin-bottom:5px; }
+.example-id{ font-size:13.5px; color:#3a4a5c; }
+.example-box + .example-box{ margin-top:10px; }
+
+.compare-table{ width:100%; border-collapse:collapse; margin-top:6px; font-size:13.5px; }
+.compare-table th, .compare-table td{
+    border:1px solid #e2ddcf; padding:9px 10px; text-align:left;
+}
+.compare-table th{ background:var(--navy); color:var(--gold-soft); font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+.compare-table td.jp-cell{ font-weight:600; color:var(--navy); }
+
+.tip-box{
+    width:100%; background:var(--gold-soft); border:1.5px dashed #e0c34a; border-radius:14px;
+    padding:14px 16px; margin-top:16px; font-size:13.5px; color:#5c4a00; line-height:1.7;
+}
+.tip-box b{ color:#8a6d00; }
+
+.nav-row{ display:flex; align-items:center; justify-content:center; gap:16px; margin-top:24px; flex-wrap:wrap; }
+
+.nav-btn{
+    width:46px; height:46px; border-radius:50%; border:2px solid var(--navy);
+    background:white; color:var(--navy); font-size:19px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.nav-btn:hover{ background:var(--navy); color:var(--gold); }
+.nav-btn:disabled{ opacity:.3; cursor:default; }
+.nav-btn:disabled:hover{ background:white; color:var(--navy); }
+
+.jump-row{ display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:24px; }
+
+.dot{
+    width:34px; height:34px; border-radius:8px; border:2px solid #d8d4c8; background:white;
+    color:var(--muted); font-size:13px; font-weight:700; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.dot:hover{ border-color:var(--navy); }
+.dot.active{ background:var(--navy); border-color:var(--navy); color:var(--gold); }
+
+footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px; }
+
+@media(max-width:480px){
+    header h1{ font-size:24px; }
+    .progress-row{ flex-wrap:wrap; }
+    .progress-bar{ order:3; width:100%; margin:8px 0 0; flex:1 1 100%; }
+    .card{ padding:26px 20px; }
+    .slide-kanji{ font-size:24px; }
+    .compare-table{ font-size:12px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+  <div class="nav-left">
+    <a href="index.html" class="home-btn">
+      <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+      </svg>
+      HOME
+    </a>
+  </div>
+
+  <div class="nav-right">
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('learningDropdown')">TEKIPAKI LEARNING ▼</button>
+      <div class="dropdown-menu" id="learningDropdown">
+        <a href="guru.html">GURU</a>
+        <a href="elearning.html">SISWA</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('materiDropdown')">MATERI ▼</button>
+      <div class="dropdown-menu" id="materiDropdown">
+        <a href="daftarkosakata.html">Kosakata JFT</a>
+        <a href="materitatabahasa.html">Tata Bahasa</a>
+        <a href="materikanji.html">Materi Kanji JLPT</a>
+        <a href="kanjidasar.html">Kanji Flash Card</a>
+        <a href="materikosakata.html">Materi Kosakata JLPT</a>
+        <a href="tabel-perubahan-kosakata.html">Tabel Perubahan Kosakata</a>
+        <a href="materikomunikasi.html">Cara Komunikasi (Keigo)</a>
+        <a href="materikatasifat.html">Kata Sifat い・な (Keiyoushi)</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('quizDropdown')">QUIZ JFT ▼</button>
+      <div class="dropdown-menu" id="quizDropdown">
+        <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+        <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+        <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+        <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+        <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+        <a href="dokkai-n4.html">Latihan Dokkai N4 — Unit 1</a>
+        <a href="dokkai_unit2.html">Latihan Dokkai N4 — Unit 2</a>
+        <a href="dokkai_unit3.html">Latihan Dokkai N4 — Unit 3</a>
+        <a href="dokkai_unit4.html">Latihan Dokkai N4 — Unit 4</a>
+        <a href="dokkai_unit5.html">Latihan Dokkai N4 — Unit 5</a>
+        <a href="dokkai_unit6.html">Latihan Dokkai N4 — Unit 6</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('kanjiQuizDropdown')">QUIZ KANJI ▼</button>
+      <div class="dropdown-menu" id="kanjiQuizDropdown">
+        <a href="quizkanji1.html">QUIZ KANJI 1</a>
+        <a href="quizkanji2.html">QUIZ KANJI 2</a>
+        <a href="quizkanji3.html">QUIZ KANJI 3</a>
+        <a href="quizkanji4.html">QUIZ KANJI 4</a>
+        <a href="quizkanji5.html">QUIZ KANJI 5</a>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="index.html">HOME</a>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">TEKIPAKI LEARNING</button>
+  <div class="mobile-acc-panel">
+    <a href="guru.html">GURU</a>
+    <a href="elearning.html">SISWA</a>
+  </div>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+  <div class="mobile-acc-panel">
+    <a href="daftarkosakata.html">Kosakata JFT</a>
+    <a href="materitatabahasa.html">Tata Bahasa</a>
+    <a href="materikanji.html">Materi Kanji JLPT</a>
+    <a href="kanjidasar.html">Kanji Flash Card</a>
+    <a href="materikosakata.html">Materi Kosakata JLPT</a>
+    <a href="tabel-perubahan-kosakata.html">Tabel Perubahan Kosakata</a>
+    <a href="materikomunikasi.html">Cara Komunikasi (Keigo)</a>
+    <a href="materikatasifat.html">Kata Sifat い・な (Keiyoushi)</a>
+  </div>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
+  <div class="mobile-acc-panel">
+    <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+    <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+    <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+    <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+    <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    <a href="dokkai-n4.html">Latihan Dokkai N4 — Unit 1</a>
+    <a href="dokkai_unit2.html">Latihan Dokkai N4 — Unit 2</a>
+    <a href="dokkai_unit3.html">Latihan Dokkai N4 — Unit 3</a>
+    <a href="dokkai_unit4.html">Latihan Dokkai N4 — Unit 4</a>
+    <a href="dokkai_unit5.html">Latihan Dokkai N4 — Unit 5</a>
+    <a href="dokkai_unit6.html">Latihan Dokkai N4 — Unit 6</a>
+  </div>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
+  <div class="mobile-acc-panel">
+    <a href="quizkanji1.html">QUIZ KANJI 1</a>
+    <a href="quizkanji2.html">QUIZ KANJI 2</a>
+    <a href="quizkanji3.html">QUIZ KANJI 3</a>
+    <a href="quizkanji4.html">QUIZ KANJI 4</a>
+    <a href="quizkanji5.html">QUIZ KANJI 5</a>
+  </div>
+</div>
+</nav>
+
+<header>
+<div class="eyebrow">🈺 MATERI TATA BAHASA · 形容詞（けいようし）</div>
+<h1>Kata Sifat い・な dalam Bahasa Jepang</h1>
+<p>Penjelasan lengkap dua jenis kata sifat dalam bahasa Jepang: い形容詞 dan な形容詞 — bentuk dasar, perubahan positif/negatif/lampau, cara menerangkan kata benda, pengecualian, hingga kesalahan yang sering terjadi. Geser slide untuk membaca setiap bagian.</p>
+</header>
+
+<div class="viewer-wrap">
+
+<div class="progress-row">
+<span class="progress-text" id="progressText">1 / 8</span>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="tag-row"><span class="tag" id="tagBadge">SLIDE MATERI</span></div>
+
+<div class="card" id="card">
+    <div class="badge" id="cardBadge">形</div>
+    <div id="slideContent"></div>
+</div>
+
+<div class="nav-row">
+<button class="nav-btn" id="prevBtn" title="Sebelumnya">←</button>
+<button class="nav-btn" id="nextBtn" title="Berikutnya">→</button>
+</div>
+
+<div class="jump-row" id="jumpRow"></div>
+
+</div>
+
+<footer>
+© 2026 Tekipaki Japanese Learning | Materi Kata Sifat い・な
+</footer>
+
+<script>
+
+const slides = [
+    {
+        badge: "形",
+        kanji: "形容詞",
+        reading: "けいようし",
+        title: "Dua Jenis Kata Sifat: い形容詞 vs な形容詞",
+        html: `
+            <div class="body-text">
+                Bahasa Jepang memiliki <b>dua jenis kata sifat (形容詞, keiyoushi)</b> yang cara perubahan bentuknya berbeda: <b>い形容詞 (i-keiyoushi)</b> dan <b>な形容詞 (na-keiyoushi)</b>. Mengenali jenis kata sifat sejak awal sangat penting, karena keduanya punya aturan konjugasi dan cara menerangkan kata benda yang tidak sama.
+            </div>
+            <table class="compare-table">
+                <tr><th>Jenis</th><th>Ciri-ciri</th><th>Contoh</th></tr>
+                <tr><td class="jp-cell">い形容詞</td><td>Bentuk kamus selalu berakhiran huruf い</td><td class="jp-cell">高い・安い・おいしい</td></tr>
+                <tr><td class="jp-cell">な形容詞</td><td>Berperilaku mirip kata benda; perlu な saat menerangkan kata benda</td><td class="jp-cell">静か・元気・きれい</td></tr>
+            </table>
+            <div class="tip-box"><b>Perhatian:</b> Tidak semua kata yang bunyinya berakhiran "i" adalah い形容詞. Beberapa kata seperti きれい dan ゆうめい sebenarnya termasuk な形容詞 — akan dibahas khusus di slide selanjutnya.</div>
+        `
+    },
+    {
+        badge: "高",
+        kanji: "い形容詞",
+        reading: "い-けいようし",
+        title: "い形容詞 — Bentuk Dasar dan Perubahannya",
+        html: `
+            <div class="section-label">Empat Bentuk Dasar</div>
+            <div class="body-text">
+                い形容詞 berubah bentuk dengan sendirinya (tanpa bergantung pada です), です hanya ditambahkan di akhir untuk kesopanan. Caranya: <b>buang huruf い di akhir</b>, lalu tambahkan akhiran sesuai bentuk yang diinginkan.
+            </div>
+            <table class="compare-table">
+                <tr><th>Bentuk</th><th>Perubahan</th><th>Contoh（高い）</th></tr>
+                <tr><td>Positif sekarang</td><td>(bentuk kamus) + です</td><td class="jp-cell">高いです</td></tr>
+                <tr><td>Negatif sekarang</td><td>い→くない + です</td><td class="jp-cell">高くないです</td></tr>
+                <tr><td>Positif lampau</td><td>い→かった + です</td><td class="jp-cell">高かったです</td></tr>
+                <tr><td>Negatif lampau</td><td>い→くなかった + です</td><td class="jp-cell">高くなかったです</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">この本は高いです。</div>
+                <div class="example-romaji">Kono hon wa takai desu.</div>
+                <div class="example-id">"Buku ini mahal." — bentuk positif sekarang, kamus + です.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">今日のテストは難しくなかったです。</div>
+                <div class="example-romaji">Kyou no tesuto wa muzukashikunakatta desu.</div>
+                <div class="example-id">"Tes hari ini tidak sulit (lampau)." — い dibuang, diganti くなかった.</div>
+            </div>
+            <div class="tip-box"><b>Ingat:</b> い pada akhir kata SELALU dibuang dulu sebelum menambahkan く, かった, atau くなかった. です di akhir tidak ikut berubah, hanya penanda kesopanan.</div>
+        `
+    },
+    {
+        badge: "良",
+        kanji: "いい・よい",
+        reading: "いい・よい",
+        title: "Pengecualian: いい (Bagus) yang Tidak Beraturan",
+        html: `
+            <div class="body-text">
+                いい ("bagus") adalah satu-satunya い形容詞 yang perubahannya <b>tidak beraturan</b>. Untuk bentuk selain positif-sekarang, harus memakai bentuk lamanya, yaitu <b>よい</b>, bukan いい.
+            </div>
+            <table class="compare-table">
+                <tr><th>Bentuk</th><th>Salah (dari いい)</th><th>Benar (dari よい)</th></tr>
+                <tr><td>Positif sekarang</td><td class="jp-cell">いいです</td><td class="jp-cell">いいです（tetap boleh）</td></tr>
+                <tr><td>Negatif sekarang</td><td class="jp-cell">いくないです ✘</td><td class="jp-cell">よくないです ◯</td></tr>
+                <tr><td>Positif lampau</td><td class="jp-cell">いかったです ✘</td><td class="jp-cell">よかったです ◯</td></tr>
+                <tr><td>Negatif lampau</td><td class="jp-cell">いくなかったです ✘</td><td class="jp-cell">よくなかったです ◯</td></tr>
+            </table>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ この映画はいくなかったです。</div>
+                <div class="example-id">Salah — いい tidak boleh langsung dikonjugasikan sebagai いくない.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ この映画はよくなかったです。</div>
+                <div class="example-id">Benar — untuk bentuk negatif, gunakan bentuk lama よい sebagai dasar konjugasi.</div>
+            </div>
+            <div class="tip-box"><b>Cara mudah ingat:</b> "いい hanya dipakai di bentuk positif-sekarang saja. Begitu mau diubah bentuknya (negatif/lampau), lewat よい dulu."</div>
+        `
+    },
+    {
+        badge: "静",
+        kanji: "な形容詞",
+        reading: "な-けいようし",
+        title: "な形容詞 — Bentuk Dasar dan Perubahannya",
+        html: `
+            <div class="body-text">
+                な形容詞 <b>tidak berubah bentuknya sendiri</b> — yang berubah adalah です/だ di belakangnya, persis seperti kata benda (名詞). Ini beda besar dibanding い形容詞 yang berubah pada kata sifatnya sendiri.
+            </div>
+            <table class="compare-table">
+                <tr><th>Bentuk</th><th>Perubahan</th><th>Contoh（静か）</th></tr>
+                <tr><td>Positif sekarang</td><td>+です</td><td class="jp-cell">静かです</td></tr>
+                <tr><td>Negatif sekarang</td><td>+じゃありません</td><td class="jp-cell">静かじゃありません</td></tr>
+                <tr><td>Positif lampau</td><td>+でした</td><td class="jp-cell">静かでした</td></tr>
+                <tr><td>Negatif lampau</td><td>+じゃありませんでした</td><td class="jp-cell">静かじゃありませんでした</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">この部屋は静かです。</div>
+                <div class="example-romaji">Kono heya wa shizuka desu.</div>
+                <div class="example-id">"Kamar ini tenang." — な形容詞 + です, tanpa perubahan apa pun pada kata sifatnya.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">昨日のパーティーはにぎやかでした。</div>
+                <div class="example-romaji">Kinou no paatii wa nigiyaka deshita.</div>
+                <div class="example-id">"Pesta kemarin ramai (meriah)." — bentuk lampau cukup mengganti です menjadi でした.</div>
+            </div>
+            <div class="tip-box"><b>Perbandingan singkat:</b> じゃありません bisa juga diganti では ありません (lebih formal/tertulis), artinya sama.</div>
+        `
+    },
+    {
+        badge: "名",
+        kanji: "名詞の修飾",
+        reading: "めいしのしゅうしょく",
+        title: "Menerangkan Kata Benda: い形容詞 vs な形容詞",
+        html: `
+            <div class="body-text">
+                Ada perbedaan penting saat kata sifat dipakai langsung <b>di depan kata benda</b> untuk menerangkannya (bukan sebagai predikat kalimat).
+            </div>
+            <table class="compare-table">
+                <tr><th>Jenis</th><th>Pola</th><th>Contoh</th></tr>
+                <tr><td class="jp-cell">い形容詞</td><td>Kata sifat langsung + 名詞（tanpa tambahan apa pun）</td><td class="jp-cell">高い山（gunung yang tinggi）</td></tr>
+                <tr><td class="jp-cell">な形容詞</td><td>Kata sifat ＋ な ＋ 名詞</td><td class="jp-cell">静かな部屋（kamar yang tenang）</td></tr>
+            </table>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 静か部屋です。</div>
+                <div class="example-id">Salah — lupa menambahkan な sebelum kata benda 部屋.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ 静かな部屋です。</div>
+                <div class="example-id">Benar — な wajib disisipkan antara な形容詞 dan kata benda yang diterangkannya.</div>
+            </div>
+            <div class="tip-box"><b>Poin penting:</b> な形容詞 mendapat nama dari huruf な yang muncul saat menerangkan kata benda — ini juga cara termudah mengingat mengapa disebut "な形容詞".</div>
+        `
+    },
+    {
+        badge: "⚠",
+        kanji: "よくある間違い",
+        reading: "よくあるまちがい",
+        title: "Kesalahan Umum dalam Kata Sifat",
+        html: `
+            <div class="section-label">Kesalahan #1 — Menambah い Lagi Setelah Dikonjugasi</div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ このラーメンはおいしいくないです。</div>
+                <div class="example-id">Salah — huruf い pada おいしい harus dibuang dulu sebelum menambahkan くない.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ このラーメンはおいしくないです。</div>
+                <div class="example-id">Benar — い dibuang, langsung diganti dengan くない.</div>
+            </div>
+
+            <div class="section-label">Kesalahan #2 — Memakai くない pada な形容詞</div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 彼は元気くないです。</div>
+                <div class="example-id">Salah — 元気 adalah な形容詞, tidak bisa dikonjugasikan dengan くない seperti い形容詞.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ 彼は元気じゃありません。</div>
+                <div class="example-id">Benar — な形容詞 negatif selalu memakai じゃありません.</div>
+            </div>
+
+            <div class="section-label">Kesalahan #3 — Lupa な Sebelum Kata Benda</div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ きれいい人です。</div>
+                <div class="example-id">Salah — きれい dikira い形容詞 lalu ditambah い lagi, padahal きれい adalah な形容詞.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ きれいな人です。</div>
+                <div class="example-id">Benar — sebagai な形容詞, cukup tambahkan な sebelum kata benda.</div>
+            </div>
+
+            <div class="section-label">Kesalahan #4 — Menambahkan な pada い形容詞</div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 大きいな家です。</div>
+                <div class="example-id">Salah — い形容詞 seperti 大きい TIDAK butuh な sebelum kata benda.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ 大きい家です。</div>
+                <div class="example-id">Benar — い形容詞 langsung ditempel ke kata benda, tanpa tambahan apa pun.</div>
+            </div>
+
+            <div class="tip-box"><b>Cara cepat cek jenis kata sifat:</b> tanyakan, "kalau kata ini menerangkan kata benda, apakah butuh な di antaranya?" Kalau ya → な形容詞. Kalau tidak → い形容詞.</div>
+        `
+    },
+    {
+        badge: "？",
+        kanji: "きれい・ゆうめい",
+        reading: "れいがい",
+        title: "Kata yang Terlihat い形容詞 Tapi Sebenarnya な形容詞",
+        html: `
+            <div class="body-text">
+                Beberapa kata berakhiran huruf い tapi <b>sebenarnya termasuk な形容詞</b>. Ini paling sering membingungkan siswa pemula karena bunyinya terdengar seperti い形容詞.
+            </div>
+            <table class="compare-table">
+                <tr><th>Kata</th><th>Arti</th><th>Jenis Sebenarnya</th></tr>
+                <tr><td class="jp-cell">きれい</td><td>cantik / bersih</td><td>な形容詞</td></tr>
+                <tr><td class="jp-cell">ゆうめい</td><td>terkenal</td><td>な形容詞</td></tr>
+                <tr><td class="jp-cell">きらい</td><td>tidak suka / benci</td><td>な形容詞</td></tr>
+            </table>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ この歌手はゆうめいくないです。</div>
+                <div class="example-id">Salah — ゆうめい dikonjugasikan seperti い形容詞, padahal ini な形容詞.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ この歌手はゆうめいじゃありません。</div>
+                <div class="example-id">Benar — konjugasi negatif な形容詞 dengan じゃありません.</div>
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ きれいい花です。</div>
+                <div class="example-id">Salah — きれい bukan い形容詞, tidak boleh ditambah い lagi.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ きれいな花です。</div>
+                <div class="example-id">Benar — tambahkan な sebelum kata benda, seperti な形容詞 lainnya.</div>
+            </div>
+            <div class="tip-box"><b>Catatan:</b> Tidak ada aturan pasti untuk menebak kata-kata pengecualian ini — cara paling efektif adalah <b>menghafalnya sebagai kosakata</b>, sama seperti menghafal kanji atau kosakata baru lainnya.</div>
+        `
+    },
+    {
+        badge: "て",
+        kanji: "て形",
+        reading: "て-けい",
+        title: "Menggabungkan Dua Kata Sifat dengan Bentuk て",
+        html: `
+            <div class="body-text">
+                Untuk menggabungkan dua kata sifat dalam satu kalimat ("~, dan juga ~"), masing-masing jenis kata sifat punya cara pembentukan て yang berbeda.
+            </div>
+            <table class="compare-table">
+                <tr><th>Jenis</th><th>Perubahan ke Bentuk て</th><th>Contoh</th></tr>
+                <tr><td class="jp-cell">い形容詞</td><td>い→くて</td><td class="jp-cell">高い→高くて</td></tr>
+                <tr><td class="jp-cell">な形容詞</td><td>+で</td><td class="jp-cell">静か→静かで</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">この部屋は広くて、明るいです。</div>
+                <div class="example-romaji">Kono heya wa hirokute, akarui desu.</div>
+                <div class="example-id">"Kamar ini luas dan terang." — dua い形容詞 digabung dengan くて.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">彼女はきれいで、親切です。</div>
+                <div class="example-romaji">Kanojo wa kirei de, shinsetsu desu.</div>
+                <div class="example-id">"Dia cantik dan ramah." — な形容詞 (きれい) digabung dengan で, diikuti な形容詞 lain (親切).</div>
+            </div>
+            <div class="tip-box"><b>Ingat:</b> jenis kata sifat yang pertama dalam kalimat menentukan bentuk てnya (くて untuk い形容詞, で untuk な形容詞), meski kata sifat kedua jenisnya berbeda.</div>
+        `
+    },
+    {
+        badge: "副",
+        kanji: "副詞化",
+        reading: "ふくしか",
+        title: "Mengubah Kata Sifat Menjadi Kata Keterangan",
+        html: `
+            <div class="body-text">
+                Kata sifat juga bisa diubah menjadi <b>kata keterangan (副詞)</b> untuk menerangkan kata kerja — misalnya "bangun dengan cepat" atau "berbicara dengan mahir".
+            </div>
+            <table class="compare-table">
+                <tr><th>Jenis</th><th>Perubahan</th><th>Contoh</th></tr>
+                <tr><td class="jp-cell">い形容詞</td><td>い→く</td><td class="jp-cell">早い→早く</td></tr>
+                <tr><td class="jp-cell">な形容詞</td><td>+に</td><td class="jp-cell">上手→上手に</td></tr>
+            </table>
+            <div class="example-box">
+                <div class="example-jp">朝、早く起きます。</div>
+                <div class="example-romaji">Asa, hayaku okimasu.</div>
+                <div class="example-id">"Bangun pagi-pagi." — 早く menerangkan kata kerja 起きます.</div>
+            </div>
+            <div class="example-box">
+                <div class="example-jp">彼は日本語を上手に話します。</div>
+                <div class="example-romaji">Kare wa nihongo wo jouzu ni hanashimasu.</div>
+                <div class="example-id">"Dia berbicara bahasa Jepang dengan mahir." — 上手に menerangkan kata kerja 話します.</div>
+            </div>
+            <div class="tip-box"><b>Jangan tertukar:</b> な形容詞 pakai <b>に</b> saat menerangkan kata kerja, tapi pakai <b>な</b> saat menerangkan kata benda — dua fungsi berbeda dengan partikel berbeda.</div>
+        `
+    },
+    {
+        badge: "文",
+        kanji: "私の部屋",
+        reading: "わたしのへや",
+        title: "Contoh Sakubun N4: Mendeskripsikan Kamar",
+        html: `
+            <div class="section-label">Contoh Karangan (Sakubun)</div>
+            <div class="example-box">
+                <div class="example-jp" style="line-height:1.9;">
+                    私の部屋はあまり広くないですが、明るくて静かです。机の上はいつもきれいです。壁の色は白くて、シンプルです。ベッドは少し古いですが、とても寝心地がいいです。休みの日は、部屋で音楽を聞いたり、本を読んだりします。この部屋の生活は、とても便利で快適です。
+                </div>
+            </div>
+            <div class="section-label">Terjemahan</div>
+            <div class="body-text">
+                Kamar saya tidak terlalu luas, tapi terang dan tenang. Meja saya selalu rapi. Warna dindingnya putih dan sederhana. Tempat tidurnya agak lama, tapi sangat nyaman untuk tidur. Di hari libur, saya mendengarkan musik atau membaca buku di kamar. Kehidupan di kamar ini sangat praktis dan nyaman.
+            </div>
+            <div class="section-label">Pola Tata Bahasa yang Dipakai</div>
+            <table class="compare-table">
+                <tr><th>Pola</th><th>Fungsi</th></tr>
+                <tr><td class="jp-cell">～くて（い形容詞）</td><td>Menggabungkan dua い形容詞 dalam satu kalimat</td></tr>
+                <tr><td class="jp-cell">～で（な形容詞）</td><td>Menggabungkan な形容詞 dengan kata sifat lain</td></tr>
+                <tr><td class="jp-cell">～ですが</td><td>"Tapi/meskipun ~", menghubungkan dua hal yang kontras</td></tr>
+                <tr><td class="jp-cell">～たり～たりします</td><td>Menyebutkan beberapa kegiatan (review dari unit sebelumnya)</td></tr>
+            </table>
+            <div class="section-label">Kesalahan yang Sering Dilakukan Siswa</div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ 部屋は明るいと静かです。</div>
+                <div class="example-id">Salah — menggabungkan dua kata sifat dengan と, padahal と dipakai untuk daftar kata benda, bukan menggabungkan kata sifat.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ 部屋は明るくて静かです。</div>
+                <div class="example-id">Benar — い形容詞 pertama diubah ke bentuk くて untuk menggabungkan dengan kata sifat berikutnya.</div>
+            </div>
+            <div class="example-box" style="border-color:#f0b8b8;">
+                <div class="example-jp" style="color:var(--red);">✘ きれいです部屋。</div>
+                <div class="example-id">Salah — urutan kalimat terbalik; です seharusnya berada di akhir kalimat sebagai predikat, bukan di tengah.</div>
+            </div>
+            <div class="example-box" style="border-color:#bfe3c8;">
+                <div class="example-jp" style="color:var(--green);">◯ 部屋はきれいです。／ きれいな部屋です。</div>
+                <div class="example-id">Benar — pilih salah satu pola: sebagai predikat kalimat (は～です), atau menerangkan kata benda langsung (な＋名詞).</div>
+            </div>
+            <div class="tip-box"><b>Tips menulis deskripsi:</b> sebelum menulis, daftar dulu kata sifat yang ingin dipakai, tentukan jenisnya (い/な), baru gabungkan dengan くて／で sesuai jenis kata sifat yang pertama.</div>
+        `
+    },
+    {
+        badge: "比",
+        kanji: "Rangkuman",
+        reading: "まとめ",
+        title: "Perbandingan Cepat い形容詞 vs な形容詞",
+        html: `
+            <div class="body-text">
+                Cara termudah mengingat semua aturan di atas: <b>い形容詞 berubah sendiri, な形容詞 berubah lewat です/だ-nya</b> — mirip cara kata benda berubah.
+            </div>
+            <table class="compare-table">
+                <tr><th>Bentuk</th><th>い形容詞（高い）</th><th>な形容詞（静か）</th></tr>
+                <tr><td>Positif sekarang</td><td class="jp-cell">高いです</td><td class="jp-cell">静かです</td></tr>
+                <tr><td>Negatif sekarang</td><td class="jp-cell">高くないです</td><td class="jp-cell">静かじゃありません</td></tr>
+                <tr><td>Positif lampau</td><td class="jp-cell">高かったです</td><td class="jp-cell">静かでした</td></tr>
+                <tr><td>Negatif lampau</td><td class="jp-cell">高くなかったです</td><td class="jp-cell">静かじゃありませんでした</td></tr>
+                <tr><td>+ Kata benda</td><td class="jp-cell">高い山</td><td class="jp-cell">静かな部屋</td></tr>
+                <tr><td>Bentuk て</td><td class="jp-cell">高くて</td><td class="jp-cell">静かで</td></tr>
+                <tr><td>Jadi kata keterangan</td><td class="jp-cell">高く</td><td class="jp-cell">静かに</td></tr>
+            </table>
+            <div class="tip-box">
+                <b>Ringkasan poin penting dari slide sebelumnya:</b><br>
+                • い形容詞 → buang い, tambahkan くない／かった／くなかった<br>
+                • な形容詞 → です berubah menjadi じゃありません／でした／じゃありませんでした<br>
+                • いい adalah pengecualian, konjugasi lewat よい<br>
+                • な形容詞 WAJIB pakai な di depan kata benda, い形容詞 TIDAK boleh<br>
+                • きれい・ゆうめい・きらい terlihat seperti い形容詞 tapi sebenarnya な形容詞<br>
+                • Bentuk て: い形容詞→くて, な形容詞→で<br>
+                • Jadi kata keterangan: い形容詞→く, な形容詞→に
+            </div>
+        `
+    }
+];
+
+let current = 0;
+
+const slideContent = document.getElementById("slideContent");
+const cardBadge = document.getElementById("cardBadge");
+const progressText = document.getElementById("progressText");
+const progressFill = document.getElementById("progressFill");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const jumpRow = document.getElementById("jumpRow");
+
+function renderSlide(){
+    const s = slides[current];
+
+    cardBadge.textContent = s.badge;
+
+    slideContent.innerHTML = `
+        <div class="slide-kanji jp">${s.kanji}</div>
+        <div class="slide-reading jp">${s.reading}</div>
+        <div class="slide-title">${s.title}</div>
+        ${s.html}
+    `;
+
+    progressText.textContent = (current+1) + " / " + slides.length;
+    progressFill.style.width = ((current+1)/slides.length*100) + "%";
+
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === slides.length - 1;
+
+    renderJumpRow();
+}
+
+function renderJumpRow(){
+    jumpRow.innerHTML = "";
+    slides.forEach((s, i) => {
+        const dot = document.createElement("button");
+        dot.className = "dot" + (i === current ? " active" : "");
+        dot.textContent = i + 1;
+        dot.addEventListener("click", () => {
+            current = i;
+            renderSlide();
+            window.scrollTo({ top: document.querySelector(".viewer-wrap").offsetTop - 20, behavior: "smooth" });
+        });
+        jumpRow.appendChild(dot);
+    });
+}
+
+prevBtn.addEventListener("click", function(){
+    if(current > 0){ current--; renderSlide(); }
+});
+
+nextBtn.addEventListener("click", function(){
+    if(current < slides.length - 1){ current++; renderSlide(); }
+});
+
+renderSlide();
+
+/* NAVBAR */
+
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+        if(menu.id !== id){
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+            const parent = menu.closest(".dropdown");
+            if(parent) parent.classList.remove("open");
+        }
+    });
+
+    const menu = document.getElementById(id);
+    if(!menu) return;
+
+    const parent = menu.closest(".dropdown");
+    const isOpen = menu.classList.contains("show");
+
+    if(isOpen){
+        menu.classList.remove("show");
+        menu.classList.remove("align-right");
+        if(parent) parent.classList.remove("open");
+        return;
+    }
+
+    menu.classList.add("show");
+    if(parent) parent.classList.add("open");
+
+    menu.classList.remove("align-right");
+    const rect = menu.getBoundingClientRect();
+    if(rect.right > window.innerWidth - 10){
+        menu.classList.add("align-right");
+    }
+    if(rect.left < 10){
+        menu.classList.remove("align-right");
+    }
+}
+
+document.addEventListener("click", function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(menu => {
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+        });
+        document.querySelectorAll(".dropdown").forEach(dropdown => {
+            dropdown.classList.remove("open");
+        });
+    }
+});
+
+function toggleMobileMenu(){
+    const menu = document.getElementById("mobileMenu");
+    if(!menu) return;
+    menu.classList.toggle("show");
+}
+
+function toggleMobileAccordion(btn){
+    const panel = btn.nextElementSibling;
+    const isOpen = btn.classList.contains("open");
+
+    document.querySelectorAll(".mobile-acc-btn").forEach(b => {
+        if(b !== btn){
+            b.classList.remove("open");
+            if(b.nextElementSibling) b.nextElementSibling.classList.remove("show");
+        }
+    });
+
+    btn.classList.toggle("open", !isOpen);
+    if(panel) panel.classList.toggle("show", !isOpen);
+}
+
+window.addEventListener("resize", function(){
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+        menu.classList.remove("show");
+        menu.classList.remove("align-right");
+    });
+    document.querySelectorAll(".dropdown").forEach(dropdown => {
+        dropdown.classList.remove("open");
+    });
+
+    if(window.innerWidth > 760){
+        const mobileMenu = document.getElementById("mobileMenu");
+        if(mobileMenu) mobileMenu.classList.remove("show");
+        document.querySelectorAll(".mobile-acc-btn").forEach(b => b.classList.remove("open"));
+        document.querySelectorAll(".mobile-acc-panel").forEach(p => p.classList.remove("show"));
+    }
+});
+
+</script>
+
+</body>
+</html>
