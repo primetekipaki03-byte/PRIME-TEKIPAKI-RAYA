@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latihan Tata Bahasa Unit 14: ~ば ・ ~なら ・ ~ても</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --gold-soft:#fff3c4;
+    --paper:#fffdf7;
+    --text:#001f3f;
+    --muted:#5b6b7d;
+    --green:#16a34a;
+    --red:#dc2626;
+    --blue:#1d4ed8;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:"Poppins","Segoe UI",Arial,sans-serif; }
+body{ background:#f6f5f1; color:var(--text); padding-bottom:50px; }
+.jp{ font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif; }
+
+#navbar{
+    position:sticky; top:0; z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+.navbar-inner{ display:flex; justify-content:space-between; align-items:center; padding:12px 20px; flex-wrap:wrap; gap:10px; }
+.nav-title{ color:var(--gold); font-weight:700; font-size:15px; letter-spacing:.02em; }
+
+header{ text-align:center; padding:26px 20px 8px; }
+.eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--navy); color:var(--gold);
+    font-size:12.5px; font-weight:600; letter-spacing:.1em;
+    padding:7px 16px; border-radius:999px; margin-bottom:16px;
+}
+header h1{ font-size:30px; color:var(--navy); margin-bottom:8px; letter-spacing:-.01em; }
+header p{ font-size:14px; color:var(--muted); max-width:600px; margin:0 auto; line-height:1.6; }
+
+.mini-cards{ max-width:900px; margin:22px auto 0; padding:0 20px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.mini-card{ background:white; border:2px solid var(--navy); border-radius:16px; padding:16px 14px; text-align:center; box-shadow:0 4px 0 var(--navy); }
+.mini-card .mc-jp{ font-size:17px; font-weight:900; color:var(--navy); }
+.mini-card .mc-id{ font-size:12.5px; color:var(--muted); margin-top:4px; }
+
+.grammar-tabs{ max-width:900px; margin:26px auto 0; padding:0 20px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.gtab{
+    border:2px solid var(--navy); background:white; color:var(--navy);
+    padding:10px 22px; border-radius:999px; font-weight:700; font-size:16px;
+    cursor:pointer; font-family:"Noto Sans JP",sans-serif;
+}
+.gtab:hover{ background:var(--gold-soft); }
+.gtab.active{ background:var(--navy); color:var(--gold); }
+
+.grammar-section{ display:none; max-width:900px; margin:0 auto; padding:0 20px; }
+.grammar-section.active{ display:block; }
+
+.gram-intro{
+    background:var(--gold-soft); border:1.5px solid var(--gold); border-radius:14px;
+    padding:14px 18px; margin-top:22px; font-size:13.5px; color:#5a4a00; line-height:1.6;
+}
+
+.conj-table-wrap{ margin-top:18px; }
+.conj-table-title{ font-size:14px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+.conj-table-rule{ font-size:13px; color:var(--muted); margin-bottom:12px; }
+.conj-table{ width:100%; border-collapse:separate; border-spacing:0; background:white; border:1.5px solid #e2ddcf; border-radius:12px; overflow:hidden; }
+.conj-table th{ background:var(--navy); color:var(--gold); font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; padding:10px 12px; text-align:left; }
+.conj-table td{ padding:9px 12px; font-size:14px; border-top:1px solid #eee; vertical-align:top; }
+.conj-gol-cell{ font-weight:700; color:var(--navy); font-size:12.5px; white-space:nowrap; }
+.conj-note-cell{ font-size:12px; color:var(--muted); }
+.conj-examples{ display:flex; flex-direction:column; gap:4px; }
+.conj-ex-row{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.conj-ex-row .arrow{ color:var(--muted); font-size:12px; }
+.conj-ex-row .final{ font-weight:700; color:var(--green); }
+
+.subtab-row{ display:flex; gap:8px; margin-top:22px; flex-wrap:wrap; }
+.subtab{
+    border:2px solid #d8d4c8; background:white; color:var(--muted);
+    padding:9px 16px; border-radius:12px 12px 0 0; font-weight:600; font-size:13.5px; cursor:pointer;
+}
+.subtab:hover{ color:var(--navy); }
+.subtab.active{ border-color:var(--navy); background:var(--navy); color:var(--gold); }
+
+.subpanel{ display:none; background:white; border:2px solid var(--navy); border-radius:0 14px 14px 14px; padding:26px; }
+.subpanel.active{ display:block; }
+
+/* ===== PG (quiz card) ===== */
+.progress-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:10px; flex-wrap:wrap; }
+.progress-text{ font-size:13px; font-weight:600; color:var(--navy); white-space:nowrap; }
+.progress-bar{ flex:1; height:6px; background:#e3e0d6; border-radius:999px; margin:0 14px; overflow:hidden; min-width:80px; }
+.progress-fill{ height:100%; background:var(--gold); border-radius:999px; transition:width .35s ease; }
+
+.card{
+    background:var(--paper); border:2px solid var(--navy); box-shadow:0 6px 0 var(--navy);
+    border-radius:22px; padding:38px 28px; display:flex; flex-direction:column;
+    align-items:center; justify-content:flex-start; text-align:center; width:100%;
+}
+.badge{
+    width:40px; height:40px; border-radius:50%; background:var(--gold-soft);
+    border:2px solid var(--gold); display:flex; align-items:center; justify-content:center;
+    font-size:18px; margin-bottom:12px;
+}
+.word{ font-size:clamp(22px, 5vw, 32px); font-weight:900; color:var(--navy); line-height:1.6; word-break:break-word; }
+.subtext{ margin-top:8px; font-size:14px; color:var(--muted); max-width:520px; }
+
+.options-grid{ margin-top:26px; display:grid; grid-template-columns:1fr 1fr; gap:12px; width:100%; }
+.opt-btn{
+    border:2px solid #d8d4c8; background:white; color:var(--navy);
+    padding:15px 14px; border-radius:14px; font-weight:600; font-size:16px;
+    cursor:pointer; text-align:center; transition:.15s;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.opt-btn .opt-letter{
+    width:22px; height:22px; border-radius:50%; border:1.5px solid var(--navy);
+    font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.opt-btn:hover:not(:disabled){ border-color:var(--navy); background:var(--gold-soft); }
+.opt-btn:disabled{ cursor:default; }
+.opt-btn.correct{ background:#e8f8ee; border-color:var(--green); color:var(--green); }
+.opt-btn.correct .opt-letter{ background:var(--green); border-color:var(--green); color:white; }
+.opt-btn.wrong{ background:#fdecec; border-color:var(--red); color:var(--red); }
+.opt-btn.wrong .opt-letter{ background:var(--red); border-color:var(--red); color:white; }
+.opt-btn.dim{ opacity:.5; }
+
+.feedback{ margin-top:16px; font-size:13.5px; font-weight:700; padding:8px 16px; border-radius:999px; display:none; }
+.feedback.show{ display:inline-block; }
+.feedback.correct-fb{ background:#e8f8ee; color:var(--green); }
+.feedback.wrong-fb{ background:#fdecec; color:var(--red); }
+
+.nav-row{ display:flex; align-items:center; justify-content:center; gap:16px; margin-top:22px; flex-wrap:wrap; }
+.nav-btn{
+    width:44px; height:44px; border-radius:50%; border:2px solid var(--navy);
+    background:white; color:var(--navy); font-size:18px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.nav-btn:hover{ background:var(--navy); color:var(--gold); }
+.nav-btn:disabled{ opacity:.3; cursor:default; }
+.nav-btn:disabled:hover{ background:white; color:var(--navy); }
+.reset-btn{
+    border-radius:999px; width:auto; padding:0 18px; font-size:12.5px; font-weight:600; gap:6px;
+    border:2px solid var(--gold); background:var(--navy); color:var(--gold);
+}
+.reset-btn:hover{ background:var(--gold); color:var(--navy); }
+
+.jump-row{ display:flex; justify-content:center; flex-wrap:wrap; gap:7px; margin-top:20px; }
+.dot{
+    width:32px; height:32px; border-radius:8px; border:2px solid #d8d4c8; background:white;
+    color:var(--muted); font-size:12.5px; font-weight:700; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+}
+.dot:hover{ border-color:var(--navy); }
+.dot.active{ background:var(--navy); border-color:var(--navy); color:var(--gold); }
+.dot.correct{ border-color:var(--green); color:var(--green); }
+.dot.wrong{ border-color:var(--red); color:var(--red); }
+.dot.active.correct, .dot.active.wrong{ color:var(--gold); }
+
+.pg-score{ text-align:center; font-size:13.5px; font-weight:700; color:var(--navy); margin-top:14px; }
+
+/* ===== Esai & Merubah kalimat ===== */
+.item-list{ display:flex; flex-direction:column; gap:14px; }
+.item-card{ border:1.5px solid #e2ddcf; border-radius:14px; padding:16px 18px; background:#fffefb; }
+.item-num{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:26px; height:26px; border-radius:50%; background:var(--navy); color:var(--gold);
+    font-size:12px; font-weight:700; margin-right:8px; flex-shrink:0;
+}
+.item-prompt{ font-size:15px; font-weight:600; color:var(--navy); display:flex; align-items:flex-start; gap:2px; line-height:1.6; }
+.item-sentences{ margin-top:10px; margin-left:34px; font-size:14.5px; color:var(--text); line-height:1.8; }
+.item-sentences span{ display:block; }
+.item-textarea{
+    width:100%; margin-top:10px; border:1.5px solid #d8d4c8; border-radius:10px;
+    padding:10px 12px; font-size:14px; font-family:inherit; resize:vertical; min-height:44px;
+}
+.item-textarea:focus{ outline:none; border-color:var(--navy); }
+.reveal-btn{
+    margin-top:10px; margin-left:34px; border:1.5px solid var(--blue); background:#eef4ff; color:var(--blue);
+    padding:6px 14px; border-radius:999px; font-size:12.5px; font-weight:700; cursor:pointer;
+}
+.reveal-btn:hover{ background:var(--blue); color:white; }
+.answer-box{
+    display:none; margin-top:10px; margin-left:34px; background:#e8f8ee; border:1.5px solid var(--green);
+    color:#0f5c30; border-radius:10px; padding:10px 14px; font-size:14.5px; line-height:1.6;
+}
+.answer-box.show{ display:block; }
+
+footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px; }
+
+@media(max-width:480px){
+    .options-grid{ grid-template-columns:1fr; }
+    header h1{ font-size:22px; }
+    .card{ padding:28px 16px; }
+    .item-sentences, .reveal-btn, .answer-box{ margin-left:0; }
+    .mini-cards{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-title">📝 Tekipaki Japanese Learning</div>
+</div>
+</nav>
+
+<header>
+<div class="eyebrow">📘 LATIHAN TATA BAHASA N4 — UNIT 14</div>
+<h1>Latihan ~ば ・ ~なら ・ ~ても</h1>
+<p>Setiap pola punya 10 soal pilihan ganda, 10 soal esai, dan 10 soal merubah kalimat. Pilih pola tata bahasa dan jenis soal di bawah ini.</p>
+</header>
+
+<div class="mini-cards">
+    <div class="mini-card"><div class="mc-jp">〜ば</div><div class="mc-id">kalau / jika (bentuk ba)</div></div>
+    <div class="mini-card"><div class="mc-jp">〜なら</div><div class="mc-id">kalau begitu / kalau memang</div></div>
+    <div class="mini-card"><div class="mc-jp">〜ても</div><div class="mc-id">meskipun / walaupun</div></div>
+</div>
+
+<div class="grammar-tabs" id="grammarTabs"></div>
+
+<div id="grammarSections"></div>
+
+<footer>
+© 2026 Tekipaki Japanese Learning | Latihan Tata Bahasa
+</footer>
+
+<script>
+
+const DATA = {
+    ba: {
+        label: "～ば",
+        intro: "～ば digunakan untuk menyatakan syarat atau pengandaian: \"kalau/jika ~, maka ~\", sering dipakai untuk hubungan sebab-akibat yang bersifat umum atau pasti. Kata kerja golongan 1 (u→e＋ば), golongan 2 (る→れば), い形容詞 (い→ければ), serta する dan 来る yang tidak beraturan.",
+        table: {
+            rule: "動詞（う→え＋ば）／一段動詞（る→れば）／い形容詞（い→ければ）／する→すれば、来る→来れば。",
+            rows: [
+                {gol:"五段動詞（う→え＋ば）", note:"Ubah akhiran u menjadi e, lalu tambahkan ば.", examples:[
+                    {dict:"行く", masu:"行きます", form:"行けば"},
+                    {dict:"話す", masu:"話します", form:"話せば"},
+                    {dict:"読む", masu:"読みます", form:"読めば"}
+                ]},
+                {gol:"一段動詞（る→れば）", note:"Hilangkan る, tambahkan れば.", examples:[
+                    {dict:"食べる", masu:"食べます", form:"食べれば"},
+                    {dict:"見る", masu:"見ます", form:"見れば"}
+                ]},
+                {gol:"い形容詞（い→ければ）", note:"Hilangkan い di akhir, tambahkan ければ.", examples:[
+                    {dict:"高い", masu:"（高いです）", form:"高ければ"},
+                    {dict:"安い", masu:"（安いです）", form:"安ければ"}
+                ]},
+                {gol:"する・来る（不規則）", note:"する→すれば、来る→来れば（くれば）。", examples:[
+                    {dict:"する", masu:"します", form:"すれば"},
+                    {dict:"来る", masu:"来ます", form:"来れば"}
+                ]}
+            ]
+        },
+        pg: [
+            {word:"もし雨が___、試合は中止です。", sub:"(kalau hujan turun, pertandingan dibatalkan: 降る→降れば)", options:["降るば","降れば","降ったば","降りますば"], answer:1},
+            {word:"もし時間が___、映画を見ましょう。", sub:"(kalau ada waktu, mari nonton film: ある→あれば)", options:["あるば","あれば","あったば","ありますば"], answer:1},
+            {word:"もっとゆっくり___、分かります。", sub:"(kalau bicara lebih pelan, akan paham: 話す→話せば)", options:["話すば","話せば","話したば","話しますば"], answer:1},
+            {word:"この本を___、分かります。", sub:"(kalau membaca buku ini, akan paham: 読む→読めば)", options:["読むば","読めば","読んだば","読みますば"], answer:1},
+            {word:"野菜をもっと___、健康になります。", sub:"(kalau makan sayur lebih banyak, akan sehat: 食べる→食べれば)", options:["食べるば","食べれば","食べたば","食べますば"], answer:1},
+            {word:"この映画を___、感動します。", sub:"(kalau menonton film ini, akan terharu: 見る→見れば)", options:["見るば","見れば","見たば","見ますば"], answer:1},
+            {word:"値段が___、買いません。", sub:"(kalau harganya mahal, tidak akan beli: 高い→高ければ)", options:["高いば","高ければ","高かったば","高くば"], answer:1},
+            {word:"この店は___、また来ます。", sub:"(kalau (di sini) murah, akan datang lagi: 安い→安ければ)", options:["安いば","安ければ","安かったば","安くば"], answer:1},
+            {word:"練習を___、上手になります。", sub:"(kalau berlatih, akan menjadi pandai: する→すれば)", options:["するば","すれば","したば","しますば"], answer:1},
+            {word:"彼が___、教えてください。", sub:"(kalau dia datang, tolong beri tahu saya: 来る→来れば)", options:["来るば","来れば","来たば","来ますば"], answer:1}
+        ],
+        essay: [
+            {cue:"降る（もし雨が）", sentence:"もし雨が＿＿＿＿、試合は中止です。", answer:"降れば"},
+            {cue:"ある（もし時間が）", sentence:"もし時間が＿＿＿＿、映画を見ましょう。", answer:"あれば"},
+            {cue:"話す（もっとゆっくり）", sentence:"もっとゆっくり＿＿＿＿、分かります。", answer:"話せば"},
+            {cue:"読む（この本を）", sentence:"この本を＿＿＿＿、分かります。", answer:"読めば"},
+            {cue:"食べる（野菜をもっと）", sentence:"野菜をもっと＿＿＿＿、健康になります。", answer:"食べれば"},
+            {cue:"見る（この映画を）", sentence:"この映画を＿＿＿＿、感動します。", answer:"見れば"},
+            {cue:"高い（値段が）", sentence:"値段が＿＿＿＿、買いません。", answer:"高ければ"},
+            {cue:"安い（この店は）", sentence:"この店は＿＿＿＿、また来ます。", answer:"安ければ"},
+            {cue:"する（練習を）", sentence:"練習を＿＿＿＿、上手になります。", answer:"すれば"},
+            {cue:"来る（彼が）", sentence:"彼が＿＿＿＿、教えてください。", answer:"来れば"}
+        ],
+        transform: [
+            {parts:["雨が降ります。","試合は中止です。"], answer:"雨が降れば、試合は中止です。"},
+            {parts:["時間があります。","映画を見ましょう。"], answer:"時間があれば、映画を見ましょう。"},
+            {parts:["もっとゆっくり話します。","分かります。"], answer:"もっとゆっくり話せば、分かります。"},
+            {parts:["この本を読みます。","分かります。"], answer:"この本を読めば、分かります。"},
+            {parts:["野菜をもっと食べます。","健康になります。"], answer:"野菜をもっと食べれば、健康になります。"},
+            {parts:["この映画を見ます。","感動します。"], answer:"この映画を見れば、感動します。"},
+            {parts:["値段が高いです。","買いません。"], answer:"値段が高ければ、買いません。"},
+            {parts:["この店は安いです。","また来ます。"], answer:"この店は安ければ、また来ます。"},
+            {parts:["練習をします。","上手になります。"], answer:"練習をすれば、上手になります。"},
+            {parts:["彼が来ます。","教えてください。"], answer:"彼が来れば、教えてください。"}
+        ]
+    },
+    nara: {
+        label: "～なら",
+        intro: "～なら digunakan untuk menyatakan syarat berdasarkan topik atau informasi yang baru disebutkan (oleh lawan bicara atau situasi): \"kalau begitu / kalau memang ~\", sering dipakai untuk memberi saran atau tanggapan. Melekat langsung pada bentuk biasa (普通形) kata kerja, kata sifat, atau kata benda tanpa だ.",
+        table: {
+            rule: "動詞・い形容詞普通形＋なら／な形容詞・名詞＋なら（tanpa だ）。",
+            rows: [
+                {gol:"動詞普通形＋なら", note:"Bentuk kamus/普通形 kata kerja + なら, tanpa perubahan bentuk.", examples:[
+                    {dict:"行く", masu:"行きます", form:"行くなら"},
+                    {dict:"買う", masu:"買います", form:"買うなら"}
+                ]},
+                {gol:"い形容詞普通形＋なら", note:"い形容詞 dalam bentuk biasa langsung ditambah なら.", examples:[
+                    {dict:"痛い", masu:"（痛いです）", form:"痛いなら"},
+                    {dict:"忙しい", masu:"（忙しいです）", form:"忙しいなら"}
+                ]},
+                {gol:"な形容詞・名詞＋なら", note:"な形容詞/kata benda langsung ditambah なら (tanpa だ).", examples:[
+                    {dict:"静か", masu:"（静かです）", form:"静かなら"},
+                    {dict:"病気", masu:"（病気です）", form:"病気なら"}
+                ]}
+            ]
+        },
+        pg: [
+            {word:"京都へ___、清水寺がおすすめです。", sub:"(kalau mau pergi ke Kyoto, saya rekomendasikan Kiyomizu-dera: 行く)", options:["行くなら","行きますなら","行ったなら","行ってなら"], answer:0},
+            {word:"お酒を___、飲みすぎないでください。", sub:"(kalau minum alkohol, jangan berlebihan: 飲む)", options:["飲むなら","飲みますなら","飲んだなら","飲んでなら"], answer:0},
+            {word:"車を___、新しいのがいいです。", sub:"(kalau mau beli mobil, yang baru lebih baik: 買う)", options:["買うなら","買いますなら","買ったなら","買ってなら"], answer:0},
+            {word:"頭が___、薬を飲んだほうがいいです。", sub:"(kalau sakit kepala, sebaiknya minum obat: 痛い)", options:["痛いなら","痛かったなら","痛くなら","痛みますなら"], answer:0},
+            {word:"___、手伝いましょうか。", sub:"(kalau (Anda) sibuk, mau saya bantu?: 忙しい)", options:["忙しいなら","忙しかったなら","忙しくなら","忙しいですなら"], answer:0},
+            {word:"___、休んだほうがいいです。", sub:"(kalau (Anda) sakit, sebaiknya istirahat: 病気)", options:["病気なら","病気だなら","病気でなら","病気だったなら"], answer:0},
+            {word:"___、この部屋がいいです。", sub:"(kalau maunya tenang, kamar ini bagus: 静か)", options:["静かなら","静かだなら","静かでなら","静かだったなら"], answer:0},
+            {word:"田中さんに___、彼はきっと知っています。", sub:"(kalau tanya ke Tanaka, dia pasti tahu: 聞く)", options:["聞くなら","聞きますなら","聞いたなら","聞いてなら"], answer:0},
+            {word:"明日___、試合は中止でしょう。", sub:"(kalau besok hujan, pertandingan mungkin dibatalkan: 雨)", options:["雨なら","雨だなら","雨でなら","雨だったなら"], answer:0},
+            {word:"日本語を___、この本がいいです。", sub:"(kalau mau belajar bahasa Jepang, buku ini bagus: 勉強する)", options:["勉強するなら","勉強しますなら","勉強したなら","勉強してなら"], answer:0}
+        ],
+        essay: [
+            {cue:"行く（京都へ）", sentence:"京都へ＿＿＿＿、清水寺がおすすめです。", answer:"行くなら"},
+            {cue:"飲む（お酒を）", sentence:"お酒を＿＿＿＿、飲みすぎないでください。", answer:"飲むなら"},
+            {cue:"買う（車を）", sentence:"車を＿＿＿＿、新しいのがいいです。", answer:"買うなら"},
+            {cue:"痛い（頭が）", sentence:"頭が＿＿＿＿、薬を飲んだほうがいいです。", answer:"痛いなら"},
+            {cue:"忙しい（）", sentence:"＿＿＿＿、手伝いましょうか。", answer:"忙しいなら"},
+            {cue:"病気（）", sentence:"＿＿＿＿、休んだほうがいいです。", answer:"病気なら"},
+            {cue:"静か（）", sentence:"＿＿＿＿、この部屋がいいです。", answer:"静かなら"},
+            {cue:"聞く（田中さんに）", sentence:"田中さんに＿＿＿＿、彼はきっと知っています。", answer:"聞くなら"},
+            {cue:"雨（明日）", sentence:"明日＿＿＿＿、試合は中止でしょう。", answer:"雨なら"},
+            {cue:"勉強する（日本語を）", sentence:"日本語を＿＿＿＿、この本がいいです。", answer:"勉強するなら"}
+        ],
+        transform: [
+            {parts:["京都へ行きます。","清水寺がおすすめです。"], answer:"京都へ行くなら、清水寺がおすすめです。"},
+            {parts:["お酒を飲みます。","飲みすぎないでください。"], answer:"お酒を飲むなら、飲みすぎないでください。"},
+            {parts:["車を買います。","新しいのがいいです。"], answer:"車を買うなら、新しいのがいいです。"},
+            {parts:["頭が痛いです。","薬を飲んだほうがいいです。"], answer:"頭が痛いなら、薬を飲んだほうがいいです。"},
+            {parts:["忙しいです。","手伝いましょうか。"], answer:"忙しいなら、手伝いましょうか。"},
+            {parts:["病気です。","休んだほうがいいです。"], answer:"病気なら、休んだほうがいいです。"},
+            {parts:["部屋が静かです。","ここにしましょう。"], answer:"部屋が静かなら、ここにしましょう。"},
+            {parts:["田中さんに聞きます。","彼はきっと知っています。"], answer:"田中さんに聞くなら、彼はきっと知っています。"},
+            {parts:["明日雨です。","試合は中止でしょう。"], answer:"明日雨なら、試合は中止でしょう。"},
+            {parts:["日本語を勉強します。","この本がいいです。"], answer:"日本語を勉強するなら、この本がいいです。"}
+        ]
+    },
+    temo: {
+        label: "～ても",
+        intro: "～ても digunakan untuk menyatakan bahwa suatu hasil tetap terjadi meskipun ada syarat atau kondisi tertentu: \"meskipun / walaupun ~, tetap ~\". Melekat pada bentuk て kata kerja (て→ても, で→でも), い形容詞 (い→くても), dan な形容詞/kata benda (＋でも).",
+        table: {
+            rule: "動詞て形＋も／い形容詞（い→くても）／な形容詞・名詞＋でも。",
+            rows: [
+                {gol:"動詞て形＋も", note:"Bentuk て kata kerja + も (て→ても、で→でも).", examples:[
+                    {dict:"降る", masu:"降ります", form:"降っても"},
+                    {dict:"読む", masu:"読みます", form:"読んでも"}
+                ]},
+                {gol:"い形容詞（い→くても）", note:"Hilangkan い, tambahkan くても.", examples:[
+                    {dict:"高い", masu:"（高いです）", form:"高くても"},
+                    {dict:"忙しい", masu:"（忙しいです）", form:"忙しくても"}
+                ]},
+                {gol:"な形容詞・名詞＋でも", note:"な形容詞/kata benda langsung ditambah でも.", examples:[
+                    {dict:"静か", masu:"（静かです）", form:"静かでも"},
+                    {dict:"有名", masu:"（有名です）", form:"有名でも"}
+                ]}
+            ]
+        },
+        pg: [
+            {word:"雨が___、試合をします。", sub:"(meskipun hujan turun, tetap bertanding: 降る→降っても)", options:["降るも","降っても","降ったも","降りますも"], answer:1},
+            {word:"何回___、分かりません。", sub:"(meskipun dibaca berapa kali, tetap tidak paham: 読む→読んでも)", options:["読むも","読んでも","読んだも","読みますも"], answer:1},
+            {word:"___、頑張ります。", sub:"(meskipun lelah, tetap berusaha: 疲れる→疲れても)", options:["疲れるも","疲れても","疲れたも","疲れますも"], answer:1},
+            {word:"お金が___、幸せではありません。", sub:"(meskipun punya banyak uang, tetap tidak bahagia: ある→あっても)", options:["あるも","あっても","あったも","ありますも"], answer:1},
+            {word:"値段が___、買います。", sub:"(meskipun mahal, tetap beli: 高い→高くても)", options:["高いも","高くても","高かったも","高くも"], answer:1},
+            {word:"___、行きます。", sub:"(meskipun sibuk, tetap pergi: 忙しい→忙しくても)", options:["忙しいも","忙しくても","忙しかったも","忙しくも"], answer:1},
+            {word:"___、集中できません。", sub:"(meskipun tenang, tetap tidak bisa konsentrasi: 静か→静かでも)", options:["静かも","静かでも","静かだったも","静かにも"], answer:1},
+            {word:"___、知りません。", sub:"(meskipun terkenal, tetap tidak tahu: 有名→有名でも)", options:["有名も","有名でも","有名だったも","有名にも"], answer:1},
+            {word:"何度も練習___、上手になりません。", sub:"(meskipun berlatih berkali-kali, tetap tidak jadi pandai: 練習する→練習しても)", options:["練習するも","練習しても","練習したも","練習しますも"], answer:1},
+            {word:"___、出ません。", sub:"(meskipun ditelepon, tetap tidak diangkat: 電話する→電話しても)", options:["電話するも","電話しても","電話したも","電話しますも"], answer:1}
+        ],
+        essay: [
+            {cue:"降る（雨が）", sentence:"雨が＿＿＿＿、試合をします。", answer:"降っても"},
+            {cue:"読む（何回）", sentence:"何回＿＿＿＿、分かりません。", answer:"読んでも"},
+            {cue:"疲れる（）", sentence:"＿＿＿＿、頑張ります。", answer:"疲れても"},
+            {cue:"ある（お金が）", sentence:"お金が＿＿＿＿、幸せではありません。", answer:"あっても"},
+            {cue:"高い（値段が）", sentence:"値段が＿＿＿＿、買います。", answer:"高くても"},
+            {cue:"忙しい（）", sentence:"＿＿＿＿、行きます。", answer:"忙しくても"},
+            {cue:"静か（）", sentence:"＿＿＿＿、集中できません。", answer:"静かでも"},
+            {cue:"有名（）", sentence:"＿＿＿＿、知りません。", answer:"有名でも"},
+            {cue:"練習する（何度も）", sentence:"何度も＿＿＿＿、上手になりません。", answer:"練習しても"},
+            {cue:"電話する（）", sentence:"＿＿＿＿、出ません。", answer:"電話しても"}
+        ],
+        transform: [
+            {parts:["雨が降ります。","試合をします。"], answer:"雨が降っても、試合をします。"},
+            {parts:["何回も読みます。","分かりません。"], answer:"何回も読んでも、分かりません。"},
+            {parts:["疲れます。","頑張ります。"], answer:"疲れても、頑張ります。"},
+            {parts:["お金があります。","幸せではありません。"], answer:"お金があっても、幸せではありません。"},
+            {parts:["値段が高いです。","買います。"], answer:"値段が高くても、買います。"},
+            {parts:["忙しいです。","行きます。"], answer:"忙しくても、行きます。"},
+            {parts:["部屋が静かです。","集中できません。"], answer:"部屋が静かでも、集中できません。"},
+            {parts:["有名です。","知りません。"], answer:"有名でも、知りません。"},
+            {parts:["何度も練習します。","上手になりません。"], answer:"何度も練習しても、上手になりません。"},
+            {parts:["電話します。","出ません。"], answer:"電話しても、出ません。"}
+        ]
+    }
+};
+
+const grammarKeys = Object.keys(DATA);
+let activeGrammar = grammarKeys[0];
+let activeSubtab = {};
+grammarKeys.forEach(k => { activeSubtab[k] = "pg"; });
+
+// state per grammar for PG quiz
+grammarKeys.forEach(k => {
+    DATA[k].current = 0;
+    DATA[k].picked = DATA[k].pg.map(() => null);
+});
+
+const letters = ["A","B","C","D"];
+const grammarTabsEl = document.getElementById("grammarTabs");
+const grammarSectionsEl = document.getElementById("grammarSections");
+
+function buildConjTableHtml(g){
+    let rowsHtml = "";
+    g.table.rows.forEach(row => {
+        const examplesHtml = row.examples.map(ex =>
+            `<div class="conj-ex-row jp"><span>${ex.dict}</span><span class="arrow">(${ex.masu})</span><span class="arrow">→</span><span class="final">${ex.form}</span></div>`
+        ).join("");
+        rowsHtml += `
+            <tr>
+                <td class="conj-gol-cell">${row.gol}</td>
+                <td class="conj-note-cell">${row.note}</td>
+                <td><div class="conj-examples">${examplesHtml}</div></td>
+            </tr>
+        `;
+    });
+    return `
+        <div class="conj-table-wrap">
+            <div class="conj-table-title">📐 Tabel Perubahan Kosakata → ${g.label}</div>
+            <div class="conj-table-rule">${g.table.rule}</div>
+            <table class="conj-table">
+                <thead>
+                    <tr><th>Kategori</th><th>Aturan</th><th>Contoh</th></tr>
+                </thead>
+                <tbody>${rowsHtml}</tbody>
+            </table>
+        </div>
+    `;
+}
+
+function buildGrammarTabs(){
+    grammarTabsEl.innerHTML = "";
+    grammarKeys.forEach(k => {
+        const btn = document.createElement("button");
+        btn.className = "gtab" + (k === activeGrammar ? " active" : "");
+        btn.textContent = DATA[k].label;
+        btn.addEventListener("click", () => { activeGrammar = k; renderAll(); });
+        grammarTabsEl.appendChild(btn);
+    });
+}
+
+function buildSections(){
+    grammarSectionsEl.innerHTML = "";
+    grammarKeys.forEach(k => {
+        const section = document.createElement("div");
+        section.className = "grammar-section" + (k === activeGrammar ? " active" : "");
+        section.id = "sec-" + k;
+
+        section.innerHTML = `
+            <div class="gram-intro">${DATA[k].intro}</div>
+            ${buildConjTableHtml(DATA[k])}
+            <div class="subtab-row" id="subtabs-${k}">
+                <button class="subtab" data-sub="pg">✅ Pilihan Ganda</button>
+                <button class="subtab" data-sub="essay">✍️ Esai</button>
+                <button class="subtab" data-sub="transform">🔄 Merubah Kalimat</button>
+            </div>
+            <div class="subpanel" id="panel-${k}-pg"></div>
+            <div class="subpanel" id="panel-${k}-essay"></div>
+            <div class="subpanel" id="panel-${k}-transform"></div>
+        `;
+        grammarSectionsEl.appendChild(section);
+
+        section.querySelectorAll(".subtab").forEach(btn => {
+            btn.addEventListener("click", () => {
+                activeSubtab[k] = btn.dataset.sub;
+                renderSubtabs(k);
+            });
+        });
+    });
+}
+
+function renderSubtabs(k){
+    const row = document.getElementById("subtabs-" + k);
+    row.querySelectorAll(".subtab").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.sub === activeSubtab[k]);
+    });
+    ["pg","essay","transform"].forEach(sub => {
+        const panel = document.getElementById("panel-" + k + "-" + sub);
+        panel.classList.toggle("active", sub === activeSubtab[k]);
+    });
+    if(activeSubtab[k] === "pg") renderPG(k);
+    if(activeSubtab[k] === "essay") renderEssay(k);
+    if(activeSubtab[k] === "transform") renderTransform(k);
+}
+
+//===================== PG =====================
+function renderPG(k){
+    const g = DATA[k];
+    const q = g.pg[g.current];
+    const picked = g.picked[g.current];
+    const panel = document.getElementById("panel-" + k + "-pg");
+
+    let optionsHtml = "";
+    q.options.forEach((opt, i) => {
+        let cls = "opt-btn";
+        let disabled = "";
+        if(picked !== null){
+            disabled = "disabled";
+            if(i === q.answer) cls += " correct";
+            else if(i === picked) cls += " wrong";
+            else cls += " dim";
+        }
+        optionsHtml += `<button class="${cls}" ${disabled} data-i="${i}"><span class="opt-letter">${letters[i]}</span><span class="jp">${opt}</span></button>`;
+    });
+
+    let feedbackHtml = "";
+    if(picked !== null){
+        const isCorrect = picked === q.answer;
+        feedbackHtml = `<div class="feedback show ${isCorrect ? "correct-fb" : "wrong-fb"}">${isCorrect ? "✔ Jawaban benar!" : "✘ Jawaban salah. Jawaban yang benar: " + q.options[q.answer]}</div>`;
+    }
+
+    let dotsHtml = "";
+    g.pg.forEach((qq, i) => {
+        let cls = "dot" + (i === g.current ? " active" : "");
+        if(g.picked[i] !== null) cls += (g.picked[i] === qq.answer ? " correct" : " wrong");
+        dotsHtml += `<button class="${cls}" data-jump="${i}">${i+1}</button>`;
+    });
+
+    const doneCount = g.picked.filter(p => p !== null).length;
+    const correctCount = g.pg.filter((qq,i) => g.picked[i] === qq.answer).length;
+
+    panel.innerHTML = `
+        <div class="progress-row">
+            <span class="progress-text">${g.current+1} / ${g.pg.length}</span>
+            <div class="progress-bar"><div class="progress-fill" style="width:${(g.current+1)/g.pg.length*100}%"></div></div>
+        </div>
+        <div class="card">
+            <div class="badge jp">文</div>
+            <div class="word jp">${q.word}</div>
+            <div class="subtext">${q.sub}</div>
+            <div class="options-grid">${optionsHtml}</div>
+            ${feedbackHtml}
+        </div>
+        <div class="nav-row">
+            <button class="nav-btn" id="pgPrev-${k}" ${g.current===0?"disabled":""}>←</button>
+            <button class="nav-btn reset-btn" id="pgReset-${k}">↺ Ulang</button>
+            <button class="nav-btn" id="pgNext-${k}" ${g.current===g.pg.length-1?"disabled":""}>→</button>
+        </div>
+        <div class="jump-row">${dotsHtml}</div>
+        <div class="pg-score">Terjawab: ${doneCount}/${g.pg.length} &nbsp;|&nbsp; Benar: ${correctCount}</div>
+    `;
+
+    panel.querySelectorAll(".opt-btn:not([disabled])").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const i = parseInt(btn.dataset.i, 10);
+            g.picked[g.current] = i;
+            renderPG(k);
+        });
+    });
+    panel.querySelectorAll("[data-jump]").forEach(btn => {
+        btn.addEventListener("click", () => { g.current = parseInt(btn.dataset.jump,10); renderPG(k); });
+    });
+    const prevBtn = document.getElementById("pgPrev-"+k);
+    const nextBtn = document.getElementById("pgNext-"+k);
+    const resetBtn = document.getElementById("pgReset-"+k);
+    if(prevBtn) prevBtn.addEventListener("click", () => { if(g.current>0){ g.current--; renderPG(k);} });
+    if(nextBtn) nextBtn.addEventListener("click", () => { if(g.current<g.pg.length-1){ g.current++; renderPG(k);} });
+    if(resetBtn) resetBtn.addEventListener("click", () => {
+        if(confirm("Ulang soal pilihan ganda " + g.label + "?")){
+            g.current = 0;
+            g.picked = g.pg.map(() => null);
+            renderPG(k);
+        }
+    });
+}
+
+//===================== ESSAY =====================
+function renderEssay(k){
+    const g = DATA[k];
+    const panel = document.getElementById("panel-" + k + "-essay");
+    let html = `<div class="item-list">`;
+    g.essay.forEach((item, i) => {
+        html += `
+            <div class="item-card">
+                <div class="item-prompt jp"><span class="item-num">${i+1}</span>（${item.cue}）</div>
+                <div class="item-sentences jp"><span>${item.sentence}</span></div>
+                <input type="text" class="item-textarea jp" style="min-height:auto;" placeholder="Tulis jawabanmu di sini...">
+                <button class="reveal-btn" data-target="essay-ans-${k}-${i}">💡 Lihat jawaban</button>
+                <div class="answer-box jp" id="essay-ans-${k}-${i}">${item.answer}</div>
+            </div>
+        `;
+    });
+    html += `</div>`;
+    panel.innerHTML = html;
+
+    panel.querySelectorAll(".reveal-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const box = document.getElementById(btn.dataset.target);
+            box.classList.toggle("show");
+            btn.textContent = box.classList.contains("show") ? "🙈 Sembunyikan jawaban" : "💡 Lihat jawaban";
+        });
+    });
+}
+
+//===================== TRANSFORM =====================
+function renderTransform(k){
+    const g = DATA[k];
+    const panel = document.getElementById("panel-" + k + "-transform");
+    let html = `<div class="item-list">`;
+    g.transform.forEach((item, i) => {
+        const instruksi = item.parts.length > 1
+            ? `Gabungkan kalimat berikut menggunakan pola <span class="jp" style="font-weight:900;">${g.label}</span>:`
+            : `Ubah kalimat berikut menggunakan pola <span class="jp" style="font-weight:900;">${g.label}</span>:`;
+        html += `
+            <div class="item-card">
+                <div class="item-prompt">
+                    <span class="item-num">${i+1}</span>
+                    ${instruksi}
+                </div>
+                <div class="item-sentences jp">
+                    ${item.parts.map(p => `<span>${p}</span>`).join("")}
+                </div>
+                <textarea class="item-textarea jp" placeholder="Tulis jawabanmu di sini..."></textarea>
+                <button class="reveal-btn" data-target="tf-ans-${k}-${i}">💡 Lihat jawaban</button>
+                <div class="answer-box jp" id="tf-ans-${k}-${i}">${item.answer}</div>
+            </div>
+        `;
+    });
+    html += `</div>`;
+    panel.innerHTML = html;
+
+    panel.querySelectorAll(".reveal-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const box = document.getElementById(btn.dataset.target);
+            box.classList.toggle("show");
+            btn.textContent = box.classList.contains("show") ? "🙈 Sembunyikan jawaban" : "💡 Lihat jawaban";
+        });
+    });
+}
+
+function renderAll(){
+    buildGrammarTabs();
+    buildSections();
+    grammarKeys.forEach(k => renderSubtabs(k));
+}
+
+renderAll();
+
+</script>
+
+</body>
+</html>
