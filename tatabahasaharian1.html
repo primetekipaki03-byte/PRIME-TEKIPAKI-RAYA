@@ -532,15 +532,12 @@ a{
   color:var(--ink-soft);
   margin-bottom:8px;
 }
-.essayPrompt .dictForm{
-  display:inline-block;
-  font-family:"JetBrains Mono",monospace;
-  font-size:.85rem;
-  color:#fff;
-  background:var(--navy);
-  border-radius:6px;
-  padding:2px 9px;
-  margin-bottom:8px;
+.essayPrompt .baseSentence{
+  display:block;
+  font-size:1.1rem;
+}
+.essayPrompt .baseSentence + .baseSentence{
+  margin-top:4px;
 }
 
 .checkBtn{
@@ -687,7 +684,7 @@ footer{
   <div class="hero-inner">
     <div class="eyebrow"><span class="dot"></span> N4 · BUNPOU HARIAN · HARI 1</div>
     <h1>Latihan Tata Bahasa <span>Hari 1</span></h1>
-    <p>7 pola tata bahasa hari ini: <b style="color:#fff;">～てしまう・～ておく・～ながら・～たり～たりする・～とき・～まえに・～あとで</b>. Coba jawab dulu di kepala/di buku catatanmu, lalu tekan tombol <b>Cek Jawaban</b> di tiap soal untuk mencocokkan.</p>
+    <p>7 pola tata bahasa hari ini: <b style="color:#fff;">～てしまう・～ておく・～ながら・～たり～たりする・～とき・～まえに・～あとで</b>. Setiap soal sudah berupa kalimat lengkap bentuk ます — tugasmu adalah mengubah kalimat tersebut menggunakan pola tata bahasa yang sedang dipelajari, lalu tekan tombol <b>Cek Jawaban</b> untuk mencocokkan.</p>
   </div>
 </section>
 
@@ -713,7 +710,7 @@ footer{
   </div>
 
   <div class="infoNote">
-    <b>Petunjuk umum:</b> Latihan ini terdiri dari <b>7 pola tata bahasa</b>, masing-masing dengan <b>5 soal</b> (total 35 soal). Sebagian soal berupa <b>melengkapi kalimat</b> dan sebagian lagi <b>mengubah kata kerja bentuk kamus ke bentuk tata bahasanya</b>. Kerjakan tiap soal, lalu tekan tombol <b>Cek Jawaban</b> pada soal tersebut untuk melihat kunci jawabannya.
+    <b>Petunjuk umum:</b> Latihan ini terdiri dari <b>7 pola tata bahasa</b>, masing-masing dengan <b>5 soal</b> (total 35 soal). Setiap soal sudah diberikan sebagai <b>kalimat lengkap dalam bentuk ます</b>. Tugasmu: <b>ubah kalimat tersebut</b> menggunakan pola tata bahasa yang sedang dipelajari (untuk soal yang terdiri dari dua kalimat, gabungkan keduanya menjadi satu kalimat). Setelah menjawab, tekan tombol <b>Cek Jawaban</b> untuk melihat kunci jawabannya.
   </div>
 
   <!-- ===================== BUNPOU 1 — ～てしまう ===================== -->
@@ -726,36 +723,36 @@ footer{
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">1</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>その本を＿＿＿＿＿＿。</div>
+    <div class="qTop"><span class="qNum">1</span><span class="qTypeTag">Ubah Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～てしまう.</span><span class="baseSentence">その本を全部読みました。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key1', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key1"><b>Jawaban:</b> その本を全部読んでしまいました。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">2</span><span class="qTypeTag">Ubah kosakata</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kata kerja bentuk kamus di bawah menjadi bentuk ～てしまう yang sesuai, lalu lengkapi kalimatnya.</span><span class="dictForm">忘れる（わすれる）</span><br>傘を家に＿＿＿＿＿＿。</div>
+    <div class="qTop"><span class="qNum">2</span><span class="qTypeTag">Ubah Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～てしまう.</span><span class="baseSentence">傘を家に忘れました。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key2', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key2"><b>Jawaban:</b> 傘を家に忘れてしまいました。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">3</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>明日の分の食べ物を＿＿＿＿＿＿。</div>
+    <div class="qTop"><span class="qNum">3</span><span class="qTypeTag">Ubah Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～てしまう.</span><span class="baseSentence">明日の分の食べ物を全部食べました。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key3', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key3"><b>Jawaban:</b> 明日の分の食べ物を全部食べてしまいました。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">4</span><span class="qTypeTag">Ubah kosakata</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kata kerja bentuk kamus di bawah menjadi bentuk ～てしまう yang sesuai, lalu lengkapi kalimatnya.</span><span class="dictForm">壊す（こわす）</span><br>弟がスマホを＿＿＿＿＿＿。</div>
+    <div class="qTop"><span class="qNum">4</span><span class="qTypeTag">Ubah Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～てしまう.</span><span class="baseSentence">弟がスマホを壊しました。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key4', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key4"><b>Jawaban:</b> 弟がスマホを壊してしまいました。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">5</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>悲しくて＿＿＿＿＿＿。</div>
+    <div class="qTop"><span class="qNum">5</span><span class="qTypeTag">Ubah Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～てしまう.</span><span class="baseSentence">悲しくて泣きました。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key5', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key5"><b>Jawaban:</b> 悲しくて泣いてしまいました。</div>
   </div>
@@ -771,36 +768,36 @@ footer{
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">6</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>お客さんが来る前に、料理を＿＿＿＿＿＿。</div>
+    <div class="qTop"><span class="qNum">6</span><span class="qTypeTag">Ubah Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～ておく.</span><span class="baseSentence">お客さんが来る前に、料理を作ります。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key6', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key6"><b>Jawaban:</b> お客さんが来る前に、料理を作っておきます。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">7</span><span class="qTypeTag">Ubah kosakata</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kata kerja bentuk kamus di bawah menjadi bentuk ～ておく yang sesuai, lalu lengkapi kalimatnya.</span><span class="dictForm">買う（かう）</span><br>パーティーのために、ジュースを＿＿＿＿＿＿。</div>
+    <div class="qTop"><span class="qNum">7</span><span class="qTypeTag">Ubah Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～ておく.</span><span class="baseSentence">パーティーのために、ジュースを買います。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key7', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key7"><b>Jawaban:</b> パーティーのために、ジュースを買っておきます。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">8</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>窓を＿＿＿＿＿＿ください。</div>
+    <div class="qTop"><span class="qNum">8</span><span class="qTypeTag">Ubah Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～ておく (bentuk permintaan/tolong).</span><span class="baseSentence">窓を開けます。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key8', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key8"><b>Jawaban:</b> 窓を開けておいて（ください）。</div>
+    <div class="answerKey" id="key8"><b>Jawaban:</b> 窓を開けておいてください。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">9</span><span class="qTypeTag">Ubah kosakata</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kata kerja bentuk kamus di bawah menjadi bentuk ～ておく yang sesuai, lalu lengkapi kalimatnya.</span><span class="dictForm">調べる（しらべる）</span><br>旅行の前に、天気を＿＿＿＿＿＿。</div>
+    <div class="qTop"><span class="qNum">9</span><span class="qTypeTag">Ubah Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～ておく.</span><span class="baseSentence">旅行の前に、天気を調べます。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key9', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key9"><b>Jawaban:</b> 旅行の前に、天気を調べておきます。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">10</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>将来のために、お金を＿＿＿＿＿＿。</div>
+    <div class="qTop"><span class="qNum">10</span><span class="qTypeTag">Ubah Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～ておく.</span><span class="baseSentence">将来のために、お金をためます。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key10', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key10"><b>Jawaban:</b> 将来のために、お金をためておきます。</div>
   </div>
@@ -816,36 +813,36 @@ footer{
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">11</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>音楽を＿＿＿＿＿＿勉強します。</div>
+    <div class="qTop"><span class="qNum">11</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ながら.</span><span class="baseSentence">音楽を聞きます。</span><span class="baseSentence">勉強します。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key11', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key11"><b>Jawaban:</b> 音楽を聞きながら勉強します。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">12</span><span class="qTypeTag">Ubah kosakata</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kata kerja bentuk kamus di bawah menjadi bentuk ～ながら yang sesuai, lalu lengkapi kalimatnya.</span><span class="dictForm">歩く（あるく）</span><br>電話で＿＿＿＿＿＿話しました。</div>
+    <div class="qTop"><span class="qNum">12</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ながら.</span><span class="baseSentence">電話で歩きます。</span><span class="baseSentence">話しました。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key12', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key12"><b>Jawaban:</b> 電話で歩きながら話しました。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">13</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>彼は大学に＿＿＿＿＿＿働いています。</div>
+    <div class="qTop"><span class="qNum">13</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ながら.</span><span class="baseSentence">彼は大学に通います。</span><span class="baseSentence">働いています。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key13', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key13"><b>Jawaban:</b> 彼は大学に通いながら働いています。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">14</span><span class="qTypeTag">Ubah kosakata</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kata kerja bentuk kamus di bawah menjadi bentuk ～ながら yang sesuai, lalu lengkapi kalimatnya.</span><span class="dictForm">食べる（たべる）</span><br>ご飯を＿＿＿＿＿＿テレビを見ます。</div>
+    <div class="qTop"><span class="qNum">14</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ながら.</span><span class="baseSentence">ご飯を食べます。</span><span class="baseSentence">テレビを見ます。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key14', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key14"><b>Jawaban:</b> ご飯を食べながらテレビを見ます。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">15</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>歌を＿＿＿＿＿＿踊ります。</div>
+    <div class="qTop"><span class="qNum">15</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ながら.</span><span class="baseSentence">歌を歌います。</span><span class="baseSentence">踊ります。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key15', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key15"><b>Jawaban:</b> 歌を歌いながら踊ります。</div>
   </div>
@@ -861,36 +858,36 @@ footer{
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">16</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>休みの日は本を読んだり、映画を＿＿＿＿＿＿します。</div>
+    <div class="qTop"><span class="qNum">16</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～たり～たりする.</span><span class="baseSentence">休みの日は本を読みます。</span><span class="baseSentence">映画を見ます。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key16', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key16"><b>Jawaban:</b> 休みの日は本を読んだり、映画を見たりします。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">17</span><span class="qTypeTag">Ubah kosakata</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kata kerja bentuk kamus di bawah menjadi bentuk ～たり yang sesuai, lalu lengkapi kalimatnya.</span><span class="dictForm">泳ぐ（およぐ）</span><br>海で＿＿＿＿＿＿、遊んだりしました。</div>
+    <div class="qTop"><span class="qNum">17</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～たり～たりする (bentuk lampau).</span><span class="baseSentence">海で泳ぎました。</span><span class="baseSentence">遊びました。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key17', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key17"><b>Jawaban:</b> 海で泳いだり、遊んだりしました。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">18</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>子供たちは公園で走ったり、＿＿＿＿＿＿します。</div>
+    <div class="qTop"><span class="qNum">18</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～たり～たりする.</span><span class="baseSentence">子供たちは公園で走ります。</span><span class="baseSentence">跳びます。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key18', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key18"><b>Jawaban:</b> 子供たちは公園で走ったり、跳んだりします。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">19</span><span class="qTypeTag">Ubah kosakata</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kata kerja bentuk kamus di bawah menjadi bentuk ～たり yang sesuai, lalu lengkapi kalimatnya.</span><span class="dictForm">書く（かく）</span><br>週末は手紙を＿＿＿＿＿＿、本を読んだりしています。</div>
+    <div class="qTop"><span class="qNum">19</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～たり～たりする.</span><span class="baseSentence">週末は手紙を書いています。</span><span class="baseSentence">本を読んでいます。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key19', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key19"><b>Jawaban:</b> 週末は手紙を書いたり、本を読んだりしています。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">20</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>今週末は買い物をしたり、友達に＿＿＿＿＿＿するつもりです。</div>
+    <div class="qTop"><span class="qNum">20</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～たり～たりする (bentuk niat/rencana).</span><span class="baseSentence">今週末は買い物をします。</span><span class="baseSentence">友達に会います。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key20', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key20"><b>Jawaban:</b> 今週末は買い物をしたり、友達に会ったりするつもりです。</div>
   </div>
@@ -906,36 +903,36 @@ footer{
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">21</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>雨が降る＿＿＿、いつも傘を持って行きます。</div>
+    <div class="qTop"><span class="qNum">21</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～とき.</span><span class="baseSentence">雨が降ります。</span><span class="baseSentence">いつも傘を持って行きます。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key21', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key21"><b>Jawaban:</b> 雨が降るとき、いつも傘を持って行きます。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">22</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>ご飯を食べている＿＿＿、電話が鳴りました。</div>
+    <div class="qTop"><span class="qNum">22</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～とき.</span><span class="baseSentence">ご飯を食べています。</span><span class="baseSentence">電話が鳴りました。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key22', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key22"><b>Jawaban:</b> ご飯を食べているとき、電話が鳴りました。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">23</span><span class="qTypeTag">Ubah kosakata</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kata kerja bentuk kamus di bawah menjadi bentuk yang sesuai sebelum とき, lalu lengkapi kalimatnya.</span><span class="dictForm">疲れる（つかれる）</span><br>＿＿＿＿＿＿とき、早く休んでください。</div>
+    <div class="qTop"><span class="qNum">23</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～とき.</span><span class="baseSentence">疲れました。</span><span class="baseSentence">早く休んでください。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key23', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key23"><b>Jawaban:</b> 疲れたとき、早く休んでください。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">24</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>高校生の＿＿＿、よくサッカーをしていました。</div>
+    <div class="qTop"><span class="qNum">24</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～とき (kata benda + の).</span><span class="baseSentence">高校生でした。</span><span class="baseSentence">よくサッカーをしていました。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key24', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key24"><b>Jawaban:</b> 高校生のとき、よくサッカーをしていました。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">25</span><span class="qTypeTag">Ubah kosakata</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kata kerja bentuk kamus di bawah menjadi bentuk yang sesuai sebelum とき, lalu lengkapi kalimatnya.</span><span class="dictForm">出かける（でかける）</span><br>＿＿＿＿＿＿とき、鍵をかけてください。</div>
+    <div class="qTop"><span class="qNum">25</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～とき.</span><span class="baseSentence">出かけます。</span><span class="baseSentence">鍵をかけてください。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key25', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key25"><b>Jawaban:</b> 出かけるとき、鍵をかけてください。</div>
   </div>
@@ -951,36 +948,36 @@ footer{
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">26</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>ご飯を食べる＿＿＿＿＿＿、手を洗います。</div>
+    <div class="qTop"><span class="qNum">26</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～まえに.</span><span class="baseSentence">ご飯を食べます。</span><span class="baseSentence">手を洗います。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key26', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key26"><b>Jawaban:</b> ご飯を食べるまえに、手を洗います。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">27</span><span class="qTypeTag">Ubah kosakata</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kata kerja bentuk kamus di bawah menjadi bentuk yang sesuai sebelum まえに, lalu lengkapi kalimatnya.</span><span class="dictForm">寝る（ねる）</span><br>＿＿＿＿＿＿まえに、歯を磨きます。</div>
+    <div class="qTop"><span class="qNum">27</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～まえに.</span><span class="baseSentence">寝ます。</span><span class="baseSentence">歯を磨きます。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key27', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key27"><b>Jawaban:</b> 寝るまえに、歯を磨きます。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">28</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>会社へ行く＿＿＿＿＿＿、コーヒーを飲みます。</div>
+    <div class="qTop"><span class="qNum">28</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～まえに.</span><span class="baseSentence">会社へ行きます。</span><span class="baseSentence">コーヒーを飲みます。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key28', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key28"><b>Jawaban:</b> 会社へ行くまえに、コーヒーを飲みます。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">29</span><span class="qTypeTag">Ubah kosakata</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kata kerja bentuk kamus di bawah menjadi bentuk yang sesuai sebelum まえに, lalu lengkapi kalimatnya.</span><span class="dictForm">出発する（しゅっぱつする）</span><br>＿＿＿＿＿＿まえに、荷物を確認します。</div>
+    <div class="qTop"><span class="qNum">29</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～まえに.</span><span class="baseSentence">出発します。</span><span class="baseSentence">荷物を確認します。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key29', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key29"><b>Jawaban:</b> 出発するまえに、荷物を確認します。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">30</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>試験の＿＿＿＿＿＿、一生懸命勉強します。</div>
+    <div class="qTop"><span class="qNum">30</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～まえに (kata benda + の).</span><span class="baseSentence">試験があります。</span><span class="baseSentence">一生懸命勉強します。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key30', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key30"><b>Jawaban:</b> 試験のまえに、一生懸命勉強します。</div>
   </div>
@@ -996,36 +993,36 @@ footer{
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">31</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>ご飯を食べた＿＿＿＿＿＿、薬を飲みます。</div>
+    <div class="qTop"><span class="qNum">31</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～あとで.</span><span class="baseSentence">ご飯を食べます。</span><span class="baseSentence">薬を飲みます。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key31', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key31"><b>Jawaban:</b> ご飯を食べたあとで、薬を飲みます。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">32</span><span class="qTypeTag">Ubah kosakata</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kata kerja bentuk kamus di bawah menjadi bentuk yang sesuai sebelum あとで, lalu lengkapi kalimatnya.</span><span class="dictForm">終わる（おわる）</span><br>仕事が＿＿＿＿＿＿あとで、飲みに行きましょう。</div>
+    <div class="qTop"><span class="qNum">32</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～あとで.</span><span class="baseSentence">仕事が終わります。</span><span class="baseSentence">飲みに行きましょう。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key32', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key32"><b>Jawaban:</b> 仕事が終わったあとで、飲みに行きましょう。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">33</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>お風呂に入った＿＿＿＿＿＿、寝ます。</div>
+    <div class="qTop"><span class="qNum">33</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～あとで.</span><span class="baseSentence">お風呂に入ります。</span><span class="baseSentence">寝ます。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key33', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key33"><b>Jawaban:</b> お風呂に入ったあとで、寝ます。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">34</span><span class="qTypeTag">Ubah kosakata</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kata kerja bentuk kamus di bawah menjadi bentuk yang sesuai sebelum あとで, lalu lengkapi kalimatnya.</span><span class="dictForm">見る（みる）</span><br>映画を＿＿＿＿＿＿あとで、感想を話しましょう。</div>
+    <div class="qTop"><span class="qNum">34</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～あとで.</span><span class="baseSentence">映画を見ます。</span><span class="baseSentence">感想を話しましょう。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key34', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key34"><b>Jawaban:</b> 映画を見たあとで、感想を話しましょう。</div>
   </div>
 
   <div class="qCard">
-    <div class="qTop"><span class="qNum">35</span><span class="qTypeTag">Melengkapi kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Lengkapi kalimat berikut menggunakan pola ini.</span>大学を卒業した＿＿＿＿＿＿、日本で働きたいです。</div>
+    <div class="qTop"><span class="qNum">35</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
+    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～あとで.</span><span class="baseSentence">大学を卒業します。</span><span class="baseSentence">日本で働きたいです。</span></div>
     <button class="checkBtn" onclick="toggleAnswer('key35', this)">🔍 Cek Jawaban</button>
     <div class="answerKey" id="key35"><b>Jawaban:</b> 大学を卒業したあとで、日本で働きたいです。</div>
   </div>
