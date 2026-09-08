@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cek Bacaan Kanji - Siswa</title>
+<title>Tes Pilihan Ganda &amp; Esai N4 - 7 Nomor</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,643 +22,262 @@
     --muted:#5b6b7d;
     --green:#16a34a;
     --red:#dc2626;
+    --blue:#1d4ed8;
+    --blue-soft:#e5edff;
+    --purple:#7c3aed;
+    --purple-soft:#ede4ff;
+    --teal:#0d9488;
+    --teal-soft:#d8f6f1;
+    --orange:#c2410c;
+    --orange-soft:#ffe6d5;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:"Poppins","Segoe UI",Arial,sans-serif;
-}
+*{ margin:0; padding:0; box-sizing:border-box; font-family:"Poppins","Segoe UI",Arial,sans-serif; }
 
-body{
-    background:#f6f5f1;
-    color:var(--text);
-    padding-bottom:40px;
-}
+body{ background:#f6f5f1; color:var(--text); padding-bottom:40px; }
 
-.jp{
-    font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif;
-}
-
-/* NAVBAR (sama seperti tema) */
+.jp{ font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif; }
 
 #navbar{
-    position:sticky;
-    top:0;
-    z-index:999;
+    position:sticky; top:0; z-index:999;
     background:#001530;
     border-bottom:2px solid rgba(250,204,21,.25);
     box-shadow:0 4px 14px rgba(0,0,0,.35);
 }
 
-.navbar-inner{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:10px 20px;
-    flex-wrap:wrap;
-    gap:10px;
-}
+.navbar-inner{ display:flex; justify-content:space-between; align-items:center; padding:12px 20px; flex-wrap:wrap; gap:10px; }
 
-.home-btn{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    background:var(--gold);
-    color:#001530;
-    text-decoration:none;
-    padding:8px 14px;
-    border-radius:10px;
-    font-weight:bold;
-}
+.nav-title{ color:var(--gold); font-weight:700; font-size:15px; letter-spacing:.02em; }
 
-.home-btn:hover{ opacity:.85; }
-
-.home-icon{
-    width:24px;
-    height:24px;
-    object-fit:cover;
-    border-radius:4px;
-}
-
-.back-wrap{ padding:16px 20px 0; }
-
-.back-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    text-decoration:none;
-    padding:9px 16px;
-    background:#eef2f7;
-    border:1px solid #dde3ec;
-    color:var(--navy);
-    border-radius:999px;
-    font-weight:600;
-    font-size:13.5px;
-}
-
-.back-btn:hover{ background:#e2e8f2; }
-
-header{
-    text-align:center;
-    padding:24px 20px 8px;
-}
+header{ text-align:center; padding:26px 20px 8px; }
 
 .eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:var(--navy);
-    color:var(--gold);
-    font-size:13px;
-    font-weight:600;
-    letter-spacing:.12em;
-    padding:7px 16px;
-    border-radius:999px;
-    margin-bottom:16px;
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--navy); color:var(--gold);
+    font-size:13px; font-weight:600; letter-spacing:.12em;
+    padding:7px 16px; border-radius:999px; margin-bottom:16px;
 }
 
-header h1{
-    font-size:34px;
-    color:var(--navy);
-    margin-bottom:8px;
-    letter-spacing:-.01em;
-}
+header h1{ font-size:30px; color:var(--navy); margin-bottom:8px; letter-spacing:-.01em; }
+header p{ font-size:14px; color:var(--muted); max-width:600px; margin:0 auto; line-height:1.6; }
 
-header p{
-    font-size:14.5px;
-    color:var(--muted);
-    max-width:560px;
-    margin:0 auto;
-    line-height:1.6;
-}
+.student-wrap{ max-width:820px; margin:26px auto 0; padding:0 20px; }
 
-/* PILIH SISWA */
+.student-title{ font-size:13px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
 
-.student-wrap{
-    max-width:760px;
-    margin:26px auto 0;
-    padding:0 20px;
-}
-
-.student-title-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    margin-bottom:10px;
-    flex-wrap:wrap;
-}
-
-.student-title{
-    font-size:13px;
-    font-weight:700;
-    color:var(--muted);
-    text-transform:uppercase;
-    letter-spacing:.08em;
-}
-
-.shuffle-across-btn{
-    border:2px solid var(--navy);
-    background:var(--navy);
-    color:var(--gold);
-    padding:7px 14px;
-    border-radius:999px;
-    font-weight:700;
-    font-size:12.5px;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    white-space:nowrap;
-}
-
-.shuffle-across-btn:hover{ opacity:.88; }
-
-.student-row{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-}
+.student-row{ display:flex; flex-wrap:wrap; gap:8px; }
 
 .student-pill{
-    border:2px solid var(--navy);
-    background:white;
-    color:var(--navy);
-    padding:8px 14px;
-    border-radius:999px;
-    font-weight:600;
-    font-size:13.5px;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    gap:6px;
+    border:2px solid var(--navy); background:white; color:var(--navy);
+    padding:8px 14px; border-radius:999px; font-weight:600; font-size:13.5px;
+    cursor:pointer; display:flex; align-items:center; gap:6px;
 }
+.student-pill:hover{ background:var(--gold-soft); }
+.student-pill.active{ background:var(--navy); color:var(--gold); }
 
-.student-pill:hover{
-    background:var(--gold-soft);
+.student-score{ font-size:11px; background:rgba(255,255,255,.15); padding:1px 7px; border-radius:999px; }
+.student-pill.active .student-score{ background:var(--gold); color:var(--navy); }
+
+.main-wrap{ max-width:820px; margin:28px auto 0; padding:0 20px; }
+
+/* ===== GRID NOMOR ===== */
+
+.grid-title{ font-size:16px; font-weight:700; color:var(--navy); margin-bottom:14px; }
+
+.number-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:14px; }
+
+.number-card{
+    background:var(--paper); border:2px solid var(--navy); box-shadow:0 5px 0 var(--navy);
+    border-radius:18px; padding:20px 14px; text-align:center; cursor:pointer; transition:.15s;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
 }
+.number-card:hover{ transform:translateY(-2px); }
+.number-card .num{ font-size:46px; font-weight:900; color:var(--navy); }
+.number-card .stat{ font-size:11.5px; font-weight:700; letter-spacing:.04em; padding:4px 10px; border-radius:999px; }
+.number-card .stat.belum{ background:#eef1f5; color:var(--muted); }
+.number-card .stat.jalan{ background:var(--gold-soft); color:#8a6d00; }
+.number-card .stat.selesai{ background:#e8f8ee; color:var(--green); }
+.number-card .stat.habis{ background:#fdecec; color:var(--red); }
+.number-card .nscore{ font-size:12.5px; color:var(--muted); font-weight:600; }
 
-.student-pill.active{
-    background:var(--navy);
-    color:var(--gold);
+/* ===== QUIZ VIEWER ===== */
+
+.back-row{ display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+.back-btn{
+    border:2px solid var(--navy); background:white; color:var(--navy);
+    padding:7px 14px; border-radius:999px; font-weight:600; font-size:13px; cursor:pointer;
+    display:flex; align-items:center; gap:6px;
 }
+.back-btn:hover{ background:var(--navy); color:var(--gold); }
+.nomor-label{ font-weight:700; color:var(--navy); font-size:14px; }
 
-.student-score{
-    font-size:11px;
-    background:rgba(255,255,255,.15);
-    padding:1px 7px;
-    border-radius:999px;
-}
+.progress-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; gap:10px; flex-wrap:wrap; }
+.progress-text{ font-size:13px; font-weight:600; color:var(--navy); white-space:nowrap; }
+.progress-bar{ flex:1; height:6px; background:#e3e0d6; border-radius:999px; margin:0 14px; overflow:hidden; min-width:80px; }
+.progress-fill{ height:100%; background:var(--gold); border-radius:999px; transition:width .35s ease; }
 
-.student-pill.active .student-score{
-    background:var(--gold);
-    color:var(--navy);
-}
-
-.rename-btn{
-    border:none;
-    background:none;
-    color:var(--muted);
-    font-size:11px;
-    cursor:pointer;
-    text-decoration:underline;
-    margin-left:2px;
-}
-
-/* VIEWER */
-
-.viewer-wrap{
-    max-width:760px;
-    margin:28px auto 0;
-    padding:0 20px;
-}
-
-.progress-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:14px;
-    gap:10px;
-}
-
-.progress-text{
-    font-size:13px;
-    font-weight:600;
-    color:var(--navy);
-    white-space:nowrap;
-}
-
-.progress-bar{
-    flex:1;
-    height:6px;
-    background:#e3e0d6;
-    border-radius:999px;
-    margin:0 14px;
-    overflow:hidden;
-}
-
-.progress-fill{
-    height:100%;
-    background:var(--gold);
-    border-radius:999px;
-    transition:width .35s ease;
-}
-
-/* TIMER */
-
-.timer-cluster{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    white-space:nowrap;
-}
+.timer-cluster{ display:flex; align-items:center; gap:8px; white-space:nowrap; }
 
 .timer-badge{
-    font-weight:700;
-    font-size:13.5px;
-    color:var(--navy);
-    background:var(--gold-soft);
-    border:2px solid var(--gold);
-    padding:6px 13px;
-    border-radius:999px;
-    white-space:nowrap;
-    display:flex;
-    align-items:center;
-    gap:5px;
-    transition:.2s;
+    font-weight:700; font-size:13.5px; color:var(--navy);
+    background:var(--gold-soft); border:2px solid var(--gold);
+    padding:6px 13px; border-radius:999px; white-space:nowrap;
+    display:flex; align-items:center; gap:5px; transition:.2s;
 }
+.timer-badge.low{ color:white; background:var(--red); border-color:var(--red); animation:pulseTimer 1s infinite; }
+.timer-badge.done{ color:white; background:#7a7a7a; border-color:#7a7a7a; animation:none; }
+.timer-badge.waiting{ color:var(--muted); background:#eef1f5; border-color:#dde3ec; }
 
-.timer-badge.low{
-    color:white;
-    background:var(--red);
-    border-color:var(--red);
-    animation:pulseTimer 1s infinite;
-}
-
-.timer-badge.done{
-    color:white;
-    background:#7a7a7a;
-    border-color:#7a7a7a;
-    animation:none;
-}
-
-.timer-badge.waiting{
-    color:var(--muted);
-    background:#eef1f5;
-    border-color:#dde3ec;
-}
-
-@keyframes pulseTimer{
-    0%,100%{ transform:scale(1); }
-    50%{ transform:scale(1.06); }
-}
+@keyframes pulseTimer{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.06); } }
 
 .start-btn{
-    border:2px solid var(--green);
-    background:var(--green);
-    color:white;
-    font-weight:700;
-    font-size:13px;
-    padding:7px 14px;
-    border-radius:999px;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    gap:5px;
-    white-space:nowrap;
+    border:2px solid var(--green); background:var(--green); color:white;
+    font-weight:700; font-size:13px; padding:7px 14px; border-radius:999px;
+    cursor:pointer; display:flex; align-items:center; gap:5px; white-space:nowrap;
     animation:pulseStart 1.4s infinite;
 }
-
 .start-btn:hover{ opacity:.9; }
+@keyframes pulseStart{ 0%,100%{ box-shadow:0 0 0 0 rgba(22,163,74,.35); } 50%{ box-shadow:0 0 0 6px rgba(22,163,74,0); } }
 
-@keyframes pulseStart{
-    0%,100%{ box-shadow:0 0 0 0 rgba(22,163,74,.35); }
-    50%{ box-shadow:0 0 0 6px rgba(22,163,74,0); }
+.tag-row{ display:flex; justify-content:center; margin-bottom:10px; }
+.tag{
+    font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    padding:5px 14px; border-radius:999px;
 }
+.tag.kanji{ background:var(--gold-soft); color:#8a6d00; border:1.5px solid var(--gold); }
+.tag.grammar{ background:var(--blue-soft); color:var(--blue); border:1.5px solid #93b4ff; }
+.tag.sentence{ background:var(--purple-soft); color:var(--purple); border:1.5px solid #c9aeff; }
+.tag.reading{ background:var(--teal-soft); color:var(--teal); border:1.5px solid #7fd6c9; }
+.tag.conjugate{ background:var(--orange-soft); color:var(--orange); border:1.5px solid #ffbf94; }
 
 .card{
-    background:var(--paper);
-    border:2px solid var(--navy);
-    box-shadow:0 6px 0 var(--navy);
-    border-radius:22px;
-    padding:48px 40px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    width:100%;
-    min-height:min(52vh, 420px);
-    position:relative;
+    background:var(--paper); border:2px solid var(--navy); box-shadow:0 6px 0 var(--navy);
+    border-radius:22px; padding:40px 32px; display:flex; flex-direction:column;
+    align-items:center; justify-content:flex-start; text-align:center; width:100%;
+    min-height:min(50vh, 380px); position:relative;
 }
 
-.card.locked .word,
-.card.locked .badge{
-    opacity:.25;
-    filter:blur(1px);
+.card.locked .word, .card.locked .subtext, .card.locked .options-grid, .card.locked .badge, .card.locked .essay-box{
+    opacity:.25; filter:blur(1px); pointer-events:none;
 }
 
 .lock-note{
-    display:none;
-    position:absolute;
-    left:20px;
-    right:20px;
-    top:50%;
-    transform:translateY(-50%);
-    flex-direction:column;
-    align-items:center;
-    gap:12px;
+    display:none; position:absolute; left:20px; right:20px; top:50%; transform:translateY(-50%);
+    flex-direction:column; align-items:center; gap:12px; z-index:2;
 }
-
-.card.locked .lock-note{
-    display:flex;
-}
-
-.lock-note p{
-    font-size:14px;
-    color:var(--navy);
-    font-weight:600;
-    max-width:320px;
-    line-height:1.5;
-}
-
-.lock-note .start-btn{
-    font-size:15px;
-    padding:11px 22px;
-}
+.card.locked .lock-note{ display:flex; }
+.lock-note p{ font-size:14px; color:var(--navy); font-weight:600; max-width:320px; line-height:1.5; }
+.lock-note .start-btn{ font-size:15px; padding:11px 22px; }
 
 .badge{
-    width:46px;
-    height:46px;
-    border-radius:50%;
-    background:var(--gold-soft);
-    border:2px solid var(--gold);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:20px;
-    margin-bottom:14px;
+    width:44px; height:44px; border-radius:50%; background:var(--gold-soft);
+    border:2px solid var(--gold); display:flex; align-items:center; justify-content:center;
+    font-size:19px; margin-bottom:14px;
 }
 
-.word{
-    font-size:clamp(48px, 8vw, 80px);
-    font-weight:900;
-    color:var(--navy);
-    line-height:1.3;
-    word-break:break-word;
+.word{ font-size:clamp(19px, 4.2vw, 32px); font-weight:900; color:var(--navy); line-height:1.6; word-break:break-word; }
+.word .hl{ color:var(--red); }
+
+.subtext{ margin-top:8px; font-size:14px; color:var(--muted); max-width:560px; }
+
+.options-grid{ margin-top:26px; display:grid; grid-template-columns:1fr 1fr; gap:12px; width:100%; }
+
+.opt-btn{
+    border:2px solid #d8d4c8; background:white; color:var(--navy);
+    padding:14px 12px; border-radius:14px; font-weight:600; font-size:15px;
+    cursor:pointer; text-align:center; transition:.15s;
+    display:flex; align-items:center; justify-content:center; gap:8px;
 }
-
-.reveal-box{
-    margin-top:20px;
-    display:none;
+.opt-btn .opt-letter{
+    width:22px; height:22px; border-radius:50%; border:1.5px solid var(--navy);
+    font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0;
 }
+.opt-btn:hover:not(:disabled){ border-color:var(--navy); background:var(--gold-soft); }
+.opt-btn:disabled{ cursor:default; }
 
-.reveal-box.show{
-    display:block;
+.opt-btn.correct{ background:#e8f8ee; border-color:var(--green); color:var(--green); }
+.opt-btn.correct .opt-letter{ background:var(--green); border-color:var(--green); color:white; }
+.opt-btn.wrong{ background:#fdecec; border-color:var(--red); color:var(--red); }
+.opt-btn.wrong .opt-letter{ background:var(--red); border-color:var(--red); color:white; }
+.opt-btn.dim{ opacity:.5; }
+
+/* ===== ESSAY BOX (soal susun kalimat) ===== */
+
+.essay-box{ margin-top:26px; width:100%; display:flex; flex-direction:column; align-items:center; gap:12px; }
+.essay-input{
+    width:100%; max-width:520px; min-height:70px; resize:vertical;
+    border:2px solid #d8d4c8; border-radius:14px; padding:12px 14px;
+    font-size:17px; color:var(--navy); background:white;
 }
+.essay-input:focus{ outline:none; border-color:var(--navy); }
+.essay-input:disabled{ background:#f4f2ea; color:var(--muted); }
+.essay-input.right{ border-color:var(--green); background:#e8f8ee; color:var(--green); }
+.essay-input.wrong{ border-color:var(--red); background:#fdecec; color:var(--red); }
 
-.reading{
-    font-size:26px;
-    color:var(--navy2);
-    font-weight:700;
+.essay-submit-btn{
+    border:2px solid var(--navy); background:var(--navy); color:var(--gold);
+    font-weight:700; font-size:13.5px; padding:9px 20px; border-radius:999px; cursor:pointer;
 }
+.essay-submit-btn:hover{ opacity:.9; }
+.essay-submit-btn:disabled{ opacity:.4; cursor:default; }
 
-.meaning{
-    margin-top:6px;
-    font-size:16px;
-    color:var(--muted);
-}
+.essay-key{ font-size:13.5px; color:var(--muted); }
+.essay-key b{ color:var(--navy); }
 
-.tap-note{
-    margin-top:20px;
-    font-size:11px;
-    color:var(--gold);
-    background:var(--navy);
-    padding:4px 12px;
-    border-radius:999px;
-    letter-spacing:.04em;
-    cursor:pointer;
-}
+.feedback{ margin-top:18px; font-size:14px; font-weight:700; padding:8px 16px; border-radius:999px; display:none; }
+.feedback.show{ display:inline-block; }
+.feedback.correct-fb{ background:#e8f8ee; color:var(--green); }
+.feedback.wrong-fb{ background:#fdecec; color:var(--red); }
 
-.tap-note.disabled{
-    opacity:.45;
-    cursor:default;
-    pointer-events:none;
-}
-
-/* JUDGE BUTTONS */
-
-.judge-row{
-    display:flex;
-    gap:12px;
-    justify-content:center;
-    margin-top:22px;
-}
-
-.judge-btn{
-    flex:1;
-    max-width:170px;
-    padding:12px 10px;
-    border-radius:12px;
-    font-weight:700;
-    font-size:14px;
-    cursor:pointer;
-    border:2px solid transparent;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:6px;
-}
-
-.judge-btn.benar{
-    background:#e8f8ee;
-    border-color:var(--green);
-    color:var(--green);
-}
-
-.judge-btn.benar.picked{
-    background:var(--green);
-    color:white;
-}
-
-.judge-btn.salah{
-    background:#fdecec;
-    border-color:var(--red);
-    color:var(--red);
-}
-
-.judge-btn.salah.picked{
-    background:var(--red);
-    color:white;
-}
-
-.judge-btn:disabled{
-    opacity:.45;
-    cursor:default;
-}
-
-/* nav buttons */
-
-.nav-row{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:16px;
-    margin-top:22px;
-    flex-wrap:wrap;
-}
+.nav-row{ display:flex; align-items:center; justify-content:center; gap:16px; margin-top:24px; flex-wrap:wrap; }
 
 .nav-btn{
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    border:2px solid var(--navy);
-    background:white;
-    color:var(--navy);
-    font-size:20px;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:.2s;
+    width:46px; height:46px; border-radius:50%; border:2px solid var(--navy);
+    background:white; color:var(--navy); font-size:19px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
 }
-
 .nav-btn:hover{ background:var(--navy); color:var(--gold); }
-
 .nav-btn:disabled{ opacity:.3; cursor:default; }
-
 .nav-btn:disabled:hover{ background:white; color:var(--navy); }
 
 .reset-btn{
-    border-radius:999px;
-    width:auto;
-    padding:0 18px;
-    font-size:13px;
-    font-weight:600;
-    gap:6px;
-    border:2px solid var(--gold);
-    background:var(--navy);
-    color:var(--gold);
+    border-radius:999px; width:auto; padding:0 18px; font-size:13px; font-weight:600; gap:6px;
+    border:2px solid var(--gold); background:var(--navy); color:var(--gold);
 }
-
 .reset-btn:hover{ background:var(--gold); color:var(--navy); }
 
-.shuffle-btn{
-    border-radius:999px;
-    width:auto;
-    padding:0 18px;
-    font-size:13px;
-    font-weight:600;
-    gap:6px;
-    border:2px solid var(--navy);
-    background:white;
-    color:var(--navy);
-}
-
-.shuffle-btn:hover{ background:var(--navy); color:var(--gold); }
-
-/* jump dots */
-
-.jump-row{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-top:26px;
-}
+.jump-row{ display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:24px; }
 
 .dot{
-    width:34px;
-    height:34px;
-    border-radius:8px;
-    border:2px solid #d8d4c8;
-    background:white;
-    color:var(--muted);
-    font-size:13px;
-    font-weight:700;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:.2s;
-    position:relative;
+    width:34px; height:34px; border-radius:8px; border:2px solid #d8d4c8; background:white;
+    color:var(--muted); font-size:13px; font-weight:700; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
 }
-
 .dot:hover{ border-color:var(--navy); }
-
-.dot.active{
-    background:var(--navy);
-    border-color:var(--navy);
-    color:var(--gold);
-}
-
+.dot.active{ background:var(--navy); border-color:var(--navy); color:var(--gold); }
 .dot.correct{ border-color:var(--green); color:var(--green); }
-
 .dot.wrong{ border-color:var(--red); color:var(--red); }
-
 .dot.active.correct, .dot.active.wrong{ color:var(--gold); }
 
-/* SUMMARY TABLE */
+.summary-wrap{ max-width:820px; margin:44px auto 0; padding:0 20px; }
+.summary-title{ font-size:16px; font-weight:700; color:var(--navy); margin-bottom:12px; }
 
-.summary-wrap{
-    max-width:760px;
-    margin:40px auto 0;
-    padding:0 20px;
-}
-
-.summary-title{
-    font-size:16px;
-    font-weight:700;
-    color:var(--navy);
-    margin-bottom:12px;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    background:white;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
-}
-
-th, td{
-    padding:10px 12px;
-    text-align:left;
-    font-size:13.5px;
-    border-bottom:1px solid #eee;
-}
-
-th{
-    background:var(--navy);
-    color:var(--gold);
-    font-size:12px;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-}
-
-td.score{
-    font-weight:700;
-}
-
+table{ width:100%; border-collapse:collapse; background:white; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+th, td{ padding:10px 12px; text-align:left; font-size:13.5px; border-bottom:1px solid #eee; }
+th{ background:var(--navy); color:var(--gold); font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+td.score{ font-weight:700; }
 td.score.pass{ color:var(--green); }
 td.score.fail{ color:var(--red); }
 
-footer{
-    text-align:center;
-    padding:50px 20px 30px;
-    color:#8a93a0;
-    font-size:14px;
-}
+footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px; }
 
 @media(max-width:480px){
-    .word{ font-size:46px; }
-    header h1{ font-size:26px; }
+    .options-grid{ grid-template-columns:1fr; }
+    header h1{ font-size:22px; }
     .progress-row{ flex-wrap:wrap; }
     .progress-bar{ order:3; width:100%; margin:8px 0 0; flex:1 1 100%; }
-    .card{ padding:38px 18px; min-height:280px; }
+    .card{ padding:30px 16px; min-height:320px; }
+    .number-grid{ grid-template-columns:repeat(auto-fill, minmax(120px,1fr)); }
 }
 
 </style>
@@ -668,469 +287,179 @@ footer{
 
 <nav id="navbar">
 <div class="navbar-inner">
-<div class="nav-left">
-<a href="index.html" class="home-btn">
-<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
-</svg>
-HOME
-</a>
-</div>
+<div class="nav-title">📝 Tekipaki Japanese Learning</div>
 </div>
 </nav>
 
-<div class="back-wrap">
-<a href="kanjidasar.html" class="back-btn">← Kembali ke Kanji Flash Card</a>
-</div>
-
 <header>
-<div class="eyebrow">📝 UJIAN LISAN · CEK BACAAN KANJI</div>
-<h1>Cek Bacaan Kanji Siswa</h1>
+<div class="eyebrow">✅ TES PILIHAN GANDA &amp; ESAI · N4 · 7 NOMOR</div>
+<h1>Tes N4 — 7 Nomor, 5 Jenis Soal per Nomor</h1>
+<p>Setiap siswa punya 7 nomor. Di dalam tiap nomor ada 5 soal: baca kanji, tata bahasa, susun kalimat (esai), pilih cara baca, dan ubah bentuk kamus. Pilih siswa, lalu pilih nomor untuk mulai mengerjakan.</p>
 </header>
 
 <div class="student-wrap">
-<div class="student-title-row">
 <div class="student-title">Pilih Siswa</div>
-<button class="shuffle-across-btn" id="shuffleAcrossBtn" title="Tukar-acak paket kanji ke semua siswa">🔀 Acak Kanji Antar Siswa</button>
-</div>
 <div class="student-row" id="studentRow"></div>
 </div>
 
-<div class="viewer-wrap">
-
-<div class="progress-row">
-<span class="progress-text" id="progressText">1 / 42</span>
-<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-<div class="timer-cluster">
-<button class="start-btn" id="startTimerBtnTop" title="Mulai hitung mundur 10 menit">▶ Mulai</button>
-<span class="timer-badge waiting" id="timerText">⏱ 10:00</span>
-</div>
-</div>
-
-<div class="card" id="card">
-    <div class="badge" id="cardBadge">漢</div>
-    <div class="word jp" id="cardWord"></div>
-
-    <div class="reveal-box" id="revealBox">
-        <div class="reading jp" id="cardReading"></div>
-        <div class="meaning" id="cardMeaning"></div>
-    </div>
-
-    <div class="tap-note" id="revealBtn">Lihat Jawaban</div>
-
-    <div class="lock-note" id="lockNote">
-        <p>⏳ Timer belum dimulai. Tekan tombol di bawah saat siswa siap mengerjakan.</p>
-        <button class="start-btn" id="startTimerBtnCard">▶ Mulai Ujian (10 menit)</button>
-    </div>
-</div>
-
-<div class="judge-row">
-<button class="judge-btn benar" id="benarBtn" disabled>✔ Benar</button>
-<button class="judge-btn salah" id="salahBtn" disabled>✘ Salah</button>
-</div>
-
-<div class="nav-row">
-<button class="nav-btn" id="prevBtn" title="Sebelumnya">←</button>
-<button class="nav-btn shuffle-btn" id="shuffleBtn" title="Acak urutan soal">🔀 Acak Soal</button>
-<button class="nav-btn reset-btn" id="resetBtn">↺ Ulang Paket</button>
-<button class="nav-btn" id="nextBtn" title="Berikutnya">→</button>
-</div>
-
-<div class="jump-row" id="jumpRow"></div>
-
-</div>
+<div class="main-wrap" id="mainWrap"></div>
 
 <div class="summary-wrap">
 <div class="summary-title">📊 Rekap Nilai Semua Siswa</div>
 <table>
 <thead>
-<tr><th>Siswa</th><th>Dites</th><th>Benar</th><th>Salah</th><th>Nilai</th></tr>
+<tr><th>Siswa</th><th>Dijawab</th><th>Benar</th><th>Salah</th><th>Nilai</th></tr>
 </thead>
 <tbody id="summaryBody"></tbody>
 </table>
 </div>
 
 <footer>
-© 2026 Tekipaki Japanese Learning | Cek Bacaan Kanji
+© 2026 Tekipaki Japanese Learning | Tes Pilihan Ganda &amp; Esai N4 — 7 Nomor
 </footer>
 
 <script>
 
-// paket soal per siswa - 42 kanji per siswa (diambil dari bank 286 kanji unik)
-const students = [
-    { name:"Niko", words:[
-        { kanji:'運転', reading:'うんてん', meaning:'Mengemudi' },
-        { kanji:'軽い', reading:'かるい', meaning:'Ringan' },
-        { kanji:'危険', reading:'きけん', meaning:'Bahaya' },
-        { kanji:'間に合う', reading:'まにあう', meaning:'Tepat waktu, sempat' },
-        { kanji:'給料', reading:'きゅうりょう', meaning:'Gaji' },
-        { kanji:'入口', reading:'いりぐち', meaning:'Pintu masuk' },
-        { kanji:'津波', reading:'つなみ', meaning:'Tsunami' },
-        { kanji:'痛む', reading:'いたむ', meaning:'Terasa sakit' },
-        { kanji:'起こす', reading:'おこす', meaning:'Membangunkan; menyebabkan' },
-        { kanji:'空', reading:'そら', meaning:'Langit' },
-        { kanji:'交番', reading:'こうばん', meaning:'Pos polisi' },
-        { kanji:'送る', reading:'おくる', meaning:'Mengirim / mengantar' },
-        { kanji:'図書館', reading:'としょかん', meaning:'Perpustakaan' },
-        { kanji:'米', reading:'こめ', meaning:'Beras' },
-        { kanji:'時間', reading:'じかん', meaning:'Waktu' },
-        { kanji:'払う', reading:'はらう', meaning:'Membayar' },
-        { kanji:'豊か', reading:'ゆたか', meaning:'Kaya, melimpah' },
-        { kanji:'果物', reading:'くだもの', meaning:'Buah' },
-        { kanji:'全員', reading:'ぜんいん', meaning:'Semua orang' },
-        { kanji:'要約する', reading:'ようやくする', meaning:'Meringkas, membuat ringkasan' },
-        { kanji:'甘い', reading:'あまい', meaning:'Manis' },
-        { kanji:'首', reading:'くび', meaning:'Leher' },
-        { kanji:'彼', reading:'かれ', meaning:'Dia (laki-laki)' },
-        { kanji:'昨日', reading:'きのう', meaning:'Kemarin' },
-        { kanji:'青い', reading:'あおい', meaning:'Biru' },
-        { kanji:'吸う', reading:'すう', meaning:'Menghirup; mengisap' },
-        { kanji:'向かい', reading:'むかい', meaning:'Seberang' },
-        { kanji:'消す', reading:'けす', meaning:'Mematikan' },
-        { kanji:'食事', reading:'しょくじ', meaning:'Kegiatan Makan' },
-        { kanji:'使い方', reading:'つかいかた', meaning:'Cara menggunakan' },
-        { kanji:'ご飯', reading:'ごはん', meaning:'Nasi; makanan; makan' },
-        { kanji:'心配', reading:'しんぱい', meaning:'Khawatir' },
-        { kanji:'景色', reading:'けしき', meaning:'Pemandangan' },
-        { kanji:'文化', reading:'ぶんか', meaning:'Budaya' },
-        { kanji:'周り', reading:'まわり', meaning:'Sekeliling, Sekitar' },
-        { kanji:'彼女', reading:'かのじょ', meaning:'Dia (perempuan)' },
-        { kanji:'信号', reading:'しんごう', meaning:'Lampu lalu lintas' },
-        { kanji:'直す', reading:'なおす', meaning:'Memperbaiki secara umum' },
-        { kanji:'途中', reading:'とちゅう', meaning:'Di tengah perjalanan' },
-        { kanji:'食堂', reading:'しょくどう', meaning:'Kantin / Ruang Makan' },
-        { kanji:'隣', reading:'となり', meaning:'Sebelah, di samping' },
-        { kanji:'庭', reading:'にわ', meaning:'Halaman' },
-    ]},
-    { name:"Ringga", words:[
-        { kanji:'弱い', reading:'よわい', meaning:'Lemah' },
-        { kanji:'残念', reading:'ざんねん', meaning:'Sayang sekali, mengecewakan' },
-        { kanji:'女性', reading:'じょせい', meaning:'Perempuan, wanita' },
-        { kanji:'辛い', reading:'からい', meaning:'Pedas' },
-        { kanji:'戻る', reading:'もどる', meaning:'Kembali' },
-        { kanji:'財布', reading:'さいふ', meaning:'Dompet' },
-        { kanji:'借りる', reading:'かりる', meaning:'Meminjam' },
-        { kanji:'電車', reading:'でんしゃ', meaning:'Kereta listrik' },
-        { kanji:'利用する', reading:'りようする', meaning:'Menggunakan, memanfaatkan' },
-        { kanji:'絵', reading:'え', meaning:'Gambar, lukisan' },
-        { kanji:'必ず', reading:'かならず', meaning:'Pasti / harus' },
-        { kanji:'売る', reading:'うる', meaning:'Menjual' },
-        { kanji:'忘れる', reading:'わすれる', meaning:'Lupa' },
-        { kanji:'好き', reading:'すき', meaning:'Suka' },
-        { kanji:'大変', reading:'たいへん', meaning:'Sulit, berat' },
-        { kanji:'料金', reading:'りょうきん', meaning:'Biaya / Tarif' },
-        { kanji:'終わる', reading:'おわる', meaning:'Selesai / berakhir' },
-        { kanji:'列', reading:'れつ', meaning:'Barisan, antrean' },
-        { kanji:'旅行', reading:'りょこう', meaning:'Perjalanan, wisata' },
-        { kanji:'登る', reading:'のぼる', meaning:'Naik, mendaki' },
-        { kanji:'迷う', reading:'まよう', meaning:'Tersesat / Bingung' },
-        { kanji:'雪', reading:'ゆき', meaning:'Salju' },
-        { kanji:'楽しい', reading:'たのしい', meaning:'Menyenangkan' },
-        { kanji:'捨てる', reading:'すてる', meaning:'Membuang' },
-        { kanji:'写真', reading:'しゃしん', meaning:'Foto' },
-        { kanji:'作業', reading:'さぎょう', meaning:'Pekerjaan / Proses kerja' },
-        { kanji:'最初', reading:'さいしょ', meaning:'Pertama, awal' },
-        { kanji:'弁当', reading:'べんとう', meaning:'Bekal / Bento' },
-        { kanji:'教科書', reading:'きょうかしょ', meaning:'Buku pelajaran, buku teks' },
-        { kanji:'減らす', reading:'へらす', meaning:'Mengurangi' },
-        { kanji:'手紙', reading:'てがみ', meaning:'Surat' },
-        { kanji:'荷物', reading:'にもつ', meaning:'Barang bawaan' },
-        { kanji:'電気', reading:'でんき', meaning:'Listrik' },
-        { kanji:'体調', reading:'たいちょう', meaning:'Kondisi tubuh, kondisi kesehatan' },
-        { kanji:'天気', reading:'てんき', meaning:'Cuaca' },
-        { kanji:'親切', reading:'しんせつ', meaning:'Baik hati, ramah, suka menolong' },
-        { kanji:'冷たい', reading:'つめたい', meaning:'Dingin (Benda, minuman, makanan, sentuhan, sikap, perasaan)' },
-        { kanji:'野菜', reading:'やさい', meaning:'Sayuran' },
-        { kanji:'見つける', reading:'みつける', meaning:'Menemukan' },
-        { kanji:'暖かい', reading:'あたたかい', meaning:'Hangat (Cuaca, suhu udara)' },
-        { kanji:'到着する', reading:'とうちゃくする', meaning:'Tiba / Kedatangan' },
-        { kanji:'確認する', reading:'かくにんする', meaning:'Memeriksa / mengonfirmasi' },
-    ]},
-    { name:"Shomad", words:[
-        { kanji:'約束', reading:'やくそく', meaning:'Janji' },
-        { kanji:'探す', reading:'さがす', meaning:'Mencari' },
-        { kanji:'安心', reading:'あんしん', meaning:'Tenang, merasa aman' },
-        { kanji:'説明', reading:'せつめい', meaning:'Penjelasan' },
-        { kanji:'働く', reading:'はたらく', meaning:'Bekerja' },
-        { kanji:'書類', reading:'しょるい', meaning:'Dokumen' },
-        { kanji:'油', reading:'あぶら', meaning:'Minyak' },
-        { kanji:'歌手', reading:'かしゅ', meaning:'Penyanyi' },
-        { kanji:'自然', reading:'しぜん', meaning:'Alam' },
-        { kanji:'勉強', reading:'べんきょう', meaning:'Belajar' },
-        { kanji:'変わる', reading:'かわる', meaning:'Berubah' },
-        { kanji:'設定', reading:'せってい', meaning:'Pengaturan, setelan' },
-        { kanji:'生活', reading:'せいかつ', meaning:'Kehidupan sehari-hari' },
-        { kanji:'右', reading:'みぎ', meaning:'Kanan' },
-        { kanji:'郵便局', reading:'ゆうびんきょく', meaning:'Kantor pos' },
-        { kanji:'病院', reading:'びょういん', meaning:'Rumah sakit' },
-        { kanji:'必要', reading:'ひつよう', meaning:'Diperlukan / penting' },
-        { kanji:'用事', reading:'ようじ', meaning:'Urusan' },
-        { kanji:'安い', reading:'やすい', meaning:'Murah' },
-        { kanji:'近い', reading:'ちかい', meaning:'Dekat' },
-        { kanji:'温かい', reading:'あたたかい', meaning:'Hangat (Benda, makanan, minuman, perasaan, sikap)' },
-        { kanji:'事故', reading:'じこ', meaning:'Kecelakaan' },
-        { kanji:'明日', reading:'あした', meaning:'Besok' },
-        { kanji:'反対', reading:'はんたい', meaning:'Berlawanan' },
-        { kanji:'お菓子', reading:'おかし', meaning:'Camilan / Kue' },
-        { kanji:'寒い', reading:'さむい', meaning:'Dingin (cuaca)' },
-        { kanji:'洗う', reading:'あらう', meaning:'Mencuci' },
-        { kanji:'家族', reading:'かぞく', meaning:'Keluarga' },
-        { kanji:'大人', reading:'おとな', meaning:'Orang dewasa' },
-        { kanji:'悲しい', reading:'かなしい', meaning:'Sedih' },
-        { kanji:'幸せ', reading:'しあわせ', meaning:'Bahagia, kebahagiaan' },
-        { kanji:'薬', reading:'くすり', meaning:'Obat' },
-        { kanji:'特別', reading:'とくべつ', meaning:'Khusus, istimewa' },
-        { kanji:'公園', reading:'こうえん', meaning:'Taman' },
-        { kanji:'趣味', reading:'しゅみ', meaning:'Hobi' },
-        { kanji:'横', reading:'よこ', meaning:'Samping, sebelah' },
-        { kanji:'病気', reading:'びょうき', meaning:'Sakit / penyakit' },
-        { kanji:'部屋', reading:'へや', meaning:'Kamar' },
-        { kanji:'涼しい', reading:'すずしい', meaning:'Sejuk' },
-        { kanji:'重い', reading:'おもい', meaning:'Berat' },
-        { kanji:'節約します', reading:'せつやくします', meaning:'Berhemat, menghemat' },
-        { kanji:'新しい', reading:'あたらしい', meaning:'Baru' },
-    ]},
-    { name:"Trianto", words:[
-        { kanji:'気持ち', reading:'きもち', meaning:'Perasaan, perasaan hati' },
-        { kanji:'短い', reading:'みじかい', meaning:'Pendek' },
-        { kanji:'暑い', reading:'あつい', meaning:'Panas (cuaca)' },
-        { kanji:'教室', reading:'きょうしつ', meaning:'Ruang kelas' },
-        { kanji:'消火', reading:'しょうか', meaning:'Memadamkan api / kebakaran' },
-        { kanji:'返事', reading:'へんじ', meaning:'Jawaban / Balasan' },
-        { kanji:'最後', reading:'さいご', meaning:'Terakhir, akhir' },
-        { kanji:'割れる', reading:'われる', meaning:'Pecah, retak' },
-        { kanji:'住む / 住みたい', reading:'すむ / すみたい', meaning:'Tinggal / ingin tinggal' },
-        { kanji:'理由', reading:'りゆう', meaning:'Alasan' },
-        { kanji:'返す', reading:'かえす', meaning:'Mengembalikan' },
-        { kanji:'広い', reading:'ひろい', meaning:'Luas' },
-        { kanji:'片付ける', reading:'かたづける', meaning:'Merapikan' },
-        { kanji:'休む', reading:'やすむ', meaning:'Beristirahat / Libur' },
-        { kanji:'曲がる', reading:'まがる', meaning:'Berbelok' },
-        { kanji:'自由', reading:'じゆう', meaning:'Bebas, kebebasan' },
-        { kanji:'予約', reading:'よやく', meaning:'Reservasi' },
-        { kanji:'中止', reading:'ちゅうし', meaning:'Pembatalan' },
-        { kanji:'停電', reading:'ていでん', meaning:'Pemadaman listrik' },
-        { kanji:'今度', reading:'こんど', meaning:'Lain kali / kali ini / nanti' },
-        { kanji:'作る', reading:'つくる', meaning:'Membuat' },
-        { kanji:'開ける', reading:'あける', meaning:'Membuka' },
-        { kanji:'体', reading:'からだ', meaning:'Tubuh' },
-        { kanji:'明るい', reading:'あかるい', meaning:'Terang / Ceria' },
-        { kanji:'銀行', reading:'ぎんこう', meaning:'Bank' },
-        { kanji:'選ぶ', reading:'えらぶ', meaning:'Memilih' },
-        { kanji:'若い', reading:'わかい', meaning:'Muda' },
-        { kanji:'窓口', reading:'まどぐち', meaning:'Loket / Counter' },
-        { kanji:'上手', reading:'じょうず', meaning:'Pandai, mahir' },
-        { kanji:'自信', reading:'じしん', meaning:'Percaya diri' },
-        { kanji:'閉める', reading:'しめる', meaning:'Menutup' },
-        { kanji:'空気', reading:'くうき', meaning:'Udara' },
-        { kanji:'知ります', reading:'しります', meaning:'Mengetahui, mengenal' },
-        { kanji:'室', reading:'しつ', meaning:'Ruangan' },
-        { kanji:'動く', reading:'うごく', meaning:'Bergerak' },
-        { kanji:'声', reading:'こえ', meaning:'Suara' },
-        { kanji:'雲', reading:'くも', meaning:'Awan' },
-        { kanji:'相談する', reading:'そうだんする', meaning:'Berkonsultasi' },
-        { kanji:'授業', reading:'じゅぎょう', meaning:'Pelajaran, kelas' },
-        { kanji:'点ける', reading:'つける', meaning:'Menyalakan' },
-        { kanji:'連絡', reading:'れんらく', meaning:'Menghubungi / Kontak' },
-        { kanji:'近く', reading:'ちかく', meaning:'Dekat' },
-    ]},
-    { name:"Joni", words:[
-        { kanji:'待ち合わせ', reading:'まちあわせ', meaning:'Janji bertemu' },
-        { kanji:'遠い', reading:'とおい', meaning:'Jauh' },
-        { kanji:'博物館', reading:'はくぶつかん', meaning:'Museum' },
-        { kanji:'面接', reading:'めんせつ', meaning:'Wawancara' },
-        { kanji:'分析します', reading:'ぶんせきします', meaning:'Menganalisis' },
-        { kanji:'下手', reading:'へた', meaning:'Tidak pandai' },
-        { kanji:'掃除する', reading:'そうじする', meaning:'Membersihkan' },
-        { kanji:'寂しい', reading:'さびしい', meaning:'Kesepian' },
-        { kanji:'試験', reading:'しけん', meaning:'Ujian, tes' },
-        { kanji:'強い', reading:'つよい', meaning:'Kuat' },
-        { kanji:'元気', reading:'げんき', meaning:'Sehat, semangat' },
-        { kanji:'不足', reading:'ふそく', meaning:'Kekurangan' },
-        { kanji:'打ち合わせ', reading:'うちあわせ', meaning:'Rapat (Suasana lebih santai, berbeda dengan 会議)' },
-        { kanji:'晴れ', reading:'はれ', meaning:'Cerah' },
-        { kanji:'集まる', reading:'あつまる', meaning:'Berkumpul' },
-        { kanji:'出る', reading:'でる', meaning:'Keluar / muncul' },
-        { kanji:'全部', reading:'ぜんぶ', meaning:'Semua, seluruhnya' },
-        { kanji:'仕事', reading:'しごと', meaning:'Pekerjaan' },
-        { kanji:'店員', reading:'てんいん', meaning:'Pegawai Toko' },
-        { kanji:'申し込む', reading:'もうしこむ', meaning:'Mendaftar, mengajukan permohonan' },
-        { kanji:'簡単', reading:'かんたん', meaning:'Mudah' },
-        { kanji:'嬉しい', reading:'うれしい', meaning:'Senang, gembira' },
-        { kanji:'苦手', reading:'にがて', meaning:'Tidak pandai, kurang mahir' },
-        { kanji:'残業', reading:'ざんぎょう', meaning:'Lembur' },
-        { kanji:'家', reading:'いえ', meaning:'Rumah' },
-        { kanji:'白い', reading:'しろい', meaning:'Putih' },
-        { kanji:'調べる', reading:'しらべる', meaning:'Memeriksa, mencari tahu' },
-        { kanji:'現金', reading:'げんきん', meaning:'Uang tunai' },
-        { kanji:'安全', reading:'あんぜん', meaning:'Aman / Keselamatan' },
-        { kanji:'事務所', reading:'じむしょ', meaning:'Kantor (kantor administrasi)' },
-        { kanji:'出発', reading:'しゅっぱつ', meaning:'Berangkat' },
-        { kanji:'電話', reading:'でんわ', meaning:'Telepon' },
-        { kanji:'分別する', reading:'ぶんべつする', meaning:'Memilah, memisahkan' },
-        { kanji:'都会', reading:'とかい', meaning:'Kota besar' },
-        { kanji:'駅', reading:'えき', meaning:'Stasiun' },
-        { kanji:'面談', reading:'めんだん', meaning:'Pertemuan / Konsultasi' },
-        { kanji:'詳しい', reading:'くわしい', meaning:'Paham, mengetahui dengan baik; terperinci' },
-        { kanji:'古い', reading:'ふるい', meaning:'Tua, lama' },
-        { kanji:'台所', reading:'だいどころ', meaning:'Dapur' },
-        { kanji:'不便', reading:'ふべん', meaning:'Tidak praktis / Tidak nyaman' },
-        { kanji:'有名', reading:'ゆうめい', meaning:'Terkenal' },
-        { kanji:'届く', reading:'とどく', meaning:'Sampai (barang/surat)' },
-    ]},
-    { name:"Ferian", words:[
-        { kanji:'料理', reading:'りょうり', meaning:'Masakan; Memasak' },
-        { kanji:'暗い', reading:'くらい', meaning:'Gelap' },
-        { kanji:'無料', reading:'むりょう', meaning:'Gratis' },
-        { kanji:'結果', reading:'けっか', meaning:'Hasil' },
-        { kanji:'報告する', reading:'ほうこくする', meaning:'Melaporkan' },
-        { kanji:'歩く', reading:'あるく', meaning:'Berjalan' },
-        { kanji:'調子', reading:'ちょうし', meaning:'Kondisi, keadaan, performa' },
-        { kanji:'苦い', reading:'にがい', meaning:'Pahit' },
-        { kanji:'地図', reading:'ちず', meaning:'Peta' },
-        { kanji:'教える', reading:'おしえる', meaning:'Mengajar, memberi tahu' },
-        { kanji:'黒い', reading:'くろい', meaning:'Hitam' },
-        { kanji:'温度', reading:'おんど', meaning:'Suhu, temperatur' },
-        { kanji:'準備', reading:'じゅんび', meaning:'Persiapan' },
-        { kanji:'修理', reading:'しゅうり', meaning:'Perbaikan / Memperbaiki' },
-        { kanji:'手伝う', reading:'てつだう', meaning:'Membantu' },
-        { kanji:'難しい', reading:'むずかしい', meaning:'Sulit' },
-        { kanji:'市役所', reading:'しやくしょ', meaning:'Kantor kelurahan/balai kota (kantor pemerintah daerah)' },
-        { kanji:'困る', reading:'こまる', meaning:'Kesulitan, kesusahan' },
-        { kanji:'会議', reading:'かいぎ', meaning:'Rapat, pertemuan' },
-        { kanji:'雨', reading:'あめ', meaning:'Hujan' },
-        { kanji:'動き', reading:'うごき', meaning:'Gerakan' },
-        { kanji:'動物', reading:'どうぶつ', meaning:'Hewan' },
-        { kanji:'参加する', reading:'さんかする', meaning:'Berpartisipasi, mengikuti' },
-        { kanji:'男性', reading:'だんせい', meaning:'Laki-laki, pria' },
-        { kanji:'夕方', reading:'ゆうがた', meaning:'Sore (menjelang malam)' },
-        { kanji:'運ぶ', reading:'はこぶ', meaning:'Mengangkut / membawa' },
-        { kanji:'方法', reading:'ほうほう', meaning:'Cara / Metode' },
-        { kanji:'案内', reading:'あんない', meaning:'Panduan, petunjuk' },
-        { kanji:'比べる', reading:'くらべる', meaning:'Membandingkan' },
-        { kanji:'建物', reading:'たてもの', meaning:'Gedung/bangunan' },
-        { kanji:'耳', reading:'みみ', meaning:'Telinga' },
-        { kanji:'建てる', reading:'たてる', meaning:'Membangun (bangunan)' },
-        { kanji:'注意', reading:'ちゅうい', meaning:'Peringatan / Hati-hati Waspada' },
-        { kanji:'選手', reading:'せんしゅ', meaning:'Atlet, pemain' },
-        { kanji:'走る', reading:'はしる', meaning:'Berlari' },
-        { kanji:'静か', reading:'しずか', meaning:'Tenang, sepi' },
-        { kanji:'予定', reading:'よてい', meaning:'Rencana / Jadwal' },
-        { kanji:'着る', reading:'きる', meaning:'Memakai (baju)' },
-        { kanji:'急ぐ', reading:'いそぐ', meaning:'Bergegas' },
-        { kanji:'量', reading:'りょう', meaning:'Porsi / jumlah' },
-        { kanji:'貸す', reading:'かす', meaning:'Meminjamkan' },
-        { kanji:'悔しい', reading:'くやしい', meaning:'Kecewa, menyesal (karena kalah atau gagal)' },
-    ]},
-    { name:"Luki", words:[
-        { kanji:'汚れる', reading:'よごれる', meaning:'Menjadi kotor' },
-        { kanji:'広場', reading:'ひろば', meaning:'Lapangan / Area Terbuka' },
-        { kanji:'顔', reading:'かお', meaning:'Wajah' },
-        { kanji:'増える', reading:'ふえる', meaning:'Bertambah' },
-        { kanji:'船', reading:'ふね', meaning:'Kapal' },
-        { kanji:'美味しい', reading:'おいしい', meaning:'Enak' },
-        { kanji:'起きる', reading:'おきる', meaning:'Bangun' },
-        { kanji:'並ぶ', reading:'ならぶ', meaning:'Mengantre, berbaris' },
-        { kanji:'後ろ', reading:'うしろ', meaning:'Belakang' },
-        { kanji:'乗る', reading:'のる', meaning:'Naik (kendaraan)' },
-        { kanji:'機会', reading:'きかい', meaning:'Kesempatan' },
-        { kanji:'決める', reading:'きめる', meaning:'Memutuskan' },
-        { kanji:'渡る', reading:'わたる', meaning:'Menyebrang' },
-        { kanji:'伝える', reading:'つたえる', meaning:'Menyampaikan' },
-        { kanji:'狭い', reading:'せまい', meaning:'Sempit' },
-        { kanji:'練習する', reading:'れんしゅうする', meaning:'Berlatih' },
-        { kanji:'道具', reading:'どうぐ', meaning:'Alat / Perkakas' },
-        { kanji:'台風', reading:'たいふう', meaning:'Badai / topan' },
-        { kanji:'会社', reading:'かいしゃ', meaning:'Perusahaan / Kantor' },
-        { kanji:'嫌い', reading:'きらい', meaning:'Tidak suka' },
-        { kanji:'無理', reading:'むり', meaning:'Tidak mungkin, terlalu berat' },
-        { kanji:'思い出す', reading:'おもいだす', meaning:'Mengingat kembali' },
-        { kanji:'高い', reading:'たかい', meaning:'Mahal / Tinggi' },
-        { kanji:'社員', reading:'しゃいん', meaning:'Karyawan perusahaan' },
-        { kanji:'最近', reading:'さいきん', meaning:'Akhir-akhir ini, belakangan ini' },
-        { kanji:'会話', reading:'かいわ', meaning:'Percakapan' },
-        { kanji:'長い', reading:'ながい', meaning:'Panjang' },
-        { kanji:'便利', reading:'べんり', meaning:'Praktis, nyaman, berguna' },
-        { kanji:'左', reading:'ひだり', meaning:'Kiri' },
-        { kanji:'落ちる', reading:'おちる', meaning:'Jatuh / turun' },
-        { kanji:'友達', reading:'ともだち', meaning:'Teman' },
-        { kanji:'電池', reading:'でんち', meaning:'Baterai' },
-        { kanji:'住所', reading:'じゅうしょ', meaning:'Alamat' },
-        { kanji:'使う', reading:'つかう', meaning:'Menggunakan' },
-        { kanji:'運転', reading:'うんてん', meaning:'Mengemudi' },
-        { kanji:'軽い', reading:'かるい', meaning:'Ringan' },
-        { kanji:'危険', reading:'きけん', meaning:'Bahaya' },
-        { kanji:'間に合う', reading:'まにあう', meaning:'Tepat waktu, sempat' },
-        { kanji:'給料', reading:'きゅうりょう', meaning:'Gaji' },
-        { kanji:'入口', reading:'いりぐち', meaning:'Pintu masuk' },
-        { kanji:'津波', reading:'つなみ', meaning:'Tsunami' },
-        { kanji:'痛む', reading:'いたむ', meaning:'Terasa sakit' },
-    ]},
+// ==========================================================
+// MASTER BANK: 7 nomor, tiap nomor 5 jenis soal
+// type: kanji | grammar | sentence(esai) | reading | conjugate
+// ==========================================================
+
+const TYPE_META = {
+    kanji:     { tag:"KANJI",                   badge:"漢", cls:"kanji" },
+    grammar:   { tag:"TATA BAHASA",             badge:"文", cls:"grammar" },
+    sentence:  { tag:"SUSUN KALIMAT (ESAI)",    badge:"並", cls:"sentence" },
+    reading:   { tag:"CARA BACA",               badge:"読", cls:"reading" },
+    conjugate: { tag:"UBAH BENTUK",             badge:"変", cls:"conjugate" }
+};
+
+const masterNumbers = [
+{ id:1, questions:[
+    { type:"kanji", word:"洗濯", sub:"Bacaan yang benar untuk kanji di atas?", options:["せんたく","せんだく","せんたつ","せいたく"], answer:0 },
+    { type:"grammar", word:"電車が遅れた___、会議に遅刻しました。", sub:"Pilih pola tata bahasa yang tepat untuk mengisi bagian ___", options:["ので","のに","し","ても"], answer:0 },
+    { type:"sentence", scrambled:"友達と ・ 映画を ・ 見に ・ 行きました", instruction:"Gunakan pola ~に行きました (pergi untuk melakukan sesuatu).", answerText:"友達と映画を見に行きました。" },
+    { type:"reading", sentence:"今日は忙しいので、早く帰ります。", highlight:"今日", sub:"Pilih cara baca yang tepat untuk kanji berwarna merah pada kalimat di atas", options:["きょう","こんにち","こんじつ","きんじつ"], answer:0 },
+    { type:"conjugate", word:"食べる", sub:"Ubah kata kerja bentuk kamus ini menjadi bentuk て (te-form)", options:["食べて","食べます","食べた","食べない"], answer:0 }
+]},
+{ id:2, questions:[
+    { type:"kanji", word:"出張", sub:"Bacaan yang benar untuk kanji di atas?", options:["しゅっちょう","しゅつちょう","しゅうちょう","しゅっじょう"], answer:0 },
+    { type:"grammar", word:"頭が痛い___、薬を飲みました。", sub:"Pilih pola tata bahasa yang tepat untuk mengisi bagian ___", options:["ので","のに","ながら","し"], answer:0 },
+    { type:"sentence", scrambled:"コーヒーを ・ 毎朝 ・ 飲みながら ・ 新聞を読みます", instruction:"Gunakan pola ~ながら (melakukan dua hal secara bersamaan).", answerText:"毎朝コーヒーを飲みながら新聞を読みます。" },
+    { type:"reading", sentence:"一日中、雨が降っていました。", highlight:"一日", sub:"Pilih cara baca yang tepat untuk kanji berwarna merah pada kalimat di atas", options:["いちにち","ついたち","いちじつ","ひとひ"], answer:0 },
+    { type:"conjugate", word:"飲む", sub:"Ubah kata kerja bentuk kamus ini menjadi bentuk potensial (bisa melakukan)", options:["飲める","飲みます","飲んだ","飲まない"], answer:0 }
+]},
+{ id:3, questions:[
+    { type:"kanji", word:"招待", sub:"Bacaan yang benar untuk kanji di atas?", options:["しょうたい","しょうだい","しょうてい","じょうたい"], answer:0 },
+    { type:"grammar", word:"この漢字は難しくて、覚え___です。", sub:"Pilih pola tata bahasa yang tepat untuk mengisi bagian ___", options:["にくい","やすい","そうな","すぎる"], answer:0 },
+    { type:"sentence", scrambled:"難しいので ・ この本は ・ 大人でも ・ 読みにくいです", instruction:"Gunakan pola ~ので (alasan) dan ~にくい (sulit dilakukan).", answerText:"この本は難しいので大人でも読みにくいです。" },
+    { type:"reading", sentence:"明日は用事があるので、休みます。", highlight:"明日", sub:"Pilih cara baca yang tepat untuk kanji berwarna merah pada kalimat di atas (percakapan santai)", options:["あした","みょうにち","あすひ","めいじつ"], answer:0 },
+    { type:"conjugate", word:"話す", sub:"Ubah kata kerja bentuk kamus ini menjadi bentuk kausatif (menyuruh melakukan)", options:["話させる","話す","話される","話そう"], answer:0 }
+]},
+{ id:4, questions:[
+    { type:"kanji", word:"経験", sub:"Bacaan yang benar untuk kanji di atas?", options:["けいけん","けいげん","きょうけん","けいかん"], answer:0 },
+    { type:"grammar", word:"田中さんはもう帰った___。時間的にそう思います。", sub:"Pilih pola tata bahasa yang tepat untuk mengisi bagian ___", options:["はず","そう","よう","らしい"], answer:0 },
+    { type:"sentence", scrambled:"日本語が ・ 彼女は ・ とても ・ 上手です", instruction:"Gunakan pola [Topik]は[Hal]が上手です (mahir dalam sesuatu).", answerText:"彼女は日本語がとても上手です。" },
+    { type:"reading", sentence:"上手にピアノを弾きますね。", highlight:"上手", sub:"Pilih cara baca yang tepat untuk kanji berwarna merah pada kalimat di atas", options:["じょうず","うわて","かみて","じょうしゅ"], answer:0 },
+    { type:"conjugate", word:"書く", sub:"Ubah kata kerja bentuk kamus ini menjadi bentuk pasif (di-...)", options:["書かれる","書く","書ける","書こう"], answer:0 }
+]},
+{ id:5, questions:[
+    { type:"kanji", word:"案内", sub:"Bacaan yang benar untuk kanji di atas?", options:["あんない","あんだい","あんにゅう","あんかい"], answer:0 },
+    { type:"grammar", word:"田中さんは知っている___、教えてくれませんでした。", sub:"Pilih pola tata bahasa yang tepat untuk mengisi bagian ___", options:["くせに","ので","から","し"], answer:0 },
+    { type:"sentence", scrambled:"家で ・ 休みの日は ・ 本を読んだり ・ 音楽を聞いたりします", instruction:"Gunakan pola ~たり~たりします (menyebutkan beberapa contoh kegiatan).", answerText:"休みの日は家で本を読んだり音楽を聞いたりします。" },
+    { type:"reading", sentence:"人が多い場所は苦手です。", highlight:"人", sub:"Pilih cara baca yang tepat untuk kanji berwarna merah pada kalimat di atas", options:["ひと","にん","じん","たみ"], answer:0 },
+    { type:"conjugate", word:"行く", sub:"Ubah kata kerja bentuk kamus ini menjadi bentuk kehendak / ajakan (mari...)", options:["行こう","行った","行かない","行ける"], answer:0 }
+]},
+{ id:6, questions:[
+    { type:"kanji", word:"相談", sub:"Bacaan yang benar untuk kanji di atas?", options:["そうだん","そうたん","しょうだん","そうだ"], answer:0 },
+    { type:"grammar", word:"空が暗くなってきたので、雨が降り___です。", sub:"Pilih pola tata bahasa yang tepat untuk mengisi bagian ___", options:["そう","はず","ような","らしい"], answer:0 },
+    { type:"sentence", scrambled:"歩いて ・ 駅まで ・ 十分ぐらい ・ かかります", instruction:"Gunakan pola ~て (menghubungkan cara) + かかります (menyatakan lama waktu).", answerText:"駅まで歩いて十分ぐらいかかります。" },
+    { type:"reading", sentence:"今日は仕事が大変でした。", highlight:"大変", sub:"Pilih cara baca yang tepat untuk kanji berwarna merah pada kalimat di atas", options:["たいへん","おおへん","だいへん","たいべん"], answer:0 },
+    { type:"conjugate", word:"する", sub:"Ubah kata kerja bentuk kamus ini menjadi bentuk lampau sopan (~mashita)", options:["しました","します","して","しない"], answer:0 }
+]},
+{ id:7, questions:[
+    { type:"kanji", word:"集合", sub:"Bacaan yang benar untuk kanji di atas?", options:["しゅうごう","しゅうこう","じゅうごう","しゅごう"], answer:0 },
+    { type:"grammar", word:"靴を履いた___、部屋に入ってしまいました。", sub:"Pilih pola tata bahasa yang tepat untuk mengisi bagian ___", options:["まま","ところ","ばかり","あいだ"], answer:0 },
+    { type:"sentence", scrambled:"会議は ・ 来週の ・ 午後三時 ・ から始まります", instruction:"Gunakan pola ~から始まります (dimulai dari waktu tertentu).", answerText:"来週の会議は午後三時から始まります。" },
+    { type:"reading", sentence:"彼は今日中に返事をくれるそうです。", highlight:"今日中", sub:"Pilih cara baca yang tepat untuk kanji berwarna merah pada kalimat di atas", options:["きょうじゅう","こんにちじゅう","こんじつじゅう","きょうちゅう"], answer:0 },
+    { type:"conjugate", word:"見る", sub:"Ubah kata kerja bentuk kamus ini menjadi bentuk negatif (tidak melakukan)", options:["見ない","見る","見た","見よう"], answer:0 }
+]}
 ];
 
-//============================
-// UTIL
-//============================
+const studentNames = ["Niko","Ringga","Shomad","Trianto","Joni","Ferian","Luki"];
 
-function shuffleArray(arr){
+const TIME_LIMIT = 5 * 60; // 5 menit per nomor
+
+function seededShuffle(array, seed){
+    const arr = array.slice();
+    let s = seed % 2147483647; if(s <= 0) s += 2147483646;
+    function rand(){ s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }
     for(let i = arr.length - 1; i > 0; i--){
-        const j = Math.floor(Math.random() * (i + 1));
+        const j = Math.floor(rand() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];
     }
     return arr;
 }
 
-// waktu ujian per siswa (detik)
-const TIME_LIMIT = 10 * 60; // 10 menit
-
-// simpan urutan tampil (indeks ke array words asli) + hasil per siswa
-students.forEach(s => {
-    s.order = shuffleArray(s.words.map((_, i) => i)); // urutan soal diacak dari awal
-    s.current = 0;
-    s.results = s.words.map(() => null); // hasil disimpan berdasarkan indeks asli, bukan urutan tampil
-    s.timeLeft = TIME_LIMIT; // waktu tersisa (detik)
-    s.finished = false; // true kalau waktu sudah habis
-    s.started = false; // true kalau timer sudah pernah ditekan mulai
-});
-
-let activeStudent = 0;
-let timerInterval = null; // interval yang sedang berjalan untuk 1 siswa aktif
-
-const studentRow = document.getElementById("studentRow");
-const cardEl = document.getElementById("card");
-const cardBadge = document.getElementById("cardBadge");
-const cardWord = document.getElementById("cardWord");
-const cardReading = document.getElementById("cardReading");
-const cardMeaning = document.getElementById("cardMeaning");
-const revealBox = document.getElementById("revealBox");
-const revealBtn = document.getElementById("revealBtn");
-const lockNote = document.getElementById("lockNote");
-const progressText = document.getElementById("progressText");
-const progressFill = document.getElementById("progressFill");
-const timerText = document.getElementById("timerText");
-const startTimerBtnTop = document.getElementById("startTimerBtnTop");
-const startTimerBtnCard = document.getElementById("startTimerBtnCard");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-const resetBtn = document.getElementById("resetBtn");
-const shuffleBtn = document.getElementById("shuffleBtn");
-const shuffleAcrossBtn = document.getElementById("shuffleAcrossBtn");
-const jumpRow = document.getElementById("jumpRow");
-const benarBtn = document.getElementById("benarBtn");
-const salahBtn = document.getElementById("salahBtn");
-const summaryBody = document.getElementById("summaryBody");
-
-function scoreOf(s){
-    const done = s.results.filter(r => r !== null).length;
-    const correct = s.results.filter(r => r === true).length;
-    const wrong = s.results.filter(r => r === false).length;
-    const nilai = done > 0 ? Math.round((correct / s.results.length) * 100) : null;
-    return { done, correct, wrong, nilai };
+function normalizeAnswer(str){
+    return str.replace(/[\s　。、]/g, "");
 }
 
-//============================
-// TIMER (10 menit per siswa, mulai manual)
-//============================
+function buildStudent(name, studentIndex){
+    const numbers = masterNumbers.map((num, numIndex) => {
+        const questions = num.questions.map((q, qIndex) => {
+            const meta = TYPE_META[q.type];
+            if(q.type === "sentence"){
+                return {
+                    type:q.type, badge:meta.badge, tag:meta.tag, cls:meta.cls,
+                    scrambled:q.scrambled, instruction:q.instruction, answerText:q.answerText,
+                    userAnswer:"", answered:false, isCorrect:false
+                };
+            }
+            const seed = (studentIndex + 1) * 5000 + numIndex * 100 + qIndex * 7 + 3;
+            const correctText = q.options[q.answer];
+            const shuffledOptions = seededShuffle(q.options, seed);
+            const newAnswer = shuffledOptions.indexOf(correctText);
+            return {
+                type:q.type, badge:meta.badge, tag:meta.tag, cls:meta.cls,
+                word:q.word, sentence:q.sentence, highlight:q.highlight, sub:q.sub,
+                options:shuffledOptions, answer:newAnswer, picked:null
+            };
+        });
+        return { number:num.id, questions, current:0, started:false, finished:false, timeLeft:TIME_LIMIT };
+    });
+    return { name, numbers };
+}
+
+const students = studentNames.map((name, i) => buildStudent(name, i));
+
+let activeStudent = 0;
+let activeNumber = null; // null = tampilkan grid nomor
+let timerInterval = null;
+
+const studentRow = document.getElementById("studentRow");
+const mainWrap = document.getElementById("mainWrap");
+const summaryBody = document.getElementById("summaryBody");
+
+const letters = ["A","B","C","D"];
+
+function qAnswered(q){ return q.type === "sentence" ? q.answered === true : q.picked !== null; }
+function qCorrect(q){ return q.type === "sentence" ? (q.answered && q.isCorrect) : q.picked === q.answer; }
+
+function numScore(numObj){
+    const done = numObj.questions.filter(qAnswered).length;
+    const correct = numObj.questions.filter(qCorrect).length;
+    return { done, correct, total: numObj.questions.length };
+}
+
+function studentScore(s){
+    let done = 0, correct = 0, total = 0;
+    s.numbers.forEach(n => { const sc = numScore(n); done += sc.done; correct += sc.correct; total += sc.total; });
+    const wrong = done - correct;
+    const nilai = done > 0 ? Math.round((correct / total) * 100) : null;
+    return { done, correct, wrong, total, nilai };
+}
+
+function clearActiveTimer(){ if(timerInterval){ clearInterval(timerInterval); timerInterval = null; } }
 
 function formatTime(sec){
     const m = Math.floor(sec / 60).toString().padStart(2, "0");
@@ -1138,222 +467,318 @@ function formatTime(sec){
     return m + ":" + s;
 }
 
-function renderTimer(){
-    const s = students[activeStudent];
-    timerText.textContent = "⏱ " + formatTime(Math.max(s.timeLeft, 0));
-    timerText.classList.toggle("low", s.started && !s.finished && s.timeLeft > 0 && s.timeLeft <= 60);
-    timerText.classList.toggle("done", s.finished);
-    timerText.classList.toggle("waiting", !s.started && !s.finished);
-
-    // tombol mulai hanya muncul kalau siswa aktif belum pernah menekan mulai
-    const showStart = !s.started && !s.finished;
-    startTimerBtnTop.style.display = showStart ? "flex" : "none";
-    startTimerBtnCard.style.display = showStart ? "flex" : "none";
-}
-
-function clearActiveTimer(){
-    if(timerInterval){
-        clearInterval(timerInterval);
-        timerInterval = null;
-    }
-}
-
-function handleTimeUp(index){
-    const s = students[index];
-    s.finished = true;
-    s.timeLeft = 0;
-    if(index === activeStudent){
-        renderCard();
-        renderTimer();
-        alert("⏰ Waktu 10 menit untuk " + s.name + " telah habis! Soal yang belum dinilai akan tetap kosong.");
+function handleTimeUp(sIndex, nIndex){
+    const numObj = students[sIndex].numbers[nIndex];
+    numObj.finished = true;
+    numObj.timeLeft = 0;
+    clearActiveTimer();
+    if(sIndex === activeStudent && nIndex === activeNumber){
+        renderMain();
+        alert("⏰ Waktu 5 menit untuk nomor " + numObj.number + " telah habis! Soal yang belum dijawab akan tetap kosong.");
     }
     renderStudentRow();
     renderSummary();
 }
 
-// menjalankan hitung mundur untuk siswa tertentu (hanya kalau sudah "started" dan belum selesai)
-function startTimerForStudent(index){
+function startTimerForCurrent(){
     clearActiveTimer();
-    const s = students[index];
-    if(!s.started || s.finished || s.timeLeft <= 0){
-        if(s.timeLeft <= 0){ s.finished = true; s.timeLeft = 0; }
-        renderTimer();
-        return;
-    }
+    if(activeNumber === null) return;
+    const numObj = students[activeStudent].numbers[activeNumber];
+    if(!numObj.started || numObj.finished || numObj.timeLeft <= 0) return;
     timerInterval = setInterval(() => {
-        s.timeLeft--;
-        if(index === activeStudent) renderTimer();
-        if(s.timeLeft <= 0){
-            clearActiveTimer();
-            handleTimeUp(index);
-        }
+        numObj.timeLeft--;
+        renderTimerOnly();
+        if(numObj.timeLeft <= 0) handleTimeUp(activeStudent, activeNumber);
     }, 1000);
 }
 
-// dipanggil tiap pindah siswa aktif: lanjutkan timer kalau siswa itu sudah "started", kalau belum, biarkan menunggu tombol Mulai
-function syncTimerForActiveStudent(){
-    clearActiveTimer();
-    const s = students[activeStudent];
-    if(s.started && !s.finished){
-        startTimerForStudent(activeStudent);
-    } else {
-        renderTimer();
-    }
+function beginNumberExam(){
+    const numObj = students[activeStudent].numbers[activeNumber];
+    if(numObj.started || numObj.finished) return;
+    numObj.started = true;
+    startTimerForCurrent();
+    renderMain();
 }
 
-function beginExamForActiveStudent(){
-    const s = students[activeStudent];
-    if(s.started || s.finished) return;
-    s.started = true;
-    startTimerForStudent(activeStudent);
-    renderCard();
-    renderStudentRow();
-}
-
-startTimerBtnTop.addEventListener("click", beginExamForActiveStudent);
-startTimerBtnCard.addEventListener("click", beginExamForActiveStudent);
-
-//============================
-// ACAK KANJI ANTAR SISWA
-// Mengumpulkan semua kanji dari semua siswa ke satu kantong,
-// mengacaknya, lalu membagikannya ulang ke tiap siswa (jumlah soal
-// per siswa tetap sama seperti semula, tapi isinya berbeda-beda -
-// contoh: soal yang tadinya milik Joni bisa berpindah ke Ringga, dst)
-//============================
-
-function shuffleWordsAcrossStudents(){
-    const ok = confirm(
-        "Acak kanji ke semua siswa?\n\n" +
-        "Paket soal tiap siswa akan ditukar-acak (soal milik satu siswa bisa berpindah ke siswa lain). " +
-        "Semua nilai, jawaban, dan timer yang sedang berjalan akan direset ke awal."
-    );
-    if(!ok) return;
-
-    clearActiveTimer();
-
-    // kumpulkan semua kanji dari semua siswa jadi satu kantong
-    let pool = [];
-    students.forEach(s => { pool = pool.concat(s.words); });
-
-    // acak kantong
-    pool = shuffleArray(pool);
-
-    // bagikan lagi ke tiap siswa, jumlah soal per siswa tetap sama seperti semula
-    let idx = 0;
-    students.forEach(s => {
-        const count = s.words.length;
-        s.words = pool.slice(idx, idx + count);
-        idx += count;
-
-        s.order = shuffleArray(s.words.map((_, i) => i));
-        s.current = 0;
-        s.results = s.words.map(() => null);
-        s.timeLeft = TIME_LIMIT;
-        s.finished = false;
-        s.started = false;
-    });
-
-    activeStudent = 0;
-    renderAll();
-    syncTimerForActiveStudent();
-}
-
-shuffleAcrossBtn.addEventListener("click", shuffleWordsAcrossStudents);
-
-//============================
+// ==========================================================
 // RENDER
-//============================
+// ==========================================================
 
 function renderStudentRow(){
     studentRow.innerHTML = "";
     students.forEach((s, i) => {
-        const sc = scoreOf(s);
+        const sc = studentScore(s);
         const pill = document.createElement("button");
         pill.className = "student-pill" + (i === activeStudent ? " active" : "");
-        const statusMark = s.finished ? " ⏰" : (s.started ? " ▶" : "");
-        pill.innerHTML = s.name + statusMark + " <span class='student-score'>" + sc.done + "/" + s.results.length + "</span>";
+        pill.innerHTML = s.name + " <span class='student-score'>" + sc.done + "/" + sc.total + "</span>";
         pill.addEventListener("click", () => {
             if(i === activeStudent) return;
             activeStudent = i;
+            activeNumber = null;
+            clearActiveTimer();
             renderAll();
-            syncTimerForActiveStudent();
         });
         studentRow.appendChild(pill);
     });
 }
 
+function renderMain(){
+    if(activeNumber === null) renderNumberGrid();
+    else renderQuizView();
+}
+
+function renderNumberGrid(){
+    const s = students[activeStudent];
+    mainWrap.innerHTML = '<div class="grid-title">Pilih Nomor (1–7) — setiap nomor berisi 5 soal</div><div class="number-grid" id="numberGrid"></div>';
+    const grid = document.getElementById("numberGrid");
+    s.numbers.forEach((numObj, i) => {
+        const sc = numScore(numObj);
+        let statusText = "", statusCls = "belum";
+        if(numObj.finished){ statusText = "⏰ Waktu habis"; statusCls = "habis"; }
+        else if(sc.done === sc.total && sc.total > 0){ statusText = "✔ Selesai"; statusCls = "selesai"; }
+        else if(numObj.started){ statusText = "▶ Sedang dikerjakan"; statusCls = "jalan"; }
+
+        const card = document.createElement("button");
+        card.className = "number-card";
+        card.innerHTML =
+            '<div class="num">' + numObj.number + '</div>' +
+            (statusText ? '<div class="stat ' + statusCls + '">' + statusText + '</div>' : '') +
+            (sc.done > 0 ? '<div class="nscore">' + sc.correct + ' / ' + sc.total + ' benar</div>' : '<div class="nscore">5 soal</div>');
+        card.addEventListener("click", () => {
+            activeNumber = i;
+            clearActiveTimer();
+            renderMain();
+            startTimerForCurrent();
+        });
+        grid.appendChild(card);
+    });
+}
+
+function renderQuizView(){
+    const s = students[activeStudent];
+    const numObj = s.numbers[activeNumber];
+
+    mainWrap.innerHTML =
+        '<div class="back-row">' +
+            '<button class="nav-btn" id="backBtn" title="Kembali ke daftar nomor">←</button>' +
+            '<span class="nomor-label">Nomor ' + numObj.number + ' — ' + s.name + '</span>' +
+        '</div>' +
+        '<div class="progress-row">' +
+            '<span class="progress-text" id="progressText"></span>' +
+            '<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>' +
+            '<div class="timer-cluster">' +
+                '<button class="start-btn" id="startTimerBtnTop" title="Mulai hitung mundur 5 menit">▶ Mulai</button>' +
+                '<span class="timer-badge waiting" id="timerText">⏱ 05:00</span>' +
+            '</div>' +
+        '</div>' +
+        '<div class="tag-row"><span class="tag" id="tagBadge"></span></div>' +
+        '<div class="card" id="card">' +
+            '<div class="badge" id="cardBadge"></div>' +
+            '<div class="word jp" id="cardWord"></div>' +
+            '<div class="subtext" id="cardSub"></div>' +
+            '<div class="options-grid" id="optionsGrid"></div>' +
+            '<div class="essay-box" id="essayBox"></div>' +
+            '<div class="feedback" id="feedback"></div>' +
+            '<div class="lock-note" id="lockNote">' +
+                '<p>⏳ Timer belum dimulai. Tekan tombol di bawah saat siswa siap mengerjakan.</p>' +
+                '<button class="start-btn" id="startTimerBtnCard">▶ Mulai Nomor Ini (5 menit)</button>' +
+            '</div>' +
+        '</div>' +
+        '<div class="nav-row">' +
+            '<button class="nav-btn" id="prevBtn" title="Sebelumnya">←</button>' +
+            '<button class="nav-btn reset-btn" id="resetBtn">↺ Ulang Nomor</button>' +
+            '<button class="nav-btn" id="nextBtn" title="Berikutnya">→</button>' +
+        '</div>' +
+        '<div class="jump-row" id="jumpRow"></div>';
+
+    document.getElementById("backBtn").addEventListener("click", () => {
+        activeNumber = null;
+        clearActiveTimer();
+        renderAll();
+    });
+    document.getElementById("startTimerBtnTop").addEventListener("click", beginNumberExam);
+    document.getElementById("startTimerBtnCard").addEventListener("click", beginNumberExam);
+    document.getElementById("prevBtn").addEventListener("click", () => {
+        if(numObj.current > 0){ numObj.current--; renderCard(); }
+    });
+    document.getElementById("nextBtn").addEventListener("click", () => {
+        if(numObj.current < numObj.questions.length - 1){ numObj.current++; renderCard(); }
+    });
+    document.getElementById("resetBtn").addEventListener("click", () => {
+        if(confirm("Ulang nomor " + numObj.number + " untuk " + s.name + "? Semua jawaban akan dihapus dan timer direset.")){
+            clearActiveTimer();
+            numObj.current = 0;
+            numObj.questions.forEach(q => {
+                if(q.type === "sentence"){ q.userAnswer = ""; q.answered = false; q.isCorrect = false; }
+                else q.picked = null;
+            });
+            numObj.timeLeft = TIME_LIMIT;
+            numObj.started = false;
+            numObj.finished = false;
+            renderCard();
+            renderStudentRow();
+            renderSummary();
+        }
+    });
+
+    renderCard();
+}
+
 function renderCard(){
     const s = students[activeStudent];
-    const wordIndex = s.order[s.current];
-    const w = s.words[wordIndex];
-    const result = s.results[wordIndex];
+    const numObj = s.numbers[activeNumber];
+    const q = numObj.questions[numObj.current];
 
-    cardBadge.innerHTML = "漢";
+    document.getElementById("cardBadge").textContent = q.badge;
+    const tagBadge = document.getElementById("tagBadge");
+    tagBadge.textContent = q.tag;
+    tagBadge.className = "tag " + q.cls;
 
-    cardWord.textContent = w.kanji;
-    cardWord.style.fontSize = w.kanji.length > 8 ? "clamp(30px, 5.5vw, 44px)" : (w.kanji.length > 4 ? "clamp(40px, 7vw, 60px)" : "clamp(48px, 8vw, 80px)");
-    cardReading.textContent = w.reading;
-    cardReading.style.fontSize = w.reading.length > 15 ? "clamp(16px, 2.6vw, 22px)" : "clamp(20px, 3.2vw, 28px)";
-    cardMeaning.textContent = w.meaning;
+    document.getElementById("progressText").textContent = (numObj.current + 1) + " / " + numObj.questions.length;
+    document.getElementById("progressFill").style.width = ((numObj.current + 1) / numObj.questions.length * 100) + "%";
+    document.getElementById("prevBtn").disabled = numObj.current === 0;
+    document.getElementById("nextBtn").disabled = numObj.current === numObj.questions.length - 1;
 
-    revealBox.classList.remove("show");
-    revealBtn.style.display = "inline-block";
-    revealBtn.textContent = "Lihat Jawaban";
-    revealBtn.classList.remove("disabled");
+    const cardWord = document.getElementById("cardWord");
+    const cardSub = document.getElementById("cardSub");
+    const optionsGrid = document.getElementById("optionsGrid");
+    const essayBox = document.getElementById("essayBox");
+    const feedback = document.getElementById("feedback");
+    const locked = !numObj.started && !numObj.finished;
 
-    progressText.textContent = (s.current+1) + " / " + s.words.length;
-    progressFill.style.width = ((s.current+1)/s.words.length*100) + "%";
-
-    prevBtn.disabled = s.current === 0;
-    nextBtn.disabled = s.current === s.words.length - 1;
-
-    benarBtn.disabled = false;
-    salahBtn.disabled = false;
-    benarBtn.classList.remove("picked");
-    salahBtn.classList.remove("picked");
-
-    if(result !== null){
-        revealBox.classList.add("show");
-        revealBtn.textContent = "Sudah dicek";
-        if(result === true) benarBtn.classList.add("picked");
-        if(result === false) salahBtn.classList.add("picked");
+    if(q.type === "reading"){
+        cardWord.innerHTML = q.sentence.split(q.highlight).join('<span class="hl">' + q.highlight + '</span>');
+    } else if(q.type === "sentence"){
+        cardWord.textContent = q.scrambled;
+    } else {
+        cardWord.textContent = q.word;
     }
 
-    // kalau waktu sudah habis, kunci penilaian untuk soal yang belum dinilai
-    if(s.finished){
-        benarBtn.disabled = true;
-        salahBtn.disabled = true;
-        if(result === null){
-            revealBtn.classList.add("disabled");
-            revealBtn.textContent = "Waktu Habis";
+    if(q.type === "sentence"){
+        cardSub.textContent = q.instruction + " Kata-kata di atas tidak perlu diubah bentuknya, cukup disusun ulang menjadi kalimat yang benar. Tulis jawabanmu pada kolom di bawah.";
+    } else {
+        cardSub.textContent = q.sub;
+    }
+
+    if(q.type === "sentence"){
+        optionsGrid.style.display = "none";
+        essayBox.style.display = "flex";
+        essayBox.innerHTML =
+            '<textarea class="essay-input jp" id="essayInput" placeholder="Tulis kalimat lengkapmu di sini..." ' + ((locked || q.answered || numObj.finished) ? "disabled" : "") + '>' + (q.userAnswer || "") + '</textarea>' +
+            (q.answered
+                ? '<div class="essay-key">Jawaban yang disarankan: <b class="jp">' + q.answerText + '</b></div>'
+                : (numObj.finished
+                    ? '<div class="essay-key">Jawaban yang disarankan: <b class="jp">' + q.answerText + '</b></div>'
+                    : '<button class="essay-submit-btn" id="essaySubmitBtn"' + (locked ? " disabled" : "") + '>Kirim Jawaban</button>'));
+
+        const inputEl = document.getElementById("essayInput");
+        if(q.answered){
+            inputEl.classList.add(q.isCorrect ? "right" : "wrong");
         }
+        const submitBtn = document.getElementById("essaySubmitBtn");
+        if(submitBtn){
+            submitBtn.addEventListener("click", () => {
+                if(!numObj.started || numObj.finished || q.answered) return;
+                const val = inputEl.value.trim();
+                q.userAnswer = val;
+                q.answered = true;
+                q.isCorrect = normalizeAnswer(val) === normalizeAnswer(q.answerText) && val.length > 0;
+                renderCard();
+                renderStudentRow();
+                renderSummary();
+                checkNumberComplete();
+            });
+        }
+    } else {
+        essayBox.style.display = "none";
+        essayBox.innerHTML = "";
+        optionsGrid.style.display = "grid";
+        optionsGrid.innerHTML = "";
+        const picked = q.picked;
+        q.options.forEach((opt, i) => {
+            const btn = document.createElement("button");
+            btn.className = "opt-btn";
+            btn.innerHTML = "<span class='opt-letter'>" + letters[i] + "</span><span class='jp'>" + opt + "</span>";
+            const timeUpUnanswered = numObj.finished && picked === null;
+            if(picked !== null){
+                btn.disabled = true;
+                if(i === q.answer) btn.classList.add("correct");
+                else if(i === picked) btn.classList.add("wrong");
+                else btn.classList.add("dim");
+            } else if(locked || timeUpUnanswered){
+                btn.disabled = true;
+            }
+            btn.addEventListener("click", () => {
+                if(!numObj.started || numObj.finished) return;
+                if(q.picked !== null) return;
+                q.picked = i;
+                renderCard();
+                renderStudentRow();
+                renderSummary();
+                checkNumberComplete();
+            });
+            optionsGrid.appendChild(btn);
+        });
     }
 
-    // kalau ujian belum dimulai sama sekali, kunci seluruh kartu
-    const locked = !s.started && !s.finished;
-    cardEl.classList.toggle("locked", locked);
-    if(locked){
-        revealBtn.style.display = "none";
-        benarBtn.disabled = true;
-        salahBtn.disabled = true;
+    feedback.classList.remove("show", "correct-fb", "wrong-fb");
+    if(qAnswered(q)){
+        const isCorrect = qCorrect(q);
+        if(q.type === "sentence"){
+            feedback.textContent = isCorrect ? "✔ Jawaban benar!" : "✘ Jawaban belum tepat. Cek jawaban yang disarankan di atas.";
+        } else {
+            feedback.textContent = isCorrect ? "✔ Jawaban benar!" : "✘ Jawaban salah. Jawaban yang benar: " + q.options[q.answer];
+        }
+        feedback.classList.add("show", isCorrect ? "correct-fb" : "wrong-fb");
+    } else if(numObj.finished){
+        feedback.textContent = "⏰ Waktu habis, soal ini tidak terjawab.";
+        feedback.classList.add("show", "wrong-fb");
     }
 
-    renderTimer();
+    document.getElementById("card").classList.toggle("locked", locked);
+
+    renderTimerOnly();
     renderJumpRow();
 }
 
+function checkNumberComplete(){
+    const numObj = students[activeStudent].numbers[activeNumber];
+    const allDone = numObj.questions.every(qAnswered);
+    if(allDone && !numObj.finished){
+        clearActiveTimer();
+        numObj.finished = true;
+        renderStudentRow();
+        renderSummary();
+    }
+}
+
+function renderTimerOnly(){
+    if(activeNumber === null) return;
+    const numObj = students[activeStudent].numbers[activeNumber];
+    const timerText = document.getElementById("timerText");
+    if(!timerText) return;
+    timerText.textContent = "⏱ " + formatTime(Math.max(numObj.timeLeft, 0));
+    timerText.classList.toggle("low", numObj.started && !numObj.finished && numObj.timeLeft > 0 && numObj.timeLeft <= 30);
+    timerText.classList.toggle("done", numObj.finished);
+    timerText.classList.toggle("waiting", !numObj.started && !numObj.finished);
+
+    const showStart = !numObj.started && !numObj.finished;
+    document.getElementById("startTimerBtnTop").style.display = showStart ? "flex" : "none";
+    document.getElementById("startTimerBtnCard").style.display = showStart ? "flex" : "none";
+}
+
 function renderJumpRow(){
-    const s = students[activeStudent];
+    const numObj = students[activeStudent].numbers[activeNumber];
+    const jumpRow = document.getElementById("jumpRow");
     jumpRow.innerHTML = "";
-    s.order.forEach((wordIndex, i) => {
+    numObj.questions.forEach((q, i) => {
         const dot = document.createElement("button");
-        let cls = "dot" + (i === s.current ? " active" : "");
-        if(s.results[wordIndex] === true) cls += " correct";
-        if(s.results[wordIndex] === false) cls += " wrong";
+        let cls = "dot" + (i === numObj.current ? " active" : "");
+        if(qAnswered(q)) cls += (qCorrect(q) ? " correct" : " wrong");
         dot.className = cls;
         dot.textContent = i + 1;
         dot.addEventListener("click", () => {
-            s.current = i;
+            numObj.current = i;
             renderCard();
         });
         jumpRow.appendChild(dot);
@@ -1363,13 +788,13 @@ function renderJumpRow(){
 function renderSummary(){
     summaryBody.innerHTML = "";
     students.forEach(s => {
-        const sc = scoreOf(s);
-        const allDone = sc.done === s.results.length;
+        const sc = studentScore(s);
         const nilaiClass = sc.nilai === null ? "" : (sc.nilai >= 70 ? "pass" : "fail");
+        const allDone = sc.done === sc.total;
         const tr = document.createElement("tr");
         tr.innerHTML =
-            "<td>" + s.name + (s.finished ? " ⏰" : "") + "</td>" +
-            "<td>" + sc.done + " / " + s.results.length + "</td>" +
+            "<td>" + s.name + "</td>" +
+            "<td>" + sc.done + " / " + sc.total + "</td>" +
             "<td style='color:var(--green);font-weight:700;'>" + sc.correct + "</td>" +
             "<td style='color:var(--red);font-weight:700;'>" + sc.wrong + "</td>" +
             "<td class='score " + nilaiClass + "'>" + (sc.nilai === null ? "-" : sc.nilai) + (allDone && sc.nilai !== null ? " ✓" : "") + "</td>";
@@ -1379,70 +804,9 @@ function renderSummary(){
 
 function renderAll(){
     renderStudentRow();
-    renderCard();
+    renderMain();
     renderSummary();
 }
-
-revealBtn.addEventListener("click", function(){
-    const s = students[activeStudent];
-    if(!s.started) return; // belum mulai
-    if(s.finished && s.results[s.order[s.current]] === null) return; // waktu habis & belum dinilai
-    revealBox.classList.add("show");
-    const wordIndex = s.order[s.current];
-    if(s.results[wordIndex] === null && !s.finished){
-        benarBtn.disabled = false;
-        salahBtn.disabled = false;
-    }
-});
-
-benarBtn.addEventListener("click", function(){
-    const s = students[activeStudent];
-    if(s.finished || !s.started) return;
-    const wordIndex = s.order[s.current];
-    s.results[wordIndex] = true;
-    revealBox.classList.add("show");
-    renderAll();
-});
-
-salahBtn.addEventListener("click", function(){
-    const s = students[activeStudent];
-    if(s.finished || !s.started) return;
-    const wordIndex = s.order[s.current];
-    s.results[wordIndex] = false;
-    revealBox.classList.add("show");
-    renderAll();
-});
-
-prevBtn.addEventListener("click", function(){
-    const s = students[activeStudent];
-    if(s.current > 0){ s.current--; renderCard(); }
-});
-
-nextBtn.addEventListener("click", function(){
-    const s = students[activeStudent];
-    if(s.current < s.words.length - 1){ s.current++; renderCard(); }
-});
-
-shuffleBtn.addEventListener("click", function(){
-    const s = students[activeStudent];
-    s.order = shuffleArray(s.words.map((_, i) => i));
-    s.current = 0;
-    renderCard();
-});
-
-resetBtn.addEventListener("click", function(){
-    const s = students[activeStudent];
-    if(confirm("Ulang paket soal untuk " + s.name + "? Nilai akan dihapus, timer direset (belum mulai), dan urutan soal diacak ulang.")){
-        clearActiveTimer();
-        s.order = shuffleArray(s.words.map((_, i) => i));
-        s.current = 0;
-        s.results = s.words.map(() => null);
-        s.timeLeft = TIME_LIMIT;
-        s.finished = false;
-        s.started = false;
-        renderAll();
-    }
-});
 
 renderAll();
 
