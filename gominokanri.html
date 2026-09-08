@@ -5,34 +5,54 @@
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ゴミの管理方法 — Cara Mengelola Sampah</title>
+<title>Tekipaki — ゴミの管理方法 (Cara Mengelola Sampah)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
-    --navy:#001f3f;
-    --navy2:#002a54;
-    --gold:#facc15;
-    --text:#001f3f;
-    --moeru:#001f3f;
-    --moenai:#00305e;
-    --shigen:#003b73;
-    --plastik:#0a4a8a;
-    --sodai:#022655;
-    --yuugai:#3d0f14;
+    --navy:#0a1f3d;
+    --navy2:#001530;
+    --navy3:#132c52;
+    --gold:#e0b52a;
+    --gold-dim:#c4a02a;
+    --paper:#f6f0e2;
+    --paper2:#efe6d0;
+    --ink:#1c2541;
+    --ink-soft:#4a5875;
+    --seal:#b3382e;
+    --muted:#9fb0c9;
+    --body-text:#252c46;
+
+    --moeru:#f97316;
+    --moenai:#3b82c4;
+    --shigen:#3fa66b;
+    --plastik:#1fa4bd;
+    --sodai:#b0894f;
+    --yuugai:#c0392b;
 }
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:"Segoe UI",Arial,sans-serif;
 }
 
 body{
-    background:#ffffff;
-    color:var(--text);
+    font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif;
+    background:var(--paper);
+    color:var(--ink);
 }
+
+h1,h2,h3,.display{
+    font-family:"Shippori Mincho",serif;
+}
+
+.mono{ font-family:"JetBrains Mono",monospace; }
 
 /* =======================
         NAVBAR
@@ -42,9 +62,9 @@ body{
     position:sticky;
     top:0;
     z-index:999;
-    background:#001530;
-    border-bottom:2px solid rgba(250,204,21,.25);
-    box-shadow:0 4px 14px rgba(0,0,0,.35);
+    background:var(--navy2);
+    border-bottom:2px solid rgba(224,181,42,.3);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
 }
 
 .navbar-inner{
@@ -92,44 +112,26 @@ body{
     transition:.3s;
 }
 
-.burger-btn.open span:nth-child(1){
-    transform:translateY(7px) rotate(45deg);
-}
-
-.burger-btn.open span:nth-child(2){
-    opacity:0;
-}
-
-.burger-btn.open span:nth-child(3){
-    transform:translateY(-7px) rotate(-45deg);
-}
+.burger-btn.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.burger-btn.open span:nth-child(2){ opacity:0; }
+.burger-btn.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
 
 .home-btn{
     display:flex;
     align-items:center;
     gap:8px;
     background:var(--gold);
-    color:#001530;
+    color:var(--navy2);
     text-decoration:none;
     padding:8px 14px;
     border-radius:10px;
     font-weight:bold;
 }
+.home-btn:hover{ opacity:.85; }
 
-.home-btn:hover{
-    opacity:.85;
-}
+.home-icon{ width:22px; height:22px; flex:none; }
 
-.home-icon{
-    width:24px;
-    height:24px;
-    object-fit:cover;
-    border-radius:4px;
-}
-
-.dropdown{
-    position:relative;
-}
+.dropdown{ position:relative; }
 
 .dropdown-btn{
     background:none;
@@ -139,19 +141,17 @@ body{
     border-radius:8px;
     font-weight:bold;
     cursor:pointer;
+    font-family:inherit;
 }
-
-.dropdown-btn:hover{
-    background:var(--gold);
-    color:#001530;
-}
+.dropdown-btn:hover{ background:var(--gold); color:var(--navy2); }
 
 .dropdown-menu{
     display:none;
     position:absolute;
     top:45px;
     left:0;
-    background:#022655;
+    background:#1f4577;
+    border:1px solid rgba(224,181,42,.35);
     border-radius:10px;
     overflow:hidden;
     min-width:220px;
@@ -164,20 +164,12 @@ body{
     color:#ffd700;
     text-decoration:none;
 }
+.dropdown-menu a:hover{ background:var(--gold); color:var(--navy2); }
 
-.dropdown-menu a:hover{
-    background:var(--gold);
-    color:#001530;
-}
-
-.show{
-    display:block;
-}
+.show{ display:block; }
 
 @media(max-width:768px){
-  .burger-btn{
-      display:flex;
-  }
+  .burger-btn{ display:flex; }
   .nav-right{
       display:none;
       width:100%;
@@ -185,18 +177,11 @@ body{
       align-items:stretch;
       gap:8px;
       padding:12px 20px 16px;
-      background:#001530;
+      background:var(--navy2);
   }
-  .nav-right.open{
-      display:flex;
-  }
-  .dropdown{
-      width:100%;
-  }
-  .dropdown-btn{
-      width:100%;
-      text-align:left;
-  }
+  .nav-right.open{ display:flex; }
+  .dropdown{ width:100%; }
+  .dropdown-btn{ width:100%; text-align:left; }
   .dropdown-menu{
       position:static;
       width:100%;
@@ -204,18 +189,14 @@ body{
       box-shadow:none;
       margin-top:4px;
   }
-  .navbar-inner{
-      flex-wrap:wrap;
-  }
+  .navbar-inner{ flex-wrap:wrap; }
 }
 
 /* =======================
      BACK BUTTON
 ======================= */
 
-.back-wrap{
-    padding:16px 20px 0;
-}
+.back-wrap{ padding:16px 20px 0; }
 
 .back-btn{
     display:inline-flex;
@@ -223,44 +204,93 @@ body{
     gap:6px;
     text-decoration:none;
     padding:10px 18px;
-    background:#eef2f7;
-    border:1px solid #dde3ec;
+    background:#fff;
+    border:1px solid var(--paper2);
     color:var(--navy);
     border-radius:999px;
     font-weight:600;
     font-size:14px;
     transition:.2s;
 }
-
-.back-btn:hover{
-    background:#e2e8f2;
-}
+.back-btn:hover{ background:var(--paper2); }
 
 /* =======================
-       HEADER
+     HERO / HEADER
 ======================= */
 
-header{
+.hero{
+    position:relative;
+    background:
+      radial-gradient(120% 140% at 15% -10%, var(--navy3), var(--navy) 55%, var(--navy2) 100%);
+    color:#fff;
+    padding:50px 20px 46px;
     text-align:center;
-    padding:40px 20px 10px;
+    overflow:hidden;
 }
 
-header h1{
-    font-size:38px;
-    color:#001f3f;
-    margin-bottom:8px;
+.hero-kanji{
+    position:absolute;
+    font-family:"Shippori Mincho",serif;
+    font-size:min(50vw,420px);
+    font-weight:800;
+    color:rgba(224,181,42,.06);
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    line-height:1;
+    user-select:none;
+    pointer-events:none;
+    white-space:nowrap;
 }
 
-header p{
-    font-size:17px;
-    color:#555;
+.hero-inner{ position:relative; z-index:2; max-width:700px; margin:0 auto; }
+
+.seal{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:64px; height:64px;
+    border:3px solid var(--seal);
+    border-radius:8px;
+    color:var(--seal);
+    background:rgba(179,56,46,.08);
+    font-family:"Shippori Mincho",serif;
+    font-weight:800;
+    font-size:1.3rem;
+    transform:rotate(-8deg);
+    margin-bottom:16px;
+    letter-spacing:2px;
+    writing-mode:vertical-rl;
+}
+
+.hero .eyebrow{
+    font-family:"JetBrains Mono",monospace;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-size:.72rem;
+    margin-bottom:10px;
+}
+
+.hero h1{
+    font-size:clamp(1.7rem,4.5vw,2.6rem);
+    color:#fff;
+    line-height:1.25;
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:var(--muted);
+    font-size:.98rem;
+    line-height:1.7;
+    max-width:520px;
+    margin:0 auto;
 }
 
 .hint{
     text-align:center;
     font-size:14px;
-    color:#8892a3;
-    margin-bottom:25px;
+    color:var(--ink-soft);
+    margin:20px 0 25px;
 }
 
 /* =======================
@@ -269,62 +299,59 @@ header p{
 
 .article-wrap{
     max-width:960px;
-    margin:20px auto 60px;
+    margin:0 auto 60px;
     padding:0 20px;
 }
 
 .intro-card{
-    border:2px solid var(--navy);
-    border-radius:20px;
-    padding:30px 35px;
+    border:1px solid var(--paper2);
+    border-left:5px solid var(--gold);
+    border-radius:16px;
+    padding:26px 30px;
     background:#fff;
-    box-shadow:0 8px 24px rgba(0,31,63,.08);
+    box-shadow:0 8px 24px rgba(10,31,61,.06);
     margin-bottom:30px;
 }
 
 .intro-card p{
-    font-size:16px;
+    font-size:1.02rem;
     line-height:1.85;
-    color:#2b2b2b;
-    text-align:justify;
+    color:var(--body-text);
+    font-weight:500;
 }
 
 /* category section */
 
 .cat-section{
-    border-radius:18px;
-    margin-bottom:24px;
+    border-radius:16px;
+    margin-bottom:20px;
     overflow:hidden;
-    border:2px solid var(--navy);
+    border:1px solid var(--paper2);
     background:#fff;
+    box-shadow:0 2px 10px rgba(10,31,61,.05);
 }
 
 .cat-head{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:18px 24px;
+    padding:18px 22px;
     color:#fff;
-    cursor:pointer;
-    user-select:none;
-    background:var(--navy2);
-    transition:background .2s;
-}
-
-.cat-head:hover{
     background:var(--navy);
 }
 
 .cat-head .jp{
-    font-size:14px;
-    opacity:.8;
+    font-size:13px;
+    opacity:.85;
     display:block;
-    margin-top:2px;
+    margin-top:3px;
     color:var(--gold);
+    font-family:"JetBrains Mono",monospace;
+    letter-spacing:.5px;
 }
 
 .cat-head h2{
-    font-size:22px;
+    font-size:1.15rem;
     display:flex;
     align-items:center;
     gap:10px;
@@ -336,61 +363,91 @@ header p{
     border-radius:50%;
     display:inline-block;
     flex-shrink:0;
-}
-
-.cat-head .arrow{
-    font-size:20px;
-    transition:.3s;
-}
-
-.cat-head.open .arrow{
-    transform:rotate(180deg);
+    box-shadow:0 0 0 3px rgba(255,255,255,.15);
 }
 
 .cat-body{
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .4s ease;
-    background:#fbfcfe;
+    background:#fbfaf5;
 }
 
-.cat-body-inner{
-    padding:22px 26px;
-}
+.cat-body-inner{ padding:22px 24px; }
 
 .cat-body ul{
     margin-left:20px;
     line-height:1.9;
-    font-size:15.5px;
-    color:#2b2b2b;
+    font-size:1rem;
+    color:var(--body-text);
+    font-weight:500;
 }
 
-.cat-body li{
-    margin-bottom:6px;
-}
+.cat-body li{ margin-bottom:6px; }
 
 .cat-note{
     margin-top:14px;
-    background:#f4f8ff;
-    border:2px dashed var(--gold);
+    background:#fff9ea;
+    border:2px dashed var(--gold-dim);
     border-radius:12px;
     padding:14px 18px;
-    font-size:14.5px;
-    color:#333;
+    font-size:.92rem;
+    color:var(--body-text);
+    font-weight:500;
+    line-height:1.7;
 }
 
-.dot-moeru{background:#f97316;}
-.dot-moenai{background:#60a5fa;}
-.dot-shigen{background:#4ade80;}
-.dot-plastik{background:#22d3ee;}
-.dot-sodai{background:#c2a878;}
-.dot-yuugai{background:#f87171;}
+.dot-moeru{ background:var(--moeru); }
+.dot-moenai{ background:var(--moenai); }
+.dot-shigen{ background:var(--shigen); }
+.dot-plastik{ background:var(--plastik); }
+.dot-sodai{ background:var(--sodai); }
+.dot-yuugai{ background:var(--yuugai); }
+
+/* ---- SLOT GAMBAR (UPLOAD SENDIRI) ---- */
+
+.img-slot{ margin:0 0 18px; }
+.img-slot figure{ margin:0; }
+
+.img-slot img{
+    width:100%;
+    height:auto;
+    max-height:280px;
+    object-fit:cover;
+    display:block;
+    border-radius:12px;
+    border:1px solid var(--paper2);
+    box-shadow:0 4px 16px rgba(10,31,61,.08);
+}
+
+.img-slot figcaption{
+    margin-top:6px;
+    text-align:center;
+    font-size:.75rem;
+    color:var(--ink-soft);
+    font-family:"JetBrains Mono",monospace;
+}
+
+.placeholder-box{
+    width:100%;
+    min-height:150px;
+    border:2px dashed var(--gold-dim);
+    border-radius:12px;
+    background:#fff9ea;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    color:var(--ink-soft);
+    font-size:.82rem;
+    text-align:center;
+    padding:16px;
+}
+.placeholder-box .big{ font-size:1.5rem; }
 
 /* schedule table */
 
 h2.section-title{
-    color:var(--navy2);
-    font-size:26px;
+    color:var(--navy);
+    font-size:1.5rem;
     margin:40px 0 16px;
     border-left:6px solid var(--gold);
     padding-left:12px;
@@ -400,37 +457,43 @@ h2.section-title{
     width:100%;
     border-collapse:collapse;
     margin:15px 0 25px;
-    font-size:14.5px;
+    font-size:.9rem;
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(10,31,61,.05);
 }
 
 .sort-table th, .sort-table td{
-    border:1px solid #cdd8e6;
+    border:1px solid var(--paper2);
     padding:9px 10px;
     text-align:center;
+    color:var(--body-text);
+    font-weight:500;
 }
 
 .sort-table th{
     background:var(--navy);
     color:var(--gold);
+    font-family:"JetBrains Mono",monospace;
+    font-size:.75rem;
+    letter-spacing:.5px;
 }
 
-.sort-table tr:nth-child(even){
-    background:#f6f9fd;
-}
+.sort-table tr:nth-child(even){ background:var(--paper); }
 
 .info-box{
-    background:#f4f8ff;
-    border:2px dashed var(--gold);
+    background:#fff9ea;
+    border:2px dashed var(--gold-dim);
     border-radius:14px;
     padding:18px 22px;
     margin:16px 0 25px;
-    font-size:15.5px;
+    font-size:1rem;
     line-height:1.8;
+    color:var(--body-text);
+    font-weight:500;
 }
-
-.info-box strong{
-    color:var(--navy2);
-}
+.info-box strong{ color:var(--navy); }
 
 /* steps */
 
@@ -446,11 +509,14 @@ h2.section-title{
     position:relative;
     padding:12px 20px 12px 55px;
     margin-bottom:10px;
-    background:#fbfcfe;
-    border:1px solid #dde3ec;
+    background:#fff;
+    border:1px solid var(--paper2);
     border-radius:12px;
-    font-size:15.5px;
+    font-size:1rem;
     line-height:1.7;
+    color:var(--body-text);
+    font-weight:500;
+    box-shadow:0 2px 8px rgba(10,31,61,.04);
 }
 
 .steps li::before{
@@ -474,36 +540,30 @@ h2.section-title{
 /* quiz */
 
 .quiz-wrap{
-    border:2px solid var(--navy);
-    border-radius:20px;
-    padding:30px;
+    border:1px solid var(--paper2);
+    border-radius:18px;
+    padding:28px;
     background:#fff;
     margin:20px 0 40px;
+    box-shadow:0 2px 10px rgba(10,31,61,.05);
 }
 
 .quiz-item{
     margin-bottom:22px;
     padding-bottom:18px;
-    border-bottom:1px dashed #dde3ec;
+    border-bottom:1px dashed var(--paper2);
 }
-
-.quiz-item:last-child{
-    border-bottom:none;
-    margin-bottom:0;
-}
+.quiz-item:last-child{ border-bottom:none; margin-bottom:0; }
 
 .quiz-q{
-    font-size:15.5px;
+    font-size:1rem;
     margin-bottom:10px;
-    color:#2b2b2b;
+    color:var(--body-text);
+    font-weight:500;
     line-height:1.7;
 }
 
-.quiz-options{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-}
+.quiz-options{ display:flex; flex-wrap:wrap; gap:10px; }
 
 .quiz-btn{
     border:2px solid var(--navy);
@@ -515,39 +575,26 @@ h2.section-title{
     cursor:pointer;
     font-size:14px;
     transition:.2s;
+    font-family:inherit;
 }
+.quiz-btn:hover{ background:var(--navy); color:#fff; }
 
-.quiz-btn:hover{
-    background:var(--navy);
-    color:#fff;
-}
+.quiz-btn.correct{ background:#2e9e57; border-color:#2e9e57; color:#fff; }
+.quiz-btn.wrong{ background:#c0392b; border-color:#c0392b; color:#fff; }
+.quiz-btn[disabled]{ cursor:default; }
 
-.quiz-btn.correct{
-    background:#2e9e57;
-    border-color:#2e9e57;
-    color:#fff;
-}
-
-.quiz-btn.wrong{
-    background:#c0392b;
-    border-color:#c0392b;
-    color:#fff;
-}
-
-.quiz-btn[disabled]{
-    cursor:default;
+footer{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:.85rem;
+    padding:34px 20px;
+    border-top:1px solid var(--paper2);
 }
 
 @media(max-width:768px){
-    .intro-card, .quiz-wrap{
-        padding:22px;
-    }
-    header h1{
-        font-size:27px;
-    }
-    .cat-head h2{
-        font-size:18px;
-    }
+    .intro-card, .quiz-wrap{ padding:20px; }
+    .hero h1{ font-size:1.6rem; }
+    .cat-head h2{ font-size:1rem; }
 }
 
 </style>
@@ -556,21 +603,14 @@ h2.section-title{
 <body>
 
 <nav id="navbar">
-
 <div class="navbar-inner">
 
 <div class="nav-left">
 <a href="index.html" class="home-btn">
-
-<svg class="home-icon" xmlns="http://www.w3.org/2000/svg"
-viewBox="0 0 24 24">
-
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
-
 </svg>
-
 HOME
-
 </a>
 </div>
 
@@ -616,39 +656,55 @@ HOME
 </div>
 
 </div>
-
 </nav>
 
 <div class="back-wrap">
 <a href="index.html" class="back-btn">← Kembali ke Beranda</a>
 </div>
 
-<header>
-<h1>🗑️ ゴミの管理方法</h1>
-<p>Cara Mengelola Sampah di Jepang — Pembuangan Sampah yang Benar dan Sesuai Aturan</p>
-</header>
-
-<p class="hint">Klik setiap kategori di bawah untuk membuka detail jenis sampah &amp; contohnya</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-kanji" aria-hidden="true">ゴミ</div>
+  <div class="hero-inner">
+    <div class="seal">分別</div>
+    <div class="eyebrow">Tekipaki Japanese Learning</div>
+    <h1>🗑️ ゴミの管理方法<br>Cara Mengelola Sampah di Jepang</h1>
+    <p>Panduan pembuangan sampah yang benar dan sesuai aturan — lengkap dengan istilah Jepang, jadwal, dan quiz latihan.</p>
+  </div>
+</section>
 
 <div class="article-wrap">
 
   <div class="intro-card">
     <p>
-      Di Jepang, sampah rumah tangga wajib dipilah (分別／ぶんべつ) sebelum dibuang. Setiap jenis sampah memiliki hari pembuangan, kantong, dan cara penanganan yang berbeda-beda. Memahami sistem ini penting supaya sampah benar-benar diambil oleh petugas dan tidak mengganggu lingkungan sekitar tempat tinggal.
+      Di Jepang, sampah rumah tangga wajib dipilah <span class="mono">(分別／ぶんべつ)</span> sebelum dibuang. Setiap jenis sampah memiliki hari pembuangan, kantong, dan cara penanganan yang berbeda-beda. Memahami sistem ini penting supaya sampah benar-benar diambil oleh petugas dan tidak mengganggu lingkungan sekitar tempat tinggal.
     </p>
   </div>
 
   <!-- MOERU GOMI -->
   <div class="cat-section moeru">
-    <div class="cat-head" onclick="toggleCat(this)">
+    <div class="cat-head">
       <div>
         <h2><span class="cat-dot dot-moeru"></span>もえるごみ — Sampah yang Bisa Dibakar</h2>
         <span class="jp">燃えるゴミ (Moeru gomi)</span>
       </div>
-      <span class="arrow">▼</span>
     </div>
     <div class="cat-body">
       <div class="cat-body-inner">
+
+        <!-- SLOT GAMBAR: ganti src dengan fotomu sendiri, contoh: images/gomi-moeru.jpg -->
+        <div class="img-slot">
+          <figure>
+            <img src="images/gomi-moeru.jpg" alt="Contoh moeru gomi"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="placeholder-box" style="display:none;">
+              <div class="big">📷</div>
+              <div>Taruh foto <strong>もえるごみ</strong> di sini</div>
+              <div class="mono" style="font-size:.68rem;">images/gomi-moeru.jpg</div>
+            </div>
+          </figure>
+        </div>
+
         <ul>
           <li>生ごみ（なまごみ）— sisa makanan</li>
           <li>紙くず — kertas bekas (tisu, popok)</li>
@@ -664,15 +720,27 @@ HOME
 
   <!-- MOENAI GOMI -->
   <div class="cat-section moenai">
-    <div class="cat-head" onclick="toggleCat(this)">
+    <div class="cat-head">
       <div>
         <h2><span class="cat-dot dot-moenai"></span>もえないごみ — Sampah yang Tidak Bisa Dibakar</h2>
         <span class="jp">不燃ゴミ (Moenai gomi)</span>
       </div>
-      <span class="arrow">▼</span>
     </div>
     <div class="cat-body">
       <div class="cat-body-inner">
+
+        <div class="img-slot">
+          <figure>
+            <img src="images/gomi-moenai.jpg" alt="Contoh moenai gomi"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="placeholder-box" style="display:none;">
+              <div class="big">📷</div>
+              <div>Taruh foto <strong>もえないごみ</strong> di sini</div>
+              <div class="mono" style="font-size:.68rem;">images/gomi-moenai.jpg</div>
+            </div>
+          </figure>
+        </div>
+
         <ul>
           <li>ガラス — kaca (gelas, lampu)</li>
           <li>陶器（とうき）— keramik</li>
@@ -689,15 +757,27 @@ HOME
 
   <!-- SHIGEN GOMI -->
   <div class="cat-section shigen">
-    <div class="cat-head" onclick="toggleCat(this)">
+    <div class="cat-head">
       <div>
         <h2><span class="cat-dot dot-shigen"></span>資源ごみ — Sampah Daur Ulang</h2>
         <span class="jp">Shigen gomi</span>
       </div>
-      <span class="arrow">▼</span>
     </div>
     <div class="cat-body">
       <div class="cat-body-inner">
+
+        <div class="img-slot">
+          <figure>
+            <img src="images/gomi-shigen.jpg" alt="Contoh shigen gomi"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="placeholder-box" style="display:none;">
+              <div class="big">📷</div>
+              <div>Taruh foto <strong>資源ごみ</strong> di sini</div>
+              <div class="mono" style="font-size:.68rem;">images/gomi-shigen.jpg</div>
+            </div>
+          </figure>
+        </div>
+
         <ul>
           <li>びん — botol kaca</li>
           <li>かん — kaleng</li>
@@ -712,15 +792,27 @@ HOME
 
   <!-- PLASTIK GOMI -->
   <div class="cat-section plastik">
-    <div class="cat-head" onclick="toggleCat(this)">
+    <div class="cat-head">
       <div>
         <h2><span class="cat-dot dot-plastik"></span>プラスチックごみ — Sampah Plastik</h2>
         <span class="jp">Purasuchikku gomi</span>
       </div>
-      <span class="arrow">▼</span>
     </div>
     <div class="cat-body">
       <div class="cat-body-inner">
+
+        <div class="img-slot">
+          <figure>
+            <img src="images/gomi-plastik.jpg" alt="Contoh plastik gomi"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="placeholder-box" style="display:none;">
+              <div class="big">📷</div>
+              <div>Taruh foto <strong>プラスチックごみ</strong> di sini</div>
+              <div class="mono" style="font-size:.68rem;">images/gomi-plastik.jpg</div>
+            </div>
+          </figure>
+        </div>
+
         <ul>
           <li>Bungkus makanan</li>
           <li>Plastik cup mie instan yang sudah dicuci</li>
@@ -733,15 +825,27 @@ HOME
 
   <!-- SODAI GOMI -->
   <div class="cat-section sodai">
-    <div class="cat-head" onclick="toggleCat(this)">
+    <div class="cat-head">
       <div>
         <h2><span class="cat-dot dot-sodai"></span>粗大ごみ — Sampah Besar</h2>
         <span class="jp">Sodai gomi</span>
       </div>
-      <span class="arrow">▼</span>
     </div>
     <div class="cat-body">
       <div class="cat-body-inner">
+
+        <div class="img-slot">
+          <figure>
+            <img src="images/gomi-sodai.jpg" alt="Contoh sodai gomi"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="placeholder-box" style="display:none;">
+              <div class="big">📷</div>
+              <div>Taruh foto <strong>粗大ごみ</strong> di sini</div>
+              <div class="mono" style="font-size:.68rem;">images/gomi-sodai.jpg</div>
+            </div>
+          </figure>
+        </div>
+
         <ul>
           <li>Sofa, kasur, lemari</li>
           <li>Meja kayu besar</li>
@@ -757,16 +861,28 @@ HOME
 
   <!-- YUUGAI GOMI -->
   <div class="cat-section yuugai">
-    <div class="cat-head" onclick="toggleCat(this)">
+    <div class="cat-head">
       <div>
         <h2><span class="cat-dot dot-yuugai"></span>有害ごみ — Sampah Berbahaya</h2>
         <span class="jp">Yuugai gomi</span>
       </div>
-      <span class="arrow">▼</span>
     </div>
     <div class="cat-body">
       <div class="cat-body-inner">
-        <p style="margin-bottom:12px;line-height:1.8;font-size:15.5px;">Sampah yang mengandung zat berbahaya, beracun, atau mudah meledak sehingga tidak boleh dibuang bersama sampah biasa dan harus ditangani secara khusus.</p>
+
+        <div class="img-slot">
+          <figure>
+            <img src="images/gomi-yuugai.jpg" alt="Contoh yuugai gomi"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="placeholder-box" style="display:none;">
+              <div class="big">📷</div>
+              <div>Taruh foto <strong>有害ごみ</strong> di sini</div>
+              <div class="mono" style="font-size:.68rem;">images/gomi-yuugai.jpg</div>
+            </div>
+          </figure>
+        </div>
+
+        <p style="margin-bottom:12px;line-height:1.8;font-size:1rem;color:var(--body-text);font-weight:500;">Sampah yang mengandung zat berbahaya, beracun, atau mudah meledak sehingga tidak boleh dibuang bersama sampah biasa dan harus ditangani secara khusus.</p>
         <ul>
           <li>Baterai</li>
           <li>Lampu neon</li>
@@ -821,10 +937,24 @@ HOME
   </ol>
 
   <h2 class="section-title">油凝固剤（あぶらぎょうこざい）— Serbuk Pembeku Minyak</h2>
-  <p style="line-height:1.85;font-size:15.5px;margin-bottom:14px;">
+
+  <!-- SLOT GAMBAR: ganti src dengan fotomu sendiri, contoh: images/serbuk-pembeku-minyak.jpg -->
+  <div class="img-slot">
+    <figure>
+      <img src="images/serbuk-pembeku-minyak.jpg" alt="Contoh serbuk pembeku minyak"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="placeholder-box" style="display:none;">
+        <div class="big">📷</div>
+        <div>Taruh foto <strong>serbuk pembeku minyak (油凝固剤)</strong> di sini</div>
+        <div class="mono" style="font-size:.68rem;">images/serbuk-pembeku-minyak.jpg</div>
+      </div>
+    </figure>
+  </div>
+
+  <p style="line-height:1.85;font-size:1rem;margin-bottom:14px;color:var(--body-text);font-weight:500;">
     Serbuk ini digunakan untuk membekukan minyak goreng bekas agar berubah dari cair menjadi padat, sehingga memudahkan pembuangan minyak tanpa tumpah, mencegah saluran air tersumbat, dan mengurangi bau tidak sedap dari minyak bekas. Tujuannya adalah menjaga kebersihan dapur, melindungi lingkungan agar tidak mencemari air dan tanah, membuang minyak sesuai aturan sampah, serta mencegah kerusakan pipa dan selokan.
   </p>
-  <p style="font-weight:bold;margin-bottom:8px;">Cara penggunaan:</p>
+  <p style="font-weight:700;margin-bottom:8px;color:var(--navy);">Cara penggunaan:</p>
   <ol class="steps">
     <li>Masukkan serbuk pembeku minyak ke dalam wajan/teflon berisi minyak bekas.</li>
     <li>Panaskan wajan sambil diaduk.</li>
@@ -888,30 +1018,11 @@ HOME
 
 </div>
 
-<footer style="text-align:center;padding:30px;color:#666;font-size:14px;">
+<footer>
 © Tekipaki Japanese Learning
 </footer>
 
 <script>
-
-//============================
-// ACCORDION KATEGORI
-//============================
-
-function toggleCat(headEl){
-    const body = headEl.nextElementSibling;
-    const isOpen = headEl.classList.contains("open");
-
-    document.querySelectorAll(".cat-head").forEach(h=>{
-        h.classList.remove("open");
-        h.nextElementSibling.style.maxHeight = null;
-    });
-
-    if(!isOpen){
-        headEl.classList.add("open");
-        body.style.maxHeight = body.scrollHeight + "px";
-    }
-}
 
 //============================
 // QUIZ
