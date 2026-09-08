@@ -408,8 +408,8 @@ h1,h2,h3,.display{
 
 .img-slot img{
     width:100%;
+    aspect-ratio:1200/896;
     height:auto;
-    max-height:280px;
     object-fit:cover;
     display:block;
     border-radius:12px;
@@ -427,7 +427,7 @@ h1,h2,h3,.display{
 
 .placeholder-box{
     width:100%;
-    min-height:150px;
+    aspect-ratio:1200/896;
     border:2px dashed var(--gold-dim);
     border-radius:12px;
     background:#fff9ea;
@@ -695,7 +695,7 @@ HOME
         <!-- SLOT GAMBAR: ganti src dengan fotomu sendiri, contoh: images/gomi-moeru.jpg -->
         <div class="img-slot">
           <figure>
-            <img src="images/moerugomi.jpg" alt="Contoh moeru gomi"
+            <img src="images/moerugomi.jpeg" alt="Contoh moeru gomi"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="placeholder-box" style="display:none;">
               <div class="big">📷</div>
