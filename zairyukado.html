@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tekipaki — Apa itu Zairyu Card?</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --navy:#0a1f3d;
+  --navy2:#001530;
+  --navy3:#132c52;
+  --gold:#e0b52a;
+  --gold-dim:#c4a02a;
+  --paper:#f6f0e2;
+  --paper2:#efe6d0;
+  --ink:#1c2541;
+  --ink-soft:#4a5875;
+  --seal:#b3382e;
+  --muted:#9fb0c9;
+  --body-text:#252c46;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+
+h1,h2,h3,.display{
+  font-family:"Shippori Mincho",serif;
+}
+
+a{ color:inherit; }
+.mono{ font-family:"JetBrains Mono",monospace; }
+
+
+/* =========================================================
+   NAVBAR (sama seperti index.html)
+========================================================= */
+
+#navbar{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  width:100%;
+  background:#001530;
+  border-bottom:2px solid rgba(224,181,42,.3);
+  box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+
+.navbar-inner{
+  width:100%;
+  min-height:64px;
+  padding:8px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.nav-left{ display:flex; align-items:center; flex-shrink:0; }
+
+.home-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:var(--gold);
+  color:var(--navy2);
+  text-decoration:none;
+  padding:8px 14px;
+  border-radius:10px;
+  font-weight:bold;
+  white-space:nowrap;
+}
+.home-btn:hover{ opacity:.85; }
+.home-icon{ width:22px; height:22px; flex:none; }
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+  position:relative;
+  background:
+    radial-gradient(120% 140% at 15% -10%, var(--navy3), var(--navy) 55%, var(--navy2) 100%);
+  color:#fff;
+  padding:70px 20px 80px;
+  text-align:center;
+  overflow:hidden;
+}
+
+.hero-kanji{
+  position:absolute;
+  font-family:"Shippori Mincho",serif;
+  font-size:min(55vw,480px);
+  font-weight:800;
+  color:rgba(224,181,42,.06);
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  line-height:1;
+  user-select:none;
+  pointer-events:none;
+  white-space:nowrap;
+}
+
+.hero-inner{ position:relative; z-index:2; max-width:760px; margin:0 auto; }
+
+.seal{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:70px; height:70px;
+  border:3px solid var(--seal);
+  border-radius:8px;
+  color:var(--seal);
+  background:rgba(179,56,46,.08);
+  font-family:"Shippori Mincho",serif;
+  font-weight:800;
+  font-size:1.4rem;
+  transform:rotate(-8deg);
+  margin-bottom:20px;
+  letter-spacing:2px;
+  writing-mode:vertical-rl;
+}
+
+.hero .eyebrow{
+  font-family:"JetBrains Mono",monospace;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-size:.75rem;
+  margin-bottom:12px;
+}
+
+.hero h1{
+  font-size:clamp(1.9rem,5vw,3rem);
+  color:#fff;
+  line-height:1.25;
+  margin-bottom:14px;
+}
+.hero h1 span{ color:var(--gold); }
+
+.hero p{
+  color:var(--muted);
+  font-size:1rem;
+  line-height:1.7;
+  max-width:560px;
+  margin:0 auto;
+}
+
+
+/* =========================================================
+   ARTIKEL
+========================================================= */
+
+#app{
+  max-width:820px;
+  margin:0 auto;
+  padding:56px 20px 30px;
+}
+
+.section-head{
+  display:flex;
+  align-items:baseline;
+  gap:14px;
+  margin-bottom:18px;
+  flex-wrap:wrap;
+}
+
+.stamp-mini{
+  width:32px; height:32px;
+  flex:none;
+  border:2px solid var(--seal);
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--seal);
+  font-weight:800;
+  font-size:.8rem;
+  transform:rotate(-6deg);
+}
+
+.section-head h2{ font-size:1.4rem; color:var(--navy); }
+
+.section-head .jp{
+  font-family:"JetBrains Mono",monospace;
+  color:var(--seal);
+  font-size:.75rem;
+  letter-spacing:1px;
+}
+
+article p{
+  font-size:1.05rem;
+  line-height:1.9;
+  color:var(--body-text);
+  font-weight:500;
+  margin-bottom:18px;
+}
+
+article ul,
+article ol{
+  margin:0 0 22px 22px;
+  color:var(--body-text);
+  font-size:1.02rem;
+  font-weight:500;
+  line-height:1.85;
+}
+
+article li{ margin-bottom:6px; }
+
+article li strong{ color:var(--ink); }
+
+.callout{
+  background:#fff;
+  border:1px solid var(--paper2);
+  border-left:4px solid var(--gold);
+  border-radius:10px;
+  padding:18px 20px;
+  margin:0 0 28px;
+  font-size:1rem;
+  color:var(--body-text);
+  font-weight:500;
+  line-height:1.8;
+}
+
+.callout strong{ color:var(--navy); }
+
+
+/* ---- TEMPAT GAMBAR UPLOAD SENDIRI ---- */
+
+.img-slot{
+  margin:0 0 30px;
+}
+
+.img-slot figure{
+  margin:0;
+}
+
+.img-slot img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:14px;
+  border:1px solid var(--paper2);
+  box-shadow:0 6px 20px rgba(10,31,61,.10);
+}
+
+.img-slot figcaption{
+  margin-top:8px;
+  text-align:center;
+  font-size:.78rem;
+  color:var(--ink-soft);
+  font-family:"JetBrains Mono",monospace;
+}
+
+/* placeholder kalau gambar belum ada / gagal dimuat */
+.img-slot img::before{
+  content:"⚠ Gambar belum ditemukan — cek nama file & folder";
+}
+
+.placeholder-box{
+  width:100%;
+  min-height:220px;
+  border:2px dashed var(--gold-dim);
+  border-radius:14px;
+  background:#fff9ea;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  color:var(--ink-soft);
+  font-size:.85rem;
+  text-align:center;
+  padding:20px;
+}
+
+.placeholder-box .big{
+  font-size:1.6rem;
+}
+
+.two-col{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:30px;
+}
+
+@media(max-width:600px){
+  .two-col{ grid-template-columns:1fr; }
+}
+
+
+/* =========================================================
+   TABEL BAGIAN KARTU
+========================================================= */
+
+.info-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-bottom:30px;
+  font-size:.9rem;
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 2px 10px rgba(10,31,61,.05);
+}
+
+.info-table th,
+.info-table td{
+  padding:12px 14px;
+  text-align:left;
+  border-bottom:1px solid var(--paper2);
+  color:var(--body-text);
+  font-weight:500;
+}
+
+.info-table th{
+  background:var(--navy);
+  color:var(--gold);
+  font-family:"JetBrains Mono",monospace;
+  font-size:.72rem;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.info-table tr:last-child td{ border-bottom:none; }
+
+.info-table td.no{
+  font-family:"JetBrains Mono",monospace;
+  color:var(--seal);
+  font-weight:700;
+  width:36px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+  text-align:center;
+  color:var(--ink-soft);
+  font-size:.85rem;
+  padding:34px 20px;
+  border-top:1px solid var(--paper2);
+}
+
+</style>
+</head>
+
+
+<body translate="no">
+
+<!-- NAVBAR SEDERHANA -->
+<nav id="navbar">
+  <div class="navbar-inner">
+    <div class="nav-left">
+      <a href="index.html" class="home-btn">
+        <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+        </svg>
+        HOME
+      </a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-kanji" aria-hidden="true">在</div>
+
+  <div class="hero-inner">
+    <div class="seal">在留</div>
+    <div class="eyebrow">Tekipaki Japanese Learning</div>
+    <h1>Mengenal <span>Zairyu Card</span><br>Kartu Wajib bagi Orang Asing di Jepang</h1>
+    <p>
+      Kartu identitas resmi yang harus dimiliki dan dibawa setiap saat
+      oleh warga negara asing yang tinggal di Jepang lebih dari 3 bulan.
+    </p>
+  </div>
+</section>
+
+
+<!-- ARTIKEL -->
+<div id="app">
+  <article>
+
+    <!-- APA ITU -->
+    <div class="section-head">
+      <div class="stamp-mini">在</div>
+      <h2>Apa itu Zairyu Card?</h2>
+      <span class="jp">在留カード</span>
+    </div>
+
+    <p>
+      Zairyu Card (在留カード, "Kartu Izin Tinggal") adalah kartu identitas resmi
+      yang diterbitkan oleh Imigrasi Jepang untuk warga negara asing yang tinggal
+      di Jepang dengan visa jangka menengah atau panjang, misalnya pekerja magang
+      (Tokutei Ginou / Ginou Jisshu), pekerja Tokutei Gino, pelajar, maupun pemegang
+      visa kerja lainnya.
+    </p>
+
+    <p>
+      Kartu ini berfungsi seperti KTP di Indonesia — menjadi bukti sah identitas
+      dan status tinggal seseorang selama berada di Jepang, dan wajib dibawa
+      ke mana pun kamu pergi.
+    </p>
+
+    <div class="callout">
+      <strong>Penting:</strong> Berdasarkan Undang-Undang Imigrasi Jepang, kamu
+      wajib membawa Zairyu Card setiap saat dan menunjukkannya jika diminta oleh
+      petugas kepolisian atau imigrasi. Tidak membawanya bisa dikenakan denda.
+    </div>
+
+
+    <!-- GAMBAR CONTOH KARTU (UPLOAD SENDIRI) -->
+    <div class="section-head">
+      <div class="stamp-mini">見</div>
+      <h2>Tampilan Zairyu Card</h2>
+      <span class="jp">おもて・うら</span>
+    </div>
+
+    <p>
+      Zairyu Card memiliki dua sisi — bagian depan berisi foto dan data pribadi,
+      bagian belakang berisi keterangan tempat tinggal dan izin bekerja.
+      Ganti gambar di bawah ini dengan foto Zairyu Card milikmu sendiri
+      (atau contoh kosong untuk keperluan materi belajar).
+    </p>
+
+    <div class="two-col">
+
+      <!-- SLOT GAMBAR DEPAN -->
+      <div class="img-slot">
+        <figure>
+          <!--
+            GANTI src DI BAWAH INI DENGAN GAMBARMU SENDIRI.
+            Contoh: simpan file di folder "images/", lalu isi:
+            src="images/zairyucard-depan.jpg"
+          -->
+          <img
+            src="images/zairyucard-depan.jpg"
+            alt="Contoh Zairyu Card sisi depan"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+          <div class="placeholder-box" style="display:none;">
+            <div class="big">🪪</div>
+            <div>Taruh gambar <strong>sisi depan</strong> Zairyu Card di sini</div>
+            <div class="mono" style="font-size:.7rem;">images/zairyucard-depan.jpg</div>
+          </div>
+
+          <figcaption>Sisi Depan (Foto &amp; Data Pribadi)</figcaption>
+        </figure>
+      </div>
+
+      <!-- SLOT GAMBAR BELAKANG -->
+      <div class="img-slot">
+        <figure>
+          <img
+            src="images/zairyucard-belakang.jpg"
+            alt="Contoh Zairyu Card sisi belakang"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+          <div class="placeholder-box" style="display:none;">
+            <div class="big">🪪</div>
+            <div>Taruh gambar <strong>sisi belakang</strong> Zairyu Card di sini</div>
+            <div class="mono" style="font-size:.7rem;">images/zairyucard-belakang.jpg</div>
+          </div>
+
+          <figcaption>Sisi Belakang (Alamat &amp; Izin Kerja)</figcaption>
+        </figure>
+      </div>
+
+    </div>
+
+
+    <!-- BAGIAN-BAGIAN KARTU -->
+    <div class="section-head">
+      <div class="stamp-mini">読</div>
+      <h2>Bagian-bagian Penting di Kartu</h2>
+      <span class="jp">カードの見方</span>
+    </div>
+
+    <p>Berikut informasi utama yang tertulis di Zairyu Card sisi depan:</p>
+
+    <table class="info-table">
+      <tr>
+        <th>No</th>
+        <th>Bagian</th>
+        <th>Keterangan</th>
+      </tr>
+      <tr>
+        <td class="no">1</td>
+        <td>氏名 (Shimei)</td>
+        <td>Nama lengkap pemegang kartu, sesuai paspor</td>
+      </tr>
+      <tr>
+        <td class="no">2</td>
+        <td>生年月日 (Seinengappi)</td>
+        <td>Tanggal lahir</td>
+      </tr>
+      <tr>
+        <td class="no">3</td>
+        <td>性別 (Seibetsu)</td>
+        <td>Jenis kelamin</td>
+      </tr>
+      <tr>
+        <td class="no">4</td>
+        <td>国籍・地域 (Kokuseki/Chiiki)</td>
+        <td>Kewarganegaraan / negara asal</td>
+      </tr>
+      <tr>
+        <td class="no">5</td>
+        <td>在留資格 (Zairyu Shikaku)</td>
+        <td>Status/jenis visa, misalnya Tokutei Ginou, Ginou Jisshu, Ryugaku</td>
+      </tr>
+      <tr>
+        <td class="no">6</td>
+        <td>在留期間 (Zairyu Kikan)</td>
+        <td>Batas akhir masa tinggal — wajib diperpanjang sebelum tanggal ini</td>
+      </tr>
+      <tr>
+        <td class="no">7</td>
+        <td>在留カード番号 (Bangou)</td>
+        <td>Nomor unik kartu, format huruf-angka</td>
+      </tr>
+    </table>
+
+
+    <!-- KENAPA PENTING -->
+    <div class="section-head">
+      <div class="stamp-mini">要</div>
+      <h2>Kenapa Zairyu Card Sangat Penting?</h2>
+      <span class="jp">なぜ大切？</span>
+    </div>
+
+    <ul>
+      <li><strong>Bukti identitas resmi</strong> — dipakai untuk membuka rekening bank, kontrak apartemen, dan langganan ponsel.</li>
+      <li><strong>Bukti izin tinggal &amp; bekerja</strong> — perusahaan wajib memeriksa status visa lewat kartu ini.</li>
+      <li><strong>Wajib dibawa setiap saat</strong> — bisa diperiksa kapan saja oleh polisi atau petugas imigrasi.</li>
+      <li><strong>Terkait masa berlaku visa</strong> — tanggal di kartu menentukan kapan harus diperpanjang.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Tips:</strong> Segera laporkan ke kantor imigrasi jika Zairyu Card hilang,
+      rusak, atau ada perubahan alamat/tempat kerja. Simpan juga fotokopi atau
+      foto digitalnya sebagai cadangan, tapi jangan pernah membagikannya ke
+      orang yang tidak dikenal karena berisi data pribadi.
+    </div>
+
+
+    <!-- PERPANJANGAN -->
+    <div class="section-head">
+      <div class="stamp-mini">更</div>
+      <h2>Perpanjangan Zairyu Card</h2>
+      <span class="jp">在留期間更新</span>
+    </div>
+
+    <p>
+      Masa berlaku Zairyu Card mengikuti masa berlaku visa (在留期間).
+      Sebelum tanggal habis masa berlaku, kamu wajib mengajukan perpanjangan
+      di Kantor Imigrasi (入国管理局) terdekat.
+    </p>
+
+    <ul>
+      <li>Pengajuan perpanjangan bisa dilakukan <strong>paling cepat 3 bulan</strong> sebelum tanggal habis masa berlaku.</li>
+      <li>Dokumen yang biasanya diminta: Zairyu Card asli, paspor, formulir permohonan, foto terbaru, dan dokumen pendukung dari perusahaan/sekolah (misalnya slip gaji, surat keterangan kerja, atau surat rekomendasi).</li>
+      <li>Proses biasanya memakan waktu <strong>2–8 minggu</strong> tergantung kantor imigrasi dan jenis visa.</li>
+      <li>Kalau disetujui, kamu akan menerima Zairyu Card baru dengan tanggal masa berlaku yang diperbarui.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Penting:</strong> Jangan menunggu sampai mendekati tanggal habis.
+      Kalau masa berlaku Zairyu Card habis dan kamu masih di Jepang tanpa
+      perpanjangan, ini dianggap <strong>overstay</strong> dan bisa berakibat
+      hukum, termasuk deportasi.
+    </div>
+
+
+    <!-- PINDAH PERUSAHAAN -->
+    <div class="section-head">
+      <div class="stamp-mini">転</div>
+      <h2>Apabila Pindah Perusahaan</h2>
+      <span class="jp">転職の場合</span>
+    </div>
+
+    <p>
+      Kalau kamu pindah kerja ke perusahaan lain (masih dalam jenis visa yang sama,
+      misalnya sesama Tokutei Ginou), status Zairyu Card tetap berlaku, tapi kamu
+      punya kewajiban melapor.
+    </p>
+
+    <ul>
+      <li>Wajib melapor ke Kantor Imigrasi selambat-lambatnya <strong>14 hari</strong> setelah berhenti dari perusahaan lama atau mulai kerja di perusahaan baru (契約機関に関する届出 / laporan lembaga kontrak).</li>
+      <li>Perusahaan baru harus sesuai dengan jenis pekerjaan yang diizinkan dalam 在留資格 (status visa) kamu — kalau bidang pekerjaannya berbeda jauh, mungkin perlu perubahan status visa (在留資格変更許可), bukan sekadar laporan.</li>
+      <li>Laporan bisa dilakukan langsung ke kantor imigrasi, lewat pos, atau secara online lewat sistem e-Notification Imigrasi Jepang.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Tips:</strong> Sebelum resmi pindah, tanyakan dulu ke pengawas
+      (kumiai/supervising organization untuk peserta magang) atau ke kantor
+      imigrasi apakah perpindahan tersebut diperbolehkan sesuai jenis visa kamu.
+    </div>
+
+
+    <!-- PENGUNDURAN DIRI -->
+    <div class="section-head">
+      <div class="stamp-mini">辞</div>
+      <h2>Apabila Mengundurkan Diri</h2>
+      <span class="jp">退職の場合</span>
+    </div>
+
+    <p>
+      Kalau kamu mengundurkan diri dari perusahaan tanpa langsung pindah ke
+      perusahaan baru, statusmu di Jepang tetap harus dilaporkan.
+    </p>
+
+    <ul>
+      <li>Wajib melapor ke Kantor Imigrasi dalam <strong>14 hari</strong> sejak tanggal berhenti bekerja, meskipun belum ada perusahaan baru.</li>
+      <li>Zairyu Card tidak otomatis dibatalkan, tapi kalau dalam jangka waktu tertentu (biasanya sekitar 3 bulan) kamu tidak melakukan aktivitas sesuai status visa (misalnya tidak bekerja lagi), visa bisa dicabut.</li>
+      <li>Kalau berencana pulang ke Indonesia, urus juga proses "扱いの届出" (laporan keberangkatan) dan pastikan Zairyu Card dikembalikan di bandara saat keberangkatan (kecuali punya izin re-entry).</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Penting:</strong> Segera cari perusahaan baru atau urus kepulangan
+      secepatnya setelah mengundurkan diri, supaya tidak melebihi batas waktu
+      yang diizinkan tanpa pekerjaan.
+    </div>
+
+
+    <!-- KARTU HILANG -->
+    <div class="section-head">
+      <div class="stamp-mini">紛</div>
+      <h2>Apabila Zairyu Card Hilang</h2>
+      <span class="jp">紛失の場合</span>
+    </div>
+
+    <ol>
+      <li><strong>Lapor ke kantor polisi (交番/警察署)</strong> terdekat untuk mendapatkan surat bukti kehilangan (遺失届受理証明書).</li>
+      <li><strong>Lapor ke Kantor Imigrasi</strong> selambat-lambatnya <strong>14 hari</strong> setelah kartu hilang, sambil membawa surat bukti kehilangan dari polisi, paspor, dan foto terbaru.</li>
+      <li><strong>Ajukan penerbitan kartu pengganti</strong> — kamu akan mendapat Zairyu Card baru dengan nomor kartu yang berbeda dari kartu lama.</li>
+    </ol>
+
+    <div class="callout">
+      <strong>Tips:</strong> Simpan foto/scan Zairyu Card di HP atau email sebagai
+      cadangan data (nomor kartu, tanggal masa berlaku, dll), supaya proses
+      pelaporan kehilangan lebih cepat dan tidak salah data.
+    </div>
+
+  </article>
+</div>
+
+
+<footer>
+  © Tekipaki Japanese Learning
+</footer>
+
+</body>
+</html>
