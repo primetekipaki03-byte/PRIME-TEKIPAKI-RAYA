@@ -56,6 +56,7 @@ body{
     justify-content:space-between;
     align-items:center;
     padding:10px 20px;
+    position:relative;
 }
 
 .nav-left{
@@ -104,6 +105,7 @@ body{
     border-radius:8px;
     font-weight:bold;
     cursor:pointer;
+    white-space:nowrap;
 }
 
 .dropdown-btn:hover{
@@ -121,6 +123,7 @@ body{
     overflow:hidden;
     min-width:220px;
     box-shadow:0 8px 20px rgba(0,0,0,.4);
+    z-index:1000;
 }
 
 .dropdown-menu a{
@@ -137,6 +140,46 @@ body{
 
 .show{
     display:block;
+}
+
+/* =======================
+     HAMBURGER BUTTON
+======================= */
+
+.burger-btn{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    width:42px;
+    height:38px;
+    background:none;
+    border:2px solid var(--gold);
+    border-radius:8px;
+    cursor:pointer;
+    padding:0;
+}
+
+.burger-btn span{
+    display:block;
+    width:20px;
+    height:2px;
+    background:var(--gold);
+    border-radius:2px;
+    transition:.25s;
+}
+
+.burger-btn.open span:nth-child(1){
+    transform:translateY(7px) rotate(45deg);
+}
+
+.burger-btn.open span:nth-child(2){
+    opacity:0;
+}
+
+.burger-btn.open span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg);
 }
 
 /* =======================
@@ -298,6 +341,54 @@ header p{
     filter:drop-shadow(0 0 1px var(--navy));
 }
 
+/* =======================
+     RESPONSIVE / MOBILE
+======================= */
+
+@media(max-width:768px){
+
+    .burger-btn{
+        display:flex;
+    }
+
+    .nav-right{
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:0;
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        background:#001530;
+        border-top:1px solid rgba(250,204,21,.25);
+        box-shadow:0 10px 20px rgba(0,0,0,.4);
+        padding:10px;
+    }
+
+    .nav-right.mobile-open{
+        display:flex;
+    }
+
+    .nav-right .dropdown{
+        width:100%;
+    }
+
+    .nav-right .dropdown-btn{
+        width:100%;
+        text-align:left;
+        margin-bottom:6px;
+        border-radius:8px;
+    }
+
+    .nav-right .dropdown-menu{
+        position:static;
+        width:100%;
+        margin-bottom:6px;
+        box-shadow:none;
+    }
+}
+
 @media(max-width:600px){
     .unit-card{
         flex-wrap:wrap;
@@ -338,7 +429,13 @@ HOME
 </a>
 </div>
 
-<div class="nav-right">
+<button class="burger-btn" id="burgerBtn" onclick="toggleMobileNav()" aria-label="Menu">
+<span></span>
+<span></span>
+<span></span>
+</button>
+
+<div class="nav-right" id="navRight">
 
 <div class="dropdown">
 <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
@@ -475,6 +572,34 @@ document.addEventListener("click",function(e){
         document.querySelectorAll(".dropdown-menu").forEach(function(menu){
             menu.classList.remove("show");
         });
+    }
+});
+
+//============================
+// MOBILE BURGER MENU
+//============================
+
+function toggleMobileNav(){
+    const navRight = document.getElementById("navRight");
+    const burgerBtn = document.getElementById("burgerBtn");
+    navRight.classList.toggle("mobile-open");
+    burgerBtn.classList.toggle("open");
+}
+
+// tutup menu mobile jika klik di luar navbar
+document.addEventListener("click",function(e){
+    const nav = document.getElementById("navbar");
+    if(!nav.contains(e.target)){
+        document.getElementById("navRight").classList.remove("mobile-open");
+        document.getElementById("burgerBtn").classList.remove("open");
+    }
+});
+
+// tutup menu mobile otomatis saat layar dibesarkan lagi (misal rotasi/resize ke desktop)
+window.addEventListener("resize",function(){
+    if(window.innerWidth>768){
+        document.getElementById("navRight").classList.remove("mobile-open");
+        document.getElementById("burgerBtn").classList.remove("open");
     }
 });
 
