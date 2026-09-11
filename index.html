@@ -1,263 +1,916 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="ja" translate="no">
 <head>
 <meta charset="UTF-8">
+<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prime Tekipaki Raya – 日本就労支援</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+<title>Tekipaki Learning — Belajar Bahasa Jepang dengan Tenang</title>
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Zen+Old+Mincho:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
 
 :root{
-  --navy:#1a3a5c;
-  --navy2:#0f2440;
-  --navy3:#0a1a30;
-  --navy-light:#e8eef5;
-  --navy-mid:#2e5480;
-  --gold:#c9a84c;
-  --gold-light:#f5edda;
-  --ink:#1a1a1a;
-  --ink2:#444;
-  --ink3:#777;
-  --border:#ddd;
-  --surface:#f8f9fb;
-  --white:#fff;
-  --radius:8px;
+  --paper:#faf7f1;
+  --paper-deep:#f0ead9;
+  --ink:#2b2a26;
+  --ink-soft:#726f63;
+  --line:#ddd5c1;
+  --white:#ffffff;
+  --accent:#4a4a3c;
+  --navy:#0a1f3d;
+  --navy2:#001530;
+  --gold:#e0b52a;
 }
 
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:var(--ink);font-size:15px;line-height:1.65;overflow-x:hidden}
+*{ margin:0; padding:0; box-sizing:border-box; }
 
-/* ===== NAVBAR ===== */
-.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,26,48,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:64px}
-.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.nav-logo-icon{width:40px;height:40px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy3);font-size:17px;font-weight:700}
-.nav-logo-text{line-height:1.2}
-.nav-logo-text strong{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:.3px}
-.nav-logo-text span{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:1.5px}
-.nav-links{display:flex;gap:4px;list-style:none}
-.nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:6px;transition:all .2s}
-.nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,.1)}
-.nav-cta{background:var(--gold)!important;color:var(--navy3)!important;font-weight:700!important}
-.nav-cta:hover{background:#b8922f!important;color:var(--navy3)!important}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
-.nav-hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+html{ scroll-behavior:smooth; }
 
-/* ===== SECTION BASE ===== */
-section{padding:90px 0}
-.container{max-width:1100px;margin:0 auto;padding:0 28px}
-.section-label{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
-.section-title{font-family:'Noto Serif JP',serif;font-size:36px;font-weight:700;color:var(--ink);line-height:1.25;margin-bottom:16px}
-.section-title em{font-style:normal;color:var(--navy)}
-.section-sub{color:var(--ink3);font-size:16px;max-width:540px;line-height:1.75}
-.section-head{margin-bottom:56px}
-.section-head.center{text-align:center}
-.section-head.center .section-sub{margin:0 auto}
+body{
+  font-family:"Zen Kaku Gothic New","Hiragino Sans","Segoe UI",sans-serif;
+  font-weight:300;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
 
-.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:var(--navy3);border:none;border-radius:var(--radius);padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;font-family:inherit}
-.btn-primary:hover{background:#b8922f;transform:translateY(-2px)}
-.btn-outline{display:inline-flex;align-items:center;gap:9px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);border-radius:var(--radius);padding:14px 24px;font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s;font-family:inherit}
-.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+h1,h2,h3{
+  font-family:"Zen Old Mincho",serif;
+  font-weight:500;
+  letter-spacing:.02em;
+}
 
-/* ===== KONTAK ===== */
-#contact{background:var(--surface)}
-.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:start}
-.contact-info h3{font-family:'Noto Serif JP',serif;font-size:26px;font-weight:600;margin-bottom:16px;color:var(--ink)}
-.contact-info p{color:var(--ink3);font-size:15px;line-height:1.8;margin-bottom:28px}
-.contact-list{display:flex;flex-direction:column;gap:16px}
-.contact-item{display:flex;align-items:flex-start;gap:14px}
-.contact-item-icon{width:38px;height:38px;background:var(--navy-light);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:15px;flex-shrink:0}
-.contact-item-text strong{display:block;font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:2px}
-.contact-item-text span{font-size:14px;color:var(--ink)}
-.social-links{display:flex;gap:10px;margin-top:28px}
-.social-btn{width:38px;height:38px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;text-decoration:none;transition:background .2s;flex-shrink:0}
-.social-btn:hover{background:var(--navy2)}
+a{ color:inherit; }
+img{ max-width:100%; display:block; }
 
-/* ===== CTA BANNER ===== */
-.cta-banner{background:linear-gradient(135deg,var(--navy3),var(--navy-mid));padding:80px 0;text-align:center}
-.cta-banner h2{font-family:'Noto Serif JP',serif;font-size:36px;color:#fff;margin-bottom:14px}
-.cta-banner h2 em{font-style:normal;color:var(--gold)}
-.cta-banner p{color:rgba(255,255,255,.7);font-size:16px;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.8}
-.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.wrap{ max-width:1180px; margin:0 auto; padding-left:32px; padding-right:32px; }
 
-/* ===== FOOTER ===== */
-footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
-.footer-inner{max-width:1100px;margin:0 auto;padding:0 28px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:56px;margin-bottom:48px}
-.footer-brand strong{display:block;color:#fff;font-size:17px;font-weight:700;margin-bottom:8px}
-.footer-brand p{font-size:13.5px;line-height:1.8;max-width:280px}
-.footer-brand .jp{color:var(--gold);font-family:'Noto Serif JP',serif;font-size:13px;margin-top:6px;display:block}
-.footer-col h4{color:#fff;font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:18px}
-.footer-col a{display:block;color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;margin-bottom:10px;transition:.2s}
-.footer-col a:hover{color:#fff}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center}
-.footer-bottom p{font-size:13px}
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+#navbar{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  width:100%;
+  background:#001530;
+  border-bottom:2px solid rgba(224,181,42,.3);
+  box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+
+.navbar-inner{
+  width:100%;
+  min-height:64px;
+  padding:8px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.nav-left{
+  display:flex;
+  align-items:center;
+  flex-shrink:0;
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.home-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:var(--gold);
+  color:var(--navy2);
+  text-decoration:none;
+  padding:8px 14px;
+  border-radius:10px;
+  font-weight:bold;
+  white-space:nowrap;
+}
+.home-btn:hover{ opacity:.85; }
+.home-icon{ width:22px; height:22px; flex:none; }
+
+.dropdown{ position:relative; flex-shrink:0; z-index:1; }
+.dropdown.open{ z-index:20; }
+
+.dropdown-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:transparent;
+  border:2px solid var(--gold);
+  color:var(--gold);
+  padding:8px 14px;
+  border-radius:8px;
+  font-family:inherit;
+  font-weight:bold;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.dropdown-btn:hover,
+.dropdown.open .dropdown-btn{
+  background:var(--gold);
+  color:var(--navy2);
+}
+
+.dropdown-menu{
+  display:none;
+  position:absolute;
+  top:calc(100% + 7px);
+  left:0;
+  width:max-content;
+  min-width:220px;
+  max-width:calc(100vw - 20px);
+  background:#1f4577;
+  border:1px solid rgba(224,181,42,.35);
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+.dropdown-menu.show{ display:block; }
+.dropdown-menu.align-right{ left:auto; right:0; }
+.dropdown-menu a{
+  display:block;
+  padding:12px 15px;
+  color:#ffd700;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.dropdown-menu a:hover{ background:var(--gold); color:var(--navy2); }
+
+.burger-btn{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  background:transparent;
+  border:2px solid var(--gold);
+  color:var(--gold);
+  padding:9px 12px;
+  border-radius:8px;
+  cursor:pointer;
+}
+.burger-btn svg{ width:20px; height:20px; display:block; }
+
+.mobile-menu{
+  display:none;
+  flex-direction:column;
+  background:#001530;
+  border-top:1px solid rgba(224,181,42,.25);
+}
+.mobile-menu.show{ display:flex; }
+
+.mobile-link{
+  display:block;
+  padding:15px 18px;
+  color:#ffd700;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.mobile-link:hover{ background:rgba(224,181,42,.12); }
+
+.mobile-acc-btn{
+  width:100%;
+  text-align:left;
+  background:transparent;
+  border:none;
+  color:var(--gold);
+  font-weight:700;
+  font-size:14px;
+  font-family:inherit;
+  padding:15px 18px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.mobile-acc-btn::after{ content:'+'; font-size:18px; line-height:1; }
+.mobile-acc-btn.open::after{ content:'\2212'; }
+
+.mobile-acc-panel{
+  display:none;
+  flex-direction:column;
+  background:#0a2242;
+}
+.mobile-acc-panel.show{ display:flex; }
+.mobile-acc-panel a{
+  padding:13px 32px;
+  color:#ffd700;
+  text-decoration:none;
+  font-size:13px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.mobile-acc-panel a:hover{ background:rgba(224,181,42,.15); }
+
+@media(min-width:761px){ .mobile-menu{ display:none !important; } }
+
+@media(max-width:1000px){
+  .navbar-inner{ padding:10px 12px; gap:10px; }
+  .dropdown-btn{ font-size:.72rem; padding:6px 9px; }
+  .home-btn{ padding:8px 10px; font-size:.72rem; }
+}
+
+@media(max-width:760px){
+  .navbar-inner{ flex-wrap:nowrap; padding:10px 14px; gap:10px; }
+  .nav-left{ flex:1; min-width:0; }
+  .home-btn{ width:auto; }
+  .nav-right{ display:none; }
+  .burger-btn{ display:flex; }
+}
+
+/* =========================================================
+   HERO — foto penuh, tenang
+========================================================= */
+
+.hero{
+  position:relative;
+  height:78vh; min-height:520px;
+  overflow:hidden;
+}
+
+.hero img{
+  width:100%; height:100%; object-fit:cover;
+}
+
+.hero-copy{
+  position:absolute; left:0; right:0; bottom:0;
+  padding:56px 32px;
+  background:linear-gradient(0deg,rgba(20,19,15,.42) 0%,rgba(20,19,15,0) 60%);
+  color:#fff;
+}
+
+.hero-copy-inner{ max-width:1180px; margin:0 auto; }
+
+.hero-eyebrow{
+  font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
+  color:#e7e1cf; margin-bottom:16px;
+}
+
+.hero h1{
+  font-size:clamp(1.7rem,3.4vw,2.5rem);
+  color:#fff; font-weight:500;
+  max-width:560px;
+  margin-bottom:20px;
+}
+
+.hero-links{ display:flex; gap:28px; flex-wrap:wrap; }
+
+.text-link{
+  font-size:.86rem; text-decoration:none; color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.55);
+  padding-bottom:3px;
+}
+.text-link:hover{ border-color:#fff; }
+
+.text-link.dark{ color:var(--ink); border-color:rgba(43,42,38,.4); }
+.text-link.dark:hover{ border-color:var(--ink); }
+
+/* =========================================================
+   SECTION SHELL
+========================================================= */
+
+.section{ padding:96px 0; }
+.section.border-top{ border-top:1px solid var(--line); }
+
+.section-label{
+  font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-soft); margin-bottom:18px;
+}
+
+/* =========================================================
+   TENTANG — dua kolom asimetris
+========================================================= */
+
+.about{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:64px;
+}
+
+.about h2{
+  font-size:1.7rem;
+  max-width:320px;
+  line-height:1.45;
+}
+
+.about-body p{
+  color:var(--ink-soft); font-size:.98rem; line-height:1.9;
+  margin-bottom:20px; max-width:560px;
+}
+.about-body p:last-child{ margin-bottom:0; }
+
+.about-list{
+  display:flex; flex-direction:column;
+  margin-top:36px;
+}
+
+.about-list li{
+  list-style:none;
+  display:flex; gap:18px;
+  padding:20px 0;
+  border-top:1px solid var(--line);
+  font-size:.9rem;
+  color:var(--ink-soft);
+}
+.about-list li:last-child{ border-bottom:1px solid var(--line); }
+.about-list .ai-title{ color:var(--ink); flex:none; width:170px; font-weight:400; }
+
+/* =========================================================
+   PROGRAM — grid foto rata, tanpa kartu/shadow
+========================================================= */
+
+.prog-head{
+  display:flex; justify-content:space-between; align-items:flex-end;
+  gap:24px; margin-bottom:44px; flex-wrap:wrap;
+}
+.prog-head h2{ font-size:1.7rem; }
+.prog-head p{ color:var(--ink-soft); font-size:.9rem; max-width:340px; }
+
+.prog-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--line);
+}
+
+.prog-item{
+  background:var(--paper);
+  padding:38px 30px;
+  text-decoration:none;
+  color:var(--ink);
+  display:flex; flex-direction:column; gap:14px;
+  min-height:210px;
+  transition:background .25s;
+}
+.prog-item:hover{ background:var(--white); }
+
+.prog-item .pi-no{
+  font-size:.72rem; color:var(--ink-soft); letter-spacing:.08em;
+}
+.prog-item h3{ font-size:1.05rem; font-weight:500; }
+.prog-item p{ font-size:.85rem; color:var(--ink-soft); line-height:1.7; }
+.prog-item .pi-go{
+  margin-top:auto; font-size:.8rem; color:var(--ink-soft);
+  border-top:1px solid var(--line); padding-top:12px;
+}
+
+/* =========================================================
+   GALERI / SLIDESHOW — tenang, tanpa gradasi tebal
+========================================================= */
+
+.gallery-head{
+  display:flex; justify-content:space-between; align-items:flex-end;
+  gap:24px; margin-bottom:36px; flex-wrap:wrap;
+}
+.gallery-head h2{ font-size:1.7rem; }
+.gallery-head p{ color:var(--ink-soft); font-size:.9rem; max-width:340px; }
+
+.slideshow{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/7.2;
+  overflow:hidden;
+  background:var(--paper-deep);
+}
+
+.slide{ position:absolute; inset:0; opacity:0; transition:opacity 1.2s ease; }
+.slide.active{ opacity:1; }
+.slide img{ width:100%; height:100%; object-fit:cover; }
+
+.slide-info{
+  display:flex; justify-content:space-between; align-items:center;
+  margin-top:18px; flex-wrap:wrap; gap:14px;
+}
+
+.slide-caption-text{ font-size:.88rem; color:var(--ink-soft); }
+.slide-caption-text .sc-jp{ color:var(--ink); margin-right:10px; }
+
+.slide-controls{ display:flex; align-items:center; gap:18px; }
+
+.slide-dashes{ display:flex; gap:6px; }
+.slide-dash{
+  width:22px; height:2px; background:var(--line); border:none; cursor:pointer; padding:0;
+  transition:.2s;
+}
+.slide-dash.active{ background:var(--ink); }
+
+.slide-nav{
+  background:none; border:none; cursor:pointer;
+  font-size:.95rem; color:var(--ink-soft); letter-spacing:.05em;
+}
+.slide-nav:hover{ color:var(--ink); }
+
+@media(prefers-reduced-motion:reduce){ .slide{ transition:none; } }
+
+/* =========================================================
+   CTA STRIP
+========================================================= */
+
+.cta{
+  padding:110px 0;
+  text-align:center;
+  border-top:1px solid var(--line);
+}
+.cta h2{ font-size:1.8rem; margin-bottom:16px; }
+.cta p{ color:var(--ink-soft); font-size:.95rem; max-width:440px; margin:0 auto 32px; }
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+  border-top:1px solid var(--line);
+  padding:44px 0;
+}
+.footer-inner{
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:14px;
+  font-size:.78rem; color:var(--ink-soft);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media(max-width:900px){
-  .contact-grid{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}
+  .about{ grid-template-columns:1fr; gap:36px; }
+  .prog-grid{ grid-template-columns:1fr 1fr; }
 }
+
 @media(max-width:600px){
-  .nav-links{display:none}
-  .nav-hamburger{display:flex}
-  section{padding:60px 0}
+  .wrap{ padding-left:20px; padding-right:20px; }
+  .navbar-inner{ padding:16px 20px; }
+  .hero{ height:64vh; min-height:420px; }
+  .hero-copy{ padding:32px 20px; }
+  .section{ padding:64px 0; }
+  .prog-grid{ grid-template-columns:1fr; }
+  .about-list .ai-title{ width:120px; }
+  .slideshow{ aspect-ratio:4/5; }
 }
+
 </style>
 </head>
-<body>
+<body translate="no">
 
-<!-- ===== NAVBAR ===== -->
-<nav class="navbar">
-  <div class="nav-inner">
-    <a href="#home" class="nav-logo">
-      <div class="nav-logo-icon">P</div>
-      <div class="nav-logo-text">
-        <strong>Prime Tekipaki Raya</strong>
-        <span>日本就労支援機関</span>
-      </div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#program">Program</a></li>
-      <li><a href="#bidang">Bidang Kerja</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact">Kontak</a></li>
-      <li><a href="pendaftaran.html" class="nav-cta">Daftar Sekarang</a></li>
-      <li><a href="jfta2.html" class="nav-cta">JFT A2</a></li>
-    </ul>
-    <div class="nav-hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav id="navbar">
+
+  <div class="navbar-inner">
+
+    <!-- HOME -->
+    <div class="nav-left">
+      <a href="index.html" class="home-btn">
+        <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+        </svg>
+        HOME
+      </a>
     </div>
+
+    <!-- SEMUA MENU -->
+    <div class="nav-right">
+
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown('learningDropdown')">TEKIPAKI LEARNING ▼</button>
+        <div class="dropdown-menu" id="learningDropdown">
+          <a href="guru.html">GURU</a>
+          <a href="elearning.html">SISWA</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown('materiDropdown')">MATERI ▼</button>
+        <div class="dropdown-menu" id="materiDropdown">
+          <a href="daftarkosakata.html">Kosakata JFT</a>
+          <a href="materitatabahasa.html">Tata Bahasa</a>
+          <a href="materikanji.html">Materi Kanji JLPT</a>
+          <a href="kanjidasar.html">Kanji Flash Card</a>
+          <a href="materikosakata.html">Materi Kosakata JLPT</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown('quizDropdown')">QUIZ JFT ▼</button>
+        <div class="dropdown-menu" id="quizDropdown">
+          <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+          <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+          <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+          <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+          <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown('kanjiQuizDropdown')">QUIZ KANJI ▼</button>
+        <div class="dropdown-menu" id="kanjiQuizDropdown">
+          <a href="quizkanji1.html">QUIZ KANJI 1</a>
+          <a href="quizkanji2.html">QUIZ KANJI 2</a>
+          <a href="quizkanji3.html">QUIZ KANJI 3</a>
+          <a href="quizkanji4.html">QUIZ KANJI 4</a>
+          <a href="quizkanji5.html">QUIZ KANJI 5</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BURGER -->
+    <button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+
   </div>
+
+  <!-- MOBILE MENU PANEL -->
+  <div class="mobile-menu" id="mobileMenu">
+
+    <a class="mobile-link" href="index.html">HOME</a>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">TEKIPAKI LEARNING</button>
+    <div class="mobile-acc-panel">
+      <a href="guru.html">GURU</a>
+      <a href="elearning.html">SISWA</a>
+    </div>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+    <div class="mobile-acc-panel">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="materikanji.html">Materi Kanji JLPT</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+      <a href="materikosakata.html">Materi Kosakata JLPT</a>
+    </div>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
+    <div class="mobile-acc-panel">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
+    <div class="mobile-acc-panel">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+
+  </div>
+
 </nav>
 
-<!-- ===== CONTAINER (KOSONG, ISI DI SINI) ===== -->
-<div class="container" style="padding-top:100px">
+<!-- =========================================================
+     HERO
+========================================================= -->
 
-  <!-- konten halaman diisi di sini -->
+<section class="hero">
+  <!-- GANTI src dengan foto asli suasana belajar Tekipaki Learning -->
+  <img src="https://picsum.photos/seed/tekipaki-hero/1600/1000" alt="Suasana belajar bahasa Jepang">
 
-</div>
-
-<!-- ===== KONTAK ===== -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-grid">
-      <div class="contact-info">
-        <div class="section-label">Hubungi Kami</div>
-        <h2 class="section-title">Siap <em>Membantu Kamu</em></h2>
-        <p>Ada pertanyaan seputar program, persyaratan, atau proses pendaftaran? Tim kami siap memberikan informasi lengkap dan konsultasi gratis.</p>
-        <div class="contact-list">
-          <div class="contact-item">
-            <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
-            <div class="contact-item-text"><strong>Telepon / WhatsApp</strong><span>+62 xxx xxxx xxxx</span></div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
-            <div class="contact-item-text"><strong>Email</strong><span>info@primetekipakiraya.com</span></div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
-            <div class="contact-item-text"><strong>Alamat Kantor</strong><span>Jl. Tekipaki No. 1, Kota, Provinsi</span></div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon"><i class="fas fa-clock"></i></div>
-            <div class="contact-item-text"><strong>Jam Operasional</strong><span>Senin – Jumat, 08.00 – 17.00 WIB</span></div>
-          </div>
-        </div>
-        <div class="social-links">
-          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
-          <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
-          <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-      <div>
-        <div style="background:linear-gradient(135deg,var(--navy),var(--navy-mid));border-radius:14px;padding:36px;color:#fff">
-          <h3 style="font-family:'Noto Serif JP',serif;font-size:20px;margin-bottom:8px">お気軽にお問い合わせください</h3>
-          <p style="opacity:.7;font-size:14px;margin-bottom:28px">Konsultasi gratis, tanpa biaya apapun</p>
-          <div style="display:flex;flex-direction:column;gap:14px">
-            <input type="text" placeholder="Nama Lengkap" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none">
-            <input type="text" placeholder="Nomor WhatsApp" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none">
-            <select id="contactProgram" style="background:#1a3a5c;border:1px solid rgba(255,255,255,.35);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none;appearance:none;cursor:pointer">
-              <option value="" style="background:#1a3a5c;color:#fff">Pilih Program yang Diminati</option>
-              <option value="tokutei" style="background:#1a3a5c;color:#fff">Tokutei Ginou (特定技能)</option>
-              <option value="jisshusei" style="background:#1a3a5c;color:#fff">Jisshusei (技能実習生)</option>
-            </select>
-            <textarea placeholder="Pertanyaan atau pesan Anda..." rows="4" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none;resize:vertical"></textarea>
-            <button class="btn-primary" style="justify-content:center"><i class="fas fa-paper-plane"></i> Kirim Pesan</button>
-          </div>
-        </div>
+  <div class="hero-copy">
+    <div class="hero-copy-inner">
+      <div class="hero-eyebrow">Tekipaki Learning</div>
+      <h1>Belajar bahasa Jepang dengan tenang, langkah demi langkah, sampai siap ujian.</h1>
+      <div class="hero-links">
+        <a href="#program" class="text-link">Lihat Materi</a>
+        <a href="ujianjfta2test1.html" class="text-link">Simulasi Ujian JFT A2</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== CTA BANNER ===== -->
-<div class="cta-banner">
-  <div class="container">
-    <h2>Siap Mulai Perjalananmu <em>ke Jepang?</em></h2>
-    <p>Bergabunglah dengan ratusan alumni kami yang kini berkarier sukses di Jepang. Daftarkan diri sekarang dan wujudkan impianmu bersama Prime Tekipaki Raya.</p>
-    <div class="cta-btns">
-      <a href="pendaftaran.html" class="btn-primary"><i class="fas fa-pen-to-square"></i> Isi Formulir Pendaftaran</a>
-      <a href="#contact" class="btn-outline"><i class="fas fa-phone"></i> Konsultasi Gratis</a>
+<!-- =========================================================
+     TENTANG
+========================================================= -->
+
+<div class="section" id="tentang">
+  <div class="wrap about">
+
+    <div>
+      <div class="section-label">Tentang Kami</div>
+      <h2>Bekal bahasa untuk hidup dan bekerja di Jepang.</h2>
     </div>
+
+    <div class="about-body">
+      <p>
+        Tekipaki Learning disusun untuk calon pekerja dan peserta magang Indonesia
+        yang mempersiapkan diri berangkat ke Jepang. Materinya bertahap — dari
+        kosakata dan tata bahasa dasar, sampai simulasi ujian dengan format yang
+        mendekati ujian JFT A2 sesungguhnya.
+      </p>
+      <p>
+        Selain persiapan ujian, tersedia juga materi keseharian: cara berkomunikasi
+        di dunia kerja, aturan memilah sampah, hingga dokumen seperti Zairyu Card
+        dan layanan Shiyakusho — supaya belajar bahasa berjalan bersama kesiapan
+        hidup di sana.
+      </p>
+
+      <ul class="about-list">
+        <li><span class="ai-title">Belajar bertahap</span><span>Kosakata, tata bahasa, dan kanji disusun dari dasar sampai siap ujian.</span></li>
+        <li><span class="ai-title">Simulasi nyata</span><span>Format dan waktu pengerjaan dibuat mendekati ujian JFT A2 asli.</span></li>
+        <li><span class="ai-title">Bekal di Jepang</span><span>Komunikasi kerja, aturan sampah, hingga dokumen kependudukan.</span></li>
+      </ul>
+    </div>
+
   </div>
 </div>
 
-<!-- ===== FOOTER ===== -->
+<!-- =========================================================
+     PROGRAM
+========================================================= -->
+
+<div class="section border-top" id="program">
+  <div class="wrap">
+
+    <div class="prog-head">
+      <h2>Mulai dari sini</h2>
+      <p>Enam pintu masuk yang paling sering dipakai untuk memulai belajar.</p>
+    </div>
+
+    <div class="prog-grid">
+
+      <a href="daftarkosakata.html" class="prog-item">
+        <span class="pi-no">01</span>
+        <h3>Kosakata JFT</h3>
+        <p>Kosakata inti yang paling sering muncul di ujian, dikelompokkan per tema.</p>
+        <span class="pi-go">Buka daftar</span>
+      </a>
+
+      <a href="materitatabahasa.html" class="prog-item">
+        <span class="pi-no">02</span>
+        <h3>Tata Bahasa</h3>
+        <p>Pola kalimat dan partikel dasar level A2 dengan contoh percakapan sehari-hari.</p>
+        <span class="pi-go">Pelajari</span>
+      </a>
+
+      <a href="kanjidasar.html" class="prog-item">
+        <span class="pi-no">03</span>
+        <h3>Kanji Flash Card</h3>
+        <p>Kartu hafalan kanji dasar lengkap dengan cara baca dan artinya.</p>
+        <span class="pi-go">Mulai hafalan</span>
+      </a>
+
+      <a href="ujianjfta2test1.html" class="prog-item">
+        <span class="pi-no">04</span>
+        <h3>Simulasi Ujian JFT A2</h3>
+        <p>20 soal pilihan ganda, timer 20 menit, dan pembahasan lengkap di akhir.</p>
+        <span class="pi-go">Mulai test</span>
+      </a>
+
+      <a href="kaiwa.html" class="prog-item">
+        <span class="pi-no">05</span>
+        <h3>Latihan Percakapan</h3>
+        <p>Latihan percakapan bahasa Jepang untuk situasi sehari-hari dan dunia kerja.</p>
+        <span class="pi-go">Mulai percakapan</span>
+      </a>
+
+      <a href="materikomunikasi.html" class="prog-item">
+        <span class="pi-no">06</span>
+        <h3>Komunikasi di Dunia Kerja</h3>
+        <p>Kosakata dan ungkapan yang sering digunakan di lingkungan kerja Jepang.</p>
+        <span class="pi-go">Buka daftar</span>
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- =========================================================
+     GALERI / SLIDESHOW
+========================================================= -->
+
+<div class="section border-top" id="galeri">
+  <div class="wrap">
+
+    <div class="gallery-head">
+      <h2>Galeri Kegiatan</h2>
+      <p>Beberapa momen kelas dan sesi belajar Tekipaki Learning.</p>
+    </div>
+
+    <div class="slideshow" id="slideshow">
+      <!-- GANTI src setiap slide dengan foto asli kegiatan Tekipaki Learning -->
+      <div class="slide active" data-jp="教室にて" data-title="Sesi Kelas Tatap Muka">
+        <img src="https://picsum.photos/seed/tekipaki-kelas/1200/700" alt="Sesi kelas belajar bahasa Jepang">
+      </div>
+      <div class="slide" data-jp="会話練習" data-title="Latihan Percakapan Kaiwa">
+        <img src="https://picsum.photos/seed/tekipaki-kaiwa/1200/700" alt="Latihan percakapan bahasa Jepang">
+      </div>
+      <div class="slide" data-jp="模擬試験" data-title="Simulasi Ujian JFT A2">
+        <img src="https://picsum.photos/seed/tekipaki-ujian/1200/700" alt="Simulasi ujian JFT A2">
+      </div>
+      <div class="slide" data-jp="漢字練習" data-title="Latihan Kanji Dasar">
+        <img src="https://picsum.photos/seed/tekipaki-kanji/1200/700" alt="Latihan kanji dasar">
+      </div>
+    </div>
+
+    <div class="slide-info">
+      <div class="slide-caption-text" id="slideCaption">
+        <span class="sc-jp">教室にて</span><span>Sesi Kelas Tatap Muka</span>
+      </div>
+      <div class="slide-controls">
+        <button class="slide-nav" onclick="changeSlide(-1)" aria-label="Sebelumnya">Sebelumnya</button>
+        <div class="slide-dashes" id="slideDashes"></div>
+        <button class="slide-nav" onclick="changeSlide(1)" aria-label="Berikutnya">Berikutnya</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<div class="cta">
+  <div class="wrap">
+    <h2>Siap mulai belajar hari ini?</h2>
+    <p>Coba simulasi ujian pertama untuk melihat sejauh mana kesiapanmu.</p>
+    <a href="ujianjfta2test1.html" class="text-link dark">Mulai Simulasi Ujian</a>
+  </div>
+</div>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <strong>Prime Tekipaki Raya</strong>
-        <p>Lembaga pengiriman tenaga kerja Indonesia ke Jepang yang terpercaya dan berizin resmi. Kami berkomitmen mewujudkan impian karier Anda di negeri sakura.</p>
-        <span class="jp">日本就労支援機関</span>
-      </div>
-      <div class="footer-col">
-        <h4>Navigasi</h4>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#program">Program</a>
-        <a href="#bidang">Bidang Kerja</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Kontak</a>
-        <a href="pendaftaran.html" style="color:var(--gold);font-weight:600">Formulir Pendaftaran</a>
-      </div>
-      <div class="footer-col">
-        <h4>Kontak</h4>
-        <a href="#">+62 xxx xxxx xxxx</a>
-        <a href="#">info@primetekipakiraya.com</a>
-        <a href="#">Jl. Tekipaki No. 1</a>
-        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
-          <a href="#" class="social-btn" style="width:32px;height:32px;font-size:13px;display:flex;align-items:center;justify-content:center"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-btn" style="width:32px;height:32px;font-size:13px;display:flex;align-items:center;justify-content:center"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-btn" style="width:32px;height:32px;font-size:13px;display:flex;align-items:center;justify-content:center"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 Prime Tekipaki Raya. All rights reserved.</p>
-    </div>
+  <div class="wrap footer-inner">
+    <span>© Tekipaki Japanese Learning</span>
+    <span>Belajar bahasa Jepang untuk kerja &amp; magang</span>
   </div>
 </footer>
 
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
 <script>
-function toggleMenu(){
-  const links=document.querySelector('.nav-links');
-  const isOpen=links.style.display==='flex';
-  links.style.display=isOpen?'none':'flex';
-  if(!isOpen){
-    links.style.flexDirection='column';
-    links.style.position='absolute';
-    links.style.top='64px';links.style.left='0';links.style.right='0';
-    links.style.background='rgba(10,26,48,.97)';links.style.padding='16px 28px';
+
+function toggleDropdown(id){
+  document.querySelectorAll(".dropdown-menu").forEach(menu => {
+    if(menu.id !== id){
+      menu.classList.remove("show");
+      menu.classList.remove("align-right");
+      const parent = menu.closest(".dropdown");
+      if(parent){ parent.classList.remove("open"); }
+    }
+  });
+
+  const menu = document.getElementById(id);
+  if(!menu){ return; }
+
+  const parent = menu.closest(".dropdown");
+  const isOpen = menu.classList.contains("show");
+
+  if(isOpen){
+    menu.classList.remove("show");
+    menu.classList.remove("align-right");
+    if(parent){ parent.classList.remove("open"); }
+    return;
   }
+
+  menu.classList.add("show");
+  if(parent){ parent.classList.add("open"); }
+
+  menu.classList.remove("align-right");
+  const rect = menu.getBoundingClientRect();
+  if(rect.right > window.innerWidth - 10){ menu.classList.add("align-right"); }
+  if(rect.left < 10){ menu.classList.remove("align-right"); }
 }
+
+document.addEventListener("click",function(e){
+  if(!e.target.closest(".dropdown")){
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+      menu.classList.remove("show");
+      menu.classList.remove("align-right");
+    });
+    document.querySelectorAll(".dropdown").forEach(dropdown => dropdown.classList.remove("open"));
+  }
+});
+
+function toggleMobileMenu(){
+  const menu = document.getElementById("mobileMenu");
+  if(!menu) return;
+  menu.classList.toggle("show");
+}
+
+function toggleMobileAccordion(btn){
+  const panel = btn.nextElementSibling;
+  const isOpen = btn.classList.contains("open");
+
+  document.querySelectorAll(".mobile-acc-btn").forEach(b => {
+    if(b !== btn){
+      b.classList.remove("open");
+      if(b.nextElementSibling) b.nextElementSibling.classList.remove("show");
+    }
+  });
+
+  btn.classList.toggle("open", !isOpen);
+  if(panel) panel.classList.toggle("show", !isOpen);
+}
+
+window.addEventListener("resize",function(){
+  document.querySelectorAll(".dropdown-menu").forEach(menu => {
+    menu.classList.remove("show");
+    menu.classList.remove("align-right");
+  });
+  document.querySelectorAll(".dropdown").forEach(dropdown => dropdown.classList.remove("open"));
+
+  if(window.innerWidth > 900){
+    const mobileMenu = document.getElementById("mobileMenu");
+    if(mobileMenu) mobileMenu.classList.remove("show");
+    document.querySelectorAll(".mobile-acc-btn").forEach(b => b.classList.remove("open"));
+    document.querySelectorAll(".mobile-acc-panel").forEach(p => p.classList.remove("show"));
+  }
+});
+
+/* =========================================================
+   SLIDESHOW OTOMATIS
+========================================================= */
+
+(function(){
+
+  const slides = document.querySelectorAll("#slideshow .slide");
+  const dashWrap = document.getElementById("slideDashes");
+  const captionEl = document.getElementById("slideCaption");
+  let current = 0;
+  let timer = null;
+  const AUTOPLAY_MS = 4500;
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  slides.forEach((_, i) => {
+    const dash = document.createElement("button");
+    dash.className = "slide-dash" + (i === 0 ? " active" : "");
+    dash.setAttribute("aria-label", "Ke slide " + (i + 1));
+    dash.addEventListener("click", () => goToSlide(i));
+    dashWrap.appendChild(dash);
+  });
+
+  const dashes = document.querySelectorAll(".slide-dash");
+
+  function render(){
+    slides.forEach((s, i) => s.classList.toggle("active", i === current));
+    dashes.forEach((d, i) => d.classList.toggle("active", i === current));
+    const active = slides[current];
+    captionEl.innerHTML = '<span class="sc-jp">' + active.dataset.jp + '</span><span>' + active.dataset.title + '</span>';
+  }
+
+  function goToSlide(i){
+    current = (i + slides.length) % slides.length;
+    render();
+    restartTimer();
+  }
+
+  window.changeSlide = function(dir){ goToSlide(current + dir); };
+
+  function startTimer(){
+    if(prefersReduced) return;
+    timer = setInterval(() => {
+      current = (current + 1) % slides.length;
+      render();
+    }, AUTOPLAY_MS);
+  }
+
+  function stopTimer(){ if(timer){ clearInterval(timer); timer = null; } }
+  function restartTimer(){ stopTimer(); startTimer(); }
+
+  const wrap = document.getElementById("slideshow");
+  wrap.addEventListener("mouseenter", stopTimer);
+  wrap.addEventListener("mouseleave", startTimer);
+
+  render();
+  startTimer();
+
+})();
+
 </script>
+
 </body>
 </html>
