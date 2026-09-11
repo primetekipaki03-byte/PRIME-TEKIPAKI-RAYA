@@ -352,6 +352,14 @@ article li strong{ color:var(--ink); }
   width:36px;
 }
 
+.info-table .furigana{
+  display:block;
+  font-size:.72rem;
+  color:var(--ink-soft);
+  font-family:"JetBrains Mono",monospace;
+  margin-top:2px;
+}
+
 
 /* =========================================================
    FOOTER
@@ -501,50 +509,81 @@ footer{
       <span class="jp">カードの見方</span>
     </div>
 
-    <p>Berikut informasi utama yang tertulis di Zairyu Card sisi depan:</p>
+    <p>Berikut kosakata dan informasi utama yang tertulis di 在留カード (Zairyū Card):</p>
 
     <table class="info-table">
       <tr>
         <th>No</th>
-        <th>Bagian</th>
-        <th>Keterangan</th>
+        <th>Kosakata (Kanji &amp; Furigana)</th>
+        <th>Arti</th>
       </tr>
       <tr>
         <td class="no">1</td>
-        <td>氏名 (Shimei)</td>
-        <td>Nama lengkap pemegang kartu, sesuai paspor</td>
+        <td>氏名<span class="furigana">しめい</span></td>
+        <td>Nama</td>
       </tr>
       <tr>
         <td class="no">2</td>
-        <td>生年月日 (Seinengappi)</td>
+        <td>生年月日<span class="furigana">せいねんがっぴ</span></td>
         <td>Tanggal lahir</td>
       </tr>
       <tr>
         <td class="no">3</td>
-        <td>性別 (Seibetsu)</td>
+        <td>性別<span class="furigana">せいべつ</span></td>
         <td>Jenis kelamin</td>
       </tr>
       <tr>
         <td class="no">4</td>
-        <td>国籍・地域 (Kokuseki/Chiiki)</td>
-        <td>Kewarganegaraan / negara asal</td>
+        <td>国籍・地域<span class="furigana">こくせき・ちいき</span></td>
+        <td>Kewarganegaraan / negara-wilayah asal</td>
       </tr>
       <tr>
         <td class="no">5</td>
-        <td>在留資格 (Zairyu Shikaku)</td>
-        <td>Status/jenis visa, misalnya Tokutei Ginou, Ginou Jisshu, Ryugaku</td>
+        <td>住居地<span class="furigana">じゅうきょち</span></td>
+        <td>Alamat tempat tinggal</td>
       </tr>
       <tr>
         <td class="no">6</td>
-        <td>在留期間 (Zairyu Kikan)</td>
-        <td>Batas akhir masa tinggal — wajib diperpanjang sebelum tanggal ini</td>
+        <td>在留資格<span class="furigana">ざいりゅうしかく</span></td>
+        <td>Status/jenis izin tinggal (misalnya Tokutei Ginou, Ginou Jisshu, Ryugaku)</td>
       </tr>
       <tr>
         <td class="no">7</td>
-        <td>在留カード番号 (Bangou)</td>
-        <td>Nomor unik kartu, format huruf-angka</td>
+        <td>在留期間<span class="furigana">ざいりゅうきかん</span></td>
+        <td>Masa berlaku izin tinggal</td>
+      </tr>
+      <tr>
+        <td class="no">8</td>
+        <td>在留期間の満了日<span class="furigana">ざいりゅうきかんのまんりょうび</span></td>
+        <td>Tanggal berakhir masa tinggal — wajib diperpanjang sebelum tanggal ini</td>
+      </tr>
+      <tr>
+        <td class="no">9</td>
+        <td>許可の種類<span class="furigana">きょかのしゅるい</span></td>
+        <td>Jenis izin</td>
+      </tr>
+      <tr>
+        <td class="no">10</td>
+        <td>在留カード番号<span class="furigana">ざいりゅうカードばんごう</span></td>
+        <td>Nomor kartu izin tinggal, format huruf-angka</td>
+      </tr>
+      <tr>
+        <td class="no">11</td>
+        <td>就労制限の有無<span class="furigana">しゅうろうせいげんのうむ</span></td>
+        <td>Ada/tidaknya batasan kerja</td>
+      </tr>
+      <tr>
+        <td class="no">12</td>
+        <td>資格外活動許可<span class="furigana">しかくがいかつどうきょか</span></td>
+        <td>Izin melakukan aktivitas di luar status izin tinggal</td>
       </tr>
     </table>
+
+    <div class="callout">
+      <strong>Catatan:</strong> Sebagian keterangan di atas (seperti 住居地, 就労制限の有無,
+      dan 資格外活動許可) biasanya tertulis di sisi <strong>belakang</strong> kartu,
+      sedangkan 氏名, 生年月日, 性別, 国籍・地域, 在留資格, dan 在留期間 ada di sisi <strong>depan</strong>.
+    </div>
 
 
     <!-- KENAPA PENTING -->
