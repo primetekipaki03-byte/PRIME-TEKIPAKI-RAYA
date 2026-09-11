@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcard Bentuk Menyuruh & Perintah — Tekipaki</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --gold:#facc15;
+    --gold-soft:#fff3c4;
+    --paper:#fffdf7;
+    --text:#001f3f;
+    --muted:#5b6b7d;
+    --green:#16a34a;
+    --red:#dc2626;
+    --blue:#2563eb;
+    --blue-soft:#e8f0ff;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:"Poppins","Segoe UI",Arial,sans-serif; }
+body{ background:#f6f5f1; color:var(--text); padding-bottom:50px; }
+.jp{ font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif; }
+
+/* NAVBAR */
+#navbar{
+    position:sticky; top:0; z-index:9999; width:100%;
+    background:#001530;
+    border-bottom:2px solid rgba(224,181,42,.3);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+.navbar-inner{
+    width:100%; min-height:64px; padding:8px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+}
+.nav-left{ display:flex; align-items:center; flex-shrink:0; }
+.nav-right{ display:flex; align-items:center; justify-content:flex-end; gap:8px; flex-wrap:wrap; }
+
+.home-btn{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background:#e0b52a; color:#001530; text-decoration:none;
+    padding:8px 14px; border-radius:10px; font-weight:bold; white-space:nowrap;
+}
+.home-btn:hover{ opacity:.85; }
+.home-icon{ width:22px; height:22px; flex:none; }
+
+.dropdown{ position:relative; flex-shrink:0; z-index:1; }
+.dropdown.open{ z-index:20; }
+.dropdown-btn{
+    display:flex; align-items:center; justify-content:center;
+    background:transparent; border:2px solid #e0b52a; color:#e0b52a;
+    padding:8px 14px; border-radius:8px; font-family:inherit; font-weight:bold;
+    cursor:pointer; white-space:nowrap;
+}
+.dropdown-btn:hover, .dropdown.open .dropdown-btn{ background:#e0b52a; color:#001530; }
+
+.dropdown-menu{
+    display:none; position:absolute; top:calc(100% + 7px); left:0;
+    width:max-content; min-width:220px; max-width:calc(100vw - 20px);
+    background:#1f4577; border:1px solid rgba(224,181,42,.35);
+    border-radius:10px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+.dropdown-menu.show{ display:block; }
+.dropdown-menu.align-right{ left:auto; right:0; }
+.dropdown-menu a{ display:block; padding:12px 15px; color:#ffd700; text-decoration:none; white-space:nowrap; }
+.dropdown-menu a:hover{ background:#e0b52a; color:#001530; }
+
+.burger-btn{
+    display:none; align-items:center; justify-content:center; flex-shrink:0;
+    background:transparent; border:2px solid #e0b52a; color:#e0b52a;
+    padding:9px 12px; border-radius:8px; cursor:pointer;
+}
+.burger-btn svg{ width:20px; height:20px; display:block; }
+
+.mobile-menu{ display:none; flex-direction:column; background:#001530; border-top:1px solid rgba(224,181,42,.25); }
+.mobile-menu.show{ display:flex; }
+.mobile-link{
+    display:block; padding:15px 18px; color:#ffd700; text-decoration:none;
+    font-weight:700; font-size:14px; border-bottom:1px solid rgba(255,255,255,.08);
+}
+.mobile-link:hover{ background:rgba(224,181,42,.12); }
+.mobile-acc-btn{
+    width:100%; text-align:left; background:transparent; border:none;
+    color:#e0b52a; font-weight:700; font-size:14px; padding:15px 18px; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.08); font-family:inherit;
+}
+.mobile-acc-btn::after{ content:'+'; font-size:18px; line-height:1; }
+.mobile-acc-btn.open::after{ content:'\2212'; }
+.mobile-acc-panel{ display:none; flex-direction:column; background:#0a2242; }
+.mobile-acc-panel.show{ display:flex; }
+.mobile-acc-panel a{
+    padding:13px 32px; color:#ffd700; text-decoration:none; font-size:13px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+.mobile-acc-panel a:hover{ background:rgba(224,181,42,.15); }
+
+@media(min-width:761px){
+    .mobile-menu{ display:none !important; }
+}
+@media(max-width:1000px){
+    .navbar-inner{ padding:10px 12px; gap:10px; }
+    .dropdown-btn{ font-size:.72rem; padding:6px 9px; }
+    .home-btn{ padding:8px 10px; font-size:.72rem; }
+}
+@media(max-width:760px){
+    .navbar-inner{ flex-wrap:nowrap; padding:10px 14px; gap:10px; }
+    .nav-left{ flex:1; min-width:0; }
+    .home-btn{ width:auto; }
+    .nav-right{ display:none; }
+    .burger-btn{ display:flex; }
+}
+
+/* HEADER */
+header{ text-align:center; padding:26px 20px 8px; }
+.eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--navy); color:var(--gold);
+    font-size:12.5px; font-weight:600; letter-spacing:.1em;
+    padding:7px 16px; border-radius:999px; margin-bottom:16px;
+}
+header h1{ font-size:30px; color:var(--navy); margin-bottom:8px; letter-spacing:-.01em; }
+header p{ font-size:14px; color:var(--muted); max-width:660px; margin:0 auto; line-height:1.6; }
+
+.guru-note{
+    max-width:1320px; margin:18px auto 0; padding:0 20px;
+}
+.guru-note-inner{
+    background:var(--blue-soft); border:1.5px solid #a9c6ff; border-radius:14px;
+    padding:14px 18px; font-size:13px; color:#1e3a6e; line-height:1.7;
+}
+.guru-note-inner b{ color:var(--navy); }
+
+.grammar-tabs{
+    max-width:1320px; margin:22px auto 0; padding:0 20px 10px;
+    display:flex; gap:10px; justify-content:center;
+    overflow-x:auto; overflow-y:hidden; flex-wrap:nowrap;
+    scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+}
+.grammar-tabs::-webkit-scrollbar{ height:6px; }
+.grammar-tabs::-webkit-scrollbar-thumb{ background:#d8d4c8; border-radius:999px; }
+.grammar-tabs::-webkit-scrollbar-track{ background:transparent; }
+.gtab{
+    border:2px solid var(--navy); background:white; color:var(--navy);
+    padding:10px 22px; border-radius:999px; font-weight:700; font-size:16px;
+    cursor:pointer; font-family:"Noto Sans JP",sans-serif;
+    flex-shrink:0; scroll-snap-align:start; white-space:nowrap;
+}
+.gtab:hover{ background:var(--gold-soft); }
+.gtab.active{ background:var(--navy); color:var(--gold); }
+
+.grammar-section{ display:none; max-width:1320px; margin:0 auto; padding:0 20px; }
+.grammar-section.active{ display:block; }
+
+.gram-intro{
+    background:var(--gold-soft); border:1.5px solid var(--gold); border-radius:14px;
+    padding:14px 18px; margin-top:22px; font-size:13.5px; color:#5a4a00; line-height:1.6;
+}
+
+.control-row{ display:flex; gap:10px; margin-top:18px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+.control-left{ display:flex; gap:8px; flex-wrap:wrap; }
+.ctrl-btn{
+    border:2px solid var(--navy); background:white; color:var(--navy);
+    padding:9px 16px; border-radius:999px; font-weight:700; font-size:12.5px; cursor:pointer;
+}
+.ctrl-btn:hover{ background:var(--navy); color:var(--gold); }
+.ctrl-btn.gold{ border-color:var(--gold); background:var(--navy); color:var(--gold); }
+.ctrl-btn.gold:hover{ background:var(--gold); color:var(--navy); }
+.count-badge{
+    font-size:12px; font-weight:700; color:var(--navy); background:white;
+    border:1.5px solid #e2ddcf; border-radius:999px; padding:7px 14px; white-space:nowrap;
+}
+
+/* TABLE */
+.flash-table-wrap{ margin-top:16px; overflow-x:auto; border:1.5px solid #e2ddcf; border-radius:14px; }
+.flash-table{ width:100%; border-collapse:separate; border-spacing:0; background:white; min-width:640px; }
+.flash-table th{
+    background:var(--navy); color:var(--gold); font-size:11px; text-transform:uppercase;
+    letter-spacing:.04em; padding:11px 12px; text-align:left; position:sticky; top:0;
+}
+.flash-table th .th-time{
+    display:block; font-size:9.5px; font-weight:600; text-transform:none; color:var(--gold-soft); opacity:.85; margin-top:2px;
+}
+.flash-table td{ padding:10px 10px; font-size:14px; border-top:1px solid #eee; vertical-align:middle; }
+.flash-table tr:hover td{ background:#fafaf6; }
+
+.verb-dict{ font-weight:900; color:var(--navy); font-size:17px; }
+.verb-reading{ font-size:11.5px; color:var(--muted); margin-top:2px; }
+.verb-arti{ font-size:12px; color:var(--muted); font-style:italic; margin-top:2px; }
+
+.flash-cell{
+    width:100%; min-height:64px; border-radius:999px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:6px 10px; transition:background-color .1s; border:2px solid var(--navy); background:white;
+    box-sizing:border-box;
+}
+.flash-cell:hover{ background:var(--gold-soft); }
+.flash-cell .hidden-label{ font-size:12.5px; font-weight:700; color:var(--navy); letter-spacing:.02em; white-space:nowrap; }
+.flash-cell.revealed{
+    min-height:64px; border-radius:16px; border:2px solid var(--navy); background:var(--navy); cursor:pointer; flex-direction:column;
+    padding:6px 8px;
+}
+.flash-cell.revealed:hover{ background:var(--navy2); }
+.flash-cell.revealed .form-jp{ font-weight:900; color:var(--gold); font-size:15px; }
+.flash-cell.revealed .form-romaji{ font-size:10.5px; color:var(--gold-soft); opacity:.85; margin-top:3px; }
+.flash-cell.revealed .form-meaning{ font-size:10.5px; color:#fff; opacity:.8; margin-top:3px; }
+
+.time-legend{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+.time-legend-item{
+    flex:1; min-width:220px; background:white; border:1.5px solid #e2ddcf; border-radius:12px;
+    padding:10px 12px; font-size:12px; color:var(--muted); line-height:1.5;
+}
+.time-legend-item .tl-form{ font-weight:900; color:var(--navy); font-size:13px; }
+.time-legend-item .tl-label{ font-weight:600; color:var(--navy2); font-size:11.5px; margin-top:2px; }
+
+footer{ text-align:center; padding:50px 20px 30px; color:#8a93a0; font-size:14px; }
+
+/* MOBILE CARD MODE */
+@media(max-width:760px){
+    .flash-table{ min-width:0; width:100%; }
+    .flash-table-wrap{ overflow-x:visible; border:none; }
+    .flash-table thead{ display:none; }
+    .flash-table, .flash-table tbody, .flash-table tr, .flash-table td{ display:block; width:100%; }
+    .flash-table tr{
+        background:white; border:1.5px solid #e2ddcf; border-radius:14px;
+        padding:14px; margin-bottom:14px;
+    }
+    .flash-table td{ border-top:none; padding:6px 0; }
+    .flash-table td[data-label]:not([data-label=""])::before{
+        content:attr(data-label); display:block; font-size:10.5px; font-weight:700;
+        color:var(--navy); text-transform:uppercase; letter-spacing:.04em; margin-bottom:5px;
+    }
+    .flash-table td:first-child{ border-bottom:1px dashed #e2ddcf; padding-bottom:10px; margin-bottom:8px; }
+    .flash-cell{ min-height:56px; }
+    .flash-cell.revealed{ min-height:56px; }
+}
+
+@media(max-width:480px){
+    header h1{ font-size:22px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+  <div class="nav-left">
+    <a href="index.html" class="home-btn">
+      <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+      </svg>
+      HOME
+    </a>
+  </div>
+
+  <div class="nav-right">
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('learningDropdown')">TEKIPAKI LEARNING ▼</button>
+      <div class="dropdown-menu" id="learningDropdown">
+        <a href="guru.html">GURU</a>
+        <a href="elearning.html">SISWA</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('materiDropdown')">MATERI ▼</button>
+      <div class="dropdown-menu" id="materiDropdown">
+        <a href="daftarkosakata.html">Kosakata JFT</a>
+        <a href="materitatabahasa.html">Tata Bahasa</a>
+        <a href="materikanji.html">Materi Kanji JLPT</a>
+        <a href="kanjidasar.html">Kanji Flash Card</a>
+        <a href="materikosakata.html">Materi Kosakata JLPT</a>
+        <a href="tabel-perubahan-kosakata.html">Tabel Perubahan Kosakata</a>
+        <a href="flashcard-perubahan-katakerja.html">Flashcard Perubahan Kata Kerja</a>
+        <a href="flashcard-shieki-meirei.html">Flashcard Menyuruh & Perintah</a>
+        <a href="materikomunikasi.html">Cara Komunikasi (Keigo)</a>
+        <a href="materikatasifat.html">Kata Sifat い・な (Keiyoushi)</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('quizDropdown')">QUIZ JFT ▼</button>
+      <div class="dropdown-menu" id="quizDropdown">
+        <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+        <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+        <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+        <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+        <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('kanjiQuizDropdown')">QUIZ KANJI ▼</button>
+      <div class="dropdown-menu" id="kanjiQuizDropdown">
+        <a href="quizkanji1.html">QUIZ KANJI 1</a>
+        <a href="quizkanji2.html">QUIZ KANJI 2</a>
+        <a href="quizkanji3.html">QUIZ KANJI 3</a>
+        <a href="quizkanji4.html">QUIZ KANJI 4</a>
+        <a href="quizkanji5.html">QUIZ KANJI 5</a>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="index.html">HOME</a>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">TEKIPAKI LEARNING</button>
+  <div class="mobile-acc-panel">
+    <a href="guru.html">GURU</a>
+    <a href="elearning.html">SISWA</a>
+  </div>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+  <div class="mobile-acc-panel">
+    <a href="daftarkosakata.html">Kosakata JFT</a>
+    <a href="materitatabahasa.html">Tata Bahasa</a>
+    <a href="materikanji.html">Materi Kanji JLPT</a>
+    <a href="kanjidasar.html">Kanji Flash Card</a>
+    <a href="materikosakata.html">Materi Kosakata JLPT</a>
+    <a href="tabel-perubahan-kosakata.html">Tabel Perubahan Kosakata</a>
+    <a href="flashcard-perubahan-katakerja.html">Flashcard Perubahan Kata Kerja</a>
+    <a href="flashcard-shieki-meirei.html">Flashcard Menyuruh & Perintah</a>
+    <a href="materikomunikasi.html">Cara Komunikasi (Keigo)</a>
+    <a href="materikatasifat.html">Kata Sifat い・な (Keiyoushi)</a>
+  </div>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
+  <div class="mobile-acc-panel">
+    <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+    <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+    <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+    <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+    <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+  </div>
+
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
+  <div class="mobile-acc-panel">
+    <a href="quizkanji1.html">QUIZ KANJI 1</a>
+    <a href="quizkanji2.html">QUIZ KANJI 2</a>
+    <a href="quizkanji3.html">QUIZ KANJI 3</a>
+    <a href="quizkanji4.html">QUIZ KANJI 4</a>
+    <a href="quizkanji5.html">QUIZ KANJI 5</a>
+  </div>
+</div>
+</nav>
+
+<header>
+<div class="eyebrow">🎴 MATERI KELAS · MODE FLASHCARD</div>
+<h1>Flashcard Bentuk Menyuruh (使役形) & Perintah (命令形)</h1>
+<p>Bentuk kamus（辞書形）selalu terlihat, tapi kolom ～使役形 (menyuruh/membiarkan) dan ～命令形 (perintah kasar) disembunyikan. Klik salah satu kotak untuk menampilkan jawabannya, klik lagi untuk menyembunyikannya kembali.</p>
+</header>
+
+<div class="guru-note">
+    <div class="guru-note-inner">
+        👩‍🏫 <b>Untuk guru:</b> tampilkan tabel ini di depan kelas, lalu tunjuk satu kata kerja dan tanyakan ke siswa, misalnya <i>"coba, bentuk perintahnya (命令形) apa?"</i>. Biarkan siswa menjawab dulu secara lisan, baru klik kotak yang sesuai untuk mengecek jawaban bersama-sama. Ingatkan siswa bahwa 命令形 terdengar kasar dan biasanya dipakai untuk situasi darurat, olahraga, atau bahasa tulisan (rambu, komik) — bukan untuk percakapan sopan sehari-hari. Gunakan tombol <b>Sembunyikan Semua</b> untuk mereset sebelum sesi berikutnya.
+    </div>
+</div>
+
+<div class="grammar-tabs" id="grammarTabs"></div>
+
+<div id="grammarSections"></div>
+
+<footer>
+© 2026 Tekipaki Japanese Learning | Flashcard Bentuk Menyuruh & Perintah
+</footer>
+
+<script>
+
+const FORM_INFO = {
+    shieki:  { label:"Bentuk Menyuruh / Membiarkan (使役形)", short:"kausatif", meaning: arti => `menyuruh / membiarkan (seseorang) ${arti}` },
+    meirei:  { label:"Bentuk Perintah, kasar (命令形)", short:"perintah kasar", meaning: arti => `${arti}! (perintah langsung / kasar)` }
+};
+
+const GROUPS = {
+    gol1: {
+        label: "Gol 1 (Godan)",
+        intro: "Kata kerja golongan 1 (五段動詞 / godan-doushi): untuk 使役形, akhiran baris う diubah ke baris あ lalu ditambah せる. Untuk 命令形, akhiran baris う diubah langsung ke baris え (tanpa tambahan apa pun).",
+        verbs: [
+            {kanji:"行く", reading:"いく", romaji:"iku", arti:"pergi", shieki:"行かせる", shiekiR:"ikaseru", meirei:"行け", meireiR:"ike"},
+            {kanji:"書く", reading:"かく", romaji:"kaku", arti:"menulis", shieki:"書かせる", shiekiR:"kakaseru", meirei:"書け", meireiR:"kake"},
+            {kanji:"泳ぐ", reading:"およぐ", romaji:"oyogu", arti:"berenang", shieki:"泳がせる", shiekiR:"oyogaseru", meirei:"泳げ", meireiR:"oyoge"},
+            {kanji:"話す", reading:"はなす", romaji:"hanasu", arti:"berbicara", shieki:"話させる", shiekiR:"hanasaseru", meirei:"話せ", meireiR:"hanase"},
+            {kanji:"待つ", reading:"まつ", romaji:"matsu", arti:"menunggu", shieki:"待たせる", shiekiR:"mataseru", meirei:"待て", meireiR:"mate"},
+            {kanji:"死ぬ", reading:"しぬ", romaji:"shinu", arti:"meninggal", shieki:"死なせる", shiekiR:"shinaseru", meirei:"死ね", meireiR:"shine"},
+            {kanji:"遊ぶ", reading:"あそぶ", romaji:"asobu", arti:"bermain", shieki:"遊ばせる", shiekiR:"asobaseru", meirei:"遊べ", meireiR:"asobe"},
+            {kanji:"飲む", reading:"のむ", romaji:"nomu", arti:"minum", shieki:"飲ませる", shiekiR:"nomaseru", meirei:"飲め", meireiR:"nome"},
+            {kanji:"作る", reading:"つくる", romaji:"tsukuru", arti:"membuat", shieki:"作らせる", shiekiR:"tsukuraseru", meirei:"作れ", meireiR:"tsukure"},
+            {kanji:"買う", reading:"かう", romaji:"kau", arti:"membeli", shieki:"買わせる", shiekiR:"kawaseru", meirei:"買え", meireiR:"kae"},
+            {kanji:"持つ", reading:"もつ", romaji:"motsu", arti:"membawa/memiliki", shieki:"持たせる", shiekiR:"motaseru", meirei:"持て", meireiR:"mote"}
+        ]
+    },
+    gol2: {
+        label: "Gol 2 (Ichidan)",
+        intro: "Kata kerja golongan 2 (一段動詞 / ichidan-doushi): buang huruf る di akhir. Untuk 使役形, tambahkan させる ke batang kata. Untuk 命令形, tambahkan ろ ke batang kata.",
+        verbs: [
+            {kanji:"忘れる", reading:"わすれる", romaji:"wasureru", arti:"lupa", shieki:"忘れさせる", shiekiR:"wasuresaseru", meirei:"忘れろ", meireiR:"wasurero"},
+            {kanji:"食べる", reading:"たべる", romaji:"taberu", arti:"makan", shieki:"食べさせる", shiekiR:"tabesaseru", meirei:"食べろ", meireiR:"tabero"},
+            {kanji:"見る", reading:"みる", romaji:"miru", arti:"melihat/menonton", shieki:"見させる", shiekiR:"misaseru", meirei:"見ろ", meireiR:"miro"},
+            {kanji:"起きる", reading:"おきる", romaji:"okiru", arti:"bangun", shieki:"起きさせる", shiekiR:"okisaseru", meirei:"起きろ", meireiR:"okiro"},
+            {kanji:"寝る", reading:"ねる", romaji:"neru", arti:"tidur", shieki:"寝させる", shiekiR:"nesaseru", meirei:"寝ろ", meireiR:"nero"},
+            {kanji:"教える", reading:"おしえる", romaji:"oshieru", arti:"mengajar", shieki:"教えさせる", shiekiR:"oshiesaseru", meirei:"教えろ", meireiR:"oshiero"},
+            {kanji:"覚える", reading:"おぼえる", romaji:"oboeru", arti:"mengingat/menghafal", shieki:"覚えさせる", shiekiR:"oboesaseru", meirei:"覚えろ", meireiR:"oboero"},
+            {kanji:"借りる", reading:"かりる", romaji:"kariru", arti:"meminjam", shieki:"借りさせる", shiekiR:"karisaseru", meirei:"借りろ", meireiR:"kariro"},
+            {kanji:"降りる", reading:"おりる", romaji:"oriru", arti:"turun", shieki:"降りさせる", shiekiR:"orisaseru", meirei:"降りろ", meireiR:"oriro"},
+            {kanji:"開ける", reading:"あける", romaji:"akeru", arti:"membuka", shieki:"開けさせる", shiekiR:"akesaseru", meirei:"開けろ", meireiR:"akero"}
+        ]
+    },
+    gol3: {
+        label: "Gol 3 (Fukisoku)",
+        intro: "Kata kerja golongan 3 (不規則動詞 / fukisoku-doushi): する dan 来る serta turunannya, bentuknya tidak beraturan dan harus dihafalkan langsung.",
+        verbs: [
+            {kanji:"する", reading:"する", romaji:"suru", arti:"melakukan", shieki:"させる", shiekiR:"saseru", meirei:"しろ", meireiR:"shiro"},
+            {kanji:"来る", reading:"くる", romaji:"kuru", arti:"datang", shieki:"来させる", shiekiR:"kosaseru", meirei:"来い", meireiR:"koi"},
+            {kanji:"勉強する", reading:"べんきょうする", romaji:"benkyou suru", arti:"belajar", shieki:"勉強させる", shiekiR:"benkyou saseru", meirei:"勉強しろ", meireiR:"benkyou shiro"},
+            {kanji:"運動する", reading:"うんどうする", romaji:"undou suru", arti:"berolahraga", shieki:"運動させる", shiekiR:"undou saseru", meirei:"運動しろ", meireiR:"undou shiro"},
+            {kanji:"結婚する", reading:"けっこんする", romaji:"kekkon suru", arti:"menikah", shieki:"結婚させる", shiekiR:"kekkon saseru", meirei:"結婚しろ", meireiR:"kekkon shiro"}
+        ]
+    }
+};
+
+const groupKeys = Object.keys(GROUPS);
+let activeGroup = groupKeys[0];
+const formKeys = ["shieki","meirei"];
+
+// revealed state: revealed[groupKey][verbIndex][formKey] = true/false
+const revealed = {};
+groupKeys.forEach(k => {
+    revealed[k] = GROUPS[k].verbs.map(() => ({shieki:false, meirei:false}));
+});
+
+const grammarTabsEl = document.getElementById("grammarTabs");
+const grammarSectionsEl = document.getElementById("grammarSections");
+
+function buildTabs(){
+    grammarTabsEl.innerHTML = "";
+    groupKeys.forEach(k => {
+        const btn = document.createElement("button");
+        btn.className = "gtab" + (k === activeGroup ? " active" : "");
+        btn.textContent = GROUPS[k].label;
+        btn.addEventListener("click", () => {
+            activeGroup = k;
+            renderAll();
+            btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        });
+        grammarTabsEl.appendChild(btn);
+    });
+}
+
+function buildSections(){
+    grammarSectionsEl.innerHTML = "";
+    groupKeys.forEach(k => {
+        const g = GROUPS[k];
+        const section = document.createElement("div");
+        section.className = "grammar-section" + (k === activeGroup ? " active" : "");
+        section.id = "sec-" + k;
+
+        section.innerHTML = `
+            <div class="gram-intro">${g.intro}</div>
+            <div class="time-legend">
+                <div class="time-legend-item"><div class="tl-form jp">～使役形</div><div class="tl-label">${FORM_INFO.shieki.label}</div></div>
+                <div class="time-legend-item"><div class="tl-form jp">～命令形</div><div class="tl-label">${FORM_INFO.meirei.label}</div></div>
+            </div>
+            <div class="control-row">
+                <div class="control-left">
+                    <button class="ctrl-btn gold" id="showAll-${k}">👁️ Tampilkan Semua</button>
+                    <button class="ctrl-btn" id="hideAll-${k}">🙈 Sembunyikan Semua</button>
+                </div>
+                <span class="count-badge" id="count-${k}"></span>
+            </div>
+            <div class="flash-table-wrap" id="tablewrap-${k}"></div>
+        `;
+        grammarSectionsEl.appendChild(section);
+
+        document.getElementById("showAll-"+k).addEventListener("click", () => {
+            revealed[k].forEach(row => formKeys.forEach(f => row[f] = true));
+            renderTable(k);
+        });
+        document.getElementById("hideAll-"+k).addEventListener("click", () => {
+            revealed[k].forEach(row => formKeys.forEach(f => row[f] = false));
+            renderTable(k);
+        });
+    });
+}
+
+function flashCellHtml(k, i, formKey, v){
+    const isRevealed = revealed[k][i][formKey];
+    if(!isRevealed){
+        return `
+            <button class="flash-cell" data-k="${k}" data-i="${i}" data-form="${formKey}">
+                <span class="hidden-label">Cek</span>
+            </button>
+        `;
+    }
+    return `
+        <button class="flash-cell revealed" data-k="${k}" data-i="${i}" data-form="${formKey}">
+            <span class="form-jp jp">${v[formKey]}</span>
+            <span class="form-romaji">${v[formKey+"R"]}</span>
+            <span class="form-meaning">${FORM_INFO[formKey].meaning(v.arti)}</span>
+        </button>
+    `;
+}
+
+function renderTable(k){
+    const g = GROUPS[k];
+    const wrap = document.getElementById("tablewrap-" + k);
+    const countEl = document.getElementById("count-" + k);
+
+    countEl.textContent = g.verbs.length + " kata kerja";
+
+    let rows = "";
+    g.verbs.forEach((v, i) => {
+        rows += `
+            <tr>
+                <td data-label="">
+                    <div class="verb-dict jp">${v.kanji}</div>
+                    <div class="verb-reading jp">${v.reading} (${v.romaji})</div>
+                    <div class="verb-arti">${v.arti}</div>
+                </td>
+                <td data-label="使役形">${flashCellHtml(k, i, "shieki", v)}</td>
+                <td data-label="命令形">${flashCellHtml(k, i, "meirei", v)}</td>
+            </tr>
+        `;
+    });
+
+    wrap.innerHTML = `
+        <table class="flash-table">
+            <thead>
+                <tr>
+                    <th>Kata Kerja (辞書形)</th>
+                    <th>使役形<span class="th-time">${FORM_INFO.shieki.short}</span></th>
+                    <th>命令形<span class="th-time">${FORM_INFO.meirei.short}</span></th>
+                </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+        </table>
+    `;
+
+    wrap.querySelectorAll(".flash-cell").forEach(btn => {
+        attachCellListener(btn);
+    });
+}
+
+function attachCellListener(btn){
+    btn.addEventListener("click", () => {
+        const kk = btn.dataset.k;
+        const ii = parseInt(btn.dataset.i, 10);
+        const ff = btn.dataset.form;
+        revealed[kk][ii][ff] = !revealed[kk][ii][ff];
+        updateCell(kk, ii, ff);
+    });
+}
+
+function updateCell(k, i, formKey){
+    const v = GROUPS[k].verbs[i];
+    const oldBtn = document.querySelector(`.flash-cell[data-k="${k}"][data-i="${i}"][data-form="${formKey}"]`);
+    if(!oldBtn) return;
+    const temp = document.createElement("div");
+    temp.innerHTML = flashCellHtml(k, i, formKey, v).trim();
+    const newBtn = temp.firstElementChild;
+    attachCellListener(newBtn);
+    oldBtn.replaceWith(newBtn);
+}
+
+function renderAll(){
+    buildTabs();
+    buildSections();
+    groupKeys.forEach(k => renderTable(k));
+}
+
+renderAll();
+
+/* NAVBAR */
+
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+        if(menu.id !== id){
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+            const parent = menu.closest(".dropdown");
+            if(parent) parent.classList.remove("open");
+        }
+    });
+
+    const menu = document.getElementById(id);
+    if(!menu) return;
+
+    const parent = menu.closest(".dropdown");
+    const isOpen = menu.classList.contains("show");
+
+    if(isOpen){
+        menu.classList.remove("show");
+        menu.classList.remove("align-right");
+        if(parent) parent.classList.remove("open");
+        return;
+    }
+
+    menu.classList.add("show");
+    if(parent) parent.classList.add("open");
+
+    menu.classList.remove("align-right");
+    const rect = menu.getBoundingClientRect();
+    if(rect.right > window.innerWidth - 10){
+        menu.classList.add("align-right");
+    }
+    if(rect.left < 10){
+        menu.classList.remove("align-right");
+    }
+}
+
+document.addEventListener("click", function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(menu => {
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+        });
+        document.querySelectorAll(".dropdown").forEach(dropdown => {
+            dropdown.classList.remove("open");
+        });
+    }
+});
+
+function toggleMobileMenu(){
+    const menu = document.getElementById("mobileMenu");
+    if(!menu) return;
+    menu.classList.toggle("show");
+}
+
+function toggleMobileAccordion(btn){
+    const panel = btn.nextElementSibling;
+    const isOpen = btn.classList.contains("open");
+
+    document.querySelectorAll(".mobile-acc-btn").forEach(b => {
+        if(b !== btn){
+            b.classList.remove("open");
+            if(b.nextElementSibling) b.nextElementSibling.classList.remove("show");
+        }
+    });
+
+    btn.classList.toggle("open", !isOpen);
+    if(panel) panel.classList.toggle("show", !isOpen);
+}
+
+window.addEventListener("resize", function(){
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+        menu.classList.remove("show");
+        menu.classList.remove("align-right");
+    });
+    document.querySelectorAll(".dropdown").forEach(dropdown => {
+        dropdown.classList.remove("open");
+    });
+
+    if(window.innerWidth > 760){
+        const mobileMenu = document.getElementById("mobileMenu");
+        if(mobileMenu) mobileMenu.classList.remove("show");
+        document.querySelectorAll(".mobile-acc-btn").forEach(b => b.classList.remove("open"));
+        document.querySelectorAll(".mobile-acc-panel").forEach(p => p.classList.remove("show"));
+    }
+});
+
+</script>
+
+</body>
+</html>
