@@ -704,16 +704,16 @@ footer{
     <div class="slideshow" id="slideshow">
       <!-- GANTI src setiap slide dengan foto asli kegiatan Tekipaki Learning -->
       <div class="slide active" data-jp="教室にて" data-title="Sesi Kelas Tatap Muka">
-        <img src="images/kelas tatap muka.jpg" alt="Sesi kelas belajar bahasa Jepang">
+        <img src="https://picsum.photos/seed/tekipaki-kelas/1200/700" alt="Sesi kelas belajar bahasa Jepang">
       </div>
       <div class="slide" data-jp="会話練習" data-title="Latihan Percakapan Kaiwa">
-        <img src="images/kelas kaiwa.jpeg" alt="Latihan percakapan bahasa Jepang">
+        <img src="https://picsum.photos/seed/tekipaki-kaiwa/1200/700" alt="Latihan percakapan bahasa Jepang">
       </div>
       <div class="slide" data-jp="模擬試験" data-title="Simulasi Ujian JFT A2">
-        <img src="images/simulasi jft.jpeg" alt="Simulasi ujian JFT A2">
+        <img src="https://picsum.photos/seed/tekipaki-ujian/1200/700" alt="Simulasi ujian JFT A2">
       </div>
       <div class="slide" data-jp="漢字練習" data-title="Latihan Kanji Dasar">
-        <img src="images/kelas kanji.jpeg.jpeg" alt="Latihan kanji dasar">
+        <img src="https://picsum.photos/seed/tekipaki-kanji/1200/700" alt="Latihan kanji dasar">
       </div>
     </div>
 
@@ -879,6 +879,7 @@ window.addEventListener("resize",function(){
 
   function startTimer(){
     if(prefersReduced) return;
+    stopTimer();
     timer = setInterval(() => {
       current = (current + 1) % slides.length;
       render();
@@ -889,8 +890,28 @@ window.addEventListener("resize",function(){
   function restartTimer(){ stopTimer(); startTimer(); }
 
   const wrap = document.getElementById("slideshow");
-  wrap.addEventListener("mouseenter", stopTimer);
-  wrap.addEventListener("mouseleave", startTimer);
+
+  /* PERBAIKAN:
+     Sebelumnya "mouseenter"/"mouseleave" dipasang tanpa syarat.
+     Di perangkat sentuh (HP/tablet), tap pada slideshow bisa memicu
+     "mouseenter" (menghentikan timer) tanpa "mouseleave" yang pasti
+     menyusul — sehingga slideshow terlihat "kadang-kadang berhenti
+     bergerak sendiri". Sekarang perilaku pause-on-hover hanya
+     dipasang untuk perangkat yang benar-benar punya mouse. */
+  if (window.matchMedia("(hover: hover)").matches) {
+    wrap.addEventListener("mouseenter", stopTimer);
+    wrap.addEventListener("mouseleave", startTimer);
+  }
+
+  /* PERBAIKAN TAMBAHAN:
+     Kalau tab sempat tidak aktif (pindah tab / minimize), browser
+     bisa menunda setInterval. Begitu tab aktif kembali, timer
+     di-restart supaya slideshow lanjut mulus, bukan nyendat. */
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible") {
+      restartTimer();
+    }
+  });
 
   render();
   startTimer();
