@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Tekipaki Raya – 日本就労支援</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+:root{
+  --navy:#1a3a5c;
+  --navy2:#0f2440;
+  --navy3:#0a1a30;
+  --navy-light:#e8eef5;
+  --navy-mid:#2e5480;
+  --gold:#c9a84c;
+  --gold-light:#f5edda;
+  --ink:#1a1a1a;
+  --ink2:#444;
+  --ink3:#777;
+  --border:#ddd;
+  --surface:#f8f9fb;
+  --white:#fff;
+  --radius:8px;
+}
+
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:var(--ink);font-size:15px;line-height:1.65;overflow-x:hidden}
+
+/* ===== NAVBAR ===== */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,26,48,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:64px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo-icon{width:40px;height:40px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy3);font-size:17px;font-weight:700}
+.nav-logo-text{line-height:1.2}
+.nav-logo-text strong{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:.3px}
+.nav-logo-text span{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:1.5px}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:6px;transition:all .2s}
+.nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,.1)}
+.nav-cta{background:var(--gold)!important;color:var(--navy3)!important;font-weight:700!important}
+.nav-cta:hover{background:#b8922f!important;color:var(--navy3)!important}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.nav-hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+
+/* ===== SECTION BASE ===== */
+section{padding:90px 0}
+.container{max-width:1100px;margin:0 auto;padding:0 28px}
+.section-label{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.section-title{font-family:'Noto Serif JP',serif;font-size:36px;font-weight:700;color:var(--ink);line-height:1.25;margin-bottom:16px}
+.section-title em{font-style:normal;color:var(--navy)}
+.section-sub{color:var(--ink3);font-size:16px;max-width:540px;line-height:1.75}
+.section-head{margin-bottom:56px}
+.section-head.center{text-align:center}
+.section-head.center .section-sub{margin:0 auto}
+
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:var(--navy3);border:none;border-radius:var(--radius);padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;font-family:inherit}
+.btn-primary:hover{background:#b8922f;transform:translateY(-2px)}
+.btn-outline{display:inline-flex;align-items:center;gap:9px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);border-radius:var(--radius);padding:14px 24px;font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s;font-family:inherit}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+
+/* ===== KONTAK ===== */
+#contact{background:var(--surface)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:start}
+.contact-info h3{font-family:'Noto Serif JP',serif;font-size:26px;font-weight:600;margin-bottom:16px;color:var(--ink)}
+.contact-info p{color:var(--ink3);font-size:15px;line-height:1.8;margin-bottom:28px}
+.contact-list{display:flex;flex-direction:column;gap:16px}
+.contact-item{display:flex;align-items:flex-start;gap:14px}
+.contact-item-icon{width:38px;height:38px;background:var(--navy-light);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:15px;flex-shrink:0}
+.contact-item-text strong{display:block;font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:2px}
+.contact-item-text span{font-size:14px;color:var(--ink)}
+.social-links{display:flex;gap:10px;margin-top:28px}
+.social-btn{width:38px;height:38px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;text-decoration:none;transition:background .2s;flex-shrink:0}
+.social-btn:hover{background:var(--navy2)}
+
+/* ===== CTA BANNER ===== */
+.cta-banner{background:linear-gradient(135deg,var(--navy3),var(--navy-mid));padding:80px 0;text-align:center}
+.cta-banner h2{font-family:'Noto Serif JP',serif;font-size:36px;color:#fff;margin-bottom:14px}
+.cta-banner h2 em{font-style:normal;color:var(--gold)}
+.cta-banner p{color:rgba(255,255,255,.7);font-size:16px;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.8}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ===== FOOTER ===== */
+footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:56px 0 28px}
+.footer-inner{max-width:1100px;margin:0 auto;padding:0 28px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:56px;margin-bottom:48px}
+.footer-brand strong{display:block;color:#fff;font-size:17px;font-weight:700;margin-bottom:8px}
+.footer-brand p{font-size:13.5px;line-height:1.8;max-width:280px}
+.footer-brand .jp{color:var(--gold);font-family:'Noto Serif JP',serif;font-size:13px;margin-top:6px;display:block}
+.footer-col h4{color:#fff;font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:18px}
+.footer-col a{display:block;color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;margin-bottom:10px;transition:.2s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-size:13px}
+
+@media(max-width:900px){
+  .contact-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  section{padding:60px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <div class="nav-logo-icon">P</div>
+      <div class="nav-logo-text">
+        <strong>Prime Tekipaki Raya</strong>
+        <span>日本就労支援機関</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#program">Program</a></li>
+      <li><a href="#bidang">Bidang Kerja</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Kontak</a></li>
+      <li><a href="pendaftaran.html" class="nav-cta">Daftar Sekarang</a></li>
+      <li><a href="jfta2.html" class="nav-cta">JFT A2</a></li>
+    </ul>
+    <div class="nav-hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== CONTAINER (KOSONG, ISI DI SINI) ===== -->
+<div class="container" style="padding-top:100px">
+
+  <!-- konten halaman diisi di sini -->
+
+</div>
+
+<!-- ===== KONTAK ===== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-label">Hubungi Kami</div>
+        <h2 class="section-title">Siap <em>Membantu Kamu</em></h2>
+        <p>Ada pertanyaan seputar program, persyaratan, atau proses pendaftaran? Tim kami siap memberikan informasi lengkap dan konsultasi gratis.</p>
+        <div class="contact-list">
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
+            <div class="contact-item-text"><strong>Telepon / WhatsApp</strong><span>+62 xxx xxxx xxxx</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-item-text"><strong>Email</strong><span>info@primetekipakiraya.com</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="contact-item-text"><strong>Alamat Kantor</strong><span>Jl. Tekipaki No. 1, Kota, Provinsi</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="fas fa-clock"></i></div>
+            <div class="contact-item-text"><strong>Jam Operasional</strong><span>Senin – Jumat, 08.00 – 17.00 WIB</span></div>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <div style="background:linear-gradient(135deg,var(--navy),var(--navy-mid));border-radius:14px;padding:36px;color:#fff">
+          <h3 style="font-family:'Noto Serif JP',serif;font-size:20px;margin-bottom:8px">お気軽にお問い合わせください</h3>
+          <p style="opacity:.7;font-size:14px;margin-bottom:28px">Konsultasi gratis, tanpa biaya apapun</p>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <input type="text" placeholder="Nama Lengkap" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none">
+            <input type="text" placeholder="Nomor WhatsApp" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none">
+            <select id="contactProgram" style="background:#1a3a5c;border:1px solid rgba(255,255,255,.35);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none;appearance:none;cursor:pointer">
+              <option value="" style="background:#1a3a5c;color:#fff">Pilih Program yang Diminati</option>
+              <option value="tokutei" style="background:#1a3a5c;color:#fff">Tokutei Ginou (特定技能)</option>
+              <option value="jisshusei" style="background:#1a3a5c;color:#fff">Jisshusei (技能実習生)</option>
+            </select>
+            <textarea placeholder="Pertanyaan atau pesan Anda..." rows="4" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:100%;padding:10px 13px;border-radius:6px;font-family:inherit;font-size:14px;outline:none;resize:vertical"></textarea>
+            <button class="btn-primary" style="justify-content:center"><i class="fas fa-paper-plane"></i> Kirim Pesan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BANNER ===== -->
+<div class="cta-banner">
+  <div class="container">
+    <h2>Siap Mulai Perjalananmu <em>ke Jepang?</em></h2>
+    <p>Bergabunglah dengan ratusan alumni kami yang kini berkarier sukses di Jepang. Daftarkan diri sekarang dan wujudkan impianmu bersama Prime Tekipaki Raya.</p>
+    <div class="cta-btns">
+      <a href="pendaftaran.html" class="btn-primary"><i class="fas fa-pen-to-square"></i> Isi Formulir Pendaftaran</a>
+      <a href="#contact" class="btn-outline"><i class="fas fa-phone"></i> Konsultasi Gratis</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <strong>Prime Tekipaki Raya</strong>
+        <p>Lembaga pengiriman tenaga kerja Indonesia ke Jepang yang terpercaya dan berizin resmi. Kami berkomitmen mewujudkan impian karier Anda di negeri sakura.</p>
+        <span class="jp">日本就労支援機関</span>
+      </div>
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#program">Program</a>
+        <a href="#bidang">Bidang Kerja</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Kontak</a>
+        <a href="pendaftaran.html" style="color:var(--gold);font-weight:600">Formulir Pendaftaran</a>
+      </div>
+      <div class="footer-col">
+        <h4>Kontak</h4>
+        <a href="#">+62 xxx xxxx xxxx</a>
+        <a href="#">info@primetekipakiraya.com</a>
+        <a href="#">Jl. Tekipaki No. 1</a>
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+          <a href="#" class="social-btn" style="width:32px;height:32px;font-size:13px;display:flex;align-items:center;justify-content:center"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn" style="width:32px;height:32px;font-size:13px;display:flex;align-items:center;justify-content:center"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn" style="width:32px;height:32px;font-size:13px;display:flex;align-items:center;justify-content:center"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Prime Tekipaki Raya. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  const links=document.querySelector('.nav-links');
+  const isOpen=links.style.display==='flex';
+  links.style.display=isOpen?'none':'flex';
+  if(!isOpen){
+    links.style.flexDirection='column';
+    links.style.position='absolute';
+    links.style.top='64px';links.style.left='0';links.style.right='0';
+    links.style.background='rgba(10,26,48,.97)';links.style.padding='16px 28px';
+  }
+}
+</script>
+</body>
+</html>
