@@ -780,6 +780,137 @@ a{
 
 
 /* =========================================================
+   JFT TICKETS
+========================================================= */
+
+.tickets{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+  gap:16px;
+
+  margin-bottom:64px;
+}
+
+.ticket{
+  display:flex;
+
+  background:#12365e;
+
+  border-radius:12px;
+
+  overflow:hidden;
+
+  text-decoration:none;
+
+  color:#fff;
+
+  box-shadow:
+    0 3px 12px rgba(10,31,61,.16);
+
+  transition:.2s;
+
+  position:relative;
+}
+
+.ticket:hover{
+  transform:translateY(-3px) scale(1.01);
+
+  box-shadow:
+    0 12px 28px rgba(10,31,61,.24);
+}
+
+.ticket-num{
+  flex:none;
+
+  width:74px;
+
+  background:var(--gold);
+
+  color:var(--navy2);
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-family:"JetBrains Mono",monospace;
+
+  position:relative;
+}
+
+.ticket-num .no{
+  font-size:1.7rem;
+
+  font-weight:700;
+}
+
+.ticket-num .lbl{
+  font-size:.6rem;
+
+  letter-spacing:1px;
+
+  text-transform:uppercase;
+}
+
+.ticket-num::after{
+  content:"";
+
+  position:absolute;
+
+  right:-8px;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:16px;
+
+  height:16px;
+
+  background:var(--paper);
+
+  border-radius:50%;
+}
+
+.ticket-body{
+  padding:16px 18px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  gap:4px;
+
+  flex:1;
+
+  border-left:
+    2px dashed rgba(255,255,255,.25);
+}
+
+.ticket-body .title{
+  font-weight:700;
+
+  font-size:.98rem;
+}
+
+.ticket-body .meta{
+  font-family:"JetBrains Mono",monospace;
+
+  font-size:.72rem;
+
+  color:var(--muted);
+}
+
+
+/* =========================================================
    KANJI
 ========================================================= */
 
@@ -1080,24 +1211,81 @@ footer .fseal{
       </div>
 
 
-      <!-- FORMULIR -->
+      <!-- QUIZ JFT -->
 
       <div class="dropdown">
 
         <button
           class="dropdown-btn"
-          onclick="toggleDropdown('formulirDropdown')">
+          onclick="toggleDropdown('quizDropdown')">
 
-          FORMULIR ▼
+          QUIZ JFT ▼
 
         </button>
 
         <div
           class="dropdown-menu"
-          id="formulirDropdown">
+          id="quizDropdown">
 
-          <a href="formulir.html">
-            Formulir Pendaftaran
+          <a href="ujianjfta2test1.html">
+            SOAL JFT A — TEST 1
+          </a>
+
+          <a href="ujianjfta2test2.html">
+            SOAL JFT A — TEST 2
+          </a>
+
+          <a href="ujianjfta2test3.html">
+            SOAL JFT A — TEST 3
+          </a>
+
+          <a href="ujianjfta2test4.html">
+            SOAL JFT A — TEST 4
+          </a>
+
+          <a href="ujianjfta2test5.html">
+            SOAL JFT A — TEST 5
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- QUIZ KANJI -->
+
+      <div class="dropdown">
+
+        <button
+          class="dropdown-btn"
+          onclick="toggleDropdown('kanjiQuizDropdown')">
+
+          QUIZ KANJI ▼
+
+        </button>
+
+        <div
+          class="dropdown-menu"
+          id="kanjiQuizDropdown">
+
+          <a href="quizkanji1.html">
+            QUIZ KANJI 1
+          </a>
+
+          <a href="quizkanji2.html">
+            QUIZ KANJI 2
+          </a>
+
+          <a href="quizkanji3.html">
+            QUIZ KANJI 3
+          </a>
+
+          <a href="quizkanji4.html">
+            QUIZ KANJI 4
+          </a>
+
+          <a href="quizkanji5.html">
+            QUIZ KANJI 5
           </a>
 
         </div>
@@ -1139,10 +1327,27 @@ footer .fseal{
       <a href="kanjidasar.html">Kanji Flash Card</a>
       <a href="materikosakata.html">Materi Kosakata JLPT</a>
     </div>
-
-    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">FORMULIR</button>
+        <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">FORMULIR</button>
     <div class="mobile-acc-panel">
       <a href="formulir.html">Formulir Pendaftaran</a>
+    </div>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
+    <div class="mobile-acc-panel">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
+    <div class="mobile-acc-panel">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
     </div>
 
   </div>
