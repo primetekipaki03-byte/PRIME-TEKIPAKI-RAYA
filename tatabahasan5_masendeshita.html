@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>～ませんでした | Tata Bahasa N5</title>
+
+<style>
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --navy3:#022655;
+    --gold:#facc15;
+    --gold2:#ffd700;
+    --text:#001f3f;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:var(--text);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(224,181,42,.3);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.home-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#e0b52a;
+    color:#001530;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.home-btn:hover{
+    opacity:.85;
+}
+
+.home-icon{
+    width:24px;
+    height:24px;
+    object-fit:cover;
+    border-radius:4px;
+}
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown-btn{
+    background:none;
+    border:2px solid #e0b52a;
+    color:#e0b52a;
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:.9rem;
+}
+
+.dropdown-btn:hover{
+    background:#e0b52a;
+    color:#001530;
+}
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:45px;
+    left:0;
+    background:#1f4577;
+    border-radius:10px;
+    overflow:hidden;
+    min-width:220px;
+    max-width:90vw;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+
+.dropdown-menu.align-right{
+    left:auto;
+    right:0;
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:12px 15px;
+    color:#ffd700;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:#e0b52a;
+    color:#001530;
+}
+
+.show{
+    display:block;
+}
+
+.burger-btn{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    width:40px;
+    height:40px;
+    background:none;
+    border:2px solid #e0b52a;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.burger-btn span{
+    display:block;
+    width:20px;
+    height:2px;
+    background:#e0b52a;
+    border-radius:2px;
+    transition:.25s;
+}
+
+.burger-btn.open span:nth-child(1){
+    transform:translateY(7px) rotate(45deg);
+}
+
+.burger-btn.open span:nth-child(2){
+    opacity:0;
+}
+
+.burger-btn.open span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg);
+}
+
+@media(max-width:600px){
+    .navbar-inner{
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        gap:8px;
+        flex-wrap:wrap;
+    }
+
+    .burger-btn{
+        display:flex;
+    }
+
+    .nav-right{
+        display:none;
+        width:100%;
+        flex-direction:column;
+        align-items:stretch;
+        gap:8px;
+        order:3;
+    }
+
+    .nav-right.mobile-open{
+        display:flex;
+    }
+
+    .dropdown{
+        width:100%;
+    }
+
+    .dropdown-btn{
+        width:100%;
+        text-align:left;
+        font-size:.85rem;
+        padding:10px 14px;
+    }
+
+    .dropdown-menu{
+        position:static;
+        width:100%;
+        min-width:0;
+        max-width:none;
+        margin-top:4px;
+        box-shadow:none;
+    }
+
+    .dropdown-menu.align-right{
+        left:auto;
+        right:auto;
+    }
+
+    .breadcrumb{
+        margin-top:16px;
+    }
+}
+
+/* =======================
+     BREADCRUMB
+======================= */
+
+.breadcrumb{
+    margin:20px 0 0 0;
+    padding:0 0 0 20px;
+    font-size:14px;
+    color:#8892a3;
+    text-align:left;
+}
+
+.breadcrumb a{
+    color:var(--navy);
+    text-decoration:none;
+    font-weight:600;
+}
+
+.breadcrumb a:hover{
+    text-decoration:underline;
+}
+
+/* =======================
+       HERO PATTERN
+======================= */
+
+.pattern-hero{
+    max-width:900px;
+    margin:20px auto 0;
+    padding:40px 30px;
+    background:linear-gradient(135deg, var(--navy) 0%, #062a52 100%);
+    border-radius:22px;
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+}
+
+.pattern-hero::before{
+    content:"去";
+    position:absolute;
+    font-size:260px;
+    font-weight:900;
+    color:rgba(250,204,21,.06);
+    top:-60px;
+    right:-30px;
+    pointer-events:none;
+    user-select:none;
+}
+
+.pattern-hero .no-badge{
+    display:inline-block;
+    background:rgba(250,204,21,.12);
+    border:1px solid rgba(250,204,21,.4);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:1px;
+    padding:6px 16px;
+    border-radius:999px;
+    margin-bottom:18px;
+    position:relative;
+}
+
+.pattern-hero h1{
+    font-size:44px;
+    color:#ffffff;
+    position:relative;
+    margin-bottom:8px;
+}
+
+.pattern-hero .romaji{
+    font-size:20px;
+    color:var(--gold2);
+    font-weight:600;
+    position:relative;
+    margin-bottom:14px;
+}
+
+.pattern-hero .mean{
+    font-size:18px;
+    color:#c9d6e8;
+    position:relative;
+}
+
+/* =======================
+      CONTENT SECTIONS
+======================= */
+
+.content{
+    max-width:900px;
+    margin:30px auto;
+    padding:0 30px 60px;
+}
+
+.section-block{
+    margin-bottom:36px;
+}
+
+.section-block h2{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:22px;
+    color:var(--navy);
+    margin-bottom:14px;
+}
+
+.section-block h2 .tag{
+    background:var(--navy);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    padding:5px 12px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.section-block p{
+    font-size:16px;
+    line-height:1.9;
+    color:#333;
+}
+
+/* pola / formula box */
+
+.formula-box{
+    background:#f5f8fc;
+    border:2px dashed var(--navy);
+    border-radius:16px;
+    padding:22px 26px;
+    font-size:19px;
+    text-align:center;
+    color:var(--navy);
+    font-weight:600;
+    line-height:1.8;
+}
+
+.formula-box small{
+    display:block;
+    font-size:13px;
+    font-weight:400;
+    color:#8892a3;
+    margin-top:6px;
+}
+
+.formula-box .fline{
+    margin-bottom:10px;
+}
+
+/* =======================
+   TABEL KONJUGASI
+======================= */
+
+.table-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.konjugasi-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
+    font-size:15px;
+}
+
+.konjugasi-table thead th{
+    background:var(--navy);
+    color:var(--gold);
+    text-align:left;
+    padding:14px 16px;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+.konjugasi-table tbody td{
+    padding:13px 16px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.konjugasi-table tbody tr:nth-child(even){
+    background:#f5f8fc;
+}
+
+.konjugasi-table tbody tr:hover{
+    background:#fffbe6;
+}
+
+.konjugasi-table .grp-tag{
+    display:inline-block;
+    background:rgba(0,31,63,.08);
+    color:var(--navy);
+    font-weight:bold;
+    font-size:12px;
+    padding:4px 10px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.konjugasi-table .kamus{
+    font-weight:bold;
+    font-size:17px;
+    color:var(--navy);
+}
+
+.konjugasi-table .yomi-small{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    font-weight:400;
+}
+
+.konjugasi-table .arrow{
+    color:var(--gold2);
+    font-weight:900;
+    font-size:18px;
+    text-shadow:0 0 0 var(--navy);
+    filter:none;
+}
+
+.konjugasi-table .ukemi{
+    font-weight:bold;
+    font-size:17px;
+    color:#5b8bb0;
+}
+
+.konjugasi-table .group-row td{
+    background:var(--navy2);
+    color:var(--gold);
+    font-weight:bold;
+    font-size:13px;
+    letter-spacing:.5px;
+    padding:10px 16px;
+}
+
+/* =======================
+   TABEL PERBANDINGAN
+======================= */
+
+.compare-wrap{
+    overflow-x:auto;
+    border-radius:16px;
+    border:2px solid var(--navy);
+}
+
+.compare-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:700px;
+    font-size:14px;
+}
+
+.compare-table thead th{
+    padding:14px 14px;
+    text-align:left;
+    color:#fff;
+    font-size:13px;
+    white-space:nowrap;
+}
+
+.compare-table thead th.th-kamus{
+    background:var(--navy);
+    color:var(--gold);
+}
+
+.compare-table thead th.th-shieki{
+    background:#c98a4d;
+}
+
+.compare-table thead th.th-ukemi{
+    background:#5b8bb0;
+}
+
+.compare-table thead th.th-shiekiukemi{
+    background:#c17b7b;
+}
+
+.compare-table thead th small{
+    display:block;
+    font-weight:400;
+    font-size:11px;
+    opacity:.85;
+    margin-top:2px;
+}
+
+.compare-table tbody td{
+    padding:13px 14px;
+    border-bottom:1px solid #e3e9f2;
+    color:#333;
+    vertical-align:middle;
+}
+
+.compare-table tbody tr:nth-child(even){
+    background:#f5f8fc;
+}
+
+.compare-table tbody tr:hover{
+    background:#fffbe6;
+}
+
+.compare-table .kamus{
+    font-weight:bold;
+    font-size:16px;
+    color:var(--navy);
+}
+
+.compare-table .yomi-small{
+    display:block;
+    font-size:11px;
+    color:#8892a3;
+    font-weight:400;
+}
+
+.compare-table .val-shieki{
+    font-weight:bold;
+    font-size:16px;
+    color:#c98a4d;
+}
+
+.compare-table .val-ukemi{
+    font-weight:bold;
+    font-size:16px;
+    color:#5b8bb0;
+}
+
+.compare-table .val-shiekiukemi{
+    font-weight:bold;
+    font-size:16px;
+    color:#c17b7b;
+}
+
+.compare-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:16px 0;
+}
+
+.compare-legend .chip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:999px;
+    background:#f5f8fc;
+    border:1px solid #e3e9f2;
+    color:#333;
+}
+
+.compare-legend .dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    display:inline-block;
+}
+
+.compare-legend .dot.shieki{ background:#c98a4d; }
+.compare-legend .dot.ukemi{ background:#5b8bb0; }
+.compare-legend .dot.shiekiukemi{ background:#c17b7b; }
+
+/* contoh kalimat */
+
+.example{
+    border:2px solid var(--navy);
+    border-radius:16px;
+    padding:20px 24px;
+    margin-bottom:16px;
+    transition:.25s;
+}
+
+.example:hover{
+    background:var(--navy3);
+    color:#fff;
+    transform:translateY(-3px);
+    box-shadow:0 12px 24px rgba(0,31,63,.2);
+}
+
+.example .jp{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.example .yomi{
+    font-size:14px;
+    color:#8892a3;
+    margin-bottom:8px;
+}
+
+.example:hover .yomi{
+    color:#c9d6e8;
+}
+
+.example .id{
+    font-size:15px;
+    color:#333;
+    font-style:italic;
+}
+
+.example:hover .id{
+    color:#e6edf7;
+}
+
+/* catatan / tips */
+
+.note-box{
+    background:#fffbe6;
+    border-left:5px solid var(--gold);
+    border-radius:10px;
+    padding:18px 22px;
+    font-size:15px;
+    line-height:1.8;
+    color:#4a4020;
+}
+
+.note-box b{
+    color:var(--navy);
+}
+
+/* navigasi bawah */
+
+.nav-bottom{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    margin-top:50px;
+    flex-wrap:wrap;
+}
+
+.nav-bottom a{
+    flex:1;
+    min-width:200px;
+    text-decoration:none;
+    border:2px solid var(--navy);
+    border-radius:14px;
+    padding:16px 20px;
+    color:var(--navy);
+    font-weight:600;
+    transition:.25s;
+}
+
+.nav-bottom a:hover{
+    background:var(--navy);
+    color:var(--gold);
+}
+
+.nav-bottom .dir{
+    display:block;
+    font-size:12px;
+    color:#8892a3;
+    margin-bottom:4px;
+}
+
+.nav-bottom a:hover .dir{
+    color:#c9d6e8;
+}
+
+.nav-bottom .next{
+    text-align:right;
+}
+
+/* =======================
+   LATIHAN SOAL - PILIHAN GANDA KOLOM ACAK
+======================= */
+
+.quiz-box{
+    border:2px solid var(--navy);
+    border-radius:18px;
+    padding:24px 26px;
+    margin-bottom:22px;
+    background:#fafcff;
+}
+
+.quiz-box .qno{
+    display:inline-block;
+    background:var(--navy);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    padding:5px 12px;
+    border-radius:8px;
+    margin-bottom:14px;
+}
+
+.quiz-box .qtext{
+    font-size:16px;
+    color:#333;
+    margin-bottom:18px;
+    line-height:1.8;
+}
+
+.quiz-box .qtext .blank{
+    display:inline-block;
+    min-width:110px;
+    border-bottom:2px solid var(--navy);
+    text-align:center;
+    color:var(--gold2);
+    font-weight:bold;
+}
+
+.mc-options{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.mc-option{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:#fff;
+    border:2px solid var(--navy);
+    color:var(--navy);
+    padding:12px 16px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.mc-option:hover{
+    background:#fffbe6;
+}
+
+.mc-option .opt-letter{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    background:var(--navy);
+    color:var(--gold);
+    font-size:13px;
+    font-weight:bold;
+    flex-shrink:0;
+}
+
+.mc-option.selected{
+    background:var(--navy);
+    color:var(--gold);
+}
+
+.mc-option.selected .opt-letter{
+    background:var(--gold);
+    color:var(--navy);
+}
+
+.mc-option.correct{
+    background:#e6f7ec;
+    border-color:#22c55e;
+    color:#166534;
+}
+
+.mc-option.correct .opt-letter{
+    background:#22c55e;
+    color:#fff;
+}
+
+.mc-option.wrong{
+    background:#fdeaea;
+    border-color:#ef4444;
+    color:#991b1b;
+}
+
+.mc-option.wrong .opt-letter{
+    background:#ef4444;
+    color:#fff;
+}
+
+.mc-option.disabled{
+    cursor:default;
+    pointer-events:none;
+}
+
+.quiz-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.quiz-btn{
+    border:2px solid var(--navy);
+    background:var(--navy);
+    color:var(--gold);
+    padding:10px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:14px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.quiz-btn:hover{
+    opacity:.85;
+}
+
+.quiz-btn.secondary{
+    background:#fff;
+    color:var(--navy);
+}
+
+.quiz-result{
+    margin-top:14px;
+    font-size:15px;
+    font-weight:600;
+    display:none;
+    padding:12px 16px;
+    border-radius:10px;
+}
+
+.quiz-result.correct{
+    display:block;
+    background:#e6f7ec;
+    color:#166534;
+    border:1px solid #86efac;
+}
+
+.quiz-result.wrong{
+    display:block;
+    background:#fdeaea;
+    color:#991b1b;
+    border:1px solid #fca5a5;
+}
+
+@media(max-width:600px){
+    .pattern-hero h1{
+        font-size:30px;
+    }
+    .pattern-hero::before{
+        font-size:160px;
+    }
+    .nav-bottom .next{
+        text-align:left;
+    }
+    .konjugasi-table{
+        font-size:13px;
+    }
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<button class="burger-btn" id="burgerBtn" onclick="toggleBurger()" aria-label="Buka menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<div class="nav-right" id="navRight">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta1test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta1test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta1test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta1test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta1test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+
+</div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="tatabahasajlptn5.html">← Kembali ke Daftar Tata Bahasa N5</a>
+</div>
+
+<div class="pattern-hero">
+    <span class="no-badge">POLA 35 · JLPT N5</span>
+    <h1>～ませんでした</h1>
+    <div class="romaji">~masen deshita</div>
+    <div class="mean">bentuk lampau negatif sopan (dulu tidak melakukan ~)</div>
+</div>
+
+<div class="content">
+
+    <div class="section-block">
+        <h2><span class="tag">ARTI</span> Penjelasan</h2>
+        <p>
+            ～ませんでした adalah bentuk <b>lampau negatif sopan</b> dari kata kerja, dipakai untuk
+            menyatakan bahwa suatu tindakan <b>tidak dilakukan di masa lalu</b>. Bentuk ini dibuat dengan
+            mengambil ます形 (bentuk ~ます) dari kata kerja, membuang ます, lalu menambahkan ませんでした
+            — berlaku sama untuk グループ1, グループ2, maupun グループ3, tanpa pengecualian.
+        </p>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">POLA</span> Rumus</h2>
+        <div class="formula-box">
+            <div class="fline">[doushi ます形 − ます]＋ませんでした</div>
+            <small>contoh: たべます → たべ（buang ます）→ たべませんでした</small>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">TABEL</span> Konjugasi ke ～ませんでした</h2>
+        <p style="margin-bottom:16px;">
+            Sama seperti mengubah ke ます形, langkah pertama adalah mengubah kata kerja ke bentuk ~ます,
+            lalu buang ます dan tambahkan ませんでした — berlaku untuk ketiga kelompok kata kerja.
+        </p>
+
+        <div class="table-wrap">
+            <table class="konjugasi-table">
+                <thead>
+                    <tr>
+                        <th>Bentuk Kamus</th>
+                        <th></th>
+                        <th>～ませんでした</th>
+                        <th>Artinya</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row"><td colspan="4">グループ1（五段動詞）</td></tr>
+                    <tr>
+                        <td><span class="kamus">かく</span><span class="yomi-small">kaku — menulis</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">かきませんでした</span><span class="yomi-small">kakimasen deshita</span></td>
+                        <td>Dulu tidak menulis</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">のむ</span><span class="yomi-small">nomu — minum</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">のみませんでした</span><span class="yomi-small">nomimasen deshita</span></td>
+                        <td>Dulu tidak minum</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">グループ2（一段動詞）</td></tr>
+                    <tr>
+                        <td><span class="kamus">たべる</span><span class="yomi-small">taberu — makan</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">たべませんでした</span><span class="yomi-small">tabemasen deshita</span></td>
+                        <td>Dulu tidak makan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">みる</span><span class="yomi-small">miru — melihat</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">みませんでした</span><span class="yomi-small">mimasen deshita</span></td>
+                        <td>Dulu tidak melihat</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">グループ3（不規則動詞）</td></tr>
+                    <tr>
+                        <td><span class="kamus">する</span><span class="yomi-small">suru — melakukan</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">しませんでした</span><span class="yomi-small">shimasen deshita</span></td>
+                        <td>Dulu tidak melakukan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">くる</span><span class="yomi-small">kuru — datang</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="ukemi">きませんでした</span><span class="yomi-small">kimasen deshita</span></td>
+                        <td>Dulu tidak datang</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Cara cepat mengingat:</b> pola pikirnya sama seperti mengubah kata sifat な/kata benda ke
+            lampau negatif — でした（lampau positif）berubah jadi ませんでした（lampau negatif）,
+            bukan でしたじゃない. Cukup ingat urutan: ます → ません → ました → ませんでした.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CONTOH</span> Contoh Kalimat</h2>
+
+        <div class="example">
+            <div class="jp">きのうはテレビをみませんでした。</div>
+            <div class="yomi">きのうはテレビをみませんでした。</div>
+            <div class="id">Kemarin saya tidak menonton TV.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">けさ、あさごはんをたべませんでした。</div>
+            <div class="yomi">けさ、あさごはんをたべませんでした。</div>
+            <div class="id">Tadi pagi saya tidak sarapan.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">しゅくだいをしませんでした。</div>
+            <div class="yomi">しゅくだいをしませんでした。</div>
+            <div class="id">Saya tidak mengerjakan PR.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">きのうがっこうへいきませんでした。</div>
+            <div class="yomi">きのうがっこうへいきませんでした。</div>
+            <div class="id">Kemarin saya tidak pergi ke sekolah.</div>
+        </div>
+
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">PERBANDINGAN</span> 4 Bentuk Kata Kerja Sopan</h2>
+        <p style="margin-bottom:16px;">
+            ～ませんでした adalah salah satu dari 4 bentuk dasar kata kerja sopan. Perhatikan bagaimana
+            akhiran berubah tergantung waktu (sekarang/lampau) dan positif/negatifnya, sementara bagian
+            depan kata kerja (sebelum ます) selalu tetap sama.
+        </p>
+
+        <div class="compare-legend">
+            <span class="chip"><span class="dot shieki"></span> グループ1 — のむ</span>
+            <span class="chip"><span class="dot ukemi"></span> グループ2 — たべる</span>
+            <span class="chip"><span class="dot shiekiukemi"></span> グループ3 — する</span>
+        </div>
+
+        <div class="compare-wrap">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th class="th-kamus">Bentuk<small>keterangan</small></th>
+                        <th class="th-shieki">グループ1<small>のむ</small></th>
+                        <th class="th-ukemi">グループ2<small>たべる</small></th>
+                        <th class="th-shiekiukemi">グループ3<small>する</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="kamus">Sekarang (+)</span><span class="yomi-small">bentuk positif</span></td>
+                        <td><span class="val-shieki">のみます</span><span class="yomi-small">nomimasu</span></td>
+                        <td><span class="val-ukemi">たべます</span><span class="yomi-small">tabemasu</span></td>
+                        <td><span class="val-shiekiukemi">します</span><span class="yomi-small">shimasu</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">Sekarang (−)</span><span class="yomi-small">bentuk negatif</span></td>
+                        <td><span class="val-shieki">のみません</span><span class="yomi-small">nomimasen</span></td>
+                        <td><span class="val-ukemi">たべません</span><span class="yomi-small">tabemasen</span></td>
+                        <td><span class="val-shiekiukemi">しません</span><span class="yomi-small">shimasen</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">Lampau (+)</span><span class="yomi-small">bentuk positif lampau</span></td>
+                        <td><span class="val-shieki">のみました</span><span class="yomi-small">nomimashita</span></td>
+                        <td><span class="val-ukemi">たべました</span><span class="yomi-small">tabemashita</span></td>
+                        <td><span class="val-shiekiukemi">しました</span><span class="yomi-small">shimashita</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">Lampau (−)</span><span class="yomi-small">bentuk negatif lampau</span></td>
+                        <td><span class="val-shieki">のみませんでした</span><span class="yomi-small">nomimasen deshita</span></td>
+                        <td><span class="val-ukemi">たべませんでした</span><span class="yomi-small">tabemasen deshita</span></td>
+                        <td><span class="val-shiekiukemi">しませんでした</span><span class="yomi-small">shimasen deshita</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CATATAN</span> Tips &amp; Perbedaan</h2>
+        <div class="note-box">
+            <b>でした tidak pernah berdiri sendiri setelah ません:</b> yang benar adalah ませんでした
+            (digabung tanpa jeda konsep tambahan), bukan menambahkan でした terpisah setelah kata kerja
+            biasa.<br><br>
+            <b>Sering dipakai dengan keterangan waktu lampau:</b> ～ませんでした biasanya muncul bersama
+            kata seperti きのう (kemarin), せんしゅう (minggu lalu), せんげつ (bulan lalu), atau きょねん
+            (tahun lalu) untuk memperjelas bahwa tindakan tersebut tidak terjadi di masa lalu.<br><br>
+            <b>Versi lebih santai:</b> dalam percakapan tidak formal, ～ませんでした sering diganti dengan
+            bentuk plain ～なかった（た形 negatif）, misalnya たべなかった, yang akan dibahas di materi
+            terpisah.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">LATIHAN</span> Soal Pilihan Ganda</h2>
+        <p style="margin-bottom:18px;">
+            Pilih bentuk ～ませんでした yang tepat untuk kata kerja di bawah ini. Urutan pilihan akan
+            diacak setiap kali halaman dimuat ulang.
+        </p>
+
+        <!-- SOAL 1 -->
+        <div class="quiz-box" id="mcquiz1">
+            <span class="qno">SOAL 1</span>
+            <div class="qtext">のむ →<span class="blank">＿＿＿＿</span>（過去・否定）</div>
+            <div class="mc-options" id="mcoptions1"></div>
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkMC(1)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetMC(1)">Ulangi</button>
+            </div>
+            <div class="quiz-result" id="mcresult1"></div>
+        </div>
+
+        <!-- SOAL 2 -->
+        <div class="quiz-box" id="mcquiz2">
+            <span class="qno">SOAL 2</span>
+            <div class="qtext">たべる →<span class="blank">＿＿＿＿</span>（過去・否定）</div>
+            <div class="mc-options" id="mcoptions2"></div>
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkMC(2)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetMC(2)">Ulangi</button>
+            </div>
+            <div class="quiz-result" id="mcresult2"></div>
+        </div>
+
+        <!-- SOAL 3 -->
+        <div class="quiz-box" id="mcquiz3">
+            <span class="qno">SOAL 3</span>
+            <div class="qtext">する →<span class="blank">＿＿＿＿</span>（過去・否定）</div>
+            <div class="mc-options" id="mcoptions3"></div>
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkMC(3)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetMC(3)">Ulangi</button>
+            </div>
+            <div class="quiz-result" id="mcresult3"></div>
+        </div>
+
+        <!-- SOAL 4 -->
+        <div class="quiz-box" id="mcquiz4">
+            <span class="qno">SOAL 4</span>
+            <div class="qtext">いく →<span class="blank">＿＿＿＿</span>（過去・否定）</div>
+            <div class="mc-options" id="mcoptions4"></div>
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkMC(4)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetMC(4)">Ulangi</button>
+            </div>
+            <div class="quiz-result" id="mcresult4"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="content" style="padding-top:0;">
+    <div class="nav-bottom">
+        <a href="tatabahasan5_masukei.html" class="prev">
+            <span class="dir">← Kembali</span>
+            動詞のグループ（ます形）
+        </a>
+        <a href="tatabahasan5.html" class="next">
+            <span class="dir">Lihat →</span>
+            Semua Pola Tata Bahasa N5
+        </a>
+    </div>
+</div>
+
+<footer>
+© Tekipaki Japanese Learning
+</footer>
+
+<script>
+
+//============================
+// LATIHAN SOAL - PILIHAN GANDA KOLOM ACAK
+//============================
+
+const mcData = {
+    1:{
+        correct:"のみませんでした",
+        options:["のみませんでした","のみません","のみました","のみます"]
+    },
+    2:{
+        correct:"たべませんでした",
+        options:["たべませんでした","たべません","たべました","たべます"]
+    },
+    3:{
+        correct:"しませんでした",
+        options:["しませんでした","しません","しました","します"]
+    },
+    4:{
+        correct:"いきませんでした",
+        options:["いきませんでした","いきません","いきました","いきます"]
+    }
+};
+
+const mcState = {};
+const letters = ["A","B","C","D"];
+
+function shuffleArray(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+function buildMC(id){
+    const data = mcData[id];
+    const shuffled = shuffleArray([...data.options]);
+    mcState[id] = { selected:null, checked:false, order:shuffled };
+
+    const wrap = document.getElementById("mcoptions"+id);
+    wrap.innerHTML = "";
+
+    shuffled.forEach((opt, idx)=>{
+        const div = document.createElement("div");
+        div.className = "mc-option";
+        div.dataset.value = opt;
+
+        const letterSpan = document.createElement("span");
+        letterSpan.className = "opt-letter";
+        letterSpan.textContent = letters[idx];
+
+        const textSpan = document.createElement("span");
+        textSpan.textContent = opt;
+
+        div.appendChild(letterSpan);
+        div.appendChild(textSpan);
+
+        div.addEventListener("click", ()=>selectMC(id, opt, div));
+
+        wrap.appendChild(div);
+    });
+}
+
+function selectMC(id, value, el){
+    if(mcState[id].checked) return;
+
+    const wrap = document.getElementById("mcoptions"+id);
+    wrap.querySelectorAll(".mc-option").forEach(o=>o.classList.remove("selected"));
+    el.classList.add("selected");
+    mcState[id].selected = value;
+
+    document.getElementById("mcresult"+id).className = "quiz-result";
+}
+
+function checkMC(id){
+    const result = document.getElementById("mcresult"+id);
+    const state = mcState[id];
+
+    if(!state.selected){
+        result.className = "quiz-result wrong";
+        result.textContent = "⚠️ Pilih salah satu jawaban dulu sebelum mengecek.";
+        return;
+    }
+
+    state.checked = true;
+    const wrap = document.getElementById("mcoptions"+id);
+    wrap.querySelectorAll(".mc-option").forEach(o=>{
+        o.classList.add("disabled");
+        if(o.dataset.value === mcData[id].correct){
+            o.classList.add("correct");
+        } else if(o.dataset.value === state.selected){
+            o.classList.add("wrong");
+        }
+    });
+
+    if(state.selected === mcData[id].correct){
+        result.className = "quiz-result correct";
+        result.textContent = "✅ Benar! Itu jawaban yang tepat.";
+    } else {
+        result.className = "quiz-result wrong";
+        result.textContent = "❌ Belum tepat. Jawaban yang benar: " + mcData[id].correct;
+    }
+}
+
+function resetMC(id){
+    buildMC(id);
+    document.getElementById("mcresult"+id).className = "quiz-result";
+}
+
+Object.keys(mcData).forEach(id=>buildMC(Number(id)));
+
+function toggleBurger(){
+    const navRight = document.getElementById('navRight');
+    const burgerBtn = document.getElementById('burgerBtn');
+    navRight.classList.toggle('mobile-open');
+    burgerBtn.classList.toggle('open');
+
+    if(!navRight.classList.contains('mobile-open')){
+        document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
+            m.classList.remove('show');
+            m.classList.remove('align-right');
+            m.closest('.dropdown').classList.remove('open');
+        });
+    }
+}
+
+function closeBurgerMenu(){
+    const navRight = document.getElementById('navRight');
+    const burgerBtn = document.getElementById('burgerBtn');
+    navRight.classList.remove('mobile-open');
+    burgerBtn.classList.remove('open');
+}
+
+function toggleDropdown(id){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+        if(m.id!==id){
+            m.classList.remove('show');
+            m.classList.remove('align-right');
+            m.closest('.dropdown').classList.remove('open');
+        }
+    });
+    const menu = document.getElementById(id);
+    const wrap = menu.closest('.dropdown');
+    const willShow = !menu.classList.contains('show');
+    menu.classList.toggle('show');
+    wrap.classList.toggle('open');
+    if(willShow){
+        menu.classList.remove('align-right');
+        const rect = menu.getBoundingClientRect();
+        if(rect.right > window.innerWidth - 8){ menu.classList.add('align-right'); }
+    }
+}
+
+window.addEventListener('resize', ()=>{
+    document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
+        m.classList.remove('show');
+        m.classList.remove('align-right');
+        m.closest('.dropdown').classList.remove('open');
+    });
+    if(window.innerWidth > 600){
+        closeBurgerMenu();
+    }
+});
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+            menu.classList.remove("show");
+            menu.classList.remove("align-right");
+        });
+        document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
+    }
+
+    if(!e.target.closest("#navRight") && !e.target.closest("#burgerBtn")){
+        closeBurgerMenu();
+    }
+});
+
+</script>
+
+</body>
+</html>
