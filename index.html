@@ -167,10 +167,18 @@
   .fields{background:var(--bg-alt);}
   .gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
   .gallery-card{
-    position:relative; aspect-ratio:4/3; border-radius:3px; overflow:hidden;
+    position:relative; aspect-ratio:4/3; border-radius:3px; overflow:hidden; cursor:pointer;
     background: linear-gradient(155deg, var(--red) 0%, var(--red-deep) 100%);
   }
-  .gallery-card svg{position:absolute; inset:0; width:100%; height:100%;}
+  .gallery-card svg{position:absolute; inset:0; width:100%; height:100%; transition:opacity .2s ease;}
+  .gallery-photo{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1;}
+  .gallery-upload-input{position:absolute; inset:0; opacity:0; cursor:pointer; z-index:3;}
+  .gallery-hint{
+    position:absolute; top:12px; right:12px; z-index:2;
+    background:rgba(0,0,0,.55); color:#fff; font-size:.7rem; padding:5px 10px;
+    border-radius:20px; opacity:0; transition:opacity .2s ease; pointer-events:none;
+  }
+  .gallery-card:hover .gallery-hint, .gallery-card:focus-within .gallery-hint{opacity:1;}
   .gallery-scrim{
     position:absolute; left:0; right:0; bottom:0; padding:18px 20px;
     background: linear-gradient(0deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 70%);
@@ -250,7 +258,7 @@
       <span class="brand-mark"></span>
       <span>
         <span class="brand-name">TEKIPAKI</span>
-        <span class="brand-sub">プレム　テキパキ　ラヤ</span>
+        <span class="brand-sub">テキパキ ・ INDONESIA–JAPAN WORKFORCE</span>
       </span>
     </a>
     <div class="nav-right">
@@ -262,7 +270,6 @@
         <a href="#bidang">Bidang Kerja</a>
         <a href="#perusahaan">Perusahaan</a>
         <a href="#kontak">Kontak</a>
-        <a href="jft_tekipaki.html">Program JFT</a>
       </nav>
       <a href="#kontak" class="cta-btn" style="display:none;" id="ctaDesktop">Daftar Sekarang</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
@@ -405,7 +412,7 @@
       </div>
       <div class="gallery-grid">
 
-        <div class="gallery-card">
+        <div class="gallery-card" data-field="kaigo">
           <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
             <defs><pattern id="dots1" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".12"/></pattern></defs>
             <rect width="400" height="300" fill="url(#dots1)"/>
@@ -417,10 +424,12 @@
               <path d="M150 176v22M250 176v22"/>
             </g>
           </svg>
-          <div class="images/kontruksi.jpeg"><h3>Kontruksi</h3><span>建設 (Kensetsu) &amp; fasilitas kesehatan</span></div>
+          <span class="gallery-hint">Klik untuk unggah foto</span>
+          <input type="file" accept="image/*" class="gallery-upload-input" aria-label="Unggah foto Perawatan Lansia">
+          <div class="gallery-scrim"><h3>Perawatan Lansia</h3><span>介護 (Kaigo) — panti jompo &amp; fasilitas kesehatan</span></div>
         </div>
 
-        <div class="gallery-card">
+        <div class="gallery-card" data-field="manufaktur">
           <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
             <defs><pattern id="dots2" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".12"/></pattern></defs>
             <rect width="400" height="300" fill="url(#dots2)"/>
@@ -431,10 +440,12 @@
               <path d="M200 100v16M200 184v16M150 150h16M234 150h16M167 117l11 11M222 172l11 11M233 117l-11 11M178 172l-11 11"/>
             </g>
           </svg>
+          <span class="gallery-hint">Klik untuk unggah foto</span>
+          <input type="file" accept="image/*" class="gallery-upload-input" aria-label="Unggah foto Manufaktur">
           <div class="gallery-scrim"><h3>Manufaktur</h3><span>Perakitan, pengelasan &amp; pengecoran logam</span></div>
         </div>
 
-        <div class="gallery-card">
+        <div class="gallery-card" data-field="pertanian">
           <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
             <defs><pattern id="dots3" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".12"/></pattern></defs>
             <rect width="400" height="300" fill="url(#dots3)"/>
@@ -446,10 +457,12 @@
               <path d="M172 190h56"/>
             </g>
           </svg>
+          <span class="gallery-hint">Klik untuk unggah foto</span>
+          <input type="file" accept="image/*" class="gallery-upload-input" aria-label="Unggah foto Pertanian">
           <div class="gallery-scrim"><h3>Pertanian</h3><span>Perkebunan &amp; budidaya pangan</span></div>
         </div>
 
-        <div class="gallery-card">
+        <div class="gallery-card" data-field="perhotelan">
           <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
             <defs><pattern id="dots4" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".12"/></pattern></defs>
             <rect width="400" height="300" fill="url(#dots4)"/>
@@ -460,10 +473,12 @@
               <path d="M200 186v14M178 200h44"/>
             </g>
           </svg>
+          <span class="gallery-hint">Klik untuk unggah foto</span>
+          <input type="file" accept="image/*" class="gallery-upload-input" aria-label="Unggah foto Perhotelan dan Restoran">
           <div class="gallery-scrim"><h3>Perhotelan &amp; Restoran</h3><span>Layanan tamu, dapur &amp; F&amp;B</span></div>
         </div>
 
-        <div class="gallery-card">
+        <div class="gallery-card" data-field="konstruksi">
           <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
             <defs><pattern id="dots5" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".12"/></pattern></defs>
             <rect width="400" height="300" fill="url(#dots5)"/>
@@ -474,10 +489,12 @@
               <path d="M146 200h108"/>
             </g>
           </svg>
+          <span class="gallery-hint">Klik untuk unggah foto</span>
+          <input type="file" accept="image/*" class="gallery-upload-input" aria-label="Unggah foto Konstruksi">
           <div class="gallery-scrim"><h3>Konstruksi</h3><span>Bangunan sipil &amp; interior</span></div>
         </div>
 
-        <div class="gallery-card">
+        <div class="gallery-card" data-field="makanan">
           <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
             <defs><pattern id="dots6" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".12"/></pattern></defs>
             <rect width="400" height="300" fill="url(#dots6)"/>
@@ -488,6 +505,8 @@
               <path d="M170 100l6 22M200 96v24M230 100l-6 22"/>
             </g>
           </svg>
+          <span class="gallery-hint">Klik untuk unggah foto</span>
+          <input type="file" accept="image/*" class="gallery-upload-input" aria-label="Unggah foto Industri Makanan">
           <div class="gallery-scrim"><h3>Industri Makanan</h3><span>Pengolahan &amp; pengemasan makanan</span></div>
         </div>
 
@@ -582,7 +601,7 @@
       <div>
         <h4>KONTAK</h4>
         <ul>
-          <li><a href="tel:+62">+62 821 3080 7776</a></li>
+          <li><a href="tel:+62">+62 xxx xxxx xxxx</a></li>
           <li><a href="mailto:info@tekipaki.co.id">info@tekipaki.co.id</a></li>
           <li><a href="#kontak">Jl. Tekipaki No. 1, Jakarta</a></li>
         </ul>
@@ -602,6 +621,41 @@
     links.classList.toggle('open');
   });
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // ---- Gallery: click to upload a photo per field ----
+  document.querySelectorAll('.gallery-card').forEach(card => {
+    const key = card.dataset.field;
+    const input = card.querySelector('.gallery-upload-input');
+    const svg = card.querySelector('svg');
+    if(!key || !input) return;
+
+    function applyImage(dataUrl){
+      let img = card.querySelector('img.gallery-photo');
+      if(!img){
+        img = document.createElement('img');
+        img.className = 'gallery-photo';
+        card.insertBefore(img, card.firstChild);
+      }
+      img.src = dataUrl;
+      if(svg) svg.style.opacity = '0';
+    }
+
+    try{
+      const saved = localStorage.getItem('tekipaki-gallery-' + key);
+      if(saved) applyImage(saved);
+    }catch(e){ /* storage unavailable, keep default illustration */ }
+
+    input.addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if(!file || !file.type.startsWith('image/')) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        applyImage(reader.result);
+        try{ localStorage.setItem('tekipaki-gallery-' + key, reader.result); }catch(e){ /* quota or unavailable */ }
+      };
+      reader.readAsDataURL(file);
+    });
+  });
 </script>
 </body>
 </html>
