@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>TEKIPAKI | Lembaga Penyalur Kerja Indonesia–Jepang</title>
+<title>Formulir Pendaftaran | TEKIPAKI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -56,9 +56,8 @@
   .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
   h1,h2,h3{font-family:'Shippori Mincho', serif; font-weight:700; margin:0; line-height:1.3;}
   a{color:inherit;}
-  .jp{font-family:'Noto Sans JP', sans-serif; letter-spacing:.04em; color:var(--ink-soft); font-size:.86rem;}
 
-  /* ===== Header ===== */
+  /* ===== Header (sama dengan index) ===== */
   header{
     position:sticky; top:0; z-index:50;
     padding-top: env(safe-area-inset-top, 0px);
@@ -80,7 +79,6 @@
   .brand-name{font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.28rem; letter-spacing:.03em;}
   .brand-sub{display:block; font-family:'Noto Sans JP',sans-serif; font-size:.66rem; color:var(--ink-soft); letter-spacing:.14em; margin-top:1px;}
 
-  /* Dropdown menu (nav) */
   .menu-dd{position:relative;}
   .menu-btn{
     display:flex; align-items:center; gap:8px;
@@ -104,11 +102,12 @@
     text-decoration:none; font-size:.93rem; color:var(--ink);
     padding:11px 14px; border-radius:4px; border-bottom:none;
   }
-  nav.links a:hover{background:var(--bg-alt); border-bottom-color:transparent;}
+  nav.links a:hover{background:var(--bg-alt);}
   .cta-btn{
     background:var(--red); color:var(--on-red); text-decoration:none;
     padding:11px 22px; border-radius:3px; font-size:.9rem; font-weight:600;
-    white-space:nowrap; transition:background .2s ease;
+    white-space:nowrap; transition:background .2s ease; border:none; cursor:pointer;
+    font-family:'Noto Sans JP',sans-serif;
   }
   .cta-btn:hover{background:var(--red-deep);}
   .cta-ghost{
@@ -122,165 +121,122 @@
     cursor:pointer; font-family:'Noto Sans JP',sans-serif;
   }
   .lang-btn:hover{border-color:var(--red); color:var(--red);}
-  .lang-globe{font-size:.95em;}
 
-  /* ===== Hero ===== */
-  .hero{
-    position:relative; padding:96px 0 100px; overflow:hidden;
+  @media (max-width:860px){ .cta-btn.hide-mobile{display:none;} }
+
+  /* ===== Page hero ===== */
+  .page-hero{
+    position:relative; padding:64px 0 48px; overflow:hidden;
     background: linear-gradient(180deg, var(--bg-alt), var(--bg));
+    border-bottom:1px solid var(--line);
   }
-  .hero-orb{
-    position:absolute; right:-140px; top:-120px; width:560px; height:560px;
+  .page-hero-orb{
+    position:absolute; right:-160px; top:-160px; width:460px; height:460px;
     border-radius:50%;
-    background: radial-gradient(circle at 38% 32%, var(--sakura) 0%, var(--sakura-soft) 62%, transparent 75%);
-    opacity:.9;
+    background: radial-gradient(circle at 38% 32%, var(--red) 0%, var(--red-deep) 58%, transparent 75%);
+    opacity:.14;
   }
-  .petal{
-    position:absolute; width:14px; height:18px; background:var(--sakura);
-    border-radius:0 60% 0 60%; opacity:.55;
-    animation: drift 14s linear infinite;
+  @media (max-width:600px){
+    .page-hero-orb{ width:260px; height:260px; right:-90px; top:-90px; }
   }
-  @media (prefers-reduced-motion: reduce){ .petal{animation:none;} }
-  @keyframes drift{
-    0%{ transform: translateY(-40px) rotate(0deg); opacity:0; }
-    10%{ opacity:.55; }
-    100%{ transform: translateY(620px) rotate(200deg); opacity:0; }
+  .breadcrumb{position:relative; z-index:2; font-size:.84rem; color:var(--ink-soft); margin-bottom:16px;}
+  .breadcrumb a{text-decoration:none; color:var(--ink-soft);}
+  .breadcrumb a:hover{color:var(--red);}
+  .page-hero h1{position:relative; z-index:2; font-size:clamp(1.9rem,3.6vw,2.6rem); max-width:20ch;}
+  .page-hero p{position:relative; z-index:2; color:var(--ink-soft); margin-top:14px; max-width:56ch; line-height:1.8; font-size:1rem;}
+
+  /* ===== Form layout ===== */
+  .form-section{padding:64px 0 100px;}
+  .form-layout{display:grid; grid-template-columns:.72fr 1.28fr; gap:48px; align-items:start;}
+
+  .form-aside{position:sticky; top:calc(96px + env(safe-area-inset-top,0px)); border:1px solid var(--line-strong); border-radius:4px; padding:28px; background:var(--bg-alt);}
+  .form-aside h3{font-size:1.1rem; margin-bottom:14px;}
+  .form-aside ol{margin:0 0 24px; padding-left:20px; color:var(--ink-soft); font-size:.9rem; line-height:2.1;}
+  .form-aside ol li::marker{color:var(--red); font-weight:600;}
+  .aside-note{border-top:1px solid var(--line); padding-top:18px; font-size:.84rem; color:var(--ink-soft); line-height:1.8;}
+  .aside-note strong{display:block; color:var(--ink); margin-bottom:6px; font-size:.86rem;}
+
+  form{border:1px solid var(--line-strong); border-radius:4px; overflow:hidden;}
+  .form-block{padding:36px; border-bottom:1px solid var(--line);}
+  .form-block:last-of-type{border-bottom:none;}
+  .form-block-head{margin-bottom:24px;}
+  .form-block-head .num{font-family:'Shippori Mincho',serif; color:var(--sakura); font-weight:700; font-size:.9rem; letter-spacing:.06em;}
+  .form-block-head h2{font-size:1.3rem; margin-top:6px;}
+  .form-block-head p{color:var(--ink-soft); font-size:.88rem; margin-top:6px; line-height:1.7;}
+
+  .field-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .field{display:flex; flex-direction:column; gap:7px;}
+  .field.full{grid-column:1/-1;}
+  .field label{font-size:.86rem; font-weight:600; color:var(--ink);}
+  .field label .opt{font-weight:400; color:var(--ink-soft); font-size:.78rem;}
+  .field input[type=text],
+  .field input[type=tel],
+  .field input[type=email],
+  .field input[type=date],
+  .field select,
+  .field textarea{
+    width:100%; border:1px solid var(--line-strong); border-radius:3px;
+    padding:11px 13px; font-family:inherit; font-size:.92rem; color:var(--ink);
+    background:var(--bg); outline:none; transition:border-color .15s ease;
   }
-  .hero-inner{position:relative; z-index:2; display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:end;}
-  .hero-eyebrow{color:var(--red); font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:.92rem; letter-spacing:.06em; margin-bottom:18px;}
-  .hero h1{font-size:clamp(2.3rem, 4.6vw, 3.6rem); max-width:15ch;}
-  .hero p.lead{margin:22px 0 30px; max-width:46ch; color:var(--ink-soft); font-size:1.05rem; line-height:1.75;}
-  .hero-cta{display:flex; gap:14px; flex-wrap:wrap;}
-  .hero-side{border-left:1px solid var(--line); padding-left:28px;}
-  .hero-side p{color:var(--ink-soft); line-height:1.9; font-size:.95rem; margin:0 0 16px;}
-  .hero-side .kanji{font-family:'Shippori Mincho',serif; font-size:1.5rem; margin-bottom:10px; display:block;}
-
-  /* ===== Section shell ===== */
-  section{padding:96px 0;}
-  .section-head{display:grid; grid-template-columns:220px 1fr; gap:40px; margin-bottom:52px; align-items:start; border-top:1px solid var(--line); padding-top:26px;}
-  .section-head .tag{font-size:.8rem; letter-spacing:.1em; color:var(--red); font-weight:600;}
-  .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem);}
-  .section-head .desc{color:var(--ink-soft); max-width:56ch; line-height:1.8; margin-top:14px;}
-
-  /* ===== About ===== */
-  .about-grid{display:grid; grid-template-columns:.8fr 1.2fr; gap:64px; align-items:start;}
-  .about-facts{border:1px solid var(--line-strong); border-radius:4px; padding:32px;}
-  .about-facts .fact{padding:16px 0; border-top:1px solid var(--line);}
-  .about-facts .fact:first-child{border-top:none; padding-top:0;}
-  .about-facts .fact span{display:block; color:var(--ink-soft); font-size:.8rem; margin-bottom:4px;}
-  .about-facts .fact strong{font-size:1rem; font-weight:600;}
-  .about-body p{color:var(--ink-soft); line-height:1.9; margin:0 0 18px;}
-  .values-row{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:56px; border-top:1px solid var(--line);}
-  .value-item{padding:26px 28px 0 28px; border-right:1px solid var(--line);}
-  .value-item:first-child{padding-left:0;}
-  .value-item:last-child{border-right:none;}
-  .value-item h3{font-size:1.02rem; font-weight:600; font-family:'Noto Sans JP',sans-serif; margin-bottom:8px;}
-  .value-item p{color:var(--ink-soft); font-size:.9rem; line-height:1.75; margin:0;}
-
-  /* ===== Vision ===== */
-  .vision{background:var(--bg-alt);}
-  .vision-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:64px; align-items:center;}
-  .vision-statement{font-family:'Shippori Mincho',serif; font-size:clamp(1.4rem,2.4vw,1.9rem); line-height:1.6;}
-  .vision-body p{color:var(--ink-soft); line-height:1.9; margin:0 0 18px;}
-
-  /* ===== Process (genuine sequence -> numbered) ===== */
-  .process-list{display:flex; flex-direction:column;}
-  .process-item{
-    display:grid; grid-template-columns:90px 1fr; gap:28px;
-    padding:32px 0; border-top:1px solid var(--line);
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--red);}
+  .field textarea{resize:vertical; min-height:96px;}
+  .field select{appearance:none; cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%235B6478' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 13px center; padding-right:32px;
   }
-  .process-item:last-child{border-bottom:1px solid var(--line);}
-  .process-num{font-family:'Shippori Mincho',serif; font-size:2.1rem; color:var(--sakura); font-weight:700;}
-  .process-item h3{font-size:1.2rem; margin-bottom:8px;}
-  .process-item p{color:var(--ink-soft); line-height:1.8; margin:0; max-width:60ch;}
 
-  /* ===== Fields gallery ===== */
-  .fields{background:var(--bg-alt);}
-  .gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
-  .gallery-card{
-    position:relative; aspect-ratio:4/3; border-radius:3px; overflow:hidden; cursor:pointer;
-    background: linear-gradient(155deg, var(--red) 0%, var(--red-deep) 100%);
+  .radio-row, .check-row{display:flex; flex-wrap:wrap; gap:12px;}
+  .radio-card{
+    flex:1 1 220px; border:1px solid var(--line-strong); border-radius:3px; padding:14px 16px;
+    cursor:pointer; transition:border-color .15s ease, background .15s ease;
   }
-  .gallery-card svg{position:absolute; inset:0; width:100%; height:100%; transition:opacity .2s ease;}
-  .gallery-photo{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1;}
-  .gallery-upload-input{position:absolute; inset:0; opacity:0; cursor:pointer; z-index:3;}
-  .gallery-hint{
-    position:absolute; top:12px; right:12px; z-index:2;
-    background:rgba(0,0,0,.55); color:#fff; font-size:.7rem; padding:5px 10px;
-    border-radius:20px; opacity:0; transition:opacity .2s ease; pointer-events:none;
+  .radio-card:has(input:checked){border-color:var(--red); background:var(--bg-alt);}
+  .radio-card input{margin-right:8px; accent-color:var(--red);}
+  .radio-card strong{font-size:.92rem;}
+  .radio-card span{display:block; font-size:.78rem; color:var(--ink-soft); margin-top:3px;}
+
+  .upload-field{border:1.5px dashed var(--line-strong); border-radius:3px; padding:20px; text-align:center; background:var(--bg-alt); position:relative;}
+  .upload-field input[type=file]{position:absolute; inset:0; opacity:0; cursor:pointer;}
+  .upload-field .upload-label{font-size:.86rem; font-weight:600;}
+  .upload-field .upload-hint{font-size:.76rem; color:var(--ink-soft); margin-top:4px;}
+  .upload-field .file-chosen{font-size:.78rem; color:var(--red); margin-top:6px; font-weight:600; display:none;}
+
+  .declare-row{display:flex; gap:12px; align-items:flex-start; font-size:.88rem; color:var(--ink-soft); line-height:1.7;}
+  .declare-row input{margin-top:4px; accent-color:var(--red); flex-shrink:0;}
+
+  .form-submit{padding:32px 36px; background:var(--bg-alt); display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+  .form-submit p{font-size:.82rem; color:var(--ink-soft); max-width:40ch; margin:0;}
+  .submit-btn{font-size:.95rem; padding:14px 30px;}
+
+  .success-box{display:none; margin:0 0 28px; padding:18px 20px; border:1px solid var(--sakura); background:var(--sakura-soft); border-radius:4px; font-size:.9rem; color:var(--ink);}
+  .success-box.show{display:block;}
+
+  @media (max-width:900px){
+    .form-layout{grid-template-columns:1fr;}
+    .form-aside{position:static;}
+    .field-grid{grid-template-columns:1fr;}
+    .form-block{padding:26px 22px;}
+    .form-submit{padding:26px 22px; flex-direction:column; align-items:stretch; text-align:left;}
+    .submit-btn{width:100%; justify-content:center; display:flex;}
   }
-  .gallery-card:hover .gallery-hint, .gallery-card:focus-within .gallery-hint{opacity:1;}
-  .gallery-scrim{
-    position:absolute; left:0; right:0; bottom:0; padding:18px 20px;
-    background: linear-gradient(0deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 70%);
-  }
-  .gallery-scrim h3{color:#fff; font-family:'Noto Sans JP',sans-serif; font-size:1rem; font-weight:600; margin-bottom:3px;}
-  .gallery-scrim span{color:rgba(255,255,255,.78); font-size:.8rem;}
 
-  /* ===== Stats band ===== */
-  .stats{background:var(--red); color:var(--on-red);}
-  .stats .section-head{border-top:1px solid rgba(255,255,255,.25);}
-  .stats .section-head .tag{color:var(--sakura-soft);}
-  .stats .section-head h2, .stats .section-head .desc{color:var(--on-red);}
-  .stat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:40px;}
-  .stat-num{font-family:'Shippori Mincho',serif; font-size:clamp(2.4rem,4vw,3.4rem); font-weight:700;}
-  .stat-label{margin-top:8px; color:rgba(255,246,243,.82); font-size:.92rem; line-height:1.6;}
-
-  /* ===== Company info ===== */
-  .company-table{border-top:1px solid var(--line);}
-  .company-row{display:grid; grid-template-columns:200px 1fr; gap:30px; padding:20px 0; border-bottom:1px solid var(--line);}
-  .company-row dt{color:var(--ink-soft); font-size:.9rem;}
-  .company-row dd{margin:0; line-height:1.7;}
-
-  /* ===== Contact CTA ===== */
-  .contact{background:var(--bg-alt);}
-  .contact-panel{
-    background:var(--ink); color:var(--bg);
-    border-radius:4px; padding:64px 56px; display:grid; grid-template-columns:1.2fr .8fr; gap:48px; align-items:center;
-  }
-  .contact-panel h2{color:var(--bg); font-size:clamp(1.6rem,3vw,2.1rem); max-width:16ch;}
-  .contact-panel p{color:rgba(251,246,244,.7); line-height:1.8; margin:18px 0 0; max-width:44ch;}
-  .contact-details{display:flex; flex-direction:column; gap:18px;}
-  .contact-details div{border-top:1px solid rgba(251,246,244,.18); padding-top:14px;}
-  .contact-details span{display:block; color:rgba(251,246,244,.55); font-size:.78rem; margin-bottom:4px;}
-  .contact-details strong{font-weight:600; font-size:1rem;}
-
-  /* ===== Footer ===== */
-  footer{padding:64px 0 40px; border-top:1px solid var(--line);}
+  /* ===== Footer (sama dengan index) ===== */
+  footer{padding:64px 0 40px; border-top:1px solid var(--line); margin-top:0;}
   .footer-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:48px; margin-bottom:48px;}
   .footer-grid h4{font-family:'Noto Sans JP',sans-serif; font-size:.82rem; letter-spacing:.08em; color:var(--ink-soft); margin:0 0 16px;}
   .footer-grid ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px;}
   .footer-grid a{text-decoration:none; font-size:.93rem;}
   .footer-grid a:hover{color:var(--red);}
   .footer-bottom{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; color:var(--ink-soft); font-size:.82rem; border-top:1px solid var(--line); padding-top:24px;}
-
-  /* ===== Responsive ===== */
-  @media (max-width:860px){
-    .hero-inner{grid-template-columns:1fr;}
-    .hero-side{border-left:none; border-top:1px solid var(--line); padding-left:0; padding-top:24px;}
-    .vision-grid{grid-template-columns:1fr;}
-    .about-grid{grid-template-columns:1fr; gap:32px;}
-    .values-row{grid-template-columns:1fr; gap:22px;}
-    .value-item{border-right:none; border-top:1px solid var(--line); padding:22px 0 0;}
-    .value-item:first-child{border-top:none;}
-    .section-head{grid-template-columns:1fr; gap:14px;}
-    .gallery-grid{grid-template-columns:1fr 1fr;}
-    .stat-grid{grid-template-columns:1fr; gap:28px;}
-    .company-row{grid-template-columns:1fr; gap:6px;}
-    .contact-panel{grid-template-columns:1fr; padding:40px 26px;}
-    .footer-grid{grid-template-columns:1fr; gap:32px;}
-    .cta-btn.hide-mobile{display:none;}
-  }
-  @media (max-width:520px){
-    .gallery-grid{grid-template-columns:1fr;}
-  }
+  @media (max-width:860px){ .footer-grid{grid-template-columns:1fr; gap:32px;} }
 </style>
 </head>
 <body>
 
 <header>
   <div class="nav">
-    <a href="#home" class="brand">
+    <a href="index.html" class="brand">
       <span class="brand-mark"></span>
       <span>
         <span class="brand-name">PRIME TEKIPAKI</span>
@@ -288,22 +244,21 @@
       </span>
     </a>
     <div class="nav-right">
-      <button id="langToggle" class="lang-btn" aria-label="Ganti bahasa / 言語を切り替える" type="button">
-        <span class="lang-globe">🌐</span><span id="langLabel">日本語</span>
+      <button id="langToggle" class="lang-btn" type="button" aria-label="Ganti bahasa / 言語を切り替える">
+        <span>🌐</span><span id="langLabel">日本語</span>
       </button>
-      <a href="#kontak" class="cta-btn hide-mobile" data-jp="今すぐ登録">Daftar Sekarang</a>
+      <a href="#formulir" class="cta-btn hide-mobile" data-jp="今すぐ登録">Isi Formulir</a>
       <div class="menu-dd" id="menuDd">
         <button class="menu-btn" id="menuToggle" aria-haspopup="true" aria-expanded="false">
           <span data-jp="メニュー">Menu</span> <span class="chev"></span>
         </button>
         <nav class="links" id="navLinks">
-          <a href="#home" data-jp="ホーム">Beranda</a>
-          <a href="#tentang" data-jp="会社概要">Tentang Kami</a>
-          <a href="#visi" data-jp="ビジョン">Visi Kami</a>
+          <a href="index.html" data-jp="ホーム">Beranda</a>
+          <a href="index.html#tentang" data-jp="会社概要">Tentang Kami</a>
+          <a href="index.html#visi" data-jp="ビジョン">Visi Kami</a>
           <a href="program.html" data-jp="プログラム">Program</a>
-          <a href="#bidang" data-jp="職種分野">Bidang Kerja</a>
-          <a href="#perusahaan" data-jp="会社情報">Perusahaan</a>
-          <a href="#kontak" data-jp="お問い合わせ">Kontak</a>
+          <a href="index.html#bidang" data-jp="職種分野">Bidang Kerja</a>
+          <a href="index.html#kontak" data-jp="お問い合わせ">Kontak</a>
           <a href="jft_tekipaki.html" data-jp="JFTプログラム">Program JFT</a>
         </nav>
       </div>
@@ -311,305 +266,176 @@
   </div>
 </header>
 
-<main id="home">
-  <section class="hero">
-    <div class="hero-orb" aria-hidden="true"></div>
-    <div class="petal" style="left:8%; animation-delay:0s;" aria-hidden="true"></div>
-    <div class="petal" style="left:22%; animation-delay:3s;" aria-hidden="true"></div>
-    <div class="petal" style="left:55%; animation-delay:6s;" aria-hidden="true"></div>
-    <div class="petal" style="left:72%; animation-delay:2s;" aria-hidden="true"></div>
-    <div class="wrap hero-inner">
+<section class="page-hero">
+  <div class="page-hero-orb" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="breadcrumb"><a href="index.html" data-jp="ホーム">Beranda</a> / <span data-jp="登録フォーム">Formulir Pendaftaran</span></div>
+    <h1 data-jp="登録フォーム">Formulir Pendaftaran</h1>
+    <p data-jp="以下のフォームにご記入ください。データは正確に入力してください。私たちのチームが1〜2営業日以内にご連絡いたします。">Lengkapi formulir di bawah ini dengan data yang benar dan sesuai dokumen resmi. Tim kami akan menghubungi Anda dalam 1–2 hari kerja setelah formulir diterima.</p>
+  </div>
+</section>
+
+<section class="form-section" id="formulir">
+  <div class="wrap">
+    <div class="form-layout">
+
+      <aside class="form-aside">
+        <h3 data-jp="登録の流れ">Alur Pendaftaran</h3>
+        <ol>
+          <li data-jp="フォームに記入する">Isi formulir di samping</li>
+          <li data-jp="必要書類をアップロードする">Unggah dokumen yang diminta</li>
+          <li data-jp="チームが確認・連絡する">Tim kami memverifikasi &amp; menghubungi Anda</li>
+          <li data-jp="面接・語学試験の日程調整">Penjadwalan wawancara &amp; tes bahasa</li>
+        </ol>
+        <div class="aside-note">
+          <strong data-jp="お問い合わせ">Butuh bantuan?</strong>
+          <span data-jp="WhatsApp: +62 821 3080 7776&#10;Email: info@tekipaki.co.id">WhatsApp: +62 821 3080 7776<br>Email: info@tekipaki.co.id</span>
+        </div>
+      </aside>
+
       <div>
-        <div class="hero-eyebrow">日本就労支援機関 </div>
-        <h1 data-jp="私たちはインドネシア人材の夢を日本へ届けます">Kami mengantar mimpi tenaga kerja Indonesia sampai ke Jepang</h1>
-        <p class="lead" data-jp="TEKIPAKIは、特定技能・技能実習制度を通じて、インドネシア人材の登録から日本での就労・成長まで誠実にサポートします。">TEKIPAKI menyiapkan, melatih, dan mendampingi calon pekerja Indonesia dari pendaftaran hingga bekerja dan berkembang di Jepang, melalui program Tokutei Ginou dan Jisshusei yang resmi dan terpercaya.</p>
-        <div class="hero-cta">
-          <a href="#kontak" class="cta-btn" data-jp="無料相談">Konsultasi Gratis</a>
-          <a href="#program" class="cta-ghost" data-jp="プログラムを見る">Lihat Program</a>
-        </div>
-      </div>
-      <div class="hero-side">
-        <span class="kanji">誠実</span>
-        <p data-jp="人にはみな無限の可能性があります。正しい準備があれば、インドネシアの人材は桜の国で誇れるキャリアを築けると私たちは信じています。">Setiap orang memiliki potensi tanpa batas. Kami percaya, dengan persiapan yang tepat, setiap pekerja Indonesia bisa membangun karier yang membanggakan di negeri sakura.</p>
-      </div>
-    </div>
-  </section>
+        <div class="success-box" id="successBox" data-jp="送信ありがとうございます。担当チームが1〜2営業日以内にご連絡いたします。">Terima kasih, formulir Anda telah diterima. Tim kami akan menghubungi Anda dalam 1–2 hari kerja.</div>
 
-  <section id="tentang">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="tag">TENTANG KAMI / ABOUT</div>
-        <div>
-          <h2 data-jp="日本でのキャリアへの信頼できるパートナー">Mitra tepercaya menuju karier di Jepang</h2>
-          <div class="desc" data-jp="PRIME TEKIPAKI RAYAは、インドネシア人材が日本で正式かつ安全に働けるよう準備を行う研修・人材送出機関です。">PRIME TEKIPAKI RAYA adalah lembaga pelatihan dan penyalur kerja yang fokus mempersiapkan tenaga kerja Indonesia untuk bekerja secara resmi dan aman di Jepang.</div>
-        </div>
-      </div>
-      <div class="about-grid">
-        <div class="about-facts">
-          <div class="fact"><span data-jp="設立">Didirikan</span><strong data-jp="2019年、ジャカルタ拠点">2025, berbasis di Bekasi</strong></div>
-          <div class="fact"><span data-jp="サービス内容">Fokus Layanan</span><strong data-jp="語学・技能研修 & 人材送出">Pelatihan bahasa, keterampilan &amp; penyaluran kerja</strong></div>
-          <div class="fact"><span data-jp="プログラム">Jalur Program</span><strong data-jp="特定技能 & 技能実習">Tokutei Ginou &amp; Jisshusei</strong></div>
-          <div class="fact"><span data-jp="対応範囲">Jangkauan</span><strong data-jp="日本各地の提携企業">Mitra perusahaan di berbagai wilayah Jepang</strong></div>
-        </div>
-        <div class="about-body">
-          <p data-jp="インドネシアの若者により多くのキャリアの道を開きたいという思いから、TEKIPAKIはインドネシアの働く意欲と日本の技能人材ニーズをつなぐ架け橋として設立されました。「Tekipaki」という名前は、日本語で「てきぱき（機敏で手際が良い）」を意味し、私たちが全ての参加者に育む価値観です。">Berawal dari keinginan untuk membuka lebih banyak jalan karier bagi anak muda Indonesia, PRIME TEKIPAKI RAYA didirikan sebagai jembatan antara semangat kerja Indonesia dan kebutuhan tenaga kerja terampil di Jepang. Nama "Tekipaki" sendiri diambil dari bahasa Jepang yang berarti cekatan dan sigap — nilai yang kami tanamkan pada setiap peserta program.</p>
-          <p data-jp="私たちは人材を送り出すだけでなく、登録初日から語学・技能研修、そして日本での就労期間まで、一人ひとりに寄り添います。このアプローチにより、プロセスがより個人的で、明確で、信頼できるものになります。">Kami tidak hanya menyalurkan tenaga kerja, tetapi mendampingi setiap peserta sejak hari pertama pendaftaran, melalui pelatihan bahasa dan keterampilan, hingga masa kerja di Jepang berlangsung. Pendekatan ini membuat proses terasa lebih personal, jelas, dan dapat dipercaya.</p>
-        </div>
-      </div>
-      <div class="values-row">
-        <div class="value-item">
-          <h3 data-jp="信頼">Kepercayaan</h3>
-          <p data-jp="全てのプロセスは、インドネシア・日本の労働規則に沿って透明かつ正式に行われます。">Setiap proses dijalankan secara transparan, resmi, dan sesuai regulasi ketenagakerjaan Indonesia–Jepang.</p>
-        </div>
-        <div class="value-item">
-          <h3 data-jp="規律">Kedisiplinan</h3>
-          <p data-jp="語学・技能研修カリキュラムは段階的に組まれ、渡日前に確実に準備を整えます。">Kurikulum pelatihan bahasa dan keterampilan disusun bertahap agar peserta benar-benar siap sebelum berangkat.</p>
-        </div>
-        <div class="value-item">
-          <h3 data-jp="寄り添い">Pendampingan</h3>
-          <p data-jp="出発後だけでなく、日本での就労期間中も私たちのチームは参加者と繋がり続けます。">Tim kami tetap terhubung dengan peserta selama masa kerja berlangsung di Jepang, bukan hanya sampai keberangkatan.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+        <form id="regForm" novalidate>
 
-  <section class="vision" id="visi">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="tag">VISI KAMI / OUR VISION</div>
-        <div>
-          <h2 data-jp="インドネシアから日本へのキャリアの道を拓く">Membuka jalan karier Indonesia menuju Jepang</h2>
-        </div>
-      </div>
-      <div class="vision-grid">
-        <div class="vision-statement" data-jp="「私たちは、一人ひとりの可能性を信じ、インドネシアと日本の誠実な協力によってそれを実現することに尽力します。」">
-          "Kami percaya pada potensi setiap orang, dan berkomitmen mewujudkannya melalui kerja sama yang jujur antara Indonesia dan Jepang."
-        </div>
-        <div class="vision-body">
-          <p data-jp="PRIME TEKIPAKI RAYAは、日本の技能人材ニーズとインドネシアの若い世代の情熱と誠意をつなぐために存在します。私たちは信頼、規律、そして共通の責任のもとに全てのプログラムを構築します。">PRIME TEKIPAKI RAYA hadir untuk menjembatani kebutuhan tenaga kerja terampil di Jepang dengan semangat dan kesungguhan generasi muda Indonesia. Kami membangun setiap program berdasarkan kepercayaan, kedisiplinan, dan tanggung jawab bersama.</p>
-          <p data-jp="語学・技能研修から正式な書類手続き、来日後の寄り添いまで、参加者が自信を持って各段階に臨めるようにサポートします。">Dari pelatihan bahasa dan keterampilan, pengurusan dokumen resmi, hingga pendampingan setelah tiba di Jepang — kami memastikan setiap peserta siap menghadapi setiap tahap perjalanannya dengan percaya diri.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="program">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="tag">PROGRAM</div>
-        <div>
-          <h2 data-jp="日本へ向かう4つのステップ">Empat tahap menuju Jepang</h2>
-          <div class="desc" data-jp="私たちのサポートプロセスは段階的に構成されており、出発前から日本での就労中まで、一人ひとりが確実に準備できるようにしています。">Proses pendampingan kami disusun bertahap, agar setiap peserta benar-benar siap sebelum berangkat dan selama bekerja di Jepang.</div>
-        </div>
-      </div>
-      <div class="process-list">
-        <div class="process-item">
-          <div class="process-num">01</div>
-          <div>
-            <h3 data-jp="登録・選考">Pendaftaran &amp; Seleksi</h3>
-            <p data-jp="ニーズの相談、書類確認、そして最適なプログラム — 特定技能（特定技能）または技能実習（技能実習生）— を決定するための初期選考。">Konsultasi kebutuhan, pengecekan berkas, dan seleksi awal untuk menentukan jalur program yang paling sesuai — Tokutei Ginou (特定技能) atau Jisshusei (技能実習生).</p>
+          <div class="form-block">
+            <div class="form-block-head">
+              <div class="num">01</div>
+              <h2 data-jp="個人情報">Data Diri</h2>
+              <p data-jp="身分証明書に記載されている通りに正しくご記入ください。">Isi sesuai dengan dokumen identitas resmi (KTP/KK).</p>
+            </div>
+            <div class="field-grid">
+              <div class="field full">
+                <label data-jp="氏名（フルネーム）">Nama Lengkap</label>
+                <input type="text" name="nama" required placeholder="Sesuai KTP">
+              </div>
+              <div class="field">
+                <label data-jp="生年月日">Tanggal Lahir</label>
+                <input type="date" name="tanggal_lahir" required>
+              </div>
+              <div class="field">
+                <label data-jp="出生地">Tempat Lahir</label>
+                <input type="text" name="tempat_lahir" required placeholder="Contoh: Bekasi">
+              </div>
+              <div class="field">
+                <label data-jp="性別">Jenis Kelamin</label>
+                <select name="jenis_kelamin" required>
+                  <option value="" data-jp="選択してください">Pilih salah satu</option>
+                  <option value="laki-laki" data-jp="男性">Laki-laki</option>
+                  <option value="perempuan" data-jp="女性">Perempuan</option>
+                </select>
+              </div>
+              <div class="field">
+                <label data-jp="最終学歴">Pendidikan Terakhir</label>
+                <select name="pendidikan" required>
+                  <option value="" data-jp="選択してください">Pilih salah satu</option>
+                  <option value="smp" data-jp="中学校">SMP</option>
+                  <option value="sma-smk" data-jp="高校・専門高校">SMA / SMK</option>
+                  <option value="diploma" data-jp="専門学校">Diploma</option>
+                  <option value="s1" data-jp="学士">S1</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label data-jp="住所">Alamat Domisili</label>
+                <textarea name="alamat" required placeholder="Jalan, RT/RW, Kelurahan, Kecamatan, Kota, Provinsi"></textarea>
+              </div>
+              <div class="field">
+                <label data-jp="電話・WhatsApp番号">Nomor WhatsApp</label>
+                <input type="tel" name="whatsapp" required placeholder="08xx xxxx xxxx">
+              </div>
+              <div class="field">
+                <label>Email</label>
+                <input type="email" name="email" required placeholder="nama@email.com">
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="process-item">
-          <div class="process-num">02</div>
-          <div>
-            <h3 data-jp="語学・技能研修">Pelatihan Bahasa &amp; Keterampilan</h3>
-            <p data-jp="JFT-Basic A2レベルを目指す集中日本語クラスに加え、就労技能と日本の職場文化の研修を実施します。">Kelas bahasa Jepang intensif menuju standar JFT-Basic A2, dilengkapi pelatihan keterampilan kerja dan budaya kerja Jepang.</p>
+
+          <div class="form-block">
+            <div class="form-block-head">
+              <div class="num">02</div>
+              <h2 data-jp="希望プログラム">Program yang Diminati</h2>
+              <p data-jp="ご希望のプログラムを選択してください。">Pilih jalur program yang ingin Anda ikuti.</p>
+            </div>
+            <div class="radio-row">
+              <label class="radio-card">
+                <input type="radio" name="program" value="tokutei" required>
+                <strong data-jp="特定技能">Tokutei Ginou (特定技能)</strong>
+                <span data-jp="専門技能を持つ人材向けの就労ビザプログラム">Program visa kerja untuk tenaga terampil</span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="program" value="jisshusei" required>
+                <strong data-jp="技能実習生">Jisshusei (技能実習生)</strong>
+                <span data-jp="実務を通じて技能を学ぶ技能実習プログラム">Program magang sambil belajar keterampilan</span>
+              </label>
+            </div>
+            <div class="field full" style="margin-top:20px;">
+              <label data-jp="希望職種分野">Bidang Kerja yang Diminati</label>
+              <select name="bidang">
+                <option value="" data-jp="選択してください">Pilih salah satu</option>
+                <option value="kaigo" data-jp="介護">Perawatan Lansia (Kaigo)</option>
+                <option value="manufaktur" data-jp="製造業">Manufaktur</option>
+                <option value="pertanian" data-jp="農業">Pertanian</option>
+                <option value="perhotelan" data-jp="ホテル・飲食業">Perhotelan &amp; Restoran</option>
+                <option value="konstruksi" data-jp="建設業">Konstruksi</option>
+                <option value="makanan" data-jp="食品産業">Industri Makanan</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="process-item">
-          <div class="process-num">03</div>
-          <div>
-            <h3 data-jp="書類手続き・配属">Pengurusan Dokumen &amp; Penempatan</h3>
-            <p data-jp="ビザ・正式書類の手続きを行い、参加者の専門分野に応じて日本の提携企業とマッチングします。">Pengurusan visa dan dokumen resmi, pencocokan dengan perusahaan mitra di Jepang sesuai bidang keahlian peserta.</p>
+
+          <div class="form-block">
+            <div class="form-block-head">
+              <div class="num">03</div>
+              <h2 data-jp="必要書類のアップロード">Unggah Dokumen</h2>
+              <p data-jp="ファイル形式：JPG、PNG、または PDF（各最大5MB）。">Format file: JPG, PNG, atau PDF (maks. 5MB per file).</p>
+            </div>
+            <div class="field-grid">
+              <div class="field">
+                <label data-jp="身分証明書（KTP）">KTP</label>
+                <div class="upload-field">
+                  <input type="file" name="file_ktp" accept="image/*,.pdf">
+                  <div class="upload-label" data-jp="クリックしてアップロード">Klik untuk unggah</div>
+                  <div class="upload-hint" data-jp="JPG、PNG、PDF">JPG, PNG, atau PDF</div>
+                  <div class="file-chosen"></div>
+                </div>
+              </div>
+              <div class="field">
+                <label data-jp="卒業証明書">Ijazah Terakhir</label>
+                <div class="upload-field">
+                  <input type="file" name="file_ijazah" accept="image/*,.pdf">
+                  <div class="upload-label" data-jp="クリックしてアップロード">Klik untuk unggah</div>
+                  <div class="upload-hint" data-jp="JPG、PNG、PDF">JPG, PNG, atau PDF</div>
+                  <div class="file-chosen"></div>
+                </div>
+              </div>
+              <div class="field full">
+                <label data-jp="証明写真">Pas Foto Terbaru</label>
+                <div class="upload-field">
+                  <input type="file" name="file_foto" accept="image/*">
+                  <div class="upload-label" data-jp="クリックしてアップロード">Klik untuk unggah</div>
+                  <div class="upload-hint" data-jp="背景白、正面向き">Latar belakang putih, tampak depan</div>
+                  <div class="file-chosen"></div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="process-item">
-          <div class="process-num">04</div>
-          <div>
-            <h3 data-jp="渡日・継続サポート">Keberangkatan &amp; Pendampingan</h3>
-            <p data-jp="渡日前のサポートから日本での就労期間、契約期間中の相談対応まで継続してサポートします。">Pendampingan sebelum keberangkatan hingga masa kerja di Jepang, termasuk konsultasi selama masa kontrak berlangsung.</p>
+
+          <div class="form-block">
+            <label class="declare-row">
+              <input type="checkbox" name="setuju" required>
+              <span data-jp="記入した情報はすべて正確であり、TEKIPAKIによる登録・選考プロセスでの利用に同意します。">Saya menyatakan bahwa seluruh data yang saya isi adalah benar dan menyetujui data ini digunakan untuk proses pendaftaran &amp; seleksi oleh TEKIPAKI.</span>
+            </label>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="fields" id="bidang">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="tag">GALERI BIDANG KERJA</div>
-        <div>
-          <h2 data-jp="日本へ送り出す職種分野">Sektor kerja yang kami kirim ke Jepang</h2>
-          <div class="desc" data-jp="私たちは、熟練した意欲ある人材を必要とする日本の様々な産業分野へ人材を送り出しています。">Kami menyalurkan tenaga kerja ke berbagai sektor industri di Jepang yang membutuhkan tenaga kerja terampil dan berdedikasi.</div>
-        </div>
-      </div>
-      <div class="gallery-grid">
-
-        <div class="gallery-card" data-field="kaigo">
-          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-            <defs><pattern id="dots1" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".12"/></pattern></defs>
-            <rect width="400" height="300" fill="url(#dots1)"/>
-            <circle cx="200" cy="128" r="66" style="fill:var(--sakura)" opacity=".18"/>
-            <g fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity=".92">
-              <circle cx="200" cy="98" r="22"/>
-              <path d="M160 172c0-24 18-40 40-40s40 16 40 40"/>
-              <path d="M138 176c26-14 98-14 124 0"/>
-              <path d="M150 176v22M250 176v22"/>
-            </g>
-          </svg>
-          <input type="file" accept="image/*" class="gallery-upload-input" aria-label="Unggah foto Perawatan Lansia">
-          <div class="gallery-scrim"><h3 data-jp="介護">Perawatan Lansia</h3><span data-jp="介護 — 高齢者施設・医療施設">介護 (Kaigo) — panti jompo &amp; fasilitas kesehatan</span></div>
-        </div>
-
-        <div class="gallery-card" data-field="manufaktur">
-          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-            <defs><pattern id="dots2" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".12"/></pattern></defs>
-            <rect width="400" height="300" fill="url(#dots2)"/>
-            <circle cx="200" cy="150" r="66" style="fill:var(--sakura)" opacity=".18"/>
-            <g fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity=".92">
-              <circle cx="200" cy="150" r="34"/>
-              <circle cx="200" cy="150" r="12"/>
-              <path d="M200 100v16M200 184v16M150 150h16M234 150h16M167 117l11 11M222 172l11 11M233 117l-11 11M178 172l-11 11"/>
-            </g>
-          </svg>
-          <span class="gallery-hint" data-jp="クリックして写真をアップロード">Klik untuk unggah foto</span>
-          <input type="file" accept="image/*" class="gallery-upload-input" aria-label="Unggah foto Manufaktur">
-          <div class="gallery-scrim"><h3 data-jp="製造業">Manufaktur</h3><span data-jp="組立、溶接 & 金属鋳造">Perakitan, pengelasan &amp; pengecoran logam</span></div>
-        </div>
-
-        <div class="gallery-card" data-field="pertanian">
-          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-            <defs><pattern id="dots3" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".12"/></pattern></defs>
-            <rect width="400" height="300" fill="url(#dots3)"/>
-            <circle cx="200" cy="150" r="66" style="fill:var(--sakura)" opacity=".18"/>
-            <g fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity=".92">
-              <path d="M200 190V110"/>
-              <path d="M200 130c0-28 24-46 50-46 0 28-22 46-50 46z"/>
-              <path d="M200 150c0-24-22-40-46-40 0 24 20 40 46 40z"/>
-              <path d="M172 190h56"/>
-            </g>
-          </svg>
-          <span class="gallery-hint" data-jp="クリックして写真をアップロード">Klik untuk unggah foto</span>
-          <input type="file" accept="image/*" class="gallery-upload-input" aria-label="Unggah foto Pertanian">
-          <div class="gallery-scrim"><h3 data-jp="農業">Pertanian</h3><span data-jp="農園・食料栽培">Perkebunan &amp; budidaya pangan</span></div>
-        </div>
-
-        <div class="gallery-card" data-field="perhotelan">
-          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-            <defs><pattern id="dots4" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".12"/></pattern></defs>
-            <rect width="400" height="300" fill="url(#dots4)"/>
-            <circle cx="200" cy="150" r="66" style="fill:var(--sakura)" opacity=".18"/>
-            <g fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity=".92">
-              <path d="M148 152c0-30 23-54 52-54s52 24 52 54"/>
-              <path d="M136 152h128"/>
-              <path d="M200 186v14M178 200h44"/>
-            </g>
-          </svg>
-          <span class="gallery-hint" data-jp="クリックして写真をアップロード">Klik untuk unggah foto</span>
-          <input type="file" accept="image/*" class="gallery-upload-input" aria-label="Unggah foto Perhotelan dan Restoran">
-          <div class="gallery-scrim"><h3 data-jp="ホテル・飲食業">Perhotelan &amp; Restoran</h3><span data-jp="接客サービス、厨房 & 飲食">Layanan tamu, dapur &amp; F&amp;B</span></div>
-        </div>
-
-        <div class="gallery-card" data-field="konstruksi">
-          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-            <defs><pattern id="dots5" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".12"/></pattern></defs>
-            <rect width="400" height="300" fill="url(#dots5)"/>
-            <circle cx="200" cy="150" r="66" style="fill:var(--sakura)" opacity=".18"/>
-            <g fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity=".92">
-              <path d="M170 140a30 30 0 1160 0c0 16-14 18-14 34h-32c0-16-14-18-14-34z"/>
-              <path d="M186 174v10h28v-10"/>
-              <path d="M146 200h108"/>
-            </g>
-          </svg>
-          <span class="gallery-hint" data-jp="クリックして写真をアップロード">Klik untuk unggah foto</span>
-          <input type="file" accept="image/*" class="gallery-upload-input" aria-label="Unggah foto Konstruksi">
-          <div class="gallery-scrim"><h3 data-jp="建設業">Konstruksi</h3><span data-jp="土木・内装工事">Bangunan sipil &amp; interior</span></div>
-        </div>
-
-        <div class="gallery-card" data-field="makanan">
-          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-            <defs><pattern id="dots6" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".12"/></pattern></defs>
-            <rect width="400" height="300" fill="url(#dots6)"/>
-            <circle cx="200" cy="150" r="66" style="fill:var(--sakura)" opacity=".18"/>
-            <g fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity=".92">
-              <path d="M144 148a56 26 0 10112 0"/>
-              <path d="M144 148c0 30 25 46 56 46s56-16 56-46"/>
-              <path d="M170 100l6 22M200 96v24M230 100l-6 22"/>
-            </g>
-          </svg>
-          <span class="gallery-hint" data-jp="クリックして写真をアップロード">Klik untuk unggah foto</span>
-          <input type="file" accept="image/*" class="gallery-upload-input" aria-label="Unggah foto Industri Makanan">
-          <div class="gallery-scrim"><h3 data-jp="食品産業">Industri Makanan</h3><span data-jp="食品加工・包装">Pengolahan &amp; pengemasan makanan</span></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="stats">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="tag">PENCAPAIAN</div>
-        <div>
-          <h2 data-jp="参加者と日本の提携企業から信頼される存在">Dipercaya peserta dan mitra perusahaan Jepang</h2>
-        </div>
-      </div>
-      <div class="stat-grid">
-        <div>
-          <div class="stat-num">100+</div>
-          <div class="stat-label" data-jp="日本各地で働く卒業生">Alumni bekerja di berbagai wilayah Jepang</div>
-        </div>
-        <div>
-          <div class="stat-num">40+</div>
-          <div class="stat-label" data-jp="日本の正式提携企業">Perusahaan mitra resmi di Jepang</div>
-        </div>
-        <div>
-          <div class="stat-num">90%</div>
-          <div class="stat-label" data-jp="語学・技能研修の修了率">Tingkat kelulusan pelatihan bahasa &amp; keterampilan</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="perusahaan">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="tag">PERUSAHAAN / COMPANY</div>
-        <div>
-          <h2 data-jp="機関プロフィール">Profil Lembaga</h2>
-        </div>
-      </div>
-      <dl class="company-table">
-        <div class="company-row"><dt data-jp="機関名">Nama Lembaga</dt><dd data-jp="TEKIPAKI — インドネシア・日本 人材送出機関">TEKIPAKI — Lembaga Penyalur Kerja Indonesia–Jepang</dd></div>
-        <div class="company-row"><dt data-jp="プログラム">Program</dt><dd data-jp="特定技能、技能実習生、JFT-Basic A2対策">Tokutei Ginou (特定技能), Jisshusei (技能実習生), Persiapan JFT-Basic A2</dd></div>
-        <div class="company-row"><dt data-jp="配属地域">Wilayah Penempatan</dt><dd data-jp="提携企業・職種分野に応じ日本全国">Seluruh wilayah Jepang, sesuai mitra perusahaan dan bidang kerja</dd></div>
-        <div class="company-row"><dt data-jp="許認可状況">Status Perizinan</dt><dd data-jp="正式許可を受けた研修・人材送出機関">Lembaga pelatihan &amp; penyalur kerja berizin resmi</dd></div>
-        <div class="company-row"><dt data-jp="営業時間">Jam Operasional</dt><dd data-jp="月曜〜金曜、08:00〜17:00（西インドネシア時間）">Senin – Jumat, 08.00 – 17.00 WIB</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <section class="contact" id="kontak">
-    <div class="wrap">
-      <div class="contact-panel">
-        <div>
-          <h2 data-jp="日本への旅を始める準備はできましたか？">Siap memulai perjalananmu ke Jepang?</h2>
-          <p data-jp="完全無料の相談です。プログラム、条件、登録手続きに関するご質問に、私たちのチームがお答えします。">Konsultasi gratis tanpa biaya apa pun. Tim kami siap membantu menjawab pertanyaan seputar program, persyaratan, dan proses pendaftaran.</p>
-          <div style="margin-top:28px; display:flex; gap:14px; flex-wrap:wrap;">
-            <a href="formulir.html" class="cta-btn" data-jp="登録フォームに記入">Isi Formulir Pendaftaran</a>
-            <a href="#" class="cta-ghost" style="border-color:rgba(251,246,244,.35); color:#FBF6F4;" data-jp="WhatsAppで連絡する">Hubungi via WhatsApp</a>
+          <div class="form-submit">
+            <p data-jp="送信後、担当チームが1〜2営業日以内にWhatsAppまたはメールでご連絡いたします。">Setelah dikirim, tim kami akan menghubungi Anda via WhatsApp atau email dalam 1–2 hari kerja.</p>
+            <button type="submit" class="cta-btn submit-btn" data-jp="フォームを送信">Kirim Formulir</button>
           </div>
-        </div>
-        <div class="contact-details">
-          <div><span data-jp="電話・WhatsApp">Telepon / WhatsApp</span><strong>+62 821 3080 7776</strong></div>
-          <div><span>Email</span><strong>info@tekipaki.co.id</strong></div>
-          <div><span data-jp="事務所住所">Alamat Kantor</span><strong>Jl. Tekipaki No. 1, Jakarta</strong></div>
-        </div>
+
+        </form>
       </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
@@ -627,19 +453,19 @@
       <div>
         <h4 data-jp="ナビゲーション">NAVIGASI</h4>
         <ul>
-          <li><a href="#home" data-jp="ホーム">Beranda</a></li>
-          <li><a href="#tentang" data-jp="会社概要">Tentang Kami</a></li>
-          <li><a href="#visi" data-jp="ビジョン">Visi Kami</a></li>
-          <li><a href="#program" data-jp="プログラム">Program</a></li>
-          <li><a href="#bidang" data-jp="職種分野">Bidang Kerja</a></li>
+          <li><a href="index.html" data-jp="ホーム">Beranda</a></li>
+          <li><a href="index.html#tentang" data-jp="会社概要">Tentang Kami</a></li>
+          <li><a href="index.html#visi" data-jp="ビジョン">Visi Kami</a></li>
+          <li><a href="program.html" data-jp="プログラム">Program</a></li>
+          <li><a href="index.html#bidang" data-jp="職種分野">Bidang Kerja</a></li>
         </ul>
       </div>
       <div>
         <h4 data-jp="お問い合わせ">KONTAK</h4>
         <ul>
-          <li><a href="tel:+62">+62 821 3080 7776</a></li>
+          <li><a href="tel:+6282130807776">+62 821 3080 7776</a></li>
           <li><a href="mailto:info@tekipaki.co.id">info@tekipaki.co.id</a></li>
-          <li><a href="#kontak">Jl. Tekipaki No. 1, Jakarta</a></li>
+          <li><a href="index.html#kontak">Jl. Tekipaki No. 1, Jakarta</a></li>
         </ul>
       </div>
     </div>
@@ -651,7 +477,7 @@
 </footer>
 
 <script>
-  // ---- Language toggle (ID <-> 日本語) ----
+  // ---- Language toggle (sinkron dengan index.html) ----
   const langToggle = document.getElementById('langToggle');
   const langLabel = document.getElementById('langLabel');
   const i18nEls = document.querySelectorAll('[data-jp]');
@@ -663,11 +489,9 @@
     if(langLabel) langLabel.textContent = lang === 'jp' ? 'Indonesia' : '日本語';
     try{ localStorage.setItem('tekipaki-lang', lang); }catch(e){ /* storage unavailable */ }
   }
-
   let currentLang = 'id';
   try{ currentLang = localStorage.getItem('tekipaki-lang') || 'id'; }catch(e){ /* storage unavailable */ }
   applyLang(currentLang);
-
   langToggle.addEventListener('click', () => {
     currentLang = currentLang === 'jp' ? 'id' : 'jp';
     applyLang(currentLang);
@@ -677,60 +501,39 @@
   const menuDd = document.getElementById('menuDd');
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
-
-  function closeMenu(){
-    menuDd.classList.remove('open');
-    menuToggle.setAttribute('aria-expanded', 'false');
-  }
-  function toggleMenu(){
-    const isOpen = menuDd.classList.toggle('open');
-    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  }
-  menuToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleMenu();
-  });
+  function closeMenu(){ menuDd.classList.remove('open'); menuToggle.setAttribute('aria-expanded','false'); }
+  function toggleMenu(){ const isOpen = menuDd.classList.toggle('open'); menuToggle.setAttribute('aria-expanded', isOpen?'true':'false'); }
+  menuToggle.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-  document.addEventListener('click', (e) => {
-    if(!menuDd.contains(e.target)) closeMenu();
-  });
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape') closeMenu();
-  });
+  document.addEventListener('click', (e) => { if(!menuDd.contains(e.target)) closeMenu(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeMenu(); });
 
-  // ---- Gallery: click to upload a photo per field ----
-  document.querySelectorAll('.gallery-card').forEach(card => {
-    const key = card.dataset.field;
-    const input = card.querySelector('.gallery-upload-input');
-    const svg = card.querySelector('svg');
-    if(!key || !input) return;
-
-    function applyImage(dataUrl){
-      let img = card.querySelector('img.gallery-photo');
-      if(!img){
-        img = document.createElement('img');
-        img.className = 'gallery-photo';
-        card.insertBefore(img, card.firstChild);
-      }
-      img.src = dataUrl;
-      if(svg) svg.style.opacity = '0';
-    }
-
-    try{
-      const saved = localStorage.getItem('tekipaki-gallery-' + key);
-      if(saved) applyImage(saved);
-    }catch(e){ /* storage unavailable, keep default illustration */ }
-
+  // ---- Upload field: tampilkan nama file terpilih ----
+  document.querySelectorAll('.upload-field input[type=file]').forEach(input => {
     input.addEventListener('change', (e) => {
+      const chosen = input.parentElement.querySelector('.file-chosen');
       const file = e.target.files && e.target.files[0];
-      if(!file || !file.type.startsWith('image/')) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        applyImage(reader.result);
-        try{ localStorage.setItem('tekipaki-gallery-' + key, reader.result); }catch(e){ /* quota or unavailable */ }
-      };
-      reader.readAsDataURL(file);
+      if(file && chosen){
+        chosen.textContent = file.name;
+        chosen.style.display = 'block';
+      }
     });
+  });
+
+  // ---- Submit form (placeholder: sambungkan ke backend/endpoint Anda) ----
+  const form = document.getElementById('regForm');
+  const successBox = document.getElementById('successBox');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if(!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
+    // TODO: kirim data ke endpoint/backend/Google Sheet/WhatsApp API di sini.
+    successBox.classList.add('show');
+    successBox.scrollIntoView({behavior:'smooth', block:'center'});
+    form.reset();
+    document.querySelectorAll('.file-chosen').forEach(el => { el.style.display='none'; el.textContent=''; });
   });
 </script>
 </body>
