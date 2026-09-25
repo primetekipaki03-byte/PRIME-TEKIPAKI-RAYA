@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alur Program TEKIPAKI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF; --bg-alt:#F5F7FA; --ink:#12182A; --ink-soft:#5B6478;
+    --navy:#1B3160; --navy-deep:#0F1F42; --gold:#C9A24B; --gold-soft:#F1E7CD;
+    --line:rgba(18,24,42,0.14);
+    box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --bg:#10141F; --bg-alt:#161B29; --ink:#ECEEF4; --ink-soft:#A6ADBE; --navy:#5578B8; --navy-deep:#3A5A96; --gold:#C9A24B; --gold-soft:#2B2717; --line:rgba(236,238,244,0.14); }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Noto Sans JP',sans-serif; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:820px; margin:0 auto; padding:64px 24px 90px;}
+  h1,h2{font-family:'Shippori Mincho',serif; font-weight:700; margin:0;}
+  .eyebrow{color:var(--navy); font-weight:600; font-size:.85rem; letter-spacing:.1em; margin-bottom:10px;}
+  .title{font-size:clamp(1.6rem,4vw,2.3rem); max-width:20ch;}
+  .lead{color:var(--ink-soft); line-height:1.8; margin:16px 0 52px; max-width:60ch;}
+
+  .flow{position:relative; padding-left:64px;}
+  .flow::before{
+    content:''; position:absolute; left:23px; top:8px; bottom:8px; width:2px;
+    background:linear-gradient(var(--navy), var(--gold));
+  }
+  .step{position:relative; padding-bottom:44px;}
+  .step:last-child{padding-bottom:0;}
+  .num{
+    position:absolute; left:-64px; top:0; width:48px; height:48px; border-radius:50%;
+    background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.1rem;
+    box-shadow:0 0 0 6px var(--bg);
+  }
+  .card{
+    background:var(--bg-alt); border:1px solid var(--line); border-radius:8px;
+    padding:20px 24px;
+  }
+  .card h3{font-family:'Noto Sans JP',sans-serif; font-size:1.05rem; font-weight:700; margin:0 0 4px;}
+  .card .jp{color:var(--gold); font-size:.82rem; font-weight:600; letter-spacing:.03em; margin-bottom:8px; display:block;}
+  .card p{color:var(--ink-soft); font-size:.92rem; line-height:1.7; margin:0;}
+
+  .final{
+    margin-top:52px; text-align:center; padding:32px; border-radius:8px;
+    background:var(--navy); color:#fff;
+  }
+  .final h2{color:#fff; font-size:1.4rem; margin-bottom:8px;}
+  .final p{color:rgba(255,255,255,.78); margin:0; font-size:.95rem;}
+
+  @media (max-width:520px){
+    .flow{padding-left:52px;}
+    .flow::before{left:19px;}
+    .num{left:-52px; width:40px; height:40px; font-size:1rem;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">ALUR PROGRAM / プログラムの流れ</div>
+  <h1 class="title">Tahapan Menuju Kerja di Jepang</h1>
+  <p class="lead">Berikut alur lengkap program TEKIPAKI, dari perekrutan siswa hingga keberangkatan ke Jepang.</p>
+
+  <div class="flow">
+    <div class="step">
+      <div class="num">1</div>
+      <div class="card">
+        <h3>Perekrutan Siswa</h3>
+        <span class="jp">生徒募集</span>
+        <p>Pendaftaran dan seleksi awal calon peserta program, meliputi pengecekan berkas dan kesesuaian minat kerja.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <div class="card">
+        <h3>Mensetsu dengan Perusahaan</h3>
+        <span class="jp">企業面接（メンセツ）</span>
+        <p>Peserta mengikuti wawancara langsung (mensetsu) dengan perusahaan mitra di Jepang sesuai bidang kerja yang dituju.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <div class="card">
+        <h3>Lulus Wawancara</h3>
+        <span class="jp">面接合格</span>
+        <p>Peserta yang dinyatakan lulus wawancara akan lanjut ke tahap pemeriksaan kesehatan.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">4</div>
+      <div class="card">
+        <h3>MCU (Medical Check Up)</h3>
+        <span class="jp">健康診断</span>
+        <p>Pemeriksaan kesehatan menyeluruh untuk memastikan peserta memenuhi standar kesehatan kerja di Jepang.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">5</div>
+      <div class="card">
+        <h3>Diklat 6 Bulan</h3>
+        <span class="jp">6ヶ月研修</span>
+        <p>Pelatihan intensif bahasa Jepang, keterampilan kerja, dan budaya kerja Jepang selama 6 bulan sebelum keberangkatan.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">6</div>
+      <div class="card">
+        <h3>COE (Certificate of Eligibility)</h3>
+        <span class="jp">在留資格認定証明書</span>
+        <p>Pengurusan sertifikat kelayakan tinggal (COE) sebagai syarat resmi untuk pengajuan visa kerja.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">7</div>
+      <div class="card">
+        <h3>Pengurusan Visa</h3>
+        <span class="jp">ビザ手続き</span>
+        <p>Pengajuan dan penerbitan visa kerja di kedutaan/konsulat Jepang setelah COE terbit.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">8</div>
+      <div class="card">
+        <h3>Terbang ke Jepang</h3>
+        <span class="jp">日本へ出発</span>
+        <p>Peserta berangkat ke Jepang untuk mulai bekerja, didampingi tim TEKIPAKI selama masa kerja berlangsung.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
