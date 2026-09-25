@@ -70,7 +70,7 @@
     max-width:1180px; margin:0 auto; padding:16px 28px;
     display:flex; align-items:center; justify-content:space-between; gap:24px;
   }
-  .nav-right{display:flex; align-items:center; gap:28px;}
+  .nav-right{display:flex; align-items:center; gap:16px; position:relative;}
   .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
   .brand-mark{
     width:38px; height:38px; border-radius:50%;
@@ -79,9 +79,32 @@
   }
   .brand-name{font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.28rem; letter-spacing:.03em;}
   .brand-sub{display:block; font-family:'Noto Sans JP',sans-serif; font-size:.66rem; color:var(--ink-soft); letter-spacing:.14em; margin-top:1px;}
-  nav.links{display:flex; align-items:center; gap:26px;}
-  nav.links a{text-decoration:none; font-size:.93rem; color:var(--ink); padding:4px 0; border-bottom:2px solid transparent;}
-  nav.links a:hover{border-bottom-color:var(--red);}
+
+  /* Dropdown menu (nav) */
+  .menu-dd{position:relative;}
+  .menu-btn{
+    display:flex; align-items:center; gap:8px;
+    background:none; border:1px solid var(--line-strong); color:var(--ink);
+    padding:10px 16px; border-radius:3px; font-size:.9rem; font-weight:600;
+    cursor:pointer; font-family:'Noto Sans JP',sans-serif;
+  }
+  .menu-btn:hover{border-color:var(--red);}
+  .menu-btn .chev{width:9px; height:9px; border-right:2px solid currentColor; border-bottom:2px solid currentColor; transform:rotate(45deg) translateY(-2px); transition:transform .2s ease;}
+  .menu-dd.open .menu-btn .chev{transform:rotate(-135deg) translateY(1px);}
+  nav.links{
+    position:absolute; top:calc(100% + 10px); right:0; z-index:60;
+    display:flex; flex-direction:column; min-width:220px;
+    background:var(--bg); border:1px solid var(--line); border-radius:6px;
+    padding:8px; box-shadow:0 14px 34px rgba(18,24,42,0.16);
+    opacity:0; visibility:hidden; transform:translateY(-6px);
+    transition:opacity .18s ease, transform .18s ease, visibility .18s;
+  }
+  .menu-dd.open nav.links{opacity:1; visibility:visible; transform:translateY(0);}
+  nav.links a{
+    text-decoration:none; font-size:.93rem; color:var(--ink);
+    padding:11px 14px; border-radius:4px; border-bottom:none;
+  }
+  nav.links a:hover{background:var(--bg-alt); border-bottom-color:transparent;}
   .cta-btn{
     background:var(--red); color:var(--on-red); text-decoration:none;
     padding:11px 22px; border-radius:3px; font-size:.9rem; font-weight:600;
@@ -92,7 +115,6 @@
     border:1px solid var(--line-strong); color:var(--ink); text-decoration:none;
     padding:10px 21px; border-radius:3px; font-size:.9rem; font-weight:600;
   }
-  .menu-toggle{display:none; background:none; border:0; color:var(--ink); font-size:1.5rem; cursor:pointer;}
 
   /* ===== Hero ===== */
   .hero{
@@ -186,8 +208,6 @@
   .gallery-scrim h3{color:#fff; font-family:'Noto Sans JP',sans-serif; font-size:1rem; font-weight:600; margin-bottom:3px;}
   .gallery-scrim span{color:rgba(255,255,255,.78); font-size:.8rem;}
 
-  /* ===== Fields (legacy list styles retained where reused) ===== */
-
   /* ===== Stats band ===== */
   .stats{background:var(--red); color:var(--on-red);}
   .stats .section-head{border-top:1px solid rgba(255,255,255,.25);}
@@ -227,10 +247,6 @@
 
   /* ===== Responsive ===== */
   @media (max-width:860px){
-    nav.links{position:fixed; inset:70px 0 auto 0; background:var(--bg); flex-direction:column; align-items:flex-start; gap:0; padding:8px 28px 20px; border-bottom:1px solid var(--line); transform:translateY(-130%); transition:transform .25s ease; }
-    nav.links.open{transform:translateY(0);}
-    nav.links a{width:100%; padding:14px 0; border-bottom:1px solid var(--line);}
-    .menu-toggle{display:block;}
     .hero-inner{grid-template-columns:1fr;}
     .hero-side{border-left:none; border-top:1px solid var(--line); padding-left:0; padding-top:24px;}
     .vision-grid{grid-template-columns:1fr;}
@@ -244,6 +260,7 @@
     .company-row{grid-template-columns:1fr; gap:6px;}
     .contact-panel{grid-template-columns:1fr; padding:40px 26px;}
     .footer-grid{grid-template-columns:1fr; gap:32px;}
+    .cta-btn.hide-mobile{display:none;}
   }
   @media (max-width:520px){
     .gallery-grid{grid-template-columns:1fr;}
@@ -257,23 +274,27 @@
     <a href="#home" class="brand">
       <span class="brand-mark"></span>
       <span>
-        <span class="brand-name">PRIME TEKIPAKI RAYA</span>
-        <span class="brand-sub">プレム　テキパキ　ラヤ</span>
+        <span class="brand-name">PRIME TEKIPAKI</span>
+        <span class="brand-sub">プレム　テキパキ</span>
       </span>
     </a>
     <div class="nav-right">
-      <nav class="links" id="navLinks">
-        <a href="#home">Beranda</a>
-        <a href="#tentang">Tentang Kami</a>
-        <a href="#visi">Visi Kami</a>
-        <a href="#program">Program</a>
-        <a href="#bidang">Bidang Kerja</a>
-        <a href="#perusahaan">Perusahaan</a>
-        <a href="#kontak">Kontak</a>
-        <a href="jft_tekipaki.html">Program JFT</a>
-      </nav>
-      <a href="#kontak" class="cta-btn" style="display:none;" id="ctaDesktop">Daftar Sekarang</a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
+      <a href="#kontak" class="cta-btn hide-mobile">Daftar Sekarang</a>
+      <div class="menu-dd" id="menuDd">
+        <button class="menu-btn" id="menuToggle" aria-haspopup="true" aria-expanded="false">
+          Menu <span class="chev"></span>
+        </button>
+        <nav class="links" id="navLinks">
+          <a href="#home">Beranda</a>
+          <a href="#tentang">Tentang Kami</a>
+          <a href="#visi">Visi Kami</a>
+          <a href="#program">Program</a>
+          <a href="#bidang">Bidang Kerja</a>
+          <a href="#perusahaan">Perusahaan</a>
+          <a href="#kontak">Kontak</a>
+          <a href="jft_tekipaki.html">Program JFT</a>
+        </nav>
+      </div>
     </div>
   </div>
 </header>
@@ -584,7 +605,7 @@
       <div>
         <div class="brand" style="margin-bottom:14px;">
           <span class="brand-mark"></span>
-          <span class="brand-name">TEKIPAKI</span>
+          <span class="brand-name">PRIME TEKIPAKI</span>
         </div>
         <p style="color:var(--ink-soft); line-height:1.8; font-size:.92rem; max-width:38ch; margin:0;">Lembaga penyalur tenaga kerja Indonesia ke Jepang yang terpercaya dan berizin resmi, mendampingi setiap peserta menuju karier di negeri sakura.</p>
       </div>
@@ -615,12 +636,30 @@
 </footer>
 
 <script>
-  const toggle = document.getElementById('menuToggle');
-  const links = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
+  // ---- Dropdown nav menu ----
+  const menuDd = document.getElementById('menuDd');
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  function closeMenu(){
+    menuDd.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+  function toggleMenu(){
+    const isOpen = menuDd.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
   });
-  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('click', (e) => {
+    if(!menuDd.contains(e.target)) closeMenu();
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeMenu();
+  });
 
   // ---- Gallery: click to upload a photo per field ----
   document.querySelectorAll('.gallery-card').forEach(card => {
