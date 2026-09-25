@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Perbandingan Tokutei Ginou & Ginou Jisshusei</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF; --bg-alt:#F5F7FA; --ink:#12182A; --ink-soft:#5B6478;
+    --navy:#1B3160; --navy-deep:#0F1F42; --gold:#C9A24B; --gold-soft:#F1E7CD;
+    --line:rgba(18,24,42,0.14);
+    box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --bg:#10141F; --bg-alt:#161B29; --ink:#ECEEF4; --ink-soft:#A6ADBE; --navy:#5578B8; --navy-deep:#3A5A96; --gold:#C9A24B; --gold-soft:#2B2717; --line:rgba(236,238,244,0.14); }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Noto Sans JP',sans-serif; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px; margin:0 auto; padding:64px 24px 90px;}
+  h1,h2{font-family:'Shippori Mincho',serif; font-weight:700; margin:0;}
+  .eyebrow{color:var(--navy); font-weight:600; font-size:.85rem; letter-spacing:.1em; margin-bottom:10px;}
+  .title{font-size:clamp(1.6rem,4vw,2.3rem); max-width:24ch;}
+  .lead{color:var(--ink-soft); line-height:1.8; margin:16px 0 48px; max-width:65ch;}
+
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:640px){ .grid{grid-template-columns:1fr;} }
+
+  .panel{border:1px solid var(--line); border-radius:8px; overflow:hidden;}
+  .panel-head{background:var(--navy); color:#fff; padding:20px 22px;}
+  .panel-head.gold{background:var(--gold);}
+  .panel-head h2{font-size:1.15rem; color:#fff;}
+  .panel-head.gold h2{color:var(--navy-deep);}
+  .panel-head .jp{display:block; font-size:.8rem; font-weight:600; letter-spacing:.03em; margin-top:4px; opacity:.85;}
+
+  .row{padding:16px 22px; border-bottom:1px solid var(--line);}
+  .row:last-child{border-bottom:none;}
+  .row .label{font-size:.75rem; font-weight:700; color:var(--navy); letter-spacing:.05em; text-transform:uppercase; margin-bottom:4px;}
+  .panel.gold .row .label{color:var(--gold);}
+  .row p{margin:0; color:var(--ink-soft); font-size:.93rem; line-height:1.6;}
+
+  .path{
+    margin-top:44px; text-align:center; padding:32px 24px; border-radius:8px;
+    background:var(--bg-alt); border:1px solid var(--line);
+  }
+  .path h2{font-size:1.2rem; margin-bottom:10px;}
+  .path p{color:var(--ink-soft); margin:0; font-size:.92rem; line-height:1.7; max-width:55ch; margin:0 auto;}
+  .path .arrow{color:var(--gold); font-weight:700; margin:0 6px;}
+
+  .final{
+    margin-top:24px; text-align:center; padding:28px; border-radius:8px;
+    background:var(--navy); color:#fff;
+  }
+  .final h2{color:#fff; font-size:1.15rem; margin-bottom:6px;}
+  .final p{color:rgba(255,255,255,.78); margin:0; font-size:.9rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">PERBANDINGAN PROGRAM / プログラム比較</div>
+  <h1 class="title">Ginou Jisshusei vs Tokutei Ginou</h1>
+  <p class="lead">Dua jalur utama bekerja di Jepang bagi tenaga kerja asing: program magang (Ginou Jisshusei) dan program kerja keterampilan spesifik (Tokutei Ginou). Berikut perbandingannya.</p>
+
+  <div class="grid">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Ginou Jisshusei</h2>
+        <span class="jp">技能実習生 · Technical Intern Trainee</span>
+      </div>
+      <div class="row"><div class="label">Status</div><p>Peserta magang, bukan pekerja penuh (dulu disebut Kenshusei)</p></div>
+      <div class="row"><div class="label">Jenis Visa</div><p>Visa Magang</p></div>
+      <div class="row"><div class="label">Durasi</div><p>1–3 tahun, dapat diperpanjang maksimal hingga 5 tahun</p></div>
+      <div class="row"><div class="label">Gaji</div><p>Lebih rendah dibanding Tokutei Ginou</p></div>
+      <div class="row"><div class="label">Pindah Tempat Kerja</div><p>Tidak bisa, kecuali kondisi khusus</p></div>
+      <div class="row"><div class="label">Usia Umum</div><p>18–26 tahun, minimal lulusan SMA sederajat</p></div>
+      <div class="row"><div class="label">Tujuan</div><p>Meningkatkan keterampilan lewat pengalaman kerja di Jepang dan transfer teknologi ke negara asal</p></div>
+    </div>
+
+    <div class="panel gold">
+      <div class="panel-head gold">
+        <h2>Tokutei Ginou</h2>
+        <span class="jp">特定技能 · Specified Skilled Worker (SSW)</span>
+      </div>
+      <div class="row"><div class="label">Status</div><p>Status kependudukan sebagai pekerja penuh, setara pekerja Jepang</p></div>
+      <div class="row"><div class="label">Jenis Visa</div><p>Visa Kerja</p></div>
+      <div class="row"><div class="label">Durasi</div><p>Hingga 2×5 tahun tergantung jenis (SSW1/SSW2)</p></div>
+      <div class="row"><div class="label">Gaji</div><p>Lebih tinggi dibanding Ginou Jisshusei</p></div>
+      <div class="row"><div class="label">Pindah Tempat Kerja</div><p>Bisa pindah perusahaan/tempat kerja</p></div>
+      <div class="row"><div class="label">Usia Umum</div><p>18–35 tahun</p></div>
+      <div class="row"><div class="label">Cakupan</div><p>Resmi sejak 1 April 2019, mencakup sekitar 14 bidang industri</p></div>
+    </div>
+  </div>
+
+  <div class="path">
+    <h2>Jalur Umum Peserta</h2>
+    <p>Ginou Jisshusei <span class="arrow">→</span> selesai program <span class="arrow">→</span> Tokutei Ginou, untuk kembali bekerja di Jepang dengan sistem lebih fleksibel dan gaji lebih baik.</p>
+  </div>
+
+  <div class="final">
+    <h2>Butuh Pendampingan?</h2>
+    <p>Tim TEKIPAKI siap membantu menentukan jalur yang paling sesuai dengan tujuan karirmu di Jepang.</p>
+  </div>
+</div>
+</body>
+</html>
