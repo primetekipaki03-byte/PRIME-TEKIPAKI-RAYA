@@ -8,21 +8,24 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Zen+Old+Mincho:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
-  --paper:#faf7f1;
-  --paper-deep:#f0ead9;
-  --ink:#2b2a26;
-  --ink-soft:#55524a;
-  --line:#ddd5c1;
+  --paper:#FFFFFF;
+  --paper-deep:#F5F7FA;
+  --ink:#12182A;
+  --ink-soft:#5B6478;
+  --line:rgba(18,24,42,0.14);
   --white:#ffffff;
   --accent:#4a4a3c;
   --navy:#0a1f3d;
   --navy2:#001530;
   --gold:#e0b52a;
+  --gold-soft:#f2e2b0;
+  --hero-pink:#F7E3E8;
+  --hero-pink-deep:#F1CFD9;
 }
 
 *{ margin:0; padding:0; box-sizing:border-box; }
@@ -30,7 +33,7 @@
 html{ scroll-behavior:smooth; }
 
 body{
-  font-family:"Zen Kaku Gothic New","Hiragino Sans","Segoe UI",sans-serif;
+  font-family:"Noto Sans JP","Hiragino Sans","Segoe UI",sans-serif;
   font-weight:400;
   background:var(--paper);
   color:var(--ink);
@@ -39,8 +42,8 @@ body{
 }
 
 h1,h2,h3{
-  font-family:"Zen Old Mincho",serif;
-  font-weight:500;
+  font-family:"Shippori Mincho",serif;
+  font-weight:700;
   letter-spacing:.02em;
 }
 
@@ -235,36 +238,53 @@ img{ max-width:100%; display:block; }
 }
 
 /* =========================================================
-   HERO — foto penuh, tenang
+   HERO — sakura berjatuhan, tanpa foto (seperti index)
 ========================================================= */
 
 .hero{
   position:relative;
-  height:78vh; min-height:520px;
+  min-height:520px;
+  display:flex;
+  align-items:center;
   overflow:hidden;
+  background:linear-gradient(180deg,var(--paper-deep),var(--paper));
 }
 
-.hero img{
-  width:100%; height:100%; object-fit:cover;
+.hero-orb{
+  position:absolute; right:-140px; top:-120px; width:560px; height:560px;
+  border-radius:50%;
+  background:radial-gradient(circle at 38% 32%, #e8b4c2 0%, #f7dee4 62%, transparent 75%);
+  opacity:.9;
+}
+
+.petal{
+  position:absolute; width:14px; height:18px; background:#e8b4c2;
+  border-radius:0 60% 0 60%; opacity:.65;
+  animation:drift 14s linear infinite;
+}
+@media(prefers-reduced-motion:reduce){ .petal{ animation:none; } }
+@keyframes drift{
+  0%{ transform:translateY(-40px) rotate(0deg); opacity:0; }
+  10%{ opacity:.6; }
+  100%{ transform:translateY(560px) rotate(200deg); opacity:0; }
 }
 
 .hero-copy{
-  position:absolute; left:0; right:0; bottom:0;
+  position:relative; z-index:2;
   padding:56px 32px;
-  background:linear-gradient(0deg,rgba(20,19,15,.42) 0%,rgba(20,19,15,0) 60%);
-  color:#fff;
+  color:var(--ink);
 }
 
 .hero-copy-inner{ max-width:1180px; margin:0 auto; }
 
 .hero-eyebrow{
   font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
-  color:#e7e1cf; margin-bottom:16px;
+  color:var(--ink-soft); margin-bottom:16px;
 }
 
 .hero h1{
   font-size:clamp(1.7rem,3.4vw,2.5rem);
-  color:#fff; font-weight:500;
+  color:var(--ink); font-weight:500;
   max-width:560px;
   margin-bottom:20px;
 }
@@ -272,11 +292,11 @@ img{ max-width:100%; display:block; }
 .hero-links{ display:flex; gap:28px; flex-wrap:wrap; }
 
 .text-link{
-  font-size:.86rem; text-decoration:none; color:#fff;
-  border-bottom:1px solid rgba(255,255,255,.55);
+  font-size:.86rem; text-decoration:none; color:var(--ink);
+  border-bottom:1px solid rgba(43,42,38,.4);
   padding-bottom:3px;
 }
-.text-link:hover{ border-color:#fff; }
+.text-link:hover{ border-color:var(--ink); }
 
 .text-link.dark{ color:var(--ink); border-color:rgba(43,42,38,.4); }
 .text-link.dark:hover{ border-color:var(--ink); }
@@ -456,7 +476,7 @@ footer{
 @media(max-width:600px){
   .wrap{ padding-left:20px; padding-right:20px; }
   .navbar-inner{ padding:16px 20px; }
-  .hero{ height:64vh; min-height:420px; }
+  .hero{ min-height:420px; }
   .hero-copy{ padding:32px 20px; }
   .section{ padding:64px 0; }
   .prog-grid{ grid-template-columns:1fr; }
@@ -569,12 +589,17 @@ footer{
 </nav>
 
 <!-- =========================================================
-     HERO
+     HERO — sakura berjatuhan, tanpa foto
 ========================================================= -->
 
 <section class="hero">
-  <!-- GANTI src dengan foto asli suasana belajar Tekipaki Learning -->
-  <img src="images/banner index.jpeg" alt="Suasana belajar bahasa Jepang">
+  <div class="hero-orb" aria-hidden="true"></div>
+  <div class="petal" style="left:8%; animation-delay:0s;" aria-hidden="true"></div>
+  <div class="petal" style="left:20%; animation-delay:3s;" aria-hidden="true"></div>
+  <div class="petal" style="left:34%; animation-delay:7s;" aria-hidden="true"></div>
+  <div class="petal" style="left:55%; animation-delay:5s;" aria-hidden="true"></div>
+  <div class="petal" style="left:68%; animation-delay:1.5s;" aria-hidden="true"></div>
+  <div class="petal" style="left:82%; animation-delay:9s;" aria-hidden="true"></div>
 
   <div class="hero-copy">
     <div class="hero-copy-inner">
@@ -887,22 +912,11 @@ window.addEventListener("resize",function(){
 
   const wrap = document.getElementById("slideshow");
 
-  /* PERBAIKAN:
-     Sebelumnya "mouseenter"/"mouseleave" dipasang tanpa syarat.
-     Di perangkat sentuh (HP/tablet), tap pada slideshow bisa memicu
-     "mouseenter" (menghentikan timer) tanpa "mouseleave" yang pasti
-     menyusul — sehingga slideshow terlihat "kadang-kadang berhenti
-     bergerak sendiri". Sekarang perilaku pause-on-hover hanya
-     dipasang untuk perangkat yang benar-benar punya mouse. */
   if (window.matchMedia("(hover: hover)").matches) {
     wrap.addEventListener("mouseenter", stopTimer);
     wrap.addEventListener("mouseleave", startTimer);
   }
 
-  /* PERBAIKAN TAMBAHAN:
-     Kalau tab sempat tidak aktif (pindah tab / minimize), browser
-     bisa menunda setInterval. Begitu tab aktif kembali, timer
-     di-restart supaya slideshow lanjut mulus, bukan nyendat. */
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === "visible") {
       restartTimer();
@@ -918,8 +932,3 @@ window.addEventListener("resize",function(){
 
 </body>
 </html>
-
-
-
-
-1203250030687
