@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Perbandingan Tokutei Ginou & Ginou Jisshusei</title>
+<title>Program Kami - TEKIPAKI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -28,6 +28,18 @@
   .grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
   @media (max-width:640px){ .grid{grid-template-columns:1fr;} }
 
+  .fields{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:52px;
+  }
+  @media (max-width:640px){ .fields{grid-template-columns:repeat(2,1fr);} }
+  .field{
+    text-align:center; padding:20px 12px; border-radius:8px;
+    background:var(--bg-alt); border:1px solid var(--line);
+  }
+  .field .icon{font-size:1.6rem; margin-bottom:8px; display:block;}
+  .field .name{font-weight:700; font-size:.92rem;}
+  .field .jp{display:block; color:var(--ink-soft); font-size:.75rem; margin-top:2px;}
+
   .panel{border:1px solid var(--line); border-radius:8px; overflow:hidden;}
   .panel-head{background:var(--navy); color:#fff; padding:20px 22px;}
   .panel-head.gold{background:var(--gold);}
@@ -49,6 +61,12 @@
   .path p{color:var(--ink-soft); margin:0; font-size:.92rem; line-height:1.7; max-width:55ch; margin:0 auto;}
   .path .arrow{color:var(--gold); font-weight:700; margin:0 6px;}
 
+  .btn-row{margin-bottom:48px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:12px 20px; border-radius:6px;
+    background:var(--gold); color:var(--navy-deep); text-decoration:none; font-weight:700; font-size:.9rem;
+  }
+
   .final{
     margin-top:24px; text-align:center; padding:28px; border-radius:8px;
     background:var(--navy); color:#fff;
@@ -60,8 +78,35 @@
 <body>
 <div class="wrap">
   <div class="eyebrow">PERBANDINGAN PROGRAM / プログラム比較</div>
-  <h1 class="title">Ginou Jisshusei vs Tokutei Ginou</h1>
-  <p class="lead">Dua jalur utama bekerja di Jepang bagi tenaga kerja asing: program magang (Ginou Jisshusei) dan program kerja keterampilan spesifik (Tokutei Ginou). Berikut perbandingannya.</p>
+  <h1 class="title">Program Kami</h1>
+  <p class="lead">TEKIPAKI mengirimkan tenaga kerja melalui dua jalur utama ke Jepang: program magang (Ginou Jisshusei) dan program kerja keterampilan spesifik (Tokutei Ginou), pada bidang-bidang berikut.</p>
+
+  <div class="btn-row">
+    <a class="btn" href="https://claude.ai/artifact/XvF2UtA9yA2nQYsQWBvnQv">🗺️ Lihat Alur Program</a>
+  </div>
+
+  <div class="fields">
+    <div class="field">
+      <span class="icon">🏭</span>
+      <div class="name">PM</div>
+      <span class="jp">製造業</span>
+    </div>
+    <div class="field">
+      <span class="icon">🏗️</span>
+      <div class="name">Kensetsu</div>
+      <span class="jp">建設</span>
+    </div>
+    <div class="field">
+      <span class="icon">🌾</span>
+      <div class="name">Pertanian</div>
+      <span class="jp">農業</span>
+    </div>
+    <div class="field">
+      <span class="icon">🚚</span>
+      <div class="name">Driver</div>
+      <span class="jp">運転手</span>
+    </div>
+  </div>
 
   <div class="grid">
     <div class="panel">
