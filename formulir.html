@@ -240,9 +240,8 @@
       <span class="brand-mark"></span>
       <span>
         <span class="brand-name">PRIME TEKIPAKI</span>
-        <span class="brand-sub">プレム　テキパキ 　ラヤ</span>
+        <span class="brand-sub">プレム　テキパキ</span>
       </span>
-
     </a>
     <div class="nav-right">
       <button id="langToggle" class="lang-btn" type="button" aria-label="Ganti bahasa / 言語を切り替える">
@@ -290,7 +289,7 @@
         </ol>
         <div class="aside-note">
           <strong data-jp="お問い合わせ">Butuh bantuan?</strong>
-          <span data-jp="WhatsApp: +62 821 3080 7776&#10;Email: info@tekipaki.co.id">WhatsApp: +62 821 3080 7776<br>Email: info@tekipaki.co.id</span>
+          <span data-jp="WhatsApp: +62 821 3080 7776&lt;br&gt;Email: info@tekipaki.co.id">WhatsApp: +62 821 3080 7776<br>Email: info@tekipaki.co.id</span>
         </div>
       </aside>
 
@@ -308,7 +307,7 @@
             <div class="field-grid">
               <div class="field full">
                 <label data-jp="氏名（フルネーム）">Nama Lengkap</label>
-                <input type="text" name="nama" required placeholder="Sesuai KTP">
+                <input type="text" name="nama" required placeholder="Sesuai KTP" data-jp-placeholder="KTP記載の通りに">
               </div>
               <div class="field">
                 <label data-jp="生年月日">Tanggal Lahir</label>
@@ -316,7 +315,7 @@
               </div>
               <div class="field">
                 <label data-jp="出生地">Tempat Lahir</label>
-                <input type="text" name="tempat_lahir" required placeholder="Contoh: Bekasi">
+                <input type="text" name="tempat_lahir" required placeholder="Contoh: Bekasi" data-jp-placeholder="例：ブカシ">
               </div>
               <div class="field">
                 <label data-jp="性別">Jenis Kelamin</label>
@@ -338,15 +337,15 @@
               </div>
               <div class="field full">
                 <label data-jp="住所">Alamat Domisili</label>
-                <textarea name="alamat" required placeholder="Jalan, RT/RW, Kelurahan, Kecamatan, Kota, Provinsi"></textarea>
+                <textarea name="alamat" required placeholder="Jalan, RT/RW, Kelurahan, Kecamatan, Kota, Provinsi" data-jp-placeholder="通り名、RT/RW、村、郡、市、州"></textarea>
               </div>
               <div class="field">
                 <label data-jp="電話・WhatsApp番号">Nomor WhatsApp</label>
-                <input type="tel" name="whatsapp" required placeholder="08xx xxxx xxxx">
+                <input type="tel" name="whatsapp" required placeholder="08xx xxxx xxxx" data-jp-placeholder="08xx xxxx xxxx">
               </div>
               <div class="field">
-                <label>Email</label>
-                <input type="email" name="email" required placeholder="nama@email.com">
+                <label data-jp="メールアドレス">Email</label>
+                <input type="email" name="email" required placeholder="nama@email.com" data-jp-placeholder="nama@email.com">
               </div>
             </div>
           </div>
@@ -446,7 +445,7 @@
           <span class="brand-mark"></span>
           <span>
             <span class="brand-name">PRIME TEKIPAKI RAYA</span>
-            <span class="brand-sub">プレム　テキパキ　 ラヤ</span>
+            <span class="brand-sub">プレム　テキパキ ラヤ</span>
           </span>
         </div>
         <p style="color:var(--ink-soft); line-height:1.8; font-size:.92rem; max-width:38ch; margin:0;" data-jp="信頼できる正式許可を受けたインドネシア→日本人材送出機関。桜の国でのキャリアに向け、一人ひとりに寄り添います。">Lembaga penyalur tenaga kerja Indonesia ke Jepang yang terpercaya dan berizin resmi, mendampingi setiap peserta menuju karier di negeri sakura.</p>
@@ -484,9 +483,13 @@
   const i18nEls = document.querySelectorAll('[data-jp]');
   i18nEls.forEach(el => { el.dataset.id = el.innerHTML; });
 
+  const i18nPlaceholderEls = document.querySelectorAll('[data-jp-placeholder]');
+  i18nPlaceholderEls.forEach(el => { el.dataset.idPlaceholder = el.getAttribute('placeholder') || ''; });
+
   function applyLang(lang){
     document.documentElement.setAttribute('lang', lang === 'jp' ? 'ja' : 'id');
     i18nEls.forEach(el => { el.innerHTML = lang === 'jp' ? el.dataset.jp : el.dataset.id; });
+    i18nPlaceholderEls.forEach(el => { el.setAttribute('placeholder', lang === 'jp' ? el.dataset.jpPlaceholder : el.dataset.idPlaceholder); });
     if(langLabel) langLabel.textContent = lang === 'jp' ? 'Indonesia' : '日本語';
     try{ localStorage.setItem('tekipaki-lang', lang); }catch(e){ /* storage unavailable */ }
   }
