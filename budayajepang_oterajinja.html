@@ -10,7 +10,7 @@
 <style>
   :root{
     --bg:#FFFFFF; --bg-alt:#F5F7FA; --ink:#12182A; --ink-soft:#5B6478;
-    --red:#1B3160; --red-deep:#0F1F42; --sakura:#C9A24B; --sakura-soft:#F1E7CD;
+    --red:#1B3160; --red-deep:#0F1F42; --sakura:#C9741A; --sakura-soft:#F4DDB5;
     --line:rgba(18,24,42,0.14); --line-strong:rgba(18,24,42,0.28); --on-red:#F4F6FA;
     box-sizing:border-box;
     padding-top:env(safe-area-inset-top,0px);
@@ -19,13 +19,13 @@
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
       --bg:#10141F; --bg-alt:#161B29; --ink:#ECEEF4; --ink-soft:#A6ADBE;
-      --red:#5578B8; --red-deep:#3A5A96; --sakura:#C9A24B; --sakura-soft:#2B2717;
+      --red:#5578B8; --red-deep:#3A5A96; --sakura:#DE8A2E; --sakura-soft:#35240F;
       --line:rgba(236,238,244,0.14); --line-strong:rgba(236,238,244,0.28); --on-red:#F4F6FA;
     }
   }
   :root[data-theme="dark"]{
     --bg:#10141F; --bg-alt:#161B29; --ink:#ECEEF4; --ink-soft:#A6ADBE;
-    --red:#5578B8; --red-deep:#3A5A96; --sakura:#C9A24B; --sakura-soft:#2B2717;
+    --red:#5578B8; --red-deep:#3A5A96; --sakura:#DE8A2E; --sakura-soft:#35240F;
     --line:rgba(236,238,244,0.14); --line-strong:rgba(236,238,244,0.28); --on-red:#F4F6FA;
   }
   html{scroll-behavior:smooth; scroll-padding-top:calc(76px + env(safe-area-inset-top,0px));}
@@ -110,9 +110,9 @@
   .tbl thead th{background:var(--red); color:var(--on-red); font-family:'Shippori Mincho',serif; font-size:1.15rem; text-align:left; padding:14px 18px;}
   .tbl tbody th{width:34%; text-align:left; vertical-align:top; background:var(--bg-alt); font-weight:600; font-size:.9rem; padding:14px 18px; border-top:1px solid var(--line-strong); border-right:1px solid var(--line-strong);}
   .tbl td{vertical-align:top; padding:14px 18px; font-size:.93rem; line-height:1.7; border-top:1px solid var(--line-strong);}
-  .note{margin-top:32px; padding:22px 26px; border-left:3px solid var(--sakura); background:var(--sakura-soft); color:#3b3216; line-height:1.8; font-size:.95rem; max-width:80ch;}
-  :root[data-theme="dark"] .note{color:#E9DDB6;}
-  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .note{color:#E9DDB6;}}
+  .note{margin-top:32px; padding:22px 26px; border-left:3px solid var(--sakura); background:var(--sakura-soft); color:#4E2E0A; line-height:1.8; font-size:.95rem; max-width:80ch;}
+  :root[data-theme="dark"] .note{color:#F3DDB8;}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .note{color:#F3DDB8;}}
 
   /* Urutan cara berdoa */
   .steps-2{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
