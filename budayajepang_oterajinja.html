@@ -128,7 +128,12 @@
   .feature{display:flex; flex-direction:column; gap:36px;}
   .feature .slot{order:-1; aspect-ratio:21/9;}
   .feature .prose p{max-width:74ch;}
-  .pcol .slot{margin-bottom:26px;}
+  .src{margin:8px 0 0; font-size:.78rem; color:var(--ink-soft); text-align:right; line-height:1.5;}
+  .src-text{border-bottom:1px dashed var(--line-strong); outline:none; padding:0 2px;}
+  .src-text:empty::before{content:"klik untuk isi"; opacity:.6;}
+  .src-text:focus{border-bottom-color:var(--sakura); color:var(--ink);}
+  .pcol .src{margin-bottom:22px;}
+  .feature .src{order:-1; margin-top:-26px;}
   .facts{margin:26px 0 0; padding:0; list-style:none; border-top:1px solid var(--line);}
   .facts li{display:grid; grid-template-columns:140px 1fr; gap:20px; padding:14px 0; border-bottom:1px solid var(--line); font-size:.93rem; line-height:1.7;}
   .facts li span{color:var(--ink-soft);}
@@ -241,7 +246,7 @@
             </g>
           </svg>
           <span class="slot-hint" data-jp="クリックして写真をアップロード">Klik untuk unggah foto</span>
-          <input type="file" accept="image/otera.jpeg" aria-label="">
+          <input type="file" accept="image/*" aria-label="Unggah foto Otera">
           <div class="slot-cap"><strong>お寺 (Otera)</strong><span data-jp="仏教の寺院">Kuil Buddha</span></div>
         </div>
         <div class="tbl-wrap"><table class="tbl"><thead><tr><th colspan="2">お寺 · Otera</th></tr></thead><tbody>
@@ -262,7 +267,7 @@
             </g>
           </svg>
           <span class="slot-hint" data-jp="クリックして写真をアップロード">Klik untuk unggah foto</span>
-          <input type="file" accept="image/jinja.jpeg" aria-label="Unggah foto Jinja">
+          <input type="file" accept="image/*" aria-label="Unggah foto Jinja">
           <div class="slot-cap"><strong>神社 (Jinja)</strong><span data-jp="神道の神社">Kuil Shinto</span></div>
         </div>
         <div class="tbl-wrap"><table class="tbl"><thead><tr><th colspan="2">神社 · Jinja</th></tr></thead><tbody>
@@ -425,6 +430,20 @@
 </footer>
 
 <script>
+  // Sumber gambar di bawah setiap foto (isi lewat data-source di kode, atau klik teksnya di halaman)
+  document.querySelectorAll('.slot').forEach(slot => {
+    const key = slot.dataset.key; if(!key) return;
+    const p = document.createElement('p'); p.className = 'src';
+    p.innerHTML = '<span data-jp="画像出典：">Sumber gambar:</span> <span class="src-text" contenteditable="true" spellcheck="false" role="textbox" aria-label="Sumber gambar"></span>';
+    const t = p.querySelector('.src-text');
+    let v = slot.dataset.source || '';
+    try{ const sv = localStorage.getItem('tekipaki-budaya-src-' + key); if(sv !== null) v = sv; }catch(e){}
+    t.textContent = v;
+    t.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); t.blur(); } });
+    t.addEventListener('input', () => { try{ localStorage.setItem('tekipaki-budaya-src-' + key, t.textContent.trim()); }catch(e){} });
+    slot.after(p);
+  });
+
   // Bahasa ID <-> 日本語
   const langLabel = document.getElementById('langLabel');
   const i18n = document.querySelectorAll('[data-jp]');
