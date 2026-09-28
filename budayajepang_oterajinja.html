@@ -185,7 +185,9 @@
        images/omikoshi.jpeg
   3. Cari tanda  👉 FOTO  di bawah. Di situ ada baris <img ... src="images/....jpeg">.
      Kalau nama file Anda beda (misal .jpg), ubah bagian src="..." saja.
-  4. Kalau file foto belum ada, otomatis tampil ilustrasi biru (tidak error).
+  4. SUMBER GAMBAR: isi data-source="..." pada baris <div class="slot" ...> (di sebelah data-key).
+     Contoh: data-source="Foto: Nama Fotografer / Unsplash"
+  5. Kalau file foto belum ada, otomatis tampil ilustrasi biru (tidak error).
   ==============================================
 -->
 
@@ -250,9 +252,9 @@
       </div>
 
       <div class="pair">
-        <div class="pcol"><div class="slot" data-key="otera">
-          <!-- ========== 👉 FOTO KUIL BUDDHA (OTERA): taruh file di folder images/ dengan nama otera.jpg ========== -->
-          <img class="slot-photo" src="images/otera.jpg" alt="Kuil Buddha (Otera)" onerror="this.remove()">
+        <div class="pcol"><div class="slot" data-key="otera" Sumber : "">
+          <!-- ========== 👉 FOTO KUIL BUDDHA (OTERA): taruh file di folder images/ dengan nama otera.jpeg ========== -->
+          <img class="slot-photo" src="images/otera.jpeg" alt="Kuil Buddha (Otera)" onerror="this.remove()">
           <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <circle cx="200" cy="140" r="70" style="fill:var(--sakura)" opacity=".18"/>
             <g fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity=".92">
@@ -273,9 +275,9 @@
 <tr><th scope="row" data-jp="お墓・葬儀">Pemakaman</th><td data-jp="葬儀や墓地を担うことが多い">Biasa mengurus upacara kematian dan makam.</td></tr>
 <tr><th scope="row" data-jp="主な行事">Perayaan</th><td data-jp="花祭り、お盆、除夜の鐘">Hanamatsuri, Obon, lonceng malam tahun baru.</td></tr>
 </tbody></table></div></div>
-        <div class="pcol"><div class="slot" data-key="jinja">
-          <!-- ========== 👉 FOTO KUIL SHINTO (JINJA): taruh file di folder images/ dengan nama jinja.jpg ========== -->
-          <img class="slot-photo" src="images/jinja.jpg" alt="Kuil Shinto (Jinja)" onerror="this.remove()">
+        <div class="pcol"><div class="slot" data-key="jinja" Sumber: "Kazuhiro Yoshimura/unsplash.com">
+          <!-- ========== 👉 FOTO KUIL SHINTO (JINJA): taruh file di folder images/ dengan nama jinja.jpeg ========== -->
+          <img class="slot-photo" src="images/jinja.jpeg" alt="Kuil Shinto (Jinja)" onerror="this.remove()">
           <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <circle cx="200" cy="140" r="70" style="fill:var(--sakura)" opacity=".18"/>
             <g fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity=".92">
@@ -352,7 +354,7 @@
             <li><span data-jp="有名な祭り">Contoh terkenal</span><div data-jp="祇園祭（京都）、三社祭（東京）、天神祭（大阪）">Gion Matsuri (Kyoto), Sanja Matsuri (Tokyo), Tenjin Matsuri (Osaka).</div></li>
           </ul>
         </div>
-        <div class="slot" data-key="matsuri">
+        <div class="slot" data-key="matsuri" data-source="">
           <!-- ========== 👉 FOTO FESTIVAL MATSURI: taruh file di folder images/ dengan nama matsuri.jpeg ========== -->
           <img class="slot-photo" src="images/matsuri.jpeg" alt="Festival Matsuri" onerror="this.remove()">
           <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -370,21 +372,21 @@
 
       <div class="trio">
         <div>
-          <div class="slot" data-key="matsuri-yatai">
+          <div class="slot" data-key="matsuri-yatai" data-source="">
           <!-- ========== 👉 FOTO YATAI, KIOS FESTIVAL: taruh file di folder images/ dengan nama yatai.jpeg ========== -->
           <img class="slot-photo" src="images/yatai.jpeg" alt="Yatai, kios festival" onerror="this.remove()"><svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"><path d="M120 120h160l-12-30H132zM130 120v70M270 120v70M120 190h160"/></g></svg><span class="slot-hint" data-jp="クリックして写真をアップロード">Klik untuk unggah foto</span><input type="file" accept="image/*" aria-label="Unggah foto Yatai"></div>
           <h3 data-jp="屋台">Yatai</h3>
           <p data-jp="たこ焼きや焼きそばなどの屋台が並びます。">Deretan kios takoyaki, yakisoba, dan jajanan lain di sepanjang jalan festival.</p>
         </div>
         <div>
-          <div class="slot" data-key="matsuri-dashi">
+          <div class="slot" data-key="matsuri-dashi" data-source="">
           <!-- ========== 👉 FOTO DASHI, KERETA HIAS: taruh file di folder images/ dengan nama dashi.jpeg ========== -->
           <img class="slot-photo" src="images/dashi.jpeg" alt="Dashi, kereta hias" onerror="this.remove()"><svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"><path d="M200 70v30M150 100h100l20 30H130zM140 130v50h120v-50M150 200a16 16 0 1032 0M218 200a16 16 0 1032 0"/></g></svg><span class="slot-hint" data-jp="クリックして写真をアップロード">Klik untuk unggah foto</span><input type="file" accept="image/*" aria-label="Unggah foto Dashi"></div>
           <h3 data-jp="山車">Dashi</h3>
           <p data-jp="豪華に飾った大きな山車を引いて町を巡ります。">Kereta hias besar yang ditarik keliling kota, seperti yamaboko di Gion Matsuri.</p>
         </div>
         <div>
-          <div class="slot" data-key="matsuri-bon">
+          <div class="slot" data-key="matsuri-bon" data-source="">
           <!-- ========== 👉 FOTO BON ODORI: taruh file di folder images/ dengan nama bon-odori.jpeg ========== -->
           <img class="slot-photo" src="images/bon-odori.jpeg" alt="Bon Odori" onerror="this.remove()"><svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"><circle cx="200" cy="150" r="42"/><circle cx="200" cy="150" r="70" stroke-dasharray="6 14"/></g></svg><span class="slot-hint" data-jp="クリックして写真をアップロード">Klik untuk unggah foto</span><input type="file" accept="image/*" aria-label="Unggah foto Bon Odori"></div>
           <h3 data-jp="盆踊り">Bon Odori</h3>
@@ -414,7 +416,7 @@
             <li><span data-jp="マナー">Etika</span><div data-jp="神輿には勝手に触らず、掛け声を尊重する">Jangan menyentuh omikoshi sembarangan dan hormati aba-abanya.</div></li>
           </ul>
         </div>
-        <div class="slot" data-key="omikoshi">
+        <div class="slot" data-key="omikoshi" data-source="">
           <!-- ========== 👉 FOTO OMIKOSHI: taruh file di folder images/ dengan nama omikoshi.jpeg ========== -->
           <img class="slot-photo" src="images/omikoshi.jpeg" alt="Omikoshi" onerror="this.remove()">
           <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
