@@ -103,6 +103,18 @@
     padding:11px 14px; border-radius:4px; border-bottom:none;
   }
   nav.links a:hover{background:var(--bg-alt);}
+
+  /* Burger icon (tampil hanya di ponsel) */
+  .burger{display:none; width:20px; height:14px; position:relative;}
+  .burger i{position:absolute; left:0; width:100%; height:2px; background:currentColor; border-radius:2px; transition:transform .25s ease, opacity .2s ease, top .25s ease;}
+  .burger i:nth-child(1){top:0;}
+  .burger i:nth-child(2){top:6px;}
+  .burger i:nth-child(3){top:12px;}
+  .menu-dd.open .burger i:nth-child(1){top:6px; transform:rotate(45deg);}
+  .menu-dd.open .burger i:nth-child(2){opacity:0;}
+  .menu-dd.open .burger i:nth-child(3){top:6px; transform:rotate(-45deg);}
+  .menu-cta{display:none;}
+
   .cta-btn{
     background:var(--red); color:var(--on-red); text-decoration:none;
     padding:11px 22px; border-radius:3px; font-size:.9rem; font-weight:600;
@@ -122,7 +134,21 @@
   }
   .lang-btn:hover{border-color:var(--red); color:var(--red);}
 
-  @media (max-width:860px){ .cta-btn.hide-mobile{display:none;} }
+  @media (max-width:860px){
+    .cta-btn.hide-mobile{display:none;}
+    .nav{padding:12px 16px; gap:10px;}
+    .brand-name{font-size:1.02rem;}
+    .brand-sub{display:none;}
+    .nav-right{position:static; gap:10px;}
+    .menu-dd{position:static;}
+    .lang-btn{padding:10px 12px;}
+    .menu-btn .menu-label, .menu-btn .chev{display:none;}
+    .menu-btn{padding:12px;}
+    .burger{display:block;}
+    nav.links{left:0; right:0; top:100%; min-width:0; border-radius:0; border-width:1px 0 0; padding:6px 16px 18px; max-height:calc(100vh - 72px); overflow-y:auto; box-shadow:0 18px 30px rgba(18,24,42,.18);}
+    nav.links a{padding:15px 8px; font-size:1rem; border-bottom:1px solid var(--line); border-radius:0;}
+    nav.links a.menu-cta{display:block; margin-top:14px; background:var(--red); color:var(--on-red); text-align:center; border:none; border-radius:4px; font-weight:600;}
+  }
 
   /* ===== Page hero ===== */
   .page-hero{
@@ -249,8 +275,9 @@
       </button>
       <a href="#formulir" class="cta-btn hide-mobile" data-jp="今すぐ登録">Isi Formulir</a>
       <div class="menu-dd" id="menuDd">
-        <button class="menu-btn" id="menuToggle" aria-haspopup="true" aria-expanded="false">
-          <span data-jp="メニュー">Menu</span> <span class="chev"></span>
+        <button class="menu-btn" id="menuToggle" aria-haspopup="true" aria-expanded="false" aria-label="Menu">
+          <span class="menu-label" data-jp="メニュー">Menu</span> <span class="chev"></span>
+          <span class="burger" aria-hidden="true"><i></i><i></i><i></i></span>
         </button>
         <nav class="links" id="navLinks">
           <a href="index.html" data-jp="ホーム">Beranda</a>
@@ -260,6 +287,7 @@
           <a href="index.html#bidang" data-jp="職種分野">Bidang Kerja</a>
           <a href="index.html#kontak" data-jp="お問い合わせ">Kontak</a>
           <a href="jft_tekipaki.html" data-jp="JFTプログラム">Program JFT</a>
+          <a href="#formulir" class="menu-cta" data-jp="今すぐ登録">Isi Formulir</a>
         </nav>
       </div>
     </div>
@@ -501,7 +529,7 @@
     applyLang(currentLang);
   });
 
-  // ---- Dropdown nav menu ----
+  // ---- Dropdown nav menu / burger ----
   const menuDd = document.getElementById('menuDd');
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
