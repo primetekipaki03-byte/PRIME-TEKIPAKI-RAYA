@@ -596,7 +596,38 @@ footer{
   padding:34px 20px;
   border-top:1px solid var(--paper2);
 }
+.dayNav{
+  display:grid;
+  grid-template-columns:repeat(11,1fr);
+  gap:6px;
+  margin-bottom:24px;
+}
+.dayNav a{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.7rem;
+  font-weight:700;
+  text-decoration:none;
+  color:var(--navy);
+  background:#fff;
+  border:1px solid var(--paper2);
+  border-radius:8px;
+  padding:9px 0;
+  text-align:center;
+  white-space:nowrap;
+}
+.dayNav a.active{
+  background:var(--navy);
+  color:var(--gold);
+  border-color:var(--navy);
+}
 
+/* Tablet dan ponsel */
+@media(max-width:700px){
+  .dayNav{grid-template-columns:repeat(6,1fr);}
+}
+@media(max-width:420px){
+  .dayNav{grid-template-columns:repeat(4,1fr);}
+}
 </style>
 </head>
 <body translate="no">
@@ -665,26 +696,28 @@ footer{
     <div class="dropdown">
       <button class="dropdown-btn" onclick="toggleDropdown('bunpouHarianDropdown')">BUNPOU HARIAN ▼</button>
       <div class="dropdown-menu" id="bunpouHarianDropdown">
-        <a href="bunpouharian1.html">HARI 1</a>
-        <a href="bunpouharian2.html">HARI 2</a>
-        <a href="bunpouharian3.html">HARI 3</a>
-        <a href="bunpouharian4.html">HARI 4</a>
-        <a href="bunpouharian5.html">HARI 5</a>
-        <a href="bunpouharian6.html">HARI 6</a>
-        <a href="bunpouharian7.html">HARI 7</a>
-        <a href="bunpouharian8.html">HARI 8</a>
-        <a href="bunpouharian9.html">HARI 9</a>
-        <a href="bunpouharian10.html">HARI 10</a>
-        <a href="bunpouharian11.html">HARI 11</a>
-        <a href="bunpouharian12.html">HARI 12</a>
-        <a href="bunpouharian13.html">HARI 13</a>
-        <a href="bunpouharian14.html">HARI 14</a>
-        <a href="bunpouharian15.html">HARI 15</a>
-        <a href="bunpouharian16.html">HARI 16</a>
-        <a href="bunpouharian17.html">HARI 17</a>
-        <a href="bunpouharian18.html">HARI 18</a>
-        <a href="bunpouharian19.html">HARI 19</a>
-        <a href="bunpouharian20.html">HARI 20</a>
+          <a href="tatabahasaharian1.html">HARI 1</a>
+          <a href="tatabahasaharian2.html">HARI 2</a>
+          <a href="tatabahasaharian3.html">HARI 3</a>
+          <a href="tatabahasaharian4.html">HARI 4</a>
+          <a href="tatabahasaharian5.html">HARI 5</a>
+          <a href="tatabahasaharian6.html" >HARI 6</a>
+          <a href="tatabahasaharian7.html">HARI 7</a>
+          <a href="tatabahasaharian8.html">HARI 8</a>
+          <a href="tatabahasaharian9.html">HARI 9</a>
+          <a href="tatabahasaharian10.html">HARI 10</a>
+          <a href="tatabahasaharian11.html">HARI 11</a>
+          <a href="tatabahasaharian12.html">HARI 12</a>
+          <a href="tatabahasaharian13.html" >HARI 13</a>
+          <a href="tatabahasaharian14.html" >HARI 14</a>
+          <a href="tatabahasaharian15.html" >HARI 15</a>
+          <a href="tatabahasaharian16.html" >HARI 16</a>
+          <a href="tatabahasaharian17.html">HARI 17</a>
+          <a href="tatabahasaharian18.html">HARI 18</a>
+          <a href="tatabahasaharian19.html">HARI 19</a>
+          <a href="tatabahasaharian20.html" class="active">HARI 20</a>
+          <a href="tatabahasaharian21.html">HARI 21</a>
+          <a href="tatabahasaharian22.html">HARI 22</a>
       </div>
     </div>
 
