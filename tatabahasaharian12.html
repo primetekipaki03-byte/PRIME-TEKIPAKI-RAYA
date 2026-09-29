@@ -596,6 +596,38 @@ footer{
   padding:34px 20px;
   border-top:1px solid var(--paper2);
 }
+.dayNav{
+  display:grid;
+  grid-template-columns:repeat(11,1fr);
+  gap:6px;
+  margin-bottom:24px;
+}
+.dayNav a{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.7rem;
+  font-weight:700;
+  text-decoration:none;
+  color:var(--navy);
+  background:#fff;
+  border:1px solid var(--paper2);
+  border-radius:8px;
+  padding:9px 0;
+  text-align:center;
+  white-space:nowrap;
+}
+.dayNav a.active{
+  background:var(--navy);
+  color:var(--gold);
+  border-color:var(--navy);
+}
+
+/* Tablet dan ponsel */
+@media(max-width:700px){
+  .dayNav{grid-template-columns:repeat(6,1fr);}
+}
+@media(max-width:420px){
+  .dayNav{grid-template-columns:repeat(4,1fr);}
+}
 
 </style>
 </head>
