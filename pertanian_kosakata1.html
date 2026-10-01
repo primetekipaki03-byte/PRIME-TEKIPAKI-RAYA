@@ -77,7 +77,8 @@ a{color:inherit;}
 .who{flex:none;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:.8rem;}
 .line.a .who{background:var(--navy);color:var(--gold);}
 .line.b .who{background:var(--paper2);color:var(--seal);border:1px solid var(--seal);}
-.jpText{font-size:1.1rem;line-height:1.7;padding-top:2px;}
+.jpText{font-size:1.1rem;line-height:2.2;padding-top:0;}
+.jpText rt{font-size:.5em;color:var(--ink-soft);font-weight:500;}
 .jpText mark{background:rgba(224,181,42,.35);color:inherit;padding:0 2px;border-radius:3px;}
 .checkBtn{display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--navy);border:2px solid var(--navy);font-family:"JetBrains Mono",monospace;font-weight:700;font-size:.78rem;padding:9px 16px;border-radius:9px;cursor:pointer;position:relative;z-index:1;}
 .checkBtn:hover{background:var(--navy);color:var(--gold);}
@@ -182,10 +183,10 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
   <div class="qCard">
     <span class="qTypeTag">Percakapan A &amp; B</span>
     <div class="chat">
-      <div class="line a"><span class="who">A</span><span class="jpText">毎朝、<mark>畑</mark>で何をしていますか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">野菜に水をやったり、草を取ったりしています。</span></div>
-      <div class="line a"><span class="who">A</span><span class="jpText"><mark>畑</mark>は大きいですか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">はい、とても大きいです。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText"><ruby>毎朝<rt>まいあさ</rt></ruby>、<mark><ruby>畑<rt>はたけ</rt></ruby></mark>で<ruby>何<rt>なに</rt></ruby>をしていますか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText"><ruby>野菜<rt>やさい</rt></ruby>に<ruby>水<rt>みず</rt></ruby>をやったり、<ruby>草<rt>くさ</rt></ruby>を<ruby>取<rt>と</rt></ruby>ったりしています。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText"><mark><ruby>畑<rt>はたけ</rt></ruby></mark>は<ruby>大<rt>おお</rt></ruby>きいですか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText">はい、とても<ruby>大<rt>おお</rt></ruby>きいです。</span></div>
     </div>
     <button class="checkBtn" onclick="toggleAnswer('key1', this)">🔍 Lihat Terjemahan</button>
     <div class="answerKey" id="key1"><b>A:</b> Setiap pagi, apa yang kamu lakukan di ladang?<br><b>B:</b> Menyiram sayuran dan menyiangi rumput.<br><b>A:</b> Apakah ladangnya luas?<br><b>B:</b> Ya, sangat luas.</div>
@@ -199,10 +200,10 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
   <div class="qCard">
     <span class="qTypeTag">Percakapan A &amp; B</span>
     <div class="chat">
-      <div class="line a"><span class="who">A</span><span class="jpText"><mark>田んぼ</mark>に水を入れましたか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">はい、昨日入れました。</span></div>
-      <div class="line a"><span class="who">A</span><span class="jpText">いつ米を植えますか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">来週、植えるつもりです。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText"><mark><ruby>田<rt>た</rt></ruby>んぼ</mark>に<ruby>水<rt>みず</rt></ruby>を<ruby>入<rt>い</rt></ruby>れましたか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText">はい、<ruby>昨日<rt>きのう</rt></ruby><ruby>入<rt>い</rt></ruby>れました。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText">いつ<ruby>米<rt>こめ</rt></ruby>を<ruby>植<rt>う</rt></ruby>えますか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText"><ruby>来週<rt>らいしゅう</rt></ruby>、<ruby>植<rt>う</rt></ruby>えるつもりです。</span></div>
     </div>
     <button class="checkBtn" onclick="toggleAnswer('key2', this)">🔍 Lihat Terjemahan</button>
     <div class="answerKey" id="key2"><b>A:</b> Apakah sudah mengalirkan air ke sawah?<br><b>B:</b> Ya, kemarin sudah.<br><b>A:</b> Kapan menanam padi?<br><b>B:</b> Rencananya minggu depan.</div>
@@ -216,10 +217,10 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
   <div class="qCard">
     <span class="qTypeTag">Percakapan A &amp; B</span>
     <div class="chat">
-      <div class="line a"><span class="who">A</span><span class="jpText">この<mark>種</mark>はいつまいたらいいですか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">春にまいてください。</span></div>
-      <div class="line a"><span class="who">A</span><span class="jpText">土に深く入れますか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">いいえ、浅くまいてください。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText">この<mark><ruby>種<rt>たね</rt></ruby></mark>はいつまいたらいいですか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText"><ruby>春<rt>はる</rt></ruby>にまいてください。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText"><ruby>土<rt>つち</rt></ruby>に<ruby>深<rt>ふか</rt></ruby>く<ruby>入<rt>い</rt></ruby>れますか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText">いいえ、<ruby>浅<rt>あさ</rt></ruby>くまいてください。</span></div>
     </div>
     <button class="checkBtn" onclick="toggleAnswer('key3', this)">🔍 Lihat Terjemahan</button>
     <div class="answerKey" id="key3"><b>A:</b> Benih ini sebaiknya ditabur kapan?<br><b>B:</b> Tolong tabur pada musim semi.<br><b>A:</b> Apakah dimasukkan dalam ke tanah?<br><b>B:</b> Tidak, tolong tabur dangkal saja.</div>
@@ -233,10 +234,10 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
   <div class="qCard">
     <span class="qTypeTag">Percakapan A &amp; B</span>
     <div class="chat">
-      <div class="line a"><span class="who">A</span><span class="jpText">この<mark>苗</mark>は何日前に植えましたか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">二週間前に植えました。</span></div>
-      <div class="line a"><span class="who">A</span><span class="jpText">大きくなりましたね。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">ええ、毎日水をやっていますから。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText">この<mark><ruby>苗<rt>なえ</rt></ruby></mark>は<ruby>何日前<rt>なんにちまえ</rt></ruby>に<ruby>植<rt>う</rt></ruby>えましたか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText"><ruby>二週間前<rt>にしゅうかんまえ</rt></ruby>に<ruby>植<rt>う</rt></ruby>えました。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText"><ruby>大<rt>おお</rt></ruby>きくなりましたね。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText">ええ、<ruby>毎日<rt>まいにち</rt></ruby><ruby>水<rt>みず</rt></ruby>をやっていますから。</span></div>
     </div>
     <button class="checkBtn" onclick="toggleAnswer('key4', this)">🔍 Lihat Terjemahan</button>
     <div class="answerKey" id="key4"><b>A:</b> Bibit ini ditanam berapa hari yang lalu?<br><b>B:</b> Dua minggu yang lalu.<br><b>A:</b> Sudah besar ya.<br><b>B:</b> Ya, karena disiram setiap hari.</div>
@@ -250,9 +251,9 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
   <div class="qCard">
     <span class="qTypeTag">Percakapan A &amp; B</span>
     <div class="chat">
-      <div class="line a"><span class="who">A</span><span class="jpText"><mark>肥料</mark>はどのぐらい入れますか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">少しだけ入れてください。入れすぎると、枯れてしまいます。</span></div>
-      <div class="line a"><span class="who">A</span><span class="jpText">わかりました。気をつけます。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText"><mark><ruby>肥料<rt>ひりょう</rt></ruby></mark>はどのぐらい<ruby>入<rt>い</rt></ruby>れますか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText"><ruby>少<rt>すこ</rt></ruby>しだけ<ruby>入<rt>い</rt></ruby>れてください。<ruby>入<rt>い</rt></ruby>れすぎると、<ruby>枯<rt>か</rt></ruby>れてしまいます。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText">わかりました。<ruby>気<rt>き</rt></ruby>をつけます。</span></div>
     </div>
     <button class="checkBtn" onclick="toggleAnswer('key5', this)">🔍 Lihat Terjemahan</button>
     <div class="answerKey" id="key5"><b>A:</b> Pupuknya dimasukkan sebanyak apa?<br><b>B:</b> Tolong masukkan sedikit saja. Kalau terlalu banyak, tanamannya bisa mati.<br><b>A:</b> Mengerti. Saya akan hati-hati.</div>
@@ -266,9 +267,9 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
   <div class="qCard">
     <span class="qTypeTag">Percakapan A &amp; B</span>
     <div class="chat">
-      <div class="line a"><span class="who">A</span><span class="jpText">この<mark>農薬</mark>は安全ですか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">はい、でも使う前に説明書を読んでください。</span></div>
-      <div class="line a"><span class="who">A</span><span class="jpText">手袋をしたほうがいいですか。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText">この<mark><ruby>農薬<rt>のうやく</rt></ruby></mark>は<ruby>安全<rt>あんぜん</rt></ruby>ですか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText">はい、でも<ruby>使<rt>つか</rt></ruby>う<ruby>前<rt>まえ</rt></ruby>に<ruby>説明書<rt>せつめいしょ</rt></ruby>を<ruby>読<rt>よ</rt></ruby>んでください。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText"><ruby>手袋<rt>てぶくろ</rt></ruby>をしたほうがいいですか。</span></div>
       <div class="line b"><span class="who">B</span><span class="jpText">はい、マスクもつけてください。</span></div>
     </div>
     <button class="checkBtn" onclick="toggleAnswer('key6', this)">🔍 Lihat Terjemahan</button>
@@ -283,9 +284,9 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
   <div class="qCard">
     <span class="qTypeTag">Percakapan A &amp; B</span>
     <div class="chat">
-      <div class="line a"><span class="who">A</span><span class="jpText">トマトに<mark>水をやり</mark>ましたか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">まだです。今から<mark>やり</mark>ます。</span></div>
-      <div class="line a"><span class="who">A</span><span class="jpText">朝と夕方に<mark>やった</mark>ほうがいいですよ。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText">トマトに<mark><ruby>水<rt>みず</rt></ruby>をやり</mark>ましたか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText">まだです。<ruby>今<rt>いま</rt></ruby>から<mark>やり</mark>ます。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText"><ruby>朝<rt>あさ</rt></ruby>と<ruby>夕方<rt>ゆうがた</rt></ruby>に<mark>やった</mark>ほうがいいですよ。</span></div>
       <div class="line b"><span class="who">B</span><span class="jpText">はい、わかりました。</span></div>
     </div>
     <button class="checkBtn" onclick="toggleAnswer('key7', this)">🔍 Lihat Terjemahan</button>
@@ -300,10 +301,10 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
   <div class="qCard">
     <span class="qTypeTag">Percakapan A &amp; B</span>
     <div class="chat">
-      <div class="line a"><span class="who">A</span><span class="jpText">今日は<mark>草取り</mark>をしますか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">はい、雨が降る前にしておきます。</span></div>
-      <div class="line a"><span class="who">A</span><span class="jpText">手伝いましょうか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">ありがとうございます。助かります。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText"><ruby>今日<rt>きょう</rt></ruby>は<mark><ruby>草取<rt>くさと</rt></ruby>り</mark>をしますか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText">はい、<ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>る<ruby>前<rt>まえ</rt></ruby>にしておきます。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText"><ruby>手伝<rt>てつだ</rt></ruby>いましょうか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText">ありがとうございます。<ruby>助<rt>たす</rt></ruby>かります。</span></div>
     </div>
     <button class="checkBtn" onclick="toggleAnswer('key8', this)">🔍 Lihat Terjemahan</button>
     <div class="answerKey" id="key8"><b>A:</b> Hari ini mau menyiangi rumput?<br><b>B:</b> Ya, saya lakukan sebelum hujan turun.<br><b>A:</b> Mau saya bantu?<br><b>B:</b> Terima kasih. Itu sangat membantu.</div>
@@ -317,10 +318,10 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
   <div class="qCard">
     <span class="qTypeTag">Percakapan A &amp; B</span>
     <div class="chat">
-      <div class="line a"><span class="who">A</span><span class="jpText">米の<mark>収穫</mark>はいつですか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">来月の始めです。</span></div>
-      <div class="line a"><span class="who">A</span><span class="jpText"><mark>収穫</mark>したあとで、何をしますか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">米を乾かして、袋に入れます。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText"><ruby>米<rt>こめ</rt></ruby>の<mark><ruby>収穫<rt>しゅうかく</rt></ruby></mark>はいつですか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText"><ruby>来月<rt>らいげつ</rt></ruby>の<ruby>始<rt>はじ</rt></ruby>めです。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText"><mark><ruby>収穫<rt>しゅうかく</rt></ruby></mark>したあとで、<ruby>何<rt>なに</rt></ruby>をしますか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText"><ruby>米<rt>こめ</rt></ruby>を<ruby>乾<rt>かわ</rt></ruby>かして、<ruby>袋<rt>ふくろ</rt></ruby>に<ruby>入<rt>い</rt></ruby>れます。</span></div>
     </div>
     <button class="checkBtn" onclick="toggleAnswer('key9', this)">🔍 Lihat Terjemahan</button>
     <div class="answerKey" id="key9"><b>A:</b> Kapan panen padinya?<br><b>B:</b> Awal bulan depan.<br><b>A:</b> Setelah panen, apa yang dilakukan?<br><b>B:</b> Mengeringkan padi lalu memasukkannya ke dalam karung.</div>
@@ -334,10 +335,10 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
   <div class="qCard">
     <span class="qTypeTag">Percakapan A &amp; B</span>
     <div class="chat">
-      <div class="line a"><span class="who">A</span><span class="jpText"><mark>トラクター</mark>を使ったことがありますか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">はい、日本で練習しました。</span></div>
-      <div class="line a"><span class="who">A</span><span class="jpText">運転は難しいですか。</span></div>
-      <div class="line b"><span class="who">B</span><span class="jpText">慣れれば、簡単です。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText"><mark>トラクター</mark>を<ruby>使<rt>つか</rt></ruby>ったことがありますか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText">はい、<ruby>日本<rt>にほん</rt></ruby>で<ruby>練習<rt>れんしゅう</rt></ruby>しました。</span></div>
+      <div class="line a"><span class="who">A</span><span class="jpText"><ruby>運転<rt>うんてん</rt></ruby>は<ruby>難<rt>むずか</rt></ruby>しいですか。</span></div>
+      <div class="line b"><span class="who">B</span><span class="jpText"><ruby>慣<rt>な</rt></ruby>れれば、<ruby>簡単<rt>かんたん</rt></ruby>です。</span></div>
     </div>
     <button class="checkBtn" onclick="toggleAnswer('key10', this)">🔍 Lihat Terjemahan</button>
     <div class="answerKey" id="key10"><b>A:</b> Apakah kamu pernah memakai traktor?<br><b>B:</b> Ya, saya berlatih di Jepang.<br><b>A:</b> Apakah mengemudikannya sulit?<br><b>B:</b> Kalau sudah terbiasa, mudah.</div>
