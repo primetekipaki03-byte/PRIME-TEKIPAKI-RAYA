@@ -4,209 +4,69 @@
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Latihan Terjemahan — PRIME TEKIPAKI</title>
-
+<title>Latihan Terjemahan: Pekerjaan — PRIME TEKIPAKI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-
-:root{
-    --paper:#FFFFFF;
-    --paper-deep:#F5F7FA;
-    --ink:#12182A;
-    --ink-soft:#5B6478;
-    --line:rgba(18,24,42,0.14);
-    --line-strong:rgba(18,24,42,0.28);
-    --navy:#0a1f3d;
-    --navy2:#001530;
-    --gold:#e0b52a;
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:"Noto Sans JP","Hiragino Sans","Segoe UI",sans-serif;
-    background:var(--paper);
-    color:var(--ink);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-}
-
-h1,h2{ font-family:"Shippori Mincho",serif; font-weight:700; }
-
-/* =======================
-        NAVBAR
-======================= */
-
-#navbar{
-    position:sticky;
-    top:0;
-    z-index:999;
-    background:rgba(255,255,255,.88);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-}
-
-.navbar-inner{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:10px 20px;
-    flex-wrap:wrap;
-    gap:10px;
-}
-
-.nav-left{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-.nav-right{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-
-.home-btn{
-    display:flex; align-items:center; gap:8px;
-    background:var(--navy); color:#fff;
-    text-decoration:none; padding:10px 18px;
-    border-radius:3px; font-weight:600;
-    transition:background .2s ease;
-}
-.home-btn:hover{ background:var(--navy2); }
-.home-icon{ width:20px; height:20px; }
-
-.dropdown{ position:relative; }
-.dropdown-btn{
-    background:none; border:1px solid var(--line-strong); color:var(--ink);
-    padding:9px 15px; border-radius:3px; font-weight:600; cursor:pointer;
-    font-family:inherit; transition:border-color .2s ease, color .2s ease;
-}
-.dropdown-btn:hover{ border-color:var(--navy); color:var(--navy); }
-
-.dropdown-menu{
-    display:none; position:absolute; top:45px; left:0;
-    background:var(--paper); border:1px solid var(--line); border-radius:10px;
-    overflow:hidden; min-width:220px; box-shadow:0 14px 34px rgba(18,24,42,.16);
-}
-.dropdown-menu a{ display:block; padding:12px 15px; color:var(--ink); text-decoration:none; }
-.dropdown-menu a:hover{ background:var(--paper-deep); color:var(--navy); }
-.show{ display:block; }
-
-@media(max-width:600px){
-  .navbar-inner{flex-direction:column;align-items:flex-start;}
-  .nav-right{width:100%;}
-}
-
-/* =======================
-     BACK BUTTON
-======================= */
-
-.back-wrap{ padding:16px 20px 0; }
-.back-btn{
-    display:inline-flex; align-items:center; gap:6px;
-    text-decoration:none; padding:10px 18px;
-    background:var(--paper-deep); border:1px solid var(--line);
-    color:var(--navy); border-radius:999px; font-weight:600; font-size:14px;
-    transition:.2s;
-}
-.back-btn:hover{ background:#e2e8f2; }
-
-/* =======================
-       HEADER
-======================= */
-
-header{ text-align:center; padding:40px 20px 6px; }
-header h1{ font-size:clamp(1.7rem,4vw,2.5rem); margin-bottom:10px; }
-header p{ font-size:16px; color:var(--ink-soft); max-width:560px; margin:0 auto; }
-
-.hint{ text-align:center; font-size:14px; color:var(--ink-soft); margin:14px 0; }
-
-/* =======================
-     FLASH CARD (FLIP)
-======================= */
-
-.viewer-wrap{ max-width:820px; margin:20px auto; perspective:1600px; }
-
-.viewer{
-    position:relative; width:100%; height:380px; cursor:pointer;
-    transform-style:preserve-3d; transition:transform .5s cubic-bezier(.4,.2,.2,1);
-}
-.viewer.flipped{ transform:rotateY(180deg); }
-.viewer.big{ animation:pop .3s; }
-
-@keyframes pop{
-    0%{ transform:scale(.94) rotateY(var(--rot,0deg)); opacity:.4; }
-    100%{ transform:scale(1) rotateY(var(--rot,0deg)); opacity:1; }
-}
-
-.face{
-    position:absolute; inset:0; border:3px solid var(--navy); border-radius:20px;
-    background:var(--paper); display:flex; flex-direction:column; justify-content:center;
-    align-items:center; backface-visibility:hidden; -webkit-backface-visibility:hidden;
-    padding:26px; text-align:center; gap:14px;
-}
-
-.face-front .letter-badge{
-    font-family:"Shippori Mincho",serif; font-size:2.6rem; letter-spacing:.08em;
-    color:var(--gold); font-weight:700; text-transform:uppercase; line-height:1;
-}
-.face-front #soal{ font-size:19px; font-weight:600; line-height:1.7; max-width:640px; }
-
-.face-back{ transform:rotateY(180deg); background:var(--navy); color:#fff; }
-.face-back .yomi{ font-size:14px; color:var(--gold); font-weight:600; letter-spacing:.3px; line-height:1.6; max-width:640px; }
-.face-back .arti{ font-size:19px; font-weight:700; line-height:1.7; max-width:640px; }
-
-.tap-tip{
-    position:absolute; bottom:14px; font-size:12.5px; font-weight:700;
-    background:var(--gold); color:var(--navy2); padding:7px 15px; border-radius:999px;
-    box-shadow:0 4px 10px rgba(0,0,0,.15);
-}
-
-@media(max-width:768px){
-    .viewer{ height:440px; }
-    .face-front #soal{ font-size:15px; }
-    .face-back .arti{ font-size:15px; }
-}
-
-/* =======================
-     GRID HURUF
-======================= */
-
-.grid-label{ text-align:center; font-size:13px; color:var(--ink-soft); margin:36px 0 10px; letter-spacing:.08em; text-transform:uppercase; }
-
-.grid{
-    max-width:820px; margin:0 auto 50px; display:grid;
-    grid-template-columns:repeat(7,1fr); gap:14px; padding:0 20px;
-}
-
-.card{
-    border:2px solid var(--navy); border-radius:12px; padding:16px 8px;
-    cursor:pointer; transition:.2s; text-align:center; background:var(--paper);
-}
-.card:hover{ background:var(--navy); color:#fff; transform:translateY(-4px); }
-.card.active{ background:var(--navy); color:#fff; box-shadow:0 0 0 3px var(--gold); }
-.card .j{ font-family:"Shippori Mincho",serif; font-size:28px; font-weight:700; }
-
-@media(max-width:600px){
-    .grid{ grid-template-columns:repeat(5,1fr); }
-}
-
+:root{--paper:#FFFFFF;--paper-deep:#F5F7FA;--ink:#12182A;--ink-soft:#5B6478;--line:rgba(18,24,42,.14);--line-strong:rgba(18,24,42,.28);--navy:#0a1f3d;--navy2:#001530;--gold:#e0b52a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP","Hiragino Sans","Segoe UI",sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2{font-family:"Shippori Mincho",serif;font-weight:700}
+#navbar{position:sticky;top:0;z-index:999;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;flex-wrap:wrap;gap:10px}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--navy);color:#fff;text-decoration:none;padding:10px 18px;border-radius:3px;font-weight:600;transition:background .2s}
+.home-btn:hover{background:var(--navy2)}
+.home-icon{width:20px;height:20px}
+.dropdown{position:relative}
+.dropdown-btn{background:none;border:1px solid var(--line-strong);color:var(--ink);padding:9px 15px;border-radius:3px;font-weight:600;cursor:pointer;font-family:inherit;transition:border-color .2s,color .2s}
+.dropdown-btn:hover{border-color:var(--navy);color:var(--navy)}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:220px;box-shadow:0 14px 34px rgba(18,24,42,.16)}
+.dropdown-menu a{display:block;padding:12px 15px;color:var(--ink);text-decoration:none}
+.dropdown-menu a:hover{background:var(--paper-deep);color:var(--navy)}
+.show{display:block}
+@media(max-width:600px){.navbar-inner{flex-direction:column;align-items:flex-start}.nav-right{width:100%}}
+.back-wrap{padding:16px 20px 0}
+.back-btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;padding:10px 18px;background:var(--paper-deep);border:1px solid var(--line);color:var(--navy);border-radius:999px;font-weight:600;font-size:14px;transition:.2s}
+.back-btn:hover{background:#e2e8f2}
+header{text-align:center;padding:40px 20px 6px}
+header h1{font-size:clamp(1.7rem,4vw,2.5rem);margin-bottom:10px}
+header p{font-size:16px;color:var(--ink-soft);max-width:560px;margin:0 auto}
+.hint{text-align:center;font-size:14px;color:var(--ink-soft);margin:14px 0}
+.viewer-wrap{max-width:820px;margin:20px auto;perspective:1600px;padding:0 20px}
+.viewer{position:relative;width:100%;height:620px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,.2,.2,1)}
+.viewer.flipped{transform:rotateY(180deg)}
+.viewer.big{animation:pop .3s}
+@keyframes pop{0%{transform:scale(.94) rotateY(var(--rot,0deg));opacity:.4}100%{transform:scale(1) rotateY(var(--rot,0deg));opacity:1}}
+.face{position:absolute;inset:0;border:3px solid var(--navy);border-radius:20px;background:var(--paper);display:flex;flex-direction:column;justify-content:center;align-items:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:28px 36px 64px;text-align:left;align-items:center;gap:14px;overflow-y:auto}
+.face-front .letter-badge{align-self:center;font-family:"Shippori Mincho",serif;font-size:2.6rem;letter-spacing:.08em;color:var(--gold);font-weight:700;line-height:1}
+.face-front .judul{font-size:15px;color:var(--ink-soft);font-weight:600;margin-bottom:14px}
+.face-front #soal{font-size:22px;font-weight:600;line-height:1.7;width:fit-content;max-width:100%}
+.face-front #soal p+p{margin-top:12px}
+.face-back{transform:rotateY(180deg);background:var(--navy);color:#fff}
+.face-back .arti{max-width:100%;width:fit-content}
+.face-back .pair+.pair{margin-top:16px}
+.face-back .jp{font-size:22px;font-weight:700;line-height:1.6}
+.face-back .yo{font-size:15px;color:var(--gold);font-weight:600;line-height:1.5;margin-top:2px}
+.tap-tip{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:12.5px;font-weight:700;background:var(--gold);color:var(--navy2);padding:7px 15px;border-radius:999px;box-shadow:0 4px 10px rgba(0,0,0,.15)}
+@media(max-width:768px){.face{padding:24px 22px 64px}.viewer{height:700px}.face-front #soal{font-size:18px}.face-back .jp{font-size:18px}.face-back .yo{font-size:13px}}
+.grid-label{text-align:center;font-size:13px;color:var(--ink-soft);margin:36px 0 10px;letter-spacing:.08em}
+.grid{max-width:820px;margin:0 auto 50px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;padding:0 20px}
+.card{border:2px solid var(--navy);border-radius:12px;padding:16px 8px;cursor:pointer;transition:.2s;text-align:center;background:var(--paper)}
+.card:hover{background:var(--navy);color:#fff;transform:translateY(-4px)}
+.card.active{background:var(--navy);color:#fff;box-shadow:0 0 0 3px var(--gold)}
+.card .j{font-family:"Shippori Mincho",serif;font-size:28px;font-weight:700}
 </style>
 </head>
-
 <body>
 
 <nav id="navbar">
 <div class="navbar-inner">
-  <div class="nav-left">
-    <a href="index.html" class="home-btn">
-      <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
-      </svg>
-      HOME
-    </a>
-  </div>
+  <a href="index.html" class="home-btn">
+    <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
+    HOME
+  </a>
   <div class="nav-right">
     <div class="dropdown">
       <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
@@ -228,126 +88,334 @@ header p{ font-size:16px; color:var(--ink-soft); max-width:560px; margin:0 auto;
 </div>
 </nav>
 
-<div class="back-wrap">
-<a href="kanjidasar.html" class="back-btn">← Kembali</a>
-</div>
+<div class="back-wrap"><a href="index.html" class="back-btn">← Kembali</a></div>
 
 <header>
-  <h1>Latihan Terjemahan Indonesia → Jepang</h1>
-  <p>Sebuah cerita singkat kehidupan sehari-hari bekerja di Jepang. Klik huruf PRIME TEKIPAKI di bawah untuk memunculkan kalimatnya, lalu coba terjemahkan sendiri ke bahasa Jepang sebelum membalik kartu.</p>
+  <h1>Latihan Terjemahan: Pekerjaan</h1>
+  <p>Sebuah cerita sehari-hari Budi bekerja di pabrik, dibagi menjadi 10 bagian. Klik huruf hiragana di bawah untuk memunculkan bagian ceritanya, lalu coba terjemahkan sendiri ke bahasa Jepang sebelum membalik kartu.</p>
 </header>
 
 <p class="hint">Klik kartu besar untuk membalik dan melihat jawaban dalam bahasa Jepang</p>
 
 <div class="viewer-wrap">
-    <div class="viewer big" id="viewer" onclick="flipCard()">
-        <div class="face face-front">
-            <span class="letter-badge" id="letterBadge">P</span>
-            <div id="soal">Saya bangun jam enam pagi.</div>
-            <span class="tap-tip">klik untuk lihat terjemahan</span>
-        </div>
-        <div class="face face-back">
-            <div class="yomi" id="yomi">わたしはあさろくじにおきます</div>
-            <div class="arti" id="arti">私は朝六時に起きます。</div>
-            <span class="tap-tip">klik untuk kembali</span>
-        </div>
+  <div class="viewer big" id="viewer" onclick="flipCard()">
+    <div class="face face-front">
+      <span class="letter-badge" id="letterBadge"></span>
+      <div id="soal"></div>
+      <span class="tap-tip">klik untuk lihat terjemahan</span>
     </div>
+    <div class="face face-back">
+      <div class="arti" id="arti"></div>
+      <span class="tap-tip">klik untuk kembali</span>
+    </div>
+  </div>
 </div>
 
 <div class="grid-label">Klik huruf untuk memunculkan kalimat</div>
-
 <div class="grid" id="letterGrid"></div>
 
-<footer style="text-align:center;padding:30px;color:var(--ink-soft);font-size:14px;">
-© Tekipaki Japanese Learning
-</footer>
+<footer style="text-align:center;padding:30px;color:var(--ink-soft);font-size:14px;">© Tekipaki Japanese Learning</footer>
 
 <script>
-
-//============================
-// DATA: HURUF "PRIME TEKIPAKI" + SOAL CERITA
-//============================
-
 const soalData = [
-    { huruf:"P", id:"Nama saya Budi. Saya berasal dari Indonesia. Sekarang saya tinggal dan bekerja di Jepang.", yomi:"わたしのなまえはブディです。インドネシアしゅっしんです。いま、にほんにすんではたらいています。", jp:"私の名前はブディです。インドネシア出身です。今、日本に住んで働いています。" },
-    { huruf:"R", id:"Setiap pagi saya bangun jam enam. Saya mandi, lalu sarapan roti dan minum teh.", yomi:"まいあさろくじにおきます。シャワーをあびて、それからパンをたべておちゃをのみます。", jp:"毎朝六時に起きます。シャワーを浴びて、それからパンを食べてお茶を飲みます。" },
-    { huruf:"I", id:"Saya naik sepeda ke pabrik. Dari rumah sampai pabrik memakan waktu lima belas menit.", yomi:"じてんしゃでこうじょうにいきます。いえからこうじょうまでじゅうごふんかかります。", jp:"自転車で工場に行きます。家から工場まで十五分かかります。" },
-    { huruf:"M", id:"Pekerjaan saya di pabrik adalah merakit suku cadang. Hari ini pekerjaannya cukup sibuk.", yomi:"こうじょうでのしごとはぶひんをくみたてることです。きょうのしごとはかなりいそがしいです。", jp:"工場での仕事は部品を組み立てることです。今日の仕事はかなり忙しいです。" },
-    { huruf:"E", id:"Jam dua belas siang, saya istirahat makan siang. Saya makan bersama teman dari Vietnam dan Indonesia.", yomi:"じゅうにじにひるやすみがあります。ベトナムとインドネシアのともだちといっしょにごはんをたべます。", jp:"十二時に昼休みがあります。ベトナムとインドネシアの友達と一緒にご飯を食べます。" },
-    { huruf:"T", id:"Atasan saya orang Jepang. Dia sangat baik dan selalu mengajari saya dengan sabar.", yomi:"わたしのじょうしはにほんじんです。とてもしんせつで、いつもやさしくおしえてくれます。", jp:"私の上司は日本人です。とても親切で、いつも優しく教えてくれます。" },
-    { huruf:"E", id:"Setelah pulang kerja, saya belajar bahasa Jepang satu jam. Saya menghafal kosakata baru setiap hari.", yomi:"しごとのあと、いちじかんにほんごをべんきょうします。まいにちあたらしいたんごをおぼえます。", jp:"仕事の後、一時間日本語を勉強します。毎日新しい単語を覚えます。" },
-    { huruf:"K", id:"Bulan depan saya akan mengikuti ujian JFT. Saya ingin lulus supaya bisa terus bekerja di Jepang.", yomi:"らいげつJFTのしけんをうけます。にほんでずっとはたらきたいので、ごうかくしたいです。", jp:"来月JFTの試験を受けます。日本でずっと働きたいので、合格したいです。" },
-    { huruf:"I", id:"Hari libur, saya pergi ke toko bersama teman. Kami membeli makanan dan barang yang dibutuhkan.", yomi:"やすみのひ、ともだちとみせにいきます。たべものやひつようなものをかいます。", jp:"休みの日、友達と店に行きます。食べ物や必要な物を買います。" },
-    { huruf:"P", id:"Setiap bulan saya mengirim uang ke keluarga di Indonesia. Ibu saya senang menerima kabar dari saya.", yomi:"まいつきインドネシアのかぞくにおかねをおくります。はははわたしからのれんらくをとてもよろこびます。", jp:"毎月インドネシアの家族にお金を送ります。母は私からの連絡をとても喜びます。" },
-    { huruf:"A", id:"Akhir pekan saya istirahat di apartemen. Kadang saya menelepon keluarga lewat video call.", yomi:"しゅうまつはアパートでやすみます。ときどきビデオつうわでかぞくにでんわします。", jp:"週末はアパートで休みます。時々ビデオ通話で家族に電話します。" },
-    { huruf:"K", id:"Saya bersyukur bisa bekerja dan belajar di Jepang. Pengalaman ini sangat berharga bagi saya.", yomi:"にほんではたらいてべんきょうできることにかんしゃしています。このけいけんはわたしにとってとてもたいせつです。", jp:"日本で働いて勉強できることに感謝しています。この経験は私にとってとても大切です。" },
-    { huruf:"I", id:"Saya berharap bisa membuka usaha sendiri setelah pulang ke Indonesia. Saya akan terus berusaha setiap hari.", yomi:"インドネシアにかえったあと、じぶんのみせをひらきたいです。これからもまいにちがんばります。", jp:"インドネシアに帰った後、自分の店を開きたいです。これからも毎日頑張ります。" }
+ {
+  "huruf": "あ",
+  "judul": "Pengenalan",
+  "s": [
+   {
+    "id": "Saya berasal dari Indonesia.",
+    "yomi": "わたしはインドネシアしゅっしんです。",
+    "jp": "私はインドネシア出身です。"
+   },
+   {
+    "id": "Sekarang saya bekerja di pabrik mobil di Aichi.",
+    "yomi": "いま、あいちのじどうしゃこうじょうではたらいています。",
+    "jp": "今、愛知の自動車工場で働いています。"
+   },
+   {
+    "id": "Saya sudah bekerja di sana selama dua tahun.",
+    "yomi": "そこでにねんかんはたらいています。",
+    "jp": "そこで二年間働いています。"
+   },
+   {
+    "id": "Saya tinggal di apartemen dekat pabrik bersama dua teman.",
+    "yomi": "こうじょうのちかくのアパートでともだちふたりとすんでいます。",
+    "jp": "工場の近くのアパートで友達二人と住んでいます。"
+   }
+  ]
+ },
+ {
+  "huruf": "い",
+  "judul": "Tiba di pabrik",
+  "s": [
+   {
+    "id": "Pagi hari, saya tiba di pabrik sepuluh menit sebelum jam delapan.",
+    "yomi": "あさ、はちじじゅっぷんまえにこうじょうにつきます。",
+    "jp": "朝、八時十分前に工場に着きます。"
+   },
+   {
+    "id": "Pertama, saya berganti seragam dan memakai helm.",
+    "yomi": "さいしょに、せいふくにきがえて、ヘルメットをかぶります。",
+    "jp": "最初に、制服に着替えて、ヘルメットをかぶります。"
+   },
+   {
+    "id": "Lalu, kami semua berkumpul untuk rapat pagi.",
+    "yomi": "それから、みんなでちょうれいをします。",
+    "jp": "それから、みんなで朝礼をします。"
+   },
+   {
+    "id": "Saya selalu menyapa semua orang dengan 「Ohayou gozaimasu」.",
+    "yomi": "わたしはいつもみんなに「おはようございます」とあいさつします。",
+    "jp": "私はいつもみんなに「おはようございます」とあいさつします。"
+   }
+  ]
+ },
+ {
+  "huruf": "う",
+  "judul": "Rapat pagi",
+  "s": [
+   {
+    "id": "Atasan menjelaskan pekerjaan hari ini.",
+    "yomi": "じょうしがきょうのしごとをせつめいします。",
+    "jp": "上司が今日の仕事を説明します。"
+   },
+   {
+    "id": "Hari ini saya bertugas memasang suku cadang.",
+    "yomi": "きょうはぶひんをとりつけるたんとうです。",
+    "jp": "今日は部品を取り付ける担当です。"
+   },
+   {
+    "id": "Kalau ada yang tidak mengerti, saya langsung bertanya.",
+    "yomi": "わからないことがあれば、すぐにしつもんします。",
+    "jp": "わからないことがあれば、すぐに質問します。"
+   },
+   {
+    "id": "Setelah itu, kami mulai bekerja di posisi masing-masing.",
+    "yomi": "そのあと、それぞれのもちばでしごとをはじめます。",
+    "jp": "そのあと、それぞれの持ち場で仕事を始めます。"
+   }
+  ]
+ },
+ {
+  "huruf": "え",
+  "judul": "Mesin baru",
+  "s": [
+   {
+    "id": "Saya belum terbiasa dengan mesin baru ini.",
+    "yomi": "わたしはこのあたらしいきかいにまだなれていません。",
+    "jp": "私はこの新しい機械にまだ慣れていません。"
+   },
+   {
+    "id": "Jadi, saya minta rekan kerja mengajari saya.",
+    "yomi": "それで、どうりょうにおしえてもらいました。",
+    "jp": "それで、同僚に教えてもらいました。"
+   },
+   {
+    "id": "Dia mengajari saya dengan sabar sampai saya bisa.",
+    "yomi": "できるまで、やさしくおしえてくれました。",
+    "jp": "できるまで、優しく教えてくれました。"
+   },
+   {
+    "id": "Sekarang saya sudah bisa mengoperasikan mesin itu sendiri.",
+    "yomi": "いまはひとりでそのきかいをつかえるようになりました。",
+    "jp": "今は一人でその機械を使えるようになりました。"
+   }
+  ]
+ },
+ {
+  "huruf": "お",
+  "judul": "Istirahat siang",
+  "s": [
+   {
+    "id": "Jam dua belas, waktu istirahat makan siang dimulai.",
+    "yomi": "じゅうにじになると、ひるやすみがはじまります。",
+    "jp": "十二時になると、昼休みが始まります。"
+   },
+   {
+    "id": "Saya makan bekal buatan sendiri di kantin.",
+    "yomi": "しょくどうでじぶんでつくったおべんとうをたべます。",
+    "jp": "食堂で自分で作ったお弁当を食べます。"
+   },
+   {
+    "id": "Setelah itu, saya tidur siang sebentar.",
+    "yomi": "そのあと、すこしひるねをします。",
+    "jp": "そのあと、少し昼寝をします。"
+   },
+   {
+    "id": "Saya senang bisa mengobrol dengan teman-teman.",
+    "yomi": "ともだちとはなせてたのしいです。",
+    "jp": "友達と話せて楽しいです。"
+   }
+  ]
+ },
+ {
+  "huruf": "か",
+  "judul": "Lembur",
+  "s": [
+   {
+    "id": "Siang hari, pekerjaan menjadi semakin sibuk.",
+    "yomi": "ごごはしごとがもっといそがしくなります。",
+    "jp": "午後は仕事がもっと忙しくなります。"
+   },
+   {
+    "id": "Hari ini ada pesanan mendadak, jadi saya harus lembur.",
+    "yomi": "きょうはきゅうなちゅうもんがあったので、ざんぎょうしなければなりません。",
+    "jp": "今日は急な注文があったので、残業しなければなりません。"
+   },
+   {
+    "id": "Saya mengirim pesan ke keluarga bahwa saya pulang terlambat.",
+    "yomi": "かぞくにかえりがおそくなるとメッセージをおくります。",
+    "jp": "家族に帰りが遅くなるとメッセージを送ります。"
+   },
+   {
+    "id": "Walaupun lelah, saya mengerjakannya dengan semangat.",
+    "yomi": "つかれていますが、げんきにがんばります。",
+    "jp": "疲れていますが、元気に頑張ります。"
+   }
+  ]
+ },
+ {
+  "huruf": "き",
+  "judul": "Pulang kerja",
+  "s": [
+   {
+    "id": "Jam tujuh malam, pekerjaan akhirnya selesai.",
+    "yomi": "よるしちじに、やっとしごとがおわりました。",
+    "jp": "夜七時に、やっと仕事が終わりました。"
+   },
+   {
+    "id": "Saya berkata 「Otsukaresama deshita」 kepada semua orang.",
+    "yomi": "みんなに「おつかれさまでした」といいます。",
+    "jp": "みんなに「お疲れ様でした」と言います。"
+   },
+   {
+    "id": "Lalu, saya pulang naik sepeda.",
+    "yomi": "それから、じてんしゃでかえります。",
+    "jp": "それから、自転車で帰ります。"
+   },
+   {
+    "id": "Di jalan, saya mampir ke supermarket untuk membeli makan malam.",
+    "yomi": "とちゅうでスーパーによって、ばんごはんをかいます。",
+    "jp": "途中でスーパーに寄って、晩ご飯を買います。"
+   }
+  ]
+ },
+ {
+  "huruf": "く",
+  "judul": "Hari gajian",
+  "s": [
+   {
+    "id": "Hari ini adalah hari gajian.",
+    "yomi": "きょうはきゅうりょうびです。",
+    "jp": "今日は給料日です。"
+   },
+   {
+    "id": "Gaji saya ditransfer ke rekening bank.",
+    "yomi": "きゅうりょうはぎんこうのこうざにふりこまれます。",
+    "jp": "給料は銀行の口座に振り込まれます。"
+   },
+   {
+    "id": "Sebagian uangnya akan saya kirim ke keluarga di Indonesia.",
+    "yomi": "いちぶのおかねをインドネシアのかぞくにおくります。",
+    "jp": "一部のお金をインドネシアの家族に送ります。"
+   },
+   {
+    "id": "Saya senang karena kerja keras saya dihargai.",
+    "yomi": "がんばりがみとめられて、うれしいです。",
+    "jp": "頑張りが認められて、うれしいです。"
+   }
+  ]
+ },
+ {
+  "huruf": "け",
+  "judul": "Hari libur",
+  "s": [
+   {
+    "id": "Besok hari Sabtu, dan pabrik libur.",
+    "yomi": "あしたはどようびで、こうじょうはやすみです。",
+    "jp": "明日は土曜日で、工場は休みです。"
+   },
+   {
+    "id": "Saya berencana istirahat di rumah dan belajar bahasa Jepang.",
+    "yomi": "いえでやすんで、にほんごをべんきょうするつもりです。",
+    "jp": "家で休んで、日本語を勉強するつもりです。"
+   },
+   {
+    "id": "Saya juga ingin membersihkan kamar dan mencuci pakaian.",
+    "yomi": "へやをそうじして、せんたくもしたいです。",
+    "jp": "部屋を掃除して、洗濯もしたいです。"
+   },
+   {
+    "id": "Kalau ada waktu, saya juga ingin jalan-jalan dengan teman.",
+    "yomi": "じかんがあれば、ともだちとでかけたいです。",
+    "jp": "時間があれば、友達と出かけたいです。"
+   }
+  ]
+ },
+ {
+  "huruf": "こ",
+  "judul": "Harapan Budi",
+  "s": [
+   {
+    "id": "Bekerja di Jepang memang berat, tetapi saya belajar banyak hal.",
+    "yomi": "にほんではたらくのはたいへんですが、たくさんのことをまなんでいます。",
+    "jp": "日本で働くのは大変ですが、たくさんのことを学んでいます。"
+   },
+   {
+    "id": "Suatu hari nanti, saya ingin menjadi pemimpin tim.",
+    "yomi": "いつか、チームのリーダーになりたいです。",
+    "jp": "いつか、チームのリーダーになりたいです。"
+   },
+   {
+    "id": "Karena itu, saya akan terus berusaha setiap hari.",
+    "yomi": "だから、まいにちがんばります。",
+    "jp": "だから、毎日頑張ります。"
+   },
+   {
+    "id": "Saya yakin pengalaman ini akan berguna di masa depan.",
+    "yomi": "このけいけんはしょうらいきっとやくにたつとおもいます。",
+    "jp": "この経験は将来きっと役に立つと思います。"
+   }
+  ]
+ }
 ];
-
-//============================
-// BANGUN GRID HURUF
-//============================
 
 const gridEl = document.getElementById("letterGrid");
 soalData.forEach(function(item, index){
-    const card = document.createElement("div");
-    card.className = "card" + (index === 0 ? " active" : "");
-    card.innerHTML = '<div class="j">' + item.huruf + '</div>';
-    card.onclick = function(){ show(index, card); };
-    gridEl.appendChild(card);
+  const card = document.createElement("div");
+  card.className = "card" + (index === 0 ? " active" : "");
+  card.innerHTML = '<div class="j">' + item.huruf + '</div>';
+  card.onclick = function(){ show(index, card); };
+  gridEl.appendChild(card);
 });
-
-//============================
-// TAMPILKAN SOAL DI VIEWER
-//============================
 
 function show(index, el){
-
-    const viewer = document.getElementById("viewer");
-    const data = soalData[index];
-
-    document.getElementById("letterBadge").innerHTML = data.huruf;
-    document.getElementById("soal").innerHTML = data.id;
-    document.getElementById("yomi").innerHTML = data.yomi;
-    document.getElementById("arti").innerHTML = data.jp;
-
-    viewer.classList.remove("flipped");
-    viewer.classList.remove("big");
-    void viewer.offsetWidth;
-    viewer.classList.add("big");
-
-    document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
-    if(el){ el.classList.add("active"); }
+  const viewer = document.getElementById("viewer");
+  const data = soalData[index];
+  document.getElementById("letterBadge").textContent = data.huruf;
+  document.getElementById("soal").innerHTML = '<div class="judul">' + data.judul + '</div>' + data.s.map(x => "<p>" + x.id + "</p>").join("");
+  document.getElementById("arti").innerHTML = data.s.map(x => '<div class="pair"><div class="jp">' + x.jp + '</div><div class="yo">' + x.yomi + '</div></div>').join("");
+  viewer.classList.remove("flipped");
+  viewer.classList.remove("big");
+  void viewer.offsetWidth;
+  viewer.classList.add("big");
+  document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+  if(el){ el.classList.add("active"); }
 }
 
-//============================
-// FLIP KARTU
-//============================
+show(0, gridEl.firstChild);
 
-function flipCard(){
-    document.getElementById("viewer").classList.toggle("flipped");
-}
-
-//============================
-// DROPDOWN
-//============================
+function flipCard(){ document.getElementById("viewer").classList.toggle("flipped"); }
 
 function toggleDropdown(id){
-    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
-        if(menu.id !== id){ menu.classList.remove("show"); }
-    });
-    document.getElementById(id).classList.toggle("show");
+  document.querySelectorAll(".dropdown-menu").forEach(function(m){ if(m.id !== id){ m.classList.remove("show"); } });
+  document.getElementById(id).classList.toggle("show");
 }
-
 document.addEventListener("click", function(e){
-    if(!e.target.closest(".dropdown")){
-        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
-            menu.classList.remove("show");
-        });
-    }
+  if(!e.target.closest(".dropdown")){
+    document.querySelectorAll(".dropdown-menu").forEach(function(m){ m.classList.remove("show"); });
+  }
 });
-
 </script>
-
 </body>
 </html>
