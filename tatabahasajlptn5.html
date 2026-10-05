@@ -528,7 +528,7 @@ const grammarList = [
     { jp:"〜より〜のほうが", romaji:"~yori ~no hou ga", mean:"lebih ~ daripada ~", link:"tatabahasan5_yorihouga.html" },
     { jp:"〜の中で〜が一番", romaji:"~no naka de ~ga ichiban", mean:"di antara ~, paling ~", link:"tatabahasan5_ichiban.html" },
     { jp:"い形容詞（現在・過去）", romaji:"i-keiyoushi", mean:"konjugasi kata sifat-i (sekarang & lampau)", link:"tatabahasan5_ikeiyoushi.html" },
-    { jp:"な形容詞（現在・past）", romaji:"na-keiyoushi", mean:"konjugasi kata sifat-na (sekarang & lampau)", link:"tatabahasan5_nakeiyoushi.html" },
+    { jp:"な形容詞（現在・過去）", romaji:"na-keiyoushi", mean:"konjugasi kata sifat-na (sekarang & lampau)", link:"tatabahasan5_nakeiyoushi.html" },
     { jp:"動詞のグループ（ます形）", romaji:"doushi no group (masu-kei)", mean:"kelompok kata kerja bentuk ~masu", link:"tatabahasan5_masukei.html" },
     { jp:"〜ませんでした", romaji:"~masen deshita", mean:"tidak melakukan (bentuk lampau negatif)", link:"tatabahasan5_masendeshita.html" },
     { jp:"疑問詞＋か", romaji:"gimonshi + ka", mean:"sesuatu / seseorang / suatu tempat (tidak pasti)", link:"tatabahasan5_gimonshika.html" },
@@ -543,18 +543,21 @@ const grammarList = [
     { jp:"に　＆　へ", romaji:"~ni & ~he", mean:"ke ~", link:"tatabahasan5_ni_he.html" },
 ];
 
+// Beri nomor tetap pada setiap pola (sebelum difilter)
+grammarList.forEach(function(g, i){ g.no = i + 1; });
+
 const grid = document.getElementById("grammarGrid");
 const noResult = document.getElementById("noResult");
 document.getElementById("totalCount").textContent = grammarList.length + " Pola Tata Bahasa";
 
 function renderCards(list){
     grid.innerHTML = "";
-    list.forEach((g, i)=>{
+    list.forEach(function(g){
         const a = document.createElement("a");
         a.href = g.link;
         a.className = "card";
         a.innerHTML =
-            '<span class="no">POLA ' + String(i+1).padStart(2,"0") + '</span>' +
+            '<span class="no">POLA ' + String(g.no).padStart(2,"0") + '</span>' +
             '<div class="j">' + g.jp + '</div>' +
             '<div class="h">' + g.romaji + '</div>' +
             '<div class="mean">' + g.mean + '</div>';
@@ -565,11 +568,11 @@ function renderCards(list){
 
 function filterCards(){
     const q = document.getElementById("searchInput").value.trim().toLowerCase();
-    const filtered = grammarList.filter(g =>
-        g.jp.toLowerCase().includes(q) ||
-        g.romaji.toLowerCase().includes(q) ||
-        g.mean.toLowerCase().includes(q)
-    );
+    const filtered = grammarList.filter(function(g){
+        return g.jp.toLowerCase().includes(q) ||
+               g.romaji.toLowerCase().includes(q) ||
+               g.mean.toLowerCase().includes(q);
+    });
     renderCards(filtered);
 }
 
