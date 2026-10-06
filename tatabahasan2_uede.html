@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〜上で（手順・範囲） | Tata Bahasa N2</title>
+<style>
+:root{--navy:#001f3f;--navy2:#002a54;--navy3:#022655;--gold:#facc15;--gold2:#ffd700;--text:#001f3f}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
+body{background:#fff;color:var(--text)}
+
+/* ===== NAVBAR ===== */
+#navbar{position:sticky;top:0;z-index:999;background:#001530;border-bottom:2px solid rgba(224,181,42,.3);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px}
+.nav-left{display:flex;align-items:center}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.home-btn{display:flex;align-items:center;gap:8px;background:#e0b52a;color:#001530;text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold}
+.home-btn:hover{opacity:.85}
+.home-icon{width:24px;height:24px;border-radius:4px}
+.dropdown{position:relative}
+.dropdown-btn{background:none;border:2px solid #e0b52a;color:#e0b52a;padding:8px 14px;border-radius:8px;font-weight:bold;cursor:pointer;font-family:inherit;font-size:.9rem}
+.dropdown-btn:hover{background:#e0b52a;color:#001530}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:#1f4577;border-radius:10px;overflow:hidden;min-width:220px;max-width:90vw;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.dropdown-menu.align-right{left:auto;right:0}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none}
+.dropdown-menu a:hover{background:#e0b52a;color:#001530}
+.show{display:block}
+.burger{display:none;background:none;border:2px solid #e0b52a;border-radius:8px;width:44px;height:40px;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:0}
+.burger span{display:block;width:22px;height:3px;background:#e0b52a;border-radius:2px;transition:.25s}
+.burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+@media(max-width:600px){
+.burger{display:flex}
+.nav-right{display:none;position:absolute;top:100%;left:0;right:0;background:#001530;flex-direction:column;align-items:stretch;justify-content:flex-start;flex-wrap:nowrap;gap:8px;padding:12px 20px 18px;border-bottom:2px solid rgba(224,181,42,.3);box-shadow:0 10px 20px rgba(0,0,0,.35);max-height:80vh;overflow-y:auto}
+.nav-right.open{display:flex}
+.dropdown-btn{width:100%;text-align:left;font-size:.95rem;padding:11px 14px}
+.dropdown-menu{position:static;min-width:0;max-width:100%;box-shadow:none;margin-top:6px}
+.breadcrumb{margin-top:16px}
+}
+
+/* ===== BREADCRUMB ===== */
+.breadcrumb{margin:20px 0 0;padding:0 0 0 20px;font-size:14px;color:#8892a3}
+.breadcrumb a{color:var(--navy);text-decoration:none;font-weight:600}
+.breadcrumb a:hover{text-decoration:underline}
+
+/* ===== HERO ===== */
+.pattern-hero{max-width:900px;margin:20px auto 0;padding:40px 30px;background:linear-gradient(135deg,var(--navy) 0%,#062a52 100%);border-radius:22px;position:relative;overflow:hidden;text-align:center}
+.pattern-hero::before{content:"次";position:absolute;font-size:260px;font-weight:900;color:rgba(250,204,21,.06);top:-60px;right:-30px;pointer-events:none;user-select:none}
+.no-badge{display:inline-block;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.4);color:var(--gold);font-size:13px;font-weight:bold;letter-spacing:1px;padding:6px 16px;border-radius:999px;margin-bottom:18px;position:relative}
+.pattern-hero h1{font-size:56px;color:#fff;position:relative;margin-bottom:8px}
+.romaji{font-size:20px;color:var(--gold2);font-weight:600;position:relative;margin-bottom:14px}
+.mean{font-size:18px;color:#c9d6e8;position:relative}
+
+/* ===== CONTENT ===== */
+.content{max-width:900px;margin:30px auto;padding:0 30px 60px}
+.section-block{margin-bottom:36px}
+.section-block h2{display:flex;align-items:center;gap:12px;font-size:22px;color:var(--navy);margin-bottom:14px}
+.tag{background:var(--navy);color:var(--gold);font-size:13px;font-weight:bold;padding:5px 12px;border-radius:8px;white-space:nowrap}
+.section-block p{font-size:16px;line-height:1.9;color:#333}
+.formula-box{background:#f5f8fc;border:2px dashed var(--navy);border-radius:16px;padding:22px 26px;font-size:19px;text-align:center;color:var(--navy);font-weight:600;line-height:1.8}
+.formula-box small{display:block;font-size:13px;font-weight:400;color:#8892a3;margin-top:6px}
+.table-wrap,.compare-wrap{overflow-x:auto;border-radius:16px;border:2px solid var(--navy)}
+table{width:100%;border-collapse:collapse}
+.konjugasi-table{min-width:620px;font-size:15px}
+.konjugasi-table thead th{background:var(--navy);color:var(--gold);text-align:left;padding:14px 16px;font-size:14px;white-space:nowrap}
+.konjugasi-table tbody td{padding:13px 16px;border-bottom:1px solid #e3e9f2;color:#333;vertical-align:middle}
+tbody tr:nth-child(even){background:#f5f8fc}
+tbody tr:hover{background:#fffbe6}
+.kamus{font-weight:bold;font-size:17px;color:var(--navy)}
+.yomi-small{display:block;font-size:12px;color:#8892a3;font-weight:400}
+.arrow{color:var(--gold2);font-weight:900;font-size:18px}
+.shi{font-weight:bold;font-size:17px;color:#5b8bb0}
+.group-row td{background:var(--navy2)!important;color:var(--gold)!important;font-weight:bold;font-size:13px;letter-spacing:.5px;padding:10px 16px!important}
+.compare-table{min-width:700px;font-size:14px}
+.compare-table thead th{padding:14px;text-align:left;color:#fff;font-size:13px;white-space:nowrap}
+.compare-table thead th small{display:block;font-weight:400;font-size:11px;opacity:.85;margin-top:2px}
+.th-kamus{background:var(--navy)!important;color:var(--gold)!important}
+.th-shi{background:#5b8bb0}.th-kara{background:#c98a4d}.th-node{background:#c17b7b}
+.compare-table tbody td{padding:13px 14px;border-bottom:1px solid #e3e9f2;color:#333;vertical-align:middle}
+.val-shi,.val-kara,.val-node{font-weight:bold;font-size:16px;display:block}
+.val-shi{color:#5b8bb0}.val-kara{color:#c98a4d}.val-node{color:#c17b7b}
+.arti-mini{display:block;font-size:12px;font-style:italic;color:#5b6b80;font-weight:400;margin-top:4px}
+.compare-legend{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.chip{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;background:#f5f8fc;border:1px solid #e3e9f2;color:#333}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.dot.shi{background:#5b8bb0}.dot.kara{background:#c98a4d}.dot.node{background:#c17b7b}
+.example-group-label{display:inline-flex;align-items:center;font-size:14px;font-weight:bold;color:#fff;padding:6px 14px;border-radius:8px;margin-bottom:10px}
+.example-group-label.shi{background:#5b8bb0}.example-group-label.kara{background:#c98a4d}.example-group-label.node{background:#c17b7b}
+.example{border:2px solid var(--navy);border-radius:16px;padding:20px 24px;margin-bottom:16px;transition:.25s}
+.example:hover{background:var(--navy3);color:#fff;transform:translateY(-3px);box-shadow:0 12px 24px rgba(0,31,63,.2)}
+.example .jp{font-size:20px;font-weight:bold;margin-bottom:6px}
+.example .yomi{font-size:14px;color:#8892a3;margin-bottom:8px}
+.example:hover .yomi{color:#c9d6e8}
+.example .id{font-size:15px;color:#333;font-style:italic}
+.example:hover .id{color:#e6edf7}
+.note-box{background:#fffbe6;border-left:5px solid var(--gold);border-radius:10px;padding:18px 22px;font-size:15px;line-height:1.8;color:#4a4020}
+.note-box b{color:var(--navy)}
+.nav-bottom{display:flex;justify-content:space-between;gap:16px;margin-top:50px;flex-wrap:wrap}
+.nav-bottom a{flex:1;min-width:200px;text-decoration:none;border:2px solid var(--navy);border-radius:14px;padding:16px 20px;color:var(--navy);font-weight:600;transition:.25s}
+.nav-bottom a:hover{background:var(--navy);color:var(--gold)}
+.nav-bottom .dir{display:block;font-size:12px;color:#8892a3;margin-bottom:4px}
+.nav-bottom a:hover .dir{color:#c9d6e8}
+.nav-bottom .next{text-align:right}
+.quiz-box{border:2px solid var(--navy);border-radius:18px;padding:24px 26px;margin-bottom:22px;background:#fafcff}
+.qno{display:inline-block;background:var(--navy);color:var(--gold);font-size:13px;font-weight:bold;padding:5px 12px;border-radius:8px;margin-bottom:14px}
+.qtext{font-size:16px;color:#333;margin-bottom:16px;line-height:1.8}
+.word-bank{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.word-tile{background:#fff;border:2px solid var(--navy);color:var(--navy);padding:10px 16px;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;transition:.2s;user-select:none}
+.word-tile:hover{background:var(--navy);color:var(--gold);transform:translateY(-2px)}
+.word-tile.used{opacity:.3;pointer-events:none}
+.answer-slot{min-height:52px;border:2px dashed var(--gold2);border-radius:10px;background:#fffbe6;display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:8px 12px;margin-bottom:16px}
+.placed{background:var(--gold);color:#001530;padding:8px 14px;border-radius:8px;font-weight:bold;font-size:15px;cursor:pointer}
+.quiz-actions{display:flex;gap:10px;flex-wrap:wrap}
+.quiz-btn{border:2px solid var(--navy);background:var(--navy);color:var(--gold);padding:10px 18px;border-radius:10px;font-weight:bold;font-size:14px;cursor:pointer}
+.quiz-btn:hover{opacity:.85}
+.quiz-btn.secondary{background:#fff;color:var(--navy)}
+.quiz-result{margin-top:14px;font-size:15px;font-weight:600;display:none;padding:12px 16px;border-radius:10px}
+.quiz-result.correct{display:block;background:#e6f7ec;color:#166534;border:1px solid #86efac}
+.quiz-result.wrong{display:block;background:#fdeaea;color:#991b1b;border:1px solid #fca5a5}
+@media(max-width:600px){.pattern-hero h1{font-size:38px}.pattern-hero::before{font-size:160px}.nav-bottom .next{text-align:left}.konjugasi-table{font-size:13px}.content{padding:0 18px 60px}}
+footer{text-align:center;padding:30px;color:#666;font-size:14px}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
+HOME
+</a>
+</div>
+
+<button class="burger" id="burger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()">
+  <span></span><span></span><span></span>
+</button>
+
+<div class="nav-right" id="navRight">
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjftb2test1.html">SOAL JFT B — TEST 1</a>
+      <a href="ujianjftb2test2.html">SOAL JFT B — TEST 2</a>
+      <a href="ujianjftb2test3.html">SOAL JFT B — TEST 3</a>
+      <a href="ujianjftb2test4.html">SOAL JFT B — TEST 4</a>
+      <a href="ujianjftb2test5.html">SOAL JFT B — TEST 5</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+</div>
+
+</div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="tatabahasajlptn2.html">← Kembali ke Daftar Tata Bahasa N2</a>
+</div>
+
+<div class="pattern-hero">
+    <span class="no-badge">POLA 13 · JLPT N2</span>
+    <h1>〜上で</h1>
+    <div class="romaji">~ue de</div>
+    <div class="mean">setelah... (baru)... / dalam hal... (urutan tahap dan lingkup kegiatan)</div>
+</div>
+
+<div class="content">
+
+    <div class="section-block">
+        <h2><span class="tag">ARTI</span> Penjelasan</h2>
+        <p>
+            <b>〜上で</b> punya <b>dua pemakaian utama</b>. Pertama, setelah bentuk lampau (<b>〜た上で</b>),
+            artinya "setelah melakukan ..., (baru) ...": tahap pertama diselesaikan dulu, lalu hasilnya
+            dijadikan dasar untuk tindakan berikutnya. Kedua, setelah kata kerja bentuk kamus atau
+            <b>名詞＋の</b> (<b>〜上で</b>), artinya "dalam hal ..." atau "dalam melakukan ...", dipakai
+            untuk membicarakan <b>hal penting atau hal yang perlu diperhatikan</b> dalam suatu kegiatan.
+        </p>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">POLA</span> Rumus</h2>
+        <div class="formula-box">
+            動詞（た形）＋上で　（setelah V, baru...）<br>
+            動詞（辞書形）＋上で　（dalam melakukan V...）<br>
+            名詞＋の＋上で　（dalam hal N...）
+            <small>Contoh: 相談した上で／生活する上で／仕事の上で</small>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">TABEL</span> Pola Penggunaan 〜上で</h2>
+        <p style="margin-bottom:16px;">
+            Berikut bentuk 〜上で berdasarkan kata di depannya. Pilih bentuk た untuk urutan tahap, dan bentuk
+            kamus atau 名詞＋の untuk lingkup kegiatan.
+        </p>
+        <div class="table-wrap">
+            <table class="konjugasi-table">
+                <thead>
+                    <tr><th>Kata Dasar</th><th></th><th>Bentuk 〜上で</th><th>Artinya</th></tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row"><td colspan="4">動詞（た形）＋ 上で（urutan tahap）</td></tr>
+                    <tr>
+                        <td><span class="kamus">相談した</span><span class="yomi-small">そうだんした (soudan shita)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">相談した上で</span><span class="yomi-small">そうだんしたうえで (soudan shita ue de)</span></td>
+                        <td>setelah berkonsultasi, (baru)...</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">確認した</span><span class="yomi-small">かくにんした (kakunin shita)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">確認した上で</span><span class="yomi-small">かくにんしたうえで (kakunin shita ue de)</span></td>
+                        <td>setelah memastikan, (baru)...</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">動詞（辞書形）＋ 上で（dalam melakukan）</td></tr>
+                    <tr>
+                        <td><span class="kamus">日本で生活する</span><span class="yomi-small">にほんでせいかつする (nihon de seikatsu suru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">日本で生活する上で</span><span class="yomi-small">にほんでせいかつするうえで (nihon de seikatsu suru ue de)</span></td>
+                        <td>dalam hidup di Jepang</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">契約する</span><span class="yomi-small">けいやくする (keiyaku suru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">契約する上で</span><span class="yomi-small">けいやくするうえで (keiyaku suru ue de)</span></td>
+                        <td>dalam membuat kontrak</td>
+                    </tr>
+
+                    <tr class="group-row"><td colspan="4">名詞 ＋ の ＋ 上で（dalam hal）</td></tr>
+                    <tr>
+                        <td><span class="kamus">仕事</span><span class="yomi-small">しごと (shigoto)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">仕事の上で</span><span class="yomi-small">しごとのうえで (shigoto no ue de)</span></td>
+                        <td>dalam hal pekerjaan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">生活</span><span class="yomi-small">せいかつ (seikatsu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">生活の上で</span><span class="yomi-small">せいかつのうえで (seikatsu no ue de)</span></td>
+                        <td>dalam hal kehidupan sehari-hari</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Catatan penting:</b> pada 〜た上で, bagian kedua biasanya <b>tindakan penting yang disengaja</b>
+            (決める, サインする, 申し込む), bukan kejadian biasa. Pada 〜上で bentuk kamus, bagian
+            kedua berisi <b>hal yang penting, perlu, atau berguna</b> (大切だ, 必要だ, 役に立つ).
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CONTOH</span> Contoh Kalimat</h2>
+
+        <div class="example">
+            <div class="jp">よく相談した上で、決めたいと思います。</div>
+            <div class="yomi">よく そうだんした うえで、きめたいと おもいます。</div>
+            <div class="id">Setelah berkonsultasi dengan baik, saya ingin memutuskannya.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">内容を確認した上で、サインしてください。</div>
+            <div class="yomi">ないようを かくにんした うえで、サインして ください。</div>
+            <div class="id">Setelah memastikan isinya, silakan tanda tangan.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">日本で生活する上で、一番大切なのは言葉だ。</div>
+            <div class="yomi">にほんで せいかつする うえで、いちばん たいせつなのは ことばだ。</div>
+            <div class="id">Dalam hidup di Jepang, yang paling penting adalah bahasa.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">仕事の上で、人間関係は重要だ。</div>
+            <div class="yomi">しごとの うえで、にんげんかんけいは じゅうようだ。</div>
+            <div class="id">Dalam hal pekerjaan, hubungan antar manusia itu penting.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">この資料は、研究を進める上で非常に参考になる。</div>
+            <div class="yomi">この しりょうは、けんきゅうを すすめる うえで ひじょうに さんこうに なる。</div>
+            <div class="id">Bahan ini sangat berguna sebagai acuan dalam melanjutkan penelitian.</div>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CATATAN</span> Tips & Perbedaan</h2>
+        <div class="note-box">
+            <b>Pilih bentuk dengan hati-hati:</b> 〜た上で artinya "setelah", sedangkan 〜る上で artinya
+            "dalam hal/dalam melakukan". Bentuk kata kerjanya menentukan makna.<br><br>
+            <b>Bentuk 〜上での:</b> bisa dipakai menerangkan kata benda, misalnya
+            「生活する上での注意点」 (hal yang perlu diperhatikan dalam hidup).<br><br>
+            <b>Bentuk 〜上では:</b> berarti "menurut / secara ...", misalnya
+            「計画の上では、来月完成する」 (menurut rencana, selesai bulan depan).
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">PERBEDAAN</span> Tabel 〜た上で vs 〜てから vs 〜た後で</h2>
+        <p style="margin-bottom:12px;">
+            Ketiganya menyatakan "setelah", tetapi bobot tahap pertamanya berbeda.
+        </p>
+
+        <div class="compare-legend">
+            <span class="chip"><span class="dot shi"></span> 〜た上で — hasil tahap 1 jadi dasar tindakan berikutnya</span>
+            <span class="chip"><span class="dot kara"></span> 〜てから — urutan waktu, juga titik awal</span>
+            <span class="chip"><span class="dot node"></span> 〜た後で — urutan waktu, netral</span>
+        </div>
+
+        <div class="compare-wrap">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th class="th-kamus">Situasi</th>
+                        <th class="th-shi">〜た上で<small>setelah (sebagai dasar)</small></th>
+                        <th class="th-kara">〜てから<small>sesudah</small></th>
+                        <th class="th-node">〜た後で<small>sesudah (netral)</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="kamus">Kontrak</span><span class="yomi-small">けいやく</span></td>
+                        <td><span class="val-shi">契約書を読んだ上で、サインする</span><span class="yomi-small">けいやくしょをよんだうえで、サインする</span><span class="arti-mini">Setelah membaca dan memahami kontrak, baru tanda tangan (hasil membaca jadi dasar).</span></td>
+                        <td><span class="val-kara">契約書を読んでから、サインする</span><span class="yomi-small">けいやくしょをよんでから、サインする</span><span class="arti-mini">Sesudah membaca kontrak, tanda tangan (urutan waktu).</span></td>
+                        <td><span class="val-node">契約書を読んだ後で、サインする</span><span class="yomi-small">けいやくしょをよんだあとで、サインする</span><span class="arti-mini">Sesudah membaca kontrak, tanda tangan (netral).</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">Keputusan</span><span class="yomi-small">けってい</span></td>
+                        <td><span class="val-shi">家族と相談した上で、決める</span><span class="yomi-small">かぞくとそうだんしたうえで、きめる</span><span class="arti-mini">Setelah berunding dengan keluarga, baru memutuskan (hasil perundingan dipakai).</span></td>
+                        <td><span class="val-kara">家族と相談してから、決める</span><span class="yomi-small">かぞくとそうだんしてから、きめる</span><span class="arti-mini">Sesudah berunding dengan keluarga, memutuskan.</span></td>
+                        <td><span class="val-node">家族と相談した後で、決める</span><span class="yomi-small">かぞくとそうだんしたあとで、きめる</span><span class="arti-mini">Sesudah berunding dengan keluarga, memutuskan.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Konteks penggunaan:</b> 〜た上で <b>menekankan bahwa hasil tahap pertama dipakai sebagai
+            dasar</b> tindakan kedua, dan terdengar formal. 〜てから <b>menekankan urutan waktu</b> dan
+            bisa menjadi titik awal (「日本に来てから三年」). 〜た後で hanya <b>menyatakan urutan</b> secara
+            netral.
+        </div>
+
+        <p style="margin:18px 0 10px;">
+            Perhatikan bagaimana ketiga pola ini mengubah nuansa dari situasi dasar yang sama: mendaftar kursus.
+        </p>
+
+        <div class="example-group-label shi">〜た上で — Hasil jadi dasar</div>
+        <div class="example">
+            <div class="jp">内容をよく理解した上で、お申し込みください。</div>
+            <div class="yomi">ないようを よく りかいした うえで、おもうしこみ ください。</div>
+            <div class="id">Setelah memahami isinya dengan baik, silakan mendaftar.</div>
+        </div>
+
+        <div class="example-group-label kara">〜てから — Urutan waktu</div>
+        <div class="example">
+            <div class="jp">内容を理解してから、お申し込みください。</div>
+            <div class="yomi">ないようを りかいして から、おもうしこみ ください。</div>
+            <div class="id">Sesudah memahami isinya, silakan mendaftar.</div>
+        </div>
+
+        <div class="example-group-label node">〜た後で — Netral</div>
+        <div class="example">
+            <div class="jp">内容を理解した後で、お申し込みください。</div>
+            <div class="yomi">ないようを りかいした あとで、おもうしこみ ください。</div>
+            <div class="id">Sesudah memahami isinya, silakan mendaftar.</div>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Kunci membedakan:</b> hasil tahap pertama jadi dasar, formal → <i>上で</i>; urutan waktu
+            atau titik awal → <i>てから</i>; urutan netral → <i>後で</i>.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">LATIHAN</span> Soal Susun Kalimat</h2>
+        <p style="margin-bottom:18px;">
+            Susun kata-kata acak di bawah ini menjadi kalimat yang benar dengan mengklik kata secara berurutan.
+            Klik kata yang sudah dipasang untuk membatalkannya.
+        </p>
+
+        <div class="quiz-box" id="quiz1">
+            <span class="qno">SOAL 1</span>
+            <div class="qtext">＿＿＿＿＿　＿＿＿＿＿　＿★＿　＿＿＿＿＿。 (Setelah berkonsultasi dengan keluarga, saya akan memutuskannya.)</div>
+            <div class="answer-slot" id="slot1"></div>
+            <div class="word-bank" id="bank1">
+                <div class="word-tile" data-word="家族と">かぞくと</div>
+                <div class="word-tile" data-word="相談した">そうだんした</div>
+                <div class="word-tile" data-word="上で">うえで</div>
+                <div class="word-tile" data-word="決めます">きめます</div>
+            </div>
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(1)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(1)">Ulangi</button>
+            </div>
+            <div class="quiz-result" id="result1"></div>
+        </div>
+
+        <div class="quiz-box" id="quiz2">
+            <span class="qno">SOAL 2</span>
+            <div class="qtext">＿＿＿＿＿　＿＿＿＿＿　＿★＿　＿＿＿＿＿。 (Dalam hidup di Jepang, yang paling penting adalah bahasa.)</div>
+            <div class="answer-slot" id="slot2"></div>
+            <div class="word-bank" id="bank2">
+                <div class="word-tile" data-word="日本で">にほんで</div>
+                <div class="word-tile" data-word="生活する">せいかつする</div>
+                <div class="word-tile" data-word="上で">うえで</div>
+                <div class="word-tile" data-word="大切なのは言葉だ">たいせつなのはことばだ</div>
+            </div>
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(2)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(2)">Ulangi</button>
+            </div>
+            <div class="quiz-result" id="result2"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="content" style="padding-top:0;">
+    <div class="nav-bottom">
+        <a href="n2-karaniwa.html" class="prev">
+            <span class="dir">← Sebelumnya</span>
+            〜からには（決意・義務）
+        </a>
+        <a href="#" class="next">
+            <span class="dir">Selanjutnya →</span>
+            POLA 14
+        </a>
+    </div>
+</div>
+
+<footer>© Tekipaki Japanese Learning</footer>
+
+<script>
+const quizAnswers = {
+    1:["家族と","相談した","上で","決めます"],
+    2:["日本で","生活する","上で","大切なのは言葉だ"]
+};
+const quizState = {1:[],2:[]};
+
+function shuffleArray(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+function shuffleBank(id){
+    const bank = document.getElementById("bank"+id);
+    const tiles = Array.from(bank.children);
+    shuffleArray(tiles);
+    tiles.forEach(t => bank.appendChild(t));
+}
+function initQuiz(id){
+    shuffleBank(id);
+    document.getElementById("bank"+id).querySelectorAll(".word-tile").forEach(tile=>{
+        tile.addEventListener("click", ()=>placeWord(id, tile));
+    });
+}
+function placeWord(id, tile){
+    if(tile.classList.contains("used")) return;
+    tile.classList.add("used");
+    quizState[id].push(tile.dataset.word);
+    const slot = document.getElementById("slot"+id);
+    const placed = document.createElement("span");
+    placed.className = "placed";
+    placed.textContent = tile.dataset.word;
+    placed.addEventListener("click", ()=>{
+        slot.removeChild(placed);
+        const idx = quizState[id].indexOf(tile.dataset.word);
+        if(idx > -1) quizState[id].splice(idx,1);
+        tile.classList.remove("used");
+        document.getElementById("result"+id).className = "quiz-result";
+    });
+    slot.appendChild(placed);
+    document.getElementById("result"+id).className = "quiz-result";
+}
+function checkAnswer(id){
+    const result = document.getElementById("result"+id);
+    if(quizState[id].length === 0){
+        result.className = "quiz-result wrong";
+        result.textContent = "⚠️ Susun dulu kata-katanya sebelum mengecek jawaban.";
+        return;
+    }
+    if(quizAnswers[id].join("") === quizState[id].join("")){
+        result.className = "quiz-result correct";
+        result.textContent = "✅ Benar! Susunan kalimatmu sudah tepat.";
+    } else {
+        result.className = "quiz-result wrong";
+        result.textContent = "❌ Belum tepat. Jawaban yang benar: " + quizAnswers[id].join(" ");
+    }
+}
+function resetQuiz(id){
+    quizState[id] = [];
+    document.getElementById("slot"+id).innerHTML = "";
+    document.querySelectorAll("#bank"+id+" .word-tile").forEach(t=>t.classList.remove("used"));
+    document.getElementById("result"+id).className = "quiz-result";
+    shuffleBank(id);
+}
+initQuiz(1);
+initQuiz(2);
+
+/* ===== NAVBAR: burger + dropdown ===== */
+function closeDropdowns(){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+        m.classList.remove('show');
+        m.classList.remove('align-right');
+    });
+}
+function toggleMenu(){
+    const nav = document.getElementById('navRight');
+    const burger = document.getElementById('burger');
+    const open = nav.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    if(!open) closeDropdowns();
+}
+function toggleDropdown(id){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+        if(m.id!==id){m.classList.remove('show');m.classList.remove('align-right');}
+    });
+    const menu = document.getElementById(id);
+    const willShow = !menu.classList.contains('show');
+    menu.classList.toggle('show');
+    if(willShow && window.innerWidth > 600){
+        menu.classList.remove('align-right');
+        const rect = menu.getBoundingClientRect();
+        if(rect.right > window.innerWidth - 8){ menu.classList.add('align-right'); }
+    }
+}
+window.addEventListener('resize', ()=>{
+    if(window.innerWidth > 600){
+        document.getElementById('navRight').classList.remove('open');
+        const b = document.getElementById('burger');
+        b.classList.remove('open');
+        b.setAttribute('aria-expanded', 'false');
+        closeDropdowns();
+    }
+});
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown") && !e.target.closest("#burger")){
+        if(window.innerWidth > 600) closeDropdowns();
+    }
+    if(window.innerWidth <= 600 && !e.target.closest("#navbar")){
+        document.getElementById('navRight').classList.remove('open');
+        const b = document.getElementById('burger');
+        b.classList.remove('open');
+        b.setAttribute('aria-expanded', 'false');
+        closeDropdowns();
+    }
+});
+</script>
+</body>
+</html>
