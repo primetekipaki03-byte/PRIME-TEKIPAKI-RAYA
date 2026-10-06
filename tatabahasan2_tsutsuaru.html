@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〜つつある（変化の進行） | Tata Bahasa N2</title>
+<style>
+:root{--navy:#001f3f;--navy2:#002a54;--navy3:#022655;--gold:#facc15;--gold2:#ffd700;--text:#001f3f}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
+body{background:#fff;color:var(--text)}
+#navbar{position:sticky;top:0;z-index:999;background:#001530;border-bottom:2px solid rgba(224,181,42,.3);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px}
+.nav-left{display:flex;align-items:center}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.home-btn{display:flex;align-items:center;gap:8px;background:#e0b52a;color:#001530;text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold}
+.home-btn:hover{opacity:.85}
+.home-icon{width:24px;height:24px;border-radius:4px}
+.dropdown{position:relative}
+.dropdown-btn{background:none;border:2px solid #e0b52a;color:#e0b52a;padding:8px 14px;border-radius:8px;font-weight:bold;cursor:pointer;font-family:inherit;font-size:.9rem}
+.dropdown-btn:hover{background:#e0b52a;color:#001530}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:#1f4577;border-radius:10px;overflow:hidden;min-width:220px;max-width:90vw;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.dropdown-menu.align-right{left:auto;right:0}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none}
+.dropdown-menu a:hover{background:#e0b52a;color:#001530}
+.show{display:block}
+.burger{display:none;background:none;border:2px solid #e0b52a;border-radius:8px;width:44px;height:40px;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:0}
+.burger span{display:block;width:22px;height:3px;background:#e0b52a;border-radius:2px;transition:.25s}
+.burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+@media(max-width:600px){
+.burger{display:flex}
+.nav-right{display:none;position:absolute;top:100%;left:0;right:0;background:#001530;flex-direction:column;align-items:stretch;justify-content:flex-start;flex-wrap:nowrap;gap:8px;padding:12px 20px 18px;border-bottom:2px solid rgba(224,181,42,.3);box-shadow:0 10px 20px rgba(0,0,0,.35);max-height:80vh;overflow-y:auto}
+.nav-right.open{display:flex}
+.dropdown-btn{width:100%;text-align:left;font-size:.95rem;padding:11px 14px}
+.dropdown-menu{position:static;min-width:0;max-width:100%;box-shadow:none;margin-top:6px}
+.breadcrumb{margin-top:16px}
+}
+.breadcrumb{margin:20px 0 0;padding:0 0 0 20px;font-size:14px;color:#8892a3}
+.breadcrumb a{color:var(--navy);text-decoration:none;font-weight:600}
+.breadcrumb a:hover{text-decoration:underline}
+.pattern-hero{max-width:900px;margin:20px auto 0;padding:40px 30px;background:linear-gradient(135deg,var(--navy) 0%,#062a52 100%);border-radius:22px;position:relative;overflow:hidden;text-align:center}
+.pattern-hero::before{content:"変";position:absolute;font-size:260px;font-weight:900;color:rgba(250,204,21,.06);top:-60px;right:-30px;pointer-events:none;user-select:none}
+.no-badge{display:inline-block;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.4);color:var(--gold);font-size:13px;font-weight:bold;letter-spacing:1px;padding:6px 16px;border-radius:999px;margin-bottom:18px;position:relative}
+.pattern-hero h1{font-size:56px;color:#fff;position:relative;margin-bottom:8px}
+.romaji{font-size:20px;color:var(--gold2);font-weight:600;position:relative;margin-bottom:14px}
+.mean{font-size:18px;color:#c9d6e8;position:relative}
+.content{max-width:900px;margin:30px auto;padding:0 30px 60px}
+.section-block{margin-bottom:36px}
+.section-block h2{display:flex;align-items:center;gap:12px;font-size:22px;color:var(--navy);margin-bottom:14px}
+.tag{background:var(--navy);color:var(--gold);font-size:13px;font-weight:bold;padding:5px 12px;border-radius:8px;white-space:nowrap}
+.section-block p{font-size:16px;line-height:1.9;color:#333}
+.formula-box{background:#f5f8fc;border:2px dashed var(--navy);border-radius:16px;padding:22px 26px;font-size:19px;text-align:center;color:var(--navy);font-weight:600;line-height:1.8}
+.formula-box small{display:block;font-size:13px;font-weight:400;color:#8892a3;margin-top:6px}
+.table-wrap,.compare-wrap{overflow-x:auto;border-radius:16px;border:2px solid var(--navy)}
+table{width:100%;border-collapse:collapse}
+.konjugasi-table{min-width:620px;font-size:15px}
+.konjugasi-table thead th{background:var(--navy);color:var(--gold);text-align:left;padding:14px 16px;font-size:14px;white-space:nowrap}
+.konjugasi-table tbody td{padding:13px 16px;border-bottom:1px solid #e3e9f2;color:#333;vertical-align:middle}
+tbody tr:nth-child(even){background:#f5f8fc}
+tbody tr:hover{background:#fffbe6}
+.kamus{font-weight:bold;font-size:17px;color:var(--navy)}
+.yomi-small{display:block;font-size:12px;color:#8892a3;font-weight:400}
+.arrow{color:var(--gold2);font-weight:900;font-size:18px}
+.shi{font-weight:bold;font-size:17px;color:#5b8bb0}
+.group-row td{background:var(--navy2)!important;color:var(--gold)!important;font-weight:bold;font-size:13px;letter-spacing:.5px;padding:10px 16px!important}
+.compare-table{min-width:700px;font-size:14px}
+.compare-table thead th{padding:14px;text-align:left;color:#fff;font-size:13px;white-space:nowrap}
+.compare-table thead th small{display:block;font-weight:400;font-size:11px;opacity:.85;margin-top:2px}
+.th-kamus{background:var(--navy)!important;color:var(--gold)!important}
+.th-shi{background:#5b8bb0}.th-kara{background:#c98a4d}.th-node{background:#c17b7b}
+.compare-table tbody td{padding:13px 14px;border-bottom:1px solid #e3e9f2;color:#333;vertical-align:middle}
+.val-shi,.val-kara,.val-node{font-weight:bold;font-size:16px;display:block}
+.val-shi{color:#5b8bb0}.val-kara{color:#c98a4d}.val-node{color:#c17b7b}
+.arti-mini{display:block;font-size:12px;font-style:italic;color:#5b6b80;font-weight:400;margin-top:4px}
+.compare-legend{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.chip{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;background:#f5f8fc;border:1px solid #e3e9f2;color:#333}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.dot.shi{background:#5b8bb0}.dot.kara{background:#c98a4d}.dot.node{background:#c17b7b}
+.example-group-label{display:inline-flex;align-items:center;font-size:14px;font-weight:bold;color:#fff;padding:6px 14px;border-radius:8px;margin-bottom:10px}
+.example-group-label.shi{background:#5b8bb0}.example-group-label.kara{background:#c98a4d}.example-group-label.node{background:#c17b7b}
+.example{border:2px solid var(--navy);border-radius:16px;padding:20px 24px;margin-bottom:16px;transition:.25s}
+.example:hover{background:var(--navy3);color:#fff;transform:translateY(-3px);box-shadow:0 12px 24px rgba(0,31,63,.2)}
+.example .jp{font-size:20px;font-weight:bold;margin-bottom:6px}
+.example .yomi{font-size:14px;color:#8892a3;margin-bottom:8px}
+.example:hover .yomi{color:#c9d6e8}
+.example .id{font-size:15px;color:#333;font-style:italic}
+.example:hover .id{color:#e6edf7}
+.note-box{background:#fffbe6;border-left:5px solid var(--gold);border-radius:10px;padding:18px 22px;font-size:15px;line-height:1.8;color:#4a4020}
+.note-box b{color:var(--navy)}
+.nav-bottom{display:flex;justify-content:space-between;gap:16px;margin-top:50px;flex-wrap:wrap}
+.nav-bottom a{flex:1;min-width:200px;text-decoration:none;border:2px solid var(--navy);border-radius:14px;padding:16px 20px;color:var(--navy);font-weight:600;transition:.25s}
+.nav-bottom a:hover{background:var(--navy);color:var(--gold)}
+.nav-bottom .dir{display:block;font-size:12px;color:#8892a3;margin-bottom:4px}
+.nav-bottom a:hover .dir{color:#c9d6e8}
+.nav-bottom .next{text-align:right}
+.quiz-box{border:2px solid var(--navy);border-radius:18px;padding:24px 26px;margin-bottom:22px;background:#fafcff}
+.qno{display:inline-block;background:var(--navy);color:var(--gold);font-size:13px;font-weight:bold;padding:5px 12px;border-radius:8px;margin-bottom:14px}
+.qtext{font-size:16px;color:#333;margin-bottom:16px;line-height:1.8}
+.word-bank{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.word-tile{background:#fff;border:2px solid var(--navy);color:var(--navy);padding:10px 16px;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;transition:.2s;user-select:none}
+.word-tile:hover{background:var(--navy);color:var(--gold);transform:translateY(-2px)}
+.word-tile.used{opacity:.3;pointer-events:none}
+.answer-slot{min-height:52px;border:2px dashed var(--gold2);border-radius:10px;background:#fffbe6;display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:8px 12px;margin-bottom:16px}
+.placed{background:var(--gold);color:#001530;padding:8px 14px;border-radius:8px;font-weight:bold;font-size:15px;cursor:pointer}
+.quiz-actions{display:flex;gap:10px;flex-wrap:wrap}
+.quiz-btn{border:2px solid var(--navy);background:var(--navy);color:var(--gold);padding:10px 18px;border-radius:10px;font-weight:bold;font-size:14px;cursor:pointer}
+.quiz-btn:hover{opacity:.85}
+.quiz-btn.secondary{background:#fff;color:var(--navy)}
+.quiz-result{margin-top:14px;font-size:15px;font-weight:600;display:none;padding:12px 16px;border-radius:10px}
+.quiz-result.correct{display:block;background:#e6f7ec;color:#166534;border:1px solid #86efac}
+.quiz-result.wrong{display:block;background:#fdeaea;color:#991b1b;border:1px solid #fca5a5}
+@media(max-width:600px){.pattern-hero h1{font-size:38px}.pattern-hero::before{font-size:160px}.nav-bottom .next{text-align:left}.konjugasi-table{font-size:13px}.content{padding:0 18px 60px}}
+footer{text-align:center;padding:30px;color:#666;font-size:14px}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
+HOME
+</a>
+</div>
+<button class="burger" id="burger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()">
+  <span></span><span></span><span></span>
+</button>
+<div class="nav-right" id="navRight">
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjftb2test1.html">SOAL JFT B — TEST 1</a>
+      <a href="ujianjftb2test2.html">SOAL JFT B — TEST 2</a>
+      <a href="ujianjftb2test3.html">SOAL JFT B — TEST 3</a>
+      <a href="ujianjftb2test4.html">SOAL JFT B — TEST 4</a>
+      <a href="ujianjftb2test5.html">SOAL JFT B — TEST 5</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+</div>
+</div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="tatabahasajlptn2.html">← Kembali ke Daftar Tata Bahasa N2</a>
+</div>
+
+<div class="pattern-hero">
+    <span class="no-badge">POLA 26 · JLPT N2</span>
+    <h1>〜つつある</h1>
+    <div class="romaji">~tsutsu aru</div>
+    <div class="mean">sedang (perlahan) semakin... / sedang menuju...</div>
+</div>
+
+<div class="content">
+
+    <div class="section-block">
+        <h2><span class="tag">ARTI</span> Penjelasan</h2>
+        <p>
+            <b>〜つつある</b> dipakai setelah <b>動詞ます形</b> untuk menyatakan bahwa sebuah
+            <b>perubahan sedang berlangsung secara bertahap</b> dan arahnya terus berjalan sampai sekarang.
+            Biasanya subjeknya adalah <b>keadaan, tren, atau fenomena</b> (jumlah penduduk, lingkungan,
+            teknologi), bukan tindakan sehari-hari seseorang. Gayanya <b>formal dan tertulis</b>, sering
+            muncul di berita, laporan, dan artikel.
+        </p>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">POLA</span> Rumus</h2>
+        <div class="formula-box">
+            動詞（ます形）＋つつある　（sedang semakin V）<br>
+            動詞（ます形）＋つつあった　（waktu itu sedang semakin V）<br>
+            動詞（ます形）＋つつある＋名詞　（N yang sedang semakin V）
+            <small>Contoh: 増えつつある／変わりつつあった／広がりつつある問題</small>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">TABEL</span> Pola Penggunaan 〜つつある</h2>
+        <p style="margin-bottom:16px;">
+            Berikut bentuk 〜つつある dari kata kerja perubahan. Semua memakai ます形 tanpa ます di depan
+            つつある.
+        </p>
+        <div class="table-wrap">
+            <table class="konjugasi-table">
+                <thead>
+                    <tr><th>Kata Dasar</th><th></th><th>Bentuk 〜つつある</th><th>Artinya</th></tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row"><td colspan="4">Kelompok I（五段動詞）</td></tr>
+                    <tr>
+                        <td><span class="kamus">減る</span><span class="yomi-small">へる (heru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">減りつつある</span><span class="yomi-small">へりつつある (heri tsutsu aru)</span></td>
+                        <td>sedang berkurang</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">広がる</span><span class="yomi-small">ひろがる (hirogaru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">広がりつつある</span><span class="yomi-small">ひろがりつつある (hirogari tsutsu aru)</span></td>
+                        <td>sedang meluas</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">進む</span><span class="yomi-small">すすむ (susumu)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">進みつつある</span><span class="yomi-small">すすみつつある (susumi tsutsu aru)</span></td>
+                        <td>sedang maju / berkembang</td>
+                    </tr>
+                    <tr class="group-row"><td colspan="4">Kelompok II（一段動詞）</td></tr>
+                    <tr>
+                        <td><span class="kamus">増える</span><span class="yomi-small">ふえる (fueru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">増えつつある</span><span class="yomi-small">ふえつつある (fue tsutsu aru)</span></td>
+                        <td>sedang bertambah</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">慣れる</span><span class="yomi-small">なれる (nareru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">慣れつつある</span><span class="yomi-small">なれつつある (nare tsutsu aru)</span></td>
+                        <td>mulai terbiasa</td>
+                    </tr>
+                    <tr class="group-row"><td colspan="4">Kelompok III（する）</td></tr>
+                    <tr>
+                        <td><span class="kamus">回復する</span><span class="yomi-small">かいふくする (kaifuku suru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">回復しつつある</span><span class="yomi-small">かいふくしつつある (kaifuku shi tsutsu aru)</span></td>
+                        <td>sedang pulih</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">発展する</span><span class="yomi-small">はってんする (hatten suru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">発展しつつある</span><span class="yomi-small">はってんしつつある (hatten shi tsutsu aru)</span></td>
+                        <td>sedang berkembang</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Catatan penting:</b> 〜つつある hanya cocok untuk kata kerja yang menyatakan
+            <b>perubahan bertahap</b> (増える, 減る, 変わる, 進む, 広がる, 高まる, 回復する). Kata kerja
+            tindakan biasa seperti 食べる, 読む, 走る <b>tidak alami</b> dipakai dengan 〜つつある. Kata kerja
+            yang terjadi seketika seperti 着く atau 始まる juga tidak dipakai.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CONTOH</span> Contoh Kalimat</h2>
+
+        <div class="example">
+            <div class="jp">日本では、高齢者が増えつつある。</div>
+            <div class="yomi">にほんでは、こうれいしゃが ふえつつ ある。</div>
+            <div class="id">Di Jepang, jumlah lansia sedang terus bertambah.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">私たちの生活は、大きく変わりつつある。</div>
+            <div class="yomi">わたしたちの せいかつは、おおきく かわりつつ ある。</div>
+            <div class="id">Kehidupan kita sedang berubah besar-besaran.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">若い人の間で、電子マネーが広がりつつある。</div>
+            <div class="yomi">わかいひとの あいだで、でんしマネーが ひろがりつつ ある。</div>
+            <div class="id">Di kalangan anak muda, uang elektronik sedang semakin meluas.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">景気は少しずつ回復しつつある。</div>
+            <div class="yomi">けいきは すこしずつ かいふくしつつ ある。</div>
+            <div class="id">Perekonomian sedang pulih sedikit demi sedikit.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">彼は新しい生活に慣れつつある。</div>
+            <div class="yomi">かれは あたらしい せいかつに なれつつ ある。</div>
+            <div class="id">Dia mulai terbiasa dengan kehidupan barunya.</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">当時、この町は大きく変わりつつあった。</div>
+            <div class="yomi">とうじ、この まちは おおきく かわりつつ あった。</div>
+            <div class="id">Pada masa itu, kota ini sedang berubah besar-besaran. (bentuk lampau)</div>
+        </div>
+
+        <div class="example">
+            <div class="jp">増えつつある外国人観光客に対応する必要がある。</div>
+            <div class="yomi">ふえつつ ある がいこくじん かんこうきゃくに たいおうする ひつようが ある。</div>
+            <div class="id">Kita perlu melayani turis asing yang jumlahnya sedang bertambah. (menerangkan kata benda)</div>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CATATAN</span> Tips &amp; Perbedaan</h2>
+        <div class="note-box">
+            <b>Bentuk lampau:</b> 〜つつあった menceritakan perubahan yang sedang berjalan pada masa lalu
+            (「変わりつつあった」). Bentuk negatif 〜つつない hampir tidak dipakai.<br><br>
+            <b>Menerangkan kata benda:</b> 〜つつある bisa langsung di depan kata benda
+            (「増えつつある問題」 = masalah yang sedang bertambah).<br><br>
+            <b>〜つつある vs 〜つつ:</b> 〜つつ (sambil / meskipun) adalah pola yang berbeda. 〜つつある selalu
+            menyatakan <b>perubahan yang sedang berjalan</b>. Jangan tertukar saat membaca soal.<br><br>
+            <b>Gaya bahasa:</b> 〜つつある formal dan tertulis. Dalam percakapan sehari-hari, orang lebih
+            sering memakai 〜てきている atau 〜ている.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">PERBEDAAN</span> Tabel 〜つつある vs 〜てきている vs 〜ている</h2>
+        <p style="margin-bottom:12px;">
+            Ketiganya bisa dipakai untuk membicarakan perubahan, tetapi nuansa dan cakupannya berbeda.
+        </p>
+
+        <div class="compare-legend">
+            <span class="chip"><span class="dot shi"></span> 〜つつある — perubahan sedang berjalan, formal</span>
+            <span class="chip"><span class="dot kara"></span> 〜てきている — perubahan sampai sekarang, umum</span>
+            <span class="chip"><span class="dot node"></span> 〜ている — keadaan / tindakan saat ini</span>
+        </div>
+
+        <div class="compare-wrap">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th class="th-kamus">Situasi</th>
+                        <th class="th-shi">〜つつある<small>sedang semakin (formal)</small></th>
+                        <th class="th-kara">〜てきている<small>makin lama makin (umum)</small></th>
+                        <th class="th-node">〜ている<small>keadaan / sedang</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="kamus">Tren perubahan</span><span class="yomi-small">へんかの けいこう</span></td>
+                        <td><span class="val-shi">人口が減りつつある</span><span class="yomi-small">じんこうが へりつつ ある</span><span class="arti-mini">Jumlah penduduk sedang terus berkurang (tertulis).</span></td>
+                        <td><span class="val-kara">人口が減ってきている</span><span class="yomi-small">じんこうが へってきている</span><span class="arti-mini">Jumlah penduduk makin lama makin berkurang sampai sekarang.</span></td>
+                        <td><span class="val-node">人口が減っている</span><span class="yomi-small">じんこうが へっている</span><span class="arti-mini">Jumlah penduduk berkurang (fakta saat ini, tanpa nuansa proses).</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">Tindakan biasa</span><span class="yomi-small">ふつうの どうさ</span></td>
+                        <td><span class="val-shi">（tidak dipakai）</span><span class="arti-mini">「本を読みつつある」tidak alami, bukan perubahan.</span></td>
+                        <td><span class="val-kara">（tidak dipakai）</span><span class="arti-mini">Bukan perubahan, jadi tidak cocok.</span></td>
+                        <td><span class="val-node">本を読んでいる</span><span class="yomi-small">ほんを よんでいる</span><span class="arti-mini">Sedang membaca buku.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">Menuju kondisi baru</span><span class="yomi-small">あたらしい じょうたいへ</span></td>
+                        <td><span class="val-shi">上手になりつつある</span><span class="yomi-small">じょうずに なりつつ ある</span><span class="arti-mini">Sedang menjadi mahir (prosesnya masih jalan).</span></td>
+                        <td><span class="val-kara">上手になってきた</span><span class="yomi-small">じょうずに なってきた</span><span class="arti-mini">Sudah makin mahir (percakapan).</span></td>
+                        <td><span class="val-node">上手になっている</span><span class="yomi-small">じょうずに なっている</span><span class="arti-mini">Sudah menjadi mahir (hasilnya terlihat).</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Konteks penggunaan:</b> 〜つつある <b>formal dan tertulis</b>, cocok untuk berita, laporan,
+            dan pidato. 〜てきている <b>lebih umum</b> dan dipakai dalam percakapan. 〜ている paling luas
+            cakupannya, tetapi <b>tidak menekankan proses perubahan</b>.
+        </div>
+
+        <p style="margin:18px 0 10px;">
+            Perhatikan bagaimana ketiga pola ini mengubah nuansa dari situasi dasar yang sama: jumlah
+            penduduk berkurang.
+        </p>
+
+        <div class="example-group-label shi">〜つつある — Formal</div>
+        <div class="example">
+            <div class="jp">この町の人口は減りつつある。</div>
+            <div class="yomi">この まちの じんこうは へりつつ ある。</div>
+            <div class="id">Jumlah penduduk kota ini sedang terus berkurang.</div>
+        </div>
+
+        <div class="example-group-label kara">〜てきている — Umum</div>
+        <div class="example">
+            <div class="jp">この町の人口は減ってきている。</div>
+            <div class="yomi">この まちの じんこうは へってきている。</div>
+            <div class="id">Jumlah penduduk kota ini makin lama makin berkurang.</div>
+        </div>
+
+        <div class="example-group-label node">〜ている — Keadaan</div>
+        <div class="example">
+            <div class="jp">この町の人口は減っている。</div>
+            <div class="yomi">この まちの じんこうは へっている。</div>
+            <div class="id">Jumlah penduduk kota ini berkurang.</div>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Kunci membedakan:</b> formal dan tertulis, perubahan sedang berjalan → <i>つつある</i>;
+            percakapan, perubahan sampai sekarang → <i>てきている</i>; hanya menyatakan keadaan →
+            <i>ている</i>.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">LATIHAN</span> Soal Susun Kalimat</h2>
+        <p style="margin-bottom:18px;">
+            Susun kata-kata acak di bawah ini menjadi kalimat yang benar dengan mengklik kata secara berurutan.
+            Klik kata yang sudah dipasang untuk membatalkannya.
+        </p>
+
+        <div class="quiz-box" id="quiz1">
+            <span class="qno">SOAL 1</span>
+            <div class="qtext">＿＿＿＿＿　＿＿＿＿＿　＿★＿　＿＿＿＿＿。 (Perhatian terhadap masalah lingkungan sedang meningkat di seluruh dunia.)</div>
+            <div class="answer-slot" id="slot1"></div>
+            <div class="word-bank" id="bank1">
+                <div class="word-tile" data-word="環境問題への関心が">かんきょうもんだいへのかんしんが</div>
+                <div class="word-tile" data-word="世界中で">せかいじゅうで</div>
+                <div class="word-tile" data-word="高まり">たかまり</div>
+                <div class="word-tile" data-word="つつある">つつある</div>
+            </div>
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(1)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(1)">Ulangi</button>
+            </div>
+            <div class="quiz-result" id="result1"></div>
+        </div>
+
+        <div class="quiz-box" id="quiz2">
+            <span class="qno">SOAL 2</span>
+            <div class="qtext">＿＿＿＿＿　＿＿＿＿＿　＿★＿　＿＿＿＿＿。 (Perekonomian sedang pulih sedikit demi sedikit.)</div>
+            <div class="answer-slot" id="slot2"></div>
+            <div class="word-bank" id="bank2">
+                <div class="word-tile" data-word="景気は">けいきは</div>
+                <div class="word-tile" data-word="少しずつ">すこしずつ</div>
+                <div class="word-tile" data-word="回復し">かいふくし</div>
+                <div class="word-tile" data-word="つつある">つつある</div>
+            </div>
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(2)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(2)">Ulangi</button>
+            </div>
+            <div class="quiz-result" id="result2"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="content" style="padding-top:0;">
+    <div class="nav-bottom">
+        <a href="tatabahasan2-tsutsu.html" class="prev">
+            <span class="dir">← Sebelumnya</span>
+            〜つつ（同時・逆接）
+        </a>
+        <a href="#" class="next">
+            <span class="dir">Selanjutnya →</span>
+            POLA 27
+        </a>
+    </div>
+</div>
+
+<footer>© Tekipaki Japanese Learning</footer>
+
+<script>
+const quizAnswers = {
+    1:["環境問題への関心が","世界中で","高まり","つつある"],
+    2:["景気は","少しずつ","回復し","つつある"]
+};
+const quizState = {1:[],2:[]};
+
+function shuffleArray(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+function shuffleBank(id){
+    const bank = document.getElementById("bank"+id);
+    const tiles = Array.from(bank.children);
+    shuffleArray(tiles);
+    tiles.forEach(t => bank.appendChild(t));
+}
+function initQuiz(id){
+    shuffleBank(id);
+    document.getElementById("bank"+id).querySelectorAll(".word-tile").forEach(tile=>{
+        tile.addEventListener("click", ()=>placeWord(id, tile));
+    });
+}
+function placeWord(id, tile){
+    if(tile.classList.contains("used")) return;
+    tile.classList.add("used");
+    quizState[id].push(tile.dataset.word);
+    const slot = document.getElementById("slot"+id);
+    const placed = document.createElement("span");
+    placed.className = "placed";
+    placed.textContent = tile.dataset.word;
+    placed.addEventListener("click", ()=>{
+        slot.removeChild(placed);
+        const idx = quizState[id].indexOf(tile.dataset.word);
+        if(idx > -1) quizState[id].splice(idx,1);
+        tile.classList.remove("used");
+        document.getElementById("result"+id).className = "quiz-result";
+    });
+    slot.appendChild(placed);
+    document.getElementById("result"+id).className = "quiz-result";
+}
+function checkAnswer(id){
+    const result = document.getElementById("result"+id);
+    if(quizState[id].length === 0){
+        result.className = "quiz-result wrong";
+        result.textContent = "⚠️ Susun dulu kata-katanya sebelum mengecek jawaban.";
+        return;
+    }
+    if(quizAnswers[id].join("") === quizState[id].join("")){
+        result.className = "quiz-result correct";
+        result.textContent = "✅ Benar! Susunan kalimatmu sudah tepat.";
+    } else {
+        result.className = "quiz-result wrong";
+        result.textContent = "❌ Belum tepat. Jawaban yang benar: " + quizAnswers[id].join(" ");
+    }
+}
+function resetQuiz(id){
+    quizState[id] = [];
+    document.getElementById("slot"+id).innerHTML = "";
+    document.querySelectorAll("#bank"+id+" .word-tile").forEach(t=>t.classList.remove("used"));
+    document.getElementById("result"+id).className = "quiz-result";
+    shuffleBank(id);
+}
+initQuiz(1);
+initQuiz(2);
+
+function closeDropdowns(){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+        m.classList.remove('show');
+        m.classList.remove('align-right');
+    });
+}
+function toggleMenu(){
+    const nav = document.getElementById('navRight');
+    const burger = document.getElementById('burger');
+    const open = nav.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    if(!open) closeDropdowns();
+}
+function toggleDropdown(id){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+        if(m.id!==id){m.classList.remove('show');m.classList.remove('align-right');}
+    });
+    const menu = document.getElementById(id);
+    const willShow = !menu.classList.contains('show');
+    menu.classList.toggle('show');
+    if(willShow && window.innerWidth > 600){
+        menu.classList.remove('align-right');
+        const rect = menu.getBoundingClientRect();
+        if(rect.right > window.innerWidth - 8){ menu.classList.add('align-right'); }
+    }
+}
+window.addEventListener('resize', ()=>{
+    if(window.innerWidth > 600){
+        document.getElementById('navRight').classList.remove('open');
+        const b = document.getElementById('burger');
+        b.classList.remove('open');
+        b.setAttribute('aria-expanded', 'false');
+        closeDropdowns();
+    }
+});
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown") && !e.target.closest("#burger")){
+        if(window.innerWidth > 600) closeDropdowns();
+    }
+    if(window.innerWidth <= 600 && !e.target.closest("#navbar")){
+        document.getElementById('navRight').classList.remove('open');
+        const b = document.getElementById('burger');
+        b.classList.remove('open');
+        b.setAttribute('aria-expanded', 'false');
+        closeDropdowns();
+    }
+});
+</script>
+</body>
+</html>
