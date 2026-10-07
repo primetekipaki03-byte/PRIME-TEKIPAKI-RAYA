@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kata Bantu Bilangan 助数詞 | Tekipaki</title>
+
+<style>
+:root{--navy:#001f3f;--navy2:#002a54;--navy3:#022655;--gold:#facc15;--gold2:#ffd700;--text:#001f3f}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
+body{background:#fff;color:var(--text)}
+#navbar{position:sticky;top:0;z-index:999;background:#001530;border-bottom:2px solid rgba(250,204,21,.25);box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;gap:10px}
+.nav-left{display:flex;align-items:center}
+.nav-right{display:flex;gap:8px;align-items:center}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:#001530;text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold}
+.home-btn:hover{opacity:.85}
+.home-icon{width:24px;height:24px;object-fit:cover;border-radius:4px}
+.dropdown{position:relative}
+.dropdown-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-weight:bold;cursor:pointer}
+.dropdown-btn:hover{background:var(--gold);color:#001530}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:#022655;border-radius:10px;overflow:hidden;min-width:220px;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none}
+.dropdown-menu a:hover{background:var(--gold);color:#001530}
+.show{display:block}
+.burger-btn{display:none;align-items:center;justify-content:center;flex-shrink:0;background:transparent;border:2px solid var(--gold);color:var(--gold);padding:9px 12px;border-radius:8px;cursor:pointer}
+.burger-btn svg{width:20px;height:20px;display:block}
+.mobile-menu{display:none;flex-direction:column;background:#001530;border-top:1px solid rgba(250,204,21,.25);max-height:calc(100vh - 64px);overflow-y:auto}
+.mobile-menu.show{display:flex}
+.mobile-link{display:block;padding:15px 18px;color:#ffd700;text-decoration:none;font-weight:700;font-size:14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.mobile-link:hover{background:rgba(250,204,21,.12)}
+.mobile-acc-btn{width:100%;text-align:left;background:transparent;border:none;color:var(--gold);font-weight:700;font-size:14px;padding:15px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);font-family:inherit}
+.mobile-acc-btn::after{content:'+';font-size:18px;line-height:1}
+.mobile-acc-btn.open::after{content:'\2212'}
+.mobile-acc-panel{display:none;flex-direction:column;background:#0a2242}
+.mobile-acc-panel.show{display:flex}
+.mobile-acc-panel a{padding:13px 32px;color:#ffd700;text-decoration:none;font-size:13px;border-bottom:1px solid rgba(255,255,255,.05)}
+.mobile-acc-panel a:hover{background:rgba(250,204,21,.15)}
+@media(min-width:761px){.mobile-menu{display:none !important}}
+@media(max-width:1000px){.dropdown-btn{font-size:.8rem;padding:7px 10px}}
+@media(max-width:760px){.navbar-inner{padding:10px 14px}.nav-left{flex:1;min-width:0}.nav-right{display:none}.burger-btn{display:flex}}
+header{text-align:center;padding:60px 20px 40px;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--navy) 0%,#062a52 100%)}
+header::before{content:"文法";position:absolute;font-size:340px;font-weight:900;color:rgba(250,204,21,.05);top:-90px;left:50%;transform:translateX(-50%);pointer-events:none;user-select:none}
+.badge{display:inline-block;background:var(--gold);color:#001530;font-weight:bold;font-size:13px;letter-spacing:1px;padding:6px 16px;border-radius:999px;margin-bottom:18px;position:relative}
+header h1{font-size:48px;color:#fff;margin-bottom:12px;position:relative;letter-spacing:1px}
+header h1 span{color:var(--gold)}
+header p{font-size:17px;color:#c9d6e8;max-width:600px;margin:0 auto;position:relative}
+.stats-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px;position:relative}
+.stat-pill{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.35);color:var(--gold);padding:8px 18px;border-radius:999px;font-size:14px;font-weight:600}
+.search-wrap{max-width:600px;margin:-26px auto 10px;padding:0 20px;position:relative;z-index:5}
+#searchInput{width:100%;padding:16px 22px;border-radius:16px;border:2px solid var(--navy);font-size:16px;box-shadow:0 10px 24px rgba(0,31,63,.15);outline:none;color:var(--navy)}
+#searchInput:focus{border-color:var(--gold)}
+.no-result{text-align:center;color:#888;padding:40px;display:none;font-size:16px}
+.section-title{max-width:1200px;margin:50px auto 5px;padding:0 20px;display:flex;align-items:center;gap:14px}
+.section-title .lvl{background:var(--navy);color:var(--gold);font-weight:bold;font-size:14px;padding:6px 14px;border-radius:8px;white-space:nowrap}
+.section-title .line{flex:1;height:2px;background:linear-gradient(90deg,var(--navy),rgba(0,31,63,.05))}
+.grid{max-width:1200px;margin:20px auto 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:20px}
+.card{border:2px solid var(--navy);border-radius:15px;padding:22px 20px;cursor:pointer;transition:.25s;text-align:left;text-decoration:none;color:var(--text);display:block;position:relative;background:#fff;overflow:hidden}
+.card::after{content:"→";position:absolute;right:18px;bottom:16px;font-size:18px;color:var(--gold2);opacity:0;transform:translateX(-6px);transition:.25s}
+.card:hover{background:var(--navy3);color:#fff;transform:translateY(-5px);box-shadow:0 12px 24px rgba(0,31,63,.25)}
+.card:hover .h{color:#c9d6e8}
+.card:hover::after{opacity:1;transform:translateX(0)}
+.card .no{font-size:12px;font-weight:bold;color:var(--gold2);letter-spacing:1px;margin-bottom:6px;display:block}
+.card .j{font-size:26px;font-weight:bold;line-height:1.3}
+.card .h{margin-top:8px;font-size:14px;color:#556}
+.card .mean{margin-top:10px;font-size:13px;color:#8892a3;font-style:italic}
+.card:hover .mean{color:#a9bad6}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}header h1{font-size:32px}header::before{font-size:200px}}
+footer{text-align:center;padding:30px;color:#666;font-size:14px}
+
+.calc{max-width:900px;margin:-26px auto 10px;padding:0 20px;position:relative;z-index:5}
+.calc-box{background:#fff;border:2px solid var(--navy);border-radius:18px;padding:24px;box-shadow:0 10px 24px rgba(0,31,63,.15)}
+.calc-box h2{font-size:18px;color:var(--navy);margin-bottom:14px}
+.calc-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.calc-row select{flex:1;min-width:220px;padding:12px 14px;border:2px solid var(--navy);border-radius:10px;font-size:15px;color:var(--navy);background:#fff}
+.num-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.num-btn{min-width:46px;padding:10px 12px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:10px;font-weight:bold;font-size:15px;cursor:pointer;transition:.2s}
+.num-btn:hover{background:var(--navy);color:var(--gold)}
+.num-btn.on{background:var(--navy);color:var(--gold)}
+.result{background:linear-gradient(135deg,var(--navy) 0%,#062a52 100%);border-radius:16px;padding:22px;text-align:center;color:#fff}
+.result .big{font-size:44px;font-weight:bold;color:var(--gold)}
+.result .rd{font-size:26px;margin-top:6px}
+.result .tip{font-size:13px;color:#c9d6e8;margin-top:10px}
+.irr-tag{display:inline-block;background:var(--gold);color:#001530;font-size:12px;font-weight:bold;padding:3px 10px;border-radius:999px;margin-left:8px;vertical-align:middle}
+.cgrid{max-width:1200px;margin:20px auto 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:20px}
+.ccard{border:2px solid var(--navy);border-radius:15px;padding:20px;background:#fff;cursor:pointer;transition:.25s}
+.ccard:hover{box-shadow:0 12px 24px rgba(0,31,63,.2);transform:translateY(-4px)}
+.ccard .top{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+.ccard .kj{font-size:38px;font-weight:bold;color:var(--navy)}
+.ccard .nm{font-size:14px;color:#8892a3;font-weight:600}
+.ccard .us{font-size:14px;color:#333;line-height:1.6}
+.ccard .ex{font-size:13px;color:#8892a3;font-style:italic;margin:6px 0 12px}
+.chips{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.chip{font-size:13px;padding:5px 8px;border-radius:8px;background:#f5f8fc;color:var(--navy);border:1px solid #e3e9f2}
+.chip b{color:#8892a3;margin-right:6px;font-weight:600}
+.chip.irr{background:#fffbe6;border-color:var(--gold);font-weight:bold}
+.legend{max-width:1200px;margin:10px auto 0;padding:0 20px;font-size:13px;color:#666}
+.legend .chip{display:inline-block}
+.quiz-wrap{max-width:900px;margin:0 auto 50px;padding:0 20px}
+.q-box{border:2px solid var(--navy);border-radius:18px;padding:24px;background:#fafcff}
+.q-box h2{font-size:18px;color:var(--navy);margin-bottom:12px}
+.q-text{font-size:30px;font-weight:bold;color:var(--navy);margin-bottom:16px}
+.q-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.q-opt{padding:14px;border:2px solid var(--navy);border-radius:12px;background:#fff;color:var(--navy);font-size:18px;font-weight:600;cursor:pointer;transition:.2s}
+.q-opt:hover{background:var(--navy);color:var(--gold)}
+.q-opt.ok{background:#e6f7ec;border-color:#86efac;color:#166534}
+.q-opt.no{background:#fdeaea;border-color:#fca5a5;color:#991b1b}
+.q-foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;flex-wrap:wrap;gap:10px}
+.q-score{font-weight:bold;color:var(--navy)}
+.q-next{border:2px solid var(--navy);background:var(--navy);color:var(--gold);padding:10px 18px;border-radius:10px;font-weight:bold;cursor:pointer}
+@media(max-width:1000px){.cgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.cgrid{grid-template-columns:1fr}.q-opts{grid-template-columns:1fr}.result .big{font-size:34px}}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="materikanji.html">Materi Kanji JLPT</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+      <a href="materikosakata.html">Materi Kosakata JLPT</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+
+<button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+</svg>
+</button>
+
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="index.html">HOME</a>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+  <div class="mobile-acc-panel">
+    <a href="daftarkosakata.html">Kosakata JFT</a>
+    <a href="materitatabahasa.html">Tata Bahasa</a>
+    <a href="materikanji.html">Materi Kanji JLPT</a>
+    <a href="kanjidasar.html">Kanji Flash Card</a>
+    <a href="materikosakata.html">Materi Kosakata JLPT</a>
+  </div>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
+  <div class="mobile-acc-panel">
+    <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+    <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+    <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+    <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+    <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+  </div>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
+  <div class="mobile-acc-panel">
+    <a href="quizkanji1.html">QUIZ KANJI 1</a>
+    <a href="quizkanji2.html">QUIZ KANJI 2</a>
+    <a href="quizkanji3.html">QUIZ KANJI 3</a>
+    <a href="quizkanji4.html">QUIZ KANJI 4</a>
+    <a href="quizkanji5.html">QUIZ KANJI 5</a>
+  </div>
+</div>
+</nav>
+
+<header>
+    <span class="badge">助数詞 · COUNTER</span>
+    <h1>数え方 <span>Kata Bantu Bilangan</span></h1>
+    <p>Cara menghitung dalam bahasa Jepang: per malam (泊), per pak (パック), batang (本), lembar (枚), dan lainnya. Pilih satuan, pilih angka, lihat cara bacanya.</p>
+    <div class="stats-row">
+        <span class="stat-pill" id="totalCount">0 Satuan</span>
+        <span class="stat-pill">Angka 1–10</span>
+        <span class="stat-pill">Ada Latihan</span>
+    </div>
+</header>
+
+<div class="calc">
+  <div class="calc-box">
+    <h2>🧮 Kalkulator Satuan</h2>
+    <div class="calc-row">
+      <select id="counterSelect" onchange="renderCalc()"></select>
+    </div>
+    <div class="num-row" id="numRow"></div>
+    <div class="result">
+      <div class="big" id="resBig">1個</div>
+      <div class="rd" id="resRd">いっこ</div>
+      <div class="tip" id="resTip"></div>
+    </div>
+  </div>
+</div>
+
+<div class="search-wrap" style="margin-top:30px">
+    <input type="text" id="searchInput" placeholder="🔍 Cari satuan... (contoh: 泊, hon, malam, pak, buku)" oninput="filterCards()">
+</div>
+
+<div class="legend">Bacaan <span class="chip irr">berlatar kuning</span> berubah bunyi dari pola dasar, jadi perlu dihafal.</div>
+
+<div class="cgrid" id="cGrid"></div>
+<p class="no-result" id="noResult">Satuan tidak ditemukan.</p>
+
+<div class="section-title">
+    <span class="lvl">LATIHAN</span>
+    <span class="line"></span>
+</div>
+
+<div class="quiz-wrap">
+  <div class="q-box">
+    <h2>Pilih bacaan yang benar</h2>
+    <div class="q-text" id="qText"></div>
+    <div class="q-opts" id="qOpts"></div>
+    <div class="q-foot">
+      <span class="q-score" id="qScore">Skor: 0 / 0</span>
+      <button class="q-next" onclick="newQ()">Soal berikutnya</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+© Tekipaki Japanese Learning
+</footer>
+
+<script>
+const BASE = ["いち","に","さん","よん","ご","ろく","なな","はち","きゅう","じゅう"];
+const NUMS = ["1","2","3","4","5","6","7","8","9","10","何"];
+
+// k=kanji/kana satuan, n=romaji, s=akhiran biasa (untuk cek perubahan bunyi), u=penggunaan, ex=contoh, rd=bacaan 1-10 + 何
+const counters = [
+ { k:"個", n:"ko", s:"こ", u:"Benda kecil dan bulat / umum", ex:"permen, telur, apel", rd:"いっこ,にこ,さんこ,よんこ,ごこ,ろっこ,ななこ,はっこ,きゅうこ,じゅっこ,なんこ" },
+ { k:"枚", n:"mai", s:"まい", u:"Benda tipis dan datar", ex:"kertas, kaos, tiket, piring", rd:"いちまい,にまい,さんまい,よんまい,ごまい,ろくまい,ななまい,はちまい,きゅうまい,じゅうまい,なんまい" },
+ { k:"本", n:"hon", s:"ほん", u:"Benda panjang dan ramping", ex:"pensil, botol, pohon, payung", rd:"いっぽん,にほん,さんぼん,よんほん,ごほん,ろっぽん,ななほん,はっぽん,きゅうほん,じゅっぽん,なんぼん" },
+ { k:"匹", n:"hiki", s:"ひき", u:"Hewan kecil", ex:"kucing, anjing, ikan, serangga", rd:"いっぴき,にひき,さんびき,よんひき,ごひき,ろっぴき,ななひき,はっぴき,きゅうひき,じゅっぴき,なんびき" },
+ { k:"頭", n:"tou", s:"とう", u:"Hewan besar", ex:"sapi, kuda, gajah", rd:"いっとう,にとう,さんとう,よんとう,ごとう,ろくとう,ななとう,はっとう,きゅうとう,じゅっとう,なんとう" },
+ { k:"人", n:"nin", s:"にん", u:"Orang", ex:"teman, murid, anggota keluarga", rd:"ひとり,ふたり,さんにん,よにん,ごにん,ろくにん,ななにん,はちにん,きゅうにん,じゅうにん,なんにん" },
+ { k:"冊", n:"satsu", s:"さつ", u:"Buku dan majalah", ex:"buku, buku tulis, majalah", rd:"いっさつ,にさつ,さんさつ,よんさつ,ごさつ,ろくさつ,ななさつ,はっさつ,きゅうさつ,じゅっさつ,なんさつ" },
+ { k:"台", n:"dai", s:"だい", u:"Mesin dan kendaraan", ex:"mobil, komputer, TV, sepeda", rd:"いちだい,にだい,さんだい,よんだい,ごだい,ろくだい,ななだい,はちだい,きゅうだい,じゅうだい,なんだい" },
+ { k:"杯", n:"hai", s:"はい", u:"Minuman dalam gelas / cangkir / mangkuk", ex:"kopi, teh, nasi, ramen", rd:"いっぱい,にはい,さんばい,よんはい,ごはい,ろっぱい,ななはい,はっぱい,きゅうはい,じゅっぱい,なんばい" },
+ { k:"回", n:"kai", s:"かい", u:"Frekuensi / berapa kali", ex:"pergi ke Jepang, makan, ujian", rd:"いっかい,にかい,さんかい,よんかい,ごかい,ろっかい,ななかい,はっかい,きゅうかい,じゅっかい,なんかい" },
+ { k:"階", n:"kai", s:"かい", u:"Lantai gedung", ex:"lantai 1, lantai 3, lantai 5", rd:"いっかい,にかい,さんがい,よんかい,ごかい,ろっかい,ななかい,はっかい,きゅうかい,じゅっかい,なんがい" },
+ { k:"泊", n:"haku", s:"はく", u:"Jumlah malam menginap (per malam)", ex:"hotel, penginapan, ryokan", rd:"いっぱく,にはく,さんぱく,よんはく,ごはく,ろっぱく,ななはく,はっぱく,きゅうはく,じゅっぱく,なんぱく" },
+ { k:"パック", n:"pakku", s:"パック", u:"Kemasan / pak", ex:"telur, natto, susu, tahu", rd:"いちパック,にパック,さんパック,よんパック,ごパック,ろくパック,ななパック,はちパック,きゅうパック,じゅうパック,なんパック" },
+ { k:"歳", n:"sai", s:"さい", u:"Usia", ex:"umur anak, umur diri sendiri", rd:"いっさい,にさい,さんさい,よんさい,ごさい,ろくさい,ななさい,はっさい,きゅうさい,じゅっさい,なんさい" },
+ { k:"時間", n:"jikan", s:"じかん", u:"Durasi dalam jam", ex:"belajar 2 jam, tidur 7 jam", rd:"いちじかん,にじかん,さんじかん,よじかん,ごじかん,ろくじかん,しちじかん,はちじかん,くじかん,じゅうじかん,なんじかん" },
+ { k:"か月", n:"kagetsu", s:"かげつ", u:"Durasi dalam bulan", ex:"tinggal 3 bulan, kursus 6 bulan", rd:"いっかげつ,にかげつ,さんかげつ,よんかげつ,ごかげつ,ろっかげつ,ななかげつ,はっかげつ,きゅうかげつ,じゅっかげつ,なんかげつ" },
+ { k:"軒", n:"ken", s:"けん", u:"Rumah dan toko", ex:"rumah, restoran, toko", rd:"いっけん,にけん,さんげん,よんけん,ごけん,ろっけん,ななけん,はっけん,きゅうけん,じゅっけん,なんげん" },
+ { k:"足", n:"soku", s:"そく", u:"Pasangan alas kaki", ex:"sepatu, kaus kaki, sandal", rd:"いっそく,にそく,さんぞく,よんそく,ごそく,ろくそく,ななそく,はっそく,きゅうそく,じゅっそく,なんぞく" },
+ { k:"着", n:"chaku", s:"ちゃく", u:"Setelan pakaian", ex:"jas, gaun, seragam", rd:"いっちゃく,にちゃく,さんちゃく,よんちゃく,ごちゃく,ろくちゃく,ななちゃく,はっちゃく,きゅうちゃく,じゅっちゃく,なんちゃく" },
+ { k:"番", n:"ban", s:"ばん", u:"Nomor urut / peringkat", ex:"nomor 1, peringkat 2", rd:"いちばん,にばん,さんばん,よんばん,ごばん,ろくばん,ななばん,はちばん,きゅうばん,じゅうばん,なんばん" },
+ { k:"つ", n:"tsu", s:null, u:"Hitungan umum (cara asli Jepang), tanpa kata bantu", ex:"apa saja, sampai 10", rd:"ひとつ,ふたつ,みっつ,よっつ,いつつ,むっつ,ななつ,やっつ,ここのつ,とお,いくつ" }
+];
+
+counters.forEach(c => {
+    c.list = c.rd.split(",");
+    c.irr = c.list.map((r,i) => i<10 && c.s !== null && r !== BASE[i] + c.s);
+    if(c.s === null){ c.irr = c.list.map(()=>false); }
+});
+
+document.getElementById("totalCount").textContent = counters.length + " Satuan";
+
+// ---------- KALKULATOR ----------
+let curNum = 0;
+const sel = document.getElementById("counterSelect");
+counters.forEach((c,i) => {
+    const o = document.createElement("option");
+    o.value = i;
+    o.textContent = c.k + "  (" + c.n + ") - " + c.u;
+    sel.appendChild(o);
+});
+
+const numRow = document.getElementById("numRow");
+NUMS.forEach((n,i) => {
+    const b = document.createElement("button");
+    b.className = "num-btn";
+    b.textContent = n;
+    b.onclick = () => { curNum = i; renderCalc(); };
+    numRow.appendChild(b);
+});
+
+function renderCalc(){
+    const c = counters[sel.value];
+    document.querySelectorAll(".num-btn").forEach((b,i) => b.classList.toggle("on", i===curNum));
+    const n = NUMS[curNum];
+    const big = document.getElementById("resBig");
+    big.innerHTML = (c.k === "つ" ? n + "つ" : n + c.k);
+    if(curNum === 10) big.textContent = "何" + c.k;
+    document.getElementById("resRd").textContent = c.list[curNum];
+    const tip = document.getElementById("resTip");
+    tip.innerHTML = c.irr[curNum]
+        ? '<span class="irr-tag">bunyi berubah</span> ' + c.u
+        : c.u;
+}
+
+// ---------- KARTU ----------
+const grid = document.getElementById("cGrid");
+const noResult = document.getElementById("noResult");
+
+function renderCards(list){
+    grid.innerHTML = "";
+    list.forEach(c => {
+        const div = document.createElement("div");
+        div.className = "ccard";
+        let chips = "";
+        c.list.slice(0,10).forEach((r,i) => {
+            chips += '<div class="chip' + (c.irr[i] ? ' irr' : '') + '"><b>' + NUMS[i] + '</b>' + r + '</div>';
+        });
+        div.innerHTML =
+            '<div class="top"><span class="kj">' + c.k + '</span><span class="nm">' + c.n + '</span></div>' +
+            '<div class="us">' + c.u + '</div>' +
+            '<div class="ex">contoh: ' + c.ex + '</div>' +
+            '<div class="chips">' + chips + '</div>';
+        div.onclick = () => {
+            sel.value = counters.indexOf(c);
+            renderCalc();
+            window.scrollTo({top:0, behavior:"smooth"});
+        };
+        grid.appendChild(div);
+    });
+    noResult.style.display = list.length === 0 ? "block" : "none";
+}
+
+function norm(s){
+    return String(s).normalize("NFKC").toLowerCase()
+        .replace(/[ァ-ヶ]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60))
+        .replace(/[\s\-～〜~]/g, "");
+}
+
+counters.forEach(c => { c.search = norm([c.k, c.n, c.u, c.ex, c.list.join(" ")].join(" ")); });
+
+function filterCards(){
+    const q = norm(document.getElementById("searchInput").value);
+    renderCards(!q ? counters : counters.filter(c => c.search.includes(q)));
+}
+
+// ---------- LATIHAN ----------
+let score = 0, total = 0, answered = false, correctAns = "";
+
+function newQ(){
+    answered = false;
+    const c = counters[Math.floor(Math.random()*counters.length)];
+    const n = Math.floor(Math.random()*10);
+    correctAns = c.list[n];
+    document.getElementById("qText").textContent = NUMS[n] + (c.k === "つ" ? "つ" : c.k) + "  = ?";
+    const opts = new Set([correctAns]);
+    let guard = 0;
+    while(opts.size < 4 && guard++ < 50){
+        opts.add(c.list[Math.floor(Math.random()*10)]);
+    }
+    const arr = Array.from(opts).sort(() => Math.random() - .5);
+    const box = document.getElementById("qOpts");
+    box.innerHTML = "";
+    arr.forEach(o => {
+        const b = document.createElement("button");
+        b.className = "q-opt";
+        b.textContent = o;
+        b.onclick = () => {
+            if(answered) return;
+            answered = true;
+            total++;
+            if(o === correctAns){ score++; b.classList.add("ok"); }
+            else {
+                b.classList.add("no");
+                box.querySelectorAll(".q-opt").forEach(x => { if(x.textContent === correctAns) x.classList.add("ok"); });
+            }
+            document.getElementById("qScore").textContent = "Skor: " + score + " / " + total;
+        };
+        box.appendChild(b);
+    });
+}
+
+renderCalc();
+renderCards(counters);
+newQ();
+
+//============================
+// DROPDOWN (DESKTOP)
+//============================
+
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+        if(menu.id!=id){ menu.classList.remove("show"); }
+    });
+    document.getElementById(id).classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+            menu.classList.remove("show");
+        });
+    }
+});
+
+//============================
+// BURGER MENU (MOBILE)
+//============================
+
+function toggleMobileMenu(){
+    const menu = document.getElementById("mobileMenu");
+    if(menu) menu.classList.toggle("show");
+}
+
+function toggleMobileAccordion(btn){
+    const panel = btn.nextElementSibling;
+    const isOpen = btn.classList.contains("open");
+    document.querySelectorAll(".mobile-acc-btn").forEach(function(b){
+        if(b !== btn){
+            b.classList.remove("open");
+            if(b.nextElementSibling) b.nextElementSibling.classList.remove("show");
+        }
+    });
+    btn.classList.toggle("open", !isOpen);
+    if(panel) panel.classList.toggle("show", !isOpen);
+}
+
+window.addEventListener("resize", function(){
+    document.querySelectorAll(".dropdown-menu").forEach(function(m){ m.classList.remove("show"); });
+    if(window.innerWidth > 760){
+        const mm = document.getElementById("mobileMenu");
+        if(mm) mm.classList.remove("show");
+        document.querySelectorAll(".mobile-acc-btn").forEach(function(b){ b.classList.remove("open"); });
+        document.querySelectorAll(".mobile-acc-panel").forEach(function(p){ p.classList.remove("show"); });
+    }
+});
+</script>
+
+</body>
+</html>
