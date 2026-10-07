@@ -235,37 +235,53 @@ const grammarList = [
     { jp:"〜はずだ", romaji:"~hazu da", mean:"seharusnya / pasti (perkiraan kuat)", link:"tatabahasan4_hazuda.html" },
     { jp:"〜らしい", romaji:"~rashii", mean:"katanya / sepertinya (berdasarkan info)", link:"tatabahasan4_rashii.html" },
     { jp:"〜みたい（だ）", romaji:"~mitai (da)", mean:"seperti / mirip dengan", link:"tatabahasan4_mitaida.html" },
-    { jp:"〜と", romaji:"~to (to)", mean:"kalau / begitu...maka....", link:"tatabahasan4_to.html" },
-    { jp:"〜ずつ", romaji:"~zutsu (zutsu)", mean:"masing-masing/ sedikit demi sedikit", link:"tatabahasan4_zutsu.html" },
-    { jp:"〜てもらえますか", romaji:"~te moraemasu ka", mean:"bisakah anda melakukan/ ~untuk saya?", link:"tatabahasan4_temoraemasenka.html" },
+    { jp:"〜と", romaji:"~to", mean:"kalau / begitu...maka....", link:"tatabahasan4_to.html" },
+    { jp:"〜ずつ", romaji:"~zutsu", mean:"masing-masing / sedikit demi sedikit", link:"tatabahasan4_zutsu.html" },
+    { jp:"〜てもらえますか", romaji:"~te moraemasu ka", mean:"bisakah anda melakukan / ~untuk saya?", link:"tatabahasan4_temoraemasenka.html" },
     { jp:"〜たほうがいい", romaji:"~ta hou ga ii", mean:"sebaiknya melakukan", link:"tatabahasan4_tahougaii.html" },
     { jp:"〜ないほうがいい", romaji:"~nai hou ga ii", mean:"sebaiknya tidak melakukan", link:"tatabahasan4_tahougaii.html" },
     { jp:"〜たらどうですか", romaji:"~tara dou desu ka", mean:"bagaimana kalau melakukan", link:"tatabahasan4_tarahoudesuka.html" },
     { jp:"〜ている", romaji:"~te iru", mean:"sedang melakukan", link:"tatabahasan4_teiru.html" },
-    { jp:"〜間　（に）", romaji:"~kan", mean:"selama / ketika", link:"tatabahasan4_aida.html" },
-    { jp:"〜までに", romaji:"~made ni", mean:"sebelum/ paling lambat", link:"tatabahasan4_madeni.html" },
+    { jp:"〜間（に）", romaji:"~aida (ni)", mean:"selama / ketika", link:"tatabahasan4_aida.html" },
+    { jp:"〜までに", romaji:"~made ni", mean:"sebelum / paling lambat", link:"tatabahasan4_madeni.html" },
     { jp:"〜前に", romaji:"~mae ni", mean:"sebelum melakukan", link:"tatabahasan4_maeni.html" },
-    { jp:"〜たほうがいい", romaji:"~ta hou ga ii", mean:"sebaiknya melakukan", link:"tatabahasan4_tahougaii.html" },
     { jp:"〜後で", romaji:"~ato de", mean:"setelah melakukan", link:"tatabahasan4_atode.html" },
-    { jp:"〜ことできる", romaji:"~koto dekiru", mean:"bisa melakukan", link:"tatabahasan4_kotodekiru.html" },
+    { jp:"〜ことができる", romaji:"~koto ga dekiru", mean:"bisa melakukan", link:"tatabahasan4_kotodekiru.html" },
     { jp:"〜必要がある", romaji:"~hitsuyou ga aru", mean:"perlu melakukan / ada kebutuhan untuk~", link:"tatabahasan4_hitsuyougaaru.html" },
     { jp:"〜なくなる", romaji:"~naku naru", mean:"berakhir / tidak ada lagi", link:"tatabahasan4_nakunaru.html" },
     { jp:"〜てくる", romaji:"~te kuru", mean:"mulai melakukan / berubah menjadi", link:"tatabahasan4_tekuru.html" },
-    { jp:"〜ていく", romaji:"~ta hou ga ii", mean:"terus menjadi / perubahan ke depan", link:"tatabahasan4_teiku.html" },
+    { jp:"〜ていく", romaji:"~te iku", mean:"terus menjadi / perubahan ke depan", link:"tatabahasan4_teiku.html" }
 ];
 
 const grid = document.getElementById("grammarGrid");
 const noResult = document.getElementById("noResult");
 document.getElementById("totalCount").textContent = grammarList.length + " Pola Tata Bahasa";
 
+// nomor tetap sesuai urutan asli
+grammarList.forEach((g, i) => g.no = i + 1);
+
+// samakan format: abaikan ~ 〜 kurung spasi, huruf besar/kecil; katakana -> hiragana
+function normalize(s){
+    return String(s)
+        .normalize("NFKC")
+        .toLowerCase()
+        .replace(/[\u30a1-\u30f6]/g, c => String.fromCharCode(c.charCodeAt(0) - 0x60))
+        .replace(/[〜~～（）()\/／・、,.\-\s]/g, "");
+}
+
+// indeks pencarian dibuat sekali
+grammarList.forEach(g => {
+    g.search = [g.jp, g.romaji, g.mean].map(normalize);
+});
+
 function renderCards(list){
     grid.innerHTML = "";
-    list.forEach((g, i)=>{
+    list.forEach(g => {
         const a = document.createElement("a");
         a.href = g.link;
         a.className = "card";
         a.innerHTML =
-            '<span class="no">POLA ' + String(i+1).padStart(2,"0") + '</span>' +
+            '<span class="no">POLA ' + String(g.no).padStart(2,"0") + '</span>' +
             '<div class="j">' + g.jp + '</div>' +
             '<div class="h">' + g.romaji + '</div>' +
             '<div class="mean">' + g.mean + '</div>';
@@ -275,13 +291,9 @@ function renderCards(list){
 }
 
 function filterCards(){
-    const q = document.getElementById("searchInput").value.trim().toLowerCase();
-    const filtered = grammarList.filter(g =>
-        g.jp.toLowerCase().includes(q) ||
-        g.romaji.toLowerCase().includes(q) ||
-        g.mean.toLowerCase().includes(q)
-    );
-    renderCards(filtered);
+    const q = normalize(document.getElementById("searchInput").value);
+    if(!q){ renderCards(grammarList); return; }
+    renderCards(grammarList.filter(g => g.search.some(f => f.includes(q))));
 }
 
 renderCards(grammarList);
