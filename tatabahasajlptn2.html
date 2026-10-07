@@ -388,6 +388,43 @@ footer{
     color:#666;
     font-size:14px;
 }
+
+/* =======================
+     BACK TO TOP BUTTON
+======================= */
+
+#backToTop{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:48px;
+    height:48px;
+    border:2px solid var(--gold);
+    border-radius:50%;
+    background:var(--navy3);
+    color:var(--gold2);
+    font-size:22px;
+    font-weight:bold;
+    cursor:pointer;
+    z-index:998;
+    box-shadow:0 6px 16px rgba(0,0,0,.35);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(12px);
+    transition:.3s;
+}
+
+#backToTop.visible{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+#backToTop:hover{
+    background:var(--gold);
+    color:#001530;
+    transform:translateY(-3px);
+}
 </style>
 </head>
 
@@ -472,6 +509,8 @@ HOME
 <footer>
 © Tekipaki Japanese Learning
 </footer>
+
+<button id="backToTop" onclick="scrollToTop()" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
 
 <script>
 
@@ -597,6 +636,24 @@ document.addEventListener("click",function(e){
         });
     }
 });
+
+//============================
+// BACK TO TOP
+//============================
+
+const backToTopBtn = document.getElementById("backToTop");
+
+window.addEventListener("scroll", function(){
+    if(window.scrollY > 300){
+        backToTopBtn.classList.add("visible");
+    }else{
+        backToTopBtn.classList.remove("visible");
+    }
+});
+
+function scrollToTop(){
+    window.scrollTo({ top:0, behavior:"smooth" });
+}
 
 </script>
 
