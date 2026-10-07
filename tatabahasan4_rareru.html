@@ -543,7 +543,22 @@ const quizAnswers = {
 };
 const quizState = {1:[],2:[]};
 
+function shuffleArray(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+function shuffleBank(id){
+    const bank = document.getElementById("bank"+id);
+    const tiles = Array.from(bank.children);
+    shuffleArray(tiles);
+    tiles.forEach(tile => bank.appendChild(tile));
+}
+
 function initQuiz(id){
+    shuffleBank(id);
     const bank = document.getElementById("bank"+id);
     bank.querySelectorAll(".word-tile").forEach(tile=>{
         tile.addEventListener("click", ()=>placeWord(id, tile));
@@ -589,6 +604,7 @@ function resetQuiz(id){
     document.getElementById("slot"+id).innerHTML = "";
     document.querySelectorAll("#bank"+id+" .word-tile").forEach(tile=>{ tile.classList.remove("used"); });
     document.getElementById("result"+id).className = "quiz-result";
+    shuffleBank(id);
 }
 initQuiz(1);
 initQuiz(2);
