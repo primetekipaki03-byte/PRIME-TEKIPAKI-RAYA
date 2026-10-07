@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ungkapan Idiomatik 慣用句 | Tekipaki</title>
+
+<style>
+:root{--navy:#001f3f;--navy2:#002a54;--navy3:#022655;--gold:#facc15;--gold2:#ffd700;--text:#001f3f}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
+body{background:#fff;color:var(--text)}
+#navbar{position:sticky;top:0;z-index:999;background:#001530;border-bottom:2px solid rgba(250,204,21,.25);box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;gap:10px}
+.nav-left{display:flex;align-items:center}
+.nav-right{display:flex;gap:8px;align-items:center}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:#001530;text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold}
+.home-btn:hover{opacity:.85}
+.home-icon{width:24px;height:24px;object-fit:cover;border-radius:4px}
+.dropdown{position:relative}
+.dropdown-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-weight:bold;cursor:pointer}
+.dropdown-btn:hover{background:var(--gold);color:#001530}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:#022655;border-radius:10px;overflow:hidden;min-width:220px;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none}
+.dropdown-menu a:hover{background:var(--gold);color:#001530}
+.show{display:block}
+.burger-btn{display:none;align-items:center;justify-content:center;flex-shrink:0;background:transparent;border:2px solid var(--gold);color:var(--gold);padding:9px 12px;border-radius:8px;cursor:pointer}
+.burger-btn svg{width:20px;height:20px;display:block}
+.mobile-menu{display:none;flex-direction:column;background:#001530;border-top:1px solid rgba(250,204,21,.25);max-height:calc(100vh - 64px);overflow-y:auto}
+.mobile-menu.show{display:flex}
+.mobile-link{display:block;padding:15px 18px;color:#ffd700;text-decoration:none;font-weight:700;font-size:14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.mobile-link:hover{background:rgba(250,204,21,.12)}
+.mobile-acc-btn{width:100%;text-align:left;background:transparent;border:none;color:var(--gold);font-weight:700;font-size:14px;padding:15px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);font-family:inherit}
+.mobile-acc-btn::after{content:'+';font-size:18px;line-height:1}
+.mobile-acc-btn.open::after{content:'\2212'}
+.mobile-acc-panel{display:none;flex-direction:column;background:#0a2242}
+.mobile-acc-panel.show{display:flex}
+.mobile-acc-panel a{padding:13px 32px;color:#ffd700;text-decoration:none;font-size:13px;border-bottom:1px solid rgba(255,255,255,.05)}
+.mobile-acc-panel a:hover{background:rgba(250,204,21,.15)}
+@media(min-width:761px){.mobile-menu{display:none !important}}
+@media(max-width:1000px){.dropdown-btn{font-size:.8rem;padding:7px 10px}}
+@media(max-width:760px){.navbar-inner{padding:10px 14px}.nav-left{flex:1;min-width:0}.nav-right{display:none}.burger-btn{display:flex}}
+header{text-align:center;padding:60px 20px 40px;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--navy) 0%,#062a52 100%)}
+header::before{content:"慣用";position:absolute;font-size:340px;font-weight:900;color:rgba(250,204,21,.05);top:-90px;left:50%;transform:translateX(-50%);pointer-events:none;user-select:none}
+.badge{display:inline-block;background:var(--gold);color:#001530;font-weight:bold;font-size:13px;letter-spacing:1px;padding:6px 16px;border-radius:999px;margin-bottom:18px;position:relative}
+header h1{font-size:48px;color:#fff;margin-bottom:12px;position:relative;letter-spacing:1px}
+header h1 span{color:var(--gold)}
+header p{font-size:17px;color:#c9d6e8;max-width:600px;margin:0 auto;position:relative}
+.stats-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px;position:relative}
+.stat-pill{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.35);color:var(--gold);padding:8px 18px;border-radius:999px;font-size:14px;font-weight:600}
+.search-wrap{max-width:600px;margin:-26px auto 10px;padding:0 20px;position:relative;z-index:5}
+#searchInput{width:100%;padding:16px 22px;border-radius:16px;border:2px solid var(--navy);font-size:16px;box-shadow:0 10px 24px rgba(0,31,63,.15);outline:none;color:var(--navy)}
+#searchInput:focus{border-color:var(--gold)}
+.no-result{text-align:center;color:#888;padding:40px;display:none;font-size:16px}
+.section-title{max-width:1200px;margin:50px auto 5px;padding:0 20px;display:flex;align-items:center;gap:14px}
+.section-title .lvl{background:var(--navy);color:var(--gold);font-weight:bold;font-size:14px;padding:6px 14px;border-radius:8px;white-space:nowrap}
+.section-title .line{flex:1;height:2px;background:linear-gradient(90deg,var(--navy),rgba(0,31,63,.05))}
+footer{text-align:center;padding:30px;color:#666;font-size:14px}
+.filters{max-width:1200px;margin:16px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:8px}
+.f-btn{padding:8px 16px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:999px;font-weight:bold;font-size:13px;cursor:pointer;transition:.2s}
+.f-btn:hover,.f-btn.on{background:var(--navy);color:var(--gold)}
+.cgrid{max-width:1200px;margin:20px auto 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:20px}
+.ccard{border:2px solid var(--navy);border-radius:15px;padding:20px;background:#fff;transition:.25s}
+.ccard:hover{box-shadow:0 12px 24px rgba(0,31,63,.2);transform:translateY(-4px)}
+.ccard .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ccard .kj{font-size:30px;font-weight:bold;color:var(--navy)}
+.ccard .nm{font-size:14px;color:#8892a3;font-weight:600}
+.ccard .mn{font-size:15px;color:#333;margin:6px 0 10px;font-weight:600}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:11px;font-weight:bold;padding:3px 10px;border-radius:999px;background:rgba(0,31,63,.08);color:var(--navy)}
+.tag.lv{background:var(--gold);color:#001530}
+.lit{font-size:13px;color:#8892a3;margin:-4px 0 10px}
+.ex-box{background:#f5f8fc;border-left:4px solid var(--gold);border-radius:8px;padding:12px 14px}
+.ex-box .j{font-size:15px;font-weight:bold;color:var(--navy);line-height:1.6}
+.ex-box .j mark{background:#fff3b0;padding:0 3px;border-radius:4px}
+.ex-box .y{font-size:12px;color:#8892a3;margin-top:4px}
+.ex-box .i{font-size:13px;color:#333;font-style:italic;margin-top:4px}
+.note{max-width:1200px;margin:10px auto 0;padding:0 20px;font-size:13px;color:#666}
+.quiz-wrap{max-width:900px;margin:0 auto 50px;padding:0 20px}
+.q-box{border:2px solid var(--navy);border-radius:18px;padding:24px;background:#fafcff}
+.q-box h2{font-size:18px;color:var(--navy);margin-bottom:12px}
+.q-text{font-size:22px;font-weight:bold;color:var(--navy);margin-bottom:6px;line-height:1.7}
+.q-text .blank{display:inline-block;min-width:80px;border-bottom:3px solid var(--navy);text-align:center;color:#b8860b}
+.q-id{font-size:14px;color:#8892a3;font-style:italic;margin-bottom:16px}
+.q-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.q-opt{padding:14px;border:2px solid var(--navy);border-radius:12px;background:#fff;color:var(--navy);font-size:18px;font-weight:600;cursor:pointer;transition:.2s}
+.q-opt:hover{background:var(--navy);color:var(--gold)}
+.q-opt.ok{background:#e6f7ec;border-color:#86efac;color:#166534}
+.q-opt.no{background:#fdeaea;border-color:#fca5a5;color:#991b1b}
+.q-foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;flex-wrap:wrap;gap:10px}
+.q-score{font-weight:bold;color:var(--navy)}
+.q-next{border:2px solid var(--navy);background:var(--navy);color:var(--gold);padding:10px 18px;border-radius:10px;font-weight:bold;cursor:pointer}
+@media(max-width:1000px){.cgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.cgrid{grid-template-columns:1fr}.q-opts{grid-template-columns:1fr}header h1{font-size:32px}header::before{font-size:200px}}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="materikanji.html">Materi Kanji JLPT</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+      <a href="materikosakata.html">Materi Kosakata JLPT</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+
+<button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+</svg>
+</button>
+
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="index.html">HOME</a>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+  <div class="mobile-acc-panel">
+    <a href="daftarkosakata.html">Kosakata JFT</a>
+    <a href="materitatabahasa.html">Tata Bahasa</a>
+    <a href="materikanji.html">Materi Kanji JLPT</a>
+    <a href="kanjidasar.html">Kanji Flash Card</a>
+    <a href="materikosakata.html">Materi Kosakata JLPT</a>
+  </div>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
+  <div class="mobile-acc-panel">
+    <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+    <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+    <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+    <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+    <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+  </div>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
+  <div class="mobile-acc-panel">
+    <a href="quizkanji1.html">QUIZ KANJI 1</a>
+    <a href="quizkanji2.html">QUIZ KANJI 2</a>
+    <a href="quizkanji3.html">QUIZ KANJI 3</a>
+    <a href="quizkanji4.html">QUIZ KANJI 4</a>
+    <a href="quizkanji5.html">QUIZ KANJI 5</a>
+  </div>
+</div>
+</nav>
+
+<header>
+    <span class="badge">慣用句 · KAN'YOUKU</span>
+    <h1>慣用句 <span>Ungkapan Idiomatik</span></h1>
+    <p>Frasa tetap dalam bahasa Jepang yang artinya tidak bisa ditebak dari kata per kata, misalnya 顔が広い atau 猫の手も借りたい. Lengkap dengan arti harfiah, makna sebenarnya, contoh kalimat, dan latihan.</p>
+    <div class="stats-row">
+        <span class="stat-pill" id="totalCount">0 Ungkapan</span>
+        <span class="stat-pill">5 Kelompok</span>
+        <span class="stat-pill">Ada Latihan</span>
+    </div>
+</header>
+
+<div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="🔍 Cari ungkapan... (contoh: sibuk, marah, 顔, neko)" oninput="applyFilter()">
+</div>
+
+<div class="filters" id="filters"></div>
+<div class="note">Ungkapan idiomatik sebaiknya dihafal sebagai satu kesatuan. Bentuk di kalimat contoh bisa berubah (mis. ~て, ~ました), tetapi susunan kata intinya tetap. Level JLPT bersifat perkiraan.</div>
+
+<div class="cgrid" id="cGrid"></div>
+<p class="no-result" id="noResult">Ungkapan tidak ditemukan.</p>
+
+<div class="section-title">
+    <span class="lvl">LATIHAN</span>
+    <span class="line"></span>
+</div>
+
+<div class="quiz-wrap">
+  <div class="q-box">
+    <h2>Apa arti ungkapan ini?</h2>
+    <div class="q-text" id="qText"></div>
+    <div class="q-id" id="qId"></div>
+    <div class="q-opts" id="qOpts"></div>
+    <div class="q-foot">
+      <span class="q-score" id="qScore">Skor: 0 / 0</span>
+      <button class="q-next" onclick="newQ()">Soal berikutnya</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+© Tekipaki Japanese Learning
+</footer>
+
+<script>
+const CATS = {
+  tubuh:"Anggota Tubuh",
+  hewan:"Hewan",
+  rasa:"Perasaan",
+  sikap:"Sikap / Perilaku",
+  lain:"Lain-lain"
+};
+
+// [ungkapan, romaji, arti harfiah, makna, kelompok, level, bentuk di kalimat, kalimat, bacaan, terjemahan]
+const list = [
+ ["顔が広い","kao ga hiroi","wajah luas","punya banyak kenalan","tubuh","N3","顔が広い","田中さんは顔が広いので、いろいろな人を紹介してくれます。","たなかさんは かおが ひろいので、いろいろな ひとを しょうかい してくれます。","Tanaka punya banyak kenalan, jadi ia memperkenalkan berbagai orang."],
+ ["耳が痛い","mimi ga itai","telinga sakit","tersindir, kritik terasa menusuk","tubuh","N3","耳が痛い","その話は耳が痛いです。","その はなしは みみが いたいです。","Pembicaraan itu terasa menohok bagi saya."],
+ ["手が足りない","te ga tarinai","tangan kurang","kekurangan tenaga kerja","tubuh","N3","手が足りません","忙しくて手が足りません。","いそがしくて てが たりません。","Sibuk sekali dan kami kekurangan tenaga."],
+ ["足を引っ張る","ashi o hipparu","menarik kaki","menghambat orang lain","tubuh","N3","足を引っ張って","私がチームの足を引っ張ってしまいました。","わたしが チームの あしを ひっぱって しまいました。","Saya malah menghambat tim."],
+ ["口が重い","kuchi ga omoi","mulut berat","pendiam, sulit bicara","tubuh","N3","口が重い","彼は口が重い人です。","かれは くちが おもい ひとです。","Dia orang yang pendiam."],
+ ["目がない","me ga nai","tidak punya mata","sangat menyukai","tubuh","N3","目がありません","私は甘いものに目がありません。","わたしは あまいものに めが ありません。","Saya sangat suka makanan manis."],
+ ["鼻が高い","hana ga takai","hidung tinggi","bangga","tubuh","N3","鼻が高い","息子が合格して鼻が高いです。","むすこが ごうかく して はなが たかいです。","Anak saya lulus, saya bangga."],
+ ["腹が立つ","hara ga tatsu","perut berdiri","marah, kesal","tubuh","N3","腹が立ちました","約束を忘れられて腹が立ちました。","やくそくを わすれられて はらが たちました。","Janji saya dilupakan, saya jadi kesal."],
+ ["目から鱗が落ちる","me kara uroko ga ochiru","sisik jatuh dari mata","tiba-tiba mengerti, tercerahkan","tubuh","N2","目から鱗が落ちる","その説明は目から鱗が落ちる思いでした。","その せつめいは めから うろこが おちる おもいでした。","Penjelasan itu membuat saya tercerahkan."],
+ ["猫の手も借りたい","neko no te mo karitai","ingin meminjam tangan kucing","sangat sibuk","hewan","N3","猫の手も借りたい","今日は猫の手も借りたいほど忙しいです。","きょうは ねこの ても かりたい ほど いそがしいです。","Hari ini sibuk sampai ingin meminjam tangan kucing."],
+ ["猫をかぶる","neko o kaburu","memakai kucing","berpura-pura baik atau lugu","hewan","N2","猫をかぶって","彼女は先生の前では猫をかぶっています。","かのじょは せんせいの まえでは ねこを かぶって います。","Di depan guru, dia berpura-pura baik."],
+ ["馬が合う","uma ga au","kuda cocok","cocok, serasi","hewan","N3","馬が合います","彼とは馬が合います。","かれとは うまが あいます。","Saya cocok dengan dia."],
+ ["犬猿の仲","ken'en no naka","hubungan anjing dan monyet","bermusuhan, tidak akur","hewan","N2","犬猿の仲","あの二人は犬猿の仲です。","あの ふたりは けんえんの なかです。","Kedua orang itu tidak akur."],
+ ["蛙の子は蛙","kaeru no ko wa kaeru","anak katak adalah katak","buah jatuh tak jauh dari pohonnya","hewan","N2","蛙の子は蛙","父も画家で、蛙の子は蛙ですね。","ちちも がかで、かえるの こは かえるですね。","Ayah juga pelukis, buah jatuh tak jauh dari pohonnya."],
+ ["胸が痛む","mune ga itamu","dada sakit","sedih, iba","rasa","N3","胸が痛みました","ニュースを見て胸が痛みました。","ニュースを みて むねが いたみました。","Melihat berita itu, hati saya terasa sakit."],
+ ["肩の荷が下りる","kata no ni ga oriru","beban di bahu turun","lega, bebas dari tanggung jawab","rasa","N2","肩の荷が下りました","試験が終わって肩の荷が下りました。","しけんが おわって かたの にが おりました。","Ujian selesai, saya merasa lega."],
+ ["気が重い","ki ga omoi","hati berat","enggan, murung","rasa","N3","気が重い","明日の会議のことを考えると気が重いです。","あしたの かいぎの ことを かんがえると きが おもいです。","Memikirkan rapat besok, saya jadi enggan."],
+ ["頭にくる","atama ni kuru","datang ke kepala","marah, naik darah","rasa","N3","頭にきます","彼の態度には頭にきます。","かれの たいどには あたまに きます。","Sikapnya membuat saya naik darah."],
+ ["口が堅い","kuchi ga katai","mulut keras","bisa menjaga rahasia","sikap","N3","口が堅い","田中さんは口が堅いから、安心です。","たなかさんは くちが かたいから、あんしんです。","Tanaka bisa jaga rahasia, jadi tenang."],
+ ["手を抜く","te o nuku","mencabut tangan","bekerja asal-asalan","sikap","N3","手を抜いて","仕事で手を抜いてはいけません。","しごとで てを ぬいては いけません。","Jangan bekerja asal-asalan."],
+ ["油を売る","abura o uru","menjual minyak","membuang waktu, bermalas-malasan","sikap","N2","油を売って","こんなところで油を売っていないで、早く戻りなさい。","こんな ところで あぶらを うって いないで、はやく もどりなさい。","Jangan buang waktu di sini, cepat kembali."],
+ ["話に花が咲く","hanashi ni hana ga saku","bunga mekar dalam pembicaraan","obrolan jadi seru","sikap","N3","話に花が咲きました","久しぶりに会って、話に花が咲きました。","ひさしぶりに あって、はなしに はなが さきました。","Sudah lama tidak bertemu, obrolan jadi seru."],
+ ["棚に上げる","tana ni ageru","menaruh di rak","mengabaikan kesalahan sendiri","sikap","N2","棚に上げて","自分のことを棚に上げて、人を責めてはいけません。","じぶんの ことを たなに あげて、ひとを せめては いけません。","Jangan menyalahkan orang lain sambil mengabaikan kesalahan sendiri."],
+ ["水に流す","mizu ni nagasu","menghanyutkan dengan air","melupakan perselisihan lama","lain","N2","水に流しましょう","昔のことは水に流しましょう。","むかしの ことは みずに ながしましょう。","Mari lupakan masa lalu."],
+ ["骨が折れる","hone ga oreru","tulang patah","melelahkan, berat","lain","N3","骨が折れます","この仕事は骨が折れます。","この しごとは ほねが おれます。","Pekerjaan ini melelahkan."],
+ ["一石二鳥","isseki nichou","satu batu dua burung","sekali dayung dua pulau terlampaui","lain","N3","一石二鳥","運動しながら通勤できて一石二鳥です。","うんどう しながら つうきん できて いっせきにちょうです。","Berolahraga sambil berangkat kerja, sekali dayung dua pulau terlampaui."]
+];
+
+function norm(s){
+  return String(s).normalize("NFKC").toLowerCase()
+    .replace(/[\u30a1-\u30f6]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60))
+    .replace(/[\s\-、。,.']/g, "");
+}
+const items = list.map(a => ({ jp:a[0], r:a[1], lit:a[2], m:a[3], c:a[4], lv:a[5], k:a[6], j:a[7], y:a[8], i:a[9],
+  s:norm(a.slice(0,6).join(" ") + " " + CATS[a[4]]) }));
+
+document.getElementById("totalCount").textContent = items.length + " Ungkapan";
+
+// ---------- FILTER ----------
+let curCat = "all";
+const fBox = document.getElementById("filters");
+[["all","Semua"]].concat(Object.keys(CATS).map(k => [k, CATS[k]])).forEach(f => {
+  const b = document.createElement("button");
+  b.className = "f-btn" + (f[0]==="all" ? " on" : "");
+  b.textContent = f[1];
+  b.onclick = () => {
+    curCat = f[0];
+    document.querySelectorAll(".f-btn").forEach(x => x.classList.remove("on"));
+    b.classList.add("on");
+    applyFilter();
+  };
+  fBox.appendChild(b);
+});
+
+const grid = document.getElementById("cGrid");
+const noResult = document.getElementById("noResult");
+
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+function render(arr){
+  grid.innerHTML = "";
+  arr.forEach(g => {
+    const jh = esc(g.j).replace(g.k, "<mark>" + g.k + "</mark>");
+    const d = document.createElement("div");
+    d.className = "ccard";
+    d.innerHTML =
+      '<div class="top"><span class="kj">' + g.jp + '</span><span class="nm">' + g.r + '</span></div>' +
+      '<div class="mn">' + g.m + '</div>' +
+      '<div class="lit">Harfiah: ' + g.lit + '</div>' +
+      '<div class="tags"><span class="tag">' + CATS[g.c] + '</span><span class="tag lv">' + g.lv + '</span></div>' +
+      '<div class="ex-box"><div class="j">' + jh + '</div><div class="y">' + g.y + '</div><div class="i">' + g.i + '</div></div>';
+    grid.appendChild(d);
+  });
+  noResult.style.display = arr.length === 0 ? "block" : "none";
+}
+
+function applyFilter(){
+  const q = norm(document.getElementById("searchInput").value);
+  render(items.filter(g => (curCat === "all" || g.c === curCat) && (!q || g.s.includes(q))));
+}
+
+// ---------- LATIHAN ----------
+let score = 0, total = 0, answered = false, answer = "";
+
+function newQ(){
+  answered = false;
+  const g = items[Math.floor(Math.random() * items.length)];
+  answer = g.m;
+  document.getElementById("qText").textContent = g.jp;
+  document.getElementById("qId").textContent = g.r;
+  const others = items.filter(x => x.jp !== g.jp && x.m !== g.m).sort(() => Math.random() - .5);
+  const opts = [g.m];
+  others.forEach(o => { if(opts.length < 4 && !opts.includes(o.m)) opts.push(o.m); });
+  opts.sort(() => Math.random() - .5);
+  const box = document.getElementById("qOpts");
+  box.innerHTML = "";
+  opts.forEach(o => {
+    const b = document.createElement("button");
+    b.className = "q-opt";
+    b.style.fontSize = "16px";
+    b.textContent = o;
+    b.onclick = () => {
+      if(answered) return;
+      answered = true;
+      total++;
+      if(o === answer){ score++; b.classList.add("ok"); }
+      else {
+        b.classList.add("no");
+        box.querySelectorAll(".q-opt").forEach(x => { if(x.textContent === answer) x.classList.add("ok"); });
+      }
+      document.getElementById("qId").textContent = g.r + " · harfiah: " + g.lit;
+      document.getElementById("qScore").textContent = "Skor: " + score + " / " + total;
+    };
+    box.appendChild(b);
+  });
+}
+
+render(items);
+newQ();
+
+//============================
+// DROPDOWN (DESKTOP)
+//============================
+
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+        if(menu.id!=id){ menu.classList.remove("show"); }
+    });
+    document.getElementById(id).classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+            menu.classList.remove("show");
+        });
+    }
+});
+
+//============================
+// BURGER MENU (MOBILE)
+//============================
+
+function toggleMobileMenu(){
+    const menu = document.getElementById("mobileMenu");
+    if(menu) menu.classList.toggle("show");
+}
+
+function toggleMobileAccordion(btn){
+    const panel = btn.nextElementSibling;
+    const isOpen = btn.classList.contains("open");
+    document.querySelectorAll(".mobile-acc-btn").forEach(function(b){
+        if(b !== btn){
+            b.classList.remove("open");
+            if(b.nextElementSibling) b.nextElementSibling.classList.remove("show");
+        }
+    });
+    btn.classList.toggle("open", !isOpen);
+    if(panel) panel.classList.toggle("show", !isOpen);
+}
+
+window.addEventListener("resize", function(){
+    document.querySelectorAll(".dropdown-menu").forEach(function(m){ m.classList.remove("show"); });
+    if(window.innerWidth > 760){
+        const mm = document.getElementById("mobileMenu");
+        if(mm) mm.classList.remove("show");
+        document.querySelectorAll(".mobile-acc-btn").forEach(function(b){ b.classList.remove("open"); });
+        document.querySelectorAll(".mobile-acc-panel").forEach(function(p){ p.classList.remove("show"); });
+    }
+});
+</script>
+
+</body>
+</html>
