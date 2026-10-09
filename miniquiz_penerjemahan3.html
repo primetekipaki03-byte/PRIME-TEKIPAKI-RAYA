@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latihan Terjemahan: Byoin (Rumah Sakit) — PRIME TEKIPAKI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FFFFFF;--paper-deep:#F5F7FA;--ink:#12182A;--ink-soft:#5B6478;--line:rgba(18,24,42,.14);--line-strong:rgba(18,24,42,.28);--navy:#0a1f3d;--navy2:#001530;--gold:#e0b52a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP","Hiragino Sans","Segoe UI",sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2{font-family:"Shippori Mincho",serif;font-weight:700}
+#navbar{position:sticky;top:0;z-index:999;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;flex-wrap:wrap;gap:10px}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--navy);color:#fff;text-decoration:none;padding:10px 18px;border-radius:3px;font-weight:600;transition:background .2s}
+.home-btn:hover{background:var(--navy2)}
+.home-icon{width:20px;height:20px}
+.dropdown{position:relative}
+.dropdown-btn{background:none;border:1px solid var(--line-strong);color:var(--ink);padding:9px 15px;border-radius:3px;font-weight:600;cursor:pointer;font-family:inherit;transition:border-color .2s,color .2s}
+.dropdown-btn:hover{border-color:var(--navy);color:var(--navy)}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:220px;box-shadow:0 14px 34px rgba(18,24,42,.16)}
+.dropdown-menu a{display:block;padding:12px 15px;color:var(--ink);text-decoration:none}
+.dropdown-menu a:hover{background:var(--paper-deep);color:var(--navy)}
+.show{display:block}
+@media(max-width:600px){.navbar-inner{flex-direction:column;align-items:flex-start}.nav-right{width:100%}}
+.back-wrap{padding:16px 20px 0}
+.back-btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;padding:10px 18px;background:var(--paper-deep);border:1px solid var(--line);color:var(--navy);border-radius:999px;font-weight:600;font-size:14px;transition:.2s}
+.back-btn:hover{background:#e2e8f2}
+header{text-align:center;padding:40px 20px 6px}
+header h1{font-size:clamp(1.7rem,4vw,2.5rem);margin-bottom:10px}
+header p{font-size:16px;color:var(--ink-soft);max-width:560px;margin:0 auto}
+.hint{text-align:center;font-size:14px;color:var(--ink-soft);margin:14px 0}
+.viewer-wrap{max-width:820px;margin:20px auto;perspective:1600px;padding:0 20px}
+.viewer{position:relative;width:100%;height:620px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,.2,.2,1)}
+.viewer.flipped{transform:rotateY(180deg)}
+.viewer.big{animation:pop .3s}
+@keyframes pop{0%{transform:scale(.94) rotateY(var(--rot,0deg));opacity:.4}100%{transform:scale(1) rotateY(var(--rot,0deg));opacity:1}}
+.face{position:absolute;inset:0;border:3px solid var(--navy);border-radius:20px;background:var(--paper);display:flex;flex-direction:column;justify-content:center;align-items:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:28px 36px 64px;text-align:left;align-items:center;gap:14px;overflow-y:auto}
+.face-front .letter-badge{align-self:center;font-family:"Shippori Mincho",serif;font-size:2.6rem;letter-spacing:.08em;color:var(--gold);font-weight:700;line-height:1}
+.face-front .judul{font-size:15px;color:var(--ink-soft);font-weight:600;margin-bottom:14px}
+.face-front #soal{font-size:22px;font-weight:600;line-height:1.7;width:fit-content;max-width:min(100%,620px)}
+.face-front #soal p+p{margin-top:12px}
+.face-back{transform:rotateY(180deg);background:var(--navy);color:#fff}
+.face-back .arti{max-width:min(100%,620px);width:fit-content}
+.face-back .pair+.pair{margin-top:16px}
+.face-back .jp{font-size:22px;font-weight:700;line-height:1.6}
+.face-back .yo{font-size:15px;color:var(--gold);font-weight:600;line-height:1.5;margin-top:2px}
+.tap-tip{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:12.5px;font-weight:700;background:var(--gold);color:var(--navy2);padding:7px 15px;border-radius:999px;box-shadow:0 4px 10px rgba(0,0,0,.15)}
+@media(max-width:768px){.face{padding:24px 22px 64px}.viewer{height:700px}.face-front #soal{font-size:18px}.face-back .jp{font-size:18px}.face-back .yo{font-size:13px}}
+.grid-label{text-align:center;font-size:13px;color:var(--ink-soft);margin:36px 0 10px;letter-spacing:.08em}
+.grid{max-width:820px;margin:0 auto 50px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;padding:0 20px}
+.card{border:2px solid var(--navy);border-radius:12px;padding:16px 8px;cursor:pointer;transition:.2s;text-align:center;background:var(--paper)}
+.card:hover{background:var(--navy);color:#fff;transform:translateY(-4px)}
+.card.active{background:var(--navy);color:#fff;box-shadow:0 0 0 3px var(--gold)}
+.card .j{font-family:"Shippori Mincho",serif;font-size:28px;font-weight:700}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+  <a href="index.html" class="home-btn">
+    <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
+    HOME
+  </a>
+  <div class="nav-right">
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+      <div class="dropdown-menu" id="materi">
+        <a href="daftarkosakata.html">Kosakata JFT</a>
+        <a href="materitatabahasa.html">Tata Bahasa</a>
+        <a href="kanjidasar.html">Kanji Flash Card</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+      <div class="dropdown-menu" id="quiz">
+        <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+        <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+        <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+
+<div class="back-wrap"><a href="index.html" class="back-btn">← Kembali</a></div>
+
+<header>
+  <h1>Latihan Terjemahan: Byoin (Rumah Sakit)</h1>
+  <p>Sebuah cerita tentang berobat ke rumah sakit di Jepang, mulai dari merasa tidak enak badan, resepsi, bertemu dokter, sampai menebus obat dan izin tidak masuk kerja, dibagi menjadi 10 bagian. Klik huruf hiragana di bawah untuk memunculkan bagian ceritanya, lalu coba terjemahkan sendiri ke bahasa Jepang sebelum membalik kartu.</p>
+</header>
+
+<p class="hint">Klik kartu besar untuk membalik dan melihat jawaban dalam bahasa Jepang</p>
+
+<div class="viewer-wrap">
+  <div class="viewer big" id="viewer" onclick="flipCard()">
+    <div class="face face-front">
+      <span class="letter-badge" id="letterBadge"></span>
+      <div id="soal"></div>
+      <span class="tap-tip">klik untuk lihat terjemahan</span>
+    </div>
+    <div class="face face-back">
+      <div class="arti" id="arti"></div>
+      <span class="tap-tip">klik untuk kembali</span>
+    </div>
+  </div>
+</div>
+
+<div class="grid-label">Klik huruf untuk memunculkan kalimat</div>
+<div class="grid" id="letterGrid"></div>
+
+<footer style="text-align:center;padding:30px;color:var(--ink-soft);font-size:14px;">© Tekipaki Japanese Learning</footer>
+
+<script>
+const soalData = [
+ {"huruf":"あ","judul":"Merasa tidak enak badan","s":[
+  {"id":"Sejak pagi, kepala saya sakit dan badan terasa lemas.","yomi":"あさからあたまがいたくて、からだがだるいです。","jp":"朝から頭が痛くて、体がだるいです。"},
+  {"id":"Saya mengukur suhu badan, ternyata 38 derajat.","yomi":"ねつをはかったら、さんじゅうはちどありました。","jp":"熱を測ったら、三十八度ありました。"},
+  {"id":"Karena itu, saya memutuskan untuk pergi ke rumah sakit.","yomi":"だから、びょういんへいくことにしました。","jp":"だから、病院へ行くことにしました。"},
+  {"id":"Saya meminta teman asrama untuk ikut bersama saya.","yomi":"りょうのともだちにいっしょにきてもらいます。","jp":"寮の友達に一緒に来てもらいます。"}]},
+ {"huruf":"い","judul":"Di resepsi","s":[
+  {"id":"Pertama, saya pergi ke resepsi.","yomi":"まず、うけつけへいきます。","jp":"まず、受付へ行きます。"},
+  {"id":"Saya menunjukkan kartu asuransi kesehatan.","yomi":"ほけんしょうをみせます。","jp":"保険証を見せます。"},
+  {"id":"Lalu saya mengisi formulir pemeriksaan.","yomi":"それから、もんしんひょうにきにゅうします。","jp":"それから、問診票に記入します。"},
+  {"id":"Di formulir itu, saya menulis gejala dan alergi saya.","yomi":"しょうじょうやアレルギーをかきます。","jp":"症状やアレルギーを書きます。"}]},
+ {"huruf":"う","judul":"Menunggu giliran","s":[
+  {"id":"Saya menerima nomor antrean dan duduk di ruang tunggu.","yomi":"ばんごうふだをもらって、まちあいしつですわります。","jp":"番号札をもらって、待合室で座ります。"},
+  {"id":"Banyak orang yang menunggu, jadi saya harus menunggu lama.","yomi":"まっているひとがおおいので、ながくまたなければなりません。","jp":"待っている人が多いので、長く待たなければなりません。"},
+  {"id":"Kalau merasa semakin buruk, saya memberi tahu petugas.","yomi":"もっとぐあいがわるくなったら、スタッフにつたえます。","jp":"もっと具合が悪くなったら、スタッフに伝えます。"},
+  {"id":"Akhirnya, nama saya dipanggil.","yomi":"やっと、なまえをよばれました。","jp":"やっと、名前を呼ばれました。"}]},
+ {"huruf":"え","judul":"Bertemu dokter","s":[
+  {"id":"Di ruang periksa, dokter bertanya, \"Apa keluhan Anda?\"","yomi":"しんさつしつで、いしゃが「どうしましたか」とききます。","jp":"診察室で、医者が「どうしましたか」と聞きます。"},
+  {"id":"Saya menjelaskan bahwa sejak kemarin saya demam dan batuk.","yomi":"きのうからねつとせきがでているとせつめいします。","jp":"昨日から熱と咳が出ていると説明します。"},
+  {"id":"Dokter memeriksa tenggorokan dan dada saya.","yomi":"いしゃは、のどとむねをみます。","jp":"医者は、のどと胸を診ます。"},
+  {"id":"Saya menjawab pertanyaan dokter dengan perlahan.","yomi":"いしゃのしつもんに、ゆっくりこたえます。","jp":"医者の質問に、ゆっくり答えます。"}]},
+ {"huruf":"お","judul":"Pemeriksaan","s":[
+  {"id":"Dokter berkata, \"Mari kita periksa darah dulu.\"","yomi":"いしゃは「まずけつえきけんさをしましょう」といいます。","jp":"医者は「まず血液検査をしましょう」と言います。"},
+  {"id":"Perawat mengambil sedikit darah dari lengan saya.","yomi":"かんごしが、うでからすこしちをとります。","jp":"看護師が、腕から少し血を取ります。"},
+  {"id":"Setelah itu, saya difoto rontgen.","yomi":"そのあと、レントゲンをとります。","jp":"そのあと、レントゲンを撮ります。"},
+  {"id":"Hasilnya akan keluar dalam waktu sekitar tiga puluh menit.","yomi":"けっかは、さんじゅっぷんぐらいででます。","jp":"結果は、三十分ぐらいで出ます。"}]},
+ {"huruf":"か","judul":"Penjelasan dokter","s":[
+  {"id":"Dokter menjelaskan bahwa saya terkena flu.","yomi":"いしゃは、インフルエンザだとせつめいします。","jp":"医者は、インフルエンザだと説明します。"},
+  {"id":"Saya diminta beristirahat di rumah selama tiga hari.","yomi":"みっかかん、いえでやすむようにいわれます。","jp":"三日間、家で休むように言われます。"},
+  {"id":"Dokter juga berpesan agar saya banyak minum air.","yomi":"みずをたくさんのむようにともいわれます。","jp":"水をたくさん飲むようにとも言われます。"},
+  {"id":"Saya merasa lega karena penyakitnya tidak parah.","yomi":"おもいびょうきではなかったので、ほっとします。","jp":"重い病気ではなかったので、ほっとします。"}]},
+ {"huruf":"き","judul":"Menebus obat","s":[
+  {"id":"Dokter memberi saya resep.","yomi":"いしゃは、しょほうせんをだします。","jp":"医者は、処方箋を出します。"},
+  {"id":"Saya membawanya ke apotek di dekat rumah sakit.","yomi":"それを、びょういんのちかくのやっきょくへもっていきます。","jp":"それを、病院の近くの薬局へ持って行きます。"},
+  {"id":"Apoteker menjelaskan cara minum obat dengan teliti.","yomi":"やくざいしは、くすりののみかたをていねいにせつめいします。","jp":"薬剤師は、薬の飲み方を丁寧に説明します。"},
+  {"id":"Saya membayar biaya pemeriksaan dan obat.","yomi":"しんさつだいとくすりだいをはらいます。","jp":"診察代と薬代を払います。"}]},
+ {"huruf":"く","judul":"Cara minum obat","s":[
+  {"id":"Obatnya diminum tiga kali sehari, setelah makan.","yomi":"くすりは、いちにちさんかい、しょくごにのみます。","jp":"薬は、一日三回、食後に飲みます。"},
+  {"id":"Kalau diminum saat perut kosong, perut bisa menjadi sakit.","yomi":"おなかがすいているときにのむと、いがいたくなることがあります。","jp":"お腹が空いている時に飲むと、胃が痛くなることがあります。"},
+  {"id":"Walaupun sudah merasa sehat, saya harus menghabiskan obatnya.","yomi":"げんきになっても、くすりはぜんぶのまなければなりません。","jp":"元気になっても、薬は全部飲まなければなりません。"},
+  {"id":"Kalau muncul efek samping, saya segera menghubungi apotek.","yomi":"ふくさようがでたら、すぐにやっきょくにれんらくします。","jp":"副作用が出たら、すぐに薬局に連絡します。"}]},
+ {"huruf":"け","judul":"Izin tidak masuk kerja","s":[
+  {"id":"Saya menelepon atasan untuk memberi tahu bahwa saya sakit.","yomi":"じょうしにでんわして、びょうきだとつたえます。","jp":"上司に電話して、病気だと伝えます。"},
+  {"id":"Saya meminta izin untuk tidak masuk kerja selama tiga hari.","yomi":"みっかかん、しごとをやすみたいとおねがいします。","jp":"三日間、仕事を休みたいとお願いします。"},
+  {"id":"Atasan berkata, \"Istirahatlah dengan baik.\"","yomi":"じょうしは「ゆっくりやすんでください」といいます。","jp":"上司は「ゆっくり休んでください」と言います。"},
+  {"id":"Saya meminta maaf karena merepotkan rekan-rekan kerja.","yomi":"どうりょうにめいわくをかけて、すみませんとあやまります。","jp":"同僚に迷惑をかけて、すみませんと謝ります。"}]},
+ {"huruf":"こ","judul":"Pulih kembali","s":[
+  {"id":"Setelah beristirahat, demam saya turun.","yomi":"やすんだので、ねつがさがりました。","jp":"休んだので、熱が下がりました。"},
+  {"id":"Saya sudah bisa makan dengan enak lagi.","yomi":"ごはんがおいしくたべられるようになりました。","jp":"ご飯がおいしく食べられるようになりました。"},
+  {"id":"Untuk mencegah flu, saya akan sering mencuci tangan dan berkumur.","yomi":"インフルエンザをふせぐために、よくてをあらって、うがいをします。","jp":"インフルエンザを防ぐために、よく手を洗って、うがいをします。"},
+  {"id":"Dalam bekerja, kesehatan adalah hal yang paling penting.","yomi":"しごとでは、けんこうがいちばんたいせつです。","jp":"仕事では、健康が一番大切です。"}]}
+];
+
+const gridEl = document.getElementById("letterGrid");
+soalData.forEach(function(item, index){
+  const card = document.createElement("div");
+  card.className = "card" + (index === 0 ? " active" : "");
+  card.innerHTML = '<div class="j">' + item.huruf + '</div>';
+  card.onclick = function(){ show(index, card); };
+  gridEl.appendChild(card);
+});
+
+function show(index, el){
+  const viewer = document.getElementById("viewer");
+  const data = soalData[index];
+  document.getElementById("letterBadge").textContent = data.huruf;
+  document.getElementById("soal").innerHTML = '<div class="judul">' + data.judul + '</div>' + data.s.map(x => "<p>" + x.id + "</p>").join("");
+  document.getElementById("arti").innerHTML = data.s.map(x => '<div class="pair"><div class="jp">' + x.jp + '</div><div class="yo">' + x.yomi + '</div></div>').join("");
+  viewer.classList.remove("flipped");
+  viewer.classList.remove("big");
+  void viewer.offsetWidth;
+  viewer.classList.add("big");
+  document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+  if(el){ el.classList.add("active"); }
+}
+
+show(0, gridEl.firstChild);
+
+function flipCard(){ document.getElementById("viewer").classList.toggle("flipped"); }
+
+function toggleDropdown(id){
+  document.querySelectorAll(".dropdown-menu").forEach(function(m){ if(m.id !== id){ m.classList.remove("show"); } });
+  document.getElementById(id).classList.toggle("show");
+}
+document.addEventListener("click", function(e){
+  if(!e.target.closest(".dropdown")){
+    document.querySelectorAll(".dropdown-menu").forEach(function(m){ m.classList.remove("show"); });
+  }
+});
+</script>
+</body>
+</html>
