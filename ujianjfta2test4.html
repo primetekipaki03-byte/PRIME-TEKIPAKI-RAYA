@@ -6,7 +6,7 @@
 <meta name="googlebot" content="notranslate">
 <meta http-equiv="Content-Language" content="id">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kuis Evaluasi · Tata Bahasa JLPT N5 — Tekipaki Japanese Learning</title>
+<title>Kuis Evaluasi · Tata Bahasa JLPT N4 — Tekipaki Japanese Learning</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -19,21 +19,40 @@ h1,h2,h3{font-family:"Shippori Mincho",serif}
 .mono{font-family:"JetBrains Mono",monospace}
 
 /* NAVBAR */
-#navbar{position:sticky;top:0;z-index:999;background:var(--navy2);border-bottom:2px solid rgba(224,181,42,.3);box-shadow:0 4px 14px rgba(0,0,0,.25)}
-.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:8px 20px;gap:10px;min-height:64px;flex-wrap:wrap}
-.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy2);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold}
+#navbar{position:sticky;top:0;z-index:999;background:#001530;border-bottom:2px solid rgba(224,181,42,.3);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:8px 20px;flex-wrap:wrap;gap:10px;min-height:64px}
+.nav-left{display:flex;align-items:center;flex-shrink:0}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy2);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;white-space:nowrap}
 .home-btn:hover{opacity:.85}
-.home-icon{width:22px;height:22px}
-.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.dropdown{position:relative}
+.home-icon{width:22px;height:22px;flex:none}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.dropdown{position:relative;flex-shrink:0;z-index:1}
 .dropdown.open{z-index:20}
-.dropdown-btn{background:transparent;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-family:inherit;font-weight:bold;cursor:pointer;white-space:nowrap}
+.dropdown-btn{display:flex;align-items:center;justify-content:center;background:transparent;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-family:inherit;font-weight:bold;cursor:pointer;white-space:nowrap}
 .dropdown-btn:hover,.dropdown.open .dropdown-btn{background:var(--gold);color:var(--navy2)}
-.dropdown-menu{display:none;position:absolute;top:calc(100% + 7px);right:0;width:max-content;min-width:220px;max-width:calc(100vw - 20px);background:#1f4577;border:1px solid rgba(224,181,42,.35);border-radius:10px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.35)}
+.dropdown-menu{display:none;position:absolute;top:calc(100% + 7px);left:0;width:max-content;min-width:220px;max-width:calc(100vw - 20px);background:#1f4577;border:1px solid rgba(224,181,42,.35);border-radius:10px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.35)}
 .dropdown-menu.show{display:block}
+.dropdown-menu.align-right{left:auto;right:0}
 .dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none;white-space:nowrap}
 .dropdown-menu a:hover{background:var(--gold);color:var(--navy2)}
-@media(max-width:700px){.dropdown-btn{font-size:.78rem;padding:7px 10px}}
+.burger-btn{display:none;flex:none;width:42px;height:42px;border:2px solid var(--gold);border-radius:9px;background:transparent;cursor:pointer;align-items:center;justify-content:center;gap:4px;flex-direction:column}
+.burger-btn span{display:block;width:20px;height:2px;background:var(--gold);border-radius:2px;transition:.25s ease}
+.burger-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger-btn.open span:nth-child(2){opacity:0}
+.burger-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,10,25,.5);z-index:998}
+.nav-overlay.show{display:block}
+@media(max-width:1000px){
+  .navbar-inner{flex-wrap:nowrap;padding:10px 14px;gap:10px}
+  .burger-btn{display:flex}
+  .nav-right{position:fixed;top:0;right:0;height:100vh;width:min(78vw,320px);background:var(--navy2);flex-direction:column;align-items:stretch;justify-content:flex-start;gap:10px;padding:78px 18px 24px;transform:translateX(100%);transition:transform .28s ease;z-index:999;overflow-y:auto;box-shadow:-8px 0 30px rgba(0,0,0,.4)}
+  .nav-right.mobileOpen{transform:translateX(0)}
+  .dropdown{width:100%}
+  .dropdown-btn{width:100%;justify-content:space-between;font-size:.85rem;padding:12px 14px}
+  .dropdown-menu{position:static;width:100%;min-width:0;max-width:none;margin-top:6px;box-shadow:none}
+  .dropdown-menu a{padding:11px 14px;font-size:.85rem}
+}
+@media(max-width:760px){.nav-right{width:82vw}}
 
 /* TIMER (sticky) */
 #timerBar{display:none;position:sticky;top:64px;z-index:900;background:var(--navy);color:#fff;border-bottom:2px solid var(--gold);display:flex;justify-content:center;align-items:center;gap:12px;padding:8px 14px;font-size:.85rem}
@@ -46,7 +65,7 @@ h1,h2,h3{font-family:"Shippori Mincho",serif}
 /* HERO */
 .hero{position:relative;background:radial-gradient(120% 140% at 15% -10%,var(--navy3),var(--navy) 55%,var(--navy2) 100%);color:#fff;padding:40px 20px 54px;overflow:hidden;border-bottom:3px solid var(--gold)}
 .hero-kanji{position:absolute;font-family:"Shippori Mincho",serif;font-size:min(48vw,420px);font-weight:800;color:rgba(224,181,42,.06);top:50%;right:-4%;transform:translateY(-50%);line-height:1;pointer-events:none;user-select:none}
-.hero-inner{position:relative;z-index:2;max-width:900px;margin:0 auto}
+.hero-inner{position:relative;z-index:2;max-width:780px;margin:0 auto}
 .eyebrow{font-family:"JetBrains Mono",monospace;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-size:.78rem;margin-bottom:14px;display:flex;align-items:center;gap:10px}
 .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
 .hero h1{font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.3;margin-bottom:10px}
@@ -118,6 +137,7 @@ h1,h2,h3{font-family:"Shippori Mincho",serif}
 .lockMsg.show{display:block}
 .optNo{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;margin-right:10px;border:1.5px solid var(--navy);border-radius:50%;font-family:"JetBrains Mono",monospace;font-size:.75rem;font-weight:700;color:var(--navy)}
 .star{color:var(--seal);font-weight:800;border:1.5px solid var(--seal);border-radius:6px;padding:0 6px;margin:0 2px}
+.qText u{text-decoration-thickness:2px;text-underline-offset:6px}
 .passage{font-family:"Shippori Mincho",serif;font-size:1.08rem;line-height:2.1;color:var(--navy);background:#fff;border:2px solid var(--navy);border-radius:14px;padding:20px 22px;margin:0 0 18px}
 .passage u{text-decoration:none;font-weight:700;color:var(--seal);border-bottom:2px solid var(--seal);padding:0 3px}
 .passLabel{font-size:.88rem;color:var(--ink-soft);margin:26px 0 12px;padding-left:12px;border-left:3px solid var(--gold);line-height:1.6}
@@ -128,11 +148,25 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
 
 <nav id="navbar">
 <div class="navbar-inner">
-  <a href="index.html" class="home-btn">
-    <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
-    HOME
-  </a>
-  <div class="nav-right">
+  <div class="nav-left">
+    <a href="index.html" class="home-btn">
+      <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
+      HOME
+    </a>
+  </div>
+
+  <button class="burger-btn" id="burgerBtn" type="button" aria-label="Buka menu" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="nav-right" id="navRight">
+    <div class="dropdown">
+      <button class="dropdown-btn" type="button" onclick="toggleDropdown('learningDropdown')">TEKIPAKI LEARNING ▼</button>
+      <div class="dropdown-menu" id="learningDropdown">
+        <a href="guru.html">GURU</a>
+        <a href="elearning.html">SISWA</a>
+      </div>
+    </div>
     <div class="dropdown">
       <button class="dropdown-btn" type="button" onclick="toggleDropdown('materiDropdown')">MATERI ▼</button>
       <div class="dropdown-menu" id="materiDropdown">
@@ -142,13 +176,28 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
       </div>
     </div>
     <div class="dropdown">
-      <button class="dropdown-btn" type="button" onclick="toggleDropdown('quizDropdown')">QUIZ ▼</button>
+      <button class="dropdown-btn" type="button" onclick="toggleDropdown('quizDropdown')">QUIZ JFT ▼</button>
       <div class="dropdown-menu" id="quizDropdown">
-        <a href="ujianjfta1test1.html">SOAL JFT A — TEST 1</a>
+        <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+        <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+        <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+        <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+        <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-btn" type="button" onclick="toggleDropdown('kanjiQuizDropdown')">QUIZ KANJI ▼</button>
+      <div class="dropdown-menu" id="kanjiQuizDropdown">
         <a href="quizkanji1.html">QUIZ KANJI 1</a>
+        <a href="quizkanji2.html">QUIZ KANJI 2</a>
+        <a href="quizkanji3.html">QUIZ KANJI 3</a>
+        <a href="quizkanji4.html">QUIZ KANJI 4</a>
+        <a href="quizkanji5.html">QUIZ KANJI 5</a>
       </div>
     </div>
   </div>
+
+  <div class="nav-overlay" id="navOverlay" onclick="closeMobileNav()"></div>
 </div>
 </nav>
 
@@ -158,11 +207,11 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
 </div>
 
 <section class="hero">
-  <div class="hero-kanji" aria-hidden="true">文</div>
+  <div class="hero-kanji" aria-hidden="true">法</div>
   <div class="hero-inner">
-    <div class="eyebrow"><span class="dot"></span> N5 N4 · TATA BAHASA · KUIS EVALUASI</div>
+    <div class="eyebrow"><span class="dot"></span> N4 · TATA BAHASA · KUIS EVALUASI</div>
     <h1>Kuis <span>Evaluasi</span></h1>
-    <p>Uji pemahamanmu tentang pola dasar tata bahasa N5 & N4. Kuis ini terdiri dari <b style="color:#fff;">60 soal format JLPT N5 (文法)</b> dengan waktu pengerjaan <b style="color:#fff;">60 menit</b>.</p>
+    <p>Uji pemahamanmu tentang pola tata bahasa N4. Kuis ini terdiri dari <b style="color:#fff;">60 soal format JLPT N4 (文法)</b> dengan waktu pengerjaan <b style="color:#fff;">60 menit</b>.</p>
   </div>
 </section>
 
@@ -172,8 +221,8 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
 
   <div class="section-head">
     <div class="stamp-mini">問</div>
-    <h2>Kuis Evaluasi · Tata Bahasa JLPT N5</h2>
-    <span class="jp">N5文法・評価クイズ</span>
+    <h2>Kuis Evaluasi · Tata Bahasa JLPT N4</h2>
+    <span class="jp">N4文法・評価クイズ</span>
   </div>
 
   <div class="infoNote">
@@ -230,94 +279,127 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
 <footer>© Tekipaki Japanese Learning</footer>
 
 <script>
-/* ===== NAVBAR DROPDOWN ===== */
+/* ===== NAVBAR: DROPDOWN + BURGER MOBILE ===== */
+function toggleMobileNav(){
+  var nav = document.getElementById("navRight");
+  var btn = document.getElementById("burgerBtn");
+  var overlay = document.getElementById("navOverlay");
+  if(nav.classList.contains("mobileOpen")){
+    closeMobileNav();
+  }else{
+    nav.classList.add("mobileOpen");
+    btn.classList.add("open");
+    overlay.classList.add("show");
+    document.body.style.overflow = "hidden";
+  }
+}
+function closeDropdowns(){
+  document.querySelectorAll(".dropdown-menu").forEach(function(m){ m.classList.remove("show"); m.classList.remove("align-right"); });
+  document.querySelectorAll(".dropdown").forEach(function(d){ d.classList.remove("open"); });
+}
+function closeMobileNav(){
+  document.getElementById("navRight").classList.remove("mobileOpen");
+  document.getElementById("burgerBtn").classList.remove("open");
+  document.getElementById("navOverlay").classList.remove("show");
+  document.body.style.overflow = "";
+  closeDropdowns();
+}
 function toggleDropdown(id){
   document.querySelectorAll(".dropdown-menu").forEach(function(m){
-    if(m.id !== id){ m.classList.remove("show"); m.closest(".dropdown").classList.remove("open"); }
+    if(m.id !== id){ m.classList.remove("show"); m.classList.remove("align-right"); m.closest(".dropdown").classList.remove("open"); }
   });
   var menu = document.getElementById(id);
-  var open = menu.classList.toggle("show");
-  menu.closest(".dropdown").classList.toggle("open", open);
+  if(!menu) return;
+  var parent = menu.closest(".dropdown");
+  if(menu.classList.contains("show")){
+    menu.classList.remove("show"); menu.classList.remove("align-right"); parent.classList.remove("open");
+    return;
+  }
+  menu.classList.add("show"); parent.classList.add("open");
+  menu.classList.remove("align-right");
+  var r = menu.getBoundingClientRect();
+  if(r.right > window.innerWidth - 10){ menu.classList.add("align-right"); }
+  if(r.left < 10){ menu.classList.remove("align-right"); }
 }
 document.addEventListener("click", function(e){
-  if(!e.target.closest(".dropdown")){
-    document.querySelectorAll(".dropdown-menu").forEach(function(m){ m.classList.remove("show"); });
-    document.querySelectorAll(".dropdown").forEach(function(d){ d.classList.remove("open"); });
-  }
+  if(!e.target.closest(".dropdown")){ closeDropdowns(); }
+});
+window.addEventListener("resize", function(){
+  if(window.innerWidth > 1000){ closeMobileNav(); } else { closeDropdowns(); }
 });
 
 /* ===== KONFIGURASI KUIS ===== */
 var QUIZ = [
-  ["私は毎朝コーヒー（　）飲みます。","が","を","に","で",1,"Partikel を menandai objek langsung kata kerja."],
-  ["明日、友達（　）会います。","を","で","に","へ",2,"会う (bertemu) memakai に untuk orang yang ditemui."],
-  ["図書館（　）本を読みます。","で","を","が","の",0,"Partikel で menunjukkan tempat kegiatan berlangsung."],
-  ["私は日本へ行き（　）です。","ます","たい","たく","ない",1,"V(stem)+たいです = ingin melakukan sesuatu."],
-  ["今、ご飯を食べ（　）。","ています","ました","ません","ましょう",0,"V-て+います = sedang melakukan (kegiatan berlangsung)."],
-  ["ちょっと待っ（　）ください。","ます","た","て","ない",2,"V-て+ください = permintaan sopan."],
-  ["「駅は（　）ですか。」「あそこです。」","どこ","だれ","いつ","何",0,"どこ dipakai untuk menanyakan tempat."],
-  ["机の上に本（　）あります。","で","を","が","の",2,"Keberadaan benda mati: Tempat に + Benda が あります."],
-  ["私は肉（　）好きです。","を","が","に","で",1,"好き memakai partikel が untuk hal yang disukai."],
-  ["私はバス（　）会社へ行きます。","に","を","が","で",3,"で menunjukkan alat/sarana transportasi."],
-  ["昨日は学校へ行き（　）。","ません","ませんでした","ました","ましょう",1,"Bentuk negatif lampau: 行きませんでした (tidak pergi)."],
-  ["このペンを使っ（　）いいですか。","ても","ては","ないで","たら",0,"V-て+も いいですか = bolehkah (meminta izin)."],
-  ["ここで写真を撮っ（　）いけません。","ても","ては","たら","ないで",1,"V-て+は いけません = dilarang."],
-  ["寝る（　）、歯をみがきます。","ながら","あとで","ために","前に",3,"V(kamus)+前に = sebelum melakukan ～."],
-  ["ご飯を食べた（　）、テレビを見ます。","前に","あとで","ながら","ために",1,"V-た+あとで = setelah melakukan ～."],
-  ["音楽を聞き（　）勉強します。","ながら","ために","あとで","前に",0,"V(stem)+ながら = sambil melakukan ～."],
-  ["雨が降っています（　）、出かけません。","まで","から","でも","より",1,"から menyatakan alasan: karena ～."],
-  ["朝から晩（　）働きます。","より","でも","しか","まで",3,"～から～まで = dari ～ sampai ～."],
-  ["東京は大阪（　）大きいです。","から","まで","より","で",2,"A は B より ～ = A lebih ～ daripada B."],
-  ["果物の中（　）りんごがいちばん好きです。","に","で","を","へ",1,"～の中で いちばん = yang paling di antara ～."],
-  ["私は毎日、七時（　）起きます。","で","に","を","へ",1,"に menunjukkan titik waktu tertentu."],
-  ["昨日は寒く（　）。","ありません","ありませんでした","ないでした","なかったでした",1,"い-adj negatif lampau: ～くありませんでした."],
-  ["きれい（　）花ですね。","な","の","い","に",0,"な-adj + kata benda memakai な: きれいな花."],
-  ["ここで走ら（　）ください。","なくて","ないで","ないに","なかった",1,"V-ない形+でください = tolong jangan ～."],
-  ["「これは（　）ですか。」「本です。」","だれ","どこ","何","いつ",2,"何 (なん/なに) menanyakan benda."],
-  ["「（　）が来ましたか。」「田中さんです。」","何","どこ","だれ","いつ",2,"だれ menanyakan orang."],
-  ["あなたの誕生日は（　）ですか。","どこ","いつ","だれ","何",1,"いつ menanyakan waktu/tanggal."],
-  ["「りんごは（　）ですか。」「百円です。」","いくつ","いくら","いつ","どこ",1,"いくら menanyakan harga."],
-  ["「りんごを（　）買いましたか。」「三つです。」","いくら","いつ","いくつ","だれ",2,"いくつ menanyakan jumlah benda."],
-  ["明日は雨が降る（　）思います。","が","を","に","と",3,"～と思います = saya kira/pikir bahwa ～."],
-  ["私は泳ぐ（　）できます。","ことが","ことを","のに","ものが",0,"V(kamus)+ことができます = bisa melakukan ～."],
-  ["私は日本へ行った（　）あります。","ことを","のが","ことが","ものが",2,"V-た+ことがあります = pernah melakukan ～."],
-  ["宿題をし（　）なりません。","なくても","ないで","なかった","なければ",3,"V-ない+なければなりません = harus ～."],
-  ["明日は来（　）いいです。","なければ","なくても","ないで","なかった",1,"V-ない+くてもいいです = tidak perlu ～."],
-  ["私は新しい車（　）ほしいです。","を","に","で","が",3,"ほしい memakai が: 車がほしい (ingin mobil)."],
-  ["明日は雨が降る（　）。","ましょう","たいです","でしょう","ください",2,"～でしょう = mungkin/kira-kira ～ (perkiraan)."],
-  ["このラーメンはおいしい（　）、高いです。","が","を","に","で",0,"が di sini berarti 'tetapi' (menghubungkan kalimat)."],
-  ["私の部屋はきれい（　）ありません。","が","を","じゃ","に",2,"な-adj/kata benda negatif: ～じゃありません."],
-  ["昨日は雨（　）。","です","ます","でしょう","でした",3,"Kata benda bentuk lampau: ～でした."],
-  ["「もう昼ご飯を食べましたか。」「いいえ、（　）食べていません。」","もう","まだ","よく","とても",1,"まだ ～ていません = belum ～."],
-  ["田中さんは　＿＿＿　＿＿＿　★　＿＿＿。","会社へ","行きます","毎日","バスで",0,"Susunan benar: 毎日 → バスで → <b>会社へ</b> → 行きます. (田中さんは毎日バスで会社へ行きます。) ★ = 会社へ."],
-  ["私は　＿＿＿　★　＿＿＿　＿＿＿。","見に","映画を","友達と","行きました",1,"Susunan benar: 友達と → <b>映画を</b> → 見に → 行きました. ★ = 映画を."],
-  ["私は　＿＿＿　＿＿＿　★　＿＿＿。","たいです","日本へ","夏休みに","行き",3,"Susunan benar: 夏休みに → 日本へ → <b>行き</b> → たいです (V-stem+たいです). ★ = 行き."],
-  ["すみません、＿＿＿　＿＿＿　★　＿＿＿。","ください","窓を","開けて","ちょっと",2,"Susunan benar: ちょっと → 窓を → <b>開けて</b> → ください (V-て+ください). ★ = 開けて."],
-  ["田中さんは　＿＿＿　＿＿＿　★　＿＿＿。","ことが","できます","話す","日本語を",0,"Susunan benar: 日本語を → 話す → <b>ことが</b> → できます (V-kamus+ことができます). ★ = ことが."],
-  ["東京は　＿＿＿　★　＿＿＿　＿＿＿。","多い","です","大阪より","人が",3,"Susunan benar: 大阪より → <b>人が</b> → 多い → です (A は B より ～). ★ = 人が."],
-  ["私は　＿＿＿　＿＿＿　＿＿＿　★。","宿題を","します","聞きながら","音楽を",1,"Susunan benar: 音楽を → 聞きながら → 宿題を → <b>します</b> (V-stem+ながら = sambil). ★ = します."],
-  ["手を　＿＿＿　★　＿＿＿　＿＿＿。","洗って","食べます","ご飯を","から",3,"Susunan benar: 洗って → <b>から</b> → ご飯を → 食べます (V-て+から = setelah ～). ★ = から."],
-  ["私は　＿＿＿　＿＿＿　★　＿＿＿。","いちばん","好きです","りんごが","果物の中で",0,"Susunan benar: 果物の中で → りんごが → <b>いちばん</b> → 好きです. ★ = いちばん."],
-  ["弟は　＿＿＿　＿＿＿　★　＿＿＿。","今","勉強して","います","部屋で",1,"Susunan benar: 今 → 部屋で → <b>勉強して</b> → います (V-て+います = sedang). ★ = 勉強して."],
-  ["（１）","と","を","に","が",0,"友だち<b>と</b>図書館へ行きました = pergi bersama teman (と = bersama)."],
-  ["（２）","を","で","が","の",1,"図書館<b>で</b>本を借りました = tempat berlangsungnya kegiatan memakai で."],
-  ["（３）","を","で","に","が",2,"喫茶店<b>に</b>入りました = masuk ke kafe; 入る memakai に."],
-  ["（４）","は","に","で","へ",0,"友だち<b>は</b>紅茶を飲みました = penanda topik/kontras (teman minum teh)."],
-  ["（５）","ます","です","でした","ません",1,"楽しかっ<b>たです</b>: い-adj lampau + です (楽しかったです)."],
-  ["（６）","でも","だから","そして","しかし",1,"Besok ada tes, <b>だから</b> (karena itu) tidur lebih awal: konjungsi sebab-akibat."],
-  ["（７）","から","まで","より","でも",0,"食べて<b>から</b>来てください = V-て+から (setelah ～)."],
-  ["（８）","も","を","は","が",2,"使って<b>は</b>いけません = V-て+はいけません (dilarang)."],
-  ["（９）","前に","あとで","ながら","ために",1,"終わった<b>あとで</b> = V-た+あとで (setelah ～)."],
-  ["（１０）","ませんか","ましたか","ませんでした","たいです",0,"食べ<b>ませんか</b> = V-ませんか (mengajak dengan sopan)."]
+  ["来年から 日本で 働く（　）しました。","ために","ことに","ところに","ように",1,"V-る+ことにする = memutuskan (atas kehendak sendiri)."],
+  ["あしたは 試験ですから、今晩は 早く 寝（　）。","てみます","ています","てしまいます","ておきます",3,"V-て+おく = melakukan lebih dulu sebagai persiapan."],
+  ["電車の 中に かさを 忘れ（　）。","てしまいました","てみました","ておきました","てあげました",0,"V-て+しまう = terlanjur/tanpa sengaja (ada penyesalan)."],
+  ["この 本は 字が 小さくて 読み（　）。","やすいです","そうです","にくいです","すぎます",2,"V-ます+にくい = sulit dilakukan."],
+  ["きのう 買った（　）なのに、もう こわれました。","ところ","はず","ばかり","つもり",2,"V-た+ばかり = baru saja melakukan."],
+  ["先生は 来週 日本へ（　）。","いらっしゃいます","まいります","いたします","もうします",0,"Untuk guru dipakai sonkeigo: いらっしゃいます."],
+  ["わたしが 先生の かばんを お持ち（　）。","になります","なさいます","ください","します",3,"お+V+する = kenjōgo (merendahkan diri): お持ちします."],
+  ["電車の 中で 隣の 人に 足を 踏ま（　）。","せました","れました","させました","ました",1,"Pasif: 踏む → 踏まれる (kakiku diinjak orang)."],
+  ["先生は 学生に 本を 読ま（　）。","せました","れました","させました","せられました",0,"Kausatif: 読む → 読ませる (menyuruh membaca)."],
+  ["この くすりを 飲め（　）、すぐ 治りますよ。","て","も","ば","と",2,"Bentuk ば untuk kondisi: 飲めば (kalau diminum)."],
+  ["ボタンを 押す（　）、ドアが 開きます。","のに","と","より","ので",1,"V-る+と = jika/begitu ～ maka (hasil otomatis)."],
+  ["もし 雨が 降っ（　）、試合は 中止です。","のに","ので","ながら","たら",3,"もし～たら = jika."],
+  ["毎朝 6時に 起きる（　）に して います。","こと","もの","ところ","よう",3,"V-る+ようにしている = berusaha membiasakan."],
+  ["先生に 会う（　）、駅へ 行きました。","ことに","ために","ところに","ように",1,"V-る+ために = untuk tujuan ～."],
+  ["風邪を ひか（　）、手を 洗って ください。","ないで","ないために","ないように","なくても",2,"V-ない+ように = agar tidak ～."],
+  ["あの 子は 泣き（　）顔を して います。","そうな","ような","らしい","ばかりの",0,"V-ます+そうな = tampak akan ～ (kesan visual)."],
+  ["天気予報に よる（　）、明日は 雪だ そうです。","ても","と","ば","のに",1,"～によると～そうです = menurut ～ katanya ～."],
+  ["部屋の 電気が ついて いるから、田中さんは まだ いる（　）です。","ところです","ことです","ばかりです","ようです",3,"～ようです = tampaknya (dugaan dari bukti)."],
+  ["今 勉強して いる（　）ですから、静かに して ください。","ところ","はず","つもり","ばかり",0,"V-ている+ところ = sedang melakukan."],
+  ["弟は ゲーム（　）して いて、宿題を しません。","しか","だけの","ばかり","ほど",2,"～ばかり = hanya/terus-menerus melakukan ～."],
+  ["頭が 痛い（　）、会社を 休みました。","ながら","ても","ので","のに",2,"ので = karena (alasan)."],
+  ["この 店は 高い（　）、味は あまり よくないです。","けれど","ために","ので","から",0,"けれど = tetapi."],
+  ["田中さんは 漢字が 100個（　）。","書かれます","書かせます","書きます","書けます",3,"Bentuk potensial: 書く → 書ける (bisa menulis)."],
+  ["友達が 駅まで 送って（　）。","やりました","くれました","あげました","もらいました",1,"V-て+くれる = orang lain melakukan untuk saya."],
+  ["わたしは 田中さんに 本を 貸して（　）。","あげました","やりました","くれました","もらいました",0,"V-て+あげる = saya melakukan untuk orang lain."],
+  ["兄に 自転車を 直して（　）。","あげました","やりました","もらいました","くれました",2,"～に V-て+もらう = menerima bantuan dari ～."],
+  ["先生は 学生に「静かに（　）。」と 言いました。","します","しなさい","しません","しました",1,"V-なさい = perintah halus (guru ke murid)."],
+  ["彼は 来る（　）ですが、まだ 来ません。","こと","もの","ところ","はず",3,"V-る+はず = seharusnya ～."],
+  ["雨が 降る（　）しれません。かさを 持って 行きましょう。","だけ","かな","でも","かも",3,"～かもしれない = mungkin ～."],
+  ["来週の パーティーに 行く（　）です。","ばかり","つもり","ところ","はず",1,"V-る+つもり = berniat ～."],
+  ["手を 洗わない（　）、ご飯を 食べました。","ば","て","で","と",2,"V-ない+で = tanpa melakukan ～."],
+  ["わたしが 買い物を して いる（　）、子どもは ずっと 寝て いました。","あいだ","とき","まま","ながら",0,"～あいだ = selama ～ berlangsung."],
+  ["窓を 開けた（　）、寝て しまいました。","ながら","まま","あいだ","ところ",1,"V-た+まま = dalam keadaan tetap ～."],
+  ["この 店の ラーメンは 安く（　）、おいしいです。","に","で","と","て",3,"い-adj: く+て untuk menyambung kalimat."],
+  ["駅まで 歩く より、バスに 乗る（　）が 早いです。","ほう","ところ","こと","もの",0,"AよりBのほうが ～ = B lebih ～ daripada A."],
+  ["彼ほど 英語が 上手（　）人は いません。","で","に","な","の",2,"な-adj + kata benda: 上手な人."],
+  ["先生は もう お帰りに（　）。","しました","いたしました","なりました","なさいました",2,"お+V+になる = sonkeigo: お帰りになりました."],
+  ["今から お客様に ご説明（　）。","いたします","くださいます","いらっしゃいます","なさいます",0,"ご+N+いたします = kenjōgo (merendahkan diri)."],
+  ["毎日 練習して いる（　）、まだ 上手に なりません。","ために","ので","から","のに",3,"のに = padahal ～ (hasil di luar harapan)."],
+  ["遅れて（　）、すみません。","あって","しまって","おいて","みて",1,"V-て+しまって = terlanjur (permintaan maaf)."],
+  ["山田「週末は 何を しますか。」田中「＿＿＿　＿＿＿　★　＿＿＿　つもりです。」","行く","泳ぎに","天気が よければ","海へ",1,"Susunan benar: 天気が よければ → 海へ → <b>泳ぎに</b> → 行く. ★ = 泳ぎに."],
+  ["来月から　＿＿＿　＿＿＿　★　＿＿＿　なりました。","支店で","ことに","大阪の","働く",3,"Susunan benar: 大阪の → 支店で → <b>働く</b> → ことに. ★ = 働く."],
+  ["後ろの 人にも　＿＿＿　＿＿＿　★　＿＿＿　話して ください。","大きな","ように","声で","聞こえる",0,"Susunan benar: 聞こえる → ように → <b>大きな</b> → 声で. ★ = 大きな."],
+  ["友達の 話では、＿＿＿　＿＿＿　★　＿＿＿　そうです。","あの 店の","おいしい","安くて","ケーキは",2,"Susunan benar: あの 店の → ケーキは → <b>安くて</b> → おいしい. ★ = 安くて."],
+  ["A「顔色が 悪いですよ。」B「ええ、昨日　＿＿＿　＿＿＿　★　＿＿＿　痛く なりました。」","おなかが","ケーキを","すぎて","食べ",2,"Susunan benar: ケーキを → 食べ → <b>すぎて</b> → おなかが. ★ = すぎて."],
+  ["私は　＿＿＿　＿＿＿　★　＿＿＿　困りました。","足を","電車の 中で","隣の 人に","踏まれて",0,"Susunan benar: 電車の 中で → 隣の 人に → <b>足を</b> → 踏まれて. ★ = 足を."],
+  ["私は　＿＿＿　＿＿＿　★　＿＿＿　ました。","引っ越しを","もらい","友達に","手伝って",3,"Susunan benar: 友達に → 引っ越しを → <b>手伝って</b> → もらい. ★ = 手伝って."],
+  ["A「この 仕事は 難しいですね。」B「＿＿＿　＿＿＿　★　＿＿＿　ますよ。」","終わり","すぐ","やれば","みんなで",1,"Susunan benar: みんなで → やれば → <b>すぐ</b> → 終わり. ★ = すぐ."],
+  ["A「宿題は？」B「すみません、＿＿＿　＿＿＿　★　＿＿＿　しまいました。」","置いて","家に","きて","宿題を",0,"Susunan benar: 宿題を → 家に → <b>置いて</b> → きて (～てきてしまう). ★ = 置いて."],
+  ["もし 宝くじに　＿＿＿　＿＿＿　★　＿＿＿　たいです。","世界中を","当たったら","旅行","し",2,"Susunan benar: 当たったら → 世界中を → <b>旅行</b> → し. ★ = 旅行."],
+  ["（１）","作る つもりです","作って みました","作って しまいます","作る ところです",1,"初めて ケーキを 作って <b>みました</b> = mencoba membuat untuk pertama kali (V-てみる)."],
+  ["（２）","やすい","にくい","そうな","すぎた",3,"さとうを 入れ<b>すぎた</b>からです = karena kebanyakan gula (V-すぎる)."],
+  ["（３）","くれました","あげました","もらいました","おきました",0,"食べて<b>くれました</b> = (teman) memakannya untuk saya (V-てくれる)."],
+  ["（４）","たとえば","それに","だから","でも",2,"Alasan → akibat: senang, <b>だから</b> (karena itu) ingin berlatih terus."],
+  ["（５）","ところ","はず","こと","ほう",2,"する<b>ことに</b>しました = memutuskan untuk ～."],
+  ["（６）","に","を","で","と",0,"10時<b>に</b>始まる = titik waktu memakai に."],
+  ["（７）","なさいました","いたしました","くださいました","なりました",3,"変更に<b>なりました</b> = menjadi/berubah (N に なる)."],
+  ["（８）","いくつ","いかが","どうして","どの",1,"ご都合は<b>いかが</b>でしょうか = bagaimana jadwal Anda? (sopan)."],
+  ["（９）","場合は","うちに","ために","ばかり",0,"都合が悪い<b>場合は</b> = jika tidak sempat."],
+  ["（１０）","なさいます","くださいます","いたします","いらっしゃいます",2,"お送り<b>いたします</b> = kenjōgo (saya akan mengirim)."]
 ];
 
-/* Bagian soal (gaya JLPT): 'at' = nomor urut soal (mulai 0) tempat blok ini muncul */
+/* Bagian soal: 'at' = nomor urut soal (mulai 0) */
 var BLOCKS = [
-  {at:0,  head:["問題 1","文法形式の判断","Pilih jawaban yang <b>paling tepat</b> untuk mengisi tanda <b>（　）</b>. (Soal 1–40)"]},
-  {at:40, head:["問題 2","文の組み立て","Susun kata menjadi kalimat yang benar, lalu pilih jawaban yang masuk ke tanda <b>★</b>. (Soal 41–50)"]},
-  {at:50, head:["問題 3","文章の文法","Baca teks, lalu pilih jawaban yang tepat untuk <b>（１）～（５）</b>. (Soal 51–55)"],
-   passage:"きのうは日曜日でした。わたしは朝、友だち<u>（１）</u>図書館へ行きました。図書館<u>（２）</u>本を三冊借りました。そのあと、駅の前の喫茶店<u>（３）</u>入りました。わたしはコーヒーを飲みました。友だち<u>（４）</u>紅茶を飲みました。とても楽しかった<u>（５）</u>。"},
+  {at:0,  head:["もんだい 1","文法形式の判断","Pilih jawaban yang <b>paling tepat</b> untuk mengisi tanda <b>（　）</b>. (Soal 1–40)"]},
+  {at:40, head:["もんだい 2","文の組み立て","Susun kata menjadi kalimat yang benar, lalu pilih jawaban yang masuk ke tanda <b>★</b>. (Soal 41–50)"]},
+  {at:50, head:["もんだい 3","文章の文法","Baca teks, lalu pilih jawaban yang tepat untuk <b>（１）～（５）</b>. (Soal 51–55)"],
+   passage:"わたしの しゅみは 料理です。先月、友達の 誕生日に 初めて ケーキを <u>（１）</u>。でも、ケーキは あまり おいしく ありませんでした。さとうを 入れ<u>（２）</u>からです。友達は「おいしいよ」と 言って 全部 食べて <u>（３）</u>。わたしは とても うれしかったです。<u>（４）</u>、これからも 毎週 料理の 練習を する<u>（５）</u>にしました。"},
   {at:55, passage_only:true, label:"Pilih jawaban yang tepat untuk <b>（６）～（１０）</b>. (Soal 56–60)",
-   passage:"リンさんへ<br>明日は日本語のテストです。<u>（６）</u>、今日は早く寝てください。朝ごはんも食べて<u>（７）</u>、学校へ来てください。テストの時、辞書を使って<u>（８）</u>いけません。テストが終わった<u>（９）</u>、いっしょに昼ごはんを食べ<u>（１０）</u>。<br>田中"}
+   passage:"田中さんへ<br>来週の 金曜日の 会議の ことで、ご連絡します。会議は 午前 10時<u>（６）</u>始まる 予定でしたが、社長が 出張の ため、午後 2時に 変更に<u>（７）</u>。お忙しい ところ すみませんが、ご都合は<u>（８）</u>でしょうか。もし 都合が 悪い<u>（９）</u>、ご連絡 ください。会議の 資料は、前の 日までに メールで お送り<u>（１０）</u>。<br>山本"}
 ];
 
 var ANSWER_KEY = {};
@@ -346,7 +428,7 @@ var ANSWER_KEY = {};
   document.getElementById("qList").innerHTML = html;
 })();
 var TOTAL = Object.keys(ANSWER_KEY).length;
-var QUIZ_ID = "kuistatabahasajlptn5";
+var QUIZ_ID = "kuistatabahasajlptn4";
 var DURATION = 60 * 60; // 60 menit (detik)
 
 function safeGet(store, key){ try{ return store.getItem(key); }catch(e){ return null; } }
@@ -451,9 +533,9 @@ function showResult(score, name, usedSec, dateStr){
   document.getElementById("resultScore").textContent = score + " / " + TOTAL;
 
   var msg;
-  if(score === TOTAL){ msg = "🎉 Sempurna, " + name + "! Pemahaman tata bahasa N5 kamu sudah sangat bagus."; }
+  if(score === TOTAL){ msg = "🎉 Sempurna, " + name + "! Pemahaman tata bahasa N4 kamu sudah sangat bagus."; }
   else if(score >= TOTAL * 0.6){ msg = "👍 Bagus, " + name + "! Masih ada beberapa yang perlu dipelajari ulang. Cek penjelasan di setiap soal."; }
-  else{ msg = "💪 Yuk, " + name + ", baca ulang materi tata bahasa N5 dan cek penjelasan di setiap soal."; }
+  else{ msg = "💪 Yuk, " + name + ", baca ulang materi tata bahasa N4 dan cek penjelasan di setiap soal."; }
   document.getElementById("resultMsg").textContent = msg;
 
   var card = document.getElementById("resultCard");
