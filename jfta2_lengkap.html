@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tekipaki — Belajar & Ujian JFT A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1f3d;--navy2:#001530;--navy3:#132c52;--gold:#e0b52a;--paper:#f6f0e2;--paper2:#efe6d0;--ink:#1c2541;--ink-soft:#4a5875;--seal:#b3382e;--muted:#9fb0c9}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}
+h1,h2,h3{font-family:"Shippori Mincho",serif}
+a{color:inherit}
+
+/* NAVBAR */
+#navbar{position:sticky;top:0;z-index:9999;width:100%;background:#001530;border-bottom:2px solid rgba(224,181,42,.3);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.navbar-inner{min-height:64px;padding:8px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-left{display:flex;align-items:center;flex-shrink:0}
+.nav-right{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy2);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;white-space:nowrap}
+.home-btn:hover{opacity:.85}
+.home-icon{width:22px;height:22px;flex:none}
+.dropdown{position:relative;flex-shrink:0;z-index:1}
+.dropdown.open{z-index:20}
+.dropdown-btn{display:inline-block;text-decoration:none;background:transparent;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-family:inherit;font-size:1rem;font-weight:bold;cursor:pointer;white-space:nowrap}
+.dropdown-btn:hover,.dropdown.open .dropdown-btn{background:var(--gold);color:var(--navy2)}
+.dropdown-menu{display:none;position:absolute;top:calc(100% + 7px);left:0;width:max-content;min-width:220px;max-width:calc(100vw - 20px);background:#1f4577;border:1px solid rgba(224,181,42,.35);border-radius:10px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.35)}
+.dropdown-menu.show{display:block}
+.dropdown-menu.align-right{left:auto;right:0}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none;white-space:nowrap}
+.dropdown-menu a:hover{background:var(--gold);color:var(--navy2)}
+.burger-btn{display:none;align-items:center;justify-content:center;flex-shrink:0;background:transparent;border:2px solid var(--gold);color:var(--gold);padding:9px 12px;border-radius:8px;cursor:pointer}
+.burger-btn svg{width:20px;height:20px;display:block}
+.mobile-menu{display:none;flex-direction:column;background:#001530;border-top:1px solid rgba(224,181,42,.25)}
+.mobile-menu.show{display:flex}
+.mobile-link{display:block;padding:15px 18px;color:#ffd700;text-decoration:none;font-weight:700;font-size:14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.mobile-link:hover{background:rgba(224,181,42,.12)}
+.mobile-acc-btn{width:100%;text-align:left;background:transparent;border:none;color:var(--gold);font-weight:700;font-size:14px;font-family:inherit;padding:15px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
+.mobile-acc-btn::after{content:'+';font-size:18px;line-height:1}
+.mobile-acc-btn.open::after{content:'\2212'}
+.mobile-acc-panel{display:none;flex-direction:column;background:#0a2242}
+.mobile-acc-panel.show{display:flex}
+.mobile-acc-panel a{padding:13px 32px;color:#ffd700;text-decoration:none;font-size:13px;border-bottom:1px solid rgba(255,255,255,.05)}
+.mobile-acc-panel a:hover{background:rgba(224,181,42,.15)}
+@media(min-width:761px){.mobile-menu{display:none !important}}
+
+/* HERO */
+.hero{position:relative;background:radial-gradient(120% 140% at 15% -10%,var(--navy3),var(--navy) 55%,var(--navy2) 100%);color:#fff;padding:80px 20px 100px;text-align:center;overflow:hidden}
+.hero-kanji{position:absolute;font-family:"Shippori Mincho",serif;font-size:min(60vw,560px);font-weight:800;color:rgba(224,181,42,.06);top:50%;left:50%;transform:translate(-50%,-50%);line-height:1;user-select:none;pointer-events:none;white-space:nowrap}
+.hero-inner{position:relative;z-index:2;max-width:760px;margin:0 auto}
+.seal{display:inline-flex;align-items:center;justify-content:center;width:78px;height:78px;border:3px solid var(--seal);border-radius:8px;color:var(--seal);background:rgba(179,56,46,.08);font-family:"Shippori Mincho",serif;font-weight:800;font-size:1.6rem;transform:rotate(-8deg);margin-bottom:22px;letter-spacing:2px;writing-mode:vertical-rl;box-shadow:0 0 0 2px rgba(179,56,46,.25) inset}
+.eyebrow{font-family:"JetBrains Mono",monospace;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-size:.78rem;margin-bottom:14px}
+.hero h1{font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.2;margin-bottom:14px}
+.hero h1 span{color:var(--gold)}
+.hero p{color:var(--muted);font-size:1.05rem;line-height:1.7;max-width:560px;margin:0 auto 32px}
+.hero-cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-block;text-decoration:none;padding:14px 26px;border-radius:10px;font-weight:700;font-size:.95rem;transition:.18s;cursor:pointer;border:2px solid transparent}
+.btn-gold{background:var(--gold);color:var(--navy2)}
+.btn-gold:hover{background:#f3cc4e;transform:translateY(-2px)}
+.btn-ghost{border-color:rgba(255,255,255,.35);color:#fff}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+/* CONTENT */
+#app{max-width:1040px;margin:0 auto;padding:60px 20px 20px}
+.section-head{display:flex;align-items:baseline;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+.stamp-mini{width:34px;height:34px;flex:none;border:2px solid var(--seal);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--seal);font-weight:800;font-size:.85rem;transform:rotate(-6deg)}
+.section-head h2{font-size:1.55rem;color:var(--navy)}
+.section-head .jp{font-family:"JetBrains Mono",monospace;color:var(--seal);font-size:.8rem;letter-spacing:1px}
+.section-sub{color:var(--ink-soft);font-size:.92rem;margin:-14px 0 26px;max-width:600px}
+
+/* MATERI */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:64px}
+.materi-card{background:#fff;border:1px solid var(--paper2);border-radius:14px;padding:26px 22px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:10px;box-shadow:0 2px 10px rgba(10,31,61,.05);transition:.2s;position:relative;overflow:hidden}
+.materi-card::before{content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gold);transform:scaleY(0);transform-origin:top;transition:.2s}
+.materi-card:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(10,31,61,.14)}
+.materi-card:hover::before{transform:scaleY(1)}
+.materi-card .ic{font-size:1.7rem}
+.materi-card h3{font-size:1.08rem;color:var(--navy)}
+.materi-card p{font-size:.85rem;color:var(--ink-soft);line-height:1.5}
+.materi-card .go{font-family:"JetBrains Mono",monospace;font-size:.75rem;color:var(--seal);margin-top:auto}
+
+/* TICKETS */
+.tickets{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:64px}
+.ticket{display:flex;background:#12365e;border-radius:12px;overflow:hidden;text-decoration:none;color:#fff;box-shadow:0 3px 12px rgba(10,31,61,.16);transition:.2s;position:relative}
+.ticket:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 12px 28px rgba(10,31,61,.24)}
+.ticket-num{flex:none;width:74px;background:var(--gold);color:var(--navy2);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;position:relative}
+.ticket-num .no{font-size:1.7rem;font-weight:700}
+.ticket-num .lbl{font-size:.6rem;letter-spacing:1px;text-transform:uppercase}
+.ticket-num::after{content:"";position:absolute;right:-8px;top:50%;transform:translateY(-50%);width:16px;height:16px;background:var(--paper);border-radius:50%}
+.ticket-body{padding:16px 18px;display:flex;flex-direction:column;justify-content:center;gap:4px;flex:1;border-left:2px dashed rgba(255,255,255,.25)}
+.ticket-body .title{font-weight:700;font-size:.98rem}
+.ticket-body .meta{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--muted)}
+
+/* KANJI */
+.kanji-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:20px}
+.kanji-tile{aspect-ratio:1/1;background:#12365e;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;color:#fff;transition:.2s;border:1px solid rgba(224,181,42,.15)}
+.kanji-tile:hover{background:#1a4271;transform:translateY(-3px)}
+.kanji-tile .kj{font-family:"Shippori Mincho",serif;font-size:2rem;color:var(--gold)}
+.kanji-tile .lbl2{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--muted);margin-top:6px}
+
+footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20px;border-top:1px solid var(--paper2)}
+
+@media(max-width:1000px){.navbar-inner{padding:10px 12px;gap:10px}.dropdown-btn{font-size:.72rem;padding:6px 9px}.home-btn{padding:8px 10px;font-size:.72rem}}
+@media(max-width:760px){.navbar-inner{flex-wrap:nowrap;padding:10px 14px;gap:10px}.nav-left{flex:1;min-width:0}.nav-right{display:none}.burger-btn{display:flex}.grid3{grid-template-columns:1fr}.kanji-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.hero{padding:60px 16px 70px}.hero h1{font-size:2rem}.hero p{font-size:.92rem}#app{padding:40px 14px 20px}}
+</style>
+</head>
+<body translate="no">
+
+<!-- =========================================================
+     NAVBAR
+     Menu desktop  : di dalam <div class="nav-right">
+     Menu HP       : di dalam <div class="mobile-menu">
+     Kalau menambah menu, tambahkan di KEDUANYA.
+========================================================= -->
+<nav id="navbar">
+  <div class="navbar-inner">
+
+    <div class="nav-left">
+      <a href="index.html" class="home-btn">
+        <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
+        HOME
+      </a>
+    </div>
+
+    <!-- ===== MENU DESKTOP ===== -->
+    <div class="nav-right">
+
+      <!-- Dropdown: TEKIPAKI LEARNING -->
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown('learningDropdown')">TEKIPAKI LEARNING ▼</button>
+        <div class="dropdown-menu" id="learningDropdown">
+          <a href="guru.html">GURU</a>
+          <a href="elearning.html">SISWA</a>
+        </div>
+      </div>
+
+      <!-- Dropdown: MATERI -->
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown('materiDropdown')">MATERI ▼</button>
+        <div class="dropdown-menu" id="materiDropdown">
+          <a href="daftarkosakata.html">Kosakata JFT</a>
+<<<<<<< HEAD:jfta2.html
+=======
+          <a href="materikosakata.html">Materi Kosakata</a>
+>>>>>>> 8170ec6c10dcbcf26e4b46d5a11044c177f8bcdc:jfta2_lengkap.html
+          <a href="materitatabahasa.html">Tata Bahasa</a>
+          <a href="materikanji.html">Materi Kanji JLPT</a>
+          <a href="kanjidasar.html">Kanji Flash Card</a>
+          <a href="materikosakata.html">Materi Kosakata JLPT</a>
+        </div>
+      </div>
+
+      <!-- Tombol langsung: QUIZ JFT -->
+      <div class="dropdown">
+        <a href="soaljft.html" class="dropdown-btn">QUIZ JFT</a>
+      </div>
+
+      <!-- Tombol langsung: QUIZ KANJI -->
+      <div class="dropdown">
+        <a href="soalkanji.html" class="dropdown-btn">QUIZ KANJI</a>
+      </div>
+
+    </div>
+
+    <button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+
+  <!-- ===== MENU HP ===== -->
+  <div class="mobile-menu" id="mobileMenu">
+
+    <a class="mobile-link" href="index.html">HOME</a>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">TEKIPAKI LEARNING</button>
+    <div class="mobile-acc-panel">
+      <a href="guru.html">GURU</a>
+      <a href="elearning.html">SISWA</a>
+    </div>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+    <div class="mobile-acc-panel">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+<<<<<<< HEAD:jfta2.html
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="materikanji.html">Materi Kanji JLPT</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+      <a href="materikosakata.html">Materi Kosakata JLPT</a>
+=======
+>>>>>>> 8170ec6c10dcbcf26e4b46d5a11044c177f8bcdc:jfta2_lengkap.html
+    </div>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">FORMULIR</button>
+    <div class="mobile-acc-panel">
+      <a href="formulir.html">Formulir Pendaftaran</a>
+    </div>
+
+    <a class="mobile-link" href="soaljft.html">QUIZ JFT</a>
+    <a class="mobile-link" href="soalkanji.html">QUIZ KANJI</a>
+
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-kanji" aria-hidden="true">学</div>
+  <div class="hero-inner">
+    <div class="seal">合格</div>
+    <div class="eyebrow">Tekipaki Japanese Learning</div>
+    <h1>Siap menghadapi <span>JFT A2</span><br>selangkah demi selangkah</h1>
+    <p>Materi kosakata, tata bahasa, dan kanji dasar yang dilengkapi dengan bank soal serta simulasi ujian.</p>
+    <div class="hero-cta">
+      <a href="soaljft.html" class="btn btn-gold">▶ Mulai Simulasi Ujian</a>
+      <a href="#materi" class="btn btn-ghost">Lihat Materi Belajar</a>
+    </div>
+  </div>
+</section>
+
+<div id="app">
+
+  <!-- MATERI -->
+  <div id="materi">
+    <div class="section-head">
+      <div class="stamp-mini">学</div>
+      <h2>Materi Belajar</h2>
+      <span class="jp">きそ・きほん</span>
+    </div>
+    <p class="section-sub">Bangun fondasi sebelum masuk ke simulasi ujian — kosakata, pola kalimat, dan kanji dasar yang sering keluar di JFT A2.</p>
+    <div class="grid3" id="materiGrid"></div>
+  </div>
+
+  <!-- QUIZ JFT -->
+  <div id="quiz-jft">
+    <div class="section-head">
+      <div class="stamp-mini">試</div>
+      <h2>Simulasi Ujian JFT A2</h2>
+      <span class="jp">しけん・タイマー付き</span>
+    </div>
+    <p class="section-sub">Lima paket soal setara ujian asli — pilihan ganda dan esai, timer 20 menit. Google Translate nonaktif, dan jawaban terkunci saat waktu habis.</p>
+    <div class="tickets" id="ticketGrid"></div>
+  </div>
+
+  <!-- QUIZ KANJI -->
+  <div id="quiz-kanji">
+    <div class="section-head">
+      <div class="stamp-mini">漢</div>
+      <h2>Quiz Kanji</h2>
+      <span class="jp">かんじ・れんしゅう</span>
+    </div>
+    <p class="section-sub">Latihan cepat membaca kanji dasar, dibagi jadi lima set supaya nggak bikin pusing.</p>
+    <div class="kanji-grid" id="kanjiGrid"></div>
+  </div>
+
+</div>
+
+<footer>© Tekipaki Japanese Learning</footer>
+
+<script>
+/* =========================================================
+   DATA KARTU MATERI
+   Format: [href, ikon, [judul...], deskripsi, teks tombol]
+   PENTING: setiap baris diakhiri koma (,) kecuali baris terakhir.
+========================================================= */
+const D_KOSA = "Daftar kosakata inti yang paling sering muncul di ujian, dikelompokkan per tema.";
+const D_KANJI = "Kartu Ujian kanji dasar lengkap dengan cara baca dan artinya. Dan hasil ujian.";
+const MATERI = [
+  ["daftarkosakata.html","📝",["Daftar Kosakata JFT A2"],D_KOSA,"BUKA DAFTAR →"],
+  ["keigo_dasar.html","📝",["Keigo Dasar"],"Keigo Dasar JFT A2","BUKA DAFTAR →"],
+  ["miniquiz_penerjemahan.html","📝",["Mini Quiz Penerjemahan"],"Penerjemahan kalimat bahasa Indonesia ke Bahasa Jepang","BUKA DAFTAR →"],
+  ["miniquizjft.html","📝",["Mini Quiz JFT"],D_KOSA,"BUKA DAFTAR →"],
+  ["materikomunikasi.html","🤝",["Cara Berkomunikasi di Dunia Kerja"],"Daftar kosakata yang sering digunakan dalam dunia pekerjaan","BUKA DAFTAR →"],
+  ["miniquiz_tatabahasa.html","👷",["Mini Quiz Tata Bahasa"],"Mini Quiz Tata Bahasa JFT A2","MULAI TEST →"],
+  ["kelompok_saseru.html","👷",["Kelompok Saseru"],"Kelompok Kata Saseru JFT A2","LIHAT DAFTAR →"],
+  ["miniquiz_dokkai.html","👷",["Mini Quiz Dokkai"],"Mini Quiz Dokkai JFT A2","MULAI TEST →"],
+  ["kelompok_katakerja.html","👷",["Kelompok Kata Kerja"],"Kelompok Kata Kerja JFT A2","MULAI TEST →"],
+  ["materitatabahasa.html","✍️",["Tata Bahasa"],"Pola kalimat dan partikel dasar level A2, dengan contoh percakapan sehari-hari.","PELAJARI →"],
+  ["kelompok_meireikei_shieki.html","🔊",["使役形・命令形","Shieki & Meireikei"],"Mempelajari penggunaan bentuk Shieki dan meireikei dalam bahasa Jepang.","LIHAT DAFTAR →"],
+  ["kanjitest_mingguan.html","👷",["Kanji Test Kelas Magang"],D_KANJI,"MULAI TEST →"],
+  ["tatabahasaharian.html","💡",["Test Tata Bahasa Harian"],"Mengerjakan soal tata bahasa JLPT N4","MULAI TEST →"],
+  ["kata_sifat_i_dan_na.html","📚",["Kata Sifat I dan Na"],"Mempelajari penggunaan kata sifat I dan Na dalam bahasa Jepang","PELAJARI →"],
+  ["quizkanji_pertanian.html","🌱",["Kanji Test Kelas Pertanian"],D_KANJI,"MULAI TEST →"],
+  ["kanjidasar.html","🈶",["Kanji Flash Card"],"Kartu hafalan kanji dasar lengkap dengan cara baca dan artinya.","MULAI HAFALAN →"],
+  ["kaiwa.html","⭐⭐⭐⭐⭐",["日常会話練習","Latihan Percakapan Sehari-hari"],"Latihan percakapan bahasa Jepang untuk situasi sehari-hari dan dunia kerja.","MULAI PERCAKAPAN →"],
+  ["pertanian_kosakata.html","💬",["農業の言葉","Daftar Kosakata Pertanian"],"Pelajari kosakata pertanian yang sering digunakan di Jepang.","LIHAT DAFTAR →"],
+  ["shiyakusho.html","🏛️",["市役所","Shiyakusho"],"Informasi tentang 市役所 (City Hall) yang disusun untuk membantu memahami fungsi, layanan yang tersedia, dokumen yang bisa diajukan ke 市役所.","LIHAT →"],
+  ["zairyukado.html","🪪",["在留カード","Zairyu Ka-do"],"Informasi tentang 在留カード (Zairyū Card) yang disusun untuk membantu memahami fungsi, status tinggal, masa berlaku, dan penggunaannya selama tinggal di Jepang.","LIHAT →"],
+  ["doabersama.html","🤲",["Doa Bersama"],"Kumpulan doa-doa harian. Sholawat Jibril, doa belajar, Doa Masuk Rumah, Doa Kebaikan Dunia & Akhirat, Doa Nabi Yusuf, Doa Nabi Yunus, Al Fatihah, Penutup Surat Al-Baqarah.","LIHAT DAFTAR →"],
+  ["hitunganbilangan.html","🤲",["Hitungan Bilangan"],"Hitungan bilangan dalam bahasa Jepang, benda kecil, Benda panjang, Hewan, Hewan Besar, Orang, Buku dan Majalah, Minuman dalam gelas, Frekuensi, Lantai gedung, Jumlah menginap, Kemasan, Usia, Waktu, dll","LIHAT DAFTAR →"],
+  ["katapenghubung.html","🤲",["接続詞　Kata Penghubung"],"Kata penghubung dalam bahasa Jepang,","LIHAT DAFTAR →"],
+  ["onomatope.html","🗣️",["オノマトペ　Onomatope"],"Kata yang menggambarkan suara atau bunyi dalam bahasa Jepang","LIHAT DAFTAR →"],
+  ["kanyouku.html","🎭",["慣用句　Idiom"],"Ungkapan atau frasa yang memiliki makna khusus dalam bahasa Jepang","LIHAT DAFTAR →"],
+  ["padanankata.html","🔁",["類義語　Padanan Kata"],"Padanan kata dalam bahasa Jepang, kata yang memiliki arti sama atau mirip","LIHAT DAFTAR →"],
+  ["budayajepang_oterajinja.html","🔊",["お寺、神社、お祭り","Budaya Jepang: Otera & Jinja"],"Pelajari tentang budaya Jepang, mulai dari お寺 (Otera), 神社 (Jinja), お祭り (Omatsuri).","LIHAT →"],
+  ["gominokanri.html","🗑️",["日本のごみ分別","Pemilahan Sampah di Jepang"],"Pelajari cara memilah sampah di Jepang, mulai dari sampah yang dapat dibakar, tidak dapat dibakar, botol, kaleng, PET bottle, hingga aturan membuang sampah sesuai jadwal. Cocok untuk persiapan tinggal, bekerja, maupun belajar di Jepang.","LIHAT DAFTAR →"],
+  ["keterangan_waktu.html","🕒",["時間","Mengenal Kata Waktu"],"Pelajari tentang kata waktu dalam bahasa Jepang.","LIHAT DAFTAR →"],
+  ["maner_jepang.html","🕒",["マナー","Manner"],"Pelajari tentang tata krama di Jepang.","LIHAT DAFTAR →"],
+  ["nihonnotabemono.html","🍱",["たべもの","Makanan di Jepang"],"Pelajari tentang makanan di Jepang.","LIHAT DAFTAR →"]
+];
+
+/* Simulasi JFT & Quiz Kanji */
+const JFT_TESTS = 5, JFT_SOAL = 20, JFT_WAKTU = "20:00";
+const KANJI_SETS = 5;
+
+/* =========================================================
+   RENDER KARTU (navbar sudah HTML biasa di atas)
+========================================================= */
+const $ = id => document.getElementById(id);
+
+// Kartu materi
+$("materiGrid").innerHTML = MATERI.map(([href, ic, titles, p, go]) => `
+  <a href="${href}" class="materi-card">
+    <div class="ic">${ic}</div>
+    ${titles.map(t => `<h3>${t}</h3>`).join("")}
+    <p>${p}</p>
+    <div class="go">${go}</div>
+  </a>`).join("");
+
+// Tiket simulasi JFT
+$("ticketGrid").innerHTML = Array.from({length:JFT_TESTS}, (_, i) => {
+  const n = i + 1;
+  return `<a href="ujianjfta2test${n}.html" class="ticket">
+    <div class="ticket-num"><span class="no">${String(n).padStart(2,"0")}</span><span class="lbl">Test</span></div>
+    <div class="ticket-body"><span class="title">JFT A2 — Test ${n}</span><span class="meta">${JFT_SOAL} SOAL · ${JFT_WAKTU}</span></div>
+  </a>`;
+}).join("");
+
+// Tile quiz kanji
+$("kanjiGrid").innerHTML = Array.from({length:KANJI_SETS}, (_, i) => `
+  <a href="quizkanji${i+1}.html" class="kanji-tile"><div class="kj">QUIZ</div><div class="lbl2">KANJI ${i+1}</div></a>`).join("");
+
+/* =========================================================
+   PERILAKU NAVBAR
+========================================================= */
+function closeAllDropdowns(){
+  document.querySelectorAll(".dropdown-menu").forEach(m => m.classList.remove("show","align-right"));
+  document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("open"));
+}
+function toggleDropdown(id){
+  document.querySelectorAll(".dropdown-menu").forEach(m => {
+    if(m.id !== id){ m.classList.remove("show","align-right"); const p = m.closest(".dropdown"); if(p) p.classList.remove("open"); }
+  });
+  const menu = $(id); if(!menu) return;
+  const parent = menu.closest(".dropdown");
+  if(menu.classList.contains("show")){ menu.classList.remove("show","align-right"); if(parent) parent.classList.remove("open"); return; }
+  menu.classList.add("show"); if(parent) parent.classList.add("open");
+  menu.classList.remove("align-right");
+  const rect = menu.getBoundingClientRect();
+  if(rect.right > window.innerWidth - 10) menu.classList.add("align-right");
+  if(rect.left < 10) menu.classList.remove("align-right");
+}
+document.addEventListener("click", e => { if(!e.target.closest(".dropdown")) closeAllDropdowns(); });
+
+function toggleMobileMenu(){ $("mobileMenu").classList.toggle("show"); }
+function toggleMobileAccordion(btn){
+  const panel = btn.nextElementSibling, isOpen = btn.classList.contains("open");
+  document.querySelectorAll(".mobile-acc-btn").forEach(b => {
+    if(b !== btn){ b.classList.remove("open"); if(b.nextElementSibling) b.nextElementSibling.classList.remove("show"); }
+  });
+  btn.classList.toggle("open", !isOpen);
+  if(panel) panel.classList.toggle("show", !isOpen);
+}
+window.addEventListener("resize", () => {
+  closeAllDropdowns();
+  if(window.innerWidth > 760){
+    $("mobileMenu").classList.remove("show");
+    document.querySelectorAll(".mobile-acc-btn").forEach(b => b.classList.remove("open"));
+    document.querySelectorAll(".mobile-acc-panel").forEach(p => p.classList.remove("show"));
+  }
+});
+</script>
+</body>
+</html>
