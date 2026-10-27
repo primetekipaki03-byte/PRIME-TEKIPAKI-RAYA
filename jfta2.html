@@ -110,21 +110,92 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
 </head>
 <body translate="no">
 
-<!-- NAVBAR (menu dibuat dari data di script bawah) -->
+<!-- =========================================================
+     NAVBAR
+     Menu desktop  : di dalam <div class="nav-right">
+     Menu HP       : di dalam <div class="mobile-menu">
+     Kalau menambah menu, tambahkan di KEDUANYA.
+========================================================= -->
 <nav id="navbar">
   <div class="navbar-inner">
+
     <div class="nav-left">
       <a href="index.html" class="home-btn">
         <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
         HOME
       </a>
     </div>
-    <div class="nav-right" id="navRight"></div>
+
+    <!-- ===== MENU DESKTOP ===== -->
+    <div class="nav-right">
+
+      <!-- Dropdown: TEKIPAKI LEARNING -->
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown('learningDropdown')">TEKIPAKI LEARNING ▼</button>
+        <div class="dropdown-menu" id="learningDropdown">
+          <a href="guru.html">GURU</a>
+          <a href="elearning.html">SISWA</a>
+        </div>
+      </div>
+
+      <!-- Dropdown: MATERI -->
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown('materiDropdown')">MATERI ▼</button>
+        <div class="dropdown-menu" id="materiDropdown">
+          <a href="daftarkosakata.html">Kosakata JFT</a>
+          <a href="materitatabahasa.html">Tata Bahasa</a>
+          <a href="materikanji.html">Materi Kanji JLPT</a>
+          <a href="kanjidasar.html">Kanji Flash Card</a>
+          <a href="materikosakata.html">Materi Kosakata JLPT</a>
+        </div>
+      </div>
+
+      <!-- Tombol langsung: QUIZ JFT -->
+      <div class="dropdown">
+        <a href="soaljft.html" class="dropdown-btn">QUIZ JFT</a>
+      </div>
+
+      <!-- Tombol langsung: QUIZ KANJI -->
+      <div class="dropdown">
+        <a href="soalkanji.html" class="dropdown-btn">QUIZ KANJI</a>
+      </div>
+
+    </div>
+
     <button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
-  <div class="mobile-menu" id="mobileMenu"></div>
+
+  <!-- ===== MENU HP ===== -->
+  <div class="mobile-menu" id="mobileMenu">
+
+    <a class="mobile-link" href="index.html">HOME</a>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">TEKIPAKI LEARNING</button>
+    <div class="mobile-acc-panel">
+      <a href="guru.html">GURU</a>
+      <a href="elearning.html">SISWA</a>
+    </div>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+    <div class="mobile-acc-panel">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="materikanji.html">Materi Kanji JLPT</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+      <a href="materikosakata.html">Materi Kosakata JLPT</a>
+    </div>
+
+    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">FORMULIR</button>
+    <div class="mobile-acc-panel">
+      <a href="formulir.html">Formulir Pendaftaran</a>
+    </div>
+
+    <a class="mobile-link" href="soaljft.html">QUIZ JFT</a>
+    <a class="mobile-link" href="soalkanji.html">QUIZ KANJI</a>
+
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -183,23 +254,10 @@ footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20p
 
 <script>
 /* =========================================================
-   DATA — edit di sini untuk menambah / mengubah menu & kartu
+   DATA KARTU MATERI
+   Format: [href, ikon, [judul...], deskripsi, teks tombol]
+   PENTING: setiap baris diakhiri koma (,) kecuali baris terakhir.
 ========================================================= */
-
-/* Menu navbar. Item "link" = tombol langsung tanpa dropdown */
-const NAV = [
-  { label:"TEKIPAKI LEARNING", id:"learningDropdown", items:[["GURU","guru.html"],["SISWA","elearning.html"]] },
-  { label:"MATERI", id:"materiDropdown", items:[
-      ["Kosakata JFT","daftarkosakata.html"],["Tata Bahasa","materitatabahasa.html"],
-      ["Materi Kanji JLPT","materikanji.html"],["Kanji Flash Card","kanjidasar.html"],
-      ["Materi Kosakata JLPT","materikosakata.html"] ] },
-  { label:"FORMULIR", id:"formulirDropdown", mobileOnly:true, items:[["Formulir Pendaftaran","formulir.html"]] },
-  { label:"QUIZ JFT", link:"soaljft.html" },
-  { label:"QUIZ KANJI", link:"soalkanji.html" }
-];
-
-/* Kartu materi: [href, ikon, [judul...], deskripsi, teks tombol]
-   PENTING: setiap baris diakhiri koma (,) kecuali baris terakhir. */
 const D_KOSA = "Daftar kosakata inti yang paling sering muncul di ujian, dikelompokkan per tema.";
 const D_KANJI = "Kartu Ujian kanji dasar lengkap dengan cara baca dan artinya. Dan hasil ujian.";
 const MATERI = [
@@ -241,23 +299,9 @@ const JFT_TESTS = 5, JFT_SOAL = 20, JFT_WAKTU = "20:00";
 const KANJI_SETS = 5;
 
 /* =========================================================
-   RENDER
+   RENDER KARTU (navbar sudah HTML biasa di atas)
 ========================================================= */
 const $ = id => document.getElementById(id);
-
-// Navbar desktop
-$("navRight").innerHTML = NAV.filter(m => !m.mobileOnly).map(m => m.link
-  ? `<div class="dropdown"><a href="${m.link}" class="dropdown-btn">${m.label}</a></div>`
-  : `<div class="dropdown"><button class="dropdown-btn" onclick="toggleDropdown('${m.id}')">${m.label} ▼</button>
-       <div class="dropdown-menu" id="${m.id}">${m.items.map(i => `<a href="${i[1]}">${i[0]}</a>`).join("")}</div></div>`
-).join("");
-
-// Navbar mobile
-$("mobileMenu").innerHTML = `<a class="mobile-link" href="index.html">HOME</a>` + NAV.map(m => m.link
-  ? `<a class="mobile-link" href="${m.link}">${m.label}</a>`
-  : `<button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">${m.label}</button>
-     <div class="mobile-acc-panel">${m.items.map(i => `<a href="${i[1]}">${i[0]}</a>`).join("")}</div>`
-).join("");
 
 // Kartu materi
 $("materiGrid").innerHTML = MATERI.map(([href, ic, titles, p, go]) => `
@@ -282,7 +326,7 @@ $("kanjiGrid").innerHTML = Array.from({length:KANJI_SETS}, (_, i) => `
   <a href="quizkanji${i+1}.html" class="kanji-tile"><div class="kj">QUIZ</div><div class="lbl2">KANJI ${i+1}</div></a>`).join("");
 
 /* =========================================================
-   NAVBAR BEHAVIOR
+   PERILAKU NAVBAR
 ========================================================= */
 function closeAllDropdowns(){
   document.querySelectorAll(".dropdown-menu").forEach(m => m.classList.remove("show","align-right"));
