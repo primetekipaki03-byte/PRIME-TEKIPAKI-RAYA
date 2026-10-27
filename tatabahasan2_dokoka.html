@@ -24,12 +24,25 @@ body{background:#fff;color:var(--text)}
 .dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none}
 .dropdown-menu a:hover{background:#e0b52a;color:#001530}
 .show{display:block}
-@media(max-width:600px){
-.navbar-inner{flex-direction:column;align-items:flex-start;gap:8px}
-.nav-right{width:100%}
-.dropdown-btn{font-size:.72rem;padding:6px 9px}
+
+/* ===== HAMBURGER ===== */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:10px;background:none;border:2px solid #e0b52a;border-radius:10px;cursor:pointer}
+.hamburger span{display:block;width:100%;height:3px;background:#e0b52a;border-radius:2px;transition:transform .3s,opacity .3s}
+.hamburger.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+@media(max-width:768px){
+.navbar-inner{flex-wrap:wrap;flex-direction:row;align-items:center;gap:0}
+.hamburger{display:flex}
+.nav-right{display:none;width:100%;flex-direction:column;align-items:stretch;justify-content:flex-start;flex-wrap:nowrap;gap:8px;padding:14px 0 6px;margin-top:10px;border-top:1px solid rgba(224,181,42,.3)}
+.nav-right.open{display:flex}
+.dropdown{width:100%}
+.dropdown-btn{width:100%;text-align:left;font-size:.9rem;padding:12px 14px}
+.dropdown-menu,.dropdown-menu.align-right{position:static;left:auto;right:auto;width:100%;max-width:100%;min-width:0;margin-top:6px;box-shadow:none}
 .breadcrumb{margin-top:16px}
 }
+
 .breadcrumb{margin:20px 0 0;padding:0 0 0 20px;font-size:14px;color:#8892a3}
 .breadcrumb a{color:var(--navy);text-decoration:none;font-weight:600}
 .breadcrumb a:hover{text-decoration:underline}
@@ -116,7 +129,13 @@ footer{text-align:center;padding:30px;color:#666;font-size:14px}
 HOME
 </a>
 </div>
-<div class="nav-right">
+
+<button class="hamburger" id="hamburger" type="button"
+        aria-label="Buka menu" aria-expanded="false" onclick="toggleMenu()">
+  <span></span><span></span><span></span>
+</button>
+
+<div class="nav-right" id="navRight">
   <div class="dropdown">
     <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
     <div class="dropdown-menu" id="materi">
@@ -440,6 +459,19 @@ function resetQuiz(id){
 initQuiz(1);
 initQuiz(2);
 
+//============================
+// NAVBAR - HAMBURGER & DROPDOWN
+//============================
+
+function toggleMenu(){
+    const nav = document.getElementById('navRight');
+    const btn = document.getElementById('hamburger');
+    const isOpen = nav.classList.toggle('open');
+    btn.classList.toggle('active', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+    btn.setAttribute('aria-label', isOpen ? 'Tutup menu' : 'Buka menu');
+}
+
 function toggleDropdown(id){
     document.querySelectorAll('.dropdown-menu').forEach(m=>{
         if(m.id!==id){m.classList.remove('show');m.classList.remove('align-right');}
@@ -453,9 +485,22 @@ function toggleDropdown(id){
         if(rect.right > window.innerWidth - 8){ menu.classList.add('align-right'); }
     }
 }
+
+let lastWidth = window.innerWidth;
 window.addEventListener('resize', ()=>{
+    if(window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
+
     document.querySelectorAll('.dropdown-menu.show').forEach(m=>{m.classList.remove('show');m.classList.remove('align-right');});
+
+    if(window.innerWidth > 768){
+        document.getElementById('navRight').classList.remove('open');
+        const btn = document.getElementById('hamburger');
+        btn.classList.remove('active');
+        btn.setAttribute('aria-expanded','false');
+    }
 });
+
 document.addEventListener("click",function(e){
     if(!e.target.closest(".dropdown")){
         document.querySelectorAll(".dropdown-menu").forEach(m=>{m.classList.remove("show");m.classList.remove("align-right");});
