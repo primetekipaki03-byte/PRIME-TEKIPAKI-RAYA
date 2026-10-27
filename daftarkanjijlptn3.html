@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kosakata JLPT N3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#001f3f;--navy-deep:#001530;--navy2:#022655;--gold:#e0b52a;--gold-bright:#facc15;--paper:#fffdf7;--ink:#001f3f;--muted:#5b6b7d;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins","Segoe UI",Arial,sans-serif;}
+.jp{font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif;}
+body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
+#navbar{position:sticky;top:0;z-index:999;background:var(--navy-deep);border-bottom:2px solid rgba(250,204,21,.25);box-shadow:0 4px 14px rgba(0,0,0,.35);}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;}
+.nav-left{display:flex;align-items:center;}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy-deep);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;}
+.home-btn:hover{opacity:.85;}
+.home-icon{width:24px;height:24px;border-radius:4px;}
+.dropdown{position:relative;}
+.dropdown-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-weight:bold;cursor:pointer;}
+.dropdown-btn:hover{background:var(--gold);color:var(--navy-deep);}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:var(--navy2);border-radius:10px;overflow:hidden;min-width:220px;max-width:90vw;box-shadow:0 8px 20px rgba(0,0,0,.4);}
+.dropdown-menu.align-right{left:auto;right:0;}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none;}
+.dropdown-menu a:hover{background:var(--gold);color:var(--navy-deep);}
+.show{display:block;}
+.nav-link-btn{display:inline-block;text-decoration:none;padding:8px 14px;border:2px solid var(--gold-bright);background:var(--gold-bright);color:var(--navy-deep);border-radius:8px;font-weight:bold;}
+.nav-link-btn:hover{background:transparent;color:var(--gold-bright);}
+.hamburger-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;background:none;border:2px solid var(--gold);border-radius:8px;cursor:pointer;padding:0;}
+.hamburger-btn span{display:block;width:20px;height:2px;background:var(--gold);margin:0 auto;border-radius:2px;transition:transform .25s ease,opacity .25s ease;}
+.hamburger-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger-btn.open span:nth-child(2){opacity:0;}
+.hamburger-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{display:none;background:var(--navy-deep);border-top:1px solid rgba(250,204,21,.2);max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.mobile-menu.open{max-height:80vh;overflow-y:auto;}
+.mobile-section{border-bottom:1px solid rgba(255,255,255,.08);}
+.mobile-section-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;color:var(--gold-bright);font-weight:700;font-size:14px;letter-spacing:.06em;padding:14px 20px;cursor:pointer;}
+.mobile-section-btn .chevron{transition:transform .2s ease;}
+.mobile-section-btn.open .chevron{transform:rotate(180deg);}
+.mobile-section-links{display:none;flex-direction:column;background:rgba(0,0,0,.15);}
+.mobile-section-links.show{display:flex;}
+.mobile-section-links a{padding:12px 30px;color:#dbe4f0;text-decoration:none;font-size:13.5px;border-top:1px solid rgba(255,255,255,.05);}
+.mobile-section-links a:hover{background:rgba(250,204,21,.12);color:var(--gold-bright);}
+.mobile-link{display:block;padding:14px 20px;color:var(--navy-deep);background:var(--gold-bright);font-weight:700;font-size:14px;letter-spacing:.06em;text-decoration:none;}
+@media(max-width:600px){.nav-right{display:none;}.hamburger-btn{display:flex;}.mobile-menu{display:block;}}
+header{position:relative;background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 55%,#003366 100%);color:#fff;padding:50px 20px 40px;text-align:center;overflow:hidden;}
+header .kanji-watermark{position:absolute;font-size:min(40vw,320px);font-weight:900;color:rgba(255,255,255,.04);top:50%;left:50%;transform:translate(-50%,-46%);line-height:1;pointer-events:none;user-select:none;white-space:nowrap;}
+.header-inner{position:relative;z-index:2;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.4);color:var(--gold-bright);font-size:12px;font-weight:700;letter-spacing:.14em;padding:6px 14px;border-radius:999px;margin-bottom:16px;}
+header h1{font-size:clamp(1.7rem,4.5vw,2.5rem);margin-bottom:10px;}
+header p{color:#cdd8ea;max-width:680px;margin:0 auto;font-size:14.5px;line-height:1.7;}
+.flash-cta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:13px 26px;background:var(--gold-bright);color:var(--navy-deep);font-weight:700;font-size:15px;text-decoration:none;border-radius:12px;border:2px solid var(--gold-bright);box-shadow:0 8px 20px rgba(0,0,0,.3);transition:transform .2s ease,background .2s ease,color .2s ease;}
+.flash-cta:hover{transform:translateY(-2px);background:transparent;color:var(--gold-bright);}
+.search-wrap{max-width:520px;margin:22px auto 0;position:relative;z-index:2;}
+.search-wrap input{width:100%;padding:13px 18px 13px 42px;border-radius:12px;border:none;font-size:14.5px;color:var(--navy);background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.25);}
+.search-wrap input:focus{outline:2px solid var(--gold-bright);}
+.search-wrap::before{content:"🔍";position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:15px;z-index:3;}
+.search-count{text-align:center;color:#cdd8ea;font-size:12.5px;margin-top:10px;min-height:18px;}
+.container{max-width:1200px;margin:auto;padding:34px 20px 20px;}
+.kanji-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
+.kanji-card{background:var(--paper);border:2px solid rgba(0,31,63,.08);border-radius:14px;padding:16px 10px 14px;text-align:center;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+.kanji-card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 10px 22px rgba(0,31,63,.15);}
+.k-kanji{font-size:2rem;font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:6px;}
+.k-reading{font-size:12.5px;color:#a4780a;font-weight:600;margin-bottom:6px;}
+.k-meaning{font-size:11.5px;color:var(--muted);line-height:1.4;}
+.kanji-card.hide{display:none;}
+@media(max-width:1100px){.kanji-grid{grid-template-columns:repeat(5,1fr);}}
+@media(max-width:900px){.kanji-grid{grid-template-columns:repeat(4,1fr);}}
+@media(max-width:700px){.kanji-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:460px){.kanji-grid{grid-template-columns:repeat(2,1fr);}header h1{font-size:1.5rem;}.k-kanji{font-size:1.7rem;}}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 40px;}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-left">
+<a href="index.html" class="home-btn"><svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>HOME</a>
+</div>
+<div class="nav-right" id="navRight"></div>
+<button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
+<div class="mobile-menu" id="mobileMenu"></div>
+</nav>
+
+<header>
+<div class="kanji-watermark jp">語彙</div>
+<div class="header-inner">
+<div class="eyebrow">📚 MATERI · KOSAKATA N3</div>
+<h1>Daftar Kosakata JLPT N3</h1>
+<p>Kosakata level menengah yang sering muncul di ujian JLPT N3, lengkap dengan cara baca dan artinya.</p>
+<a href="kanjidasar.html" class="flash-cta">🃏 Latihan dengan Kanji Flash Card</a>
+<div class="search-wrap"><input type="text" id="searchInput" placeholder="Cari kanji, cara baca, atau arti..." oninput="filterKanji()"></div>
+<div class="search-count" id="searchCount"></div>
+</div>
+</header>
+
+<div class="container"><div class="kanji-grid" id="kanjiGrid"></div></div>
+
+<footer>© 2026 Tekipaki Japanese Learning | Kosakata JLPT N3</footer>
+
+<script>
+const VOCAB=[
+["相談","そうだん","konsultasi"],["影響","えいきょう","pengaruh"],["環境","かんきょう","lingkungan"],["経験","けいけん","pengalaman"],
+["結果","けっか","hasil"],["原因","げんいん","penyebab"],["現在","げんざい","saat ini"],["参加","さんか","keikutsertaan"],
+["習慣","しゅうかん","kebiasaan"],["状況","じょうきょう","situasi / keadaan"],["条件","じょうけん","syarat / kondisi"],["性格","せいかく","karakter / sifat"],
+["責任","せきにん","tanggung jawab"],["想像","そうぞう","imajinasi / membayangkan"],["注目","ちゅうもく","perhatian"],["提出","ていしゅつ","penyerahan / pengumpulan"],
+["努力","どりょく","usaha"],["発達","はったつ","perkembangan"],["反対","はんたい","penolakan / kebalikan"],["評判","ひょうばん","reputasi"],
+["不安","ふあん","kecemasan"],["変化","へんか","perubahan"],["方法","ほうほう","metode / cara"],["目的","もくてき","tujuan"],
+["約束","やくそく","janji"],["理由","りゆう","alasan"],["利用","りよう","penggunaan"],["連絡","れんらく","kontak / kabar"],
+["会議","かいぎ","rapat"],["計画","けいかく","rencana"],["増える","ふえる","bertambah"],["減る","へる","berkurang"],
+["続ける","つづける","melanjutkan"],["決まる","きまる","ditentukan"],["決める","きめる","menentukan"],["集まる","あつまる","berkumpul"],
+["集める","あつめる","mengumpulkan"],["伝える","つたえる","menyampaikan"],["比べる","くらべる","membandingkan"],["育てる","そだてる","membesarkan / membina"],
+["調べる","しらべる","menyelidiki / mengecek"],["確かめる","たしかめる","memastikan"],["見つかる","みつかる","ditemukan"],["見つける","みつける","menemukan"],
+["慣れる","なれる","terbiasa"],["引っ越す","ひっこす","pindah rumah"],["邪魔","じゃま","gangguan"],["迷う","まよう","bingung / tersesat"],
+["割れる","われる","pecah"],["折る","おる","mematahkan / melipat"],["汚れる","よごれる","menjadi kotor"],["暖房","だんぼう","pemanas ruangan"],
+["冷房","れいぼう","pendingin ruangan"],["禁止","きんし","larangan"],["許可","きょか","izin"],["予約","よやく","reservasi"],
+["予定","よてい","jadwal / rencana"],["準備","じゅんび","persiapan"],["整理","せいり","merapikan / menata"],["修理","しゅうり","perbaikan"],
+["故障","こしょう","kerusakan (mesin)"],["事故","じこ","kecelakaan"],["犯人","はんにん","pelaku kejahatan"],["被害","ひがい","kerugian / korban"],
+["危険","きけん","bahaya"],["安全","あんぜん","keselamatan / aman"],["健康","けんこう","kesehatan"],["病気","びょうき","sakit"],
+["治る","なおる","sembuh"],["治す","なおす","menyembuhkan"],["直す","なおす","memperbaiki"],["疲れる","つかれる","lelah"],
+["眠い","ねむい","mengantuk"],["緊急","きんきゅう","darurat"],["将来","しょうらい","masa depan"],["過去","かこ","masa lalu"],
+["最初","さいしょ","pertama / awal"],["最後","さいご","terakhir / akhir"],["途中","とちゅう","di tengah jalan"],["突然","とつぜん","tiba-tiba"],
+["偶然","ぐうぜん","kebetulan"],["実は","じつは","sebenarnya"],["特に","とくに","terutama"],["必ず","かならず","pasti / tentu"],
+["絶対","ぜったい","mutlak / pasti"],["例えば","たとえば","misalnya"],["相手","あいて","lawan bicara / pasangan"],["お互い","おたがい","satu sama lain"],
+["世話","せわ","perawatan / bantuan"],["親切","しんせつ","ramah / baik hati"],["丁寧","ていねい","sopan / teliti"],["真面目","まじめ","serius / rajin"],
+["正直","しょうじき","jujur"],["素直","すなお","patuh / apa adanya"],["我慢","がまん","menahan diri / sabar"],["遠慮","えんりょ","sungkan / menahan diri"],
+["気分","きぶん","suasana hati"],["感動","かんどう","terharu / terkesan"],["感謝","かんしゃ","rasa terima kasih"],["興味","きょうみ","minat"],
+["関係","かんけい","hubungan"],["関心","かんしん","ketertarikan"],["意見","いけん","pendapat"],["意味","いみ","arti / makna"],
+["印象","いんしょう","kesan"],["内容","ないよう","isi / konten"],["情報","じょうほう","informasi"],["資料","しりょう","dokumen / bahan"],
+["説明","せつめい","penjelasan"],["発表","はっぴょう","presentasi / pengumuman"],["発見","はっけん","penemuan"],["発明","はつめい","penemuan (invensi)"],
+["文化","ぶんか","budaya"],["歴史","れきし","sejarah"],["社会","しゃかい","masyarakat"],["経済","けいざい","ekonomi"],
+["政治","せいじ","politik"],["国際","こくさい","internasional"],["交通","こうつう","lalu lintas / transportasi"],["地震","じしん","gempa bumi"]
+];
+
+const MENUS=[
+["MATERI","materi",[["daftarkosakata.html","Kosakata JFT"],["materitatabahasa.html","Tata Bahasa"],["daftarkanji.html","Daftar Kanji"],["kanjidasar.html","Kanji Flash Card"]]],
+["QUIZ JFT","quiz",[1,2,3,4,5].map(n=>["ujianjfta2test"+n+".html","SOAL JFT A — TEST "+n])],
+["QUIZ KANJI","kanjiquiz",[1,2,3,4,5].map(n=>["quizkanji"+n+".html","QUIZ KANJI "+n])]
+];
+
+(function build(){
+  document.getElementById('kanjiGrid').innerHTML=VOCAB.map(v=>
+    '<div class="kanji-card"><div class="k-kanji jp">'+v[0]+'</div><div class="k-reading jp">'+v[1]+'</div><div class="k-meaning">'+v[2]+'</div></div>').join('');
+  const links=l=>l.map(a=>'<a href="'+a[0]+'">'+a[1]+'</a>').join('');
+  document.getElementById('navRight').innerHTML=MENUS.map(m=>
+    '<div class="dropdown"><button class="dropdown-btn" onclick="toggleDropdown(\''+m[1]+'\')">'+m[0]+' ▼</button><div class="dropdown-menu" id="'+m[1]+'">'+links(m[2])+'</div></div>').join('')
+    +'<a href="kanjidasar.html" class="nav-link-btn">FLASH CARD</a>';
+  document.getElementById('mobileMenu').innerHTML='<a href="kanjidasar.html" class="mobile-link">🃏 KANJI FLASH CARD</a>'+MENUS.map(m=>
+    '<div class="mobile-section"><button class="mobile-section-btn" onclick="toggleMobileSection(\'m-'+m[1]+'\')">'+m[0]+' <span class="chevron">▼</span></button><div class="mobile-section-links" id="m-'+m[1]+'">'+links(m[2])+'</div></div>').join('');
+})();
+
+function toggleDropdown(id){
+  document.querySelectorAll('.dropdown-menu').forEach(m=>{
+    if(m.id!==id){m.classList.remove('show','align-right');}
+  });
+  const menu=document.getElementById(id),wrap=menu.closest('.dropdown');
+  const willShow=!menu.classList.contains('show');
+  menu.classList.toggle('show');
+  if(willShow){
+    menu.classList.remove('align-right');
+    if(menu.getBoundingClientRect().right>window.innerWidth-8){menu.classList.add('align-right');}
+    const r2=menu.getBoundingClientRect();
+    if(r2.left<8){menu.style.left=(8-wrap.getBoundingClientRect().left)+'px';menu.style.right='auto';}
+  }
+}
+function closeMobileMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburgerBtn').classList.remove('open');
+  document.querySelectorAll('.mobile-section-links.show').forEach(l=>l.classList.remove('show'));
+  document.querySelectorAll('.mobile-section-btn.open').forEach(b=>b.classList.remove('open'));
+}
+window.addEventListener('resize',()=>{
+  document.querySelectorAll('.dropdown-menu.show').forEach(m=>{m.classList.remove('show','align-right');m.style.left='';m.style.right='';});
+  if(window.innerWidth>600){closeMobileMenu();}
+});
+function toggleMobileMenu(){
+  const menu=document.getElementById('mobileMenu'),btn=document.getElementById('hamburgerBtn');
+  const willOpen=!menu.classList.contains('open');
+  menu.classList.toggle('open');btn.classList.toggle('open');
+  if(!willOpen){closeMobileMenu();}
+}
+function toggleMobileSection(id){
+  const links=document.getElementById(id),btn=links.previousElementSibling;
+  const willShow=!links.classList.contains('show');
+  links.classList.toggle('show');btn.classList.toggle('open');
+  if(willShow){
+    document.querySelectorAll('.mobile-section-links.show').forEach(l=>{
+      if(l.id!==id){l.classList.remove('show');l.previousElementSibling.classList.remove('open');}
+    });
+  }
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.dropdown')){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{m.classList.remove('show','align-right');m.style.left='';m.style.right='';});
+  }
+});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.addEventListener('copy',e=>e.preventDefault());
+document.addEventListener('cut',e=>e.preventDefault());
+document.addEventListener('selectstart',e=>e.preventDefault());
+document.addEventListener('dragstart',e=>e.preventDefault());
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey&&['c','u','s','p','a'].includes(e.key.toLowerCase()))||e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['i','j','c'].includes(e.key.toLowerCase()))){e.preventDefault();}
+});
+function filterKanji(){
+  const q=document.getElementById('searchInput').value.trim().toLowerCase();
+  const cards=document.querySelectorAll('.kanji-card');
+  let visible=0;
+  cards.forEach(c=>{
+    if(c.innerText.toLowerCase().includes(q)){c.classList.remove('hide');visible++;}else{c.classList.add('hide');}
+  });
+  document.getElementById('searchCount').textContent=q?(visible+' dari '+cards.length+' kosakata ditemukan'):'';
+}
+</script>
+</body>
+</html>
