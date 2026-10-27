@@ -50,6 +50,19 @@ body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
 .dropdown-menu a:hover{background:var(--gold);color:var(--navy-deep);}
 .show{display:block;}
 
+/* Tombol menu langsung (Flash Card) di navbar desktop */
+.nav-link-btn{
+  display:inline-block;
+  text-decoration:none;
+  padding:8px 14px;
+  border:2px solid var(--gold-bright);
+  background:var(--gold-bright);
+  color:var(--navy-deep);
+  border-radius:8px;
+  font-weight:bold;
+}
+.nav-link-btn:hover{background:transparent;color:var(--gold-bright);}
+
 /* Hamburger button (mobile only) */
 .hamburger-btn{
   display:none;
@@ -117,6 +130,19 @@ body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
 }
 .mobile-section-links a:hover{background:rgba(250,204,21,.12);color:var(--gold-bright);}
 
+/* Menu langsung di mobile (Flash Card) */
+.mobile-link{
+  display:block;
+  padding:14px 20px;
+  color:var(--navy-deep);
+  background:var(--gold-bright);
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:.06em;
+  text-decoration:none;
+}
+.mobile-link:hover{opacity:.9;}
+
 @media(max-width:600px){
   .nav-right{display:none;}
   .hamburger-btn{display:flex;}
@@ -161,6 +187,32 @@ header p{
   font-size:14.5px;
   line-height:1.7;
 }
+
+/* =======================
+     TOMBOL FLASH CARD
+======================= */
+.flash-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-top:22px;
+  padding:13px 26px;
+  background:var(--gold-bright);
+  color:var(--navy-deep);
+  font-weight:700;
+  font-size:15px;
+  text-decoration:none;
+  border-radius:12px;
+  border:2px solid var(--gold-bright);
+  box-shadow:0 8px 20px rgba(0,0,0,.3);
+  transition:transform .2s ease, background .2s ease, color .2s ease;
+}
+.flash-cta:hover{
+  transform:translateY(-2px);
+  background:transparent;
+  color:var(--gold-bright);
+}
+.flash-cta:focus-visible{outline:3px solid #fff;outline-offset:3px;}
 
 /* =======================
         SEARCH
@@ -304,6 +356,8 @@ HOME
 <a href="quizkanji5.html">QUIZ KANJI 5</a>
 </div>
 </div>
+
+<a href="kanjidasar.html" class="nav-link-btn">FLASH CARD</a>
 </div>
 
 <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Menu">
@@ -312,6 +366,8 @@ HOME
 </div>
 
 <div class="mobile-menu" id="mobileMenu">
+
+<a href="kanjidasar.html" class="mobile-link">🃏 KANJI FLASH CARD</a>
 
 <div class="mobile-section">
 <button class="mobile-section-btn" onclick="toggleMobileSection('m-materi')">MATERI <span class="chevron">▼</span></button>
@@ -354,6 +410,7 @@ HOME
     <div class="eyebrow">🈷️ MATERI · KANJI N5</div>
     <h1>Daftar Kanji JLPT N5</h1>
     <p>Kumpulan kanji tingkat N5 lengkap dengan cara baca dan artinya. Gunakan kolom pencarian untuk menemukan kanji tertentu dengan cepat.</p>
+    <a href="kanjidasar.html" class="flash-cta">🃏 Latihan dengan Kanji Flash Card</a>
     <div class="search-wrap">
       <input type="text" id="searchInput" placeholder="Cari kanji, cara baca, atau arti..." oninput="filterKanji()">
     </div>
