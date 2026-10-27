@@ -24,19 +24,25 @@ body{background:#fff;color:var(--text)}
 .dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none}
 .dropdown-menu a:hover{background:#e0b52a;color:#001530}
 .show{display:block}
-.burger{display:none;background:none;border:2px solid #e0b52a;border-radius:8px;width:44px;height:40px;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:0}
-.burger span{display:block;width:22px;height:3px;background:#e0b52a;border-radius:2px;transition:.25s}
-.burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
-.burger.open span:nth-child(2){opacity:0}
-.burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
-@media(max-width:600px){
-.burger{display:flex}
-.nav-right{display:none;position:absolute;top:100%;left:0;right:0;background:#001530;flex-direction:column;align-items:stretch;justify-content:flex-start;flex-wrap:nowrap;gap:8px;padding:12px 20px 18px;border-bottom:2px solid rgba(224,181,42,.3);box-shadow:0 10px 20px rgba(0,0,0,.35);max-height:80vh;overflow-y:auto}
+
+/* ===== HAMBURGER ===== */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:10px;background:none;border:2px solid #e0b52a;border-radius:10px;cursor:pointer}
+.hamburger span{display:block;width:100%;height:3px;background:#e0b52a;border-radius:2px;transition:transform .3s,opacity .3s}
+.hamburger.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+@media(max-width:768px){
+.navbar-inner{flex-wrap:wrap;flex-direction:row;align-items:center;gap:0}
+.hamburger{display:flex}
+.nav-right{display:none;width:100%;flex-direction:column;align-items:stretch;justify-content:flex-start;flex-wrap:nowrap;gap:8px;padding:14px 0 6px;margin-top:10px;border-top:1px solid rgba(224,181,42,.3)}
 .nav-right.open{display:flex}
-.dropdown-btn{width:100%;text-align:left;font-size:.95rem;padding:11px 14px}
-.dropdown-menu{position:static;min-width:0;max-width:100%;box-shadow:none;margin-top:6px}
+.dropdown{width:100%}
+.dropdown-btn{width:100%;text-align:left;font-size:.9rem;padding:12px 14px}
+.dropdown-menu,.dropdown-menu.align-right{position:static;left:auto;right:auto;width:100%;max-width:100%;min-width:0;margin-top:6px;box-shadow:none}
 .breadcrumb{margin-top:16px}
 }
+
 .breadcrumb{margin:20px 0 0;padding:0 0 0 20px;font-size:14px;color:#8892a3}
 .breadcrumb a{color:var(--navy);text-decoration:none;font-weight:600}
 .breadcrumb a:hover{text-decoration:underline}
@@ -125,9 +131,12 @@ footer{text-align:center;padding:30px;color:#666;font-size:14px}
 HOME
 </a>
 </div>
-<button class="burger" id="burger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()">
+
+<button class="hamburger" id="hamburger" type="button"
+        aria-label="Buka menu" aria-expanded="false" onclick="toggleMenu()">
   <span></span><span></span><span></span>
 </button>
+
 <div class="nav-right" id="navRight">
   <div class="dropdown">
     <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
@@ -515,20 +524,19 @@ function resetQuiz(id){
 initQuiz(1);
 initQuiz(2);
 
-function closeDropdowns(){
-    document.querySelectorAll('.dropdown-menu').forEach(m=>{
-        m.classList.remove('show');
-        m.classList.remove('align-right');
-    });
-}
+//============================
+// NAVBAR - HAMBURGER & DROPDOWN
+//============================
+
 function toggleMenu(){
     const nav = document.getElementById('navRight');
-    const burger = document.getElementById('burger');
-    const open = nav.classList.toggle('open');
-    burger.classList.toggle('open', open);
-    burger.setAttribute('aria-expanded', open);
-    if(!open) closeDropdowns();
+    const btn = document.getElementById('hamburger');
+    const isOpen = nav.classList.toggle('open');
+    btn.classList.toggle('active', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+    btn.setAttribute('aria-label', isOpen ? 'Tutup menu' : 'Buka menu');
 }
+
 function toggleDropdown(id){
     document.querySelectorAll('.dropdown-menu').forEach(m=>{
         if(m.id!==id){m.classList.remove('show');m.classList.remove('align-right');}
@@ -536,31 +544,31 @@ function toggleDropdown(id){
     const menu = document.getElementById(id);
     const willShow = !menu.classList.contains('show');
     menu.classList.toggle('show');
-    if(willShow && window.innerWidth > 600){
+    if(willShow){
         menu.classList.remove('align-right');
         const rect = menu.getBoundingClientRect();
         if(rect.right > window.innerWidth - 8){ menu.classList.add('align-right'); }
     }
 }
+
+let lastWidth = window.innerWidth;
 window.addEventListener('resize', ()=>{
-    if(window.innerWidth > 600){
+    if(window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
+
+    document.querySelectorAll('.dropdown-menu.show').forEach(m=>{m.classList.remove('show');m.classList.remove('align-right');});
+
+    if(window.innerWidth > 768){
         document.getElementById('navRight').classList.remove('open');
-        const b = document.getElementById('burger');
-        b.classList.remove('open');
-        b.setAttribute('aria-expanded', 'false');
-        closeDropdowns();
+        const btn = document.getElementById('hamburger');
+        btn.classList.remove('active');
+        btn.setAttribute('aria-expanded','false');
     }
 });
+
 document.addEventListener("click",function(e){
-    if(!e.target.closest(".dropdown") && !e.target.closest("#burger")){
-        if(window.innerWidth > 600) closeDropdowns();
-    }
-    if(window.innerWidth <= 600 && !e.target.closest("#navbar")){
-        document.getElementById('navRight').classList.remove('open');
-        const b = document.getElementById('burger');
-        b.classList.remove('open');
-        b.setAttribute('aria-expanded', 'false');
-        closeDropdowns();
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(m=>{m.classList.remove("show");m.classList.remove("align-right");});
     }
 });
 </script>
