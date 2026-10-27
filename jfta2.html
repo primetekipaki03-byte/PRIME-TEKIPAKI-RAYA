@@ -15,37 +15,7 @@ body{font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif;background:var(--pa
 h1,h2,h3{font-family:"Shippori Mincho",serif}
 a{color:inherit}
 
-/* NAVBAR */
-#navbar{position:sticky;top:0;z-index:9999;width:100%;background:#001530;border-bottom:2px solid rgba(224,181,42,.3);box-shadow:0 4px 14px rgba(0,0,0,.25)}
-.navbar-inner{min-height:64px;padding:8px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.nav-left{display:flex;align-items:center;flex-shrink:0}
-.nav-right{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
-.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy2);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;white-space:nowrap}
-.home-btn:hover{opacity:.85}
-.home-icon{width:22px;height:22px;flex:none}
-.dropdown{position:relative;flex-shrink:0;z-index:1}
-.dropdown.open{z-index:20}
-.dropdown-btn{display:inline-block;text-decoration:none;background:transparent;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-family:inherit;font-size:1rem;font-weight:bold;cursor:pointer;white-space:nowrap}
-.dropdown-btn:hover,.dropdown.open .dropdown-btn{background:var(--gold);color:var(--navy2)}
-.dropdown-menu{display:none;position:absolute;top:calc(100% + 7px);left:0;width:max-content;min-width:220px;max-width:calc(100vw - 20px);background:#1f4577;border:1px solid rgba(224,181,42,.35);border-radius:10px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.35)}
-.dropdown-menu.show{display:block}
-.dropdown-menu.align-right{left:auto;right:0}
-.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none;white-space:nowrap}
-.dropdown-menu a:hover{background:var(--gold);color:var(--navy2)}
-.burger-btn{display:none;align-items:center;justify-content:center;flex-shrink:0;background:transparent;border:2px solid var(--gold);color:var(--gold);padding:9px 12px;border-radius:8px;cursor:pointer}
-.burger-btn svg{width:20px;height:20px;display:block}
-.mobile-menu{display:none;flex-direction:column;background:#001530;border-top:1px solid rgba(224,181,42,.25)}
-.mobile-menu.show{display:flex}
-.mobile-link{display:block;padding:15px 18px;color:#ffd700;text-decoration:none;font-weight:700;font-size:14px;border-bottom:1px solid rgba(255,255,255,.08)}
-.mobile-link:hover{background:rgba(224,181,42,.12)}
-.mobile-acc-btn{width:100%;text-align:left;background:transparent;border:none;color:var(--gold);font-weight:700;font-size:14px;font-family:inherit;padding:15px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
-.mobile-acc-btn::after{content:'+';font-size:18px;line-height:1}
-.mobile-acc-btn.open::after{content:'\2212'}
-.mobile-acc-panel{display:none;flex-direction:column;background:#0a2242}
-.mobile-acc-panel.show{display:flex}
-.mobile-acc-panel a{padding:13px 32px;color:#ffd700;text-decoration:none;font-size:13px;border-bottom:1px solid rgba(255,255,255,.05)}
-.mobile-acc-panel a:hover{background:rgba(224,181,42,.15)}
-@media(min-width:761px){.mobile-menu{display:none !important}}
+/* (CSS navbar sekarang ada di nav.js) */
 
 /* HERO */
 .hero{position:relative;background:radial-gradient(120% 140% at 15% -10%,var(--navy3),var(--navy) 55%,var(--navy2) 100%);color:#fff;padding:80px 20px 100px;text-align:center;overflow:hidden}
@@ -103,101 +73,15 @@ a{color:inherit}
 
 footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20px;border-top:1px solid var(--paper2)}
 
-@media(max-width:1000px){.navbar-inner{padding:10px 12px;gap:10px}.dropdown-btn{font-size:.72rem;padding:6px 9px}.home-btn{padding:8px 10px;font-size:.72rem}}
-@media(max-width:760px){.navbar-inner{flex-wrap:nowrap;padding:10px 14px;gap:10px}.nav-left{flex:1;min-width:0}.nav-right{display:none}.burger-btn{display:flex}.grid3{grid-template-columns:1fr}.kanji-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.grid3{grid-template-columns:1fr}.kanji-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.hero{padding:60px 16px 70px}.hero h1{font-size:2rem}.hero p{font-size:.92rem}#app{padding:40px 14px 20px}}
 </style>
 </head>
 <body translate="no">
 
-<!-- =========================================================
-     NAVBAR
-     Menu desktop  : di dalam <div class="nav-right">
-     Menu HP       : di dalam <div class="mobile-menu">
-     Kalau menambah menu, tambahkan di KEDUANYA.
-========================================================= -->
-<nav id="navbar">
-  <div class="navbar-inner">
-
-    <div class="nav-left">
-      <a href="index.html" class="home-btn">
-        <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
-        HOME
-      </a>
-    </div>
-
-    <!-- ===== MENU DESKTOP ===== -->
-    <div class="nav-right">
-
-      <!-- Dropdown: TEKIPAKI LEARNING -->
-      <div class="dropdown">
-        <button class="dropdown-btn" onclick="toggleDropdown('learningDropdown')">TEKIPAKI LEARNING ▼</button>
-        <div class="dropdown-menu" id="learningDropdown">
-          <a href="guru.html">GURU</a>
-          <a href="elearning.html">SISWA</a>
-        </div>
-      </div>
-
-      <!-- Dropdown: MATERI -->
-      <div class="dropdown">
-        <button class="dropdown-btn" onclick="toggleDropdown('materiDropdown')">MATERI ▼</button>
-        <div class="dropdown-menu" id="materiDropdown">
-          <a href="daftarkosakata.html">Kosakata JFT</a>
-          <a href="materitatabahasa.html">Tata Bahasa</a>
-          <a href="materikanji.html">Materi Kanji JLPT</a>
-          <a href="kanjidasar.html">Kanji Flash Card</a>
-          <a href="materikosakata.html">Materi Kosakata JLPT</a>
-        </div>
-      </div>
-
-      <!-- Tombol langsung: QUIZ JFT -->
-      <div class="dropdown">
-        <a href="soaljft.html" class="dropdown-btn">QUIZ JFT</a>
-      </div>
-
-      <!-- Tombol langsung: QUIZ KANJI -->
-      <div class="dropdown">
-        <a href="soalkanji.html" class="dropdown-btn">QUIZ KANJI</a>
-      </div>
-
-    </div>
-
-    <button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-  </div>
-
-  <!-- ===== MENU HP ===== -->
-  <div class="mobile-menu" id="mobileMenu">
-
-    <a class="mobile-link" href="index.html">HOME</a>
-
-    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">TEKIPAKI LEARNING</button>
-    <div class="mobile-acc-panel">
-      <a href="guru.html">GURU</a>
-      <a href="elearning.html">SISWA</a>
-    </div>
-
-    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
-    <div class="mobile-acc-panel">
-      <a href="daftarkosakata.html">Kosakata JFT</a>
-      <a href="materikosakata.html">Materi Kosakata</a>
-      <a href="materitatabahasa.html">Tata Bahasa</a>
-      <a href="materikanji.html">Materi Kanji JLPT</a>
-      <a href="kanjidasar.html">Kanji Flash Card</a>
-      <a href="materikosakata.html">Materi Kosakata JLPT</a>
-    </div>
-
-    <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">FORMULIR</button>
-    <div class="mobile-acc-panel">
-      <a href="formulir.html">Formulir Pendaftaran</a>
-    </div>
-
-    <a class="mobile-link" href="soaljft.html">QUIZ JFT</a>
-    <a class="mobile-link" href="soalkanji.html">QUIZ KANJI</a>
-
-  </div>
-</nav>
+<!-- NAVBAR: dimuat dari nav.js (edit menu di nav.js, bukan di sini).
+     Kalau menu tidak berubah di browser, naikkan angka v=1 menjadi v=2 -->
+<script src="nav.js?v=1"></script>
 
 <!-- HERO -->
 <section class="hero">
@@ -300,7 +184,7 @@ const JFT_TESTS = 5, JFT_SOAL = 20, JFT_WAKTU = "20:00";
 const KANJI_SETS = 5;
 
 /* =========================================================
-   RENDER KARTU (navbar sudah HTML biasa di atas)
+   RENDER KARTU
 ========================================================= */
 const $ = id => document.getElementById(id);
 
@@ -325,46 +209,6 @@ $("ticketGrid").innerHTML = Array.from({length:JFT_TESTS}, (_, i) => {
 // Tile quiz kanji
 $("kanjiGrid").innerHTML = Array.from({length:KANJI_SETS}, (_, i) => `
   <a href="quizkanji${i+1}.html" class="kanji-tile"><div class="kj">QUIZ</div><div class="lbl2">KANJI ${i+1}</div></a>`).join("");
-
-/* =========================================================
-   PERILAKU NAVBAR
-========================================================= */
-function closeAllDropdowns(){
-  document.querySelectorAll(".dropdown-menu").forEach(m => m.classList.remove("show","align-right"));
-  document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("open"));
-}
-function toggleDropdown(id){
-  document.querySelectorAll(".dropdown-menu").forEach(m => {
-    if(m.id !== id){ m.classList.remove("show","align-right"); const p = m.closest(".dropdown"); if(p) p.classList.remove("open"); }
-  });
-  const menu = $(id); if(!menu) return;
-  const parent = menu.closest(".dropdown");
-  if(menu.classList.contains("show")){ menu.classList.remove("show","align-right"); if(parent) parent.classList.remove("open"); return; }
-  menu.classList.add("show"); if(parent) parent.classList.add("open");
-  menu.classList.remove("align-right");
-  const rect = menu.getBoundingClientRect();
-  if(rect.right > window.innerWidth - 10) menu.classList.add("align-right");
-  if(rect.left < 10) menu.classList.remove("align-right");
-}
-document.addEventListener("click", e => { if(!e.target.closest(".dropdown")) closeAllDropdowns(); });
-
-function toggleMobileMenu(){ $("mobileMenu").classList.toggle("show"); }
-function toggleMobileAccordion(btn){
-  const panel = btn.nextElementSibling, isOpen = btn.classList.contains("open");
-  document.querySelectorAll(".mobile-acc-btn").forEach(b => {
-    if(b !== btn){ b.classList.remove("open"); if(b.nextElementSibling) b.nextElementSibling.classList.remove("show"); }
-  });
-  btn.classList.toggle("open", !isOpen);
-  if(panel) panel.classList.toggle("show", !isOpen);
-}
-window.addEventListener("resize", () => {
-  closeAllDropdowns();
-  if(window.innerWidth > 760){
-    $("mobileMenu").classList.remove("show");
-    document.querySelectorAll(".mobile-acc-btn").forEach(b => b.classList.remove("open"));
-    document.querySelectorAll(".mobile-acc-panel").forEach(p => p.classList.remove("show"));
-  }
-});
 </script>
 </body>
 </html>
