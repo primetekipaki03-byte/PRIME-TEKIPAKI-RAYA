@@ -126,6 +126,16 @@ header .kanji-watermark{
 header h1{font-size:clamp(1.7rem,4.5vw,2.5rem);margin-bottom:10px;}
 header p{color:#cdd8ea;max-width:680px;margin:0 auto;font-size:14.5px;line-height:1.7;}
 
+.source-row{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin-top:16px;
+}
+.source-row .src-label{font-size:12px;color:#9fb0c8;font-weight:600;letter-spacing:.06em;}
+.source-chip{
+  font-size:12px;font-weight:700;color:var(--gold-bright);
+  background:rgba(250,204,21,.1);border:1px solid rgba(250,204,21,.35);
+  padding:5px 12px;border-radius:999px;
+}
+
 .flash-cta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:13px 26px;background:var(--gold-bright);color:var(--navy-deep);font-weight:700;font-size:15px;text-decoration:none;border-radius:12px;border:2px solid var(--gold-bright);box-shadow:0 8px 20px rgba(0,0,0,.3);transition:transform .2s ease, background .2s ease, color .2s ease;}
 .flash-cta:hover{transform:translateY(-2px);background:transparent;color:var(--gold-bright);}
 .flash-cta:focus-visible{outline:3px solid #fff;outline-offset:3px;}
@@ -212,6 +222,27 @@ header p{color:#cdd8ea;max-width:680px;margin:0 auto;font-size:14.5px;line-heigh
 }
 
 footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 40px;}
+
+/* =======================
+     TOMBOL KE ATAS
+======================= */
+.back-to-top{
+  position:fixed;right:20px;bottom:20px;z-index:998;
+  width:48px;height:48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--gold-bright);color:var(--navy-deep);
+  border:2px solid var(--gold-bright);cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,.35);
+  opacity:0;visibility:hidden;transform:translateY(12px);
+  transition:opacity .25s ease, transform .25s ease, visibility .25s ease, background .2s ease, color .2s ease;
+}
+.back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0);}
+.back-to-top:hover{background:var(--navy-deep);color:var(--gold-bright);}
+.back-to-top:focus-visible{outline:3px solid #fff;outline-offset:3px;}
+.back-to-top svg{width:22px;height:22px;}
+@media(max-width:600px){
+  .back-to-top{right:14px;bottom:14px;width:44px;height:44px;}
+}
 
 </style>
 </head>
@@ -317,7 +348,13 @@ HOME
   <div class="header-inner">
     <div class="eyebrow">🈷️ MATERI · KANJI N4</div>
     <h1>Daftar Kanji JLPT N4</h1>
-    <p>Kumpulan kanji tingkat N4 lengkap dengan cara baca dan artinya, dibagi per hari masing-masing 20 kata. Belajar satu hari satu section, atau gunakan kolom pencarian untuk menemukan kanji tertentu.</p>
+    <p>Kumpulan kanji tingkat N4 lengkap dengan cara baca dan artinya, dibagi menjadi 22 hari belajar. Belajar satu hari satu section, atau gunakan kolom pencarian untuk menemukan kanji tertentu.</p>
+    <div class="source-row">
+      <span class="src-label">SUMBER:</span>
+      <span class="source-chip">Irodori</span>
+      <span class="source-chip">Marugoto</span>
+      <span class="source-chip">Minna no Nihongo</span>
+    </div>
     <a href="kanjidasar.html" class="flash-cta">🃏 Latihan dengan Kanji Flash Card</a>
     <div class="search-wrap">
       <input type="text" id="searchInput" placeholder="Cari kanji, cara baca, atau arti..." oninput="filterVocab()">
@@ -333,18 +370,22 @@ HOME
   <div class="empty" id="emptyMsg">Tidak ada kosakata yang cocok dengan pencarianmu.</div>
 </div>
 
-<footer>© 2026 Tekipaki Japanese Learning | Daftar Kanji JLPT N4</footer>
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Kembali ke atas" title="Kembali ke atas">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>
+</button>
+
+<footer>© 2026 Tekipaki Japanese Learning | Daftar Kanji JLPT N4 · Sumber: Irodori, Marugoto, Minna no Nihongo</footer>
 
 <script>
 /* =========================================================
    DATA KOSAKATA
    Format tiap baris:  kata | cara baca | arti
-   - Tinggal tambah baris baru di paling bawah (sebelum ].join...).
-   - Setiap 20 kata otomatis jadi 1 section "Hari".
-   - Ubah PER_HARI kalau mau jumlah per section berbeda.
+   - Tinggal tambah baris baru di paling bawah (sebelum `;).
+   - Seluruh kata otomatis dibagi rata ke TOTAL_HARI section "Hari".
+   - Ubah TOTAL_HARI kalau mau jumlah hari berbeda.
    - Judul per hari (opsional) isi di HARI_JUDUL, urut dari Hari 1.
 ========================================================= */
-const PER_HARI = 20;
+const TOTAL_HARI = 22;
 
 const HARI_JUDUL = [];
 
@@ -663,11 +704,18 @@ const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>
 
 const sectionsEl = document.getElementById("daySections");
 const navEl = document.getElementById("dayNav");
-const totalDays = Math.ceil(WORDS.length / PER_HARI);
+const totalDays = Math.min(TOTAL_HARI, WORDS.length);
 
-let htmlSec = "", htmlNav = "";
+/* Bagi rata: hari-hari awal mendapat 1 kata ekstra bila ada sisa */
+const baseSize = Math.floor(WORDS.length / totalDays);
+const extra = WORDS.length % totalDays;
+
+let htmlSec = "", htmlNav = "", cursor = 0;
 for (let d = 0; d < totalDays; d++) {
-  const chunk = WORDS.slice(d * PER_HARI, (d + 1) * PER_HARI);
+  const size = baseSize + (d < extra ? 1 : 0);
+  const start = cursor;
+  const chunk = WORDS.slice(start, start + size);
+  cursor += size;
   const judul = HARI_JUDUL[d] ? HARI_JUDUL[d] : "";
   htmlNav += `<a class="day-chip" href="#hari${d+1}" data-day="${d+1}">Hari ${d+1}</a>`;
   htmlSec += `
@@ -680,7 +728,7 @@ for (let d = 0; d < totalDays; d++) {
     <div class="vocab-grid">
       ${chunk.map((it, i) => `
       <div class="vocab-card">
-        <span class="v-no">${d * PER_HARI + i + 1}</span>
+        <span class="v-no">${start + i + 1}</span>
         <div class="v-word jp">${esc(it.w)}</div>
         <div class="v-reading jp">${esc(it.r)}</div>
         <div class="v-meaning">${esc(it.m)}</div>
@@ -811,6 +859,19 @@ document.addEventListener('click', e=>{
     document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
   }
 });
+
+/* =========================================================
+   TOMBOL KEMBALI KE ATAS
+========================================================= */
+const backToTopBtn = document.getElementById('backToTop');
+function updateBackToTop(){
+  backToTopBtn.classList.toggle('visible', window.scrollY > 400);
+}
+function scrollToTop(){
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+window.addEventListener('scroll', updateBackToTop, {passive:true});
+updateBackToTop();
 
 /* Proteksi salin (sama seperti halaman Daftar Kanji) */
 document.addEventListener('contextmenu', e => { if(!e.target.closest('input')) e.preventDefault(); });
