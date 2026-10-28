@@ -47,6 +47,7 @@ body{
     justify-content:space-between;
     align-items:center;
     padding:10px 20px;
+    min-height:64px;
 }
 
 .nav-left{
@@ -70,6 +71,7 @@ body{
     padding:8px 14px;
     border-radius:10px;
     font-weight:bold;
+    white-space:nowrap;
 }
 
 .home-btn:hover{
@@ -81,6 +83,7 @@ body{
     height:24px;
     object-fit:cover;
     border-radius:4px;
+    fill:currentColor;
 }
 
 .dropdown{
@@ -95,9 +98,11 @@ body{
     border-radius:8px;
     font-weight:bold;
     cursor:pointer;
+    white-space:nowrap;
 }
 
-.dropdown-btn:hover{
+.dropdown-btn:hover,
+.dropdown.open .dropdown-btn{
     background:var(--gold);
     color:#001530;
 }
@@ -128,6 +133,117 @@ body{
 
 .show{
     display:block;
+}
+
+/* ---- Burger button (hanya tampil di ponsel) ---- */
+
+.burger-btn{
+    display:none;
+    flex:none;
+    width:42px;
+    height:42px;
+    border:2px solid var(--gold);
+    border-radius:9px;
+    background:transparent;
+    cursor:pointer;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:4px;
+    position:relative;
+    z-index:1001;
+}
+
+.burger-btn span{
+    display:block;
+    width:20px;
+    height:2px;
+    background:var(--gold);
+    border-radius:2px;
+    transition:.25s ease;
+}
+
+.burger-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.burger-btn.open span:nth-child(2){opacity:0;}
+.burger-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+.nav-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,10,25,.5);
+    z-index:998;
+}
+
+.nav-overlay.show{
+    display:block;
+}
+
+@media(max-width:1000px){
+
+    .navbar-inner{
+        padding:10px 14px;
+        gap:10px;
+    }
+
+    .burger-btn{
+        display:flex;
+    }
+
+    .nav-right{
+        position:fixed;
+        top:0;
+        right:0;
+        height:100vh;
+        height:100dvh;
+        width:min(82vw,320px);
+        background:#001530;
+        flex-direction:column;
+        align-items:stretch;
+        justify-content:flex-start;
+        gap:10px;
+        padding:78px 18px 24px;
+        transform:translateX(100%);
+        visibility:hidden;
+        transition:transform .28s ease, visibility .28s;
+        z-index:999;
+        overflow-y:auto;
+        -webkit-overflow-scrolling:touch;
+        box-shadow:-8px 0 30px rgba(0,0,0,.4);
+    }
+
+    .nav-right.mobileOpen{
+        transform:translateX(0);
+        visibility:visible;
+    }
+
+    .dropdown{
+        width:100%;
+    }
+
+    .dropdown-btn{
+        width:100%;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        font-size:14px;
+        padding:12px 14px;
+    }
+
+    .dropdown-menu{
+        position:static;
+        width:100%;
+        min-width:0;
+        margin-top:6px;
+        box-shadow:none;
+        max-height:50vh;
+        overflow-y:auto;
+    }
+
+    .dropdown-menu a{
+        padding:11px 14px;
+        font-size:14px;
+    }
 }
 
 /* =======================
@@ -442,7 +558,11 @@ HOME
 </a>
 </div>
 
-<div class="nav-right">
+<button class="burger-btn" id="burgerBtn" type="button" aria-label="Buka menu" onclick="toggleMobileNav()">
+<span></span><span></span><span></span>
+</button>
+
+<div class="nav-right" id="navRight">
 
   <div class="dropdown">
     <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
@@ -478,6 +598,8 @@ HOME
   </div>
 
 </div>
+
+<div class="nav-overlay" id="navOverlay" onclick="closeMobileNav()"></div>
 
 </div>
 </nav>
@@ -617,24 +739,77 @@ function filterCards(){
 renderCards(grammarList);
 
 //============================
+// BURGER MENU (PONSEL)
+//============================
+
+function toggleMobileNav(){
+    const nav = document.getElementById("navRight");
+    const btn = document.getElementById("burgerBtn");
+    const overlay = document.getElementById("navOverlay");
+    if(nav.classList.contains("mobileOpen")){
+        closeMobileNav();
+    }else{
+        nav.classList.add("mobileOpen");
+        btn.classList.add("open");
+        overlay.classList.add("show");
+        document.body.style.overflow = "hidden";
+    }
+}
+
+function closeMobileNav(){
+    document.getElementById("navRight").classList.remove("mobileOpen");
+    document.getElementById("burgerBtn").classList.remove("open");
+    document.getElementById("navOverlay").classList.remove("show");
+    document.body.style.overflow = "";
+    closeAllDropdowns();
+}
+
+function closeAllDropdowns(){
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+        menu.classList.remove("show");
+        const p = menu.closest(".dropdown");
+        if(p){ p.classList.remove("open"); }
+    });
+}
+
+//============================
 // DROPDOWN
 //============================
 
 function toggleDropdown(id){
     document.querySelectorAll(".dropdown-menu").forEach(function(menu){
-        if(menu.id!=id){
+        if(menu.id != id){
             menu.classList.remove("show");
+            const p = menu.closest(".dropdown");
+            if(p){ p.classList.remove("open"); }
         }
     });
-    document.getElementById(id).classList.toggle("show");
+    const menu = document.getElementById(id);
+    menu.classList.toggle("show");
+    const parent = menu.closest(".dropdown");
+    if(parent){ parent.classList.toggle("open", menu.classList.contains("show")); }
 }
 
 document.addEventListener("click",function(e){
     if(!e.target.closest(".dropdown")){
-        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
-            menu.classList.remove("show");
-        });
+        closeAllDropdowns();
     }
+});
+
+document.querySelectorAll(".dropdown-menu a").forEach(function(a){
+    a.addEventListener("click", closeMobileNav);
+});
+
+document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){ closeMobileNav(); }
+});
+
+let lastW = window.innerWidth;
+window.addEventListener("resize", function(){
+    if(window.innerWidth === lastW){ return; }
+    lastW = window.innerWidth;
+    if(window.innerWidth > 1000){ closeMobileNav(); }
+    closeAllDropdowns();
 });
 
 //============================
