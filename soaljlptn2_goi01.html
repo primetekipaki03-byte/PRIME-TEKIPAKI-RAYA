@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latihan Tata Bahasa JLPT N2</title>
+
+<style>
+:root{--navy:#001f3f;--navy2:#002a54;--navy3:#022655;--gold:#facc15;--gold2:#ffd700;--text:#001f3f;--ok:#166534;--okbg:#e6f7ec;--ng:#991b1b;--ngbg:#fdeaea}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
+body{background:#fff;color:var(--text)}
+
+/* NAVBAR */
+#navbar{position:sticky;top:0;z-index:999;background:#001530;border-bottom:2px solid rgba(250,204,21,.25);box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;gap:10px}
+.nav-left{display:flex;align-items:center}
+.nav-right{display:flex;gap:8px;align-items:center}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:#001530;text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold}
+.home-btn:hover{opacity:.85}
+.home-icon{width:24px;height:24px;border-radius:4px}
+.dropdown{position:relative}
+.dropdown-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-weight:bold;cursor:pointer}
+.dropdown-btn:hover{background:var(--gold);color:#001530}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:#022655;border-radius:10px;overflow:hidden;min-width:220px;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none}
+.dropdown-menu a:hover{background:var(--gold);color:#001530}
+.show{display:block}
+.burger-btn{display:none;align-items:center;justify-content:center;flex-shrink:0;background:transparent;border:2px solid var(--gold);color:var(--gold);padding:9px 12px;border-radius:8px;cursor:pointer}
+.burger-btn svg{width:20px;height:20px;display:block}
+.mobile-menu{display:none;flex-direction:column;background:#001530;border-top:1px solid rgba(250,204,21,.25);max-height:calc(100vh - 64px);overflow-y:auto}
+.mobile-menu.show{display:flex}
+.mobile-link{display:block;padding:15px 18px;color:#ffd700;text-decoration:none;font-weight:700;font-size:14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.mobile-acc-btn{width:100%;text-align:left;background:transparent;border:none;color:var(--gold);font-weight:700;font-size:14px;padding:15px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);font-family:inherit}
+.mobile-acc-btn::after{content:'+';font-size:18px;line-height:1}
+.mobile-acc-btn.open::after{content:'\2212'}
+.mobile-acc-panel{display:none;flex-direction:column;background:#0a2242}
+.mobile-acc-panel.show{display:flex}
+.mobile-acc-panel a{padding:13px 32px;color:#ffd700;text-decoration:none;font-size:13px;border-bottom:1px solid rgba(255,255,255,.05)}
+@media(min-width:761px){.mobile-menu{display:none !important}}
+@media(max-width:1000px){.dropdown-btn{font-size:.8rem;padding:7px 10px}}
+@media(max-width:760px){.navbar-inner{padding:10px 14px}.nav-left{flex:1;min-width:0}.nav-right{display:none}.burger-btn{display:flex}}
+
+/* HERO */
+.hero{text-align:center;padding:50px 20px 40px;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--navy) 0%,#062a52 100%)}
+.hero::before{content:"練習";position:absolute;font-size:300px;font-weight:900;color:rgba(250,204,21,.05);top:-70px;left:50%;transform:translateX(-50%);pointer-events:none;user-select:none;white-space:nowrap}
+.badge{display:inline-block;background:var(--gold);color:#001530;font-weight:bold;font-size:13px;letter-spacing:1px;padding:6px 16px;border-radius:999px;margin-bottom:16px;position:relative}
+.hero h1{font-size:40px;color:#fff;margin-bottom:10px;position:relative}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:16px;color:#c9d6e8;max-width:620px;margin:0 auto;position:relative;line-height:1.7}
+
+/* LAYOUT */
+.wrap{max-width:900px;margin:0 auto;padding:30px 20px 60px}
+.crumb{font-size:14px;margin-bottom:20px}
+.crumb a{color:var(--navy);font-weight:600;text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+
+/* DRILL */
+.drill{margin-bottom:34px}
+.drill-head{display:flex;align-items:center;gap:14px;background:linear-gradient(90deg,var(--navy),#1f4577);color:#fff;border-radius:12px;padding:12px 18px;margin-bottom:14px}
+.drill-head .tag{background:var(--gold);color:#001530;font-weight:bold;padding:4px 12px;border-radius:8px;font-size:15px;white-space:nowrap}
+.drill-head .ins{flex:1;font-size:15px;line-height:1.5}
+.drill-head .pt{font-size:13px;color:#c9d6e8;white-space:nowrap}
+
+.q{border:2px solid var(--navy);border-radius:14px;padding:18px 20px;margin-bottom:14px;background:#fafcff;transition:.2s}
+.q.correct{border-color:#22a559;background:var(--okbg)}
+.q.wrong{border-color:#d64545;background:var(--ngbg)}
+.q-row{display:flex;gap:12px;align-items:flex-start}
+.qn{background:var(--navy);color:var(--gold);font-weight:bold;min-width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px}
+.qtext{font-size:19px;line-height:1.9;font-weight:600}
+.qtext .blank{display:inline-block;min-width:46px;border-bottom:2px solid var(--navy);margin:0 4px;text-align:center;font-size:16px;color:var(--navy);font-weight:bold}
+.qtext .blank.star{color:#c98a4d;border-bottom-color:#c98a4d}
+.example-q{opacity:.9;background:#fff;border-style:dashed}
+.example-q .ans{color:var(--ok);font-weight:bold}
+
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0 42px}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.choice span{display:inline-block;padding:9px 18px;border:2px solid var(--navy);border-radius:10px;background:#fff;color:var(--navy);font-weight:600;font-size:16px;cursor:pointer;transition:.15s;user-select:none}
+.choice span:hover{background:#eef3fa}
+.choice input:checked + span{background:var(--navy);color:var(--gold);border-color:var(--navy)}
+.choice input:focus-visible + span{outline:3px solid var(--gold)}
+.choice input:disabled + span{cursor:default;opacity:.85}
+.choice.is-key span{box-shadow:0 0 0 3px #22a559}
+
+.write{margin:12px 0 0 42px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.write label{font-size:13px;color:#556;font-weight:600}
+.write input{padding:9px 14px;border:2px solid var(--navy);border-radius:10px;font-size:17px;min-width:230px;color:var(--navy);outline:none}
+.write input:focus{border-color:var(--gold)}
+
+.fb{display:none;margin:12px 0 0 42px;font-size:14.5px;line-height:1.7;padding:10px 14px;border-radius:10px}
+.q.correct .fb{display:block;background:#d3f0dd;color:var(--ok)}
+.q.wrong .fb{display:block;background:#fbdcdc;color:var(--ng)}
+.fb b{color:var(--navy)}
+
+/* ACTIONS + RESULT */
+.actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.btn{border:2px solid var(--navy);background:var(--navy);color:var(--gold);padding:14px 30px;border-radius:12px;font-weight:bold;font-size:16px;cursor:pointer;transition:.2s}
+.btn:hover{opacity:.88;transform:translateY(-2px)}
+.btn.secondary{background:#fff;color:var(--navy)}
+.warn{text-align:center;color:var(--ng);font-weight:600;margin-top:14px;min-height:22px}
+
+.result{display:none;margin:30px 0 10px;border:3px solid var(--navy);border-radius:18px;padding:26px;text-align:center;background:linear-gradient(180deg,#fffbe6,#fff)}
+.result.show{display:block}
+.score{font-size:54px;font-weight:900;color:var(--navy);line-height:1}
+.score small{font-size:22px;color:#8892a3;font-weight:700}
+.msg{margin-top:10px;font-size:17px;color:#333}
+.break{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.pill{background:var(--navy);color:var(--gold);padding:7px 16px;border-radius:999px;font-size:14px;font-weight:600}
+
+/* KUNCI */
+.key{display:none;margin-top:30px}
+.key.show{display:block}
+.key h2{font-size:22px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.key h2 .tag{background:var(--navy);color:var(--gold);font-size:13px;padding:5px 12px;border-radius:8px}
+.key-table-wrap{overflow-x:auto;border:2px solid var(--navy);border-radius:14px}
+.key table{width:100%;border-collapse:collapse;min-width:560px;font-size:15px}
+.key th{background:var(--navy);color:var(--gold);text-align:left;padding:12px 14px;font-size:14px}
+.key td{padding:11px 14px;border-bottom:1px solid #e3e9f2;vertical-align:top;line-height:1.6}
+.key tr:nth-child(even) td{background:#f5f8fc}
+.key .grp td{background:var(--navy2)!important;color:var(--gold);font-weight:bold;font-size:13px}
+.key .yes{color:var(--ok);font-weight:bold}
+.key .no{color:var(--ng);font-weight:bold}
+
+
+/* Drill A: pilihan di samping soal */
+.q.inline{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:20px}
+.q.inline .choices{margin:0;flex-wrap:nowrap}
+.q.inline .fb{grid-column:1 / -1}
+@media(max-width:700px){
+  .q.inline{grid-template-columns:1fr}
+  .q.inline .choices{margin:12px 0 0 42px;flex-wrap:wrap}
+}
+
+footer{text-align:center;padding:30px;color:#666;font-size:14px}
+
+@media(max-width:600px){
+  .hero h1{font-size:28px}.hero::before{font-size:170px}
+  .drill-head{flex-wrap:wrap}.qtext{font-size:17px}
+  .choices,.write,.fb{margin-left:0}
+  .write input{min-width:0;width:100%}
+  .score{font-size:44px}
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="materikanji.html">Materi Kanji JLPT</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+      <a href="materikosakata.html">Materi Kosakata JLPT</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+</div>
+
+<button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="index.html">HOME</a>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+  <div class="mobile-acc-panel">
+    <a href="daftarkosakata.html">Kosakata JFT</a>
+    <a href="materitatabahasa.html">Tata Bahasa</a>
+    <a href="materikanji.html">Materi Kanji JLPT</a>
+    <a href="kanjidasar.html">Kanji Flash Card</a>
+    <a href="materikosakata.html">Materi Kosakata JLPT</a>
+  </div>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
+  <div class="mobile-acc-panel">
+    <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+    <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+    <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+    <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+    <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+  </div>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
+  <div class="mobile-acc-panel">
+    <a href="quizkanji1.html">QUIZ KANJI 1</a>
+    <a href="quizkanji2.html">QUIZ KANJI 2</a>
+    <a href="quizkanji3.html">QUIZ KANJI 3</a>
+    <a href="quizkanji4.html">QUIZ KANJI 4</a>
+    <a href="quizkanji5.html">QUIZ KANJI 5</a>
+  </div>
+</div>
+</nav>
+
+<section class="hero">
+  <span class="badge">JLPT N2 · LATIHAN</span>
+  <h1>文法 <span>Latihan</span> N2</h1>
+  <p>15 soal tata bahasa N2 dengan 15 pola berbeda. Kerjakan Drill A, B, dan C, lalu tekan <b>Kirim Jawaban</b> untuk melihat skor, pembahasan, dan kunci jawaban.</p>
+</section>
+
+<main class="wrap">
+  <div class="crumb"><a href="tatabahasajlptn2.html">← Kembali ke Daftar Tata Bahasa N2</a></div>
+
+  <div id="drills"></div>
+
+  <div class="warn" id="warn"></div>
+  <div class="actions">
+    <button class="btn" id="submitBtn" onclick="submitAll()">Kirim Jawaban</button>
+    <button class="btn secondary" onclick="resetAll()">Ulangi</button>
+  </div>
+
+  <div class="result" id="result">
+    <div class="score" id="scoreText"></div>
+    <div class="msg" id="scoreMsg"></div>
+    <div class="break" id="scoreBreak"></div>
+  </div>
+
+  <section class="key" id="keySection">
+    <h2><span class="tag">KUNCI</span> Kunci Jawaban</h2>
+    <div class="key-table-wrap"><table id="keyTable"></table></div>
+  </section>
+</main>
+
+<footer>© Tekipaki Japanese Learning</footer>
+
+<script>
+/* =========================================================
+   DATA SOAL
+========================================================= */
+const drillA = [
+  { q:"先生が丁寧に教えてくれた（　　）、試験に合格できました。", opts:{a:"おかげで", b:"せいで"}, ans:"a",
+    why:"〜おかげで dipakai untuk akibat positif (berkat). 〜せいで untuk akibat negatif. Di sini hasilnya baik (lulus ujian)." },
+  { q:"彼は何も知らない（　　）、偉そうに話す。", opts:{a:"くせに", b:"ために"}, ans:"a",
+    why:"〜くせに berarti 'padahal' dengan nada menyindir atau mencela. 〜ために tidak cocok untuk menyatakan sindiran." },
+  { q:"雨のため、試合を中止（　　）。", opts:{a:"せざるを得ない", b:"しざるを得ない"}, ans:"a",
+    why:"〜ざるを得ない (terpaksa harus ~) menempel pada bentuk ない tanpa ない. Khusus する berubah menjadi せざるを得ない." },
+  { q:"ドアを開けた（　　）、猫が飛び出してきた。", opts:{a:"とたんに", b:"次第"}, ans:"a",
+    why:"〜たとたん(に) berarti 'begitu ~' dan memakai bentuk た. 〜次第 memakai bentuk ます tanpa ます (開け次第) dan tidak dipakai untuk kejadian tak terduga." },
+  { q:"雨（　　）、多くの人が集まった。", opts:{a:"にもかかわらず", b:"に対して"}, ans:"a",
+    why:"〜にもかかわらず berarti 'meskipun/walaupun' (hasil berlawanan dengan dugaan). 〜に対して dipakai untuk 'terhadap' atau kontras." }
+];
+
+/* order = urutan nomor pilihan yang benar; starPos = posisi ★ (0 = kotak pertama) */
+const drillB = [
+  { pre:"長い議論の", post:"。", opts:["あげく","結局","計画は","中止になった"], order:[1,2,3,4], starPos:2,
+    why:"〜あげく (akhirnya, hasil buruk setelah proses panjang) mengikuti 長い議論の." },
+  { pre:"入学", post:"。", opts:["ください","に際して","提出して","書類を"], order:[2,4,3,1], starPos:2,
+    why:"〜に際して (pada saat akan ~) menempel pada kata benda: 入学に際して." },
+  { pre:"大学を", post:"。", opts:["見つからない","ものの","卒業した","仕事が"], order:[3,2,4,1], starPos:1,
+    why:"〜ものの berarti 'meskipun ~, tetapi', menempel pada bentuk biasa: 卒業したものの." },
+  { pre:"忙しくて、", post:"。", opts:["休む","旅行","時間もない","どころか"], order:[2,4,1,3], starPos:2,
+    why:"〜どころか berarti 'jangankan ~, bahkan ~': 旅行どころか 休む時間もない." },
+  { pre:"それは", post:"。", opts:["私の","に過ぎません","個人的な","意見"], order:[1,3,4,2], starPos:2,
+    why:"〜に過ぎない berarti 'hanya sekadar', menempel pada kata benda: 意見に過ぎません." }
+];
+
+const drillC = [
+  { q:"家族を大切に思っている（　　）、厳しく言うのです。", opts:{a:"からこそ", b:"からといって"}, ans:"a",
+    why:"〜からこそ berarti 'justru karena', menekankan alasan. 〜からといって berarti 'bukan berarti hanya karena' dan diikuti bentuk negatif." },
+  { q:"このスポーツは年齢や性別（　　）、誰でも楽しめる。", opts:{a:"を問わず", b:"にわたって"}, ans:"a",
+    why:"〜を問わず berarti 'tanpa memandang'. 〜にわたって berarti 'sepanjang/mencakup' (waktu atau wilayah)." },
+  { q:"地球の気温は上がり（　　）。", opts:{a:"つつあります", b:"つつです"}, ans:"a",
+    why:"〜つつある berarti 'sedang dalam proses / berangsur-angsur', dibentuk dari bentuk ます tanpa ます + つつある." },
+  { q:"この映画は実際にあった事件（　　）作られた。", opts:{a:"に基づいて", b:"に反して"}, ans:"a",
+    why:"〜に基づいて berarti 'berdasarkan'. 〜に反して berarti 'bertentangan dengan'." },
+  { q:"日本人だ（　　）、みんなが敬語を完璧に使えるわけではない。", opts:{a:"からといって", b:"からこそ"}, ans:"a",
+    why:"〜からといって ~わけではない = 'bukan berarti hanya karena ~'. 〜からこそ menegaskan alasan, bukan menyangkal." }
+];
+
+const circled = ["❶","❷","❸","❹","❺"];
+
+/* =========================================================
+   RENDER
+========================================================= */
+function choiceHTML(name, key, label, extra){
+  return '<label class="choice" data-key="'+key+'"><input type="radio" name="'+name+'" value="'+key+'"><span>'+(extra||"")+label+'</span></label>';
+}
+
+function renderDrills(){
+  let h = "";
+
+  /* DRILL A */
+  h += '<section class="drill"><div class="drill-head"><span class="tag">ドリル A</span><span class="ins">正しいほうをえらんでください。<br><small>Pilih jawaban yang benar.</small></span><span class="pt">1点×5</span></div>';
+  drillA.forEach((d,i)=>{
+    h += '<div class="q inline" id="qa'+i+'"><div class="q-row"><span class="qn">'+circled[i]+'</span><div class="qtext">'+d.q.replace("（　　）",'<span class="blank">　　</span>')+'</div></div>';
+    h += '<div class="choices">'+choiceHTML("a"+i,"a","a. "+d.opts.a)+choiceHTML("a"+i,"b","b. "+d.opts.b)+'</div><div class="fb"></div></div>';
+  });
+  h += '</section>';
+
+  /* DRILL B */
+  h += '<section class="drill"><div class="drill-head"><span class="tag">ドリル B</span><span class="ins">★に入るものをえらんでください。<br><small>Pilih kata yang masuk ke kotak ★ (susun dulu empat kata menjadi kalimat yang benar).</small></span><span class="pt">1点×5</span></div>';
+  drillB.forEach((d,i)=>{
+    let slots = "";
+    for(let k=0;k<4;k++){
+      slots += k===d.starPos ? '<span class="blank star">★</span>' : '<span class="blank">　　</span>';
+    }
+    h += '<div class="q" id="qb'+i+'"><div class="q-row"><span class="qn">'+circled[i]+'</span><div class="qtext">'+d.pre+slots+d.post+'</div></div>';
+    h += '<div class="choices">';
+    d.opts.forEach((o,k)=>{ h += choiceHTML("b"+i,String(k+1),(k+1)+". "+o); });
+    h += '</div><div class="fb"></div></div>';
+  });
+  h += '</section>';
+
+  /* DRILL C */
+  h += '<section class="drill"><div class="drill-head"><span class="tag">ドリル C</span><span class="ins">正しいほうをえらんでください。<br><small>Pilih bentuk tata bahasa yang benar.</small></span><span class="pt">1点×5</span></div>';
+  drillC.forEach((d,i)=>{
+    h += '<div class="q" id="qc'+i+'"><div class="q-row"><span class="qn">'+circled[i]+'</span><div class="qtext">'+d.q.replace("（　　）",'<span class="blank">　　</span>')+'</div></div>';
+    h += '<div class="choices">'+choiceHTML("c"+i,"a","a. "+d.opts.a)+choiceHTML("c"+i,"b","b. "+d.opts.b)+'</div><div class="fb"></div></div>';
+  });
+  h += '</section>';
+
+  document.getElementById("drills").innerHTML = h;
+}
+
+/* =========================================================
+   LOGIC
+========================================================= */
+function val(name){
+  const el = document.querySelector('input[name="'+name+'"]:checked');
+  return el ? el.value : null;
+}
+function norm(s){
+  return String(s||"").normalize("NFKC").replace(/\s+/g,"").replace(/[\u30a1-\u30f6]/g,c=>String.fromCharCode(c.charCodeAt(0)-0x60));
+}
+function setState(box, ok, html){
+  box.classList.remove("correct","wrong");
+  box.classList.add(ok ? "correct" : "wrong");
+  box.querySelector(".fb").innerHTML = html;
+}
+function markKey(name, key){
+  document.querySelectorAll('input[name="'+name+'"]').forEach(inp=>{
+    if(inp.value===key) inp.closest(".choice").classList.add("is-key");
+  });
+}
+function lockAll(lock){
+  document.querySelectorAll("#drills input").forEach(i=>i.disabled = lock);
+}
+function sentenceB(d){
+  let s = d.pre;
+  d.order.forEach(n=>{ s += d.opts[n-1]; });
+  return s + d.post;
+}
+
+function submitAll(){
+  const warn = document.getElementById("warn");
+  warn.textContent = "";
+
+  /* hitung yang belum dijawab */
+  let empty = 0;
+  drillA.forEach((d,i)=>{ if(!val("a"+i)) empty++; });
+  drillB.forEach((d,i)=>{ if(!val("b"+i)) empty++; });
+  drillC.forEach((d,i)=>{ if(!val("c"+i)) empty++; });
+  if(empty>0){
+    const go = confirm(empty + " soal belum lengkap dijawab dan akan dihitung salah. Tetap kirim jawaban?");
+    if(!go){ warn.textContent = "Lengkapi dulu jawabanmu, lalu tekan Kirim Jawaban."; return; }
+  }
+
+  const sc = {A:0,B:0,C:0};
+  const rows = [];
+
+  drillA.forEach((d,i)=>{
+    const u = val("a"+i), ok = u===d.ans;
+    if(ok) sc.A++;
+    setState(document.getElementById("qa"+i), ok,
+      (ok ? "<b>Benar!</b> " : "<b>Salah.</b> Jawaban yang benar: <b>"+d.ans+". "+d.opts[d.ans]+"</b>. ") + d.why);
+    markKey("a"+i, d.ans);
+    rows.push({g:"A",n:circled[i],ans:d.ans+". "+d.opts[d.ans],why:d.why,ok:ok});
+  });
+
+  drillB.forEach((d,i)=>{
+    const key = String(d.order[d.starPos]);
+    const u = val("b"+i), ok = u===key;
+    if(ok) sc.B++;
+    setState(document.getElementById("qb"+i), ok,
+      (ok ? "<b>Benar!</b> " : "<b>Salah.</b> Jawaban yang benar: <b>"+key+". "+d.opts[key-1]+"</b>. ") +
+      "Kalimat lengkap: <b>"+sentenceB(d)+"</b><br>" + d.why);
+    markKey("b"+i, key);
+    rows.push({g:"B",n:circled[i],ans:key+". "+d.opts[key-1]+"（"+sentenceB(d)+"）",why:d.why,ok:ok});
+  });
+
+  drillC.forEach((d,i)=>{
+    const u = val("c"+i), ok = u===d.ans;
+    if(ok) sc.C++;
+    setState(document.getElementById("qc"+i), ok,
+      (ok ? "<b>Benar!</b> " : "<b>Salah.</b> Jawaban yang benar: <b>"+d.ans+". "+d.opts[d.ans]+"</b>. ") + d.why);
+    markKey("c"+i, d.ans);
+    rows.push({g:"C",n:circled[i],ans:d.ans+". "+d.opts[d.ans],why:d.why,ok:ok});
+  });
+
+  const total = sc.A+sc.B+sc.C;
+  document.getElementById("scoreText").innerHTML = total + ' <small>/ 15</small>';
+  const pct = total/15;
+  let msg = "Terus berlatih, kamu pasti bisa! Baca lagi pembahasan di setiap soal.";
+  if(pct===1) msg = "Sempurna! Semua jawabanmu benar. 🎉";
+  else if(pct>=0.8) msg = "Bagus sekali! Tinggal sedikit lagi menuju nilai sempurna.";
+  else if(pct>=0.6) msg = "Lumayan! Pelajari lagi soal yang masih salah.";
+  document.getElementById("scoreMsg").textContent = msg;
+  document.getElementById("scoreBreak").innerHTML =
+    '<span class="pill">Drill A: '+sc.A+'/5</span><span class="pill">Drill B: '+sc.B+'/5</span><span class="pill">Drill C: '+sc.C+'/5</span>';
+  document.getElementById("result").classList.add("show");
+
+  /* tabel kunci jawaban */
+  let t = '<thead><tr><th>No.</th><th>Jawaban</th><th>Pembahasan</th><th>Hasilmu</th></tr></thead><tbody>';
+  let last = "";
+  const names = {A:"ドリル A",B:"ドリル B",C:"ドリル C"};
+  rows.forEach(r=>{
+    if(r.g!==last){ t += '<tr class="grp"><td colspan="4">'+names[r.g]+'</td></tr>'; last = r.g; }
+    t += '<tr><td>'+r.n+'</td><td><b>'+r.ans+'</b></td><td>'+r.why+'</td><td class="'+(r.ok?"yes":"no")+'">'+(r.ok?"✔ Benar":"✘ Salah")+'</td></tr>';
+  });
+  t += '</tbody>';
+  document.getElementById("keyTable").innerHTML = t;
+  document.getElementById("keySection").classList.add("show");
+
+  lockAll(true);
+  document.getElementById("submitBtn").disabled = true;
+  document.getElementById("submitBtn").style.opacity = ".5";
+  document.getElementById("result").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function resetAll(){
+  renderDrills();
+  document.getElementById("warn").textContent = "";
+  document.getElementById("result").classList.remove("show");
+  document.getElementById("keySection").classList.remove("show");
+  const b = document.getElementById("submitBtn");
+  b.disabled = false; b.style.opacity = "";
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+renderDrills();
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+function toggleDropdown(id){
+  document.querySelectorAll(".dropdown-menu").forEach(function(m){ if(m.id!=id) m.classList.remove("show"); });
+  document.getElementById(id).classList.toggle("show");
+}
+document.addEventListener("click",function(e){
+  if(!e.target.closest(".dropdown")){
+    document.querySelectorAll(".dropdown-menu").forEach(function(m){ m.classList.remove("show"); });
+  }
+});
+function toggleMobileMenu(){
+  const m = document.getElementById("mobileMenu");
+  if(m) m.classList.toggle("show");
+}
+function toggleMobileAccordion(btn){
+  const panel = btn.nextElementSibling;
+  const isOpen = btn.classList.contains("open");
+  document.querySelectorAll(".mobile-acc-btn").forEach(function(b){
+    if(b!==btn){ b.classList.remove("open"); if(b.nextElementSibling) b.nextElementSibling.classList.remove("show"); }
+  });
+  btn.classList.toggle("open", !isOpen);
+  if(panel) panel.classList.toggle("show", !isOpen);
+}
+window.addEventListener("resize",function(){
+  document.querySelectorAll(".dropdown-menu").forEach(function(m){ m.classList.remove("show"); });
+  if(window.innerWidth>760){
+    const mm = document.getElementById("mobileMenu");
+    if(mm) mm.classList.remove("show");
+    document.querySelectorAll(".mobile-acc-btn").forEach(function(b){ b.classList.remove("open"); });
+    document.querySelectorAll(".mobile-acc-panel").forEach(function(p){ p.classList.remove("show"); });
+  }
+});
+</script>
+
+</body>
+</html>
