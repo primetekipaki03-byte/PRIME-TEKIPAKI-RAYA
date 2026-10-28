@@ -64,8 +64,8 @@ header p{color:#cdd8ea;max-width:680px;margin:0 auto;font-size:14.5px;line-heigh
 .search-wrap input:focus{outline:2px solid var(--gold-bright);}
 .search-wrap::before{content:"🔍";position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:15px;z-index:3;}
 .search-count{text-align:center;color:#cdd8ea;font-size:12.5px;margin-top:10px;min-height:18px;}
-.day-nav{max-width:1200px;margin:0 auto;padding:18px 20px 0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
-.day-chip{text-decoration:none;font-size:12.5px;font-weight:600;color:var(--navy);background:#fff;border:2px solid rgba(0,31,63,.12);border-radius:999px;padding:6px 14px;transition:.15s;}
+.day-nav{max-width:1200px;margin:0 auto;padding:18px 20px 10px;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;justify-content:flex-start;-webkit-overflow-scrolling:touch;}
+.day-chip{flex:none;text-decoration:none;font-size:12.5px;font-weight:600;color:var(--navy);background:#fff;border:2px solid rgba(0,31,63,.12);border-radius:999px;padding:6px 14px;transition:.15s;white-space:nowrap;}
 .day-chip:hover{background:var(--gold-bright);border-color:var(--gold-bright);}
 .day-chip.hide{display:none;}
 .container{max-width:1200px;margin:auto;padding:20px;}
@@ -111,7 +111,7 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 40p
 <div class="header-inner">
 <div class="eyebrow">📚 MATERI · KOSAKATA N2</div>
 <h1>Daftar Kosakata JLPT N2</h1>
-<p>Kumpulan kosakata tingkat N2 lengkap dengan cara baca dan artinya, dibagi menjadi 28 hari belajar. Belajar satu hari satu section, atau gunakan kolom pencarian untuk menemukan kata tertentu.</p>
+<p id="headerDesc">Kumpulan kosakata tingkat N2 lengkap dengan cara baca dan artinya, dibagi menjadi 90 hari belajar (±3 bulan). Belajar satu hari satu section, atau gunakan kolom pencarian untuk menemukan kata tertentu.</p>
 <a href="kanjidasar.html" class="flash-cta">🃏 Latihan dengan Kanji Flash Card</a>
 <div class="search-wrap"><input type="text" id="searchInput" placeholder="Cari kanji, cara baca, atau arti..." oninput="filterVocab()"></div>
 <div class="search-count" id="searchCount"></div>
@@ -130,8 +130,8 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 40p
 
 <script>
 /* DATA: kata|cara baca|arti — tinggal tambah baris baru di bawah.
-   Semua kata otomatis dibagi rata ke TOTAL_HARI. Judul per hari opsional di HARI_JUDUL. */
-const TOTAL_HARI = 28;
+   Setiap hari berisi KATA_PER_HARI kata; jumlah hari otomatis bertambah sesuai jumlah kata. Judul per hari opsional di HARI_JUDUL. */
+const KATA_PER_HARI = 15;
 const HARI_JUDUL = [];
 
 const DATA = `
@@ -413,6 +413,474 @@ const DATA = `
 氷|こおり|es
 郊外|こうがい|pinggiran kota
 軍隊|ぐんたい|pasukan militer
+維持|いじ|mempertahankan / pemeliharaan
+影響|えいきょう|pengaruh
+遠慮|えんりょ|sungkan / menahan diri
+応援|おうえん|dukungan
+応用|おうよう|penerapan
+大雑把|おおざっぱ|kasar / garis besar
+補う|おぎなう|melengkapi / menambal
+怠ける|なまける|bermalas-malasan
+改善|かいぜん|perbaikan
+解決|かいけつ|penyelesaian
+確認|かくにん|konfirmasi
+過去|かこ|masa lalu
+可能性|かのうせい|kemungkinan
+関係|かんけい|hubungan
+感謝|かんしゃ|rasa terima kasih
+完成|かんせい|penyelesaian
+機会|きかい|kesempatan
+期待|きたい|harapan
+基本|きほん|dasar
+疑問|ぎもん|pertanyaan / keraguan
+協力|きょうりょく|kerja sama
+距離|きょり|jarak
+禁止|きんし|larangan
+区別|くべつ|pembedaan
+経験|けいけん|pengalaman
+経済|けいざい|ekonomi
+結果|けっか|hasil
+欠点|けってん|kekurangan
+原因|げんいん|penyebab
+現在|げんざい|saat ini
+検査|けんさ|pemeriksaan
+原則|げんそく|prinsip
+現象|げんしょう|fenomena
+権利|けんり|hak
+効果|こうか|efek / hasil guna
+交通|こうつう|lalu lintas
+公平|こうへい|adil
+国際|こくさい|internasional
+個人|こじん|individu
+古典|こてん|klasik
+混雑|こんざつ|keramaian / kepadatan
+再開|さいかい|pembukaan kembali
+材料|ざいりょう|bahan
+作業|さぎょう|pekerjaan
+刺激|しげき|rangsangan
+資源|しげん|sumber daya
+事件|じけん|kasus / kejadian
+自然|しぜん|alam
+実現|じつげん|perwujudan
+実際|じっさい|kenyataan
+支店|してん|cabang
+指摘|してき|menunjukkan / menunjuk
+社会|しゃかい|masyarakat
+習慣|しゅうかん|kebiasaan
+重視|じゅうし|menganggap penting
+修理|しゅうり|perbaikan
+主張|しゅちょう|pendapat / klaim
+出身|しゅっしん|asal
+順調|じゅんちょう|lancar
+状況|じょうきょう|situasi
+条件|じょうけん|syarat
+消費|しょうひ|konsumsi
+将来|しょうらい|masa depan
+信じる|しんじる|percaya
+診断|しんだん|diagnosis
+進歩|しんぽ|kemajuan
+心配|しんぱい|kekhawatiran
+睡眠|すいみん|tidur
+推薦|すいせん|rekomendasi
+数字|すうじ|angka
+正確|せいかく|akurat
+成功|せいこう|keberhasilan
+成績|せいせき|nilai / prestasi
+責任|せきにん|tanggung jawab
+世代|せだい|generasi
+積極的|せっきょくてき|aktif / proaktif
+設計|せっけい|perancangan
+説明|せつめい|penjelasan
+前提|ぜんてい|premis / prasyarat
+専門|せんもん|keahlian khusus
+想像|そうぞう|imajinasi
+相談|そうだん|konsultasi
+速度|そくど|kecepatan
+尊重|そんちょう|menghargai
+存在|そんざい|keberadaan
+態度|たいど|sikap
+対象|たいしょう|objek / sasaran
+代表|だいひょう|perwakilan
+担当|たんとう|penanggung jawab
+段階|だんかい|tahap
+注意|ちゅうい|perhatian / hati-hati
+中止|ちゅうし|pembatalan
+調整|ちょうせい|penyesuaian
+直接|ちょくせつ|langsung
+提案|ていあん|usulan
+程度|ていど|tingkat / derajat
+適当|てきとう|cocok / asal-asalan
+伝統|でんとう|tradisi
+展示|てんじ|pameran
+統計|とうけい|statistik
+道徳|どうとく|moral
+得意|とくい|jago / keahlian
+特徴|とくちょう|ciri khas
+独立|どくりつ|kemerdekaan / mandiri
+努力|どりょく|usaha
+内容|ないよう|isi
+能力|のうりょく|kemampuan
+農業|のうぎょう|pertanian
+配慮|はいりょ|pertimbangan / perhatian
+発達|はったつ|perkembangan
+発表|はっぴょう|presentasi / pengumuman
+判断|はんだん|penilaian / keputusan
+比較|ひかく|perbandingan
+批判|ひはん|kritik
+評価|ひょうか|evaluasi / penilaian
+表現|ひょうげん|ungkapan
+普通|ふつう|biasa
+不安|ふあん|kecemasan
+負担|ふたん|beban
+物価|ぶっか|harga barang
+不足|ふそく|kekurangan
+分析|ぶんせき|analisis
+分野|ぶんや|bidang
+平均|へいきん|rata-rata
+変化|へんか|perubahan
+方針|ほうしん|kebijakan / arah
+方法|ほうほう|metode
+保険|ほけん|asuransi
+保存|ほぞん|penyimpanan
+本質|ほんしつ|esensi
+満足|まんぞく|kepuasan
+未来|みらい|masa depan
+無理|むり|mustahil / memaksakan
+目的|もくてき|tujuan
+目標|もくひょう|target
+問題|もんだい|masalah
+役割|やくわり|peran
+輸出|ゆしゅつ|ekspor
+輸入|ゆにゅう|impor
+予想|よそう|perkiraan
+予定|よてい|rencana
+理解|りかい|pemahaman
+理想|りそう|idealisme
+利用|りよう|penggunaan
+理由|りゆう|alasan
+流行|りゅうこう|tren
+領収書|りょうしゅうしょ|kuitansi
+冷房|れいぼう|pendingin ruangan
+労働|ろうどう|tenaga kerja
+論文|ろんぶん|makalah / skripsi
+話題|わだい|topik pembicaraan
+諦める|あきらめる|menyerah
+憧れる|あこがれる|mendambakan
+扱う|あつかう|menangani
+当たる|あたる|mengenai / cocok
+甘える|あまえる|bermanja
+争う|あらそう|bertengkar / bersaing
+改める|あらためる|memperbarui / memperbaiki
+表す|あらわす|menyatakan
+現れる|あらわれる|muncul
+合わせる|あわせる|menyesuaikan
+言い訳|いいわけ|alasan / dalih
+祈る|いのる|berdoa / berharap
+植える|うえる|menanam
+受け入れる|うけいれる|menerima
+疑う|うたがう|meragukan
+奪う|うばう|merampas
+恐れる|おそれる|takut
+劣る|おとる|lebih rendah
+驚く|おどろく|terkejut
+思い込む|おもいこむ|meyakini begitu saja
+及ぶ|およぶ|mencapai / meluas
+折る|おる|mematahkan / melipat
+抱える|かかえる|menanggung / memeluk
+限る|かぎる|membatasi
+隠す|かくす|menyembunyikan
+重ねる|かさねる|menumpuk
+稼ぐ|かせぐ|mencari nafkah
+片付ける|かたづける|membereskan
+叶える|かなえる|mewujudkan
+加える|くわえる|menambahkan
+崩れる|くずれる|runtuh
+悔やむ|くやむ|menyesali
+比べる|くらべる|membandingkan
+苦しむ|くるしむ|menderita
+断る|ことわる|menolak
+支える|ささえる|menopang
+避ける|さける|menghindari
+騒ぐ|さわぐ|ribut
+誘う|さそう|mengajak
+叱る|しかる|memarahi
+従う|したがう|mengikuti / patuh
+縛る|しばる|mengikat
+示す|しめす|menunjukkan
+信頼|しんらい|kepercayaan
+透明|とうめい|transparan
+救う|すくう|menyelamatkan
+優れる|すぐれる|unggul
+進める|すすめる|memajukan
+勧める|すすめる|menyarankan
+済ます|すます|menyelesaikan
+済む|すむ|selesai
+育つ|そだつ|tumbuh / dibesarkan
+育てる|そだてる|membesarkan
+倒れる|たおれる|roboh / pingsan
+耐える|たえる|bertahan
+確かめる|たしかめる|memastikan
+訪ねる|たずねる|mengunjungi
+尋ねる|たずねる|bertanya
+立ち上がる|たちあがる|berdiri
+頼る|たよる|bergantung
+縮む|ちぢむ|menyusut
+散らかす|ちらかす|membuat berantakan
+捕まえる|つかまえる|menangkap
+尽くす|つくす|mengerahkan
+伝わる|つたわる|tersampaikan
+努める|つとめる|berusaha
+務める|つとめる|menjabat
+勤める|つとめる|bekerja (di)
+潰す|つぶす|menghancurkan
+積む|つむ|menumpuk
+通じる|つうじる|tersambung / dimengerti
+訴える|うったえる|menggugat / mengadu
+解く|とく|memecahkan / melepas
+整える|ととのえる|merapikan
+飛ばす|とばす|menerbangkan / melewatkan
+慣れる|なれる|terbiasa
+握る|にぎる|menggenggam
+逃げる|にげる|melarikan diri
+似る|にる|mirip
+盗む|ぬすむ|mencuri
+狙う|ねらう|membidik / mengincar
+残る|のこる|tersisa
+乗せる|のせる|menaruh / memuat
+除く|のぞく|mengecualikan
+望む|のぞむ|mengharapkan
+延ばす|のばす|memperpanjang
+払う|はらう|membayar
+測る|はかる|mengukur
+計る|はかる|menghitung / mengukur waktu
+図る|はかる|merencanakan
+外す|はずす|melepas
+果たす|はたす|menunaikan
+省く|はぶく|menghilangkan / menghemat
+控える|ひかえる|menahan diri / mencatat
+引き受ける|ひきうける|menerima tugas
+引っ越す|ひっこす|pindah rumah
+広がる|ひろがる|meluas
+深まる|ふかまる|mendalam
+防ぐ|ふせぐ|mencegah
+含める|ふくめる|memasukkan
+踏む|ふむ|menginjak
+振る|ふる|mengayunkan / menggoyang
+触れる|ふれる|menyentuh / menyinggung
+閉じる|とじる|menutup
+曲がる|まがる|belok / bengkok
+任せる|まかせる|mempercayakan
+巻き込む|まきこむ|menyeret / melibatkan
+招く|まねく|mengundang
+迷う|まよう|bingung / tersesat
+見かける|みかける|kebetulan melihat
+認める|みとめる|mengakui
+見直す|みなおす|meninjau ulang
+迎える|むかえる|menyambut
+結ぶ|むすぶ|mengikat / menjalin
+目指す|めざす|menuju / menargetkan
+燃やす|もやす|membakar
+戻す|もどす|mengembalikan
+求める|もとめる|meminta / mencari
+漏れる|もれる|bocor
+養う|やしなう|memelihara / menafkahi
+破る|やぶる|merobek / melanggar
+破れる|やぶれる|robek
+譲る|ゆずる|mengalah / menyerahkan
+許す|ゆるす|memaafkan / mengizinkan
+酔う|よう|mabuk
+寄る|よる|mampir / mendekat
+慌てる|あわてる|panik / terburu-buru
+割れる|われる|pecah
+温暖|おんだん|hangat (iklim)
+快い|こころよい|menyenangkan
+厳しい|きびしい|ketat / keras
+詳しい|くわしい|rinci / mahir
+険しい|けわしい|terjal / curam
+鮮やか|あざやか|cerah / jelas
+穏やか|おだやか|tenang / lembut
+明らか|あきらか|jelas
+賑やか|にぎやか|ramai
+爽やか|さわやか|segar
+愉快|ゆかい|menyenangkan
+適切|てきせつ|tepat
+必然|ひつぜん|keharusan / tak terelakkan
+貴重|きちょう|berharga
+著しい|いちじるしい|nyata / signifikan
+激しい|はげしい|hebat / sengit
+惜しい|おしい|sayang / disayangkan
+等しい|ひとしい|sama / setara
+親しい|したしい|akrab
+情けない|なさけない|menyedihkan / memalukan
+恋しい|こいしい|dirindukan
+懐かしい|なつかしい|bernostalgia
+羨ましい|うらやましい|iri / menginginkan
+面倒|めんどう|merepotkan
+素晴らしい|すばらしい|hebat
+鈍感|どんかん|tidak peka
+敏感|びんかん|peka
+貧しい|まずしい|miskin
+豊富|ほうふ|melimpah
+盛ん|さかん|giat / berkembang
+単純|たんじゅん|sederhana
+複雑|ふくざつ|rumit
+正直|しょうじき|jujur
+丁寧|ていねい|sopan / teliti
+率直|そっちょく|terus terang
+勝手|かって|seenaknya
+我慢|がまん|bersabar
+地味|じみ|sederhana / tidak mencolok
+派手|はで|mencolok / meriah
+自由|じゆう|bebas
+消極的|しょうきょくてき|pasif
+明確|めいかく|jelas / tegas
+曖昧|あいまい|samar
+確実|かくじつ|pasti
+安定|あんてい|stabil
+危険|きけん|bahaya
+困難|こんなん|kesulitan
+深刻|しんこく|serius / parah
+案外|あんがい|ternyata / tak disangka
+一応|いちおう|untuk sementara / sekadar
+至る所|いたるところ|di mana-mana
+いっそ|いっそ|lebih baik sekalian
+思い切って|おもいきって|dengan tekad bulat
+かえって|かえって|malah / sebaliknya
+きっかけ|きっかけ|pemicu / awal mula
+さっそく|さっそく|segera
+せめて|せめて|setidaknya
+たちまち|たちまち|seketika
+ついに|ついに|akhirnya
+とっくに|とっくに|sudah lama
+どうしても|どうしても|bagaimanapun juga
+なるべく|なるべく|sebisa mungkin
+はっきり|はっきり|jelas
+ひとまず|ひとまず|untuk sementara
+まさか|まさか|masa sih
+むしろ|むしろ|justru / lebih tepatnya
+やはり|やはり|ternyata / tetap
+わざと|わざと|sengaja
+わざわざ|わざわざ|repot-repot
+相変わらず|あいかわらず|seperti biasa
+当然|とうぜん|tentu saja
+次々|つぎつぎ|satu demi satu
+少なくとも|すくなくとも|setidaknya
+思わず|おもわず|tanpa sadar
+ようやく|ようやく|akhirnya (dengan susah payah)
+やがて|やがて|tak lama kemudian
+そろそろ|そろそろ|sebentar lagi
+すっかり|すっかり|sepenuhnya
+ぎりぎり|ぎりぎり|mepet
+がっかり|がっかり|kecewa
+いらいら|いらいら|jengkel
+うっかり|うっかり|lalai
+きちんと|きちんと|dengan rapi
+しっかり|しっかり|kuat / sungguh-sungguh
+のんびり|のんびり|santai
+ぼんやり|ぼんやり|melamun / samar
+ぐっすり|ぐっすり|nyenyak
+ぴったり|ぴったり|pas
+ぶらぶら|ぶらぶら|berkeliaran
+ほっと|ほっと|lega
+わくわく|わくわく|berdebar senang
+どきどき|どきどき|berdebar
+がらがら|がらがら|sepi / kosong
+ぺらぺら|ぺらぺら|fasih
+めちゃくちゃ|めちゃくちゃ|kacau / sangat
+行動|こうどう|tindakan
+行事|ぎょうじ|acara / perayaan
+営業|えいぎょう|penjualan / operasional
+大型|おおがた|ukuran besar
+開催|かいさい|penyelenggaraan
+改正|かいせい|revisi
+解釈|かいしゃく|interpretasi
+各自|かくじ|masing-masing
+確率|かくりつ|probabilitas
+過程|かてい|proses
+環境|かんきょう|lingkungan
+観光|かんこう|wisata
+管理|かんり|manajemen
+機能|きのう|fungsi
+義務|ぎむ|kewajiban
+急激|きゅうげき|mendadak / drastis
+休憩|きゅうけい|istirahat
+給料|きゅうりょう|gaji
+協会|きょうかい|asosiasi
+共通|きょうつう|kesamaan
+記録|きろく|catatan / rekor
+具体的|ぐたいてき|konkret
+計画|けいかく|rencana
+契約|けいやく|kontrak
+結論|けつろん|kesimpulan
+言語|げんご|bahasa
+現代|げんだい|zaman modern
+講演|こうえん|ceramah
+広告|こうこく|iklan
+構造|こうぞう|struktur
+合計|ごうけい|total
+項目|こうもく|butir / item
+国籍|こくせき|kewarganegaraan
+産業|さんぎょう|industri
+資格|しかく|kualifikasi
+資料|しりょう|dokumen / bahan
+信号|しんごう|lampu lalu lintas / sinyal
+人口|じんこう|jumlah penduduk
+政治|せいじ|politik
+制度|せいど|sistem
+製品|せいひん|produk
+世界|せかい|dunia
+設備|せつび|fasilitas
+全体|ぜんたい|keseluruhan
+増加|ぞうか|peningkatan
+損害|そんがい|kerugian
+体験|たいけん|pengalaman langsung
+対策|たいさく|langkah penanggulangan
+大量|たいりょう|jumlah besar
+知識|ちしき|pengetahuan
+地域|ちいき|wilayah
+中心|ちゅうしん|pusat
+調査|ちょうさ|survei
+通勤|つうきん|pergi kerja
+通訳|つうやく|penerjemah lisan
+提出|ていしゅつ|penyerahan
+手続き|てつづき|prosedur
+電源|でんげん|sumber listrik
+同時|どうじ|bersamaan
+投票|とうひょう|pemungutan suara
+特別|とくべつ|khusus
+都市|とし|kota besar
+内部|ないぶ|bagian dalam
+日程|にってい|jadwal
+任務|にんむ|tugas
+年齢|ねんれい|usia
+背景|はいけい|latar belakang
+範囲|はんい|cakupan
+販売|はんばい|penjualan
+批評|ひひょう|ulasan
+費用|ひよう|biaya
+標準|ひょうじゅん|standar
+品質|ひんしつ|kualitas
+文化|ぶんか|budaya
+文章|ぶんしょう|kalimat / tulisan
+法律|ほうりつ|hukum
+訪問|ほうもん|kunjungan
+報告|ほうこく|laporan
+保護|ほご|perlindungan
+募金|ぼきん|penggalangan dana
+民族|みんぞく|suku bangsa
+無料|むりょう|gratis
+名刺|めいし|kartu nama
+面接|めんせつ|wawancara
+文句|もんく|keluhan
+薬局|やっきょく|apotek
+有効|ゆうこう|berlaku / efektif
+優先|ゆうせん|prioritas
+予算|よさん|anggaran
+理論|りろん|teori
+留学|りゅうがく|belajar di luar negeri
+連絡|れんらく|kontak
+労力|ろうりょく|tenaga / usaha
+割合|わりあい|persentase / proporsi
 `;
 
 const MENUS=[
@@ -427,11 +895,11 @@ document.getElementById('mobileMenu').innerHTML='<a href="kanjidasar.html" class
 const WORDS=DATA.split("\n").map(l=>l.trim()).filter(l=>l&&l.includes("|")).map(l=>{const [w,r,m]=l.split("|").map(s=>s.trim());return {w,r,m};});
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const navEl=document.getElementById("dayNav");
-const totalDays=Math.min(TOTAL_HARI,WORDS.length);
-const baseSize=Math.floor(WORDS.length/totalDays),extra=WORDS.length%totalDays;
+const totalDays=Math.max(1,Math.ceil(WORDS.length/KATA_PER_HARI));
+document.getElementById("headerDesc").textContent="Kumpulan kosakata tingkat N2 lengkap dengan cara baca dan artinya, dibagi menjadi "+totalDays+" hari belajar ("+KATA_PER_HARI+" kata per hari). Belajar satu hari satu section, atau gunakan kolom pencarian untuk menemukan kata tertentu.";
 let htmlSec="",htmlNav="",cursor=0;
 for(let d=0;d<totalDays;d++){
-  const size=baseSize+(d<extra?1:0),start=cursor,chunk=WORDS.slice(start,start+size);
+  const start=cursor,chunk=WORDS.slice(start,start+KATA_PER_HARI),size=chunk.length;
   cursor+=size;
   const judul=HARI_JUDUL[d]||"";
   htmlNav+=`<a class="day-chip" href="#hari${d+1}" data-day="${d+1}">Hari ${d+1}</a>`;
