@@ -122,6 +122,16 @@ body{background:#fff;color:var(--text)}
 .key .yes{color:var(--ok);font-weight:bold}
 .key .no{color:var(--ng);font-weight:bold}
 
+
+/* Drill A: pilihan di samping soal */
+.q.inline{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:20px}
+.q.inline .choices{margin:0;flex-wrap:nowrap}
+.q.inline .fb{grid-column:1 / -1}
+@media(max-width:700px){
+  .q.inline{grid-template-columns:1fr}
+  .q.inline .choices{margin:12px 0 0 42px;flex-wrap:wrap}
+}
+
 footer{text-align:center;padding:30px;color:#666;font-size:14px}
 
 @media(max-width:600px){
@@ -302,7 +312,7 @@ function renderDrills(){
   /* DRILL A */
   h += '<section class="drill"><div class="drill-head"><span class="tag">ドリル A</span><span class="ins">正しいほうをえらんでください。<br><small>Pilih jawaban yang benar.</small></span><span class="pt">1点×5</span></div>';
   drillA.forEach((d,i)=>{
-    h += '<div class="q" id="qa'+i+'"><div class="q-row"><span class="qn">'+circled[i]+'</span><div class="qtext">'+d.q.replace("（　　）",'<span class="blank">　　</span>')+'</div></div>';
+    h += '<div class="q inline" id="qa'+i+'"><div class="q-row"><span class="qn">'+circled[i]+'</span><div class="qtext">'+d.q.replace("（　　）",'<span class="blank">　　</span>')+'</div></div>';
     h += '<div class="choices">'+choiceHTML("a"+i,"a","a. "+d.opts.a)+choiceHTML("a"+i,"b","b. "+d.opts.b)+'</div><div class="fb"></div></div>';
   });
   h += '</section>';
