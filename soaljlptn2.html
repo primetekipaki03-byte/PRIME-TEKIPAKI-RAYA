@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soal JLPT N2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#001f3f;--navy-deep:#001530;--navy2:#022655;--gold:#e0b52a;--gold-bright:#facc15;--paper:#fffdf7;--ink:#001f3f;--muted:#5b6b7d;--accent:#7a1229;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins","Segoe UI",Arial,sans-serif;}
+.jp{font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
+#navbar{position:sticky;top:0;z-index:999;background:var(--navy-deep);border-bottom:2px solid rgba(250,204,21,.25);box-shadow:0 4px 14px rgba(0,0,0,.35);}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;}
+.nav-left{display:flex;align-items:center;}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy-deep);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;}
+.home-btn:hover{opacity:.85;}
+.home-icon{width:24px;height:24px;border-radius:4px;}
+.dropdown{position:relative;}
+.dropdown-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-weight:bold;cursor:pointer;}
+.dropdown-btn:hover{background:var(--gold);color:var(--navy-deep);}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:var(--navy2);border-radius:10px;overflow:hidden;min-width:220px;max-width:90vw;box-shadow:0 8px 20px rgba(0,0,0,.4);}
+.dropdown-menu.align-right{left:auto;right:0;}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none;}
+.dropdown-menu a:hover{background:var(--gold);color:var(--navy-deep);}
+.show{display:block;}
+.hamburger-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;background:none;border:2px solid var(--gold);border-radius:8px;cursor:pointer;padding:0;}
+.hamburger-btn span{display:block;width:20px;height:2px;background:var(--gold);margin:0 auto;border-radius:2px;transition:transform .25s ease,opacity .25s ease;}
+.hamburger-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger-btn.open span:nth-child(2){opacity:0;}
+.hamburger-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{display:none;background:var(--navy-deep);border-top:1px solid rgba(250,204,21,.2);max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.mobile-menu.open{max-height:80vh;overflow-y:auto;}
+.mobile-section{border-bottom:1px solid rgba(255,255,255,.08);}
+.mobile-section-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;color:var(--gold-bright);font-weight:700;font-size:14px;letter-spacing:.06em;padding:14px 20px;cursor:pointer;}
+.mobile-section-btn .chevron{transition:transform .2s ease;}
+.mobile-section-btn.open .chevron{transform:rotate(180deg);}
+.mobile-section-links{display:none;flex-direction:column;background:rgba(0,0,0,.15);}
+.mobile-section-links.show{display:flex;}
+.mobile-section-links a{padding:12px 30px;color:#dbe4f0;text-decoration:none;font-size:13.5px;border-top:1px solid rgba(255,255,255,.05);}
+.mobile-section-links a:hover{background:rgba(250,204,21,.12);color:var(--gold-bright);}
+@media(max-width:600px){.nav-right{display:none;}.hamburger-btn{display:flex;}.mobile-menu{display:block;}}
+.hero{position:relative;background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 55%,#003366 100%);color:#fff;padding:54px 20px 50px;text-align:center;overflow:hidden;}
+.hero .kanji-watermark{position:absolute;font-size:min(46vw,380px);font-weight:900;color:rgba(255,255,255,.04);top:50%;left:50%;transform:translate(-50%,-46%);line-height:1;pointer-events:none;user-select:none;white-space:nowrap;}
+.hero-content{position:relative;z-index:2;}
+.back-link{display:inline-block;color:#cdd8ea;text-decoration:none;font-size:13px;font-weight:600;margin-bottom:16px;}
+.back-link:hover{color:var(--gold-bright);}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.4);color:var(--gold-bright);font-size:12.5px;font-weight:700;letter-spacing:.14em;padding:7px 16px;border-radius:999px;margin:0 0 18px 10px;}
+.hero h1{font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:10px;}
+.hero h1 .lvl{color:var(--gold-bright);}
+.hero p{color:#cdd8ea;max-width:620px;margin:0 auto;font-size:14.5px;line-height:1.7;}
+.cat-nav{max-width:1100px;margin:0 auto;padding:22px 20px 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+.cat-chip{text-decoration:none;font-size:13px;font-weight:700;color:var(--navy);background:#fff;border:2px solid rgba(0,31,63,.12);border-radius:999px;padding:8px 16px;transition:.15s;}
+.cat-chip:hover{background:var(--gold-bright);border-color:var(--gold-bright);}
+.container{max-width:1100px;margin:auto;padding:10px 20px 60px;}
+.cat-section{margin-top:34px;scroll-margin-top:84px;}
+.cat-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(120deg,var(--navy-deep),var(--navy2));color:#fff;border-radius:14px;padding:16px 22px;margin-bottom:8px;border-left:6px solid var(--gold-bright);}
+.cat-icon{font-size:1.6rem;}
+.cat-title{font-size:1.1rem;font-weight:800;color:var(--gold-bright);}
+.cat-title small{display:block;font-size:12.5px;font-weight:500;color:#cdd8ea;margin-top:2px;}
+.cat-count{margin-left:auto;font-size:12px;font-weight:700;color:var(--navy-deep);background:var(--gold-bright);border-radius:999px;padding:4px 12px;}
+.cat-desc{color:var(--muted);font-size:13.5px;line-height:1.6;margin:0 4px 16px;}
+.set-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.set-card{position:relative;display:flex;flex-direction:column;gap:6px;background:var(--paper);border:2px solid rgba(0,31,63,.08);border-radius:14px;padding:18px 16px 16px;text-decoration:none;color:var(--ink);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+a.set-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 10px 22px rgba(0,31,63,.15);}
+.set-no{font-size:1.5rem;font-weight:800;color:var(--accent);line-height:1;}
+.set-name{font-size:14px;font-weight:700;color:var(--navy);}
+.set-meta{font-size:12px;color:var(--muted);}
+.set-cta{margin-top:6px;font-size:12.5px;font-weight:700;color:var(--accent);}
+.set-card.soon{opacity:.55;cursor:not-allowed;}
+.set-card.soon .set-cta{color:var(--muted);}
+@media(max-width:1000px){.set-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:700px){.set-grid{grid-template-columns:repeat(2,1fr);}}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 20px 40px;}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-left"><a href="jfta2.html" class="home-btn"><svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>HOME</a></div>
+<div class="nav-right" id="navRight"></div>
+<button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
+<div class="mobile-menu" id="mobileMenu"></div>
+</nav>
+
+<section class="hero">
+<div class="kanji-watermark jp">上級</div>
+<div class="hero-content">
+<a href="soaljlpt.html" class="back-link">← Semua level soal JLPT</a>
+<div class="eyebrow">📝 SOAL LATIHAN · N2</div>
+<h1>Soal JLPT <span class="lvl">N2</span> — Mahir</h1>
+<p>Kumpulan soal latihan N2 per kategori. Pilih kategori, lalu kerjakan set soal satu per satu.</p>
+</div>
+</section>
+
+<div class="cat-nav" id="catNav"></div>
+<div class="container" id="catSections"></div>
+
+<footer>© 2026 Tekipaki Japanese Learning | Soal JLPT N2</footer>
+
+<script>
+/* DATA KATEGORI
+   Tiap kategori punya daftar "links" — satu isian per set soal, urut dari Set 1.
+   - Isi dengan link (contoh: "soaljlptn2-moji1.html" atau link eksternal "https://...") agar kartu bisa diklik.
+   - Biarkan "" (kosong) kalau set belum siap -> tampil "Segera hadir".
+   - Mau tambah set? Tambahkan isian baru di akhir daftar. Mau kurangi? Hapus isian terakhir.
+   - Link yang diawali http akan dibuka di tab baru. */
+const CATEGORIES=[{"slug": "moji", "icon": "📖", "jp": "文字・語彙", "title": "Kosakata & Huruf", "desc": "Bentukan kata, konteks, sinonim, dan penggunaan kata.", "links": ["", "", "", "", ""]}, {"slug": "bunpo", "icon": "✍️", "jp": "文法", "title": "Tata Bahasa", "desc": "Pola kalimat tingkat lanjut dan susunan kalimat.", "links": ["", "", "", "", ""]}, {"slug": "dokkai", "icon": "📄", "jp": "読解", "title": "Membaca", "desc": "Teks bacaan panjang: opini, esai, dan pencarian informasi.", "links": ["", "", "", "", ""]}];
+
+document.getElementById('catNav').innerHTML=CATEGORIES.map(c=>'<a class="cat-chip" href="#'+c.slug+'">'+c.icon+' '+c.title+'</a>').join('');
+document.getElementById('catSections').innerHTML=CATEGORIES.map(c=>{
+  let cards='',ready=0;
+  c.links.forEach((raw,idx)=>{
+    const i=idx+1,link=(raw||'').trim(),ok=link!=='';
+    if(ok)ready++;
+    const ext=/^https?:/i.test(link);
+    const attrs=ok?' href="'+link+'"'+(ext?' target="_blank" rel="noopener"':''):'';
+    const tag=ok?'a':'div';
+    cards+='<'+tag+' class="set-card'+(ok?'':' soon')+'"'+attrs+'><div class="set-no">'+String(i).padStart(2,'0')+'</div><div class="set-name">Set '+i+'</div><div class="set-meta">'+c.title+'</div><div class="set-cta">'+(ok?'Kerjakan →':'Segera hadir')+'</div></'+tag+'>';
+  });
+  return '<section class="cat-section" id="'+c.slug+'"><div class="cat-head"><span class="cat-icon">'+c.icon+'</span><div class="cat-title jp">'+c.jp+'<small>'+c.title+'</small></div><span class="cat-count">'+ready+' / '+c.links.length+' set siap</span></div><p class="cat-desc">'+c.desc+'</p><div class="set-grid">'+cards+'</div></section>';
+}).join('');
+
+const MENUS=[
+["MATERI","materi",[["daftarkosakata.html","Kosakata JFT"],["materikosakata.html","Materi Kosakata JLPT"],["materitatabahasa.html","Tata Bahasa"],["daftarkanji.html","Daftar Kanji"],["kanjidasar.html","Kanji Flash Card"]]],
+["SOAL JLPT","soaljlpt",[["soaljlpt.html","Semua Level"],["soaljlptn5.html","SOAL JLPT N5"],["soaljlptn4.html","SOAL JLPT N4"],["soaljlptn3.html","SOAL JLPT N3"],["soaljlptn2.html","SOAL JLPT N2"],["soaljlptn1.html","SOAL JLPT N1"]]],
+["QUIZ JFT","quiz",[1,2,3,4,5].map(n=>["ujianjfta2test"+n+".html","SOAL JFT A — TEST "+n])],
+["QUIZ KANJI","kanjiquiz",[1,2,3,4,5].map(n=>["quizkanji"+n+".html","QUIZ KANJI "+n])]
+];
+const lk=l=>l.map(a=>'<a href="'+a[0]+'">'+a[1]+'</a>').join('');
+document.getElementById('navRight').innerHTML=MENUS.map(m=>'<div class="dropdown"><button class="dropdown-btn" onclick="toggleDropdown(\''+m[1]+'\')">'+m[0]+' ▼</button><div class="dropdown-menu" id="'+m[1]+'">'+lk(m[2])+'</div></div>').join('');
+document.getElementById('mobileMenu').innerHTML=MENUS.map(m=>'<div class="mobile-section"><button class="mobile-section-btn" onclick="toggleMobileSection(\'m-'+m[1]+'\')">'+m[0]+' <span class="chevron">▼</span></button><div class="mobile-section-links" id="m-'+m[1]+'">'+lk(m[2])+'</div></div>').join('');
+
+function toggleDropdown(id){
+  document.querySelectorAll('.dropdown-menu').forEach(m=>{if(m.id!==id){m.classList.remove('show','align-right');}});
+  const menu=document.getElementById(id),wrap=menu.closest('.dropdown');
+  const willShow=!menu.classList.contains('show');
+  menu.classList.toggle('show');
+  if(willShow){
+    menu.classList.remove('align-right');
+    if(menu.getBoundingClientRect().right>window.innerWidth-8){menu.classList.add('align-right');}
+    const r2=menu.getBoundingClientRect();
+    if(r2.left<8){menu.style.left=(8-wrap.getBoundingClientRect().left)+'px';menu.style.right='auto';}
+  }
+}
+function closeMobileMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburgerBtn').classList.remove('open');
+  document.querySelectorAll('.mobile-section-links.show').forEach(l=>l.classList.remove('show'));
+  document.querySelectorAll('.mobile-section-btn.open').forEach(b=>b.classList.remove('open'));
+}
+window.addEventListener('resize',()=>{
+  document.querySelectorAll('.dropdown-menu.show').forEach(m=>{m.classList.remove('show','align-right');m.style.left='';m.style.right='';});
+  if(window.innerWidth>600){closeMobileMenu();}
+});
+function toggleMobileMenu(){
+  const menu=document.getElementById('mobileMenu'),btn=document.getElementById('hamburgerBtn');
+  const willOpen=!menu.classList.contains('open');
+  menu.classList.toggle('open');btn.classList.toggle('open');
+  if(!willOpen){closeMobileMenu();}
+}
+function toggleMobileSection(id){
+  const links=document.getElementById(id),btn=links.previousElementSibling;
+  const willShow=!links.classList.contains('show');
+  links.classList.toggle('show');btn.classList.toggle('open');
+  if(willShow){
+    document.querySelectorAll('.mobile-section-links.show').forEach(l=>{
+      if(l.id!==id){l.classList.remove('show');l.previousElementSibling.classList.remove('open');}
+    });
+  }
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.dropdown')){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{m.classList.remove('show','align-right');m.style.left='';m.style.right='';});
+  }
+});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.addEventListener('copy',e=>e.preventDefault());
+document.addEventListener('cut',e=>e.preventDefault());
+document.addEventListener('selectstart',e=>e.preventDefault());
+document.addEventListener('dragstart',e=>e.preventDefault());
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey&&['c','u','s','p','a'].includes(e.key.toLowerCase()))||e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['i','j','c'].includes(e.key.toLowerCase()))){e.preventDefault();}
+});
+</script>
+</body>
+</html>
