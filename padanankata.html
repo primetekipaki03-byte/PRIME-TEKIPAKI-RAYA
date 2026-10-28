@@ -67,6 +67,7 @@ footer{text-align:center;padding:30px;color:#666;font-size:14px}
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .tag{font-size:11px;font-weight:bold;padding:3px 10px;border-radius:999px;background:rgba(0,31,63,.08);color:var(--navy)}
 .tag.lv{background:var(--gold);color:#001530}
+.tag.homo{background:#c17b7b;color:#fff}
 .wd{border-top:1px dashed rgba(0,31,63,.25);padding:12px 0 4px}
 .wd .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .wd .kj{font-size:24px;font-weight:bold;color:var(--navy)}
@@ -77,7 +78,7 @@ footer{text-align:center;padding:30px;color:#666;font-size:14px}
 .ex-box .j{font-size:15px;font-weight:bold;color:var(--navy);line-height:1.6}
 .ex-box .j mark{background:#fff3b0;padding:0 3px;border-radius:4px}
 .ex-box .i{font-size:13px;color:#333;font-style:italic;margin-top:2px}
-.note{max-width:1200px;margin:10px auto 0;padding:0 20px;font-size:13px;color:#666}
+.note{max-width:1200px;margin:10px auto 0;padding:0 20px;font-size:13px;color:#666;line-height:1.6}
 .quiz-wrap{max-width:900px;margin:0 auto 50px;padding:0 20px}
 .q-box{border:2px solid var(--navy);border-radius:18px;padding:24px;background:#fafcff}
 .q-box h2{font-size:18px;color:var(--navy);margin-bottom:12px}
@@ -188,7 +189,7 @@ HOME
 <header>
     <span class="badge">類義語 · RUIGIGO</span>
     <h1>類義語 <span>Padanan Kata</span></h1>
-    <p>Kata-kata berbeda dengan arti yang mirip, misalnya 見る・眺める・観る. Setiap kelompok dilengkapi perbedaan nuansa, contoh kalimat, dan latihan.</p>
+    <p>Kata-kata berbeda dengan arti yang mirip, misalnya 見る・眺める・観る. Setiap kelompok dilengkapi perbedaan nuansa, contoh kalimat, dan latihan. Ada juga kelompok kata yang bunyinya sama tetapi artinya berbeda, seperti 機械 dan 機会.</p>
     <div class="stats-row">
         <span class="stat-pill" id="totalCount">0 Kelompok</span>
         <span class="stat-pill" id="wordCount">0 Kata</span>
@@ -197,11 +198,11 @@ HOME
 </header>
 
 <div class="search-wrap">
-    <input type="text" id="searchInput" placeholder="🔍 Cari padanan kata... (contoh: melihat, 道路, formal, shigoto)" oninput="applyFilter()">
+    <input type="text" id="searchInput" placeholder="🔍 Cari padanan kata... (contoh: melihat, 道路, formal, kikai)" oninput="applyFilter()">
 </div>
 
 <div class="filters" id="filters"></div>
-<div class="note">Padanan kata jarang persis sama. Perhatikan nuansa, tingkat kesopanan, dan situasi pemakaiannya. Level JLPT bersifat perkiraan.</div>
+<div class="note">Padanan kata jarang persis sama. Perhatikan nuansa, tingkat kesopanan, dan situasi pemakaiannya. Level JLPT bersifat perkiraan. Kelompok "Sama Bunyi" berisi kata yang dibaca sama tetapi artinya berbeda (ditandai ≠), jadi tidak ikut dalam latihan.</div>
 
 <div class="cgrid" id="cGrid"></div>
 <p class="no-result" id="noResult">Padanan kata tidak ditemukan.</p>
@@ -233,7 +234,8 @@ const CATS = {
   kerja:"Kata Kerja",
   sifat:"Kata Sifat",
   benda:"Kata Benda",
-  ket:"Kata Keterangan"
+  ket:"Kata Keterangan",
+  doon:"Sama Bunyi"
 };
 
 // kata: [jp, romaji, arti, nuansa, bentuk di kalimat, kalimat, terjemahan]
@@ -334,19 +336,23 @@ const sets = [
  { c:"ket", lv:"N3", w:[
   ["だんだん","dandan","lama-kelamaan","Sehari-hari.","だんだん","だんだん暖かくなります。","Lama-kelamaan jadi hangat."],
   ["次第に","shidai ni","berangsur-angsur","Tulisan; perubahan alami.","次第に","次第に天気が回復しました。","Cuaca berangsur-angsur membaik."],
-  ["徐々に","jojo ni","perlahan-lahan","Perubahan sedikit demi sedikit.","徐々に","徐々に慣れてきました。","Saya mulai terbiasa sedikit demi sedikit."]]}
+  ["徐々に","jojo ni","perlahan-lahan","Perubahan sedikit demi sedikit.","徐々に","徐々に慣れてきました。","Saya mulai terbiasa sedikit demi sedikit."]]},
+ /* SAMA BUNYI (同音異義語): dibaca sama, artinya berbeda. Tidak ikut latihan. */
+ { c:"doon", lv:"N3", w:[
+  ["機械","kikai","mesin","Alat penggerak atau mesin; kanji 械 berarti perkakas. Dibaca sama dengan 機会 tetapi artinya berbeda.","機械","この工場では機械で部品を作っています。","Di pabrik ini komponen dibuat dengan mesin."],
+  ["機会","kikai","kesempatan","Peluang atau momen yang pas untuk melakukan sesuatu; kanji 会 berarti bertemu atau pertemuan.","機会","日本で働く機会がありました。","Saya mendapat kesempatan bekerja di Jepang."]]}
 ];
-
-sets.forEach(s => {
-  s.t = s.w.map(x => x[0]).join(" ≈ ");
-  s.s = norm(CATS[s.c] + " " + s.lv + " " + s.w.map(x => x.slice(0,4).join(" ")).join(" "));
-});
 
 function norm(s){
   return String(s).normalize("NFKC").toLowerCase()
     .replace(/[\u30a1-\u30f6]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60))
     .replace(/[\s\-、。,.]/g, "");
 }
+
+sets.forEach(s => {
+  s.t = s.w.map(x => x[0]).join(s.c === "doon" ? " ≠ " : " ≈ ");
+  s.s = norm(CATS[s.c] + " " + s.lv + " " + s.w.map(x => x.slice(0,4).join(" ")).join(" "));
+});
 
 document.getElementById("totalCount").textContent = sets.length + " Kelompok";
 document.getElementById("wordCount").textContent = sets.reduce((a,s) => a + s.w.length, 0) + " Kata";
@@ -377,8 +383,9 @@ function render(items){
   items.forEach(s => {
     const d = document.createElement("div");
     d.className = "ccard";
-    let h = '<div class="ttl">' + s.t.replace(/ ≈ /g, ' <i>≈</i> ') + '</div>' +
-      '<div class="tags"><span class="tag">' + CATS[s.c] + '</span><span class="tag lv">' + s.lv + '</span></div>';
+    const catClass = s.c === "doon" ? "tag homo" : "tag";
+    let h = '<div class="ttl">' + s.t.replace(/ ([≈≠]) /g, ' <i>$1</i> ') + '</div>' +
+      '<div class="tags"><span class="' + catClass + '">' + CATS[s.c] + '</span><span class="tag lv">' + s.lv + '</span></div>';
     s.w.forEach(x => {
       const jh = esc(x[5]).replace(x[4], "<mark>" + x[4] + "</mark>");
       h += '<div class="wd"><div class="top"><span class="kj">' + x[0] + '</span><span class="nm">' + x[1] + '</span></div>' +
@@ -396,20 +403,21 @@ function applyFilter(){
   render(sets.filter(s => (curCat === "all" || s.c === curCat) && (!q || s.s.includes(q))));
 }
 
-// ---------- LATIHAN ----------
+// ---------- LATIHAN (kelompok Sama Bunyi tidak dipakai) ----------
+const qsets = sets.filter(s => s.c !== "doon");
 let score = 0, total = 0, answered = false, answer = "";
 
 function newQ(){
   answered = false;
-  const si = Math.floor(Math.random() * sets.length);
-  const s = sets[si];
+  const si = Math.floor(Math.random() * qsets.length);
+  const s = qsets[si];
   const pool = s.w.slice().sort(() => Math.random() - .5);
   const a = pool[0], b = pool[1];
   answer = b[0];
   document.getElementById("qText").innerHTML = esc(a[0]) + ' <span>(' + esc(a[2]) + ')</span>';
   document.getElementById("qId").textContent = "";
   const others = [];
-  sets.forEach((t, i) => { if(i !== si) t.w.forEach(x => others.push(x[0])); });
+  qsets.forEach((t, i) => { if(i !== si) t.w.forEach(x => others.push(x[0])); });
   others.sort(() => Math.random() - .5);
   const opts = [b[0]];
   others.forEach(o => { if(opts.length < 4 && !opts.includes(o)) opts.push(o); });
