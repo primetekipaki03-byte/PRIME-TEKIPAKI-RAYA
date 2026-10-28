@@ -106,18 +106,50 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 20px 40p
 <footer>© 2026 Tekipaki Japanese Learning | Soal JLPT N5</footer>
 
 <script>
-/* DATA KATEGORI
-   Tiap kategori punya daftar "links" — satu isian per set soal, urut dari Set 1.
-   - Isi dengan link (contoh: "soaljlptn5-moji1.html" atau link eksternal "https://...") agar kartu bisa diklik.
-   - Biarkan "" (kosong) kalau set belum siap -> tampil "Segera hadir".
-   - Mau tambah set? Tambahkan isian baru di akhir daftar. Mau kurangi? Hapus isian terakhir.
-   - Link yang diawali http akan dibuka di tab baru. */
-const CATEGORIES=[{"slug": "moji", "icon": "📖", "jp": "文字・語彙", "title": "Kosakata & Huruf", "desc": "Cara baca kanji, penulisan, dan pilihan kata dasar.", "links": ["", "", "", "", ""]}, {"slug": "bunpodokkai", "icon": "✍️", "jp": "文法・読解", "title": "Tata Bahasa & Membaca", "desc": "Pola kalimat dasar, partikel, dan teks bacaan pendek.", "links": ["", "", "", "", ""]}];
+/* ==========================================================
+   ISI LINK SOAL DI SINI  (paling mudah — cukup edit teks di bawah)
+   Format:   # NAMA KATEGORI   lalu   NOMOR SET : LINK
+   - Contoh:   01 : https://forms.gle/xxxxxxx
+               02 : soaljlptn5-moji2.html
+   - Biarkan kosong setelah tanda ":" kalau set belum siap (tampil "Segera hadir").
+   - Mau tambah set? Tambah baris baru, misalnya  06 : link
+   - Link yang diawali http dibuka di tab baru.
+========================================================== */
+const SOAL_LINKS = `
+# KOSAKATA
+01 : 
+02 : 
+03 : 
+04 : 
+05 : 
+# TATA BAHASA & MEMBACA
+01 : 
+02 : 
+03 : 
+04 : 
+05 : 
+`;
+
+const CATEGORIES=[{"key": "KOSAKATA", "slug": "moji", "icon": "📖", "jp": "文字・語彙", "title": "Kosakata & Huruf", "desc": "Cara baca kanji, penulisan, dan pilihan kata dasar."}, {"key": "TATA BAHASA & MEMBACA", "slug": "bunpodokkai", "icon": "✍️", "jp": "文法・読解", "title": "Tata Bahasa & Membaca", "desc": "Pola kalimat dasar, partikel, dan teks bacaan pendek."}];
+
+const PARSED={};
+(function(){
+  let cur=null;
+  SOAL_LINKS.split('\n').forEach(line=>{
+    const t=line.trim();
+    if(!t)return;
+    if(t[0]==='#'){cur=t.slice(1).trim().toUpperCase();PARSED[cur]=[];return;}
+    const m=t.match(/^(\d+)\s*[:：]\s*(.*)$/);
+    if(m&&cur){PARSED[cur][parseInt(m[1],10)-1]=m[2].trim();}
+  });
+})();
 
 document.getElementById('catNav').innerHTML=CATEGORIES.map(c=>'<a class="cat-chip" href="#'+c.slug+'">'+c.icon+' '+c.title+'</a>').join('');
 document.getElementById('catSections').innerHTML=CATEGORIES.map(c=>{
+  const arr=PARSED[c.key]||[];
+  const links=Array.from({length:arr.length},(_,i)=>arr[i]||'');
   let cards='',ready=0;
-  c.links.forEach((raw,idx)=>{
+  links.forEach((raw,idx)=>{
     const i=idx+1,link=(raw||'').trim(),ok=link!=='';
     if(ok)ready++;
     const ext=/^https?:/i.test(link);
@@ -125,7 +157,7 @@ document.getElementById('catSections').innerHTML=CATEGORIES.map(c=>{
     const tag=ok?'a':'div';
     cards+='<'+tag+' class="set-card'+(ok?'':' soon')+'"'+attrs+'><div class="set-no">'+String(i).padStart(2,'0')+'</div><div class="set-name">Set '+i+'</div><div class="set-meta">'+c.title+'</div><div class="set-cta">'+(ok?'Kerjakan →':'Segera hadir')+'</div></'+tag+'>';
   });
-  return '<section class="cat-section" id="'+c.slug+'"><div class="cat-head"><span class="cat-icon">'+c.icon+'</span><div class="cat-title jp">'+c.jp+'<small>'+c.title+'</small></div><span class="cat-count">'+ready+' / '+c.links.length+' set siap</span></div><p class="cat-desc">'+c.desc+'</p><div class="set-grid">'+cards+'</div></section>';
+  return '<section class="cat-section" id="'+c.slug+'"><div class="cat-head"><span class="cat-icon">'+c.icon+'</span><div class="cat-title jp">'+c.jp+'<small>'+c.title+'</small></div><span class="cat-count">'+ready+' / '+links.length+' set siap</span></div><p class="cat-desc">'+c.desc+'</p><div class="set-grid">'+cards+'</div></section>';
 }).join('');
 
 const MENUS=[
