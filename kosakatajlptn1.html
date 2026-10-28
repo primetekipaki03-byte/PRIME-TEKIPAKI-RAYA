@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar Kosakata JLPT N1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#001f3f;--navy-deep:#001530;--navy2:#022655;--gold:#e0b52a;--gold-bright:#facc15;--paper:#fffdf7;--ink:#001f3f;--muted:#5b6b7d;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins","Segoe UI",Arial,sans-serif;}
+.jp{font-family:"Noto Sans JP","Segoe UI",Arial,sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
+#navbar{position:sticky;top:0;z-index:999;background:var(--navy-deep);border-bottom:2px solid rgba(250,204,21,.25);box-shadow:0 4px 14px rgba(0,0,0,.35);}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;}
+.nav-left{display:flex;align-items:center;}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy-deep);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;}
+.home-btn:hover{opacity:.85;}
+.home-icon{width:24px;height:24px;border-radius:4px;}
+.dropdown{position:relative;}
+.dropdown-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-weight:bold;cursor:pointer;}
+.dropdown-btn:hover{background:var(--gold);color:var(--navy-deep);}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:var(--navy2);border-radius:10px;overflow:hidden;min-width:220px;max-width:90vw;box-shadow:0 8px 20px rgba(0,0,0,.4);}
+.dropdown-menu.align-right{left:auto;right:0;}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none;}
+.dropdown-menu a:hover{background:var(--gold);color:var(--navy-deep);}
+.show{display:block;}
+.nav-link-btn{display:inline-block;text-decoration:none;padding:8px 14px;border:2px solid var(--gold-bright);background:var(--gold-bright);color:var(--navy-deep);border-radius:8px;font-weight:bold;}
+.nav-link-btn:hover{background:transparent;color:var(--gold-bright);}
+.hamburger-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;background:none;border:2px solid var(--gold);border-radius:8px;cursor:pointer;padding:0;}
+.hamburger-btn span{display:block;width:20px;height:2px;background:var(--gold);margin:0 auto;border-radius:2px;transition:transform .25s ease,opacity .25s ease;}
+.hamburger-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger-btn.open span:nth-child(2){opacity:0;}
+.hamburger-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{display:none;background:var(--navy-deep);border-top:1px solid rgba(250,204,21,.2);max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.mobile-menu.open{max-height:80vh;overflow-y:auto;}
+.mobile-section{border-bottom:1px solid rgba(255,255,255,.08);}
+.mobile-section-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;color:var(--gold-bright);font-weight:700;font-size:14px;letter-spacing:.06em;padding:14px 20px;cursor:pointer;}
+.mobile-section-btn .chevron{transition:transform .2s ease;}
+.mobile-section-btn.open .chevron{transform:rotate(180deg);}
+.mobile-section-links{display:none;flex-direction:column;background:rgba(0,0,0,.15);}
+.mobile-section-links.show{display:flex;}
+.mobile-section-links a{padding:12px 30px;color:#dbe4f0;text-decoration:none;font-size:13.5px;border-top:1px solid rgba(255,255,255,.05);}
+.mobile-section-links a:hover{background:rgba(250,204,21,.12);color:var(--gold-bright);}
+.mobile-link{display:block;padding:14px 20px;color:var(--navy-deep);background:var(--gold-bright);font-weight:700;font-size:14px;letter-spacing:.06em;text-decoration:none;}
+@media(max-width:600px){.nav-right{display:none;}.hamburger-btn{display:flex;}.mobile-menu{display:block;}}
+header{position:relative;background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 55%,#003366 100%);color:#fff;padding:50px 20px 40px;text-align:center;overflow:hidden;}
+header .kanji-watermark{position:absolute;font-size:min(40vw,320px);font-weight:900;color:rgba(255,255,255,.04);top:50%;left:50%;transform:translate(-50%,-46%);line-height:1;pointer-events:none;user-select:none;white-space:nowrap;}
+.header-inner{position:relative;z-index:2;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.4);color:var(--gold-bright);font-size:12px;font-weight:700;letter-spacing:.14em;padding:6px 14px;border-radius:999px;margin-bottom:16px;}
+header h1{font-size:clamp(1.7rem,4.5vw,2.5rem);margin-bottom:10px;}
+header p{color:#cdd8ea;max-width:680px;margin:0 auto;font-size:14.5px;line-height:1.7;}
+.source-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin-top:16px;}
+.src-label{font-size:12px;color:#9fb0c8;font-weight:600;letter-spacing:.06em;}
+.source-chip{font-size:12px;font-weight:700;color:var(--gold-bright);background:rgba(250,204,21,.1);border:1px solid rgba(250,204,21,.35);padding:5px 12px;border-radius:999px;}
+.flash-cta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:13px 26px;background:var(--gold-bright);color:var(--navy-deep);font-weight:700;font-size:15px;text-decoration:none;border-radius:12px;border:2px solid var(--gold-bright);box-shadow:0 8px 20px rgba(0,0,0,.3);transition:transform .2s ease,background .2s ease,color .2s ease;}
+.flash-cta:hover{transform:translateY(-2px);background:transparent;color:var(--gold-bright);}
+.search-wrap{max-width:520px;margin:22px auto 0;position:relative;z-index:2;}
+.search-wrap input{width:100%;padding:13px 18px 13px 42px;border-radius:12px;border:none;font-size:14.5px;color:var(--navy);background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.25);}
+.search-wrap input:focus{outline:2px solid var(--gold-bright);}
+.search-wrap::before{content:"🔍";position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:15px;z-index:3;}
+.search-count{text-align:center;color:#cdd8ea;font-size:12.5px;margin-top:10px;min-height:18px;}
+.day-nav{max-width:1200px;margin:0 auto;padding:18px 20px 0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.day-chip{text-decoration:none;font-size:12.5px;font-weight:600;color:var(--navy);background:#fff;border:2px solid rgba(0,31,63,.12);border-radius:999px;padding:6px 14px;transition:.15s;}
+.day-chip:hover{background:var(--gold-bright);border-color:var(--gold-bright);}
+.day-chip.hide{display:none;}
+.container{max-width:1200px;margin:auto;padding:20px;}
+.day-section{margin-top:30px;scroll-margin-top:84px;}
+.day-section.hide{display:none;}
+.day-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(120deg,var(--navy-deep),var(--navy2));color:#fff;border-radius:14px;padding:14px 20px;margin-bottom:16px;border-left:6px solid var(--gold-bright);}
+.day-num{font-size:1.15rem;font-weight:800;color:var(--gold-bright);letter-spacing:.04em;}
+.day-title{font-size:.95rem;color:#cdd8ea;}
+.day-count{margin-left:auto;font-size:12px;font-weight:700;color:var(--navy-deep);background:var(--gold-bright);border-radius:999px;padding:4px 12px;}
+.vocab-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.vocab-card{position:relative;background:var(--paper);border:2px solid rgba(0,31,63,.08);border-radius:14px;padding:16px 12px 14px;text-align:center;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+.vocab-card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 10px 22px rgba(0,31,63,.15);}
+.v-no{position:absolute;top:8px;left:10px;font-size:10.5px;font-weight:700;color:#b8bfcb;}
+.v-word{font-size:1.5rem;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px;word-break:keep-all;}
+.v-reading{font-size:12.5px;color:#a4780a;font-weight:600;margin-bottom:6px;}
+.v-meaning{font-size:12px;color:var(--muted);line-height:1.4;}
+.vocab-card.hide{display:none;}
+.empty{display:none;text-align:center;color:var(--muted);padding:50px 20px;font-size:14px;}
+@media(max-width:1000px){.vocab-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:700px){.vocab-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:420px){header h1{font-size:1.5rem;}.v-word{font-size:1.25rem;}.vocab-grid{gap:10px;}}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 40px;}
+.back-to-top{position:fixed;right:20px;bottom:20px;z-index:998;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--gold-bright);color:var(--navy-deep);border:2px solid var(--gold-bright);cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.35);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s ease,transform .25s ease,visibility .25s ease,background .2s ease,color .2s ease;}
+.back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0);}
+.back-to-top:hover{background:var(--navy-deep);color:var(--gold-bright);}
+.back-to-top svg{width:22px;height:22px;}
+@media(max-width:600px){.back-to-top{right:14px;bottom:14px;width:44px;height:44px;}}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-left"><a href="index.html" class="home-btn"><svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>HOME</a></div>
+<div class="nav-right" id="navRight"></div>
+<button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
+<div class="mobile-menu" id="mobileMenu"></div>
+</nav>
+
+<header>
+<div class="kanji-watermark jp">語彙</div>
+<div class="header-inner">
+<div class="eyebrow">📚 MATERI · KOSAKATA N1</div>
+<h1>Daftar Kosakata JLPT N1</h1>
+<p>Kumpulan kosakata tingkat N1 lengkap dengan cara baca dan artinya, dibagi menjadi 22 hari belajar. Belajar satu hari satu section, atau gunakan kolom pencarian untuk menemukan kata tertentu.</p>
+<a href="kanjidasar.html" class="flash-cta">🃏 Latihan dengan Kanji Flash Card</a>
+<div class="search-wrap"><input type="text" id="searchInput" placeholder="Cari kanji, cara baca, atau arti..." oninput="filterVocab()"></div>
+<div class="search-count" id="searchCount"></div>
+</div>
+</header>
+
+<div class="day-nav" id="dayNav"></div>
+<div class="container">
+<div id="daySections"></div>
+<div class="empty" id="emptyMsg">Tidak ada kosakata yang cocok dengan pencarianmu.</div>
+</div>
+
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Kembali ke atas" title="Kembali ke atas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></button>
+
+<footer>© 2026 Tekipaki Japanese Learning | Daftar Kosakata JLPT N1</footer>
+
+<script>
+/* DATA: kata|cara baca|arti — tinggal tambah baris baru di bawah.
+   Semua kata otomatis dibagi rata ke TOTAL_HARI. Judul per hari opsional di HARI_JUDUL. */
+const TOTAL_HARI = 22;
+const HARI_JUDUL = [];
+
+const DATA = `
+挙げる|あげる|mengemukakan / menyebutkan
+諦める|あきらめる|menyerah
+憧れる|あこがれる|mendambakan
+悪化|あっか|memburuknya
+圧倒|あっとう|mengungguli / menguasai
+甘える|あまえる|bermanja
+操る|あやつる|mengendalikan
+荒れる|あれる|kasar / rusuh / berantakan
+暗示|あんじ|isyarat / sugesti
+維持|いじ|pemeliharaan / mempertahankan
+一概に|いちがいに|secara umum / begitu saja
+一斉|いっせい|serentak
+威力|いりょく|kekuatan / daya
+陰気|いんき|murung / suram
+受け入れる|うけいれる|menerima
+薄れる|うすれる|memudar
+疑わしい|うたがわしい|meragukan
+促す|うながす|mendorong / mendesak
+裏付け|うらづけ|bukti pendukung
+恐れる|おそれる|takut
+衰える|おとろえる|melemah / merosot
+劣る|おとる|lebih rendah
+覆う|おおう|menutupi
+行う|おこなう|melaksanakan
+怠る|おこたる|lalai
+抑える|おさえる|menahan / menekan
+収める|おさめる|memasukkan / meraih
+各種|かくしゅ|berbagai jenis
+確保|かくほ|menjamin / mengamankan
+過剰|かじょう|berlebihan
+画期的|かっきてき|revolusioner
+活躍|かつやく|berperan aktif
+勧誘|かんゆう|ajakan / bujukan
+鑑賞|かんしょう|apresiasi
+干渉|かんしょう|campur tangan
+貫く|つらぬく|menembus / menjalani sampai akhir
+危機|きき|krisis
+儀式|ぎしき|upacara
+犠牲|ぎせい|pengorbanan
+規模|きぼ|skala
+急激|きゅうげき|mendadak / drastis
+脅かす|おびやかす|mengancam
+強硬|きょうこう|keras / tegas
+拒否|きょひ|penolakan
+苦痛|くつう|penderitaan
+屈折|くっせつ|pembiasan / berbelit
+繰り返す|くりかえす|mengulang
+傾斜|けいしゃ|kemiringan
+軽率|けいそつ|ceroboh
+欠陥|けっかん|cacat
+懸命|けんめい|sungguh-sungguh
+謙虚|けんきょ|rendah hati
+貢献|こうけん|kontribusi
+交渉|こうしょう|negosiasi
+更新|こうしん|pembaruan
+混同|こんどう|mencampuradukkan
+根拠|こんきょ|dasar / alasan
+採択|さいたく|pengesahan / adopsi
+削除|さくじょ|penghapusan
+作用|さよう|efek / kerja
+惨め|みじめ|menyedihkan
+時期|じき|masa / periode
+視野|しや|wawasan
+示す|しめす|menunjukkan
+実施|じっし|pelaksanaan
+執着|しゅうちゃく|keterikatan / obsesi
+重視|じゅうし|mengutamakan
+熟練|じゅくれん|mahir / terampil
+主張|しゅちょう|pendapat / klaim
+出現|しゅつげん|kemunculan
+循環|じゅんかん|siklus / sirkulasi
+消極的|しょうきょくてき|pasif / negatif
+衝撃|しょうげき|benturan / kejutan
+象徴|しょうちょう|simbol
+証明|しょうめい|pembuktian
+所有|しょゆう|kepemilikan
+審議|しんぎ|pembahasan / deliberasi
+浸透|しんとう|meresap
+信頼|しんらい|kepercayaan
+推測|すいそく|dugaan
+衰退|すいたい|kemunduran
+清算|せいさん|penyelesaian / likuidasi
+政策|せいさく|kebijakan
+制約|せいやく|batasan
+是非|ぜひ|harus / benar-salah
+専念|せんねん|berkonsentrasi penuh
+善悪|ぜんあく|baik dan buruk
+相違|そうい|perbedaan
+相応|そうおう|sesuai
+措置|そち|tindakan / langkah
+尊重|そんちょう|menghargai
+退屈|たいくつ|bosan
+対処|たいしょ|menangani
+妥当|だとう|wajar / tepat
+遅延|ちえん|keterlambatan
+秩序|ちつじょ|ketertiban
+抽象|ちゅうしょう|abstrak
+著しい|いちじるしい|nyata / mencolok
+追求|ついきゅう|mengejar
+痛感|つうかん|merasakan sungguh-sungguh
+訂正|ていせい|koreksi
+手掛かり|てがかり|petunjuk
+適応|てきおう|adaptasi
+展望|てんぼう|prospek / pandangan luas
+転換|てんかん|peralihan
+伝承|でんしょう|pewarisan / legenda
+統計|とうけい|statistik
+透明|とうめい|transparan
+独占|どくせん|monopoli
+独創|どくそう|orisinal / kreatif
+特許|とっきょ|paten
+捉える|とらえる|menangkap / memahami
+内閣|ないかく|kabinet
+悩ます|なやます|menyusahkan
+難民|なんみん|pengungsi
+乗り越える|のりこえる|mengatasi
+排除|はいじょ|menyingkirkan
+配慮|はいりょ|pertimbangan / perhatian
+破壊|はかい|penghancuran
+破産|はさん|kebangkrutan
+発揮|はっき|menunjukkan (kemampuan)
+反映|はんえい|mencerminkan
+繁栄|はんえい|kemakmuran
+繁殖|はんしょく|perkembangbiakan
+批判|ひはん|kritik
+標準|ひょうじゅん|standar
+貧困|ひんこん|kemiskinan
+不可欠|ふかけつ|sangat penting / tak tergantikan
+普遍|ふへん|universal
+負担|ふたん|beban
+振興|しんこう|pengembangan / promosi
+分野|ぶんや|bidang
+編成|へんせい|penyusunan / formasi
+変動|へんどう|fluktuasi
+防衛|ぼうえい|pertahanan
+放棄|ほうき|melepaskan / meninggalkan
+報酬|ほうしゅう|imbalan
+暴露|ばくろ|membongkar
+保障|ほしょう|jaminan
+保護|ほご|perlindungan
+抱負|ほうふ|cita-cita / ambisi
+魅力|みりょく|daya tarik
+民間|みんかん|swasta / sipil
+矛盾|むじゅん|kontradiksi
+命題|めいだい|proposisi
+免除|めんじょ|pembebasan
+模索|もさく|meraba-raba / mencari
+優位|ゆうい|keunggulan
+融通|ゆうずう|fleksibilitas
+要因|よういん|faktor
+要請|ようせい|permintaan resmi
+抑制|よくせい|pengendalian
+利益|りえき|keuntungan
+履歴|りれき|riwayat
+領域|りょういき|wilayah / bidang
+倫理|りんり|etika
+連携|れんけい|kerja sama / kolaborasi
+露骨|ろこつ|terang-terangan / vulgar
+論理|ろんり|logika
+和らぐ|やわらぐ|mereda / melunak
+煩わしい|わずらわしい|merepotkan
+慌てる|あわてる|panik / gugup
+著す|あらわす|menulis (buku)
+現す|あらわす|menampakkan
+偽る|いつわる|berbohong / memalsukan
+威張る|いばる|menyombongkan diri
+承る|うけたまわる|mendengar / menerima (hormat)
+恨む|うらむ|mendendam
+追い込む|おいこむ|mendesak / menyudutkan
+惜しむ|おしむ|menyayangkan / menghemat
+脅す|おどす|mengancam / memeras
+思いやり|おもいやり|simpati / pengertian
+語る|かたる|menuturkan
+絡む|からむ|melilit / berkaitan
+嘆く|なげく|meratapi
+慕う|したう|mengagumi / merindukan
+慎む|つつしむ|menahan diri / berhati-hati
+培う|つちかう|memupuk / membina
+励む|はげむ|giat / tekun
+率いる|ひきいる|memimpin
+冒す|おかす|mempertaruhkan / melanggar
+紛れる|まぎれる|bercampur / tersamar
+儲ける|もうける|meraih untung
+潜る|もぐる|menyelam
+弾む|はずむ|memantul / bersemangat
+蓄える|たくわえる|menyimpan / menabung
+漂う|ただよう|mengambang / melayang
+携わる|たずさわる|terlibat dalam
+曖昧|あいまい|samar / tidak jelas
+大げさ|おおげさ|berlebihan
+鮮やか|あざやか|cerah / jelas
+詳細|しょうさい|rincian
+巧み|たくみ|mahir / cerdik
+手軽|てがる|mudah / praktis
+鈍感|どんかん|tidak peka
+健やか|すこやか|sehat
+穏やか|おだやか|tenang / lembut
+華やか|はなやか|meriah / gemerlap
+明朗|めいろう|ceria / jujur
+円満|えんまん|harmonis
+あくまで|あくまで|sampai akhir / tetap
+いわば|いわば|bisa dikatakan
+おのずと|おのずと|dengan sendirinya
+かつて|かつて|dulu / pernah
+極めて|きわめて|sangat
+思わず|おもわず|tanpa sadar
+再三|さいさん|berkali-kali
+自ら|みずから|sendiri / diri sendiri
+ひたすら|ひたすら|dengan tekun / semata-mata
+めったに|めったに|jarang sekali
+ようやく|ようやく|akhirnya
+わずか|わずか|sedikit / hanya
+ことごとく|ことごとく|seluruhnya
+とりあえず|とりあえず|untuk sementara
+せめて|せめて|setidaknya
+`;
+
+const MENUS=[
+["MATERI","materi",[["daftarkosakata.html","Kosakata JFT"],["kosakatan5.html","Kosakata JLPT N5"],["materitatabahasa.html","Tata Bahasa"],["daftarkanji.html","Daftar Kanji N5"],["daftarkanjin4.html","Daftar Kanji N4"],["kanjidasar.html","Kanji Flash Card"]]],
+["QUIZ JFT","quiz",[1,2,3,4,5].map(n=>["ujianjfta2test"+n+".html","SOAL JFT A — TEST "+n])],
+["QUIZ KANJI","kanjiquiz",[1,2,3,4,5].map(n=>["quizkanji"+n+".html","QUIZ KANJI "+n])]
+];
+const lk=l=>l.map(a=>'<a href="'+a[0]+'">'+a[1]+'</a>').join('');
+document.getElementById('navRight').innerHTML=MENUS.map(m=>'<div class="dropdown"><button class="dropdown-btn" onclick="toggleDropdown(\''+m[1]+'\')">'+m[0]+' ▼</button><div class="dropdown-menu" id="'+m[1]+'">'+lk(m[2])+'</div></div>').join('')+'<a href="kanjidasar.html" class="nav-link-btn">FLASH CARD</a>';
+document.getElementById('mobileMenu').innerHTML='<a href="kanjidasar.html" class="mobile-link">🃏 KANJI FLASH CARD</a>'+MENUS.map(m=>'<div class="mobile-section"><button class="mobile-section-btn" onclick="toggleMobileSection(\'m-'+m[1]+'\')">'+m[0]+' <span class="chevron">▼</span></button><div class="mobile-section-links" id="m-'+m[1]+'">'+lk(m[2])+'</div></div>').join('');
+
+const WORDS=DATA.split("\n").map(l=>l.trim()).filter(l=>l&&l.includes("|")).map(l=>{const [w,r,m]=l.split("|").map(s=>s.trim());return {w,r,m};});
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const navEl=document.getElementById("dayNav");
+const totalDays=Math.min(TOTAL_HARI,WORDS.length);
+const baseSize=Math.floor(WORDS.length/totalDays),extra=WORDS.length%totalDays;
+let htmlSec="",htmlNav="",cursor=0;
+for(let d=0;d<totalDays;d++){
+  const size=baseSize+(d<extra?1:0),start=cursor,chunk=WORDS.slice(start,start+size);
+  cursor+=size;
+  const judul=HARI_JUDUL[d]||"";
+  htmlNav+=`<a class="day-chip" href="#hari${d+1}" data-day="${d+1}">Hari ${d+1}</a>`;
+  htmlSec+=`<section class="day-section" id="hari${d+1}" data-day="${d+1}"><div class="day-head"><span class="day-num">HARI ${d+1}</span>${judul?`<span class="day-title">${esc(judul)}</span>`:""}<span class="day-count" data-total="${chunk.length}">${chunk.length} kata</span></div><div class="vocab-grid">${chunk.map((it,i)=>`<div class="vocab-card"><span class="v-no">${start+i+1}</span><div class="v-word jp">${esc(it.w)}</div><div class="v-reading jp">${esc(it.r)}</div><div class="v-meaning">${esc(it.m)}</div></div>`).join("")}</div></section>`;
+}
+document.getElementById("daySections").innerHTML=htmlSec;
+navEl.innerHTML=htmlNav;
+
+function filterVocab(){
+  const q=document.getElementById("searchInput").value.trim().toLowerCase();
+  let visible=0;
+  document.querySelectorAll(".day-section").forEach(sec=>{
+    let sv=0;
+    sec.querySelectorAll(".vocab-card").forEach(c=>{
+      const ok=!q||c.textContent.toLowerCase().includes(q);
+      c.classList.toggle("hide",!ok);
+      if(ok)sv++;
+    });
+    sec.classList.toggle("hide",sv===0);
+    const cnt=sec.querySelector(".day-count");
+    cnt.textContent=q?(sv+" / "+cnt.dataset.total+" kata"):(cnt.dataset.total+" kata");
+    const chip=navEl.querySelector('[data-day="'+sec.dataset.day+'"]');
+    if(chip)chip.classList.toggle("hide",sv===0);
+    visible+=sv;
+  });
+  document.getElementById("emptyMsg").style.display=visible===0?"block":"none";
+  document.getElementById("searchCount").textContent=q?(visible+" dari "+WORDS.length+" kata ditemukan"):(WORDS.length+" kata · "+totalDays+" hari");
+}
+filterVocab();
+
+function toggleDropdown(id){
+  document.querySelectorAll('.dropdown-menu').forEach(m=>{if(m.id!==id){m.classList.remove('show','align-right');}});
+  const menu=document.getElementById(id),wrap=menu.closest('.dropdown');
+  const willShow=!menu.classList.contains('show');
+  menu.classList.toggle('show');
+  if(willShow){
+    menu.classList.remove('align-right');
+    if(menu.getBoundingClientRect().right>window.innerWidth-8){menu.classList.add('align-right');}
+    const r2=menu.getBoundingClientRect();
+    if(r2.left<8){menu.style.left=(8-wrap.getBoundingClientRect().left)+'px';menu.style.right='auto';}
+  }
+}
+function closeMobileMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburgerBtn').classList.remove('open');
+  document.querySelectorAll('.mobile-section-links.show').forEach(l=>l.classList.remove('show'));
+  document.querySelectorAll('.mobile-section-btn.open').forEach(b=>b.classList.remove('open'));
+}
+window.addEventListener('resize',()=>{
+  document.querySelectorAll('.dropdown-menu.show').forEach(m=>{m.classList.remove('show','align-right');m.style.left='';m.style.right='';});
+  if(window.innerWidth>600){closeMobileMenu();}
+});
+function toggleMobileMenu(){
+  const menu=document.getElementById('mobileMenu'),btn=document.getElementById('hamburgerBtn');
+  const willOpen=!menu.classList.contains('open');
+  menu.classList.toggle('open');btn.classList.toggle('open');
+  if(!willOpen){closeMobileMenu();}
+}
+function toggleMobileSection(id){
+  const links=document.getElementById(id),btn=links.previousElementSibling;
+  const willShow=!links.classList.contains('show');
+  links.classList.toggle('show');btn.classList.toggle('open');
+  if(willShow){
+    document.querySelectorAll('.mobile-section-links.show').forEach(l=>{
+      if(l.id!==id){l.classList.remove('show');l.previousElementSibling.classList.remove('open');}
+    });
+  }
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.dropdown')){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{m.classList.remove('show','align-right');m.style.left='';m.style.right='';});
+  }
+});
+
+const backToTopBtn=document.getElementById('backToTop');
+function updateBackToTop(){backToTopBtn.classList.toggle('visible',window.scrollY>400);}
+function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
+window.addEventListener('scroll',updateBackToTop,{passive:true});
+updateBackToTop();
+
+const inInput=e=>e.target.closest&&e.target.closest('input');
+document.addEventListener('contextmenu',e=>{if(!inInput(e))e.preventDefault();});
+document.addEventListener('copy',e=>{if(!inInput(e))e.preventDefault();});
+document.addEventListener('cut',e=>{if(!inInput(e))e.preventDefault();});
+document.addEventListener('selectstart',e=>{if(!inInput(e))e.preventDefault();});
+document.addEventListener('dragstart',e=>e.preventDefault());
+document.addEventListener('keydown',e=>{
+  if(inInput(e))return;
+  if((e.ctrlKey&&['c','u','s','p','a'].includes(e.key.toLowerCase()))||e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['i','j','c'].includes(e.key.toLowerCase()))){e.preventDefault();}
+});
+</script>
+</body>
+</html>
