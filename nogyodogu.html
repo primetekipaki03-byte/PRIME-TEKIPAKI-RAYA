@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peralatan Pertanian 農業道具 | Tekipaki</title>
+
+<style>
+:root{--navy:#001f3f;--navy2:#002a54;--navy3:#022655;--gold:#facc15;--gold2:#ffd700;--text:#001f3f}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
+body{background:#fff;color:var(--text)}
+#navbar{position:sticky;top:0;z-index:999;background:#001530;border-bottom:2px solid rgba(250,204,21,.25);box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;gap:10px}
+.nav-left{display:flex;align-items:center}
+.nav-right{display:flex;gap:8px;align-items:center}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:#001530;text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold}
+.home-btn:hover{opacity:.85}
+.home-icon{width:24px;height:24px;object-fit:cover;border-radius:4px}
+.dropdown{position:relative}
+.dropdown-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-weight:bold;cursor:pointer}
+.dropdown-btn:hover{background:var(--gold);color:#001530}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:#022655;border-radius:10px;overflow:hidden;min-width:220px;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none}
+.dropdown-menu a:hover{background:var(--gold);color:#001530}
+.show{display:block}
+.burger-btn{display:none;align-items:center;justify-content:center;flex-shrink:0;background:transparent;border:2px solid var(--gold);color:var(--gold);padding:9px 12px;border-radius:8px;cursor:pointer}
+.burger-btn svg{width:20px;height:20px;display:block}
+.mobile-menu{display:none;flex-direction:column;background:#001530;border-top:1px solid rgba(250,204,21,.25);max-height:calc(100vh - 64px);overflow-y:auto}
+.mobile-menu.show{display:flex}
+.mobile-link{display:block;padding:15px 18px;color:#ffd700;text-decoration:none;font-weight:700;font-size:14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.mobile-link:hover{background:rgba(250,204,21,.12)}
+.mobile-acc-btn{width:100%;text-align:left;background:transparent;border:none;color:var(--gold);font-weight:700;font-size:14px;padding:15px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);font-family:inherit}
+.mobile-acc-btn::after{content:'+';font-size:18px;line-height:1}
+.mobile-acc-btn.open::after{content:'\2212'}
+.mobile-acc-panel{display:none;flex-direction:column;background:#0a2242}
+.mobile-acc-panel.show{display:flex}
+.mobile-acc-panel a{padding:13px 32px;color:#ffd700;text-decoration:none;font-size:13px;border-bottom:1px solid rgba(255,255,255,.05)}
+.mobile-acc-panel a:hover{background:rgba(250,204,21,.15)}
+@media(min-width:761px){.mobile-menu{display:none !important}}
+@media(max-width:1000px){.dropdown-btn{font-size:.8rem;padding:7px 10px}}
+@media(max-width:760px){.navbar-inner{padding:10px 14px}.nav-left{flex:1;min-width:0}.nav-right{display:none}.burger-btn{display:flex}}
+header{text-align:center;padding:60px 20px 40px;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--navy) 0%,#062a52 100%)}
+header::before{content:"農業";position:absolute;font-size:340px;font-weight:900;color:rgba(250,204,21,.05);top:-90px;left:50%;transform:translateX(-50%);pointer-events:none;user-select:none;white-space:nowrap}
+.badge{display:inline-block;background:var(--gold);color:#001530;font-weight:bold;font-size:13px;letter-spacing:1px;padding:6px 16px;border-radius:999px;margin-bottom:18px;position:relative}
+header h1{font-size:48px;color:#fff;margin-bottom:12px;position:relative;letter-spacing:1px}
+header h1 span{color:var(--gold)}
+header p{font-size:17px;color:#c9d6e8;max-width:620px;margin:0 auto;position:relative}
+.stats-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px;position:relative}
+.stat-pill{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.35);color:var(--gold);padding:8px 18px;border-radius:999px;font-size:14px;font-weight:600}
+.search-wrap{max-width:600px;margin:-26px auto 10px;padding:0 20px;position:relative;z-index:5}
+#searchInput{width:100%;padding:16px 22px;border-radius:16px;border:2px solid var(--navy);font-size:16px;box-shadow:0 10px 24px rgba(0,31,63,.15);outline:none;color:var(--navy)}
+#searchInput:focus{border-color:var(--gold)}
+.no-result{text-align:center;color:#888;padding:40px;display:none;font-size:16px}
+.section-title{max-width:1200px;margin:50px auto 5px;padding:0 20px;display:flex;align-items:center;gap:14px}
+.section-title .lvl{background:var(--navy);color:var(--gold);font-weight:bold;font-size:14px;padding:6px 14px;border-radius:8px;white-space:nowrap}
+.section-title .line{flex:1;height:2px;background:linear-gradient(90deg,var(--navy),rgba(0,31,63,.05))}
+footer{text-align:center;padding:30px;color:#666;font-size:14px}
+
+.filters{max-width:1200px;margin:16px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:8px}
+.f-btn{padding:8px 16px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:999px;font-weight:bold;font-size:13px;cursor:pointer;transition:.2s}
+.f-btn:hover,.f-btn.on{background:var(--navy);color:var(--gold)}
+.note{max-width:1200px;margin:10px auto 0;padding:0 20px;font-size:13px;color:#666}
+.cgrid{max-width:1200px;margin:20px auto 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:20px}
+.ccard{border:2px solid var(--navy);border-radius:15px;padding:0;background:#fff;transition:.25s;overflow:hidden;display:flex;flex-direction:column}
+.ccard:hover{box-shadow:0 12px 24px rgba(0,31,63,.2);transform:translateY(-4px)}
+.ccard .body{padding:18px 20px 20px}
+
+/* ===== SLOT GAMBAR ===== */
+.imgslot{position:relative;width:100%;aspect-ratio:16/10;background:#eef3fa;border-bottom:2px solid var(--navy);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.imgslot img{width:100%;height:100%;object-fit:cover;display:block}
+.imgslot.empty{background:repeating-linear-gradient(45deg,#f3f7fc,#f3f7fc 12px,#eaf0f8 12px,#eaf0f8 24px);flex-direction:column;gap:6px;color:#8892a3}
+.imgslot.empty .ic{font-size:34px;line-height:1}
+.imgslot.empty .fn{font-size:12px;font-weight:600;background:#fff;border:1px dashed #b9c6da;border-radius:6px;padding:3px 9px;color:#556}
+
+.ccard .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ccard .kj{font-size:28px;font-weight:bold;color:var(--navy)}
+.ccard .nm{font-size:14px;color:#8892a3;font-weight:600}
+.ccard .rd{font-size:13px;color:#b8860b;font-weight:600;margin-top:2px}
+.ccard .mn{font-size:15px;color:#333;margin:6px 0 10px;font-weight:600}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:11px;font-weight:bold;padding:3px 10px;border-radius:999px;background:rgba(0,31,63,.08);color:var(--navy)}
+.ex-box{background:#f5f8fc;border-left:4px solid var(--gold);border-radius:8px;padding:12px 14px}
+.ex-box .j{font-size:15px;font-weight:bold;color:var(--navy);line-height:1.6}
+.ex-box .j mark{background:#fff3b0;padding:0 3px;border-radius:4px}
+.ex-box .y{font-size:12px;color:#8892a3;margin-top:4px}
+.ex-box .i{font-size:13px;color:#333;font-style:italic;margin-top:4px}
+
+.quiz-wrap{max-width:900px;margin:0 auto 50px;padding:0 20px}
+.q-box{border:2px solid var(--navy);border-radius:18px;padding:24px;background:#fafcff}
+.q-box h2{font-size:18px;color:var(--navy);margin-bottom:12px}
+.q-img{max-width:360px;margin:0 auto 14px;border:2px solid var(--navy);border-radius:12px;overflow:hidden;display:none}
+.q-img img{width:100%;display:block}
+.q-text{font-size:34px;font-weight:bold;color:var(--navy);margin-bottom:4px;line-height:1.5;text-align:center}
+.q-id{font-size:14px;color:#8892a3;font-style:italic;margin-bottom:16px;text-align:center}
+.q-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.q-opt{padding:14px;border:2px solid var(--navy);border-radius:12px;background:#fff;color:var(--navy);font-size:16px;font-weight:600;cursor:pointer;transition:.2s}
+.q-opt:hover{background:var(--navy);color:var(--gold)}
+.q-opt.ok{background:#e6f7ec;border-color:#86efac;color:#166534}
+.q-opt.no{background:#fdeaea;border-color:#fca5a5;color:#991b1b}
+.q-foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;flex-wrap:wrap;gap:10px}
+.q-score{font-weight:bold;color:var(--navy)}
+.q-next{border:2px solid var(--navy);background:var(--navy);color:var(--gold);padding:10px 18px;border-radius:10px;font-weight:bold;cursor:pointer}
+@media(max-width:1000px){.cgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.cgrid{grid-template-columns:1fr}.q-opts{grid-template-columns:1fr}header h1{font-size:32px}header::before{font-size:200px}}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="materikanji.html">Materi Kanji JLPT</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+      <a href="materikosakata.html">Materi Kosakata JLPT</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+
+<button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+</svg>
+</button>
+
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="index.html">HOME</a>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+  <div class="mobile-acc-panel">
+    <a href="daftarkosakata.html">Kosakata JFT</a>
+    <a href="materitatabahasa.html">Tata Bahasa</a>
+    <a href="materikanji.html">Materi Kanji JLPT</a>
+    <a href="kanjidasar.html">Kanji Flash Card</a>
+    <a href="materikosakata.html">Materi Kosakata JLPT</a>
+  </div>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
+  <div class="mobile-acc-panel">
+    <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+    <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+    <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+    <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+    <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+  </div>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
+  <div class="mobile-acc-panel">
+    <a href="quizkanji1.html">QUIZ KANJI 1</a>
+    <a href="quizkanji2.html">QUIZ KANJI 2</a>
+    <a href="quizkanji3.html">QUIZ KANJI 3</a>
+    <a href="quizkanji4.html">QUIZ KANJI 4</a>
+    <a href="quizkanji5.html">QUIZ KANJI 5</a>
+  </div>
+</div>
+</nav>
+
+<header>
+    <span class="badge">農業 · NOUGYOU</span>
+    <h1>農業道具 <span>Peralatan Pertanian</span></h1>
+    <p>Kosakata peralatan dan perlengkapan pertanian dalam bahasa Jepang, dari alat tangan sampai mesin pertanian. Lengkap dengan slot gambar, contoh kalimat, dan latihan.</p>
+    <div class="stats-row">
+        <span class="stat-pill" id="totalCount">0 Kata</span>
+        <span class="stat-pill">5 Kelompok</span>
+        <span class="stat-pill">Slot Gambar</span>
+        <span class="stat-pill">Ada Latihan</span>
+    </div>
+</header>
+
+<div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="🔍 Cari alat... (contoh: cangkul, トラクター, pupuk, 長靴)" oninput="applyFilter()">
+</div>
+
+<div class="filters" id="filters"></div>
+<div class="note">Cara menambah gambar: simpan foto di folder <b id="dirLabel"></b> dengan nama file sesuai yang tertera di kotak gambar (contoh: <b>kuwa.jpg</b>). Gambar akan muncul otomatis.</div>
+
+<div class="cgrid" id="cGrid"></div>
+<p class="no-result" id="noResult">Kata tidak ditemukan.</p>
+
+<div class="section-title">
+    <span class="lvl">LATIHAN</span>
+    <span class="line"></span>
+</div>
+
+<div class="quiz-wrap">
+  <div class="q-box">
+    <h2>Apa arti kata ini dalam bahasa Indonesia?</h2>
+    <div class="q-img" id="qImgBox"><img id="qImg" alt=""></div>
+    <div class="q-text" id="qText"></div>
+    <div class="q-id" id="qId"></div>
+    <div class="q-opts" id="qOpts"></div>
+    <div class="q-foot">
+      <span class="q-score" id="qScore">Skor: 0 / 0</span>
+      <button class="q-next" onclick="newQ()">Soal berikutnya</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+© Tekipaki Japanese Learning
+</footer>
+
+<script>
+// =====================================================
+// PENGATURAN GAMBAR
+// Folder gambar. Ubah sesuai folder di website Anda.
+// Nama file otomatis = romaji + .jpg  (contoh: kuwa.jpg)
+// Untuk nama/format lain, tambahkan  img:"namafile.png"  pada alat tersebut.
+// =====================================================
+const IMG_DIR = "images/nogyo/";
+
+const CATS = {
+  tangan:"Alat Tangan (農具)",
+  mesin:"Mesin Pertanian (農業機械)",
+  kerja:"Pakaian & Perlengkapan Kerja",
+  sarana:"Lahan & Fasilitas",
+  bahan:"Benih, Pupuk & Bahan"
+};
+
+const list = [
+ { jp:"くわ", k:"鍬", r:"kuwa", m:"cangkul", c:"tangan", e:["くわで畑を耕します。","くわで はたけを たがやします。","Mencangkul ladang."] },
+ { jp:"鎌", k:"かま", r:"kama", m:"sabit", c:"tangan", e:["鎌で草を刈ります。","かまで くさを かります。","Memotong rumput dengan sabit."] },
+ { jp:"熊手", k:"くまで", r:"kumade", m:"penggaruk (rake)", c:"tangan", e:["熊手で落ち葉を集めます。","くまでで おちばを あつめます。","Mengumpulkan daun gugur dengan penggaruk."] },
+ { jp:"剪定ばさみ", k:"せんていばさみ", r:"senteibasami", m:"gunting pangkas", c:"tangan", e:["剪定ばさみで枝を切ります。","せんていばさみで えだを きります。","Memotong ranting dengan gunting pangkas."] },
+ { jp:"じょうろ", k:"如雨露", r:"jouro", m:"gembor (penyiram tanaman)", c:"tangan", e:["じょうろで野菜に水をやります。","じょうろで やさいに みずを やります。","Menyiram sayuran dengan gembor."] },
+ { jp:"収穫かご", k:"しゅうかくかご", r:"shuukakukago", m:"keranjang panen", c:"tangan", e:["収穫かごにトマトを入れます。","しゅうかくかごに トマトを いれます。","Memasukkan tomat ke keranjang panen."] },
+ { jp:"移植ごて", k:"いしょくごて", r:"ishokugote", m:"sekop kecil (untuk pindah tanam)", c:"tangan", e:["移植ごてで苗を植えます。","いしょくごてで なえを うえます。","Menanam bibit dengan sekop kecil."] },
+ { jp:"トラクター", k:"", r:"torakutaa", m:"traktor", c:"mesin", e:["トラクターで畑を耕します。","トラクターで はたけを たがやします。","Membajak ladang dengan traktor."] },
+ { jp:"耕うん機", k:"こううんき", r:"kouunki", m:"mesin bajak kecil (tiller)", c:"mesin", e:["耕うん機で土を柔らかくします。","こううんきで つちを やわらかく します。","Menggemburkan tanah dengan mesin bajak kecil."] },
+ { jp:"コンバイン", k:"", r:"konbain", m:"mesin panen (combine harvester)", c:"mesin", e:["コンバインで稲を刈ります。","コンバインで いねを かります。","Memanen padi dengan combine harvester."] },
+ { jp:"田植え機", k:"たうえき", r:"tauek", m:"mesin tanam padi", c:"mesin", e:["田植え機で苗を植えます。","たうえきで なえを うえます。","Menanam bibit padi dengan mesin tanam."] },
+ { jp:"草刈り機", k:"くさかりき", r:"kusakariki", m:"mesin pemotong rumput", c:"mesin", e:["草刈り機で畦の草を刈ります。","くさかりきで あぜの くさを かります。","Memotong rumput pematang dengan mesin pemotong rumput."] },
+ { jp:"噴霧器", k:"ふんむき", r:"funmuki", m:"alat semprot (sprayer)", c:"mesin", e:["噴霧器で農薬をまきます。","ふんむきで のうやくを まきます。","Menyemprotkan pestisida dengan sprayer."] },
+ { jp:"軽トラック", k:"けいトラック", r:"keitorakku", m:"truk kecil (kei truck)", c:"mesin", e:["軽トラックで野菜を運びます。","けいトラックで やさいを はこびます。","Mengangkut sayuran dengan truk kecil."] },
+ { jp:"乾燥機", k:"かんそうき", r:"kansouki", m:"mesin pengering (gabah)", c:"mesin", e:["乾燥機でもみを乾かします。","かんそうきで もみを かわかします。","Mengeringkan gabah dengan mesin pengering."] },
+ { jp:"精米機", k:"せいまいき", r:"seimaiki", m:"mesin penggiling beras", c:"mesin", e:["精米機で玄米を白米にします。","せいまいきで げんまいを はくまいに します。","Mengubah beras pecah kulit menjadi beras putih dengan mesin penggiling."] },
+ { jp:"長靴", k:"ながぐつ", r:"nagagutsu", m:"sepatu bot", c:"kerja", e:["長靴をはいて田んぼに入ります。","ながぐつを はいて たんぼに はいります。","Memakai sepatu bot lalu masuk ke sawah."] },
+ { jp:"麦わら帽子", k:"むぎわらぼうし", r:"mugiwaraboushi", m:"topi jerami", c:"kerja", e:["麦わら帽子をかぶって作業します。","むぎわらぼうしを かぶって さぎょうします。","Bekerja dengan memakai topi jerami."] },
+ { jp:"ゴム手袋", k:"ゴムてぶくろ", r:"gomutebukuro", m:"sarung tangan karet", c:"kerja", e:["ゴム手袋をして農薬を扱います。","ゴムてぶくろを して のうやくを あつかいます。","Menangani pestisida dengan sarung tangan karet."] },
+ { jp:"作業着", k:"さぎょうぎ", r:"sagyougi", m:"pakaian kerja", c:"kerja", e:["作業着に着替えます。","さぎょうぎに きがえます。","Berganti pakaian kerja."] },
+ { jp:"防護マスク", k:"ぼうごマスク", r:"bougomasuku", m:"masker pelindung", c:"kerja", e:["農薬をまくときは防護マスクをつけます。","のうやくを まく ときは ぼうごマスクを つけます。","Saat menyemprot pestisida, memakai masker pelindung."] },
+ { jp:"畑", k:"はたけ", r:"hatake", m:"ladang (lahan kering)", c:"sarana", e:["畑で野菜を育てます。","はたけで やさいを そだてます。","Menanam sayuran di ladang."] },
+ { jp:"田んぼ", k:"たんぼ", r:"tanbo", m:"sawah", c:"sarana", e:["田んぼに水を入れます。","たんぼに みずを いれます。","Mengairi sawah."] },
+ { jp:"あぜ", k:"畦", r:"aze", m:"pematang sawah", c:"sarana", e:["あぜの草を刈ります。","あぜの くさを かります。","Memotong rumput di pematang."] },
+ { jp:"ビニールハウス", k:"", r:"biniiruhausu", m:"rumah plastik (greenhouse plastik)", c:"sarana", e:["ビニールハウスでトマトを育てます。","ビニールハウスで トマトを そだてます。","Menanam tomat di rumah plastik."] },
+ { jp:"温室", k:"おんしつ", r:"onshitsu", m:"rumah kaca", c:"sarana", e:["温室で花を育てます。","おんしつで はなを そだてます。","Menanam bunga di rumah kaca."] },
+ { jp:"用水路", k:"ようすいろ", r:"yousuiro", m:"saluran irigasi", c:"sarana", e:["用水路から田んぼに水を引きます。","ようすいろから たんぼに みずを ひきます。","Mengalirkan air ke sawah dari saluran irigasi."] },
+ { jp:"スプリンクラー", k:"", r:"supurinkuraa", m:"sprinkler (penyiram otomatis)", c:"sarana", e:["スプリンクラーで畑に水をまきます。","スプリンクラーで はたけに みずを まきます。","Menyiram ladang dengan sprinkler."] },
+ { jp:"支柱", k:"しちゅう", r:"shichuu", m:"ajir (penyangga tanaman)", c:"sarana", e:["トマトに支柱を立てます。","トマトに しちゅうを たてます。","Memasang ajir pada tomat."] },
+ { jp:"マルチ", k:"", r:"maruchi", m:"mulsa plastik", c:"sarana", e:["畑にマルチを張ります。","はたけに マルチを はります。","Memasang mulsa di ladang."] },
+ { jp:"防虫ネット", k:"ぼうちゅうネット", r:"bouchuunetto", m:"jaring anti serangga", c:"sarana", e:["防虫ネットで虫を防ぎます。","ぼうちゅうネットで むしを ふせぎます。","Mencegah serangga dengan jaring anti serangga."] },
+ { jp:"種", k:"たね", r:"tane", m:"benih", c:"bahan", e:["畑に種をまきます。","はたけに たねを まきます。","Menabur benih di ladang."] },
+ { jp:"苗", k:"なえ", r:"nae", m:"bibit", c:"bahan", e:["苗を畑に植えます。","なえを はたけに うえます。","Menanam bibit di ladang."] },
+ { jp:"肥料", k:"ひりょう", r:"hiryou", m:"pupuk", c:"bahan", e:["畑に肥料をやります。","はたけに ひりょうを やります。","Memberi pupuk pada ladang."] },
+ { jp:"農薬", k:"のうやく", r:"nouyaku", m:"pestisida", c:"bahan", e:["農薬をまく前に説明書を読みます。","のうやくを まく まえに せつめいしょを よみます。","Membaca petunjuk sebelum menyemprot pestisida."] },
+ { jp:"堆肥", k:"たいひ", r:"taihi", m:"kompos", c:"bahan", e:["堆肥を土に混ぜます。","たいひを つちに まぜます。","Mencampur kompos ke tanah."] }
+];
+
+document.getElementById("totalCount").textContent = list.length + " Kata";
+document.getElementById("dirLabel").textContent = IMG_DIR;
+
+// nama file gambar otomatis dari romaji (atau pakai g.img jika diisi manual)
+list.forEach(g => { g.file = g.img || (g.r.toLowerCase().replace(/[^a-z0-9]+/g,"-") + ".jpg"); });
+
+function norm(s){
+  return String(s).normalize("NFKC").toLowerCase()
+    .replace(/[\u30a1-\u30f6]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60))
+    .replace(/[\s\-、。,.・()（）]/g, "");
+}
+list.forEach(g => { g.s = norm([g.jp, g.k, g.r, g.m, CATS[g.c]].join(" ")); });
+
+// ---------- FILTER ----------
+let curCat = "all";
+const fBox = document.getElementById("filters");
+const fItems = [["all","Semua"]].concat(Object.keys(CATS).map(k => [k, CATS[k]]));
+fItems.forEach(f => {
+  const b = document.createElement("button");
+  b.className = "f-btn" + (f[0]==="all" ? " on" : "");
+  b.textContent = f[1];
+  b.onclick = () => {
+    curCat = f[0];
+    document.querySelectorAll(".f-btn").forEach(x => x.classList.remove("on"));
+    b.classList.add("on");
+    applyFilter();
+  };
+  fBox.appendChild(b);
+});
+
+const grid = document.getElementById("cGrid");
+const noResult = document.getElementById("noResult");
+
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+// kotak gambar: tampilkan foto, atau placeholder jika file belum ada
+function makeImgSlot(g){
+  const slot = document.createElement("div");
+  slot.className = "imgslot";
+  const showEmpty = () => {
+    slot.className = "imgslot empty";
+    slot.innerHTML = '<span class="ic">📷</span><span class="fn">' + g.file + '</span>';
+  };
+  const img = new Image();
+  img.alt = g.jp + " (" + g.m + ")";
+  img.loading = "lazy";
+  img.onerror = showEmpty;
+  img.src = IMG_DIR + g.file;
+  slot.appendChild(img);
+  return slot;
+}
+
+function render(items){
+  grid.innerHTML = "";
+  items.forEach(g => {
+    const [j,y,i] = g.e;
+    const jh = esc(j).replace(g.jp, "<mark>" + g.jp + "</mark>");
+    const d = document.createElement("div");
+    d.className = "ccard";
+    d.appendChild(makeImgSlot(g));
+    const body = document.createElement("div");
+    body.className = "body";
+    body.innerHTML =
+      '<div class="top"><span class="kj">' + g.jp + '</span><span class="nm">' + g.r + '</span></div>' +
+      (g.k ? '<div class="rd">' + g.k + '</div>' : '') +
+      '<div class="mn">' + g.m + '</div>' +
+      '<div class="tags"><span class="tag">' + CATS[g.c] + '</span></div>' +
+      '<div class="ex-box"><div class="j">' + jh + '</div><div class="y">' + y + '</div><div class="i">' + i + '</div></div>';
+    d.appendChild(body);
+    grid.appendChild(d);
+  });
+  noResult.style.display = items.length === 0 ? "block" : "none";
+}
+
+function applyFilter(){
+  const q = norm(document.getElementById("searchInput").value);
+  render(list.filter(g => (curCat === "all" || g.c === curCat) && (!q || g.s.includes(q))));
+}
+
+// ---------- LATIHAN ----------
+let score = 0, total = 0, answered = false, answer = "";
+
+function newQ(){
+  answered = false;
+  const g = list[Math.floor(Math.random() * list.length)];
+  answer = g.m;
+  document.getElementById("qText").textContent = g.jp;
+  document.getElementById("qId").textContent = g.k ? g.k + " · " + g.r : g.r;
+
+  // tampilkan gambar di soal jika file gambarnya ada
+  const qBox = document.getElementById("qImgBox");
+  const qImg = document.getElementById("qImg");
+  qBox.style.display = "none";
+  qImg.onload = () => { qBox.style.display = "block"; };
+  qImg.onerror = () => { qBox.style.display = "none"; };
+  qImg.src = IMG_DIR + g.file;
+
+  const others = list.filter(x => x.m !== g.m).sort(() => Math.random() - .5);
+  const opts = [g.m];
+  others.forEach(o => { if(opts.length < 4 && !opts.includes(o.m)) opts.push(o.m); });
+  opts.sort(() => Math.random() - .5);
+  const box = document.getElementById("qOpts");
+  box.innerHTML = "";
+  opts.forEach(o => {
+    const b = document.createElement("button");
+    b.className = "q-opt";
+    b.textContent = o;
+    b.onclick = () => {
+      if(answered) return;
+      answered = true;
+      total++;
+      if(o === answer){ score++; b.classList.add("ok"); }
+      else {
+        b.classList.add("no");
+        box.querySelectorAll(".q-opt").forEach(x => { if(x.textContent === answer) x.classList.add("ok"); });
+      }
+      document.getElementById("qScore").textContent = "Skor: " + score + " / " + total;
+    };
+    box.appendChild(b);
+  });
+}
+
+render(list);
+newQ();
+
+//============================
+// DROPDOWN (DESKTOP)
+//============================
+
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+        if(menu.id!=id){ menu.classList.remove("show"); }
+    });
+    document.getElementById(id).classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+            menu.classList.remove("show");
+        });
+    }
+});
+
+//============================
+// BURGER MENU (MOBILE)
+//============================
+
+function toggleMobileMenu(){
+    const menu = document.getElementById("mobileMenu");
+    if(menu) menu.classList.toggle("show");
+}
+
+function toggleMobileAccordion(btn){
+    const panel = btn.nextElementSibling;
+    const isOpen = btn.classList.contains("open");
+    document.querySelectorAll(".mobile-acc-btn").forEach(function(b){
+        if(b !== btn){
+            b.classList.remove("open");
+            if(b.nextElementSibling) b.nextElementSibling.classList.remove("show");
+        }
+    });
+    btn.classList.toggle("open", !isOpen);
+    if(panel) panel.classList.toggle("show", !isOpen);
+}
+
+window.addEventListener("resize", function(){
+    document.querySelectorAll(".dropdown-menu").forEach(function(m){ m.classList.remove("show"); });
+    if(window.innerWidth > 760){
+        const mm = document.getElementById("mobileMenu");
+        if(mm) mm.classList.remove("show");
+        document.querySelectorAll(".mobile-acc-btn").forEach(function(b){ b.classList.remove("open"); });
+        document.querySelectorAll(".mobile-acc-panel").forEach(function(p){ p.classList.remove("show"); });
+    }
+});
+</script>
+
+</body>
+</html>
