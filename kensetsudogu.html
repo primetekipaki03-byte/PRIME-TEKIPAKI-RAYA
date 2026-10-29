@@ -211,7 +211,6 @@ HOME
 </div>
 
 <div class="filters" id="filters"></div>
-<div class="note">Cara menambah gambar: simpan foto di folder <b id="dirLabel"></b> dengan nama file sesuai yang tertera di kotak gambar (contoh: <b>hanmaa.jpg</b>). Gambar akan muncul otomatis.</div>
 
 <div class="cgrid" id="cGrid"></div>
 <p class="no-result" id="noResult">Alat tidak ditemukan.</p>
@@ -241,12 +240,58 @@ HOME
 
 <script>
 // =====================================================
-// PENGATURAN GAMBAR
-// Folder gambar. Ubah sesuai folder di website Anda.
-// Nama file otomatis = romaji + .jpg  (contoh: hanmaa.jpg)
-// Untuk nama/format lain, tambahkan  img:"namafile.png"  pada alat tersebut.
+// TEMPAT ISI GAMBAR  (bagian ini yang Anda edit)
+//
+// Cara pakai:
+//   1. Cari kata yang ingin diberi gambar.
+//   2. Tulis alamat gambarnya di antara tanda kutip "" setelah titik dua.
+//
+// Contoh:
+//   "くわ": "images/kuwa.jpg",            <- gambar dari folder website
+//   "くわ": "https://situs.com/kuwa.jpg", <- gambar dari link internet
+//   "くわ": "",                            <- kosong = belum ada gambar
 // =====================================================
-const IMG_DIR = "images/kensetsu/";
+const GAMBAR = {
+  "ハンマー": "",
+  "のこぎり": "",
+  "ドライバー": "",
+  "ペンチ": "",
+  "スパナ": "",
+  "スコップ": "",
+  "こて": "",
+  "バール": "",
+  "はしご": "",
+  "一輪車": "",
+  "メジャー": "",
+  "水平器": "",
+  "さしがね": "",
+  "墨つぼ": "",
+  "下げ振り": "",
+  "電動ドリル": "",
+  "グラインダー": "",
+  "丸のこ": "",
+  "溶接機": "",
+  "コンプレッサー": "",
+  "発電機": "",
+  "油圧ショベル": "",
+  "ブルドーザー": "",
+  "クレーン": "",
+  "ダンプカー": "",
+  "ミキサー車": "",
+  "ローラー": "",
+  "フォークリフト": "",
+  "高所作業車": "",
+  "ヘルメット": "",
+  "安全靴": "",
+  "軍手": "",
+  "保護メガネ": "",
+  "防じんマスク": "",
+  "フルハーネス": "",
+  "耳栓": "",
+  "足場": "",
+  "型枠": "",
+  "カラーコーン": "",
+};
 
 const CATS = {
   tangan:"Alat Tangan",
@@ -311,10 +356,8 @@ const list = [
 ];
 
 document.getElementById("totalCount").textContent = list.length + " Kata";
-document.getElementById("dirLabel").textContent = IMG_DIR;
 
-// nama file gambar otomatis dari romaji (atau pakai g.img jika diisi manual)
-list.forEach(g => { g.file = g.img || (g.r.toLowerCase().replace(/[^a-z0-9]+/g,"-") + ".jpg"); });
+list.forEach(g => { g.file = GAMBAR[g.jp] || ""; });
 
 function norm(s){
   return String(s).normalize("NFKC").toLowerCase()
@@ -351,13 +394,14 @@ function makeImgSlot(g){
   slot.className = "imgslot";
   const showEmpty = () => {
     slot.className = "imgslot empty";
-    slot.innerHTML = '<span class="ic">📷</span><span class="fn">' + g.file + '</span>';
+    slot.innerHTML = '<span class="ic">📷</span><span class="fn">Belum ada gambar</span>';
   };
   const img = new Image();
   img.alt = g.jp + " (" + g.m + ")";
   img.loading = "lazy";
   img.onerror = showEmpty;
-  img.src = IMG_DIR + g.file;
+  if(!g.file){ showEmpty(); return slot; }
+  img.src = g.file;
   slot.appendChild(img);
   return slot;
 }
@@ -405,7 +449,7 @@ function newQ(){
   qBox.style.display = "none";
   qImg.onload = () => { qBox.style.display = "block"; };
   qImg.onerror = () => { qBox.style.display = "none"; };
-  qImg.src = IMG_DIR + g.file;
+  if(g.file) qImg.src = g.file;
 
   const others = list.filter(x => x.m !== g.m).sort(() => Math.random() - .5);
   const opts = [g.m];
