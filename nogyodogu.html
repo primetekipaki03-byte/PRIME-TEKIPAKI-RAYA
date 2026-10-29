@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Peralatan Pertanian 農業道具 | Tekipaki</title>
+<title>Peralatan Konstruksi 建設道具 | Tekipaki</title>
 
 <style>
 :root{--navy:#001f3f;--navy2:#002a54;--navy3:#022655;--gold:#facc15;--gold2:#ffd700;--text:#001f3f}
@@ -41,7 +41,7 @@ body{background:#fff;color:var(--text)}
 @media(max-width:1000px){.dropdown-btn{font-size:.8rem;padding:7px 10px}}
 @media(max-width:760px){.navbar-inner{padding:10px 14px}.nav-left{flex:1;min-width:0}.nav-right{display:none}.burger-btn{display:flex}}
 header{text-align:center;padding:60px 20px 40px;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--navy) 0%,#062a52 100%)}
-header::before{content:"農業";position:absolute;font-size:340px;font-weight:900;color:rgba(250,204,21,.05);top:-90px;left:50%;transform:translateX(-50%);pointer-events:none;user-select:none;white-space:nowrap}
+header::before{content:"建設";position:absolute;font-size:340px;font-weight:900;color:rgba(250,204,21,.05);top:-90px;left:50%;transform:translateX(-50%);pointer-events:none;user-select:none;white-space:nowrap}
 .badge{display:inline-block;background:var(--gold);color:#001530;font-weight:bold;font-size:13px;letter-spacing:1px;padding:6px 16px;border-radius:999px;margin-bottom:18px;position:relative}
 header h1{font-size:48px;color:#fff;margin-bottom:12px;position:relative;letter-spacing:1px}
 header h1 span{color:var(--gold)}
@@ -67,8 +67,8 @@ footer{text-align:center;padding:30px;color:#666;font-size:14px}
 .ccard .body{padding:18px 20px 20px}
 
 /* ===== SLOT GAMBAR ===== */
-.imgslot{position:relative;width:100%;aspect-ratio:16/10;background:#eef3fa;border-bottom:2px solid var(--navy);overflow:hidden;display:flex;align-items:center;justify-content:center}
-.imgslot img{width:100%;height:100%;object-fit:cover;display:block}
+.imgslot{position:relative;width:100%;aspect-ratio:16/10;background:#fff;border-bottom:2px solid var(--navy);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.imgslot img{width:100%;height:100%;object-fit:contain;display:block}
 .imgslot.empty{background:repeating-linear-gradient(45deg,#f3f7fc,#f3f7fc 12px,#eaf0f8 12px,#eaf0f8 24px);flex-direction:column;gap:6px;color:#8892a3}
 .imgslot.empty .ic{font-size:34px;line-height:1}
 .imgslot.empty .fn{font-size:12px;font-weight:600;background:#fff;border:1px dashed #b9c6da;border-radius:6px;padding:3px 9px;color:#556}
@@ -195,25 +195,25 @@ HOME
 </nav>
 
 <header>
-    <span class="badge">農業 · NOUGYOU</span>
-    <h1>農業道具 <span>Peralatan Pertanian</span></h1>
-    <p>Kosakata peralatan dan perlengkapan pertanian dalam bahasa Jepang, dari alat tangan sampai mesin pertanian. Lengkap dengan slot gambar, contoh kalimat, dan latihan.</p>
+    <span class="badge">建設 · KENSETSU</span>
+    <h1>建設道具 <span>Peralatan Konstruksi</span></h1>
+    <p>Kosakata peralatan dan perlengkapan di lokasi konstruksi dalam bahasa Jepang, dari alat tangan sampai alat berat. Lengkap dengan slot gambar, contoh kalimat, dan latihan.</p>
     <div class="stats-row">
         <span class="stat-pill" id="totalCount">0 Kata</span>
-        <span class="stat-pill">5 Kelompok</span>
+        <span class="stat-pill">6 Kelompok Alat</span>
         <span class="stat-pill">Slot Gambar</span>
         <span class="stat-pill">Ada Latihan</span>
     </div>
 </header>
 
 <div class="search-wrap">
-    <input type="text" id="searchInput" placeholder="🔍 Cari alat... (contoh: cangkul, トラクター, pupuk, 長靴)" oninput="applyFilter()">
+    <input type="text" id="searchInput" placeholder="🔍 Cari alat... (contoh: palu, ヘルメット, kunci, crane)" oninput="applyFilter()">
 </div>
 
 <div class="filters" id="filters"></div>
 
 <div class="cgrid" id="cGrid"></div>
-<p class="no-result" id="noResult">Kata tidak ditemukan.</p>
+<p class="no-result" id="noResult">Alat tidak ditemukan.</p>
 
 <div class="section-title">
     <span class="lvl">LATIHAN</span>
@@ -222,7 +222,7 @@ HOME
 
 <div class="quiz-wrap">
   <div class="q-box">
-    <h2>Apa arti kata ini dalam bahasa Indonesia?</h2>
+    <h2>Apa arti alat ini dalam bahasa Indonesia?</h2>
     <div class="q-img" id="qImgBox"><img id="qImg" alt=""></div>
     <div class="q-text" id="qText"></div>
     <div class="q-id" id="qId"></div>
@@ -240,11 +240,12 @@ HOME
 
 <script>
 const CATS = {
-  tangan:"Alat Tangan (農具)",
-  mesin:"Mesin Pertanian (農業機械)",
-  kerja:"Pakaian & Perlengkapan Kerja",
-  sarana:"Lahan & Fasilitas",
-  bahan:"Benih, Pupuk & Bahan"
+  tangan:"Alat Tangan",
+  ukur:"Alat Ukur",
+  listrik:"Alat Listrik / Mesin",
+  berat:"Alat Berat",
+  apd:"Alat Keselamatan (APD)",
+  lain:"Perancah & Rambu"
 };
 
 // =====================================================
@@ -259,42 +260,56 @@ const CATS = {
 //   - Kalau dikosongkan (gambar:"") kartu menampilkan "Belum ada gambar".
 // =====================================================
 const list = [
- { gambar:"", jp:"くわ", k:"鍬", r:"kuwa", m:"cangkul", c:"tangan", e:["くわで畑を耕します。","くわで はたけを たがやします。","Mencangkul ladang."] },
- { gambar:"", jp:"鎌", k:"かま", r:"kama", m:"sabit", c:"tangan", e:["鎌で草を刈ります。","かまで くさを かります。","Memotong rumput dengan sabit."] },
- { gambar:"", jp:"熊手", k:"くまで", r:"kumade", m:"penggaruk (rake)", c:"tangan", e:["熊手で落ち葉を集めます。","くまでで おちばを あつめます。","Mengumpulkan daun gugur dengan penggaruk."] },
- { gambar:"", jp:"剪定ばさみ", k:"せんていばさみ", r:"senteibasami", m:"gunting pangkas", c:"tangan", e:["剪定ばさみで枝を切ります。","せんていばさみで えだを きります。","Memotong ranting dengan gunting pangkas."] },
- { gambar:"", jp:"じょうろ", k:"如雨露", r:"jouro", m:"gembor (penyiram tanaman)", c:"tangan", e:["じょうろで野菜に水をやります。","じょうろで やさいに みずを やります。","Menyiram sayuran dengan gembor."] },
- { gambar:"", jp:"収穫かご", k:"しゅうかくかご", r:"shuukakukago", m:"keranjang panen", c:"tangan", e:["収穫かごにトマトを入れます。","しゅうかくかごに トマトを いれます。","Memasukkan tomat ke keranjang panen."] },
- { gambar:"", jp:"移植ごて", k:"いしょくごて", r:"ishokugote", m:"sekop kecil (untuk pindah tanam)", c:"tangan", e:["移植ごてで苗を植えます。","いしょくごてで なえを うえます。","Menanam bibit dengan sekop kecil."] },
- { gambar:"", jp:"トラクター", k:"", r:"torakutaa", m:"traktor", c:"mesin", e:["トラクターで畑を耕します。","トラクターで はたけを たがやします。","Membajak ladang dengan traktor."] },
- { gambar:"", jp:"耕うん機", k:"こううんき", r:"kouunki", m:"mesin bajak kecil (tiller)", c:"mesin", e:["耕うん機で土を柔らかくします。","こううんきで つちを やわらかく します。","Menggemburkan tanah dengan mesin bajak kecil."] },
- { gambar:"", jp:"コンバイン", k:"", r:"konbain", m:"mesin panen (combine harvester)", c:"mesin", e:["コンバインで稲を刈ります。","コンバインで いねを かります。","Memanen padi dengan combine harvester."] },
- { gambar:"", jp:"田植え機", k:"たうえき", r:"tauek", m:"mesin tanam padi", c:"mesin", e:["田植え機で苗を植えます。","たうえきで なえを うえます。","Menanam bibit padi dengan mesin tanam."] },
- { gambar:"", jp:"草刈り機", k:"くさかりき", r:"kusakariki", m:"mesin pemotong rumput", c:"mesin", e:["草刈り機で畦の草を刈ります。","くさかりきで あぜの くさを かります。","Memotong rumput pematang dengan mesin pemotong rumput."] },
- { gambar:"", jp:"噴霧器", k:"ふんむき", r:"funmuki", m:"alat semprot (sprayer)", c:"mesin", e:["噴霧器で農薬をまきます。","ふんむきで のうやくを まきます。","Menyemprotkan pestisida dengan sprayer."] },
- { gambar:"", jp:"軽トラック", k:"けいトラック", r:"keitorakku", m:"truk kecil (kei truck)", c:"mesin", e:["軽トラックで野菜を運びます。","けいトラックで やさいを はこびます。","Mengangkut sayuran dengan truk kecil."] },
- { gambar:"", jp:"乾燥機", k:"かんそうき", r:"kansouki", m:"mesin pengering (gabah)", c:"mesin", e:["乾燥機でもみを乾かします。","かんそうきで もみを かわかします。","Mengeringkan gabah dengan mesin pengering."] },
- { gambar:"", jp:"精米機", k:"せいまいき", r:"seimaiki", m:"mesin penggiling beras", c:"mesin", e:["精米機で玄米を白米にします。","せいまいきで げんまいを はくまいに します。","Mengubah beras pecah kulit menjadi beras putih dengan mesin penggiling."] },
- { gambar:"", jp:"長靴", k:"ながぐつ", r:"nagagutsu", m:"sepatu bot", c:"kerja", e:["長靴をはいて田んぼに入ります。","ながぐつを はいて たんぼに はいります。","Memakai sepatu bot lalu masuk ke sawah."] },
- { gambar:"", jp:"麦わら帽子", k:"むぎわらぼうし", r:"mugiwaraboushi", m:"topi jerami", c:"kerja", e:["麦わら帽子をかぶって作業します。","むぎわらぼうしを かぶって さぎょうします。","Bekerja dengan memakai topi jerami."] },
- { gambar:"", jp:"ゴム手袋", k:"ゴムてぶくろ", r:"gomutebukuro", m:"sarung tangan karet", c:"kerja", e:["ゴム手袋をして農薬を扱います。","ゴムてぶくろを して のうやくを あつかいます。","Menangani pestisida dengan sarung tangan karet."] },
- { gambar:"", jp:"作業着", k:"さぎょうぎ", r:"sagyougi", m:"pakaian kerja", c:"kerja", e:["作業着に着替えます。","さぎょうぎに きがえます。","Berganti pakaian kerja."] },
- { gambar:"", jp:"防護マスク", k:"ぼうごマスク", r:"bougomasuku", m:"masker pelindung", c:"kerja", e:["農薬をまくときは防護マスクをつけます。","のうやくを まく ときは ぼうごマスクを つけます。","Saat menyemprot pestisida, memakai masker pelindung."] },
- { gambar:"", jp:"畑", k:"はたけ", r:"hatake", m:"ladang (lahan kering)", c:"sarana", e:["畑で野菜を育てます。","はたけで やさいを そだてます。","Menanam sayuran di ladang."] },
- { gambar:"", jp:"田んぼ", k:"たんぼ", r:"tanbo", m:"sawah", c:"sarana", e:["田んぼに水を入れます。","たんぼに みずを いれます。","Mengairi sawah."] },
- { gambar:"", jp:"あぜ", k:"畦", r:"aze", m:"pematang sawah", c:"sarana", e:["あぜの草を刈ります。","あぜの くさを かります。","Memotong rumput di pematang."] },
- { gambar:"", jp:"ビニールハウス", k:"", r:"biniiruhausu", m:"rumah plastik (greenhouse plastik)", c:"sarana", e:["ビニールハウスでトマトを育てます。","ビニールハウスで トマトを そだてます。","Menanam tomat di rumah plastik."] },
- { gambar:"", jp:"温室", k:"おんしつ", r:"onshitsu", m:"rumah kaca", c:"sarana", e:["温室で花を育てます。","おんしつで はなを そだてます。","Menanam bunga di rumah kaca."] },
- { gambar:"", jp:"用水路", k:"ようすいろ", r:"yousuiro", m:"saluran irigasi", c:"sarana", e:["用水路から田んぼに水を引きます。","ようすいろから たんぼに みずを ひきます。","Mengalirkan air ke sawah dari saluran irigasi."] },
- { gambar:"", jp:"スプリンクラー", k:"", r:"supurinkuraa", m:"sprinkler (penyiram otomatis)", c:"sarana", e:["スプリンクラーで畑に水をまきます。","スプリンクラーで はたけに みずを まきます。","Menyiram ladang dengan sprinkler."] },
- { gambar:"", jp:"支柱", k:"しちゅう", r:"shichuu", m:"ajir (penyangga tanaman)", c:"sarana", e:["トマトに支柱を立てます。","トマトに しちゅうを たてます。","Memasang ajir pada tomat."] },
- { gambar:"", jp:"マルチ", k:"", r:"maruchi", m:"mulsa plastik", c:"sarana", e:["畑にマルチを張ります。","はたけに マルチを はります。","Memasang mulsa di ladang."] },
- { gambar:"", jp:"防虫ネット", k:"ぼうちゅうネット", r:"bouchuunetto", m:"jaring anti serangga", c:"sarana", e:["防虫ネットで虫を防ぎます。","ぼうちゅうネットで むしを ふせぎます。","Mencegah serangga dengan jaring anti serangga."] },
- { gambar:"", jp:"種", k:"たね", r:"tane", m:"benih", c:"bahan", e:["畑に種をまきます。","はたけに たねを まきます。","Menabur benih di ladang."] },
- { gambar:"", jp:"苗", k:"なえ", r:"nae", m:"bibit", c:"bahan", e:["苗を畑に植えます。","なえを はたけに うえます。","Menanam bibit di ladang."] },
- { gambar:"", jp:"肥料", k:"ひりょう", r:"hiryou", m:"pupuk", c:"bahan", e:["畑に肥料をやります。","はたけに ひりょうを やります。","Memberi pupuk pada ladang."] },
- { gambar:"", jp:"農薬", k:"のうやく", r:"nouyaku", m:"pestisida", c:"bahan", e:["農薬をまく前に説明書を読みます。","のうやくを まく まえに せつめいしょを よみます。","Membaca petunjuk sebelum menyemprot pestisida."] },
- { gambar:"", jp:"堆肥", k:"たいひ", r:"taihi", m:"kompos", c:"bahan", e:["堆肥を土に混ぜます。","たいひを つちに まぜます。","Mencampur kompos ke tanah."] }
+ // ---------- ALAT TANGAN ----------
+ { gambar:"", jp:"ハンマー", k:"", r:"hanmaa", m:"palu", c:"tangan", e:["ハンマーで釘を打ちます。","ハンマーで くぎを うちます。","Memaku dengan palu."] },
+ { gambar:"", jp:"のこぎり", k:"", r:"nokogiri", m:"gergaji", c:"tangan", e:["のこぎりで木を切ります。","のこぎりで きを きります。","Memotong kayu dengan gergaji."] },
+ { gambar:"", jp:"ドライバー", k:"", r:"doraibaa", m:"obeng", c:"tangan", e:["ドライバーでねじを締めます。","ドライバーで ねじを しめます。","Mengencangkan sekrup dengan obeng."] },
+ { gambar:"", jp:"ペンチ", k:"", r:"penchi", m:"tang", c:"tangan", e:["ペンチで針金を切ります。","ペンチで はりがねを きります。","Memotong kawat dengan tang."] },
+ { gambar:"", jp:"スパナ", k:"", r:"supana", m:"kunci pas", c:"tangan", e:["スパナでボルトを回します。","スパナで ボルトを まわします。","Memutar baut dengan kunci pas."] },
+ { gambar:"", jp:"スコップ", k:"", r:"sukoppu", m:"sekop", c:"tangan", e:["スコップで土を掘ります。","スコップで つちを ほります。","Menggali tanah dengan sekop."] },
+ { gambar:"", jp:"こて", k:"鏝", r:"kote", m:"cetok (sendok semen)", c:"tangan", e:["こてでセメントを塗ります。","こてで セメントを ぬります。","Mengoleskan semen dengan cetok."] },
+ { gambar:"", jp:"バール", k:"", r:"baaru", m:"linggis (pencabut paku)", c:"tangan", e:["バールで板を外します。","バールで いたを はずします。","Melepas papan dengan linggis."] },
+ { gambar:"", jp:"はしご", k:"梯子", r:"hashigo", m:"tangga", c:"tangan", e:["はしごで屋根に上がります。","はしごで やねに あがります。","Naik ke atap dengan tangga."] },
+ { gambar:"", jp:"一輪車", k:"いちりんしゃ", r:"ichirinsha", m:"gerobak dorong roda satu (arco)", c:"tangan", e:["一輪車で砂を運びます。","いちりんしゃで すなを はこびます。","Mengangkut pasir dengan gerobak dorong roda satu."] },
+
+ // ---------- ALAT UKUR ----------
+ { gambar:"", jp:"メジャー", k:"巻き尺", r:"mejaa", m:"meteran", c:"ukur", e:["メジャーで長さを測ります。","メジャーで ながさを はかります。","Mengukur panjang dengan meteran."] },
+ { gambar:"", jp:"水平器", k:"すいへいき", r:"suiheiki", m:"waterpass", c:"ukur", e:["水平器で壁の傾きを確認します。","すいへいきで かべの かたむきを かくにんします。","Mengecek kemiringan dinding dengan waterpass."] },
+ { gambar:"", jp:"さしがね", k:"曲尺・差金", r:"sashigane", m:"siku-siku tukang", c:"ukur", e:["さしがねで直角を測ります。","さしがねで ちょっかくを はかります。","Mengukur sudut siku dengan siku-siku tukang."] },
+ { gambar:"", jp:"墨つぼ", k:"すみつぼ", r:"sumitsubo", m:"alat penanda garis (benang tinta)", c:"ukur", e:["墨つぼで線を引きます。","すみつぼで せんを ひきます。","Menarik garis dengan sumitsubo."] },
+ { gambar:"", jp:"下げ振り", k:"さげふり", r:"sagefuri", m:"unting-unting", c:"ukur", e:["下げ振りで柱の垂直を見ます。","さげふりで はしらの すいちょくを みます。","Memeriksa ketegakan tiang dengan unting-unting."] },
+
+ // ---------- ALAT LISTRIK / MESIN ----------
+ { gambar:"", jp:"電動ドリル", k:"でんどうドリル", r:"dendoudoriru", m:"bor listrik", c:"listrik", e:["電動ドリルで穴を開けます。","でんどうドリルで あなを あけます。","Membuat lubang dengan bor listrik."] },
+ { gambar:"", jp:"グラインダー", k:"", r:"guraindaa", m:"gerinda", c:"listrik", e:["グラインダーで鉄を削ります。","グラインダーで てつを けずります。","Menggerinda besi."] },
+ { gambar:"", jp:"丸のこ", k:"まるのこ", r:"marunoko", m:"gergaji bundar", c:"listrik", e:["丸のこで板を切ります。","まるのこで いたを きります。","Memotong papan dengan gergaji bundar."] },
+ { gambar:"", jp:"溶接機", k:"ようせつき", r:"yousetsuki", m:"mesin las", c:"listrik", e:["溶接機で鉄板をつなぎます。","ようせつきで てっぱんを つなぎます。","Menyambung pelat besi dengan mesin las."] },
+ { gambar:"", jp:"コンプレッサー", k:"", r:"konpuressaa", m:"kompresor", c:"listrik", e:["コンプレッサーで空気を送ります。","コンプレッサーで くうきを おくります。","Mengalirkan udara dengan kompresor."] },
+ { gambar:"", jp:"発電機", k:"はつでんき", r:"hatsudenki", m:"generator", c:"listrik", e:["停電のとき、発電機を使います。","ていでんの とき、はつでんきを つかいます。","Saat listrik padam, memakai generator."] },
+
+ // ---------- ALAT BERAT ----------
+ { gambar:"", jp:"油圧ショベル", k:"ゆあつショベル", r:"yuatsushoberu", m:"ekskavator", c:"berat", e:["油圧ショベルで穴を掘ります。","ゆあつショベルで あなを ほります。","Menggali lubang dengan ekskavator."] },
+ { gambar:"", jp:"ブルドーザー", k:"", r:"burudoozaa", m:"buldoser", c:"berat", e:["ブルドーザーで土を押します。","ブルドーザーで つちを おします。","Mendorong tanah dengan buldoser."] },
+ { gambar:"", jp:"クレーン", k:"", r:"kureen", m:"crane (derek)", c:"berat", e:["クレーンで鉄骨を持ち上げます。","クレーンで てっこつを もちあげます。","Mengangkat rangka baja dengan crane."] },
+ { gambar:"", jp:"ダンプカー", k:"", r:"danpukaa", m:"truk dump", c:"berat", e:["ダンプカーで土を運びます。","ダンプカーで つちを はこびます。","Mengangkut tanah dengan truk dump."] },
+ { gambar:"", jp:"ミキサー車", k:"ミキサーしゃ", r:"mikisaasha", m:"truk molen (pengaduk beton)", c:"berat", e:["ミキサー車がコンクリートを運んできました。","ミキサーしゃが コンクリートを はこんで きました。","Truk molen membawa beton."] },
+ { gambar:"", jp:"ローラー", k:"", r:"roraa", m:"mesin gilas (roller)", c:"berat", e:["ローラーで道を固めます。","ローラーで みちを かためます。","Memadatkan jalan dengan roller."] },
+ { gambar:"", jp:"フォークリフト", k:"", r:"fookurifuto", m:"forklift", c:"berat", e:["フォークリフトで荷物を運びます。","フォークリフトで にもつを はこびます。","Mengangkut barang dengan forklift."] },
+ { gambar:"", jp:"高所作業車", k:"こうしょさぎょうしゃ", r:"koushosagyousha", m:"kendaraan kerja di ketinggian", c:"berat", e:["高所作業車で電線を直します。","こうしょさぎょうしゃで でんせんを なおします。","Memperbaiki kabel listrik dengan kendaraan kerja di ketinggian."] },
+
+ // ---------- ALAT KESELAMATAN (APD) ----------
+ { gambar:"", jp:"ヘルメット", k:"", r:"herumetto", m:"helm proyek", c:"apd", e:["現場ではヘルメットをかぶります。","げんばでは ヘルメットを かぶります。","Di lokasi kerja, memakai helm."] },
+ { gambar:"", jp:"安全靴", k:"あんぜんぐつ", r:"anzengutsu", m:"sepatu safety", c:"apd", e:["安全靴をはいて作業します。","あんぜんぐつを はいて さぎょうします。","Bekerja dengan memakai sepatu safety."] },
+ { gambar:"", jp:"軍手", k:"ぐんて", r:"gunte", m:"sarung tangan kerja", c:"apd", e:["軍手をはめて木を運びます。","ぐんてを はめて きを はこびます。","Mengangkut kayu dengan sarung tangan kerja."] },
+ { gambar:"", jp:"保護メガネ", k:"ほごメガネ", r:"hogomegane", m:"kacamata pelindung", c:"apd", e:["保護メガネをかけて削ります。","ほごメガネを かけて けずります。","Menggerinda sambil memakai kacamata pelindung."] },
+ { gambar:"", jp:"防じんマスク", k:"ぼうじんマスク", r:"boujinmasuku", m:"masker debu", c:"apd", e:["粉じんが多いので、防じんマスクをつけます。","ふんじんが おおいので、ぼうじんマスクを つけます。","Karena banyak debu, memakai masker debu."] },
+ { gambar:"", jp:"フルハーネス", k:"", r:"furuhaanesu", m:"harness pengaman (full body)", c:"apd", e:["高い所ではフルハーネスをつけます。","たかい ところでは フルハーネスを つけます。","Di tempat tinggi, memakai full body harness."] },
+ { gambar:"", jp:"耳栓", k:"みみせん", r:"mimisen", m:"sumbat telinga", c:"apd", e:["うるさい場所では耳栓をします。","うるさい ばしょでは みみせんを します。","Di tempat bising, memakai sumbat telinga."] },
+
+ // ---------- PERANCAH & RAMBU ----------
+ { gambar:"", jp:"足場", k:"あしば", r:"ashiba", m:"perancah (scaffolding)", c:"lain", e:["足場を組んで外壁を塗ります。","あしばを くんで がいへきを ぬります。","Memasang perancah lalu mengecat dinding luar."] },
+ { gambar:"", jp:"型枠", k:"かたわく", r:"katawaku", m:"bekisting", c:"lain", e:["型枠にコンクリートを流します。","かたわくに コンクリートを ながします。","Menuang beton ke dalam bekisting."] },
+ { gambar:"", jp:"カラーコーン", k:"", r:"karaakoon", m:"kerucut lalu lintas", c:"lain", e:["カラーコーンで工事の場所を示します。","カラーコーンで こうじの ばしょを しめします。","Menandai area proyek dengan kerucut lalu lintas."] }
 ];
 
 document.getElementById("totalCount").textContent = list.length + " Kata";
