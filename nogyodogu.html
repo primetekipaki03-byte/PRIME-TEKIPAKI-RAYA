@@ -211,7 +211,6 @@ HOME
 </div>
 
 <div class="filters" id="filters"></div>
-<div class="note">Cara menambah gambar: simpan foto di folder <b id="dirLabel"></b> dengan nama file sesuai yang tertera di kotak gambar (contoh: <b>kuwa.jpg</b>). Gambar akan muncul otomatis.</div>
 
 <div class="cgrid" id="cGrid"></div>
 <p class="no-result" id="noResult">Kata tidak ditemukan.</p>
@@ -241,12 +240,55 @@ HOME
 
 <script>
 // =====================================================
-// PENGATURAN GAMBAR
-// Folder gambar. Ubah sesuai folder di website Anda.
-// Nama file otomatis = romaji + .jpg  (contoh: kuwa.jpg)
-// Untuk nama/format lain, tambahkan  img:"namafile.png"  pada alat tersebut.
+// TEMPAT ISI GAMBAR  (bagian ini yang Anda edit)
+//
+// Cara pakai:
+//   1. Cari kata yang ingin diberi gambar.
+//   2. Tulis alamat gambarnya di antara tanda kutip "" setelah titik dua.
+//
+// Contoh:
+//   "くわ": "images/kuwa.jpg",            <- gambar dari folder website
+//   "くわ": "https://situs.com/kuwa.jpg", <- gambar dari link internet
+//   "くわ": "",                            <- kosong = belum ada gambar
 // =====================================================
-const IMG_DIR = "images/nogyo/";
+const GAMBAR = {
+  "くわ": "",
+  "鎌": "",
+  "熊手": "",
+  "剪定ばさみ": "",
+  "じょうろ": "",
+  "収穫かご": "",
+  "移植ごて": "",
+  "トラクター": "",
+  "耕うん機": "",
+  "コンバイン": "",
+  "田植え機": "",
+  "草刈り機": "",
+  "噴霧器": "",
+  "軽トラック": "",
+  "乾燥機": "",
+  "精米機": "",
+  "長靴": "",
+  "麦わら帽子": "",
+  "ゴム手袋": "",
+  "作業着": "",
+  "防護マスク": "",
+  "畑": "",
+  "田んぼ": "",
+  "あぜ": "",
+  "ビニールハウス": "",
+  "温室": "",
+  "用水路": "",
+  "スプリンクラー": "",
+  "支柱": "",
+  "マルチ": "",
+  "防虫ネット": "",
+  "種": "",
+  "苗": "",
+  "肥料": "",
+  "農薬": "",
+  "堆肥": "",
+};
 
 const CATS = {
   tangan:"Alat Tangan (農具)",
@@ -296,10 +338,8 @@ const list = [
 ];
 
 document.getElementById("totalCount").textContent = list.length + " Kata";
-document.getElementById("dirLabel").textContent = IMG_DIR;
 
-// nama file gambar otomatis dari romaji (atau pakai g.img jika diisi manual)
-list.forEach(g => { g.file = g.img || (g.r.toLowerCase().replace(/[^a-z0-9]+/g,"-") + ".jpg"); });
+list.forEach(g => { g.file = GAMBAR[g.jp] || ""; });
 
 function norm(s){
   return String(s).normalize("NFKC").toLowerCase()
@@ -336,13 +376,14 @@ function makeImgSlot(g){
   slot.className = "imgslot";
   const showEmpty = () => {
     slot.className = "imgslot empty";
-    slot.innerHTML = '<span class="ic">📷</span><span class="fn">' + g.file + '</span>';
+    slot.innerHTML = '<span class="ic">📷</span><span class="fn">Belum ada gambar</span>';
   };
   const img = new Image();
   img.alt = g.jp + " (" + g.m + ")";
   img.loading = "lazy";
   img.onerror = showEmpty;
-  img.src = IMG_DIR + g.file;
+  if(!g.file){ showEmpty(); return slot; }
+  img.src = g.file;
   slot.appendChild(img);
   return slot;
 }
@@ -390,7 +431,7 @@ function newQ(){
   qBox.style.display = "none";
   qImg.onload = () => { qBox.style.display = "block"; };
   qImg.onerror = () => { qBox.style.display = "none"; };
-  qImg.src = IMG_DIR + g.file;
+  if(g.file) qImg.src = g.file;
 
   const others = list.filter(x => x.m !== g.m).sort(() => Math.random() - .5);
   const opts = [g.m];
