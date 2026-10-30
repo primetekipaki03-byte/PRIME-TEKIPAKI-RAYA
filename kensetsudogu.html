@@ -200,14 +200,14 @@ HOME
     <p>Kosakata peralatan dan perlengkapan di lokasi konstruksi dalam bahasa Jepang, dari alat tangan sampai alat berat. Lengkap dengan slot gambar, contoh kalimat, dan latihan.</p>
     <div class="stats-row">
         <span class="stat-pill" id="totalCount">0 Kata</span>
-        <span class="stat-pill">6 Kelompok Alat</span>
+        <span class="stat-pill">8 Kelompok</span>
         <span class="stat-pill">Slot Gambar</span>
         <span class="stat-pill">Ada Latihan</span>
     </div>
 </header>
 
 <div class="search-wrap">
-    <input type="text" id="searchInput" placeholder="🔍 Cari alat... (contoh: palu, ヘルメット, kunci, crane)" oninput="applyFilter()">
+    <input type="text" id="searchInput" placeholder="🔍 Cari alat... (contoh: palu, ヘルメット, kunci, crane, semen)" oninput="applyFilter()">
 </div>
 
 <div class="filters" id="filters"></div>
@@ -245,7 +245,9 @@ const CATS = {
   listrik:"Alat Listrik / Mesin",
   berat:"Alat Berat",
   apd:"Alat Keselamatan (APD)",
-  lain:"Perancah & Rambu"
+  lain:"Perancah & Rambu",
+  pengikat:"Baut, Mur & Paku",
+  shizai:"Material (資材)"
 };
 
 // =====================================================
@@ -272,6 +274,15 @@ const list = [
  { gambar:"images/hashigo.jpg", jp:"はしご", k:"梯子", r:"hashigo", m:"tangga", c:"tangan", e:["はしごで屋根に上がります。","はしごで やねに あがります。","Naik ke atap dengan tangga."] },
  { gambar:"images/ichirinsha.jpg", jp:"一輪車", k:"いちりんしゃ", r:"ichirinsha", m:"gerobak dorong roda satu (arco)", c:"tangan", e:["一輪車で砂を運びます。","いちりんしゃで すなを はこびます。","Mengangkut pasir dengan gerobak dorong roda satu."] },
 
+ { gambar:"images/nomi.jpg", jp:"ノミ", k:"", r:"nomi", m:"pahat", c:"tangan", e:["ノミで木を削ります。","ノミで きを けずります。","Memahat kayu dengan pahat."] },
+ { gambar:"images/kanna.jpg", jp:"かんな", k:"鉋", r:"kanna", m:"ketam", c:"tangan", e:["かんなで板を削ります。","かんなで いたを けずります。","Menyerut papan dengan ketam."] },
+ { gambar:"images/yasuri.jpg", jp:"ヤスリ", k:"", r:"yasuri", m:"kikir", c:"tangan", e:["ヤスリで鉄の角を削ります。","ヤスリで てつの かどを けずります。","Mengikir sudut besi dengan kikir."] },
+ { gambar:"images/kattaa.jpg", jp:"カッター", k:"", r:"kattaa", m:"cutter", c:"tangan", e:["カッターでテープを切ります。","カッターで テープを きります。","Memotong lakban dengan cutter."] },
+ { gambar:"images/hake.jpg", jp:"ハケ", k:"刷毛", r:"hake", m:"kuas", c:"tangan", e:["ハケでペンキを塗ります。","ハケで ペンキを ぬります。","Mengecat dengan kuas."] },
+ { gambar:"images/baketsu.jpg", jp:"バケツ", k:"", r:"baketsu", m:"ember", c:"tangan", e:["バケツで水を運びます。","バケツで みずを はこびます。","Mengangkut air dengan ember."] },
+ { gambar:"images/kyatatsu.jpg", jp:"脚立", k:"きゃたつ", r:"kyatatsu", m:"tangga lipat", c:"tangan", e:["脚立に乗って電球を替えます。","きゃたつに のって でんきゅうを かえます。","Naik tangga lipat untuk mengganti bohlam."] },
+ { gambar:"images/daisha.jpg", jp:"台車", k:"だいしゃ", r:"daisha", m:"troli dorong", c:"tangan", e:["台車で荷物を運びます。","だいしゃで にもつを はこびます。","Mengangkut barang dengan troli dorong."] },
+
  // ---------- ALAT UKUR ----------
  { gambar:"images/mejaa.jpg", jp:"メジャー", k:"巻き尺", r:"mejaa", m:"meteran", c:"ukur", e:["メジャーで長さを測ります。","メジャーで ながさを はかります。","Mengukur panjang dengan meteran."] },
  { gambar:"images/suiheiki.avif", jp:"水平器", k:"すいへいき", r:"suiheiki", m:"waterpass", c:"ukur", e:["水平器で壁の傾きを確認します。","すいへいきで かべの かたむきを かくにんします。","Mengecek kemiringan dinding dengan waterpass."] },
@@ -279,13 +290,22 @@ const list = [
  { gambar:"images/sumitsubo.jpg", jp:"墨つぼ", k:"すみつぼ", r:"sumitsubo", m:"alat penanda garis (benang tinta)", c:"ukur", e:["墨つぼで線を引きます。","すみつぼで せんを ひきます。","Menarik garis dengan sumitsubo."] },
  { gambar:"images/sagefuri.jpg", jp:"下げ振り", k:"さげふり", r:"sagefuri", m:"unting-unting", c:"ukur", e:["下げ振りで柱の垂直を見ます。","さげふりで はしらの すいちょくを みます。","Memeriksa ketegakan tiang dengan unting-unting."] },
 
+ { gambar:"images/mizuito.jpg", jp:"水糸", k:"みずいと", r:"mizuito", m:"benang acuan", c:"ukur", e:["水糸を張って高さを合わせます。","みずいとを はって たかさを あわせます。","Memasang benang acuan untuk menyamakan tinggi."] },
+ { gambar:"images/nogisu.jpg", jp:"ノギス", k:"", r:"nogisu", m:"jangka sorong", c:"ukur", e:["ノギスで厚さを測ります。","ノギスで あつさを はかります。","Mengukur ketebalan dengan jangka sorong."] },
+
  // ---------- ALAT LISTRIK / MESIN ----------
  { gambar:"images/dendoudoriru.webp", jp:"電動ドリル", k:"でんどうドリル", r:"dendoudoriru", m:"bor listrik", c:"listrik", e:["電動ドリルで穴を開けます。","でんどうドリルで あなを あけます。","Membuat lubang dengan bor listrik."] },
  { gambar:"images/guraindaa.jpg", jp:"グラインダー", k:"", r:"guraindaa", m:"gerinda", c:"listrik", e:["グラインダーで鉄を削ります。","グラインダーで てつを けずります。","Menggerinda besi."] },
  { gambar:"images/marunoko.jpg", jp:"丸のこ", k:"まるのこ", r:"marunoko", m:"gergaji bundar", c:"listrik", e:["丸のこで板を切ります。","まるのこで いたを きります。","Memotong papan dengan gergaji bundar."] },
  { gambar:"images/yousetsuki.jpg", jp:"溶接機", k:"ようせつき", r:"yousetsuki", m:"mesin las", c:"listrik", e:["溶接機で鉄板をつなぎます。","ようせつきで てっぱんを つなぎます。","Menyambung pelat besi dengan mesin las."] },
- { gambar:"images/konpuressaa.jpg", jp:"コンプレッサー", k:"", r:"konpuressaa", m:"kompresor", c:"listrik", e:["コンプレッサーで空気を送ります。","コンプレッサーで くうきを おくります。","Mengalirkan udara dengan kompresor."] },
+ { gambar:"images/konpuressaa.webp", jp:"コンプレッサー", k:"", r:"konpuressaa", m:"kompresor", c:"listrik", e:["コンプレッサーで空気を送ります。","コンプレッサーで くうきを おくります。","Mengalirkan udara dengan kompresor."] },
  { gambar:"images/hatsudenki.webp", jp:"発電機", k:"はつでんき", r:"hatsudenki", m:"generator", c:"listrik", e:["停電のとき、発電機を使います。","ていでんの とき、はつでんきを つかいます。","Saat listrik padam, memakai generator."] },
+
+ { gambar:"images/inpakutodoraibaa.jpg", jp:"インパクトドライバー", k:"", r:"inpakutodoraibaa", m:"impact driver", c:"listrik", e:["インパクトドライバーでねじを打ちます。","インパクトドライバーで ねじを うちます。","Memasang sekrup dengan impact driver."] },
+ { gambar:"images/dendoudoraibaa.jpg", jp:"電動ドライバー", k:"でんどうドライバー", r:"dendoudoraibaa", m:"obeng listrik", c:"listrik", e:["電動ドライバーでねじを回します。","でんどうドライバーで ねじを まわします。","Memutar sekrup dengan obeng listrik."] },
+ { gambar:"images/baiburetaa.jpg", jp:"バイブレーター", k:"", r:"baiburetaa", m:"vibrator beton", c:"listrik", e:["バイブレーターでコンクリートの空気を抜きます。","バイブレーターで コンクリートの くうきを ぬきます。","Mengeluarkan udara dari beton dengan vibrator."] },
+ { gambar:"images/konkuriitomikisaa.jpg", jp:"コンクリートミキサー", k:"", r:"konkuriitomikisaa", m:"molen beton", c:"listrik", e:["コンクリートミキサーでコンクリートを混ぜます。","コンクリートミキサーで コンクリートを まぜます。","Mengaduk beton dengan molen beton."] },
+ { gambar:"images/yousetsumen.jpg", jp:"溶接面", k:"ようせつめん", r:"yousetsumen", m:"topeng las", c:"listrik", e:["溶接面をかぶって作業します。","ようせつめんを かぶって さぎょうします。","Bekerja dengan memakai topeng las."] },
 
  // ---------- ALAT BERAT ----------
  { gambar:"images/yuatsushoberu.jpg", jp:"油圧ショベル", k:"ゆあつショベル", r:"yuatsushoberu", m:"ekskavator", c:"berat", e:["油圧ショベルで穴を掘ります。","ゆあつショベルで あなを ほります。","Menggali lubang dengan ekskavator."] },
@@ -297,6 +317,10 @@ const list = [
  { gambar:"images/fookurifuto.jpg", jp:"フォークリフト", k:"", r:"fookurifuto", m:"forklift", c:"berat", e:["フォークリフトで荷物を運びます。","フォークリフトで にもつを はこびます。","Mengangkut barang dengan forklift."] },
  { gambar:"images/koushosagyousha.jpg", jp:"高所作業車", k:"こうしょさぎょうしゃ", r:"koushosagyousha", m:"kendaraan kerja di ketinggian", c:"berat", e:["高所作業車で電線を直します。","こうしょさぎょうしゃで でんせんを なおします。","Memperbaiki kabel listrik dengan kendaraan kerja di ketinggian."] },
 
+ { gambar:"images/hoiiruroodaa.jpg", jp:"ホイールローダー", k:"", r:"hoiiruroodaa", m:"wheel loader", c:"berat", e:["ホイールローダーで砂利を積みます。","ホイールローダーで じゃりを つみます。","Memuat kerikil dengan wheel loader."] },
+ { gambar:"images/tawaakureen.jpg", jp:"タワークレーン", k:"", r:"tawaakureen", m:"tower crane", c:"berat", e:["タワークレーンで資材を上げます。","タワークレーンで しざいを あげます。","Mengangkat material dengan tower crane."] },
+ { gambar:"images/ponpusha.jpg", jp:"ポンプ車", k:"ポンプしゃ", r:"ponpusha", m:"truk pompa beton", c:"berat", e:["ポンプ車でコンクリートを送ります。","ポンプしゃで コンクリートを おくります。","Memompa beton dengan truk pompa."] },
+
  // ---------- ALAT KESELAMATAN (APD) ----------
  { gambar:"images/herumetto.jpg", jp:"ヘルメット", k:"", r:"herumetto", m:"helm proyek", c:"apd", e:["現場ではヘルメットをかぶります。","げんばでは ヘルメットを かぶります。","Di lokasi kerja, memakai helm."] },
  { gambar:"images/anzengutsu.jpg", jp:"安全靴", k:"あんぜんぐつ", r:"anzengutsu", m:"sepatu safety", c:"apd", e:["安全靴をはいて作業します。","あんぜんぐつを はいて さぎょうします。","Bekerja dengan memakai sepatu safety."] },
@@ -306,10 +330,39 @@ const list = [
  { gambar:"images/furuhaanesu.jpg", jp:"フルハーネス", k:"", r:"furuhaanesu", m:"harness pengaman (full body)", c:"apd", e:["高い所ではフルハーネスをつけます。","たかい ところでは フルハーネスを つけます。","Di tempat tinggi, memakai full body harness."] },
  { gambar:"images/mimisen.jpg", jp:"耳栓", k:"みみせん", r:"mimisen", m:"sumbat telinga", c:"apd", e:["うるさい場所では耳栓をします。","うるさい ばしょでは みみせんを します。","Di tempat bising, memakai sumbat telinga."] },
 
+ { gambar:"images/anzentai.jpg", jp:"安全帯", k:"あんぜんたい", r:"anzentai", m:"sabuk pengaman", c:"apd", e:["安全帯をつけて高い所で働きます。","あんぜんたいを つけて たかい ところで はたらきます。","Bekerja di tempat tinggi dengan sabuk pengaman."] },
+ { gambar:"images/anzenbesuto.jpg", jp:"安全ベスト", k:"あんぜんベスト", r:"anzenbesuto", m:"rompi safety", c:"apd", e:["安全ベストを着ます。","あんぜんベストを きます。","Memakai rompi safety."] },
+ { gambar:"images/nagagutsu.jpg", jp:"長靴", k:"ながぐつ", r:"nagagutsu", m:"sepatu bot", c:"apd", e:["雨の日は長靴をはきます。","あめの ひは ながぐつを はきます。","Saat hujan, memakai sepatu bot."] },
+ { gambar:"images/sagyoufuku.jpg", jp:"作業服", k:"さぎょうふく", r:"sagyoufuku", m:"baju kerja", c:"apd", e:["作業服に着替えます。","さぎょうふくに きがえます。","Berganti memakai baju kerja."] },
+
  // ---------- PERANCAH & RAMBU ----------
  { gambar:"images/ashiba.avif", jp:"足場", k:"あしば", r:"ashiba", m:"perancah (scaffolding)", c:"lain", e:["足場を組んで外壁を塗ります。","あしばを くんで がいへきを ぬります。","Memasang perancah lalu mengecat dinding luar."] },
  { gambar:"images/katawaku.jpg", jp:"型枠", k:"かたわく", r:"katawaku", m:"bekisting", c:"lain", e:["型枠にコンクリートを流します。","かたわくに コンクリートを ながします。","Menuang beton ke dalam bekisting."] },
- { gambar:"images/karaakoon.jpg", jp:"カラーコーン", k:"", r:"karaakoon", m:"kerucut lalu lintas", c:"lain", e:["カラーコーンで工事の場所を示します。","カラーコーンで こうじの ばしょを しめします。","Menandai area proyek dengan kerucut lalu lintas."] }
+ { gambar:"images/karaakoon.jpg", jp:"カラーコーン", k:"", r:"karaakoon", m:"kerucut lalu lintas", c:"lain", e:["カラーコーンで工事の場所を示します。","カラーコーンで こうじの ばしょを しめします。","Menandai area proyek dengan kerucut lalu lintas."] },
+
+ { gambar:"images/tankanpaipu.jpg", jp:"単管パイプ", k:"たんかんパイプ", r:"tankanpaipu", m:"pipa scaffolding", c:"lain", e:["単管パイプで足場を組みます。","たんかんパイプで あしばを くみます。","Merangkai perancah dengan pipa scaffolding."] },
+ { gambar:"images/tachiirikinshi.jpg", jp:"立入禁止", k:"たちいりきんし", r:"tachiirikinshi", m:"dilarang masuk", c:"lain", e:["ここは立入禁止です。","ここは たちいりきんしです。","Area ini dilarang masuk."] },
+ { gambar:"images/barikeedo.jpg", jp:"バリケード", k:"", r:"barikeedo", m:"barikade", c:"lain", e:["バリケードで道をふさぎます。","バリケードで みちを ふさぎます。","Menutup jalan dengan barikade."] },
+ { gambar:"images/traroopu.jpg", jp:"トラロープ", k:"", r:"traroopu", m:"tali pembatas kuning-hitam", c:"lain", e:["トラロープで危ない場所を囲みます。","トラロープで あぶない ばしょを かこみます。","Mengelilingi area berbahaya dengan tali pembatas."] },
+
+ // ---------- BAUT, MUR & PAKU ----------
+ { gambar:"images/boruto.jpg", jp:"ボルト", k:"", r:"boruto", m:"baut", c:"pengikat", e:["ボルトをしっかり締めます。","ボルトを しっかり しめます。","Mengencangkan baut dengan kuat."] },
+ { gambar:"images/natto.jpg", jp:"ナット", k:"", r:"natto", m:"mur", c:"pengikat", e:["ナットをボルトに付けます。","ナットを ボルトに つけます。","Memasang mur pada baut."] },
+ { gambar:"images/kugi.jpg", jp:"釘", k:"くぎ", r:"kugi", m:"paku", c:"pengikat", e:["釘を板に打ちます。","くぎを いたに うちます。","Memaku paku ke papan."] },
+ { gambar:"images/neji.jpg", jp:"ねじ", k:"", r:"neji", m:"sekrup", c:"pengikat", e:["ねじをドライバーで締めます。","ねじを ドライバーで しめます。","Mengencangkan sekrup dengan obeng."] },
+ { gambar:"images/washaa.jpg", jp:"ワッシャー", k:"", r:"washaa", m:"ring (washer)", c:"pengikat", e:["ワッシャーをボルトに入れます。","ワッシャーを ボルトに いれます。","Memasukkan ring ke baut."] },
+ { gambar:"images/harigane.jpg", jp:"針金", k:"はりがね", r:"harigane", m:"kawat", c:"pengikat", e:["針金で鉄筋をしばります。","はりがねで てっきんを しばります。","Mengikat besi beton dengan kawat."] },
+ { gambar:"images/ankaa.jpg", jp:"アンカー", k:"", r:"ankaa", m:"angkur", c:"pengikat", e:["アンカーを壁に打ちます。","アンカーを かべに うちます。","Memasang angkur ke dinding."] },
+ { gambar:"images/secchakuzai.jpg", jp:"接着剤", k:"せっちゃくざい", r:"secchakuzai", m:"lem", c:"pengikat", e:["接着剤で板をつけます。","せっちゃくざいで いたを つけます。","Merekatkan papan dengan lem."] },
+
+ // ---------- MATERIAL (資材) ----------
+ { gambar:"images/tekkin.jpg", jp:"鉄筋", k:"てっきん", r:"tekkin", m:"besi beton (tulangan)", c:"shizai", e:["鉄筋を組んでコンクリートを流します。","てっきんを くんで コンクリートを ながします。","Merangkai tulangan lalu menuang beton."] },
+ { gambar:"images/semento.jpg", jp:"セメント", k:"", r:"semento", m:"semen", c:"shizai", e:["セメントと砂を混ぜます。","セメントと すなを まぜます。","Mencampur semen dan pasir."] },
+ { gambar:"images/konkuriito.jpg", jp:"コンクリート", k:"", r:"konkuriito", m:"beton", c:"shizai", e:["コンクリートが固まるまで待ちます。","コンクリートが かたまるまで まちます。","Menunggu sampai beton mengeras."] },
+ { gambar:"images/suna.jpg", jp:"砂", k:"すな", r:"suna", m:"pasir", c:"shizai", e:["砂をふるいにかけます。","すなを ふるいに かけます。","Mengayak pasir."] },
+ { gambar:"images/jari.jpg", jp:"砂利", k:"じゃり", r:"jari", m:"kerikil", c:"shizai", e:["砂利を道に敷きます。","じゃりを みちに しきます。","Menghamparkan kerikil di jalan."] },
+ { gambar:"images/goohan.jpg", jp:"合板", k:"ごうはん", r:"goohan", m:"triplek", c:"shizai", e:["合板を壁に張ります。","ごうはんを かべに はります。","Memasang triplek di dinding."] },
+ { gambar:"images/kakuzai.jpg", jp:"角材", k:"かくざい", r:"kakuzai", m:"kayu balok", c:"shizai", e:["角材で枠を作ります。","かくざいで わくを つくります。","Membuat rangka dengan kayu balok."] }
 ];
 
 document.getElementById("totalCount").textContent = list.length + " Kata";
