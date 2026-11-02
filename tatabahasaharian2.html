@@ -1,629 +1,836 @@
 <!DOCTYPE html>
-<html lang="id" translate="no">
+<html lang="ja" translate="no">
 <head>
 <meta charset="UTF-8">
 <meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Latihan Tata Bahasa · Hari 2 — Tekipaki Japanese Learning</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<title>Tata Bahasa JLPT N2</title>
+
 <style>
-:root{--navy:#0a1f3d;--navy2:#001530;--navy3:#132c52;--gold:#e0b52a;--gold-dim:#c4a02a;--paper:#f6f0e2;--paper2:#efe6d0;--ink:#1c2541;--ink-soft:#4a5875;--seal:#b3382e;--muted:#9fb0c9;--pass:#3f7d52;--pass-bg:#e7f1ea;}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif;background:var(--paper);color:var(--ink);}
-h1,h2,h3,.display{font-family:"Shippori Mincho",serif;}
-.mono{font-family:"JetBrains Mono",monospace;}
-a{color:inherit;}
-#navbar{position:sticky;top:0;z-index:999;background:#001530;border-bottom:2px solid rgba(224,181,42,.3);box-shadow:0 4px 14px rgba(0,0,0,.25);}
-.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:8px 20px;flex-wrap:wrap;gap:10px;min-height:64px;}
-.nav-left{display:flex;align-items:center;flex-shrink:0;}
-.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy2);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold;white-space:nowrap;}
-.home-btn:hover{opacity:.85;}
-.home-icon{width:22px;height:22px;flex:none;}
-.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
-.dropdown{position:relative;flex-shrink:0;z-index:1;}
-.dropdown.open{z-index:20;}
-.dropdown-btn{display:flex;align-items:center;justify-content:center;background:transparent;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-family:inherit;font-weight:bold;cursor:pointer;white-space:nowrap;}
-.dropdown-btn:hover,.dropdown.open .dropdown-btn{background:var(--gold);color:var(--navy2);}
-.dropdown-menu{display:none;position:absolute;top:calc(100% + 7px);left:0;width:max-content;min-width:220px;max-width:calc(100vw - 20px);background:#1f4577;border:1px solid rgba(224,181,42,.35);border-radius:10px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.35);}
-.dropdown-menu.show{display:block;}
-.dropdown-menu.align-right{left:auto;right:0;}
-.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none;white-space:nowrap;}
-.dropdown-menu a:hover{background:var(--gold);color:var(--navy2);}
-.burger-btn{display:none;flex:none;width:42px;height:42px;border:2px solid var(--gold);border-radius:9px;background:transparent;cursor:pointer;align-items:center;justify-content:center;gap:4px;flex-direction:column;position:relative;z-index:1001;}
-.burger-btn span{display:block;width:20px;height:2px;background:var(--gold);border-radius:2px;transition:.25s ease;}
+
+:root{
+    --navy:#001f3f;
+    --navy2:#002a54;
+    --navy3:#022655;
+    --gold:#facc15;
+    --gold2:#ffd700;
+    --text:#001f3f;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:var(--text);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+#navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#001530;
+    border-bottom:2px solid rgba(250,204,21,.25);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+
+.navbar-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+    min-height:64px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+}
+
+.nav-right{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.home-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--gold);
+    color:#001530;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:10px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.home-btn:hover{
+    opacity:.85;
+}
+
+.home-icon{
+    width:24px;
+    height:24px;
+    object-fit:cover;
+    border-radius:4px;
+    fill:currentColor;
+}
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown-btn{
+    background:none;
+    border:2px solid var(--gold);
+    color:var(--gold);
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.dropdown-btn:hover,
+.dropdown.open .dropdown-btn{
+    background:var(--gold);
+    color:#001530;
+}
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:45px;
+    left:0;
+    background:#022655;
+    border-radius:10px;
+    overflow:hidden;
+    min-width:220px;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:12px 15px;
+    color:#ffd700;
+    text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+    background:var(--gold);
+    color:#001530;
+}
+
+.show{
+    display:block;
+}
+
+/* ---- Burger button (hanya tampil di ponsel) ---- */
+
+.burger-btn{
+    display:none;
+    flex:none;
+    width:42px;
+    height:42px;
+    border:2px solid var(--gold);
+    border-radius:9px;
+    background:transparent;
+    cursor:pointer;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:4px;
+    position:relative;
+    z-index:1001;
+}
+
+.burger-btn span{
+    display:block;
+    width:20px;
+    height:2px;
+    background:var(--gold);
+    border-radius:2px;
+    transition:.25s ease;
+}
+
 .burger-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
 .burger-btn.open span:nth-child(2){opacity:0;}
 .burger-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
-.nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,10,25,.5);z-index:998;}
-.nav-overlay.show{display:block;}
+
+.nav-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,10,25,.5);
+    z-index:998;
+}
+
+.nav-overlay.show{
+    display:block;
+}
+
 @media(max-width:1000px){
-  .navbar-inner{flex-wrap:nowrap;padding:10px 14px;gap:10px;}
-  .burger-btn{display:flex;}
-  .nav-right{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(82vw,320px);background:var(--navy2);flex-direction:column;align-items:stretch;justify-content:flex-start;gap:10px;padding:78px 18px 24px;transform:translateX(100%);visibility:hidden;transition:transform .28s ease,visibility .28s;z-index:999;overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:-8px 0 30px rgba(0,0,0,.4);}
-  .nav-right.mobileOpen{transform:translateX(0);visibility:visible;}
-  .dropdown{width:100%;}
-  .dropdown-btn{width:100%;justify-content:space-between;font-size:.85rem;padding:12px 14px;}
-  .dropdown-menu{position:static;width:100%;min-width:0;max-width:none;margin-top:6px;box-shadow:none;max-height:50vh;overflow-y:auto;}
-  .dropdown-menu a{padding:11px 14px;font-size:.85rem;}
+
+    .navbar-inner{
+        padding:10px 14px;
+        gap:10px;
+    }
+
+    .burger-btn{
+        display:flex;
+    }
+
+    .nav-right{
+        position:fixed;
+        top:0;
+        right:0;
+        height:100vh;
+        height:100dvh;
+        width:min(82vw,320px);
+        background:#001530;
+        flex-direction:column;
+        align-items:stretch;
+        justify-content:flex-start;
+        gap:10px;
+        padding:78px 18px 24px;
+        transform:translateX(100%);
+        visibility:hidden;
+        transition:transform .28s ease, visibility .28s;
+        z-index:999;
+        overflow-y:auto;
+        -webkit-overflow-scrolling:touch;
+        box-shadow:-8px 0 30px rgba(0,0,0,.4);
+    }
+
+    .nav-right.mobileOpen{
+        transform:translateX(0);
+        visibility:visible;
+    }
+
+    .dropdown{
+        width:100%;
+    }
+
+    .dropdown-btn{
+        width:100%;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        font-size:14px;
+        padding:12px 14px;
+    }
+
+    .dropdown-menu{
+        position:static;
+        width:100%;
+        min-width:0;
+        margin-top:6px;
+        box-shadow:none;
+        max-height:50vh;
+        overflow-y:auto;
+    }
+
+    .dropdown-menu a{
+        padding:11px 14px;
+        font-size:14px;
+    }
 }
-@media(max-width:760px){
-  .dayNav{flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px;}
-  .dayNav a{flex:none;}
+
+/* =======================
+       HEADER / HERO
+======================= */
+
+header{
+    text-align:center;
+    padding:60px 20px 40px;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(180deg, var(--navy) 0%, #062a52 100%);
 }
-.hero{position:relative;background:radial-gradient(120% 140% at 15% -10%, var(--navy3), var(--navy) 55%, var(--navy2) 100%);color:#fff;padding:40px 20px 54px;overflow:hidden;border-bottom:3px solid var(--gold);}
-.hero-kanji{position:absolute;font-family:"Shippori Mincho",serif;font-size:min(48vw,420px);font-weight:800;color:rgba(224,181,42,.06);top:50%;right:-4%;transform:translateY(-50%);line-height:1;pointer-events:none;user-select:none;white-space:nowrap;}
-.hero-inner{position:relative;z-index:2;max-width:900px;margin:0 auto;}
-.eyebrow{font-family:"JetBrains Mono",monospace;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-size:.78rem;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
-.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
-.hero h1{font-size:clamp(1.8rem,4vw,2.5rem);color:#fff;line-height:1.3;margin-bottom:10px;}
-.hero h1 span{color:var(--gold);}
-.hero p{color:var(--muted);font-size:1rem;line-height:1.65;max-width:560px;}
-#appMain{max-width:820px;margin:0 auto;padding:40px 20px 70px;}
-.backLink{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);text-decoration:none;font-size:.85rem;margin-bottom:20px;}
-.backLink:hover{color:var(--navy);}
-.section-head{display:flex;align-items:baseline;gap:16px;margin-bottom:22px;flex-wrap:wrap;}
-.section-head .stamp-mini{width:34px;height:34px;flex:none;border:2px solid var(--seal);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--seal);font-weight:800;font-size:.85rem;transform:rotate(-6deg);}
-.section-head h2{font-size:1.4rem;color:var(--navy);}
-.section-head .jp{font-family:"JetBrains Mono",monospace;color:var(--seal);font-size:.78rem;letter-spacing:1px;}
-.dayNav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
-.dayNav a{font-family:"JetBrains Mono",monospace;font-size:.75rem;font-weight:700;text-decoration:none;color:var(--navy);background:#fff;border:1px solid var(--paper2);border-radius:8px;padding:7px 12px;}
-.dayNav a.active{background:var(--navy);color:var(--gold);border-color:var(--navy);}
-.infoNote{background:#fff;border:1px dashed var(--paper2);border-radius:14px;padding:18px 20px;font-size:.85rem;color:var(--ink-soft);line-height:1.7;margin-bottom:28px;}
-.infoNote b{color:var(--navy);}
-.partHead{background:var(--navy);color:#fff;border-radius:16px;padding:26px 24px;margin:36px 0 20px;display:flex;flex-direction:row;align-items:center;text-align:left;gap:18px;border:1px solid rgba(224,181,42,.4);}
-.partHead:first-of-type{margin-top:0;}
-.partHead .partBadge{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:.85rem;letter-spacing:2px;color:var(--gold);background:transparent;border:2px solid var(--gold);padding:8px 14px;border-radius:10px;flex:none;white-space:nowrap;}
-.partHead .partText{max-width:520px;}
-.partHead .partText h3{font-size:1.25rem;color:#fff;margin-bottom:6px;}
-.partHead .partText p{font-size:.88rem;color:var(--muted);line-height:1.6;}
-.partHead .partText p b{color:var(--gold);}
-@media(max-width:560px){.partHead{flex-direction:column;align-items:flex-start;text-align:left;}}
-.qCard{background:#fff;border:1px solid var(--paper2);border-radius:16px;padding:24px 24px;box-shadow:0 2px 10px rgba(10,31,61,.05);margin-bottom:16px;position:relative;overflow:hidden;}
-.qCard::after{content:"問";position:absolute;font-family:"Shippori Mincho",serif;font-weight:800;font-size:78px;color:rgba(10,31,61,.035);right:-4px;bottom:-16px;pointer-events:none;}
-.qTop{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
-.qNum{font-family:"JetBrains Mono",monospace;font-weight:700;color:var(--navy);background:var(--paper2);border-radius:7px;padding:3px 9px;font-size:.8rem;}
-.qTypeTag{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:.7rem;letter-spacing:.5px;color:var(--seal);border:1px solid var(--seal);border-radius:20px;padding:3px 10px;text-transform:uppercase;}
-.essayPrompt{font-family:"Zen Kaku Gothic New","Segoe UI",sans-serif;font-size:1.15rem;color:var(--navy);background:var(--paper);border:1px dashed var(--paper2);border-radius:10px;padding:14px 16px;margin-bottom:14px;line-height:1.8;position:relative;z-index:1;}
-.essayPrompt .idHint{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-size:.82rem;color:var(--ink-soft);margin-bottom:8px;}
-.essayPrompt .baseSentence{display:block;font-size:1.1rem;}
-.essayPrompt .baseSentence + .baseSentence{margin-top:4px;}
-.checkBtn{display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--navy);border:2px solid var(--navy);font-family:"JetBrains Mono",monospace;font-weight:700;font-size:.78rem;letter-spacing:.5px;padding:9px 16px;border-radius:9px;cursor:pointer;position:relative;z-index:1;}
-.checkBtn:hover{background:var(--navy);color:var(--gold);}
-.checkBtn.isOpen{background:var(--pass);border-color:var(--pass);color:#fff;}
-.answerKey{display:none;margin-top:14px;background:var(--pass-bg);border:1px solid var(--pass);border-radius:10px;padding:14px 16px;font-size:.88rem;line-height:1.6;color:#204a2c;position:relative;z-index:1;}
-.answerKey.show{display:block;}
-.answerKey b{color:var(--pass);}
-footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:34px 20px;border-top:1px solid var(--paper2);}
+
+header::before{
+    content:"文法";
+    position:absolute;
+    font-size:340px;
+    font-weight:900;
+    color:rgba(250,204,21,.05);
+    top:-90px;
+    left:50%;
+    transform:translateX(-50%);
+    pointer-events:none;
+    user-select:none;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--gold);
+    color:#001530;
+    font-weight:bold;
+    font-size:13px;
+    letter-spacing:1px;
+    padding:6px 16px;
+    border-radius:999px;
+    margin-bottom:18px;
+    position:relative;
+}
+
+header h1{
+    font-size:48px;
+    color:#ffffff;
+    margin-bottom:12px;
+    position:relative;
+    letter-spacing:1px;
+}
+
+header h1 span{
+    color:var(--gold);
+}
+
+header p{
+    font-size:17px;
+    color:#c9d6e8;
+    max-width:600px;
+    margin:0 auto;
+    position:relative;
+}
+
+.stats-row{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:30px;
+    position:relative;
+}
+
+.stat-pill{
+    background:rgba(250,204,21,.08);
+    border:1px solid rgba(250,204,21,.35);
+    color:var(--gold2);
+    padding:8px 18px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+}
+
+/* =======================
+     SEARCH BAR
+======================= */
+
+.search-wrap{
+    max-width:600px;
+    margin:-26px auto 10px;
+    padding:0 20px;
+    position:relative;
+    z-index:5;
+}
+
+#searchInput{
+    width:100%;
+    padding:16px 22px;
+    border-radius:16px;
+    border:2px solid var(--navy);
+    font-size:16px;
+    box-shadow:0 10px 24px rgba(0,31,63,.15);
+    outline:none;
+    color:var(--navy);
+}
+
+#searchInput:focus{
+    border-color:var(--gold);
+}
+
+.no-result{
+    text-align:center;
+    color:#888;
+    padding:40px;
+    display:none;
+    font-size:16px;
+}
+
+/* =======================
+    SECTION LABELS
+======================= */
+
+.section-title{
+    max-width:1200px;
+    margin:50px auto 5px;
+    padding:0 20px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.section-title .lvl{
+    background:var(--navy3);
+    color:var(--gold2);
+    font-weight:bold;
+    font-size:14px;
+    padding:6px 14px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
+.section-title .line{
+    flex:1;
+    height:2px;
+    background:linear-gradient(90deg, var(--navy), rgba(0,31,63,.05));
+}
+
+/* =======================
+        GRID
+======================= */
+
+.grid{
+    max-width:1200px;
+    margin:20px auto 40px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    padding:20px;
+}
+
+.card{
+    border:2px solid var(--navy);
+    border-radius:15px;
+    padding:22px 20px;
+    cursor:pointer;
+    transition:.25s;
+    text-align:left;
+    text-decoration:none;
+    color:var(--text);
+    display:block;
+    position:relative;
+    background:#fff;
+    overflow:hidden;
+}
+
+.card::after{
+    content:"→";
+    position:absolute;
+    right:18px;
+    bottom:16px;
+    font-size:18px;
+    color:var(--gold2);
+    opacity:0;
+    transform:translateX(-6px);
+    transition:.25s;
+}
+
+.card:hover{
+    background:var(--navy3);
+    color:white;
+    transform:translateY(-5px);
+    box-shadow:0 12px 24px rgba(0,31,63,.25);
+    border-color:var(--navy3);
+}
+
+.card:hover .h{
+    color:#c9d6e8;
+}
+
+.card:hover::after{
+    opacity:1;
+    transform:translateX(0);
+}
+
+.card .no{
+    font-size:12px;
+    font-weight:bold;
+    color:var(--gold);
+    letter-spacing:1px;
+    margin-bottom:6px;
+    display:block;
+}
+
+.card:hover .no{
+    color:var(--gold2);
+}
+
+.card .j{
+    font-size:26px;
+    font-weight:bold;
+    line-height:1.3;
+}
+
+.card .h{
+    margin-top:8px;
+    font-size:14px;
+    color:#556;
+}
+
+.card .mean{
+    margin-top:10px;
+    font-size:13px;
+    color:#8892a3;
+    font-style:italic;
+}
+
+.card:hover .mean{
+    color:#a9bad6;
+}
+
+@media(max-width:1000px){
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+    header h1{
+        font-size:32px;
+    }
+    header::before{
+        font-size:200px;
+    }
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    font-size:14px;
+}
+
+/* =======================
+     BACK TO TOP BUTTON
+======================= */
+
+#backToTop{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:48px;
+    height:48px;
+    border:2px solid var(--gold);
+    border-radius:50%;
+    background:var(--navy3);
+    color:var(--gold2);
+    font-size:22px;
+    font-weight:bold;
+    cursor:pointer;
+    z-index:998;
+    box-shadow:0 6px 16px rgba(0,0,0,.35);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(12px);
+    transition:.3s;
+}
+
+#backToTop.visible{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+#backToTop:hover{
+    background:var(--gold);
+    color:#001530;
+    transform:translateY(-3px);
+}
 </style>
 </head>
-<body translate="no">
+
+<body>
 
 <nav id="navbar">
 <div class="navbar-inner">
 
-  <div class="nav-left">
-    <a href="index.html" class="home-btn">
-      <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
-      HOME
-    </a>
-  </div>
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
+</svg>
+HOME
+</a>
+</div>
 
-  <button class="burger-btn" id="burgerBtn" type="button" aria-label="Buka menu" onclick="toggleMobileNav()">
-    <span></span><span></span><span></span>
-  </button>
+<button class="burger-btn" id="burgerBtn" type="button" aria-label="Buka menu" onclick="toggleMobileNav()">
+<span></span><span></span><span></span>
+</button>
 
-  <div class="nav-right" id="navRight">
-    <div class="dropdown">
-      <button class="dropdown-btn" onclick="toggleDropdown('learningDropdown')">TEKIPAKI LEARNING ▼</button>
-      <div class="dropdown-menu" id="learningDropdown">
-        <a href="guru.html">GURU</a>
-        <a href="elearning.html">SISWA</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="dropdown-btn" onclick="toggleDropdown('materiDropdown')">MATERI ▼</button>
-      <div class="dropdown-menu" id="materiDropdown">
-        <a href="daftarkosakata.html">Kosakata JFT</a>
-        <a href="materitatabahasa.html">Tata Bahasa</a>
-        <a href="materikanji.html">Materi Kanji JLPT</a>
-        <a href="kanjidasar.html">Kanji Flash Card</a>
-        <a href="materikosakata.html">Materi Kosakata JLPT</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="dropdown-btn" onclick="toggleDropdown('quizDropdown')">QUIZ JFT ▼</button>
-      <div class="dropdown-menu" id="quizDropdown">
-        <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
-        <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
-        <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
-        <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
-        <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="dropdown-btn" onclick="toggleDropdown('kanjiQuizDropdown')">QUIZ KANJI ▼</button>
-      <div class="dropdown-menu" id="kanjiQuizDropdown">
-        <a href="quizkanji1.html">QUIZ KANJI 1</a>
-        <a href="quizkanji2.html">QUIZ KANJI 2</a>
-        <a href="quizkanji3.html">QUIZ KANJI 3</a>
-        <a href="quizkanji4.html">QUIZ KANJI 4</a>
-        <a href="quizkanji5.html">QUIZ KANJI 5</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="dropdown-btn" onclick="toggleDropdown('bunpouHarianDropdown')">BUNPOU HARIAN ▼</button>
-      <div class="dropdown-menu" id="bunpouHarianDropdown">
-        <a href="tatabahasaharian1.html">HARI 1</a>
-        <a href="tatabahasaharian2.html">HARI 2</a>
-        <a href="tatabahasaharian3.html">HARI 3</a>
-        <a href="tatabahasaharian4.html">HARI 4</a>
-        <a href="tatabahasaharian5.html">HARI 5</a>
-        <a href="tatabahasaharian6.html">HARI 6</a>
-        <a href="tatabahasaharian7.html">HARI 7</a>
-        <a href="tatabahasaharian8.html">HARI 8</a>
-        <a href="tatabahasaharian9.html">HARI 9</a>
-        <a href="tatabahasaharian10.html">HARI 10</a>
-        <a href="tatabahasaharian11.html">HARI 11</a>
-        <a href="tatabahasaharian12.html">HARI 12</a>
-        <a href="tatabahasaharian13.html">HARI 13</a>
-        <a href="tatabahasaharian14.html">HARI 14</a>
-        <a href="tatabahasaharian15.html">HARI 15</a>
-        <a href="tatabahasaharian16.html">HARI 16</a>
-        <a href="tatabahasaharian17.html">HARI 17</a>
-        <a href="tatabahasaharian18.html">HARI 18</a>
-        <a href="tatabahasaharian19.html">HARI 19</a>
-        <a href="tatabahasaharian20.html">HARI 20</a>
-        <a href="tatabahasaharian21.html">HARI 21</a>
-        <a href="tatabahasaharian22.html">HARI 22</a>
-      </div>
+<div class="nav-right" id="navRight">
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="materikanji.html">Materi Kanji JLPT</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+      <a href="materikosakata.html">Materi Kosakata JLPT</a>
     </div>
   </div>
 
-  <div class="nav-overlay" id="navOverlay" onclick="closeMobileNav()"></div>
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="nav-overlay" id="navOverlay" onclick="closeMobileNav()"></div>
 
 </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-kanji" aria-hidden="true">文</div>
-  <div class="hero-inner">
-    <div class="eyebrow"><span class="dot"></span> N4 · BUNPOU HARIAN · HARI 2</div>
-    <h1>Latihan Tata Bahasa <span>Hari 2</span></h1>
-    <p>7 pola tata bahasa hari ini: <b style="color:#fff;">～そうです（伝聞）・～すぎる・～やすい/にくい・～ように・～ようになる・～ために・～について</b>. Setiap soal sudah berupa kalimat lengkap bentuk ます — tugasmu adalah mengubah kalimat tersebut menggunakan pola tata bahasa yang sedang dipelajari, lalu tekan tombol <b>Cek Jawaban</b> untuk mencocokkan.</p>
-  </div>
-</section>
-
-<div id="appMain">
-
-  <a href="materitatabahasa.html" class="backLink">← Kembali ke Materi Tata Bahasa</a>
-
-  <div class="section-head">
-    <div class="stamp-mini">文</div>
-    <h2>Latihan Tata Bahasa · Hari 2</h2>
-    <span class="jp">ぶんぽうハリアン２</span>
-  </div>
-
-  <div class="dayNav">
-    <a href="tatabahasaharian1.html">HARI 1</a>
-    <a href="tatabahasaharian2.html" class="active">HARI 2</a>
-    <a href="tatabahasaharian3.html">HARI 3</a>
-    <a href="tatabahasaharian4.html">HARI 4</a>
-    <a href="tatabahasaharian5.html">HARI 5</a>
-    <a href="tatabahasaharian6.html">HARI 6</a>
-    <a href="tatabahasaharian7.html">HARI 7</a>
-    <a href="tatabahasaharian8.html">HARI 8</a>
-    <a href="tatabahasaharian9.html">HARI 9</a>
-    <a href="tatabahasaharian10.html">HARI 10</a>
-    <a href="tatabahasaharian11.html">HARI 11</a>
-    <a href="tatabahasaharian12.html">HARI 12</a>
-    <a href="tatabahasaharian13.html">HARI 13</a>
-    <a href="tatabahasaharian14.html">HARI 14</a>
-    <a href="tatabahasaharian15.html">HARI 15</a>
-    <a href="tatabahasaharian16.html">HARI 16</a>
-    <a href="tatabahasaharian17.html">HARI 17</a>
-    <a href="tatabahasaharian18.html">HARI 18</a>
-    <a href="tatabahasaharian19.html">HARI 19</a>
-    <a href="tatabahasaharian20.html">HARI 20</a>
-    <a href="tatabahasaharian21.html">HARI 21</a>
-    <a href="tatabahasaharian22.html">HARI 22</a>
-  </div>
-
-  <div class="infoNote">
-    <b>Petunjuk umum:</b> Latihan ini terdiri dari <b>7 pola tata bahasa</b>, masing-masing dengan <b>5 soal</b> (total 35 soal). Setiap soal sudah diberikan sebagai <b>kalimat lengkap dalam bentuk ます</b>. Tugasmu: <b>ubah kalimat tersebut</b> menggunakan pola tata bahasa yang sedang dipelajari (untuk soal yang terdiri dari dua kalimat, gabungkan keduanya menjadi satu kalimat). Setelah menjawab, tekan tombol <b>Cek Jawaban</b> untuk melihat kunci jawabannya.
-  </div>
-
-  <!-- ===================== BUNPOU 1 — ～そうです（伝聞） ===================== -->
-  <div class="partHead">
-    <span class="partBadge">BUNPOU 1</span>
-    <div class="partText">
-      <h3>～そうです（伝聞）</h3>
-      <p>Menyampaikan informasi yang <b>didengar/dibaca dari sumber lain</b> — "katanya". Pola: <b>Kalimat biasa (bentuk kamus/た/い/だ) + そうです</b>.</p>
+<header>
+    <span class="badge">JLPT N2 GRAMMAR</span>
+    <h1>文法 <span>Tata Bahasa</span> N2</h1>
+    <p>Kumpulan pola tata bahasa JLPT N2 lengkap dengan cara baca dan arti. Klik salah satu kartu untuk membuka penjelasan lengkap beserta contoh kalimatnya.</p>
+    <div class="stats-row">
+        <span class="stat-pill" id="totalCount">0 Pola Tata Bahasa</span>
+        <span class="stat-pill">Level N2</span>
+        <span class="stat-pill">Lengkap Contoh Kalimat</span>
     </div>
-  </div>
+</header>
 
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">1</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～そうです（伝聞）.</span><span class="baseSentence">天気予報によると、明日は雨です。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key1', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key1"><b>Jawaban:</b> 天気予報によると、明日は雨だそうです。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">2</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～そうです（伝聞）.</span><span class="baseSentence">ニュースによると、来年電気代が上がります。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key2', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key2"><b>Jawaban:</b> ニュースによると、来年電気代が上がるそうです。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">3</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～そうです（伝聞）.</span><span class="baseSentence">田中さんの話では、あの店はとても美味しいです。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key3', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key3"><b>Jawaban:</b> 田中さんの話では、あの店はとても美味しいそうです。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">4</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～そうです（伝聞）.</span><span class="baseSentence">新聞によると、あの俳優は結婚しました。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key4', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key4"><b>Jawaban:</b> 新聞によると、あの俳優は結婚したそうです。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">5</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～そうです（伝聞）.</span><span class="baseSentence">友達の話では、彼女は今、忙しいです。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key5', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key5"><b>Jawaban:</b> 友達の話では、彼女は今、忙しいそうです。</div>
-  </div>
-
-  <!-- ===================== BUNPOU 2 — ～すぎる ===================== -->
-  <div class="partHead">
-    <span class="partBadge">BUNPOU 2</span>
-    <div class="partText">
-      <h3>～すぎる</h3>
-      <p>Menyatakan sesuatu yang dilakukan atau berada dalam kondisi <b>terlalu berlebihan</b>. Pola: <b>Kata kerja (bentuk ます, tanpa ます) / Kata sifat (tanpa i・な) + すぎる</b>.</p>
-    </div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">6</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～すぎる.</span><span class="baseSentence">昨日、お酒をたくさん飲みました。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key6', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key6"><b>Jawaban:</b> 昨日、お酒を飲みすぎました。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">7</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～すぎる.</span><span class="baseSentence">このズボンはちょっと小さいです。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key7', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key7"><b>Jawaban:</b> このズボンは小さすぎます。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">8</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～すぎる.</span><span class="baseSentence">彼はいつもたくさん働きます。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key8', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key8"><b>Jawaban:</b> 彼はいつも働きすぎます。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">9</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～すぎる.</span><span class="baseSentence">この部屋はとても静かです。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key9', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key9"><b>Jawaban:</b> この部屋は静かすぎます。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">10</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～すぎる.</span><span class="baseSentence">子供はゲームをたくさんしました。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key10', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key10"><b>Jawaban:</b> 子供はゲームをしすぎました。</div>
-  </div>
-
-  <!-- ===================== BUNPOU 3 — ～やすい / ～にくい ===================== -->
-  <div class="partHead">
-    <span class="partBadge">BUNPOU 3</span>
-    <div class="partText">
-      <h3>～やすい / ～にくい</h3>
-      <p>Menyatakan sesuatu <b>mudah</b> atau <b>sulit</b> dilakukan. Pola: <b>Kata kerja (bentuk ます, tanpa ます) + やすい／にくい</b>.</p>
-    </div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">11</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～やすい.</span><span class="baseSentence">このペンは書くことが簡単です。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key11', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key11"><b>Jawaban:</b> このペンは書きやすいです。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">12</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～にくい.</span><span class="baseSentence">この道は狭くて、歩くことが難しいです。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key12', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key12"><b>Jawaban:</b> この道は狭くて、歩きにくいです。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">13</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～やすい.</span><span class="baseSentence">この本の字は大きくて、読むことが簡単です。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key13', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key13"><b>Jawaban:</b> この本の字は大きくて、読みやすいです。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">14</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～にくい.</span><span class="baseSentence">この魚は骨が多くて、食べることが難しいです。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key14', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key14"><b>Jawaban:</b> この魚は骨が多くて、食べにくいです。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">15</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～やすい.</span><span class="baseSentence">新しい携帯は使うことが簡単です。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key15', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key15"><b>Jawaban:</b> 新しい携帯は使いやすいです。</div>
-  </div>
-
-  <!-- ===================== BUNPOU 4 — ～ように ===================== -->
-  <div class="partHead">
-    <span class="partBadge">BUNPOU 4</span>
-    <div class="partText">
-      <h3>～ように</h3>
-      <p>Menyatakan <b>tujuan/harapan</b> (agar/supaya) dari suatu tindakan. Pola: <b>Kata kerja (bentuk kamus/ない) + ように</b>.</p>
-    </div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">16</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ように.</span><span class="baseSentence">忘れません。</span><span class="baseSentence">メモをします。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key16', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key16"><b>Jawaban:</b> 忘れないように、メモをします。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">17</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ように.</span><span class="baseSentence">よく聞こえます。</span><span class="baseSentence">大きい声で話してください。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key17', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key17"><b>Jawaban:</b> よく聞こえるように、大きい声で話してください。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">18</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ように.</span><span class="baseSentence">遅れません。</span><span class="baseSentence">早く家を出ます。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key18', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key18"><b>Jawaban:</b> 遅れないように、早く家を出ます。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">19</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ように.</span><span class="baseSentence">元気になります。</span><span class="baseSentence">たくさん寝てください。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key19', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key19"><b>Jawaban:</b> 元気になるように、たくさん寝てください。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">20</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ように.</span><span class="baseSentence">日本語が上手になります。</span><span class="baseSentence">毎日練習します。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key20', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key20"><b>Jawaban:</b> 日本語が上手になるように、毎日練習します。</div>
-  </div>
-
-  <!-- ===================== BUNPOU 5 — ～ようになる ===================== -->
-  <div class="partHead">
-    <span class="partBadge">BUNPOU 5</span>
-    <div class="partText">
-      <h3>～ようになる</h3>
-      <p>Menyatakan <b>perubahan kemampuan atau kebiasaan</b> yang terjadi secara bertahap. Pola: <b>Kata kerja (bentuk kamus/bisa) + ようになる</b>.</p>
-    </div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">21</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～ようになる.</span><span class="baseSentence">練習して、日本語で話せます。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key21', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key21"><b>Jawaban:</b> 練習して、日本語で話せるようになりました。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">22</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～ようになる.</span><span class="baseSentence">毎日勉強して、漢字が読めます。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key22', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key22"><b>Jawaban:</b> 毎日勉強して、漢字が読めるようになりました。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">23</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～ようになる.</span><span class="baseSentence">子供は大きくなって、一人で歩けます。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key23', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key23"><b>Jawaban:</b> 子供は大きくなって、一人で歩けるようになりました。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">24</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～ようになる.</span><span class="baseSentence">練習して、ピアノが弾けます。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key24', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key24"><b>Jawaban:</b> 練習して、ピアノが弾けるようになりました。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">25</span><span class="qTypeTag">Ubah Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Ubah kalimat berikut menggunakan pola ～ようになる.</span><span class="baseSentence">慣れて、辛い食べ物が食べられます。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key25', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key25"><b>Jawaban:</b> 慣れて、辛い食べ物が食べられるようになりました。</div>
-  </div>
-
-  <!-- ===================== BUNPOU 6 — ～ため（に） ===================== -->
-  <div class="partHead">
-    <span class="partBadge">BUNPOU 6</span>
-    <div class="partText">
-      <h3>～ため（に）</h3>
-      <p>Menyatakan <b>tujuan</b> (demi/untuk) dari suatu tindakan. Pola: <b>Kata kerja (bentuk kamus) / Kata benda + の + ために</b>.</p>
-    </div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">26</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ため（に）(kata benda + の).</span><span class="baseSentence">健康です。</span><span class="baseSentence">毎日運動します。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key26', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key26"><b>Jawaban:</b> 健康のために、毎日運動します。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">27</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ため（に）.</span><span class="baseSentence">日本に留学します。</span><span class="baseSentence">お金を貯めています。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key27', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key27"><b>Jawaban:</b> 日本に留学するために、お金を貯めています。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">28</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ため（に）(kata benda + の).</span><span class="baseSentence">家族です。</span><span class="baseSentence">一生懸命働いています。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key28', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key28"><b>Jawaban:</b> 家族のために、一生懸命働いています。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">29</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ため（に）.</span><span class="baseSentence">試験に合格します。</span><span class="baseSentence">毎晩遅くまで勉強しています。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key29', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key29"><b>Jawaban:</b> 試験に合格するために、毎晩遅くまで勉強しています。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">30</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～ため（に）(kata benda + の).</span><span class="baseSentence">将来です。</span><span class="baseSentence">日本語を勉強しています。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key30', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key30"><b>Jawaban:</b> 将来のために、日本語を勉強しています。</div>
-  </div>
-
-  <!-- ===================== BUNPOU 7 — ～について ===================== -->
-  <div class="partHead">
-    <span class="partBadge">BUNPOU 7</span>
-    <div class="partText">
-      <h3>～について</h3>
-      <p>Menyatakan <b>topik</b> yang dibicarakan/dipikirkan (mengenai/tentang). Pola: <b>Kata benda + について</b>.</p>
-    </div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">31</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～について.</span><span class="baseSentence">日本の歴史です。</span><span class="baseSentence">先生に質問しました。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key31', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key31"><b>Jawaban:</b> 日本の歴史について、先生に質問しました。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">32</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～について.</span><span class="baseSentence">環境問題です。</span><span class="baseSentence">レポートを書きました。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key32', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key32"><b>Jawaban:</b> 環境問題について、レポートを書きました。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">33</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～について.</span><span class="baseSentence">この会社です。</span><span class="baseSentence">詳しく知りたいです。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key33', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key33"><b>Jawaban:</b> この会社について、詳しく知りたいです。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">34</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～について.</span><span class="baseSentence">自分の将来です。</span><span class="baseSentence">よく考えています。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key34', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key34"><b>Jawaban:</b> 自分の将来について、よく考えています。</div>
-  </div>
-
-  <div class="qCard">
-    <div class="qTop"><span class="qNum">35</span><span class="qTypeTag">Gabungkan Kalimat</span></div>
-    <div class="essayPrompt"><span class="idHint">Gabungkan dua kalimat berikut menjadi satu kalimat menggunakan pola ～について.</span><span class="baseSentence">その事件です。</span><span class="baseSentence">詳しく説明してください。</span></div>
-    <button class="checkBtn" onclick="toggleAnswer('key35', this)">🔍 Cek Jawaban</button>
-    <div class="answerKey" id="key35"><b>Jawaban:</b> その事件について、詳しく説明してください。</div>
-  </div>
-
+<div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="🔍 Cari pola tata bahasa... (contoh: ざるを得ない, つつ, 末に)" oninput="filterCards()">
 </div>
 
-<footer>© Tekipaki Japanese Learning</footer>
+<div class="section-title">
+    <span class="lvl">SEMUA POLA</span>
+    <span class="line"></span>
+</div>
+
+<div class="grid" id="grammarGrid"></div>
+
+<p class="no-result" id="noResult">Pola tata bahasa tidak ditemukan.</p>
+
+<footer>
+© Tekipaki Japanese Learning
+</footer>
+
+<button id="backToTop" onclick="scrollToTop()" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
 
 <script>
+
+const grammarList = [
+    { jp:"〜あげく（に）", romaji:"~ageku (ni)", mean:"akhirnya... (hasil buruk setelah usaha panjang)", link:"tatabahasan2_ageku.html" },
+    { jp:"〜あまり（に）", romaji:"~amari (ni)", mean:"karena terlalu ~", link:"tatabahasan2_amari.html" },
+    { jp:"〜以上（は）", romaji:"~ijou (wa)", mean:"karena sudah begini / mengingat", link:"tatabahasan2_ijyouwa.html" },
+    { jp:"〜一方（で）", romaji:"~ippou (de)", mean:"di satu sisi... di sisi lain", link:"tatabahasan2_ippou.html" },
+    { jp:"〜上（に）", romaji:"~ue (ni)", mean:"selain itu / ditambah lagi", link:"tatabahasan2_ueni.html" },
+    { jp:"〜上で", romaji:"~ue de", mean:"setelah melakukan / dalam rangka", link:"tatabahasan2_uede.html" },
+    { jp:"〜おかげで", romaji:"~okage de", mean:"berkat / karena bantuan", link:"tatabahasan2_okagede.html" },
+    { jp:"〜せいで", romaji:"~sei de", mean:"gara-gara (akibat negatif)", link:"tatabahasan2_seide.html" },
+    { jp:"〜かねない", romaji:"~kanenai", mean:"bisa jadi / berpotensi (hal buruk)", link:"tatabahasan2_kanenai.html" },
+    { jp:"〜かねる", romaji:"~kaneru", mean:"sulit / tidak bisa melakukan", link:"tatabahasan2_kaneru.html" },
+    { jp:"〜からいうと／からいえば", romaji:"~kara iu to / kara ieba", mean:"dilihat dari segi / sudut pandang", link:"tatabahasan2_karaiuto.html" },
+    { jp:"〜からには", romaji:"~kara ni wa", mean:"karena sudah begitu, maka harus", link:"tatabahasan2_karaniwa.html" },
+    { jp:"〜きり", romaji:"~kiri", mean:"sejak itu tidak lagi / hanya itu saja", link:"tatabahasan2_kiri.html" },
+    { jp:"〜くせに", romaji:"~kuse ni", mean:"padahal (nada menyindir)", link:"tatabahasan2_kuseni.html" },
+    { jp:"〜げ", romaji:"~ge", mean:"terlihat / tampak (perasaan seseorang)", link:"tatabahasan2_ge.html" },
+    { jp:"〜こそ", romaji:"~koso", mean:"justru / -lah (penekanan)", link:"tatabahasan2_koso.html" },
+    { jp:"〜ことから", romaji:"~koto kara", mean:"berdasarkan hal itu / oleh karena", link:"tatabahasan2_kotokara.html" },
+    { jp:"〜ことだから", romaji:"~koto dakara", mean:"karena (berdasarkan sifat/kebiasaan seseorang)", link:"tatabahasan2_kotodakara.html" },
+    { jp:"〜ことなく", romaji:"~koto naku", mean:"tanpa melakukan", link:"tatabahasan2_kotonaku.html" },
+    { jp:"〜ざるを得ない", romaji:"~zaru wo enai", mean:"terpaksa harus melakukan", link:"tatabahasan2_zaruwoenai.html" },
+    { jp:"〜次第", romaji:"~shidai", mean:"segera setelah melakukan", link:"tatabahasan2_shidai.html" },
+    { jp:"〜次第で", romaji:"~shidai de", mean:"tergantung pada", link:"tatabahasan2_shidaide.html" },
+    { jp:"〜末（に）", romaji:"~sue (ni)", mean:"pada akhirnya (setelah proses panjang)", link:"tatabahasan2_sueni.html" },
+    { jp:"〜たとたん（に）", romaji:"~totan (ni)", mean:"begitu / seketika setelah", link:"tatabahasan2_totan.html" },
+    { jp:"〜つつ", romaji:"~tsutsu", mean:"sambil melakukan (formal)", link:"tatabahasan2_tsutsu.html" },
+    { jp:"〜つつある", romaji:"~tsutsu aru", mean:"sedang dalam proses / berangsur-angsur", link:"tatabahasan2_tsutsuaru.html" },
+    { jp:"〜てからでないと", romaji:"~te kara denai to", mean:"kalau tidak melakukan dulu, maka...", link:"tatabahasan2_tekaradenaito.html" },
+    { jp:"〜て初めて", romaji:"~te hajimete", mean:"baru setelah melakukan, menyadari", link:"tatabahasan2_tehajimete.html" },
+    { jp:"〜というものだ", romaji:"~to iu mono da", mean:"itulah yang disebut / memang begitu", link:"tatabahasan2_toiumonoda.html" },
+    { jp:"〜というより", romaji:"~to iu yori", mean:"daripada dikatakan..., lebih tepat...", link:"tatabahasan2_toiuyori.html" },
+    { jp:"〜上は", romaji:"~ue wa", mean:"karena sudah / mengingat sudah (bertekad)", link:"tatabahasan2_uewa.html" },
+    { jp:"〜おそれがある", romaji:"~osore ga aru", mean:"dikhawatirkan / ada kemungkinan (hal buruk)", link:"tatabahasan2_osoregaaru.html" },
+    { jp:"〜かと思うと", romaji:"~ka to omou to", mean:"baru saja mengira... ternyata / begitu... langsung", link:"tatabahasan2_katoomouto.html" },
+    { jp:"〜からこそ", romaji:"~kara koso", mean:"justru karena", link:"tatabahasan2_karakoso.html" },
+    { jp:"〜からして", romaji:"~kara shite", mean:"dilihat dari ~ saja (sudah...)", link:"tatabahasan2_karashite.html" },
+    { jp:"〜からといって", romaji:"~kara to itte", mean:"bukan berarti hanya karena", link:"tatabahasan2_karatoitte.html" },
+    { jp:"〜て以来", romaji:"~te irai", mean:"sejak ~ (terus sampai sekarang)", link:"tatabahasan2_teirai.html" },
+    { jp:"〜とはいえ", romaji:"~to wa ie", mean:"meskipun begitu / walaupun dikatakan", link:"tatabahasan2_towaie.html" },
+    { jp:"〜どころか", romaji:"~dokoro ka", mean:"jangankan ~, malah / bahkan", link:"tatabahasan2_dokoroka.html" },
+    { jp:"〜に反して", romaji:"~ni hanshite", mean:"bertentangan dengan / berlawanan dengan", link:"tatabahasan2_nihanshite.html" },
+    { jp:"〜にもかかわらず", romaji:"~nimo kakawarazu", mean:"meskipun / walaupun", link:"tatabahasan2_nimokakawarazu.html" },
+    { jp:"〜に基づいて", romaji:"~ni motozuite", mean:"berdasarkan", link:"tatabahasan2_nimotozuite.html" },
+    { jp:"〜に伴って", romaji:"~ni tomonatte", mean:"seiring dengan / bersamaan dengan", link:"tatabahasan2_nitomonatte.html" },
+    { jp:"〜をめぐって", romaji:"~wo megutte", mean:"seputar / memperebutkan / mempersoalkan", link:"tatabahasan2_womegutte.html" },
+    { jp:"〜を通じて", romaji:"~wo tsuujite", mean:"melalui / sepanjang (periode)", link:"tatabahasan2_wotsuujite.html" },
+    { jp:"〜に対して", romaji:"~ni taishite", mean:"terhadap / berbeda dengan (kontras)", link:"tatabahasan2_nitaishite.html" },
+    { jp:"〜に関して", romaji:"~ni kanshite", mean:"mengenai / berkaitan dengan", link:"tatabahasan2_nikanshite.html" },
+    { jp:"〜に応じて", romaji:"~ni oujite", mean:"sesuai dengan / menyesuaikan dengan", link:"tatabahasan2_nioujite.html" },
+    { jp:"〜に沿って", romaji:"~ni sotte", mean:"sesuai dengan / mengikuti (garis, rencana)", link:"tatabahasan2_nisotte.html" },
+    { jp:"〜に限って", romaji:"~ni kagitte", mean:"justru pada / khusus pada (nasib sial)", link:"tatabahasan2_nikagitte.html" },
+    { jp:"〜に限らず", romaji:"~ni kagirazu", mean:"tidak hanya ~, tetapi juga", link:"tatabahasan2_nikagirazu.html" },
+    { jp:"〜に過ぎない", romaji:"~ni suginai", mean:"hanya sekadar / tidak lebih dari", link:"tatabahasan2_nisuginai.html" },
+    { jp:"〜にしては", romaji:"~ni shite wa", mean:"untuk ukuran ~ / padahal", link:"tatabahasan2_nishitewa.html" },
+    { jp:"〜にわたって", romaji:"~ni watatte", mean:"sepanjang / mencakup (waktu, wilayah)", link:"tatabahasan2_niwatatte.html" },
+    { jp:"〜に先立って", romaji:"~ni sakidatte", mean:"sebelum / mendahului", link:"tatabahasan2_nisakidatte.html" },
+    { jp:"〜に際して", romaji:"~ni saishite", mean:"pada saat / ketika akan", link:"tatabahasan2_nisaishite.html" },
+    { jp:"〜にあたって", romaji:"~ni atatte", mean:"pada saat akan / dalam rangka", link:"tatabahasan2_niatatte.html" },
+    { jp:"〜とともに", romaji:"~to tomo ni", mean:"bersama dengan / seiring dengan", link:"tatabahasan2_totomoni.html" },
+    { jp:"〜を問わず", romaji:"~wo towazu", mean:"tanpa memandang / tidak peduli", link:"tatabahasan2_wotowazu.html" },
+    { jp:"〜をはじめ", romaji:"~wo hajime", mean:"mulai dari / termasuk", link:"tatabahasan2_wohajime.html" },
+    { jp:"〜を契機に", romaji:"~wo keiki ni", mean:"berawal dari / momentum", link:"tatabahasan2_wokeikini.html" },
+    { jp:"〜ものの", romaji:"~mono no", mean:"meskipun ~, tetapi", link:"tatabahasan2_mononono.html" },
+    { jp:"〜ものだから", romaji:"~mono dakara", mean:"habisnya / soalnya (alasan)", link:"tatabahasan2_monodakara.html" },
+    { jp:"〜ようがない", romaji:"~you ga nai", mean:"tidak ada cara untuk / tidak mungkin", link:"tatabahasan2_yougainai.html" },
+    { jp:"〜得る／得ない", romaji:"~uru / enai", mean:"bisa / mungkin terjadi (tidak mungkin)", link:"tatabahasan2_uru.html" },
+    { jp:"〜がちだ", romaji:"~gachi da", mean:"cenderung / sering ~ (hal negatif)", link:"tatabahasan2_gachida.html" },
+    { jp:"〜ついでに", romaji:"~tsuide ni", mean:"sekalian / sambil lewat", link:"tatabahasan2_tsuideni.html" },
+    { jp:"〜と思い込む", romaji:"~to omoikomu (omoikomi)", mean:"terlanjur yakin / berasumsi (padahal keliru)", link:"tatabahasan2_omoikomi.html" },
+];
+
+const grid = document.getElementById("grammarGrid");
+const noResult = document.getElementById("noResult");
+document.getElementById("totalCount").textContent = grammarList.length + " Pola Tata Bahasa";
+
+function renderCards(list){
+    grid.innerHTML = "";
+    list.forEach((g, i)=>{
+        const a = document.createElement("a");
+        a.href = g.link;
+        a.className = "card";
+        a.innerHTML =
+            '<span class="no">POLA ' + String(i+1).padStart(2,"0") + '</span>' +
+            '<div class="j">' + g.jp + '</div>' +
+            '<div class="h">' + g.romaji + '</div>' +
+            '<div class="mean">' + g.mean + '</div>';
+        grid.appendChild(a);
+    });
+    noResult.style.display = list.length === 0 ? "block" : "none";
+}
+
+function filterCards(){
+    const q = document.getElementById("searchInput").value.trim().toLowerCase();
+    const filtered = grammarList.filter(g =>
+        g.jp.toLowerCase().includes(q) ||
+        g.romaji.toLowerCase().includes(q) ||
+        g.mean.toLowerCase().includes(q)
+    );
+    renderCards(filtered);
+}
+
+renderCards(grammarList);
+
+//============================
+// BURGER MENU (PONSEL)
+//============================
+
 function toggleMobileNav(){
-  const nav = document.getElementById("navRight");
-  const btn = document.getElementById("burgerBtn");
-  const overlay = document.getElementById("navOverlay");
-  if(nav.classList.contains("mobileOpen")){
-    closeMobileNav();
-  }else{
-    nav.classList.add("mobileOpen");
-    btn.classList.add("open");
-    overlay.classList.add("show");
-    document.body.style.overflow = "hidden";
-  }
-}
-function closeMobileNav(){
-  document.getElementById("navRight").classList.remove("mobileOpen");
-  document.getElementById("burgerBtn").classList.remove("open");
-  document.getElementById("navOverlay").classList.remove("show");
-  document.body.style.overflow = "";
-  closeAllDropdowns();
-}
-function closeAllDropdowns(){
-  document.querySelectorAll(".dropdown-menu").forEach(m => m.classList.remove("show","align-right"));
-  document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("open"));
-}
-function toggleDropdown(id){
-  document.querySelectorAll(".dropdown-menu").forEach(menu => {
-    if(menu.id !== id){
-      menu.classList.remove("show","align-right");
-      const p = menu.closest(".dropdown");
-      if(p){ p.classList.remove("open"); }
+    const nav = document.getElementById("navRight");
+    const btn = document.getElementById("burgerBtn");
+    const overlay = document.getElementById("navOverlay");
+    if(nav.classList.contains("mobileOpen")){
+        closeMobileNav();
+    }else{
+        nav.classList.add("mobileOpen");
+        btn.classList.add("open");
+        overlay.classList.add("show");
+        document.body.style.overflow = "hidden";
     }
-  });
-  const menu = document.getElementById(id);
-  if(!menu){ return; }
-  const parent = menu.closest(".dropdown");
-  if(menu.classList.contains("show")){
-    menu.classList.remove("show","align-right");
-    if(parent){ parent.classList.remove("open"); }
-    return;
-  }
-  menu.classList.add("show");
-  if(parent){ parent.classList.add("open"); }
-  menu.classList.remove("align-right");
-  const rect = menu.getBoundingClientRect();
-  if(rect.right > window.innerWidth - 10){ menu.classList.add("align-right"); }
-  if(rect.left < 10){ menu.classList.remove("align-right"); }
 }
-document.addEventListener("click", function(e){
-  if(!e.target.closest(".dropdown")){ closeAllDropdowns(); }
+
+function closeMobileNav(){
+    document.getElementById("navRight").classList.remove("mobileOpen");
+    document.getElementById("burgerBtn").classList.remove("open");
+    document.getElementById("navOverlay").classList.remove("show");
+    document.body.style.overflow = "";
+    closeAllDropdowns();
+}
+
+function closeAllDropdowns(){
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+        menu.classList.remove("show");
+        const p = menu.closest(".dropdown");
+        if(p){ p.classList.remove("open"); }
+    });
+}
+
+//============================
+// DROPDOWN
+//============================
+
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+        if(menu.id != id){
+            menu.classList.remove("show");
+            const p = menu.closest(".dropdown");
+            if(p){ p.classList.remove("open"); }
+        }
+    });
+    const menu = document.getElementById(id);
+    menu.classList.toggle("show");
+    const parent = menu.closest(".dropdown");
+    if(parent){ parent.classList.toggle("open", menu.classList.contains("show")); }
+}
+
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        closeAllDropdowns();
+    }
 });
+
+document.querySelectorAll(".dropdown-menu a").forEach(function(a){
+    a.addEventListener("click", closeMobileNav);
+});
+
+document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){ closeMobileNav(); }
+});
+
 let lastW = window.innerWidth;
 window.addEventListener("resize", function(){
-  if(window.innerWidth === lastW){ return; }
-  lastW = window.innerWidth;
-  if(window.innerWidth > 1000){ closeMobileNav(); }
-  closeAllDropdowns();
+    if(window.innerWidth === lastW){ return; }
+    lastW = window.innerWidth;
+    if(window.innerWidth > 1000){ closeMobileNav(); }
+    closeAllDropdowns();
 });
-document.querySelectorAll(".dropdown-menu a").forEach(a => {
-  a.addEventListener("click", closeMobileNav);
+
+//============================
+// BACK TO TOP
+//============================
+
+const backToTopBtn = document.getElementById("backToTop");
+
+window.addEventListener("scroll", function(){
+    if(window.scrollY > 300){
+        backToTopBtn.classList.add("visible");
+    }else{
+        backToTopBtn.classList.remove("visible");
+    }
 });
-document.addEventListener("keydown", e => {
-  if(e.key === "Escape"){ closeMobileNav(); }
-});
-function toggleAnswer(keyId, btn){
-  const key = document.getElementById(keyId);
-  if(!key){ return; }
-  if(key.classList.contains("show")){
-    key.classList.remove("show");
-    btn.classList.remove("isOpen");
-    btn.textContent = "🔍 Cek Jawaban";
-  }else{
-    key.classList.add("show");
-    btn.classList.add("isOpen");
-    btn.textContent = "✓ Sembunyikan Jawaban";
-  }
+
+function scrollToTop(){
+    window.scrollTo({ top:0, behavior:"smooth" });
 }
+
 </script>
 
 </body>
