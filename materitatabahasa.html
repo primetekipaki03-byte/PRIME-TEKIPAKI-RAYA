@@ -50,10 +50,76 @@ body{background:#f6f5f1;color:var(--ink);overflow-x:hidden;}
 .dropdown-menu a:hover{background:var(--gold);color:var(--navy-deep);}
 .show{display:block;}
 
-@media(max-width:600px){
-  .navbar-inner{flex-direction:column;align-items:flex-start;gap:8px;}
-  .nav-right{width:100%;}
-  .dropdown-btn{font-size:.72rem;padding:6px 9px;}
+/* ---------- Hamburger (hanya tampil di ponsel) ---------- */
+.hamburger{
+  display:none;
+  width:44px;height:44px;
+  background:none;
+  border:2px solid var(--gold);
+  border-radius:10px;
+  cursor:pointer;
+  position:relative;
+  flex-shrink:0;
+}
+.hamburger span{
+  position:absolute;left:10px;right:10px;height:2.5px;
+  background:var(--gold);border-radius:2px;
+  transition:transform .25s ease, opacity .2s ease, top .25s ease;
+}
+.hamburger span:nth-child(1){top:12px;}
+.hamburger span:nth-child(2){top:19px;}
+.hamburger span:nth-child(3){top:26px;}
+.hamburger.open span:nth-child(1){top:19px;transform:rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){top:19px;transform:rotate(-45deg);}
+
+/* ---------- Menu ponsel ---------- */
+.mobile-menu{
+  display:none;
+  max-height:0;
+  overflow:hidden;
+  background:var(--navy);
+  transition:max-height .35s ease;
+}
+.mobile-menu.open{max-height:80vh;overflow-y:auto;}
+.m-group{border-top:1px solid rgba(250,204,21,.18);}
+.m-toggle{
+  width:100%;
+  display:flex;justify-content:space-between;align-items:center;
+  background:none;border:none;
+  color:var(--gold-bright);
+  font-size:.9rem;font-weight:700;letter-spacing:.04em;
+  padding:15px 20px;
+  cursor:pointer;
+  text-align:left;
+}
+.m-toggle .chev{transition:transform .25s ease;font-size:.75rem;}
+.m-group.open .m-toggle .chev{transform:rotate(180deg);}
+.m-list{
+  display:none;
+  background:var(--navy-deep);
+  padding:4px 0 8px;
+}
+.m-group.open .m-list{display:block;}
+.m-list a{
+  display:block;
+  padding:12px 20px 12px 34px;
+  color:#e8eefb;
+  text-decoration:none;
+  font-size:.86rem;
+  border-left:3px solid transparent;
+}
+.m-list a:hover,.m-list a:active{
+  background:rgba(250,204,21,.12);
+  color:var(--gold-bright);
+  border-left-color:var(--gold);
+}
+
+@media(max-width:768px){
+  .nav-right{display:none;}
+  .hamburger{display:block;}
+  .mobile-menu{display:block;}
+  .navbar-inner{padding:10px 16px;}
 }
 
 /* =======================
@@ -282,6 +348,7 @@ HOME
 </a>
 </div>
 
+<!-- Menu desktop -->
 <div class="nav-right">
 <div class="dropdown">
 <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
@@ -314,6 +381,47 @@ HOME
 <a href="quizkanji4.html">QUIZ KANJI 4</a>
 <a href="quizkanji5.html">QUIZ KANJI 5</a>
 </div>
+</div>
+</div>
+
+<!-- Tombol hamburger (ponsel) -->
+<button class="hamburger" id="hamburger" aria-label="Buka menu" aria-expanded="false" onclick="toggleMobileMenu()">
+<span></span><span></span><span></span>
+</button>
+</div>
+
+<!-- Menu ponsel -->
+<div class="mobile-menu" id="mobileMenu">
+<div class="m-group">
+<button class="m-toggle" onclick="toggleGroup(this)">MATERI <span class="chev">▼</span></button>
+<div class="m-list">
+<a href="daftarkosakata.html">Kosakata JFT</a>
+<a href="materikosakata.html">Materi Kosakata</a>
+<a href="materitatabahasa.html">Materi Tata Bahasa</a>
+<a href="materikanji.html">Materi Kanji JLPT</a>
+<a href="kanjidasar.html">Kanji Flash Card</a>
+</div>
+</div>
+
+<div class="m-group">
+<button class="m-toggle" onclick="toggleGroup(this)">QUIZ JFT <span class="chev">▼</span></button>
+<div class="m-list">
+<a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+<a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+<a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+<a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+<a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+</div>
+</div>
+
+<div class="m-group">
+<button class="m-toggle" onclick="toggleGroup(this)">QUIZ KANJI <span class="chev">▼</span></button>
+<div class="m-list">
+<a href="quizkanji1.html">QUIZ KANJI 1</a>
+<a href="quizkanji2.html">QUIZ KANJI 2</a>
+<a href="quizkanji3.html">QUIZ KANJI 3</a>
+<a href="quizkanji4.html">QUIZ KANJI 4</a>
+<a href="quizkanji5.html">QUIZ KANJI 5</a>
 </div>
 </div>
 </div>
@@ -440,6 +548,7 @@ HOME
 <footer>© 2026 Tekipaki Japanese Learning | Tata Bahasa JLPT N5–N1</footer>
 
 <script>
+/* ---------- Dropdown desktop ---------- */
 function toggleDropdown(id){
   document.querySelectorAll('.dropdown-menu').forEach(m=>{
     if(m.id!==id){
@@ -469,6 +578,27 @@ function toggleDropdown(id){
   }
 }
 
+/* ---------- Menu ponsel ---------- */
+function toggleMobileMenu(force){
+  const menu = document.getElementById('mobileMenu');
+  const btn  = document.getElementById('hamburger');
+  const open = (typeof force === 'boolean') ? force : !menu.classList.contains('open');
+  menu.classList.toggle('open', open);
+  btn.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', open);
+  btn.setAttribute('aria-label', open ? 'Tutup menu' : 'Buka menu');
+  if(!open){
+    document.querySelectorAll('.m-group.open').forEach(g=>g.classList.remove('open'));
+  }
+}
+
+function toggleGroup(btn){
+  const group = btn.closest('.m-group');
+  const willOpen = !group.classList.contains('open');
+  document.querySelectorAll('.m-group.open').forEach(g=>g.classList.remove('open'));
+  if(willOpen) group.classList.add('open');
+}
+
 window.addEventListener('resize', ()=>{
   document.querySelectorAll('.dropdown-menu.show').forEach(m=>{
     m.classList.remove('show');
@@ -477,6 +607,7 @@ window.addEventListener('resize', ()=>{
     m.style.right = '';
     m.closest('.dropdown').classList.remove('open');
   });
+  if(window.innerWidth > 768) toggleMobileMenu(false);
 });
 
 document.addEventListener('click', e=>{
@@ -488,6 +619,9 @@ document.addEventListener('click', e=>{
       m.style.right = '';
     });
     document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
+  }
+  if(!e.target.closest('#navbar')){
+    toggleMobileMenu(false);
   }
 });
 
