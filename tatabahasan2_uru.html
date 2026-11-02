@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〜得る／得ない（mungkin terjadi / tidak mungkin terjadi） | Tata Bahasa N2</title>
+<style>
+:root{--navy:#001f3f;--navy2:#002a54;--navy3:#022655;--gold:#facc15;--gold2:#ffd700;--text:#001f3f}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
+body{background:#fff;color:var(--text)}
+#navbar{position:sticky;top:0;z-index:999;background:#001530;border-bottom:2px solid rgba(224,181,42,.3);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px}
+.nav-left{display:flex;align-items:center}
+.nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.home-btn{display:flex;align-items:center;gap:8px;background:#e0b52a;color:#001530;text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold}
+.home-btn:hover{opacity:.85}
+.home-icon{width:24px;height:24px;border-radius:4px}
+.dropdown{position:relative}
+.dropdown-btn{background:none;border:2px solid #e0b52a;color:#e0b52a;padding:8px 14px;border-radius:8px;font-weight:bold;cursor:pointer;font-family:inherit;font-size:.9rem}
+.dropdown-btn:hover{background:#e0b52a;color:#001530}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:#1f4577;border-radius:10px;overflow:hidden;min-width:220px;max-width:90vw;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.dropdown-menu.align-right{left:auto;right:0}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none}
+.dropdown-menu a:hover{background:#e0b52a;color:#001530}
+.show{display:block}
+.burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:44px;height:40px;background:none;border:2px solid #e0b52a;border-radius:8px;cursor:pointer}
+.burger span{display:block;width:22px;height:3px;background:#e0b52a;border-radius:2px;transition:.25s}
+.burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+@media(max-width:700px){
+.navbar-inner{flex-wrap:wrap;gap:0}
+.burger{display:flex}
+.nav-right{display:none;width:100%;flex-direction:column;align-items:stretch;gap:8px;padding-top:12px}
+.nav-right.open{display:flex}
+.dropdown{width:100%}
+.dropdown-btn{width:100%;text-align:left;font-size:.9rem;padding:10px 14px}
+.dropdown-menu,.dropdown-menu.align-right{position:static;left:auto;right:auto;top:auto;min-width:0;max-width:100%;margin-top:6px;box-shadow:none}
+.breadcrumb{margin-top:16px}
+}
+.breadcrumb{margin:20px 0 0;padding:0 0 0 20px;font-size:14px;color:#8892a3}
+.breadcrumb a{color:var(--navy);text-decoration:none;font-weight:600}
+.breadcrumb a:hover{text-decoration:underline}
+.pattern-hero{max-width:900px;margin:20px auto 0;padding:40px 30px;background:linear-gradient(135deg,var(--navy) 0%,#062a52 100%);border-radius:22px;position:relative;overflow:hidden;text-align:center}
+.pattern-hero::before{content:"得";position:absolute;font-size:260px;font-weight:900;color:rgba(250,204,21,.06);top:-60px;right:-30px;pointer-events:none;user-select:none}
+.no-badge{display:inline-block;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.4);color:var(--gold);font-size:13px;font-weight:bold;letter-spacing:1px;padding:6px 16px;border-radius:999px;margin-bottom:18px;position:relative}
+.pattern-hero h1{font-size:48px;color:#fff;position:relative;margin-bottom:8px}
+.romaji{font-size:20px;color:var(--gold2);font-weight:600;position:relative;margin-bottom:14px}
+.mean{font-size:18px;color:#c9d6e8;position:relative}
+.content{max-width:900px;margin:30px auto;padding:0 30px 60px}
+.section-block{margin-bottom:36px}
+.section-block h2{display:flex;align-items:center;gap:12px;font-size:22px;color:var(--navy);margin-bottom:14px;flex-wrap:wrap}
+.tag{background:var(--navy);color:var(--gold);font-size:13px;font-weight:bold;padding:5px 12px;border-radius:8px;white-space:nowrap}
+.section-block p{font-size:16px;line-height:1.9;color:#333}
+.formula-box{background:#f5f8fc;border:2px dashed var(--navy);border-radius:16px;padding:22px 26px;font-size:19px;text-align:center;color:var(--navy);font-weight:600;line-height:1.8}
+.formula-box small{display:block;font-size:13px;font-weight:400;color:#8892a3;margin-top:6px}
+.table-wrap,.compare-wrap{overflow-x:auto;border-radius:16px;border:2px solid var(--navy)}
+table{width:100%;border-collapse:collapse}
+.konjugasi-table{min-width:620px;font-size:15px}
+.konjugasi-table thead th{background:var(--navy);color:var(--gold);text-align:left;padding:14px 16px;font-size:14px;white-space:nowrap}
+.konjugasi-table tbody td{padding:13px 16px;border-bottom:1px solid #e3e9f2;color:#333;vertical-align:middle}
+tbody tr:nth-child(even){background:#f5f8fc}
+tbody tr:hover{background:#fffbe6}
+.kamus{font-weight:bold;font-size:17px;color:var(--navy)}
+.yomi-small{display:block;font-size:12px;color:#8892a3;font-weight:400}
+.arrow{color:var(--gold2);font-weight:900;font-size:18px}
+.shi{font-weight:bold;font-size:17px;color:#5b8bb0}
+.group-row td{background:var(--navy2)!important;color:var(--gold)!important;font-weight:bold;font-size:13px;letter-spacing:.5px;padding:10px 16px!important}
+.compare-table{min-width:700px;font-size:14px}
+.compare-table thead th{padding:14px;text-align:left;color:#fff;font-size:13px;white-space:nowrap}
+.compare-table thead th small{display:block;font-weight:400;font-size:11px;opacity:.85;margin-top:2px}
+.th-kamus{background:var(--navy)!important;color:var(--gold)!important}
+.th-shi{background:#5b8bb0}.th-kara{background:#c98a4d}.th-node{background:#c17b7b}
+.compare-table tbody td{padding:13px 14px;border-bottom:1px solid #e3e9f2;color:#333;vertical-align:middle}
+.val-shi,.val-kara,.val-node{font-weight:bold;font-size:16px;display:block}
+.val-shi{color:#5b8bb0}.val-kara{color:#c98a4d}.val-node{color:#c17b7b}
+.arti-mini{display:block;font-size:12px;font-style:italic;color:#5b6b80;font-weight:400;margin-top:4px}
+.compare-legend{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.chip{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;background:#f5f8fc;border:1px solid #e3e9f2;color:#333}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.dot.shi{background:#5b8bb0}.dot.kara{background:#c98a4d}.dot.node{background:#c17b7b}
+.example{border:2px solid var(--navy);border-radius:16px;padding:20px 24px;margin-bottom:16px;transition:.25s}
+.example:hover{background:var(--navy3);color:#fff;transform:translateY(-3px);box-shadow:0 12px 24px rgba(0,31,63,.2)}
+.example .jp{font-size:20px;font-weight:bold;margin-bottom:6px}
+.example .yomi{font-size:14px;color:#8892a3;margin-bottom:8px}
+.example:hover .yomi{color:#c9d6e8}
+.example .id{font-size:15px;color:#333;font-style:italic}
+.example:hover .id{color:#e6edf7}
+.note-box{background:#fffbe6;border-left:5px solid var(--gold);border-radius:10px;padding:18px 22px;font-size:15px;line-height:1.8;color:#4a4020}
+.note-box b{color:var(--navy)}
+.nav-bottom{display:flex;justify-content:space-between;gap:16px;margin-top:50px;flex-wrap:wrap}
+.nav-bottom a{flex:1;min-width:200px;text-decoration:none;border:2px solid var(--navy);border-radius:14px;padding:16px 20px;color:var(--navy);font-weight:600;transition:.25s}
+.nav-bottom a:hover{background:var(--navy);color:var(--gold)}
+.nav-bottom .dir{display:block;font-size:12px;color:#8892a3;margin-bottom:4px}
+.nav-bottom a:hover .dir{color:#c9d6e8}
+.nav-bottom .next{text-align:right}
+.quiz-box{border:2px solid var(--navy);border-radius:18px;padding:24px 26px;margin-bottom:22px;background:#fafcff}
+.qno{display:inline-block;background:var(--navy);color:var(--gold);font-size:13px;font-weight:bold;padding:5px 12px;border-radius:8px;margin-bottom:14px}
+.qtext{font-size:16px;color:#333;margin-bottom:16px;line-height:1.8}
+.word-bank{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.word-tile{background:#fff;border:2px solid var(--navy);color:var(--navy);padding:10px 16px;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;transition:.2s;user-select:none}
+.word-tile:hover{background:var(--navy);color:var(--gold);transform:translateY(-2px)}
+.word-tile.used{opacity:.3;pointer-events:none}
+.answer-slot{min-height:52px;border:2px dashed var(--gold2);border-radius:10px;background:#fffbe6;display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:8px 12px;margin-bottom:16px}
+.placed{background:var(--gold);color:#001530;padding:8px 14px;border-radius:8px;font-weight:bold;font-size:15px;cursor:pointer}
+.quiz-actions{display:flex;gap:10px;flex-wrap:wrap}
+.quiz-btn{border:2px solid var(--navy);background:var(--navy);color:var(--gold);padding:10px 18px;border-radius:10px;font-weight:bold;font-size:14px;cursor:pointer}
+.quiz-btn:hover{opacity:.85}
+.quiz-btn.secondary{background:#fff;color:var(--navy)}
+.quiz-result{margin-top:14px;font-size:15px;font-weight:600;display:none;padding:12px 16px;border-radius:10px}
+.quiz-result.correct{display:block;background:#e6f7ec;color:#166534;border:1px solid #86efac}
+.quiz-result.wrong{display:block;background:#fdeaea;color:#991b1b;border:1px solid #fca5a5}
+@media(max-width:600px){.pattern-hero h1{font-size:32px}.pattern-hero::before{font-size:160px}.nav-bottom .next{text-align:left}.konjugasi-table{font-size:13px}}
+footer{text-align:center;padding:30px;color:#666;font-size:14px}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
+HOME
+</a>
+</div>
+<button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" onclick="toggleBurger()"><span></span><span></span><span></span></button>
+<div class="nav-right" id="navRight">
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjftb2test1.html">SOAL JFT B — TEST 1</a>
+      <a href="ujianjftb2test2.html">SOAL JFT B — TEST 2</a>
+      <a href="ujianjftb2test3.html">SOAL JFT B — TEST 3</a>
+      <a href="ujianjftb2test4.html">SOAL JFT B — TEST 4</a>
+      <a href="ujianjftb2test5.html">SOAL JFT B — TEST 5</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+</div>
+</div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="tatabahasajlptn2.html">← Kembali ke Daftar Tata Bahasa N2</a>
+</div>
+
+<div class="pattern-hero">
+    <span class="no-badge">POLA 65 · JLPT N2</span>
+    <h1>〜得る／得ない</h1>
+    <div class="romaji">~uru / enai</div>
+    <div class="mean">mungkin terjadi / tidak mungkin terjadi</div>
+</div>
+
+<div class="content">
+
+    <div class="section-block">
+        <h2><span class="tag">ARTI</span> Penjelasan</h2>
+        <p>
+            <b>〜得る（うる／える）</b> berarti <b>"mungkin terjadi, bisa saja terjadi"</b>, dan
+            <b>〜得ない（えない）</b> berarti <b>"tidak mungkin terjadi, mustahil"</b>.
+            Pola ini menilai <b>kemungkinan suatu peristiwa atau keadaan</b> secara objektif,
+            bukan kemampuan seseorang. Bergaya formal dan banyak muncul di tulisan, laporan, dan
+            pernyataan yang tegas.
+        </p>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">POLA</span> Rumus</h2>
+        <div class="formula-box">
+            動詞（ます形の語幹）＋得る（うる／える）　（mungkin V）<br>
+            動詞（ます形の語幹）＋得ない（えない）　（tidak mungkin V）<br>
+            動詞＋得た（えた）／得なかった（えなかった）　（bentuk lampau）<br>
+            動詞＋得る＋名詞　（N yang mungkin terjadi）
+            <small>Contoh: 起こり得る／あり得ない／考え得る／想像し得ない</small>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">TABEL</span> Pola Penggunaan 〜得る／得ない</h2>
+        <p style="margin-bottom:16px;">Berikut bentuk 〜得る／得ない dari beberapa kata kerja yang sering dipakai.</p>
+        <div class="table-wrap">
+            <table class="konjugasi-table">
+                <thead>
+                    <tr><th>Kata Dasar</th><th></th><th>Bentuk 〜得る／得ない</th><th>Artinya</th></tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row"><td colspan="4">① 〜得る（mungkin terjadi）</td></tr>
+                    <tr>
+                        <td><span class="kamus">ある</span><span class="yomi-small">ある (aru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">あり得る</span><span class="yomi-small">ありうる／ありえる</span></td>
+                        <td>bisa saja terjadi</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">起こる</span><span class="yomi-small">おこる (okoru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">起こり得る</span><span class="yomi-small">おこりうる</span></td>
+                        <td>mungkin terjadi</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">考える</span><span class="yomi-small">かんがえる (kangaeru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">考え得る</span><span class="yomi-small">かんがえうる</span></td>
+                        <td>yang bisa dibayangkan / dipikirkan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">予想する</span><span class="yomi-small">よそうする (yosou suru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">予想し得る</span><span class="yomi-small">よそうしうる</span></td>
+                        <td>mungkin diperkirakan</td>
+                    </tr>
+                    <tr class="group-row"><td colspan="4">② 〜得ない（tidak mungkin terjadi）</td></tr>
+                    <tr>
+                        <td><span class="kamus">ある</span><span class="yomi-small">ある (aru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">あり得ない</span><span class="yomi-small">ありえない</span></td>
+                        <td>mustahil / tidak mungkin</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">起こる</span><span class="yomi-small">おこる (okoru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">起こり得ない</span><span class="yomi-small">おこりえない</span></td>
+                        <td>tidak mungkin terjadi</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">想像する</span><span class="yomi-small">そうぞうする (souzou suru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">想像し得ない</span><span class="yomi-small">そうぞうしえない</span></td>
+                        <td>tidak terbayangkan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">理解する</span><span class="yomi-small">りかいする (rikai suru)</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">理解し得ない</span><span class="yomi-small">りかいしえない</span></td>
+                        <td>tidak bisa dipahami</td>
+                    </tr>
+                    <tr class="group-row"><td colspan="4">形の変化（perubahan bentuk）</td></tr>
+                    <tr>
+                        <td><span class="kamus">〜得た／得なかった</span><span class="yomi-small">bentuk lampau</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">予想し得なかった</span><span class="yomi-small">よそうし えなかった</span></td>
+                        <td>tidak bisa diperkirakan (waktu itu)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">〜得ません</span><span class="yomi-small">bentuk sopan</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">あり得ません</span><span class="yomi-small">ありえません</span></td>
+                        <td>tidak mungkin terjadi (sopan)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">〜得る＋N</span><span class="yomi-small">menerangkan kata benda</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="shi">起こり得る問題</span><span class="yomi-small">おこりうる もんだい</span></td>
+                        <td>masalah yang mungkin terjadi</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="note-box" style="margin-top:16px;">
+            <b>Catatan penting:</b> bacaan 得る adalah <b>うる／える</b> (keduanya benar), tetapi bentuk negatifnya
+            hanya <b>えない</b>, bukan うない. Pola ini menilai <b>kemungkinan kejadian</b>, bukan kemampuan orang,
+            sehingga tidak dipakai seperti 「×私は泳ぎ得る」. Kata kerja yang umum dipakai: あり得る, 起こり得る,
+            考え得る, 予想し得る, 想像し得る.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CONTOH</span> Contoh Kalimat</h2>
+
+        <div class="example">
+            <div class="jp">この地域では、大きな地震が起こり得る。</div>
+            <div class="yomi">この ちいきでは、おおきな じしんが おこりうる。</div>
+            <div class="id">Di daerah ini, gempa besar bisa saja terjadi.</div>
+        </div>
+        <div class="example">
+            <div class="jp">そんなことは、現実にはあり得ない。</div>
+            <div class="yomi">そんな ことは、げんじつには ありえない。</div>
+            <div class="id">Hal seperti itu mustahil terjadi di dunia nyata.</div>
+        </div>
+        <div class="example">
+            <div class="jp">考え得るすべての方法を試したが、うまくいかなかった。</div>
+            <div class="yomi">かんがえうる すべての ほうほうを ためしたが、うまく いかなかった。</div>
+            <div class="id">Saya sudah mencoba semua cara yang terpikirkan, tetapi tidak berhasil.</div>
+        </div>
+        <div class="example">
+            <div class="jp">彼がそんなことを言うとは、想像し得なかった。</div>
+            <div class="yomi">かれが そんな ことを いうとは、そうぞうし えなかった。</div>
+            <div class="id">Saya tidak bisa membayangkan dia akan mengatakan hal seperti itu.</div>
+        </div>
+        <div class="example">
+            <div class="jp">これは誰にでも起こり得る問題だ。</div>
+            <div class="yomi">これは だれにでも おこりうる もんだいだ。</div>
+            <div class="id">Ini adalah masalah yang bisa terjadi pada siapa saja.</div>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">CATATAN</span> Tips & Perbedaan</h2>
+        <div class="note-box">
+            <b>Sering dipakai di:</b> laporan, esai, berita, dan soal JLPT N2 (terutama あり得る, あり得ない, 起こり得る).<br><br>
+            <b>Bukan 得る biasa:</b> 得る sebagai kata kerja berdiri sendiri (える) berarti "memperoleh"
+            (情報を得る, 許可を得る). Pola ini adalah 得る sebagai akhiran yang mengikuti ます語幹.<br><br>
+            <b>Pelafalan:</b> あり得る boleh dibaca ありうる atau ありえる, tetapi 〜得ない hanya dibaca
+            えない (ありえない), dan bentuk lampaunya えた／えなかった.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">PERBEDAAN</span> 〜得る vs 〜かもしれない vs 〜かねない</h2>
+        <p style="margin-bottom:12px;">Ketiganya menyatakan kemungkinan, tetapi nuansa dan tingkat formalitasnya berbeda.</p>
+
+        <div class="compare-legend">
+            <span class="chip"><span class="dot shi"></span> 〜得る — mungkin (objektif, formal)</span>
+            <span class="chip"><span class="dot kara"></span> 〜かもしれない — mungkin (perkiraan pribadi)</span>
+            <span class="chip"><span class="dot node"></span> 〜かねない — bisa jadi (hasil buruk)</span>
+        </div>
+
+        <div class="compare-wrap">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th class="th-kamus">Situasi</th>
+                        <th class="th-shi">〜得る<small>mungkin (objektif)</small></th>
+                        <th class="th-kara">〜かもしれない<small>mungkin (pribadi)</small></th>
+                        <th class="th-node">〜かねない<small>bisa jadi buruk</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="kamus">Kemungkinan</span><span class="yomi-small">かのうせい</span></td>
+                        <td><span class="val-shi">事故は起こり得る</span><span class="yomi-small">じこは おこりうる</span><span class="arti-mini">Kecelakaan mungkin terjadi.</span></td>
+                        <td><span class="val-kara">事故が起こるかもしれない</span><span class="yomi-small">じこが おこるかも しれない</span><span class="arti-mini">Mungkin akan terjadi kecelakaan.</span></td>
+                        <td><span class="val-node">事故を起こしかねない</span><span class="yomi-small">じこを おこしかねない</span><span class="arti-mini">Bisa-bisa menyebabkan kecelakaan.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">Bentuk negatif</span><span class="yomi-small">ひてい</span></td>
+                        <td><span class="val-shi">あり得ない</span><span class="yomi-small">ありえない</span><span class="arti-mini">Mustahil, tidak mungkin.</span></td>
+                        <td><span class="val-kara">ないかもしれない</span><span class="yomi-small">ないかも しれない</span><span class="arti-mini">Mungkin tidak ada.</span></td>
+                        <td><span class="val-node">× 否定形は別の意味</span><span class="yomi-small">ひていけいは べつの いみ</span><span class="arti-mini">Negatif jarang dipakai.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="kamus">Nuansa</span><span class="yomi-small">ニュアンス</span></td>
+                        <td><span class="val-shi">客観的・硬い</span><span class="yomi-small">きゃっかんてき</span><span class="arti-mini">Objektif dan kaku.</span></td>
+                        <td><span class="val-kara">主観的・日常的</span><span class="yomi-small">しゅかんてき</span><span class="arti-mini">Subjektif, sehari-hari.</span></td>
+                        <td><span class="val-node">悪い結果だけ</span><span class="yomi-small">わるい けっかだけ</span><span class="arti-mini">Hanya untuk hasil negatif.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box" style="margin-top:16px;">
+            <b>Kunci membedakan:</b> menilai kemungkinan secara objektif dan formal → <i>得る</i>;
+            perkiraan pribadi dalam percakapan → <i>かもしれない</i>;
+            peringatan akan hasil buruk → <i>かねない</i>.
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2><span class="tag">LATIHAN</span> Soal Susun Kalimat</h2>
+        <p style="margin-bottom:18px;">
+            Susun kata-kata acak di bawah ini menjadi kalimat yang benar dengan mengklik kata secara berurutan.
+            Klik kata yang sudah dipasang untuk membatalkannya.
+        </p>
+
+        <div class="quiz-box" id="quiz1">
+            <span class="qno">SOAL 1</span>
+            <div class="qtext">＿＿＿＿＿　＿＿＿＿＿　＿★＿　＿＿＿＿＿。 (Kesalahan seperti ini bisa terjadi pada siapa saja.)</div>
+            <div class="answer-slot" id="slot1"></div>
+            <div class="word-bank" id="bank1">
+                <div class="word-tile" data-word="こんなミスは">こんなミスは</div>
+                <div class="word-tile" data-word="誰にでも">だれにでも</div>
+                <div class="word-tile" data-word="起こり">おこり</div>
+                <div class="word-tile" data-word="得る">うる</div>
+            </div>
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(1)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(1)">Ulangi</button>
+            </div>
+            <div class="quiz-result" id="result1"></div>
+        </div>
+
+        <div class="quiz-box" id="quiz2">
+            <span class="qno">SOAL 2</span>
+            <div class="qtext">＿＿＿＿＿　＿＿＿＿＿　＿★＿　＿＿＿＿＿。 (Hal seperti itu mustahil terjadi.)</div>
+            <div class="answer-slot" id="slot2"></div>
+            <div class="word-bank" id="bank2">
+                <div class="word-tile" data-word="そんな">そんな</div>
+                <div class="word-tile" data-word="ことは">ことは</div>
+                <div class="word-tile" data-word="あり">あり</div>
+                <div class="word-tile" data-word="得ない">えない</div>
+            </div>
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(2)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(2)">Ulangi</button>
+            </div>
+            <div class="quiz-result" id="result2"></div>
+        </div>
+
+        <div class="quiz-box" id="quiz3">
+            <span class="qno">SOAL 3</span>
+            <div class="qtext">＿＿＿＿＿　＿＿＿＿＿　＿★＿　＿＿＿＿＿。 (Saya mencoba semua cara yang terpikirkan.)</div>
+            <div class="answer-slot" id="slot3"></div>
+            <div class="word-bank" id="bank3">
+                <div class="word-tile" data-word="考え">かんがえ</div>
+                <div class="word-tile" data-word="得る">うる</div>
+                <div class="word-tile" data-word="すべての">すべての</div>
+                <div class="word-tile" data-word="方法を試した">ほうほうを ためした</div>
+            </div>
+            <div class="quiz-actions">
+                <button class="quiz-btn" onclick="checkAnswer(3)">Cek Jawaban</button>
+                <button class="quiz-btn secondary" onclick="resetQuiz(3)">Ulangi</button>
+            </div>
+            <div class="quiz-result" id="result3"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="content" style="padding-top:0;">
+    <div class="nav-bottom">
+        <a href="tatabahasan2_yougainai.html" class="prev">
+            <span class="dir">← Sebelumnya</span>
+            POLA 64 · 〜ようがない
+        </a>
+        <a href="tatabahasajlptn2.html" class="next">
+            <span class="dir">Selanjutnya →</span>
+            POLA 66
+        </a>
+    </div>
+</div>
+
+<footer>© Tekipaki Japanese Learning</footer>
+
+<script>
+const quizAnswers = {
+    1:["こんなミスは","誰にでも","起こり","得る"],
+    2:["そんな","ことは","あり","得ない"],
+    3:["考え","得る","すべての","方法を試した"]
+};
+const quizState = {1:[],2:[],3:[]};
+
+function shuffleArray(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+function shuffleBank(id){
+    const bank = document.getElementById("bank"+id);
+    const tiles = Array.from(bank.children);
+    shuffleArray(tiles);
+    tiles.forEach(t => bank.appendChild(t));
+}
+function initQuiz(id){
+    shuffleBank(id);
+    document.getElementById("bank"+id).querySelectorAll(".word-tile").forEach(tile=>{
+        tile.addEventListener("click", ()=>placeWord(id, tile));
+    });
+}
+function placeWord(id, tile){
+    if(tile.classList.contains("used")) return;
+    tile.classList.add("used");
+    quizState[id].push(tile.dataset.word);
+    const slot = document.getElementById("slot"+id);
+    const placed = document.createElement("span");
+    placed.className = "placed";
+    placed.textContent = tile.dataset.word;
+    placed.addEventListener("click", ()=>{
+        slot.removeChild(placed);
+        const idx = quizState[id].indexOf(tile.dataset.word);
+        if(idx > -1) quizState[id].splice(idx,1);
+        tile.classList.remove("used");
+        document.getElementById("result"+id).className = "quiz-result";
+    });
+    slot.appendChild(placed);
+    document.getElementById("result"+id).className = "quiz-result";
+}
+function checkAnswer(id){
+    const result = document.getElementById("result"+id);
+    if(quizState[id].length === 0){
+        result.className = "quiz-result wrong";
+        result.textContent = "⚠️ Susun dulu kata-katanya sebelum mengecek jawaban.";
+        return;
+    }
+    if(quizAnswers[id].join("") === quizState[id].join("")){
+        result.className = "quiz-result correct";
+        result.textContent = "✅ Benar! Susunan kalimatmu sudah tepat.";
+    } else {
+        result.className = "quiz-result wrong";
+        result.textContent = "❌ Belum tepat. Jawaban yang benar: " + quizAnswers[id].join(" ");
+    }
+}
+function resetQuiz(id){
+    quizState[id] = [];
+    document.getElementById("slot"+id).innerHTML = "";
+    document.querySelectorAll("#bank"+id+" .word-tile").forEach(t=>t.classList.remove("used"));
+    document.getElementById("result"+id).className = "quiz-result";
+    shuffleBank(id);
+}
+initQuiz(1);
+initQuiz(2);
+initQuiz(3);
+
+function toggleDropdown(id){
+    document.querySelectorAll('.dropdown-menu').forEach(m=>{
+        if(m.id!==id){m.classList.remove('show');m.classList.remove('align-right');}
+    });
+    const menu = document.getElementById(id);
+    const willShow = !menu.classList.contains('show');
+    menu.classList.toggle('show');
+    if(willShow){
+        menu.classList.remove('align-right');
+        const rect = menu.getBoundingClientRect();
+        if(rect.right > window.innerWidth - 8){ menu.classList.add('align-right'); }
+    }
+}
+let lastW = window.innerWidth;
+window.addEventListener('resize', ()=>{
+    if(window.innerWidth === lastW) return;
+    lastW = window.innerWidth;
+    document.querySelectorAll('.dropdown-menu.show').forEach(m=>{m.classList.remove('show');m.classList.remove('align-right');});
+});
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(m=>{m.classList.remove("show");m.classList.remove("align-right");});
+    }
+});
+
+function closeBurger(){
+    const b = document.getElementById('burger'), n = document.getElementById('navRight');
+    if(!b || !n) return;
+    b.classList.remove('open'); n.classList.remove('open');
+    b.setAttribute('aria-expanded','false');
+}
+function toggleBurger(){
+    const b = document.getElementById('burger'), n = document.getElementById('navRight');
+    const open = !n.classList.contains('open');
+    n.classList.toggle('open', open);
+    b.classList.toggle('open', open);
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if(!open) document.querySelectorAll('.dropdown-menu').forEach(m=>m.classList.remove('show'));
+}
+window.addEventListener('resize', ()=>{ if(window.innerWidth > 700) closeBurger(); });
+document.addEventListener('click', e=>{ if(!e.target.closest('#navbar')) closeBurger(); });
+</script>
+</body>
+</html>
