@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latihan Tata Bahasa JLPT N4 — 04</title>
+
+<style>
+:root{--navy:#001f3f;--navy2:#002a54;--navy3:#022655;--gold:#facc15;--gold2:#ffd700;--text:#001f3f;--ok:#166534;--okbg:#e6f7ec;--ng:#991b1b;--ngbg:#fdeaea}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
+body{background:#fff;color:var(--text)}
+
+/* NAVBAR */
+#navbar{position:sticky;top:0;z-index:999;background:#001530;border-bottom:2px solid rgba(250,204,21,.25);box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;gap:10px}
+.nav-left{display:flex;align-items:center}
+.nav-right{display:flex;gap:8px;align-items:center}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:#001530;text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold}
+.home-btn:hover{opacity:.85}
+.home-icon{width:24px;height:24px;border-radius:4px}
+.dropdown{position:relative}
+.dropdown-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-weight:bold;cursor:pointer}
+.dropdown-btn:hover{background:var(--gold);color:#001530}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:#022655;border-radius:10px;overflow:hidden;min-width:220px;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none}
+.dropdown-menu a:hover{background:var(--gold);color:#001530}
+.show{display:block}
+.burger-btn{display:none;align-items:center;justify-content:center;flex-shrink:0;background:transparent;border:2px solid var(--gold);color:var(--gold);padding:9px 12px;border-radius:8px;cursor:pointer}
+.burger-btn svg{width:20px;height:20px;display:block}
+.mobile-menu{display:none;flex-direction:column;background:#001530;border-top:1px solid rgba(250,204,21,.25);max-height:calc(100vh - 64px);overflow-y:auto}
+.mobile-menu.show{display:flex}
+.mobile-link{display:block;padding:15px 18px;color:#ffd700;text-decoration:none;font-weight:700;font-size:14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.mobile-acc-btn{width:100%;text-align:left;background:transparent;border:none;color:var(--gold);font-weight:700;font-size:14px;padding:15px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);font-family:inherit}
+.mobile-acc-btn::after{content:'+';font-size:18px;line-height:1}
+.mobile-acc-btn.open::after{content:'\2212'}
+.mobile-acc-panel{display:none;flex-direction:column;background:#0a2242}
+.mobile-acc-panel.show{display:flex}
+.mobile-acc-panel a{padding:13px 32px;color:#ffd700;text-decoration:none;font-size:13px;border-bottom:1px solid rgba(255,255,255,.05)}
+@media(min-width:761px){.mobile-menu{display:none !important}}
+@media(max-width:1000px){.dropdown-btn{font-size:.8rem;padding:7px 10px}}
+@media(max-width:760px){.navbar-inner{padding:10px 14px}.nav-left{flex:1;min-width:0}.nav-right{display:none}.burger-btn{display:flex}}
+
+/* HERO */
+.hero{text-align:center;padding:50px 20px 40px;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--navy) 0%,#062a52 100%)}
+.hero::before{content:"練習";position:absolute;font-size:300px;font-weight:900;color:rgba(250,204,21,.05);top:-70px;left:50%;transform:translateX(-50%);pointer-events:none;user-select:none;white-space:nowrap}
+.badge{display:inline-block;background:var(--gold);color:#001530;font-weight:bold;font-size:13px;letter-spacing:1px;padding:6px 16px;border-radius:999px;margin-bottom:16px;position:relative}
+.hero h1{font-size:40px;color:#fff;margin-bottom:10px;position:relative}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:16px;color:#c9d6e8;max-width:620px;margin:0 auto;position:relative;line-height:1.7}
+
+/* LAYOUT */
+.wrap{max-width:900px;margin:0 auto;padding:30px 20px 60px}
+.crumb{font-size:14px;margin-bottom:20px}
+.crumb a{color:var(--navy);font-weight:600;text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+
+/* DRILL */
+.drill{margin-bottom:34px}
+.drill-head{display:flex;align-items:center;gap:14px;background:linear-gradient(90deg,var(--navy),#1f4577);color:#fff;border-radius:12px;padding:12px 18px;margin-bottom:14px}
+.drill-head .tag{background:var(--gold);color:#001530;font-weight:bold;padding:4px 12px;border-radius:8px;font-size:15px;white-space:nowrap}
+.drill-head .ins{flex:1;font-size:15px;line-height:1.5}
+.drill-head .pt{font-size:13px;color:#c9d6e8;white-space:nowrap}
+
+.q{border:2px solid var(--navy);border-radius:14px;padding:18px 20px;margin-bottom:14px;background:#fafcff;transition:.2s}
+.q.correct{border-color:#22a559;background:var(--okbg)}
+.q.wrong{border-color:#d64545;background:var(--ngbg)}
+.q-row{display:flex;gap:12px;align-items:flex-start}
+.qn{background:var(--navy);color:var(--gold);font-weight:bold;min-width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px}
+.qtext{font-size:19px;line-height:1.9;font-weight:600}
+.qtext .blank{display:inline-block;min-width:46px;border-bottom:2px solid var(--navy);margin:0 4px;text-align:center;font-size:16px;color:var(--navy);font-weight:bold}
+.qtext .blank.star{color:#c98a4d;border-bottom-color:#c98a4d}
+.qtext .u{border-bottom:2px solid var(--navy);padding:0 2px}
+
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0 42px}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.choice span{display:inline-block;padding:9px 18px;border:2px solid var(--navy);border-radius:10px;background:#fff;color:var(--navy);font-weight:600;font-size:16px;cursor:pointer;transition:.15s;user-select:none}
+.choice span:hover{background:#eef3fa}
+.choice input:checked + span{background:var(--navy);color:var(--gold);border-color:var(--navy)}
+.choice input:focus-visible + span{outline:3px solid var(--gold)}
+.choice input:disabled + span{cursor:default;opacity:.85}
+.choice.is-key span{box-shadow:0 0 0 3px #22a559}
+
+.fb{display:none;margin:12px 0 0 42px;font-size:14.5px;line-height:1.7;padding:10px 14px;border-radius:10px}
+.q.correct .fb{display:block;background:#d3f0dd;color:var(--ok)}
+.q.wrong .fb{display:block;background:#fbdcdc;color:var(--ng)}
+.fb b{color:var(--navy)}
+
+/* ACTIONS + RESULT */
+.actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.btn{border:2px solid var(--navy);background:var(--navy);color:var(--gold);padding:14px 30px;border-radius:12px;font-weight:bold;font-size:16px;cursor:pointer;transition:.2s}
+.btn:hover{opacity:.88;transform:translateY(-2px)}
+.btn.secondary{background:#fff;color:var(--navy)}
+.warn{text-align:center;color:var(--ng);font-weight:600;margin-top:14px;min-height:22px}
+
+.result{display:none;margin:30px 0 10px;border:3px solid var(--navy);border-radius:18px;padding:26px;text-align:center;background:linear-gradient(180deg,#fffbe6,#fff)}
+.result.show{display:block}
+.score{font-size:54px;font-weight:900;color:var(--navy);line-height:1}
+.score small{font-size:22px;color:#8892a3;font-weight:700}
+.msg{margin-top:10px;font-size:17px;color:#333}
+.break{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.pill{background:var(--navy);color:var(--gold);padding:7px 16px;border-radius:999px;font-size:14px;font-weight:600}
+
+/* KUNCI */
+.key{display:none;margin-top:30px}
+.key.show{display:block}
+.key h2{font-size:22px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.key h2 .tag{background:var(--navy);color:var(--gold);font-size:13px;padding:5px 12px;border-radius:8px}
+.key-table-wrap{overflow-x:auto;border:2px solid var(--navy);border-radius:14px}
+.key table{width:100%;border-collapse:collapse;min-width:560px;font-size:15px}
+.key th{background:var(--navy);color:var(--gold);text-align:left;padding:12px 14px;font-size:14px}
+.key td{padding:11px 14px;border-bottom:1px solid #e3e9f2;vertical-align:top;line-height:1.6}
+.key tr:nth-child(even) td{background:#f5f8fc}
+.key .grp td{background:var(--navy2)!important;color:var(--gold);font-weight:bold;font-size:13px}
+.key .yes{color:var(--ok);font-weight:bold}
+.key .no{color:var(--ng);font-weight:bold}
+
+/* Pilihan di samping soal (Drill A) */
+.q.inline{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:20px}
+.q.inline .choices{margin:0;flex-wrap:nowrap}
+.q.inline .fb{grid-column:1 / -1}
+@media(max-width:760px){
+  .q.inline{grid-template-columns:1fr}
+  .q.inline .choices{margin:12px 0 0 42px;flex-wrap:wrap}
+}
+
+footer{text-align:center;padding:30px;color:#666;font-size:14px}
+
+@media(max-width:600px){
+  .hero h1{font-size:28px}.hero::before{font-size:170px}
+  .drill-head{flex-wrap:wrap}.qtext{font-size:17px}
+  .choices,.fb{margin-left:0}
+  .score{font-size:44px}
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
+HOME
+</a>
+</div>
+
+<div class="nav-right">
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="kosakatan5.html">Kosakata JLPT N5</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="daftarkanji.html">Daftar Kanji N5</a>
+      <a href="daftarkanjin4.html">Daftar Kanji N4</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+</div>
+
+<button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="index.html">HOME</a>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+  <div class="mobile-acc-panel">
+    <a href="daftarkosakata.html">Kosakata JFT</a>
+    <a href="kosakatan5.html">Kosakata JLPT N5</a>
+    <a href="materitatabahasa.html">Tata Bahasa</a>
+    <a href="daftarkanji.html">Daftar Kanji N5</a>
+    <a href="daftarkanjin4.html">Daftar Kanji N4</a>
+    <a href="kanjidasar.html">Kanji Flash Card</a>
+  </div>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
+  <div class="mobile-acc-panel">
+    <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+    <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+    <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+    <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+    <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+  </div>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
+  <div class="mobile-acc-panel">
+    <a href="quizkanji1.html">QUIZ KANJI 1</a>
+    <a href="quizkanji2.html">QUIZ KANJI 2</a>
+    <a href="quizkanji3.html">QUIZ KANJI 3</a>
+    <a href="quizkanji4.html">QUIZ KANJI 4</a>
+    <a href="quizkanji5.html">QUIZ KANJI 5</a>
+  </div>
+</div>
+</nav>
+
+<section class="hero">
+  <span class="badge">JLPT N4 · LATIHAN 04</span>
+  <h1>文法 <span>Latihan</span> N4 · 04</h1>
+  <p>15 soal tata bahasa N4 dengan 15 pola berbeda. Kerjakan Drill A, B, dan C, lalu tekan <b>Kirim Jawaban</b> untuk melihat skor, pembahasan, dan kunci jawaban.</p>
+</section>
+
+<main class="wrap">
+  <div class="crumb"><a href="tatabahasajlptn4.html">← Kembali ke Daftar Tata Bahasa N4</a></div>
+
+  <div id="drills"></div>
+
+  <div class="warn" id="warn"></div>
+  <div class="actions">
+    <button class="btn" id="submitBtn" onclick="submitAll()">Kirim Jawaban</button>
+    <button class="btn secondary" onclick="resetAll()">Ulangi</button>
+  </div>
+
+  <div class="result" id="result">
+    <div class="score" id="scoreText"></div>
+    <div class="msg" id="scoreMsg"></div>
+    <div class="break" id="scoreBreak"></div>
+  </div>
+
+  <section class="key" id="keySection">
+    <h2><span class="tag">KUNCI</span> Kunci Jawaban</h2>
+    <div class="key-table-wrap"><table id="keyTable"></table></div>
+  </section>
+</main>
+
+<footer>© Tekipaki Japanese Learning</footer>
+
+<script>
+/* =========================================================
+   DATA SOAL
+   q    : teks soal. Pakai （　　） untuk kotak kosong,
+          <span class="u">…</span> untuk garis bawah,
+          <span class="u">…</span> untuk kanji besar.
+========================================================= */
+const drills = [
+ {
+  "id": "A",
+  "tag": "ドリル A",
+  "inline": true,
+  "ins": "正しいほうをえらんでください。<br><small>Pilih jawaban yang benar.</small>",
+  "items": [
+   {
+    "q": "ニュースに よると、あの 店は 来月 閉まる（　　）です。",
+    "opts": {
+     "a": "らしい",
+     "b": "たがる"
+    },
+    "ans": "a",
+    "why": "〜らしい = katanya/sepertinya ~ (berdasarkan informasi yang didengar). 〜たがる tidak cocok di akhir kalimat ini."
+   },
+   {
+    "q": "弟は 新しい ゲームを 買い（　　）います。",
+    "opts": {
+     "a": "たくて",
+     "b": "たがって"
+    },
+    "ans": "b",
+    "why": "〜たがる dipakai untuk keinginan orang ketiga: 買いたがっています. 〜たい dipakai untuk keinginan pembicara."
+   },
+   {
+    "q": "週末は 友だちと 映画を 見（　　）、買い物を したりします。",
+    "opts": {
+     "a": "たり",
+     "b": "て"
+    },
+    "ans": "a",
+    "why": "〜たり〜たりする = melakukan ~ dan ~ (contoh kegiatan). Kedua kata kerja memakai bentuk たり."
+   },
+   {
+    "q": "地震が 起きた（　　）は、すぐに 外へ 出てください。",
+    "opts": {
+     "a": "時間",
+     "b": "場合"
+    },
+    "ans": "b",
+    "why": "〜場合(ばあい)は = dalam hal ~. 時間 = waktu, tidak membentuk pola yang benar."
+   },
+   {
+    "q": "あの 人は 学生（　　）です。若く 見えます。",
+    "opts": {
+     "a": "みたい",
+     "b": "みたいな"
+    },
+    "ans": "a",
+    "why": "〜みたいだ = seperti/mirip ~. Di akhir kalimat dipakai みたいです. みたいな dipakai sebelum kata benda."
+   }
+  ]
+ },
+ {
+  "id": "B",
+  "tag": "ドリル B",
+  "inline": false,
+  "ins": "★に入るものをえらんでください。<br><small>Pilih kata yang masuk ke kotak ★ (susun dulu empat kata menjadi kalimat yang benar).</small>",
+  "items": [
+   {
+    "q": "明日は<span class=\"blank\">　　</span><span class=\"blank\">　　</span><span class=\"blank star\">★</span><span class=\"blank\">　　</span>。",
+    "opts": {
+     "1": "かもしれません",
+     "2": "雨が",
+     "3": "降る",
+     "4": "午後から"
+    },
+    "ans": "3",
+    "why": "Kalimat lengkap: <b>明日は午後から雨が降るかもしれません。</b><br>〜かもしれない = mungkin ~, memakai bentuk biasa: 降るかもしれません."
+   },
+   {
+    "q": "田中さんは<span class=\"blank\">　　</span><span class=\"blank star\">★</span><span class=\"blank\">　　</span><span class=\"blank\">　　</span>。",
+    "opts": {
+     "1": "はずです",
+     "2": "もう",
+     "3": "着いている",
+     "4": "会社に"
+    },
+    "ans": "4",
+    "why": "Kalimat lengkap: <b>田中さんはもう会社に着いているはずです。</b><br>〜はずだ = seharusnya ~ (dugaan kuat), memakai bentuk biasa: 着いているはずです."
+   },
+   {
+    "q": "私は<span class=\"blank\">　　</span><span class=\"blank\">　　</span><span class=\"blank star\">★</span><span class=\"blank\">　　</span>。",
+    "opts": {
+     "1": "ことが",
+     "2": "できます",
+     "3": "日本語を",
+     "4": "話す"
+    },
+    "ans": "1",
+    "why": "Kalimat lengkap: <b>私は日本語を話すことができます。</b><br>〜ことができる = bisa ~, memakai bentuk kamus: 話すことができます."
+   },
+   {
+    "q": "先生に<span class=\"blank star\">★</span><span class=\"blank\">　　</span><span class=\"blank\">　　</span><span class=\"blank\">　　</span>。",
+    "opts": {
+     "1": "について",
+     "2": "質問しました",
+     "3": "試験の",
+     "4": "日程"
+    },
+    "ans": "3",
+    "why": "Kalimat lengkap: <b>先生に試験の日程について質問しました。</b><br>〜について = mengenai ~, menempel pada kata benda: 日程について."
+   },
+   {
+    "q": "弟は<span class=\"blank\">　　</span><span class=\"blank\">　　</span><span class=\"blank\">　　</span><span class=\"blank star\">★</span>。",
+    "opts": {
+     "1": "ばかり",
+     "2": "毎日",
+     "3": "ゲーム",
+     "4": "しています"
+    },
+    "ans": "4",
+    "why": "Kalimat lengkap: <b>弟は毎日ゲームばかりしています。</b><br>〜ばかり = hanya/melulu ~: ゲームばかりしています."
+   }
+  ]
+ },
+ {
+  "id": "C",
+  "tag": "ドリル C",
+  "inline": false,
+  "ins": "正しいほうをえらんでください。<br><small>Pilih bentuk tata bahasa yang benar.</small>",
+  "items": [
+   {
+    "q": "電車が 遅れた（　　）、遅刻しました。",
+    "opts": {
+     "a": "ので",
+     "b": "のに"
+    },
+    "ans": "a",
+    "why": "〜ので = karena ~ (alasan, hasilnya wajar). 〜のに = padahal ~, tidak cocok dengan hasil yang wajar."
+   },
+   {
+    "q": "天気予報（　　）、明日は 雨です。",
+    "opts": {
+     "a": "について",
+     "b": "によると"
+    },
+    "ans": "b",
+    "why": "〜によると = menurut ~ (sumber informasi). 〜について = mengenai ~."
+   },
+   {
+    "q": "日本へ 行っ（　　）、この 時計を 買いました。",
+    "opts": {
+     "a": "たとき",
+     "b": "るとき"
+    },
+    "ans": "a",
+    "why": "行ったとき = ketika sudah sampai di Jepang (tindakan selesai). 行くとき = ketika akan pergi."
+   },
+   {
+    "q": "図書館で 大きい 声で 話し（　　）。",
+    "opts": {
+     "a": "なくてもいいです",
+     "b": "てはいけません"
+    },
+    "ans": "b",
+    "why": "〜てはいけない = tidak boleh ~ (larangan). Di perpustakaan, berbicara keras dilarang."
+   },
+   {
+    "q": "コーヒーと 紅茶と どちらに しますか。——紅茶（　　）します。",
+    "opts": {
+     "a": "が",
+     "b": "に"
+    },
+    "ans": "b",
+    "why": "〜にする = memilih ~. Partikel に menandai pilihan: 紅茶にします."
+   }
+  ]
+ }
+];
+
+const circled = ["❶","❷","❸","❹","❺"];
+
+/* =========================================================
+   RENDER
+========================================================= */
+function choiceHTML(name, key, label){
+  return '<label class="choice"><input type="radio" name="'+name+'" value="'+key+'"><span>'+label+'</span></label>';
+}
+
+function renderDrills(){
+  let h = "";
+  drills.forEach(dr=>{
+    h += '<section class="drill"><div class="drill-head"><span class="tag">'+dr.tag+'</span><span class="ins">'+dr.ins+'</span><span class="pt">1点×5</span></div>';
+    dr.items.forEach((d,i)=>{
+      const q = d.q.replace("（　　）",'<span class="blank">　　</span>');
+      h += '<div class="q'+(dr.inline?' inline':'')+'" id="q'+dr.id+i+'"><div class="q-row"><span class="qn">'+circled[i]+'</span><div class="qtext">'+q+'</div></div><div class="choices">';
+      Object.keys(d.opts).forEach(k=>{ h += choiceHTML(dr.id+i, k, k+". "+d.opts[k]); });
+      h += '</div><div class="fb"></div></div>';
+    });
+    h += '</section>';
+  });
+  document.getElementById("drills").innerHTML = h;
+}
+
+/* =========================================================
+   LOGIC
+========================================================= */
+function val(name){
+  const el = document.querySelector('input[name="'+name+'"]:checked');
+  return el ? el.value : null;
+}
+function setState(box, ok, html){
+  box.classList.remove("correct","wrong");
+  box.classList.add(ok ? "correct" : "wrong");
+  box.querySelector(".fb").innerHTML = html;
+}
+function markKey(name, key){
+  document.querySelectorAll('input[name="'+name+'"]').forEach(inp=>{
+    if(inp.value===key) inp.closest(".choice").classList.add("is-key");
+  });
+}
+function plain(s){ return s.replace(/<[^>]+>/g,""); }
+
+function submitAll(){
+  const warn = document.getElementById("warn");
+  warn.textContent = "";
+
+  let empty = 0;
+  drills.forEach(dr=>dr.items.forEach((d,i)=>{ if(!val(dr.id+i)) empty++; }));
+  if(empty>0){
+    const go = confirm(empty + " soal belum dijawab dan akan dihitung salah. Tetap kirim jawaban?");
+    if(!go){ warn.textContent = "Lengkapi dulu jawabanmu, lalu tekan Kirim Jawaban."; return; }
+  }
+
+  const sc = {A:0,B:0,C:0};
+  const rows = [];
+
+  drills.forEach(dr=>{
+    dr.items.forEach((d,i)=>{
+      const name = dr.id+i, u = val(name), ok = u===d.ans;
+      if(ok) sc[dr.id]++;
+      setState(document.getElementById("q"+name), ok,
+        (ok ? "<b>Benar!</b> " : "<b>Salah.</b> Jawaban yang benar: <b>"+d.ans+". "+d.opts[d.ans]+"</b>. ") + d.why);
+      markKey(name, d.ans);
+      rows.push({g:dr.id, n:circled[i], q:plain(d.q), ans:d.ans+". "+d.opts[d.ans], why:d.why, ok:ok});
+    });
+  });
+
+  const total = sc.A+sc.B+sc.C;
+  document.getElementById("scoreText").innerHTML = total + ' <small>/ 15</small>';
+  const pct = total/15;
+  let msg = "Terus berlatih, kamu pasti bisa! Baca lagi pembahasan di setiap soal.";
+  if(pct===1) msg = "Sempurna! Semua jawabanmu benar. 🎉";
+  else if(pct>=0.8) msg = "Bagus sekali! Tinggal sedikit lagi menuju nilai sempurna.";
+  else if(pct>=0.6) msg = "Lumayan! Pelajari lagi soal yang masih salah.";
+  document.getElementById("scoreMsg").textContent = msg;
+  document.getElementById("scoreBreak").innerHTML =
+    '<span class="pill">Drill A: '+sc.A+'/5</span><span class="pill">Drill B: '+sc.B+'/5</span><span class="pill">Drill C: '+sc.C+'/5</span>';
+  document.getElementById("result").classList.add("show");
+
+  let t = '<thead><tr><th>No.</th><th>Jawaban</th><th>Pembahasan</th><th>Hasilmu</th></tr></thead><tbody>';
+  let last = "";
+  const names = {A:"ドリル A",B:"ドリル B",C:"ドリル C"};
+  rows.forEach(r=>{
+    if(r.g!==last){ t += '<tr class="grp"><td colspan="4">'+names[r.g]+'</td></tr>'; last = r.g; }
+    t += '<tr><td>'+r.n+'</td><td><b>'+r.ans+'</b></td><td>'+r.why+'</td><td class="'+(r.ok?"yes":"no")+'">'+(r.ok?"✔ Benar":"✘ Salah")+'</td></tr>';
+  });
+  t += '</tbody>';
+  document.getElementById("keyTable").innerHTML = t;
+  document.getElementById("keySection").classList.add("show");
+
+  document.querySelectorAll("#drills input").forEach(i=>i.disabled = true);
+  const b = document.getElementById("submitBtn");
+  b.disabled = true; b.style.opacity = ".5";
+  document.getElementById("result").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function resetAll(){
+  renderDrills();
+  document.getElementById("warn").textContent = "";
+  document.getElementById("result").classList.remove("show");
+  document.getElementById("keySection").classList.remove("show");
+  const b = document.getElementById("submitBtn");
+  b.disabled = false; b.style.opacity = "";
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+renderDrills();
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+function toggleDropdown(id){
+  document.querySelectorAll(".dropdown-menu").forEach(function(m){ if(m.id!=id) m.classList.remove("show"); });
+  document.getElementById(id).classList.toggle("show");
+}
+document.addEventListener("click",function(e){
+  if(!e.target.closest(".dropdown")){
+    document.querySelectorAll(".dropdown-menu").forEach(function(m){ m.classList.remove("show"); });
+  }
+});
+function toggleMobileMenu(){
+  const m = document.getElementById("mobileMenu");
+  if(m) m.classList.toggle("show");
+}
+function toggleMobileAccordion(btn){
+  const panel = btn.nextElementSibling;
+  const isOpen = btn.classList.contains("open");
+  document.querySelectorAll(".mobile-acc-btn").forEach(function(b){
+    if(b!==btn){ b.classList.remove("open"); if(b.nextElementSibling) b.nextElementSibling.classList.remove("show"); }
+  });
+  btn.classList.toggle("open", !isOpen);
+  if(panel) panel.classList.toggle("show", !isOpen);
+}
+window.addEventListener("resize",function(){
+  document.querySelectorAll(".dropdown-menu").forEach(function(m){ m.classList.remove("show"); });
+  if(window.innerWidth>760){
+    const mm = document.getElementById("mobileMenu");
+    if(mm) mm.classList.remove("show");
+    document.querySelectorAll(".mobile-acc-btn").forEach(function(b){ b.classList.remove("open"); });
+    document.querySelectorAll(".mobile-acc-panel").forEach(function(p){ p.classList.remove("show"); });
+  }
+});
+</script>
+
+</body>
+</html>
