@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Slip Gaji di Jepang (給与明細): Cara Membaca dan Memeriksa | PRIME TEKIPAKI RAYA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFF;--bg-alt:#F5F7FA;--ink:#12182A;--soft:#5B6478;--navy:#1B3160;--navy-d:#0F1F42;--acc:#3E6FB5;--acc-s:#DCE6F5;--line:rgba(18,24,42,.14);--line-s:rgba(18,24,42,.28);--on:#F4F6FA;}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141F;--bg-alt:#161B29;--ink:#ECEEF4;--soft:#A6ADBE;--navy:#5578B8;--navy-d:#3A5A96;--acc:#8FB0E6;--acc-s:#1E2B45;--line:rgba(236,238,244,.14);--line-s:rgba(236,238,244,.28);}}
+:root[data-theme="dark"]{--bg:#10141F;--bg-alt:#161B29;--ink:#ECEEF4;--soft:#A6ADBE;--navy:#5578B8;--navy-d:#3A5A96;--acc:#8FB0E6;--acc-s:#1E2B45;--line:rgba(236,238,244,.14);--line-s:rgba(236,238,244,.28);}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:calc(80px + env(safe-area-inset-top,0px));}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans JP',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+h1,h2,h3{font-family:'Shippori Mincho',serif;font-weight:700;margin:0;line-height:1.3;}
+a{color:inherit;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+.narrow{max-width:760px;margin:0 auto;padding:0 24px;}
+.wide{max-width:900px;margin:0 auto;padding:0 24px;}
+header{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.nav{padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.mark{width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 34% 30%,var(--navy),var(--navy-d) 72%);flex-shrink:0;}
+.bn{font-family:'Shippori Mincho',serif;font-weight:700;font-size:1.25rem;letter-spacing:.03em;}
+.bs{display:block;font-size:.66rem;color:var(--soft);letter-spacing:.14em;}
+.dd{position:relative;}
+.mbtn{display:flex;align-items:center;gap:8px;background:none;border:1px solid var(--line-s);color:var(--ink);padding:10px 16px;border-radius:3px;font-size:.9rem;font-weight:600;font-family:inherit;cursor:pointer;}
+.mbtn:hover{border-color:var(--navy);}
+.mbtn:focus-visible,.btn:focus-visible,.tr:focus-visible{outline:2px solid var(--acc);outline-offset:2px;}
+.chev{width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s;}
+.dd.open .chev{transform:rotate(-135deg) translateY(1px);}
+nav.links{position:absolute;top:calc(100% + 10px);right:0;z-index:60;display:flex;flex-direction:column;min-width:240px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px;box-shadow:0 14px 34px rgba(18,24,42,.16);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;}
+.dd.open nav.links{opacity:1;visibility:visible;transform:none;}
+nav.links a{text-decoration:none;font-size:.93rem;padding:11px 14px;border-radius:4px;}
+nav.links a:hover{background:var(--bg-alt);}
+.btn{display:inline-block;background:var(--navy);color:var(--on);text-decoration:none;padding:11px 22px;border-radius:3px;font-size:.9rem;font-weight:600;}
+.btn:hover{background:var(--navy-d);}
+.hero{position:relative;padding:84px 0 70px;overflow:hidden;background:linear-gradient(180deg,var(--bg-alt),var(--bg));}
+.orb{position:absolute;right:-140px;top:-120px;width:540px;height:540px;border-radius:50%;background:radial-gradient(circle at 38% 32%,var(--acc) 0%,var(--acc-s) 62%,transparent 75%);opacity:.55;}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.totop{transition:none}}
+.hero .narrow{position:relative;z-index:2;max-width:860px;}
+.eyebrow{color:var(--navy);font-weight:600;font-size:.9rem;letter-spacing:.06em;margin-bottom:16px;}
+.hero h1{font-size:clamp(2.1rem,4.6vw,3.3rem);}
+.lead{margin:20px 0 22px;color:var(--soft);font-size:1.1rem;line-height:1.8;max-width:60ch;}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.85rem;color:var(--soft);padding-top:16px;border-top:1px solid var(--line);}
+.toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+.toc a{text-decoration:none;font-size:.85rem;padding:8px 14px;border:1px solid var(--line-s);border-radius:20px;}
+.toc a:hover{background:var(--acc-s);}
+article{padding:70px 0 20px;}
+.chapter{padding:46px 0;border-top:1px solid var(--line);}
+.chapter:first-of-type{border-top:none;}
+.no{font-size:.8rem;letter-spacing:.1em;color:var(--navy);font-weight:600;margin-bottom:10px;}
+.chapter h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:20px;}
+.chapter h3{font-size:1.2rem;margin:30px 0 10px;}
+.chapter p{color:var(--soft);line-height:1.95;margin:0 0 18px;font-size:1.02rem;}
+.chapter p b,.chapter li b{color:var(--ink);font-weight:600;}
+.jp{font-family:'Shippori Mincho',serif;font-weight:700;color:var(--ink);}
+.yomi{color:var(--navy);font-size:.85rem;}
+.quote{margin:26px 0;padding:22px 26px;border-left:3px solid var(--acc);background:var(--acc-s);line-height:1.85;font-size:1.02rem;}
+.quote .jp{display:block;font-size:1.3rem;margin-bottom:4px;}
+.tbl-wrap{border:1px solid var(--line-s);border-radius:4px;overflow-x:auto;background:var(--bg);margin:22px 0;}
+table{width:100%;border-collapse:collapse;min-width:560px;}
+th,td{text-align:left;vertical-align:top;padding:13px 16px;font-size:.93rem;line-height:1.7;border-top:1px solid var(--line-s);}
+thead th{background:var(--navy);color:var(--on);font-family:'Shippori Mincho',serif;font-size:1.02rem;border-top:none;}
+tbody th{background:var(--bg-alt);font-weight:600;width:26%;}
+td{color:var(--soft);}
+.dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:22px 0;}
+.box{border:1px solid var(--line-s);border-radius:4px;padding:20px 22px;}
+.box h4{margin:0 0 10px;font-family:'Shippori Mincho',serif;font-size:1.1rem;}
+.box.ok h4{color:var(--navy);}
+.box ul{margin:0;padding-left:20px;color:var(--soft);line-height:1.85;font-size:.95rem;}
+.steps{list-style:none;margin:22px 0;padding:0;counter-reset:s;}
+.steps li{counter-increment:s;display:grid;grid-template-columns:48px 1fr;gap:12px;padding:15px 0;border-top:1px solid var(--line);color:var(--soft);line-height:1.8;}
+.steps li:last-child{border-bottom:1px solid var(--line);}
+.steps li::before{content:counter(s);font-family:'Shippori Mincho',serif;font-size:1.6rem;font-weight:700;color:var(--acc);}
+
+/* Contoh slip gaji */
+.slip-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;font-size:.82rem;color:var(--soft);}
+.tr{background:none;border:1px solid var(--line-s);color:var(--ink);padding:8px 14px;border-radius:3px;font-size:.85rem;font-weight:600;font-family:inherit;cursor:pointer;}
+.tr:hover,.tr[aria-pressed="true"]{background:var(--acc-s);border-color:var(--acc);}
+.slip-wrap .tbl-wrap{border:2px solid var(--ink);border-radius:2px;margin:0;}
+table.slip{min-width:640px;table-layout:fixed;}
+.slip th,.slip td{border:1px solid var(--line-s);padding:9px 8px;width:auto;line-height:1.45;}
+.slip th{background:var(--bg-alt);color:var(--ink);text-align:center;font-weight:500;font-size:.8rem;vertical-align:middle;}
+.slip td{text-align:right;color:var(--ink);font-variant-numeric:tabular-nums;font-size:.95rem;}
+.slip td.l{text-align:left;}
+.slip td.ttl{text-align:center;font-family:'Shippori Mincho',serif;font-size:1.45rem;font-weight:700;letter-spacing:.3em;padding:16px;background:var(--bg);}
+.slip td.ttl span{display:block;font-size:.85rem;letter-spacing:.1em;font-weight:500;color:var(--soft);margin-top:4px;}
+.slip td.sec{background:var(--navy);color:var(--on);text-align:left;font-family:'Shippori Mincho',serif;font-weight:700;letter-spacing:.2em;padding:7px 12px;}
+.slip td.hl{background:var(--acc-s);font-weight:700;}
+.slip th.big{font-size:1rem;font-family:'Shippori Mincho',serif;background:var(--acc-s);}
+.slip td.net{font-size:1.6rem;font-weight:700;font-family:'Shippori Mincho',serif;background:var(--acc-s);padding:14px 16px;}
+.slip small{display:block;color:var(--navy);font-weight:500;font-size:.7rem;line-height:1.4;margin-top:3px;}
+.slip small i{display:block;font-style:italic;font-weight:600;}
+.slip td small{text-align:left;color:var(--soft);}
+.slip td.sec small{display:inline;color:var(--on);opacity:.9;font-family:'Noto Sans JP',sans-serif;letter-spacing:0;font-size:.78rem;margin-left:10px;}
+.slip td.sec small i{display:inline;}
+.slip td.ttl small{text-align:center;letter-spacing:0;font-family:'Noto Sans JP',sans-serif;font-size:.72rem;}
+.slip.hide small{display:none;}
+.slip-note{margin:12px 0 0;font-size:.82rem;color:var(--soft);line-height:1.7;}
+
+.summary{background:var(--bg-alt);padding:70px 0;margin-top:30px;}
+.contact{background:var(--ink);color:var(--bg);border-radius:4px;padding:52px;display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:center;}
+.contact h2{font-size:clamp(1.5rem,3vw,2rem);max-width:18ch;}
+.contact p{opacity:.75;line-height:1.8;margin:14px 0 24px;max-width:44ch;}
+.contact .btn{background:var(--acc);color:var(--bg);}
+.cd div{border-top:1px solid rgba(128,128,128,.4);padding-top:14px;margin-bottom:18px;}
+.cd span{display:block;opacity:.6;font-size:.78rem;margin-bottom:4px;}
+footer{padding:36px 0;border-top:1px solid var(--line);color:var(--soft);font-size:.85rem;}
+.fb{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.totop{position:fixed;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:70;width:48px;height:48px;border-radius:50%;border:none;background:var(--navy);color:var(--on);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 22px rgba(18,24,42,.28);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s,background .2s;}
+.totop.show{opacity:1;visibility:visible;transform:none;}
+.totop:hover{background:var(--navy-d);}
+.totop:focus-visible{outline:2px solid var(--acc);outline-offset:3px;}
+.totop svg{width:22px;height:22px;}
+@media(max-width:760px){.dd-grid,.contact{grid-template-columns:1fr;}.contact{padding:34px 24px;}.hero{padding:64px 0 54px;}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand"><span class="mark"></span><span><span class="bn">PRIME TEKIPAKI RAYA</span><span class="bs">プレム　テキパキ　ラヤ</span></span></a>
+    <div class="dd" id="dd">
+      <button class="mbtn" id="mt" aria-haspopup="true" aria-expanded="false">Menu <span class="chev"></span></button>
+      <nav class="links" id="nl">
+        <a href="index.html">Beranda</a>
+        <a href="#pengenalan">Mengenal Slip Gaji</a>
+        <a href="#contoh">Contoh Slip Gaji</a>
+        <a href="#pendapatan">Rincian Pendapatan</a>
+        <a href="#potongan">Rincian Potongan</a>
+        <a href="#lembur">Menghitung Lembur</a>
+        <a href="#periksa">Cara Memeriksa</a>
+        <a href="#ringkasan">Ringkasan</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="orb" aria-hidden="true"></div>
+  <div class="narrow">
+    <div class="eyebrow">Dunia Kerja Jepang · 給与明細</div>
+    <h1>Slip Gaji di Jepang: Cara Membaca dan Memeriksanya</h1>
+    <p class="lead">Banyak pekerja baru kaget karena uang yang masuk rekening lebih kecil dari gaji di kontrak. Panduan ini membedah slip gaji Jepang baris demi baris, lengkap dengan contoh slip dan perhitungannya.</p>
+    <div class="meta"><span>Panduan dunia kerja</span><span>±15 menit baca</span><span>Cocok untuk calon pekerja &amp; peserta magang</span></div>
+    <div class="toc">
+      <a href="#pengenalan">1 Pengenalan</a><a href="#contoh">2 Contoh Slip</a><a href="#pendapatan">3 Pendapatan</a><a href="#potongan">4 Potongan</a><a href="#lembur">5 Lembur</a><a href="#periksa">6 Memeriksa</a><a href="#ringkasan">Ringkasan</a>
+    </div>
+  </div>
+</section>
+
+<article>
+<div class="narrow">
+
+  <div class="chapter" id="pengenalan">
+    <div class="no">BAB 1</div>
+    <h2>Mengenal slip gaji (給与明細書)</h2>
+    <p>Slip gaji disebut <span class="jp">給与明細書</span> <span class="yomi">(kyūyo meisaisho)</span> atau <span class="jp">給料明細</span> <span class="yomi">(kyūryō meisai)</span>. Bentuknya bisa kertas yang dibagikan, berkas PDF, atau halaman di aplikasi perusahaan. Isinya selalu terdiri dari tiga kelompok:</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Bagian</th><th>Isi</th></tr></thead>
+      <tbody>
+        <tr><th><span class="jp">勤怠</span><br><span class="yomi">kintai</span></th><td>Catatan kehadiran: hari kerja, cuti, jam kerja, dan jam lembur.</td></tr>
+        <tr><th><span class="jp">支給</span><br><span class="yomi">shikyū</span></th><td>Semua uang yang kamu dapat: gaji pokok, tunjangan, dan upah lembur.</td></tr>
+        <tr><th><span class="jp">控除</span><br><span class="yomi">kōjo</span></th><td>Semua yang dipotong: asuransi, pajak, dan biaya lain seperti asrama.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="quote"><span class="jp">総支給額 − 控除合計 = 差引支給額</span><span class="yomi">sōshikyūgaku − kōjo gōkei = sashihiki shikyūgaku</span><br>Gaji kotor dikurangi total potongan sama dengan uang yang ditransfer ke rekeningmu. Rumus inilah yang menjawab pertanyaan "kenapa gajiku lebih kecil dari kontrak?".</div>
+  </div>
+
+  <div class="chapter" id="contoh">
+    <div class="no">BAB 2</div>
+    <h2>Contoh slip gaji</h2>
+    <p>Berikut contoh slip untuk pekerja pabrik, dibuat mirip format yang umum dipakai di Jepang. Nama perusahaan, orang, dan seluruh angkanya <b>fiktif</b>, hanya untuk belajar membaca. Di bawah setiap kolom tertulis <b>cara baca (romaji)</b> dan <b>artinya</b>. Tekan tombol bila ingin melihat tampilan aslinya saja.</p>
+  </div>
+</div>
+
+<div class="wide slip-wrap">
+  <div class="slip-bar"><span>Geser ke samping bila layar sempit.</span><button class="tr" id="tr" type="button" aria-pressed="false">Sembunyikan cara baca &amp; arti</button></div>
+  <div class="tbl-wrap"><table class="slip" id="slip">
+    <tr><td class="ttl" colspan="5">給与明細書<span>令和8年10月分</span><small><i>Kyūyo meisaisho · Reiwa 8-nen 10-gatsu-bun</i>Slip gaji · Gaji bulan Oktober 2026</small></td></tr>
+    <tr><th>会社名<small><i>kaisha-mei</i>Nama perusahaan</small></th><td class="l" colspan="2">株式会社サンプル製作所<small><i>Kabushiki gaisha Sanpuru Seisakusho</i>PT Sample Manufacturing</small></td><th>支給日<small><i>shikyūbi</i>Tanggal gajian</small></th><td>令和8年11月25日<small><i>Reiwa 8-nen 11-gatsu 25-nichi</i>25 November 2026</small></td></tr>
+    <tr><th>所属<small><i>shozoku</i>Bagian</small></th><td class="l" colspan="2">製造部 第一課<small><i>Seizōbu · Dai-ichi-ka</i>Dept. Produksi, Seksi 1</small></td><th>社員番号<small><i>shain bangō</i>Nomor karyawan</small></th><td>0123</td></tr>
+    <tr><th>氏名<small><i>shimei</i>Nama</small></th><td class="l" colspan="2">アンディ サプトラ 様<small><i>Andi Saputra-sama</i>Bapak Andi Saputra</small></td><th>対象期間<small><i>taishō kikan</i>Periode hitung</small></th><td>10/1 〜 10/31<small><i>jū-gatsu tsuitachi kara misoka</i>1–31 Oktober</small></td></tr>
+    <tr><td class="sec" colspan="5">勤 怠<small><i>kintai</i> · Kehadiran</small></td></tr>
+    <tr><th>出勤日数<small><i>shukkin nissū</i>Hari masuk kerja</small></th><th>欠勤日数<small><i>kekkin nissū</i>Hari absen</small></th><th>有給取得<small><i>yūkyū shutoku</i>Cuti berbayar dipakai</small></th><th>有給残日数<small><i>yūkyū zan nissū</i>Sisa cuti berbayar</small></th><th>所定労働時間<small><i>shotei rōdō jikan</i>Jam kerja standar</small></th></tr>
+    <tr><td>21 日</td><td>0 日</td><td>1 日</td><td>9 日</td><td>168:00</td></tr>
+    <tr><th>時間外<small><i>jikangai</i>Lembur</small></th><th>深夜<small><i>shinya</i>Jam malam (22.00–05.00)</small></th><th>休日労働<small><i>kyūjitsu rōdō</i>Kerja di hari libur</small></th><th>遅刻早退<small><i>chikoku sōtai</i>Terlambat / pulang awal</small></th><th>実働時間<small><i>jitsudō jikan</i>Jam kerja nyata</small></th></tr>
+    <tr><td>20:00</td><td>2:00</td><td>0:00</td><td>0:00</td><td>188:00</td></tr>
+    <tr><td class="sec" colspan="5">支 給<small><i>shikyū</i> · Pendapatan</small></td></tr>
+    <tr><th>基本給<small><i>kihonkyū</i>Gaji pokok</small></th><th>職務手当<small><i>shokumu teate</i>Tunjangan pekerjaan</small></th><th>通勤手当<small><i>tsūkin teate</i>Tunjangan transport</small></th><th>残業手当<small><i>zangyō teate</i>Upah lembur</small></th><th>深夜手当<small><i>shinya teate</i>Upah kerja malam</small></th></tr>
+    <tr><td>190,000</td><td>10,000</td><td>8,000</td><td>28,775</td><td>576</td></tr>
+    <tr><th>休日手当<small><i>kyūjitsu teate</i>Upah hari libur</small></th><th>住宅手当<small><i>jūtaku teate</i>Tunjangan rumah</small></th><th>皆勤手当<small><i>kaikin teate</i>Tunjangan hadir penuh</small></th><th>課税対象額<small><i>kazei taishōgaku</i>Dasar pajak</small></th><th>総支給額<small><i>sōshikyūgaku</i>Gaji kotor</small></th></tr>
+    <tr><td>0</td><td>0</td><td>0</td><td>194,324</td><td class="hl">237,351</td></tr>
+    <tr><td class="sec" colspan="5">控 除<small><i>kōjo</i> · Potongan</small></td></tr>
+    <tr><th>健康保険料<small><i>kenkō hokenryō</i>Premi asuransi kesehatan</small></th><th>介護保険料<small><i>kaigo hokenryō</i>Premi asuransi perawatan</small></th><th>厚生年金保険料<small><i>kōsei nenkin hokenryō</i>Premi pensiun karyawan</small></th><th>雇用保険料<small><i>koyō hokenryō</i>Premi asuransi kerja</small></th><th>社会保険料計<small><i>shakai hokenryō kei</i>Total asuransi sosial</small></th></tr>
+    <tr><td>11,880</td><td>―</td><td>21,960</td><td>1,187</td><td class="hl">35,027</td></tr>
+    <tr><th>所得税<small><i>shotokuzei</i>Pajak penghasilan</small></th><th>住民税<small><i>jūminzei</i>Pajak daerah</small></th><th>寮費<small><i>ryōhi</i>Biaya asrama</small></th><th>水道光熱費<small><i>suidō kōnetsuhi</i>Air, listrik, gas</small></th><th>控除合計<small><i>kōjo gōkei</i>Total potongan</small></th></tr>
+    <tr><td>4,590</td><td>8,300</td><td>25,000</td><td>8,500</td><td class="hl">81,417</td></tr>
+    <tr><th class="big" colspan="2">差引支給額<small><i>sashihiki shikyūgaku</i>Gaji bersih (yang ditransfer)</small></th><td class="net" colspan="3">155,934 円</td></tr>
+    <tr><th>備考<small><i>bikō</i>Catatan</small></th><td class="l" colspan="4">振込先：○○銀行 △△支店 普通 ＊＊＊＊123<small><i>Furikomisaki: ○○ Ginkō, △△ Shiten, Futsū</i>Tujuan transfer: Bank ○○ cabang △△, rekening tabungan biasa</small></td></tr>
+  </table></div>
+  <p class="slip-note">Satuan angka dalam yen. <span class="jp">円</span> <span class="yomi">(en)</span> = yen, <span class="jp">日</span> <span class="yomi">(nichi)</span> = hari, <span class="jp">様</span> <span class="yomi">(sama)</span> = sapaan hormat seperti "Bapak/Ibu". Kolom 介護保険料 diberi tanda ― karena asuransi ini hanya dipotong dari usia 40 tahun. Tarif dan angka pajak di contoh ini hanya ilustrasi, dan nilainya bisa berbeda untuk setiap orang, daerah, dan tahun.</p>
+</div>
+
+<div class="narrow">
+  <div class="chapter" style="border-top:none;padding-top:30px">
+    <h3>Cara membaca contoh di atas</h3>
+    <ol class="steps">
+      <li><div><b>Mulai dari 勤怠 <span class="yomi">(kintai, kehadiran)</span>.</b> Pekerja ini masuk 21 hari, memakai cuti berbayar 1 hari, dan lembur 20 jam (2 jam di antaranya malam hari).</div></li>
+      <li><div><b>Lihat 総支給額 <span class="yomi">(sōshikyūgaku, gaji kotor)</span>:</b> ¥237,351. Ini jumlah sebelum dipotong.</div></li>
+      <li><div><b>Lihat 控除合計 <span class="yomi">(kōjo gōkei, total potongan)</span>:</b> ¥81,417. Sekitar ¥47,917 adalah asuransi dan pajak, sisanya biaya asrama dan air-listrik.</div></li>
+      <li><div><b>Hasil akhir 差引支給額 <span class="yomi">(sashihiki shikyūgaku)</span>:</b> ¥155,934. Inilah <span class="jp">手取り</span> <span class="yomi">(tedori)</span> yang masuk rekening. Potongan wajib (asuransi dan pajak) kira-kira 20% dari gaji kotor, sedangkan sisanya tergantung kontrak.</div></li>
+    </ol>
+  </div>
+
+  <div class="chapter" id="pendapatan">
+    <div class="no">BAB 3</div>
+    <h2>Rincian bagian pendapatan (支給)</h2>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Istilah</th><th>Arti</th><th>Penjelasan</th></tr></thead>
+      <tbody>
+        <tr><th><span class="jp">基本給</span><br><span class="yomi">kihonkyū</span></th><td>Gaji pokok.</td><td>Dasar dari hampir semua hitungan, termasuk lembur. Harus sesuai kontrak.</td></tr>
+        <tr><th><span class="jp">職務手当</span><br><span class="yomi">shokumu teate</span></th><td>Tunjangan pekerjaan.</td><td>Diberikan untuk tugas atau tanggung jawab tertentu. Nilainya ikut dihitung dalam tarif lembur.</td></tr>
+        <tr><th><span class="jp">通勤手当</span><br><span class="yomi">tsūkin teate</span></th><td>Tunjangan transport.</td><td>Tidak dikenai pajak penghasilan sampai batas tertentu, tetapi umumnya tetap ikut dihitung untuk asuransi sosial.</td></tr>
+        <tr><th><span class="jp">住宅手当</span><br><span class="yomi">jūtaku teate</span></th><td>Tunjangan tempat tinggal.</td><td>Hanya ada di perusahaan yang menyediakannya.</td></tr>
+        <tr><th><span class="jp">皆勤手当</span><br><span class="yomi">kaikin teate</span></th><td>Tunjangan hadir penuh.</td><td>Hilang atau berkurang jika absen atau terlambat. Cek syaratnya di aturan kerja.</td></tr>
+        <tr><th><span class="jp">残業手当</span><br><span class="yomi">zangyō teate</span></th><td>Upah lembur.</td><td>Juga disebut <span class="jp">時間外手当</span> <span class="yomi">(jikangai teate)</span>. Lihat Bab 5.</td></tr>
+        <tr><th><span class="jp">深夜手当</span><br><span class="yomi">shinya teate</span></th><td>Tambahan kerja malam.</td><td>Untuk jam kerja pukul 22.00 sampai 05.00.</td></tr>
+        <tr><th><span class="jp">休日手当</span><br><span class="yomi">kyūjitsu teate</span></th><td>Upah kerja hari libur.</td><td>Untuk bekerja di hari libur menurut hukum.</td></tr>
+        <tr><th><span class="jp">課税対象額</span><br><span class="yomi">kazei taishōgaku</span></th><td>Dasar pajak.</td><td>Gaji kotor dikurangi tunjangan bebas pajak dan asuransi sosial. Dari angka ini pajak penghasilan dihitung.</td></tr>
+        <tr><th><span class="jp">総支給額</span><br><span class="yomi">sōshikyūgaku</span></th><td>Gaji kotor.</td><td>Jumlah seluruh pendapatan sebelum potongan.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="chapter" id="potongan">
+    <div class="no">BAB 4</div>
+    <h2>Rincian bagian potongan (控除)</h2>
+    <p>Potongan terbagi dua. <b>Potongan wajib menurut hukum</b> berupa asuransi sosial dan pajak. Sisanya adalah <b>potongan berdasarkan kesepakatan</b>, misalnya asrama dan makan, yang harus ada dasar tertulisnya.</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Istilah</th><th>Arti</th><th>Penjelasan</th></tr></thead>
+      <tbody>
+        <tr><th><span class="jp">健康保険料</span><br><span class="yomi">kenkō hokenryō</span></th><td>Asuransi kesehatan.</td><td>Membuat biaya berobat kamu hanya sebagian (umumnya 30%). Tarif berbeda tiap daerah dan jenis asuransi, dan dibagi dua dengan perusahaan.</td></tr>
+        <tr><th><span class="jp">介護保険料</span><br><span class="yomi">kaigo hokenryō</span></th><td>Asuransi perawatan lansia.</td><td>Mulai dipotong pada usia 40 tahun, jadi pekerja muda biasanya tidak memilikinya.</td></tr>
+        <tr><th><span class="jp">厚生年金保険料</span><br><span class="yomi">kōsei nenkin hokenryō</span></th><td>Dana pensiun karyawan.</td><td>Tarif totalnya 18,3% dari gaji standar, ditanggung dua pihak (9,15% oleh pekerja). Pekerja asing yang pulang ke negaranya dapat mengajukan pengembalian sebagian lewat <span class="jp">脱退一時金</span> <span class="yomi">(dattai ichijikin)</span>. Cek syarat terbaru sebelum pulang.</td></tr>
+        <tr><th><span class="jp">雇用保険料</span><br><span class="yomi">koyō hokenryō</span></th><td>Asuransi ketenagakerjaan.</td><td>Menjamin tunjangan bila kehilangan pekerjaan. Tarifnya kecil dan berubah dari tahun ke tahun.</td></tr>
+        <tr><th><span class="jp">所得税</span><br><span class="yomi">shotokuzei</span></th><td>Pajak penghasilan nasional.</td><td>Dipotong setiap bulan dari tabel pajak (<span class="jp">源泉徴収</span> <span class="yomi">gensen chōshū</span>). Selisihnya dihitung ulang saat <span class="jp">年末調整</span> <span class="yomi">(nenmatsu chōsei)</span> di akhir tahun.</td></tr>
+        <tr><th><span class="jp">住民税</span><br><span class="yomi">jūminzei</span></th><td>Pajak daerah.</td><td>Dihitung dari penghasilan tahun sebelumnya, sehingga pekerja yang baru datang biasanya belum dipotong di tahun pertama, lalu mulai dipotong setelahnya.</td></tr>
+        <tr><th><span class="jp">寮費・社宅費</span><br><span class="yomi">ryōhi · shatakuhi</span></th><td>Biaya asrama atau rumah dinas.</td><td>Bukan potongan wajib hukum. Harus tercantum di kontrak atau kesepakatan tertulis.</td></tr>
+        <tr><th><span class="jp">水道光熱費</span><br><span class="yomi">suidō kōnetsuhi</span></th><td>Air, listrik, dan gas.</td><td>Jika ditagih lewat perusahaan. Minta rincian cara hitungnya.</td></tr>
+        <tr><th><span class="jp">控除合計</span><br><span class="yomi">kōjo gōkei</span></th><td>Total potongan.</td><td>Jumlah semua potongan di atas.</td></tr>
+        <tr><th><span class="jp">差引支給額</span><br><span class="yomi">sashihiki shikyūgaku</span></th><td>Gaji bersih.</td><td>Sering disebut juga <span class="jp">振込額</span> (furikomigaku), yaitu jumlah yang masuk rekening.</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Cara asuransi pada contoh dihitung</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Potongan</th><th>Hitungan pada contoh</th><th>Hasil</th></tr></thead>
+      <tbody>
+        <tr><th>Gaji standar (<span class="jp">標準報酬月額</span> <span class="yomi">hyōjun hōshū getsugaku</span>)</th><td>Gaji kotor ¥237,351 masuk golongan ¥230,000 sampai kurang dari ¥250,000, sehingga gaji standarnya ¥240,000.</td><td>¥240,000</td></tr>
+        <tr><th>健康保険料</th><td>¥240,000 × 4,95% (tarif contoh, bagian pekerja)</td><td>¥11,880</td></tr>
+        <tr><th>厚生年金保険料</th><td>¥240,000 × 9,15%</td><td>¥21,960</td></tr>
+        <tr><th>雇用保険料</th><td>¥237,351 × 0,5% (tarif contoh, dibulatkan)</td><td>¥1,187</td></tr>
+        <tr><th>Total asuransi</th><td>11,880 + 21,960 + 1,187</td><td>¥35,027</td></tr>
+        <tr><th><span class="jp">課税対象額</span></th><td>237,351 − 8,000 (transport bebas pajak) − 35,027</td><td>¥194,324</td></tr>
+      </tbody>
+    </table></div>
+    <p>Pajak penghasilan ¥4,590 pada contoh diambil dari tabel pajak (kolom <span class="jp">甲欄</span> <span class="yomi">(kō-ran)</span> dengan nol tanggungan), dan angkanya hanya contoh. Pajak naik bila gaji naik dan bisa lebih tinggi bila dokumen pajak belum diserahkan ke perusahaan (kolom <span class="jp">乙欄</span> <span class="yomi">otsu-ran</span>).</p>
+    <div class="dd-grid">
+      <div class="box ok"><h4>Potongan yang wajar</h4><ul><li>Asuransi kesehatan, pensiun, dan ketenagakerjaan.</li><li>Pajak penghasilan dan pajak daerah.</li><li>Asrama, makan, dan listrik yang tertulis di kontrak.</li></ul></div>
+      <div class="box"><h4>Perlu ditanyakan</h4><ul><li>Potongan yang tidak ada di kontrak.</li><li>Denda atau potongan "kesalahan kerja" tanpa dasar tertulis.</li><li>Biaya asrama yang tiba-tiba naik tanpa pemberitahuan.</li></ul></div>
+    </div>
+  </div>
+
+  <div class="chapter" id="lembur">
+    <div class="no">BAB 5</div>
+    <h2>Cara menghitung lembur</h2>
+    <p>Upah lembur dihitung dari tarif per jam dikali pengali. Pengali minimum menurut hukum:</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Jenis kerja</th><th>Pengali minimum</th></tr></thead>
+      <tbody>
+        <tr><th><span class="jp">時間外</span> <span class="yomi">jikangai</span></th><td>×1,25 untuk jam di luar batas kerja hukum (8 jam per hari atau 40 jam per minggu).</td></tr>
+        <tr><th>Lembur di atas 60 jam sebulan</th><td>×1,5 untuk jam yang melebihi 60 jam.</td></tr>
+        <tr><th><span class="jp">深夜</span> <span class="yomi">shinya</span> (22.00–05.00)</th><td>Tambahan +0,25 di atas pengali yang berlaku.</td></tr>
+        <tr><th><span class="jp">休日</span> <span class="yomi">kyūjitsu</span> (hari libur hukum)</th><td>×1,35.</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Contoh hitungan dari slip di atas</h3>
+    <ol class="steps">
+      <li><div><b>Tarif per jam.</b> (gaji pokok ¥190,000 + tunjangan pekerjaan ¥10,000) ÷ rata-rata jam kerja bulanan 173,8 jam ≈ <b>¥1,151</b>. Tunjangan transport tidak ikut dihitung.</div></li>
+      <li><div><b>Lembur 20 jam.</b> ¥1,151 × 1,25 × 20 = <b>¥28,775</b> (kolom 残業手当 <span class="yomi">zangyō teate</span>).</div></li>
+      <li><div><b>Tambahan malam 2 jam.</b> ¥1,151 × 0,25 × 2 ≈ <b>¥576</b> (kolom 深夜手当 <span class="yomi">shinya teate</span>).</div></li>
+      <li><div><b>Gaji kotor.</b> 190,000 + 10,000 + 8,000 + 28,775 + 576 = <b>¥237,351</b>.</div></li>
+    </ol>
+    <p>Hitungan di perusahaan bisa sedikit berbeda karena pembulatan dan aturan internal. Selisih besar atau lembur yang tidak muncul sama sekali perlu ditanyakan.</p>
+  </div>
+
+  <div class="chapter" id="periksa">
+    <div class="no">BAB 6</div>
+    <h2>Cara memeriksa slip gaji setiap bulan</h2>
+    <ol class="steps">
+      <li><div><b>Cek periode dan tanggal gajian</b> (<span class="jp">対象期間</span> <span class="yomi">taishō kikan</span>, <span class="jp">支給日</span> <span class="yomi">shikyūbi</span>) sesuai kontrak.</div></li>
+      <li><div><b>Cocokkan jam kerja.</b> Catat sendiri jam masuk dan pulang setiap hari, lalu bandingkan dengan kolom 時間外 <span class="yomi">(jikangai)</span>, 深夜 <span class="yomi">(shinya)</span>, dan 休日労働 <span class="yomi">(kyūjitsu rōdō)</span>.</div></li>
+      <li><div><b>Cek gaji pokok dan tunjangan</b> dengan kontrak kerja (<span class="jp">雇用契約書</span> <span class="yomi">koyō keiyakusho</span>).</div></li>
+      <li><div><b>Hitung ulang lembur</b> dengan rumus di Bab 5, minimal untuk bulan-bulan pertama.</div></li>
+      <li><div><b>Periksa setiap potongan.</b> Pastikan potongan di luar pajak dan asuransi tercantum di kontrak, termasuk jumlahnya.</div></li>
+      <li><div><b>Cocokkan 差引支給額</b> dengan uang yang masuk rekening.</div></li>
+      <li><div><b>Simpan slip</b> minimal beberapa tahun. Berguna untuk pajak, pindah kerja, dan urusan visa.</div></li>
+    </ol>
+    <div class="dd-grid">
+      <div class="box ok"><h4>Lakukan bila ada selisih</h4><ul><li>Tanyakan dengan sopan ke bagian keuangan atau urusan umum.</li><li>Bawa catatan jam kerjamu sendiri.</li><li>Tanyakan rumus, bukan menuduh.</li></ul></div>
+      <div class="box"><h4>Tanda bahaya</h4><ul><li>Lembur tidak dibayar (<span class="jp">サービス残業</span> <span class="yomi">sābisu zangyō</span>).</li><li>Tidak pernah menerima slip gaji.</li><li>Potongan besar tanpa penjelasan.</li><li>Gaji di bawah upah minimum daerah.</li></ul></div>
+    </div>
+    <p>Bila pertanyaan ke perusahaan tidak membuahkan hasil, kamu dapat berkonsultasi ke kantor pengawas ketenagakerjaan setempat (<span class="jp">労働基準監督署</span> <span class="yomi">rōdō kijun kantokusho</span>). Pembimbing atau lembaga yang mengirimmu juga bisa membantu.</p>
+  </div>
+
+</div>
+
+<section class="summary" id="ringkasan">
+  <div class="narrow">
+    <div class="no">RINGKASAN</div>
+    <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:18px">Sepuluh hal tentang slip gaji</h2>
+    <ol class="steps">
+      <li><div>Slip gaji punya tiga bagian: <b>勤怠 (kintai), 支給 (shikyū), 控除 (kōjo)</b>.</div></li>
+      <li><div><b>総支給額 (gaji kotor) − 控除合計 (total potongan) = 差引支給額 (gaji bersih)</b>.</div></li>
+      <li><div>Perhatikan <b>手取り (tedori)</b>, yaitu gaji bersih, bukan hanya gaji kotor.</div></li>
+      <li><div>Potongan wajib: <b>健康保険 (kenkō hoken), 厚生年金 (kōsei nenkin), 雇用保険 (koyō hoken), 所得税 (shotokuzei), 住民税 (jūminzei)</b>.</div></li>
+      <li><div><b>介護保険 (kaigo hoken)</b> baru dipotong mulai usia 40 tahun.</div></li>
+      <li><div><b>住民税 (jūminzei)</b> umumnya mulai dipotong setelah tahun pertama.</div></li>
+      <li><div>Asrama dan biaya lain harus <b>tertulis di kontrak</b>.</div></li>
+      <li><div>Lembur minimal <b>×1,25</b>, malam <b>+0,25</b>, hari libur <b>×1,35</b>.</div></li>
+      <li><div>Catat jam kerjamu sendiri dan <b>cocokkan setiap bulan</b>.</div></li>
+      <li><div>Tanya dengan sopan bila ada selisih, dan <b>simpan semua slip</b>.</div></li>
+    </ol>
+  </div>
+</section>
+
+<div class="wrap" style="padding-bottom:70px">
+  <div class="contact">
+    <div>
+      <h2>Siap belajar budaya dan bahasa Jepang?</h2>
+      <p>Pembelajaran maner dan budaya kerja adalah bagian dari program pelatihan kami. Silakan konsultasi kapan saja.</p>
+      <a href="formulir.html" class="btn">Isi Formulir Pendaftaran</a>
+    </div>
+    <div class="cd">
+      <div><span>Telepon / WhatsApp</span><strong>+62 821 3080 7776</strong></div>
+      <div><span>Email</span><strong>info@tekipaki.co.id</strong></div>
+    </div>
+  </div>
+</div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap fb">
+    <span>© 2026 PRIME TEKIPAKI RAYA. Seluruh hak cipta dilindungi.</span>
+    <a href="index.html" style="text-decoration:none">Kembali ke Beranda</a>
+  </div>
+</footer>
+
+<button class="totop" id="totop" type="button" aria-label="Kembali ke atas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<script>
+  const dd=document.getElementById('dd'),mt=document.getElementById('mt');
+  const close=()=>{dd.classList.remove('open');mt.setAttribute('aria-expanded','false');};
+  mt.addEventListener('click',e=>{e.stopPropagation();mt.setAttribute('aria-expanded',dd.classList.toggle('open')?'true':'false');});
+  document.querySelectorAll('#nl a').forEach(a=>a.addEventListener('click',close));
+  document.addEventListener('click',e=>{if(!dd.contains(e.target))close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+
+  const tr=document.getElementById('tr'),slip=document.getElementById('slip');
+  tr.addEventListener('click',()=>{
+    const on=slip.classList.toggle('hide');
+    tr.setAttribute('aria-pressed',on?'true':'false');
+    tr.textContent=on?'Tampilkan cara baca & arti':'Sembunyikan cara baca & arti';
+  });
+
+  const totop=document.getElementById('totop');
+  const toggleTop=()=>{totop.classList.toggle('show',window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-400);};
+  window.addEventListener('scroll',toggleTop,{passive:true});
+  window.addEventListener('resize',toggleTop);
+  window.addEventListener('load',toggleTop);
+  totop.addEventListener('click',()=>window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'}));
+</script>
+</body>
+</html>
