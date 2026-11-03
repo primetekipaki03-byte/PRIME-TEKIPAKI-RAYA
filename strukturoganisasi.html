@@ -27,7 +27,7 @@ header{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px)
 .dd{position:relative;}
 .mbtn{display:flex;align-items:center;gap:8px;background:none;border:1px solid var(--line-s);color:var(--ink);padding:10px 16px;border-radius:3px;font-size:.9rem;font-weight:600;font-family:inherit;cursor:pointer;}
 .mbtn:hover{border-color:var(--navy);}
-.mbtn:focus-visible,.btn:focus-visible,.slot:focus-within{outline:2px solid var(--acc);outline-offset:2px;}
+.mbtn:focus-visible,.btn:focus-visible{outline:2px solid var(--acc);outline-offset:2px;}
 .chev{width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s;}
 .dd.open .chev{transform:rotate(-135deg) translateY(1px);}
 nav.links{position:absolute;top:calc(100% + 10px);right:0;z-index:60;display:flex;flex-direction:column;min-width:240px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px;box-shadow:0 14px 34px rgba(18,24,42,.16);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;}
@@ -47,15 +47,6 @@ nav.links a:hover{background:var(--bg-alt);}
 .toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
 .toc a{text-decoration:none;font-size:.85rem;padding:8px 14px;border:1px solid var(--line-s);border-radius:20px;}
 .toc a:hover{background:var(--acc-s);}
-.slot{position:relative;margin:0;aspect-ratio:16/9;border-radius:4px;overflow:hidden;cursor:pointer;background:linear-gradient(155deg,var(--navy) 0%,var(--navy-d) 100%);display:flex;align-items:center;justify-content:center;}
-.slot::before{content:"+ " attr(data-label);color:rgba(255,255,255,.75);font-size:.9rem;font-weight:500;text-align:center;padding:0 24px;}
-.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
-.slot input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:3;}
-.slot.has-img{aspect-ratio:auto;display:block;background:var(--bg-alt);}
-.slot.has-img::before{display:none;}
-.slot.has-img img{position:static;display:block;width:100%;height:auto;max-height:80vh;object-fit:contain;}
-.cap{margin:10px 0 0;font-size:.8rem;color:var(--soft);line-height:1.5;}
-.cap [contenteditable]{border-bottom:1px dashed var(--line-s);outline:none;}
 article{padding:70px 0 20px;}
 .chapter{padding:46px 0;border-top:1px solid var(--line);}
 .chapter:first-of-type{border-top:none;}
@@ -85,25 +76,29 @@ td{color:var(--soft);}
 .steps li:last-child{border-bottom:1px solid var(--line);}
 .steps li::before{content:counter(s);font-family:'Shippori Mincho',serif;font-size:1.6rem;font-weight:700;color:var(--acc);}
 
-/* Bagan organisasi */
-.org{margin:28px 0;padding:26px 18px;border:1px solid var(--line-s);border-radius:4px;background:var(--bg-alt);overflow-x:auto;}
-.org-in{min-width:560px;display:flex;flex-direction:column;align-items:center;}
-.lvl{display:flex;justify-content:center;gap:14px;flex-wrap:nowrap;position:relative;padding-top:22px;}
-.lvl:first-child{padding-top:0;}
-.lvl::before{content:"";position:absolute;top:0;left:50%;width:2px;height:22px;background:var(--line-s);}
-.lvl:first-child::before{display:none;}
-.node{background:var(--bg);border:1px solid var(--line-s);border-radius:4px;padding:10px 16px;text-align:center;min-width:130px;}
-.node .jp{display:block;font-size:1.1rem;}
-.node small{display:block;color:var(--soft);font-size:.75rem;margin-top:2px;line-height:1.4;}
-.node.top{background:var(--navy);border-color:var(--navy);}
-.node.top .jp,.node.top small{color:var(--on);}
-.node.fin{border:2px solid var(--acc);background:var(--acc-s);}
-.av{width:44px;height:44px;display:block;margin:0 auto 8px;color:var(--navy);}
-.node.top .av{color:var(--on);}
-.node.fin .av{color:var(--navy);}
-.node{box-shadow:0 2px 0 var(--line);}
-.org-note{font-size:.8rem;color:var(--soft);text-align:center;margin:16px 0 0;}
-
+/* Bagan organisasi (pohon) */
+.org{--ln:var(--soft);margin:28px 0;padding:30px 18px 24px;border:1px solid var(--line-s);border-radius:4px;background:var(--bg);overflow-x:auto;}
+.tree{min-width:660px;display:flex;justify-content:center;}
+.tree ul{list-style:none;margin:0;padding:22px 0 0;display:flex;justify-content:center;position:relative;}
+.tree>ul{padding-top:0;}
+.tree li{position:relative;display:flex;flex-direction:column;align-items:center;padding:22px 8px 0;}
+.tree li::before,.tree li::after{content:"";position:absolute;top:0;width:50%;height:22px;border-top:2px solid var(--ln);}
+.tree li::before{right:50%;}
+.tree li::after{left:50%;}
+.tree li:first-child::before,.tree li:last-child::after{border-top:none;}
+.tree li:last-child::before{border-right:2px solid var(--ln);border-radius:0 8px 0 0;}
+.tree li:first-child::after{border-left:2px solid var(--ln);border-radius:8px 0 0 0;}
+.tree li:only-child{padding-top:0;}
+.tree li:only-child::before,.tree li:only-child::after{display:none;}
+.tree ul ul::before{content:"";position:absolute;top:0;left:50%;height:22px;border-left:2px solid var(--ln);}
+.node{text-align:center;min-width:128px;max-width:160px;padding:8px 10px;border-radius:6px;}
+.node .jp{display:block;font-size:.98rem;line-height:1.35;}
+.node small{display:block;color:var(--soft);font-size:.72rem;line-height:1.45;margin-top:2px;}
+.node.box{background:var(--bg-alt);border:1px solid var(--line);padding:12px 18px;}
+.node.fin{background:var(--acc-s);border:1px solid var(--acc);}
+.av{width:54px;height:54px;display:block;margin:0 auto 6px;}
+.node.box .av{width:64px;height:64px;}
+.org-note{font-size:.8rem;color:var(--soft);text-align:center;margin:18px 0 0;line-height:1.6;}
 .summary{background:var(--bg-alt);padding:70px 0;margin-top:30px;}
 .contact{background:var(--ink);color:var(--bg);border-radius:4px;padding:52px;display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:center;}
 .contact h2{font-size:clamp(1.5rem,3vw,2rem);max-width:18ch;}
@@ -122,12 +117,9 @@ footer{padding:36px 0;border-top:1px solid var(--line);color:var(--soft);font-si
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="avc"><circle cx="50" cy="50" r="42"/></clipPath><symbol id="ava" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="5"/><circle cx="50" cy="37" r="14" fill="currentColor"/><ellipse cx="50" cy="96" rx="40" ry="27" fill="currentColor" clip-path="url(#avc)"/></symbol></defs></svg>
-<!--
-  PANDUAN FOTO
-  Klik kotak biru untuk memilih foto (tersimpan di browser Anda saja), atau taruh file di folder images:
-  struktur-hero.jpeg  direksi.jpeg  keuangan.jpeg
--->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="avc"><circle cx="32" cy="32" r="32"/></clipPath>
+<symbol id="ava" viewBox="0 0 64 64"><g clip-path="url(#avc)"><circle cx="32" cy="32" r="32" style="fill:var(--acc-s)"/><path d="M6 66C6 51 17 45 32 45s26 6 26 21z" fill="#EEF1F6" stroke="#C5CCD9" stroke-width="1"/><rect x="28" y="36" width="8" height="12" fill="#EFB58B"/><path d="M25 45l7 10 7-10z" fill="#fff" stroke="#C5CCD9" stroke-width="1"/><path d="M32 50l-2.6 3.4L32 64l2.6-10.6z" fill="#6F7B8E"/><ellipse cx="32" cy="27" rx="11" ry="13" fill="#F6C9A0"/><path d="M20.5 27C18.5 14 26 9 33 9c8 0 12.5 6 10.5 18-2-6-6-8-11.5-8s-9.500 2-11.500 8z" fill="#1F2430"/></g></symbol>
+<symbol id="avs" viewBox="0 0 64 64"><g clip-path="url(#avc)"><circle cx="32" cy="32" r="32" style="fill:var(--acc-s)"/><path d="M6 66C6 51 17 45 32 45s26 6 26 21z" fill="#27324D"/><rect x="28" y="36" width="8" height="12" fill="#EFB58B"/><path d="M25 45l7 11 7-11z" fill="#fff"/><path d="M32 50l-2.6 3.4L32 64l2.6-10.6z" fill="#8A94A8"/><ellipse cx="32" cy="27" rx="11" ry="13" fill="#F6C9A0"/><path d="M20.5 27C18.5 14 26 9 33 9c8 0 12.5 6 10.5 18-2-6-6-8-11.5-8s-9.500 2-11.500 8z" fill="#1F2430"/></g></symbol></defs></svg>
 <header>
   <div class="nav">
     <a href="index.html" class="brand"><span class="mark"></span><span><span class="bn">PRIME TEKIPAKI RAYA</span><span class="bs">プレム　テキパキ　ラヤ</span></span></a>
@@ -162,13 +154,6 @@ footer{padding:36px 0;border-top:1px solid var(--line);color:var(--soft);font-si
   </div>
 </section>
 
-<div class="narrow" style="margin-top:-20px;position:relative;z-index:3">
-  <figure style="margin:0">
-    <div class="slot" data-key="hero" data-label="Foto utama: suasana kantor atau rapat di Jepang"><img src="images/struktur-hero.jpeg" alt="Suasana kantor Jepang" onerror="this.remove()"><input type="file" accept="image/*" aria-label="Unggah foto utama"></div>
-    <figcaption class="cap">Foto: <span contenteditable="true" spellcheck="false">isi nama fotografer / sumber</span></figcaption>
-  </figure>
-</div>
-
 <article>
 <div class="narrow">
 
@@ -176,18 +161,22 @@ footer{padding:36px 0;border-top:1px solid var(--line);color:var(--soft);font-si
     <div class="no">BAB 1</div>
     <h2>Gambaran umum struktur organisasi</h2>
     <p>Perusahaan Jepang pada umumnya berbentuk piramida: keputusan besar ada di atas, pekerjaan sehari-hari dijalankan oleh lapisan tengah dan bawah. Bagan di bawah adalah contoh umum perusahaan menengah. Nama jabatan dan jumlah lapisan berbeda di tiap perusahaan, jadi anggap ini sebagai peta dasar.</p>
-    <div class="org"><div class="org-in">
-      <div class="lvl"><div class="node top"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">会長</span><small>Kaichō · Komisaris / Ketua</small></div></div>
-      <div class="lvl"><div class="node top"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">社長</span><small>Shachō · Direktur Utama</small></div></div>
-      <div class="lvl"><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">副社長</span><small>Fuku-shachō · Wakil Direktur Utama</small></div></div>
-      <div class="lvl"><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">専務・常務</span><small>Senmu · Jōmu · Direktur Eksekutif</small></div></div>
-      <div class="lvl"><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">部長</span><small>Buchō<br>Kepala Departemen</small></div><div class="node fin"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">経理部長</span><small>Keiri-buchō<br>Kepala Keuangan &amp; Akuntansi</small></div><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">部長</span><small>Buchō<br>Kepala Departemen lain</small></div></div>
-      <div class="lvl"><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">課長</span><small>Kachō · Kepala Seksi</small></div></div>
-      <div class="lvl"><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">係長</span><small>Kakarichō · Kepala Sub-seksi</small></div></div>
-      <div class="lvl"><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">主任</span><small>Shunin · Pemimpin tim kecil</small></div></div>
-      <div class="lvl"><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">一般社員</span><small>Ippan shain · Staf / Karyawan</small></div></div>
-    </div>
-    <p class="org-note">Kotak biru muda menandai jalur bagian keuangan.</p></div>
+    <div class="org"><div class="tree">
+<ul><li><div class="node box"><svg class="av" aria-hidden="true"><use href="#avs"/></svg><span class="jp">会長</span><small>Kaichō<br>Komisaris / Ketua</small></div>
+<ul><li><div class="node box"><svg class="av" aria-hidden="true"><use href="#avs"/></svg><span class="jp">代表取締役社長</span><small>Daihyō torishimariyaku shachō<br>Direktur Utama</small></div>
+<ul><li><div class="node box"><svg class="av" aria-hidden="true"><use href="#avs"/></svg><span class="jp">副社長</span><small>Fuku-shachō<br>Wakil Direktur Utama</small></div>
+<ul><li><div class="node box"><svg class="av" aria-hidden="true"><use href="#avs"/></svg><span class="jp">専務・常務</span><small>Senmu · Jōmu<br>Direktur Eksekutif</small></div>
+<ul>
+<li><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">部長</span><small>Buchō<br>Kepala Dept. Penjualan (営業部)</small></div></li>
+<li><div class="node fin"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">部長</span><small>Buchō<br>Kepala Dept. Keuangan &amp; Akuntansi (経理部)</small></div>
+<ul>
+<li><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">課長</span><small>Kachō<br>Kepala Seksi Akuntansi (経理課)</small></div><ul><li><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">係長</span><small>Kakarichō<br>Kepala Sub-seksi Akuntansi</small></div><ul><li><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">担当者</span><small>Tantōsha<br>Staf</small></div></li></ul></li></ul></li>
+<li><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">課長</span><small>Kachō<br>Kepala Seksi Keuangan (財務課)</small></div><ul><li><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">係長</span><small>Kakarichō<br>Kepala Sub-seksi Keuangan</small></div><ul><li><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">担当者</span><small>Tantōsha<br>Staf</small></div></li></ul></li></ul></li>
+</ul></li>
+<li><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">部長</span><small>Buchō<br>Kepala Dept. Produksi (製造部)</small></div></li>
+</ul></li></ul></li></ul></li></ul></li></ul>
+</div>
+<p class="org-note">Kotak abu-abu: jajaran direksi. Kotak biru muda: jalur keuangan. Nama departemen ditulis dalam tanda kurung. Tiap departemen memakai jenjang yang sama: buchō, kachō, kakarichō, staf.</p></div>
     <div class="quote"><span class="jp">縦社会</span><span class="yomi">tate shakai</span><br>Artinya "masyarakat vertikal". Hubungan atas-bawah sangat dihargai, dan jabatan menentukan bahasa yang dipakai. Itulah sebabnya mengenal jenjang jabatan penting sejak hari pertama.</div>
   </div>
 
@@ -195,16 +184,14 @@ footer{padding:36px 0;border-top:1px solid var(--line);color:var(--soft);font-si
     <div class="no">BAB 2</div>
     <h2>Jajaran direksi: Shachō dan Fuku-shachō</h2>
     <p><span class="jp">社長</span> <span class="yomi">(shachō)</span> adalah pimpinan tertinggi yang menjalankan perusahaan sehari-hari, setara direktur utama atau presiden direktur. Ia mewakili perusahaan di hadapan klien, bank, dan pemerintah, serta memegang keputusan akhir. Di banyak perusahaan, sebutan shachō juga dipakai untuk pemilik usaha kecil.</p>
+    <p>Di kartu nama dan dokumen resmi, jabatan ini biasanya tertulis lengkap sebagai <span class="jp">代表取締役社長</span> <span class="yomi">(daihyō torishimariyaku shachō)</span>. Ada dua lapis arti di dalamnya. <span class="jp">代表取締役</span> adalah direktur yang secara hukum berwenang mewakili perusahaan, misalnya menandatangani kontrak. <span class="jp">社長</span> adalah sebutan jabatannya sehari-hari. Karena orang yang sama biasanya memegang keduanya, banyak orang menyingkatnya menjadi shachō saja. Perusahaan juga bisa punya lebih dari satu <span class="jp">代表取締役</span>, misalnya <span class="jp">代表取締役会長</span> <span class="yomi">(daihyō torishimariyaku kaichō)</span>.</p>
     <p><span class="jp">副社長</span> <span class="yomi">(fuku-shachō)</span> adalah wakil shachō. Kata <span class="jp">副</span> <span class="yomi">(fuku)</span> berarti "wakil", sehingga pola yang sama dipakai untuk jabatan lain, misalnya <span class="jp">副部長</span> <span class="yomi">(fuku-buchō)</span>, wakil kepala departemen. Fuku-shachō menggantikan shachō saat berhalangan dan biasanya membawahi beberapa divisi.</p>
-    <figure>
-      <div class="slot" data-key="direksi" data-label="Foto: rapat direksi atau salam antara shachō dan tamu"><img src="images/direksi.jpeg" alt="Jajaran direksi" onerror="this.remove()"><input type="file" accept="image/*" aria-label="Unggah foto direksi"></div>
-      <figcaption class="cap">Foto: <span contenteditable="true" spellcheck="false">isi sumber foto</span></figcaption>
-    </figure>
     <div class="tbl-wrap"><table>
       <thead><tr><th>Jabatan</th><th>Arti</th><th>Peran</th></tr></thead>
       <tbody>
         <tr><th><span class="jp">会長</span><br><span class="yomi">kaichō</span></th><td>Ketua / Komisaris utama.</td><td>Biasanya mantan shachō atau pendiri. Memberi arahan jangka panjang dan menjaga hubungan penting.</td></tr>
-        <tr><th><span class="jp">社長</span><br><span class="yomi">shachō</span></th><td>Direktur utama.</td><td>Pengambil keputusan akhir dan wajah perusahaan.</td></tr>
+        <tr><th><span class="jp">代表取締役社長</span><br><span class="yomi">daihyō torishimariyaku shachō</span></th><td>Direktur utama yang berwenang mewakili perusahaan.</td><td>Pengambil keputusan akhir, wajah perusahaan, dan penandatangan kontrak. Sering disingkat <span class="jp">社長</span> (shachō).</td></tr>
+        <tr><th><span class="jp">代表取締役</span><br><span class="yomi">daihyō torishimariyaku</span></th><td>Direktur perwakilan.</td><td>Gelar hukum untuk direktur yang boleh bertindak atas nama perusahaan. Bisa dipegang oleh lebih dari satu orang.</td></tr>
         <tr><th><span class="jp">副社長</span><br><span class="yomi">fuku-shachō</span></th><td>Wakil direktur utama.</td><td>Mendampingi dan menggantikan shachō, mengawasi beberapa bidang.</td></tr>
         <tr><th><span class="jp">専務取締役</span><br><span class="yomi">senmu torishimariyaku</span></th><td>Direktur eksekutif senior.</td><td>Membantu shachō dalam urusan perusahaan secara luas. Sering disingkat <span class="jp">専務</span>.</td></tr>
         <tr><th><span class="jp">常務取締役</span><br><span class="yomi">jōmu torishimariyaku</span></th><td>Direktur eksekutif.</td><td>Menangani operasional harian di bidang tertentu. Biasanya di bawah senmu.</td></tr>
@@ -240,10 +227,6 @@ footer{padding:36px 0;border-top:1px solid var(--line);color:var(--soft);font-si
     <div class="no">BAB 4</div>
     <h2>Bagian keuangan (経理・財務)</h2>
     <p>Bagian keuangan di Jepang biasanya dibagi menjadi dua fungsi yang sering digabung di perusahaan kecil. Kenali bedanya karena nama dan tugasnya berbeda.</p>
-    <figure>
-      <div class="slot" data-key="keuangan" data-label="Foto: staf keuangan sedang bekerja di kantor"><img src="images/keuangan.jpeg" alt="Bagian keuangan" onerror="this.remove()"><input type="file" accept="image/*" aria-label="Unggah foto keuangan"></div>
-      <figcaption class="cap">Foto: <span contenteditable="true" spellcheck="false">isi sumber foto</span></figcaption>
-    </figure>
     <div class="tbl-wrap"><table>
       <thead><tr><th>Fungsi</th><th>Fokus</th><th>Contoh tugas</th></tr></thead>
       <tbody>
@@ -319,9 +302,9 @@ footer{padding:36px 0;border-top:1px solid var(--line);color:var(--soft);font-si
     <div class="no">RINGKASAN</div>
     <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:18px">Sepuluh hal yang perlu diingat tentang struktur organisasi</h2>
     <ol class="steps">
-      <li><div><b>Shachō</b> adalah pimpinan tertinggi dan pengambil keputusan akhir.</div></li>
+      <li><div><b>Shachō</b> (resminya <b>代表取締役社長</b>) adalah pimpinan tertinggi, pengambil keputusan akhir, dan perwakilan hukum perusahaan.</div></li>
       <li><div><b>Fuku-shachō</b> adalah wakilnya. Awalan <b>fuku (副)</b> selalu berarti "wakil".</div></li>
-      <li><div>Urutan direksi: kaichō, shachō, fuku-shachō, senmu, jōmu, torishimariyaku.</div></li>
+      <li><div>Urutan direksi: kaichō, daihyō torishimariyaku shachō, fuku-shachō, senmu, jōmu, torishimariyaku.</div></li>
       <li><div>Lapisan tengah: <b>buchō → kachō → kakarichō → shunin</b>.</div></li>
       <li><div>Atasan langsungmu sering <b>kachō atau kakarichō</b>. Laporkan ke mereka lebih dulu.</div></li>
       <li><div><b>Keiri</b> mencatat uang yang sudah terjadi, <b>zaimu</b> mengelola uang ke depan.</div></li>
@@ -365,28 +348,6 @@ footer{padding:36px 0;border-top:1px solid var(--line);color:var(--soft);font-si
   document.querySelectorAll('#nl a').forEach(a=>a.addEventListener('click',close));
   document.addEventListener('click',e=>{if(!dd.contains(e.target))close();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
-
-  document.querySelectorAll('.slot').forEach(slot=>{
-    const key=slot.dataset.key,input=slot.querySelector('input');
-    if(!key||!input)return;
-    const fit=()=>slot.classList.add('has-img');
-    function bind(img){img.addEventListener('load',fit);if(img.complete&&img.naturalWidth)fit();}
-    const first=slot.querySelector('img');
-    if(first)bind(first);
-    function show(url){
-      let img=slot.querySelector('img');
-      if(!img){img=document.createElement('img');img.alt='';slot.insertBefore(img,slot.firstChild);bind(img);}
-      img.src=url;
-    }
-    try{const s=localStorage.getItem('tekipaki-struktur-'+key);if(s)show(s);}catch(e){}
-    input.addEventListener('change',e=>{
-      const f=e.target.files&&e.target.files[0];
-      if(!f||!f.type.startsWith('image/'))return;
-      const r=new FileReader();
-      r.onload=()=>{show(r.result);try{localStorage.setItem('tekipaki-struktur-'+key,r.result);}catch(err){}};
-      r.readAsDataURL(f);
-    });
-  });
 
   const totop=document.getElementById('totop');
   const toggleTop=()=>{totop.classList.toggle('show',window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-400);};
