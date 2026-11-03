@@ -85,7 +85,7 @@ footer{text-align:center;padding:30px;color:#666;font-size:14px}
 
 <div class="nav-left">
 <a href="index.html" class="home-btn">
-<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 <path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/>
 </svg>
 HOME
@@ -197,6 +197,10 @@ HOME
 <button id="backToTop" onclick="scrollToTop()" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
 
 <script>
+/* =========================================================
+   DATA POLA TATA BAHASA
+   Setiap baris diakhiri koma (,) kecuali baris terakhir.
+========================================================= */
 const grammarList = [
     { jp:"〜たら", romaji:"~tara", mean:"kalau / seandainya / setelah", link:"tatabahasan4_tara.html" },
     { jp:"〜ながら", romaji:"~nagara", mean:"sambil melakukan", link:"tatabahasan4_nagara.html" },
@@ -247,6 +251,8 @@ const grammarList = [
     { jp:"〜ずつ", romaji:"~zutsu", mean:"masing-masing / sedikit demi sedikit", link:"tatabahasan4_zutsu.html" },
     { jp:"〜てもらえますか", romaji:"~te moraemasu ka", mean:"bisakah anda melakukan / ~untuk saya?", link:"tatabahasan4_temoraemasenka.html" },
     { jp:"〜たほうがいい", romaji:"~ta hou ga ii", mean:"sebaiknya melakukan", link:"tatabahasan4_tahougaii.html" },
+    /* CATATAN: link di bawah masih sama dengan 〜たほうがいい.
+       Kalau sudah punya halaman sendiri, ganti jadi mis. "tatabahasan4_naihougaii.html" */
     { jp:"〜ないほうがいい", romaji:"~nai hou ga ii", mean:"sebaiknya tidak melakukan", link:"tatabahasan4_tahougaii.html" },
     { jp:"〜たらどうですか", romaji:"~tara dou desu ka", mean:"bagaimana kalau melakukan", link:"tatabahasan4_tarahoudesuka.html" },
     { jp:"〜間（に）", romaji:"~aida (ni)", mean:"selama / ketika", link:"tatabahasan4_aida.html" },
@@ -256,10 +262,10 @@ const grammarList = [
     { jp:"〜必要がある", romaji:"~hitsuyou ga aru", mean:"perlu melakukan / ada kebutuhan untuk~", link:"tatabahasan4_hitsuyougaaru.html" },
     { jp:"〜なくなる", romaji:"~naku naru", mean:"berakhir / tidak ada lagi", link:"tatabahasan4_nakunaru.html" },
     { jp:"〜ていく", romaji:"~te iku", mean:"terus menjadi / perubahan ke depan", link:"tatabahasan4_teiku.html" },
-    { jp:"〜それとも", romaji:"~sore demo", mean:"atau", link:"tatabahasan4_soretomo.html" },
+    { jp:"〜それとも", romaji:"~sore tomo", mean:"atau", link:"tatabahasan4_soretomo.html" },
     { jp:"〜それでも", romaji:"~sore demo", mean:"tetap saja / meskipun", link:"tatabahasan4_soredemo.html" },
-    { jp:"〜名詞修飾", romaji:"~meishi shuushoku", mean:"penjelasan nama", link:"tatabahasan4_meishishuushoku.html" }
-    
+    { jp:"〜名詞修飾", romaji:"~meishi shuushoku", mean:"penjelasan nama", link:"tatabahasan4_meishishuushoku.html" },
+    { jp:"〜ことがあります", romaji:"~koto ga arimasu", mean:"pernah melakukan / kadang-kadang terjadi", link:"tatabahasan4_kotogaarimasu.html" }
 ];
 
 const grid = document.getElementById("grammarGrid");
