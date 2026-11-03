@@ -99,7 +99,7 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 40p
 
 <nav id="navbar">
 <div class="navbar-inner">
-<div class="nav-left"><a href="index.html" class="home-btn"><svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>HOME</a></div>
+<div class="nav-left"><a href="index.html" class="home-btn"><svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>HOME</a></div>
 <div class="nav-right" id="navRight"></div>
 <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </div>
@@ -111,7 +111,7 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 40p
 <div class="header-inner">
 <div class="eyebrow">📚 MATERI · KOSAKATA N2</div>
 <h1>Daftar Kosakata JLPT N2</h1>
-<p id="headerDesc">Kumpulan kosakata tingkat N2 lengkap dengan cara baca dan artinya, dibagi menjadi 90 hari belajar (±3 bulan). Belajar satu hari satu section, atau gunakan kolom pencarian untuk menemukan kata tertentu.</p>
+<p id="headerDesc">Kumpulan kosakata tingkat N2 lengkap dengan cara baca dan artinya, dibagi menjadi hari belajar. Belajar satu hari satu section, atau gunakan kolom pencarian untuk menemukan kata tertentu.</p>
 <a href="kanjidasar.html" class="flash-cta">🃏 Latihan dengan Kanji Flash Card</a>
 <div class="search-wrap"><input type="text" id="searchInput" placeholder="Cari kanji, cara baca, atau arti..." oninput="filterVocab()"></div>
 <div class="search-count" id="searchCount"></div>
@@ -1777,6 +1777,82 @@ const DATA = `
 呼びかける|よびかける|menyerukan / mengajak
 立て替える|たてかえる|membayarkan terlebih dahulu
 思いつく|おもいつく|mendapat ide / terpikir
+感心する|かんしんする|kagum
+後悔する|こうかいする|menyesal
+肯定する|こうていする|membenarkan / menyetujui
+誤解する|ごかいする|salah paham
+用心する|ようじんする|berhati-hati / waspada
+注意する|ちゅういする|memperhatikan / memperingatkan
+満足する|まんぞくする|puas
+予想する|よそうする|memperkirakan
+考慮する|こうりょする|mempertimbangkan
+得する|とくする|mendapat keuntungan
+交流する|こうりゅうする|berinteraksi
+自慢する|じまんする|membanggakan diri
+謙遜する|けんそんする|merendahkan diri
+感謝する|かんしゃする|berterima kasih
+尊敬する|そんけいする|menghormati
+対立する|たいりつする|bertentangan / berkonflik
+仲直りする|なかなおりする|berbaikan
+伝言する|でんごんする|menyampaikan pesan
+無視する|むしする|mengabaikan
+命令する|めいれいする|memerintah
+控訴する|こうそする|mengajukan banding
+赤面する|せきめんする|wajah memerah / tersipu
+印刷する|いんさつする|mencetak
+外食する|がいしょくする|makan di luar
+移動する|いどうする|berpindah
+解答する|かいとうする|menjawab soal
+見学する|けんがくする|mengunjungi untuk belajar / observasi
+持参する|じさんする|membawa
+進学する|しんがくする|melanjutkan pendidikan
+受験する|じゅけんする|mengikuti ujian
+提出する|ていしゅつする|menyerahkan
+送金する|そうきんする|mengirim uang
+配達する|はいたつする|mengantarkan
+両替する|りょうがえする|menukar uang
+通勤する|つうきんする|pergi-pulang kerja
+通行する|つうこうする|melintas
+出場する|しゅつじょうする|berpartisipasi / tampil
+引退する|いんたいする|pensiun / mengundurkan diri
+合図する|あいずする|memberi isyarat
+安定する|あんていする|menjadi stabil
+一致する|いっちする|sesuai / cocok
+違反する|いはんする|melanggar
+影響する|えいきょうする|memengaruhi
+貢献する|こうけんする|berkontribusi
+構成する|こうせいする|menyusun / membentuk
+交代する|こうたいする|bergantian / menggantikan
+克服する|こくふくする|mengatasi
+改行する|かいぎょうする|membuat baris baru
+解決する|かいけつする|menyelesaikan masalah
+回復する|かいふくする|pulih
+活動する|かつどうする|beraktivitas
+活躍する|かつやくする|berperan aktif / berprestasi
+関係する|かんけいする|berhubungan
+管理する|かんりする|mengelola
+完了する|かんりょうする|menyelesaikan
+関連する|かんれんする|berkaitan
+工夫する|くふうする|mengupayakan cara / mencari solusi
+区別する|くべつする|membedakan
+苦労する|くろうする|bersusah payah
+経営する|けいえいする|mengelola perusahaan
+継続する|けいぞくする|melanjutkan
+検査する|けんさする|memeriksa
+再利用する|さいりようする|menggunakan kembali
+削除する|さくじょする|menghapus
+指定する|していする|menentukan
+収穫する|しゅうかくする|memanen
+重視する|じゅうしする|mementingkan
+消化する|しょうかする|mencerna
+上達する|じょうたつする|meningkat / menjadi mahir
+衝突する|しょうとつする|bertabrakan
+証明する|しょうめいする|membuktikan
+申請する|しんせいする|mengajukan permohonan
+進歩する|しんぽする|berkembang / mengalami kemajuan
+制限する|せいげんする|membatasi
+設計する|せっけいする|merancang
+選択する|せんたくする|memilih
 `;
 
 const MENUS=[
