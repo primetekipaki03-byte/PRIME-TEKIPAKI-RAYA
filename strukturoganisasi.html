@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Struktur Organisasi Perusahaan Jepang: Shachō sampai Staf | PRIME TEKIPAKI RAYA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFF;--bg-alt:#F5F7FA;--ink:#12182A;--soft:#5B6478;--navy:#1B3160;--navy-d:#0F1F42;--acc:#3E6FB5;--acc-s:#DCE6F5;--line:rgba(18,24,42,.14);--line-s:rgba(18,24,42,.28);--on:#F4F6FA;}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141F;--bg-alt:#161B29;--ink:#ECEEF4;--soft:#A6ADBE;--navy:#5578B8;--navy-d:#3A5A96;--acc:#8FB0E6;--acc-s:#1E2B45;--line:rgba(236,238,244,.14);--line-s:rgba(236,238,244,.28);}}
+:root[data-theme="dark"]{--bg:#10141F;--bg-alt:#161B29;--ink:#ECEEF4;--soft:#A6ADBE;--navy:#5578B8;--navy-d:#3A5A96;--acc:#8FB0E6;--acc-s:#1E2B45;--line:rgba(236,238,244,.14);--line-s:rgba(236,238,244,.28);}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:calc(80px + env(safe-area-inset-top,0px));}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans JP',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+h1,h2,h3{font-family:'Shippori Mincho',serif;font-weight:700;margin:0;line-height:1.3;}
+a{color:inherit;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+.narrow{max-width:760px;margin:0 auto;padding:0 24px;}
+header{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.nav{padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.mark{width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 34% 30%,var(--navy),var(--navy-d) 72%);flex-shrink:0;}
+.bn{font-family:'Shippori Mincho',serif;font-weight:700;font-size:1.25rem;letter-spacing:.03em;}
+.bs{display:block;font-size:.66rem;color:var(--soft);letter-spacing:.14em;}
+.dd{position:relative;}
+.mbtn{display:flex;align-items:center;gap:8px;background:none;border:1px solid var(--line-s);color:var(--ink);padding:10px 16px;border-radius:3px;font-size:.9rem;font-weight:600;font-family:inherit;cursor:pointer;}
+.mbtn:hover{border-color:var(--navy);}
+.mbtn:focus-visible,.btn:focus-visible,.slot:focus-within{outline:2px solid var(--acc);outline-offset:2px;}
+.chev{width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s;}
+.dd.open .chev{transform:rotate(-135deg) translateY(1px);}
+nav.links{position:absolute;top:calc(100% + 10px);right:0;z-index:60;display:flex;flex-direction:column;min-width:240px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px;box-shadow:0 14px 34px rgba(18,24,42,.16);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;}
+.dd.open nav.links{opacity:1;visibility:visible;transform:none;}
+nav.links a{text-decoration:none;font-size:.93rem;padding:11px 14px;border-radius:4px;}
+nav.links a:hover{background:var(--bg-alt);}
+.btn{display:inline-block;background:var(--navy);color:var(--on);text-decoration:none;padding:11px 22px;border-radius:3px;font-size:.9rem;font-weight:600;}
+.btn:hover{background:var(--navy-d);}
+.hero{position:relative;padding:84px 0 70px;overflow:hidden;background:linear-gradient(180deg,var(--bg-alt),var(--bg));}
+.orb{position:absolute;right:-140px;top:-120px;width:540px;height:540px;border-radius:50%;background:radial-gradient(circle at 38% 32%,var(--acc) 0%,var(--acc-s) 62%,transparent 75%);opacity:.55;}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.hero .narrow{position:relative;z-index:2;max-width:860px;}
+.eyebrow{color:var(--navy);font-weight:600;font-size:.9rem;letter-spacing:.06em;margin-bottom:16px;}
+.hero h1{font-size:clamp(2.1rem,4.6vw,3.3rem);}
+.lead{margin:20px 0 22px;color:var(--soft);font-size:1.1rem;line-height:1.8;max-width:60ch;}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.85rem;color:var(--soft);padding-top:16px;border-top:1px solid var(--line);}
+.toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+.toc a{text-decoration:none;font-size:.85rem;padding:8px 14px;border:1px solid var(--line-s);border-radius:20px;}
+.toc a:hover{background:var(--acc-s);}
+.slot{position:relative;margin:0;aspect-ratio:16/9;border-radius:4px;overflow:hidden;cursor:pointer;background:linear-gradient(155deg,var(--navy) 0%,var(--navy-d) 100%);display:flex;align-items:center;justify-content:center;}
+.slot::before{content:"+ " attr(data-label);color:rgba(255,255,255,.75);font-size:.9rem;font-weight:500;text-align:center;padding:0 24px;}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
+.slot input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:3;}
+.slot.has-img{aspect-ratio:auto;display:block;background:var(--bg-alt);}
+.slot.has-img::before{display:none;}
+.slot.has-img img{position:static;display:block;width:100%;height:auto;max-height:80vh;object-fit:contain;}
+.cap{margin:10px 0 0;font-size:.8rem;color:var(--soft);line-height:1.5;}
+.cap [contenteditable]{border-bottom:1px dashed var(--line-s);outline:none;}
+article{padding:70px 0 20px;}
+.chapter{padding:46px 0;border-top:1px solid var(--line);}
+.chapter:first-of-type{border-top:none;}
+.no{font-size:.8rem;letter-spacing:.1em;color:var(--navy);font-weight:600;margin-bottom:10px;}
+.chapter h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:20px;}
+.chapter h3{font-size:1.2rem;margin:30px 0 10px;}
+.chapter p{color:var(--soft);line-height:1.95;margin:0 0 18px;font-size:1.02rem;}
+.chapter p b,.chapter li b{color:var(--ink);font-weight:600;}
+.chapter figure{margin:26px 0 30px;}
+.jp{font-family:'Shippori Mincho',serif;font-weight:700;color:var(--ink);}
+.yomi{color:var(--navy);font-size:.85rem;}
+.quote{margin:26px 0;padding:22px 26px;border-left:3px solid var(--acc);background:var(--acc-s);line-height:1.85;font-size:1.02rem;}
+.quote .jp{display:block;font-size:1.3rem;margin-bottom:4px;}
+.tbl-wrap{border:1px solid var(--line-s);border-radius:4px;overflow-x:auto;background:var(--bg);margin:22px 0;}
+table{width:100%;border-collapse:collapse;min-width:560px;}
+th,td{text-align:left;vertical-align:top;padding:13px 16px;font-size:.93rem;line-height:1.7;border-top:1px solid var(--line-s);}
+thead th{background:var(--navy);color:var(--on);font-family:'Shippori Mincho',serif;font-size:1.02rem;border-top:none;}
+tbody th{background:var(--bg-alt);font-weight:600;width:28%;}
+td{color:var(--soft);}
+.dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:22px 0;}
+.box{border:1px solid var(--line-s);border-radius:4px;padding:20px 22px;}
+.box h4{margin:0 0 10px;font-family:'Shippori Mincho',serif;font-size:1.1rem;}
+.box.ok h4{color:var(--navy);}
+.box ul{margin:0;padding-left:20px;color:var(--soft);line-height:1.85;font-size:.95rem;}
+.steps{list-style:none;margin:22px 0;padding:0;counter-reset:s;}
+.steps li{counter-increment:s;display:grid;grid-template-columns:48px 1fr;gap:12px;padding:15px 0;border-top:1px solid var(--line);color:var(--soft);line-height:1.8;}
+.steps li:last-child{border-bottom:1px solid var(--line);}
+.steps li::before{content:counter(s);font-family:'Shippori Mincho',serif;font-size:1.6rem;font-weight:700;color:var(--acc);}
+
+/* Bagan organisasi */
+.org{margin:28px 0;padding:26px 18px;border:1px solid var(--line-s);border-radius:4px;background:var(--bg-alt);overflow-x:auto;}
+.org-in{min-width:560px;display:flex;flex-direction:column;align-items:center;}
+.lvl{display:flex;justify-content:center;gap:14px;flex-wrap:nowrap;position:relative;padding-top:22px;}
+.lvl:first-child{padding-top:0;}
+.lvl::before{content:"";position:absolute;top:0;left:50%;width:2px;height:22px;background:var(--line-s);}
+.lvl:first-child::before{display:none;}
+.node{background:var(--bg);border:1px solid var(--line-s);border-radius:4px;padding:10px 16px;text-align:center;min-width:130px;}
+.node .jp{display:block;font-size:1.1rem;}
+.node small{display:block;color:var(--soft);font-size:.75rem;margin-top:2px;line-height:1.4;}
+.node.top{background:var(--navy);border-color:var(--navy);}
+.node.top .jp,.node.top small{color:var(--on);}
+.node.fin{border:2px solid var(--acc);background:var(--acc-s);}
+.av{width:44px;height:44px;display:block;margin:0 auto 8px;color:var(--navy);}
+.node.top .av{color:var(--on);}
+.node.fin .av{color:var(--navy);}
+.node{box-shadow:0 2px 0 var(--line);}
+.org-note{font-size:.8rem;color:var(--soft);text-align:center;margin:16px 0 0;}
+
+.summary{background:var(--bg-alt);padding:70px 0;margin-top:30px;}
+.contact{background:var(--ink);color:var(--bg);border-radius:4px;padding:52px;display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:center;}
+.contact h2{font-size:clamp(1.5rem,3vw,2rem);max-width:18ch;}
+.contact p{opacity:.75;line-height:1.8;margin:14px 0 24px;max-width:44ch;}
+.contact .btn{background:var(--acc);color:var(--bg);}
+.cd div{border-top:1px solid rgba(128,128,128,.4);padding-top:14px;margin-bottom:18px;}
+.cd span{display:block;opacity:.6;font-size:.78rem;margin-bottom:4px;}
+footer{padding:36px 0;border-top:1px solid var(--line);color:var(--soft);font-size:.85rem;}
+.fb{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.totop{position:fixed;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:70;width:48px;height:48px;border-radius:50%;border:none;background:var(--navy);color:var(--on);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 22px rgba(18,24,42,.28);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s,background .2s;}
+.totop.show{opacity:1;visibility:visible;transform:none;}
+.totop:hover{background:var(--navy-d);}
+.totop:focus-visible{outline:2px solid var(--acc);outline-offset:3px;}
+.totop svg{width:22px;height:22px;}
+@media(max-width:760px){.dd-grid,.contact{grid-template-columns:1fr;}.contact{padding:34px 24px;}.hero{padding:64px 0 54px;}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="avc"><circle cx="50" cy="50" r="42"/></clipPath><symbol id="ava" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="5"/><circle cx="50" cy="37" r="14" fill="currentColor"/><ellipse cx="50" cy="96" rx="40" ry="27" fill="currentColor" clip-path="url(#avc)"/></symbol></defs></svg>
+<!--
+  PANDUAN FOTO
+  Klik kotak biru untuk memilih foto (tersimpan di browser Anda saja), atau taruh file di folder images:
+  struktur-hero.jpeg  direksi.jpeg  keuangan.jpeg
+-->
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand"><span class="mark"></span><span><span class="bn">PRIME TEKIPAKI RAYA</span><span class="bs">プレム　テキパキ　ラヤ</span></span></a>
+    <div class="dd" id="dd">
+      <button class="mbtn" id="mt" aria-haspopup="true" aria-expanded="false">Menu <span class="chev"></span></button>
+      <nav class="links" id="nl">
+        <a href="index.html">Beranda</a>
+        <a href="#gambaran">Gambaran Umum</a>
+        <a href="#direksi">Direksi: Shachō &amp; Fuku-shachō</a>
+        <a href="#manajer">Bucho, Kachō, Kakarichō</a>
+        <a href="#keuangan">Bagian Keuangan</a>
+        <a href="#staf">Staf &amp; Karyawan Baru</a>
+        <a href="#keputusan">Cara Mengambil Keputusan</a>
+        <a href="#sapaan">Cara Menyapa Jabatan</a>
+        <a href="#ringkasan">Ringkasan</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="orb" aria-hidden="true"></div>
+  <div class="narrow">
+    <div class="eyebrow">Dunia Kerja Jepang · 組織図</div>
+    <h1>Struktur Organisasi Perusahaan Jepang: dari Shachō sampai Staf</h1>
+    <p class="lead">Di Jepang, jabatan menentukan cara bicara, cara duduk, bahkan urutan siapa yang menerima kartu nama lebih dulu. Artikel ini membahas jenjang jabatan dari direktur utama sampai staf, termasuk bagian keuangan, supaya kamu tidak bingung di hari pertama kerja.</p>
+    <div class="meta"><span>Panduan dunia kerja</span><span>±12 menit baca</span><span>Cocok untuk calon pekerja &amp; peserta magang</span></div>
+    <div class="toc">
+      <a href="#gambaran">1 Gambaran</a><a href="#direksi">2 Direksi</a><a href="#manajer">3 Manajer</a><a href="#keuangan">4 Keuangan</a><a href="#staf">5 Staf</a><a href="#keputusan">6 Keputusan</a><a href="#sapaan">7 Sapaan</a><a href="#ringkasan">Ringkasan</a>
+    </div>
+  </div>
+</section>
+
+<div class="narrow" style="margin-top:-20px;position:relative;z-index:3">
+  <figure style="margin:0">
+    <div class="slot" data-key="hero" data-label="Foto utama: suasana kantor atau rapat di Jepang"><img src="images/struktur-hero.jpeg" alt="Suasana kantor Jepang" onerror="this.remove()"><input type="file" accept="image/*" aria-label="Unggah foto utama"></div>
+    <figcaption class="cap">Foto: <span contenteditable="true" spellcheck="false">isi nama fotografer / sumber</span></figcaption>
+  </figure>
+</div>
+
+<article>
+<div class="narrow">
+
+  <div class="chapter" id="gambaran">
+    <div class="no">BAB 1</div>
+    <h2>Gambaran umum struktur organisasi</h2>
+    <p>Perusahaan Jepang pada umumnya berbentuk piramida: keputusan besar ada di atas, pekerjaan sehari-hari dijalankan oleh lapisan tengah dan bawah. Bagan di bawah adalah contoh umum perusahaan menengah. Nama jabatan dan jumlah lapisan berbeda di tiap perusahaan, jadi anggap ini sebagai peta dasar.</p>
+    <div class="org"><div class="org-in">
+      <div class="lvl"><div class="node top"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">会長</span><small>Kaichō · Komisaris / Ketua</small></div></div>
+      <div class="lvl"><div class="node top"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">社長</span><small>Shachō · Direktur Utama</small></div></div>
+      <div class="lvl"><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">副社長</span><small>Fuku-shachō · Wakil Direktur Utama</small></div></div>
+      <div class="lvl"><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">専務・常務</span><small>Senmu · Jōmu · Direktur Eksekutif</small></div></div>
+      <div class="lvl"><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">部長</span><small>Buchō<br>Kepala Departemen</small></div><div class="node fin"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">経理部長</span><small>Keiri-buchō<br>Kepala Keuangan &amp; Akuntansi</small></div><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">部長</span><small>Buchō<br>Kepala Departemen lain</small></div></div>
+      <div class="lvl"><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">課長</span><small>Kachō · Kepala Seksi</small></div></div>
+      <div class="lvl"><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">係長</span><small>Kakarichō · Kepala Sub-seksi</small></div></div>
+      <div class="lvl"><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">主任</span><small>Shunin · Pemimpin tim kecil</small></div></div>
+      <div class="lvl"><div class="node"><svg class="av" aria-hidden="true"><use href="#ava"/></svg><span class="jp">一般社員</span><small>Ippan shain · Staf / Karyawan</small></div></div>
+    </div>
+    <p class="org-note">Kotak biru muda menandai jalur bagian keuangan.</p></div>
+    <div class="quote"><span class="jp">縦社会</span><span class="yomi">tate shakai</span><br>Artinya "masyarakat vertikal". Hubungan atas-bawah sangat dihargai, dan jabatan menentukan bahasa yang dipakai. Itulah sebabnya mengenal jenjang jabatan penting sejak hari pertama.</div>
+  </div>
+
+  <div class="chapter" id="direksi">
+    <div class="no">BAB 2</div>
+    <h2>Jajaran direksi: Shachō dan Fuku-shachō</h2>
+    <p><span class="jp">社長</span> <span class="yomi">(shachō)</span> adalah pimpinan tertinggi yang menjalankan perusahaan sehari-hari, setara direktur utama atau presiden direktur. Ia mewakili perusahaan di hadapan klien, bank, dan pemerintah, serta memegang keputusan akhir. Di banyak perusahaan, sebutan shachō juga dipakai untuk pemilik usaha kecil.</p>
+    <p><span class="jp">副社長</span> <span class="yomi">(fuku-shachō)</span> adalah wakil shachō. Kata <span class="jp">副</span> <span class="yomi">(fuku)</span> berarti "wakil", sehingga pola yang sama dipakai untuk jabatan lain, misalnya <span class="jp">副部長</span> <span class="yomi">(fuku-buchō)</span>, wakil kepala departemen. Fuku-shachō menggantikan shachō saat berhalangan dan biasanya membawahi beberapa divisi.</p>
+    <figure>
+      <div class="slot" data-key="direksi" data-label="Foto: rapat direksi atau salam antara shachō dan tamu"><img src="images/direksi.jpeg" alt="Jajaran direksi" onerror="this.remove()"><input type="file" accept="image/*" aria-label="Unggah foto direksi"></div>
+      <figcaption class="cap">Foto: <span contenteditable="true" spellcheck="false">isi sumber foto</span></figcaption>
+    </figure>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Jabatan</th><th>Arti</th><th>Peran</th></tr></thead>
+      <tbody>
+        <tr><th><span class="jp">会長</span><br><span class="yomi">kaichō</span></th><td>Ketua / Komisaris utama.</td><td>Biasanya mantan shachō atau pendiri. Memberi arahan jangka panjang dan menjaga hubungan penting.</td></tr>
+        <tr><th><span class="jp">社長</span><br><span class="yomi">shachō</span></th><td>Direktur utama.</td><td>Pengambil keputusan akhir dan wajah perusahaan.</td></tr>
+        <tr><th><span class="jp">副社長</span><br><span class="yomi">fuku-shachō</span></th><td>Wakil direktur utama.</td><td>Mendampingi dan menggantikan shachō, mengawasi beberapa bidang.</td></tr>
+        <tr><th><span class="jp">専務取締役</span><br><span class="yomi">senmu torishimariyaku</span></th><td>Direktur eksekutif senior.</td><td>Membantu shachō dalam urusan perusahaan secara luas. Sering disingkat <span class="jp">専務</span>.</td></tr>
+        <tr><th><span class="jp">常務取締役</span><br><span class="yomi">jōmu torishimariyaku</span></th><td>Direktur eksekutif.</td><td>Menangani operasional harian di bidang tertentu. Biasanya di bawah senmu.</td></tr>
+        <tr><th><span class="jp">取締役</span><br><span class="yomi">torishimariyaku</span></th><td>Anggota dewan direksi.</td><td>Ikut memutuskan kebijakan perusahaan dalam rapat direksi.</td></tr>
+        <tr><th><span class="jp">監査役</span><br><span class="yomi">kansayaku</span></th><td>Auditor.</td><td>Mengawasi kerja direksi dan memeriksa keuangan perusahaan.</td></tr>
+      </tbody>
+    </table></div>
+    <p>Urutan senmu dan jōmu bisa berbeda antar perusahaan, jadi jangan menebak. Bila ragu, lihat kartu nama atau bagan organisasi resmi.</p>
+  </div>
+
+  <div class="chapter" id="manajer">
+    <div class="no">BAB 3</div>
+    <h2>Lapisan tengah: Buchō, Kachō, Kakarichō</h2>
+    <p>Lapisan tengah adalah penghubung antara visi direksi dan pekerjaan lapangan. Sebagai pekerja baru, kamu paling sering berurusan dengan kachō dan kakarichō.</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Jabatan</th><th>Arti</th><th>Yang dikerjakan</th></tr></thead>
+      <tbody>
+        <tr><th><span class="jp">部長</span><br><span class="yomi">buchō</span></th><td>Kepala departemen (<span class="jp">部</span>).</td><td>Bertanggung jawab atas target dan anggaran satu departemen, melapor ke direksi.</td></tr>
+        <tr><th><span class="jp">次長</span><br><span class="yomi">jichō</span></th><td>Wakil kepala departemen.</td><td>Mendampingi buchō dan menjembatani ke kachō.</td></tr>
+        <tr><th><span class="jp">課長</span><br><span class="yomi">kachō</span></th><td>Kepala seksi (<span class="jp">課</span>).</td><td>Membagi tugas, memantau progres, menilai bawahan. Sering menjadi atasan langsung staf.</td></tr>
+        <tr><th><span class="jp">係長</span><br><span class="yomi">kakarichō</span></th><td>Kepala sub-seksi (<span class="jp">係</span>).</td><td>Memimpin kelompok kecil, mengajari staf baru, dan mengawasi pekerjaan harian.</td></tr>
+        <tr><th><span class="jp">主任</span><br><span class="yomi">shunin</span></th><td>Pemimpin tim kecil.</td><td>Staf senior yang dipercaya mengarahkan rekan. Ini jabatan pertama di jalur kenaikan.</td></tr>
+      </tbody>
+    </table></div>
+    <p>Jenjang <span class="jp">部 → 課 → 係</span> adalah bagian dari unit organisasi: departemen (<span class="jp">部</span> <span class="yomi">bu</span>) terdiri dari beberapa seksi (<span class="jp">課</span> <span class="yomi">ka</span>), dan seksi terdiri dari beberapa sub-seksi (<span class="jp">係</span> <span class="yomi">kakari</span>). Nama "kakarichō" sendiri berarti "pemimpin kakari".</p>
+    <div class="dd-grid">
+      <div class="box ok"><h4>Lakukan</h4><ul><li>Laporkan pekerjaan ke atasan langsung lebih dulu (Ho-Ren-Sō).</li><li>Hormati urutan: kakarichō, kachō, buchō.</li><li>Ikuti arahan kakarichō sebagai pembimbing harian.</li></ul></div>
+      <div class="box"><h4>Hindari</h4><ul><li>Melompati atasan langsung dan langsung menghubungi buchō.</li><li>Mengkritik keputusan atasan di depan banyak orang.</li><li>Duduk lebih dulu sebelum atasan dipersilakan.</li></ul></div>
+    </div>
+  </div>
+
+  <div class="chapter" id="keuangan">
+    <div class="no">BAB 4</div>
+    <h2>Bagian keuangan (経理・財務)</h2>
+    <p>Bagian keuangan di Jepang biasanya dibagi menjadi dua fungsi yang sering digabung di perusahaan kecil. Kenali bedanya karena nama dan tugasnya berbeda.</p>
+    <figure>
+      <div class="slot" data-key="keuangan" data-label="Foto: staf keuangan sedang bekerja di kantor"><img src="images/keuangan.jpeg" alt="Bagian keuangan" onerror="this.remove()"><input type="file" accept="image/*" aria-label="Unggah foto keuangan"></div>
+      <figcaption class="cap">Foto: <span contenteditable="true" spellcheck="false">isi sumber foto</span></figcaption>
+    </figure>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Fungsi</th><th>Fokus</th><th>Contoh tugas</th></tr></thead>
+      <tbody>
+        <tr><th><span class="jp">経理</span><br><span class="yomi">keiri · akuntansi</span></th><td>Mencatat dan melaporkan uang yang sudah terjadi.</td><td>Jurnal harian (<span class="jp">仕訳</span> <span class="yomi">shiwake</span>), tagihan, klaim biaya karyawan (<span class="jp">経費精算</span> <span class="yomi">keihi seisan</span>), pembukuan akhir tahun (<span class="jp">決算</span> <span class="yomi">kessan</span>), dan pajak.</td></tr>
+        <tr><th><span class="jp">財務</span><br><span class="yomi">zaimu · keuangan</span></th><td>Mengelola dan merencanakan uang ke depan.</td><td>Arus kas, pinjaman bank, investasi, dan penggalangan dana.</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Jabatan di bagian keuangan</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Jabatan</th><th>Arti</th><th>Peran</th></tr></thead>
+      <tbody>
+        <tr><th><span class="jp">最高財務責任者</span><br><span class="yomi">CFO</span></th><td>Direktur keuangan.</td><td>Anggota direksi yang bertanggung jawab atas strategi keuangan.</td></tr>
+        <tr><th><span class="jp">経理部長</span><br><span class="yomi">keiri-buchō</span></th><td>Kepala departemen keuangan &amp; akuntansi.</td><td>Menyetujui laporan keuangan dan melapor ke direksi.</td></tr>
+        <tr><th><span class="jp">経理課長</span><br><span class="yomi">keiri-kachō</span></th><td>Kepala seksi akuntansi.</td><td>Mengawasi pembukuan, pajak, dan jadwal tutup buku.</td></tr>
+        <tr><th><span class="jp">経理係長・主任</span><br><span class="yomi">keiri-kakarichō · shunin</span></th><td>Pemimpin kelompok akuntansi.</td><td>Memeriksa pekerjaan staf dan membimbing yang baru.</td></tr>
+        <tr><th><span class="jp">経理担当</span><br><span class="yomi">keiri tantō</span></th><td>Staf akuntansi.</td><td>Input data, bukti transaksi, pembayaran, dan arsip.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="quote"><span class="jp">数字は嘘をつかない</span>Artinya "angka tidak berbohong". Di bagian keuangan, ketelitian dan kejujuran dinilai di atas kecepatan. Satu angka yang salah bisa menunda seluruh laporan.</div>
+    <ol class="steps">
+      <li><div><b>Simpan bukti</b> (<span class="jp">領収書</span> <span class="yomi">ryōshūsho</span>, kuitansi) untuk setiap pengeluaran dan serahkan sebelum batas waktu klaim.</div></li>
+      <li><div><b>Cek dua kali</b> angka, tanggal, dan nama sebelum diserahkan.</div></li>
+      <li><div><b>Hormati tenggat tutup buku</b> bulanan dan tahunan. Keterlambatan satu orang menahan seluruh tim.</div></li>
+      <li><div><b>Jaga kerahasiaan.</b> Data gaji dan keuangan perusahaan tidak dibicarakan di luar yang berwenang.</div></li>
+    </ol>
+  </div>
+
+  <div class="chapter" id="staf">
+    <div class="no">BAB 5</div>
+    <h2>Staf dan karyawan baru</h2>
+    <p>Mayoritas pekerja berada di tingkat <span class="jp">一般社員</span> <span class="yomi">(ippan shain)</span> atau <span class="jp">社員</span> <span class="yomi">(shain)</span>, yaitu staf tanpa jabatan manajerial. Mereka melakukan pekerjaan inti dan belajar dari senior (<span class="jp">先輩</span> <span class="yomi">senpai</span>) sambil membimbing junior (<span class="jp">後輩</span> <span class="yomi">kōhai</span>).</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Istilah</th><th>Arti</th><th>Catatan</th></tr></thead>
+      <tbody>
+        <tr><th><span class="jp">新入社員</span><br><span class="yomi">shinnyū shain</span></th><td>Karyawan baru.</td><td>Biasanya masuk serentak pada April dan mengikuti pelatihan bersama.</td></tr>
+        <tr><th><span class="jp">正社員</span><br><span class="yomi">seishain</span></th><td>Karyawan tetap.</td><td>Kontrak tanpa batas waktu, jalur kenaikan jabatan jelas.</td></tr>
+        <tr><th><span class="jp">契約社員</span><br><span class="yomi">keiyaku shain</span></th><td>Karyawan kontrak.</td><td>Kontrak berbatas waktu.</td></tr>
+        <tr><th><span class="jp">技能実習生</span><br><span class="yomi">ginō jisshūsei</span></th><td>Peserta magang teknis.</td><td>Belajar keterampilan di bawah bimbingan staf pembimbing.</td></tr>
+        <tr><th><span class="jp">先輩・後輩</span><br><span class="yomi">senpai · kōhai</span></th><td>Senior dan junior.</td><td>Ditentukan oleh tahun masuk kerja, bukan umur.</td></tr>
+      </tbody>
+    </table></div>
+    <p>Kenaikan jabatan di Jepang secara tradisional mengikuti masa kerja dan penilaian sikap, sehingga disiplin harian, kerja sama, dan kejujuran sangat diperhatikan.</p>
+  </div>
+
+  <div class="chapter" id="keputusan">
+    <div class="no">BAB 6</div>
+    <h2>Cara mengambil keputusan: Nemawashi dan Ringi</h2>
+    <p>Keputusan di perusahaan Jepang jarang diambil satu orang secara mendadak. Prosesnya melibatkan banyak lapisan agar semua pihak merasa dihargai dan risiko berkurang.</p>
+    <ol class="steps">
+      <li><div><b><span class="jp">根回し</span> <span class="yomi">(nemawashi)</span>.</b> Pendekatan informal ke pihak terkait sebelum rapat, untuk mendengar pendapat dan mengurangi kejutan.</div></li>
+      <li><div><b><span class="jp">稟議書</span> <span class="yomi">(ringisho)</span>.</b> Dokumen usulan yang diajukan staf, lalu berpindah ke kakarichō, kachō, buchō, hingga direksi.</div></li>
+      <li><div><b>Persetujuan bertahap.</b> Setiap atasan memberi cap (<span class="jp">印鑑</span> <span class="yomi">inkan</span>) atau persetujuan elektronik sebagai tanda setuju.</div></li>
+      <li><div><b>Keputusan akhir</b> oleh shachō atau direksi, lalu dijalankan bersama-sama.</div></li>
+    </ol>
+    <p>Prosesnya terasa lambat, tetapi begitu disetujui, pelaksanaan biasanya cepat karena semua pihak sudah paham dan sepakat.</p>
+  </div>
+
+  <div class="chapter" id="sapaan">
+    <div class="no">BAB 7</div>
+    <h2>Cara menyapa sesuai jabatan</h2>
+    <p>Di kantor, atasan biasanya dipanggil dengan <b>nama keluarga ditambah jabatan</b>, bukan nama kecil atau "san" saja. Contoh: <span class="jp">田中部長</span> <span class="yomi">(Tanaka-buchō)</span>, <span class="jp">鈴木課長</span> <span class="yomi">(Suzuki-kachō)</span>, <span class="jp">佐藤社長</span> <span class="yomi">(Satō-shachō)</span>.</p>
+    <div class="dd-grid">
+      <div class="box ok"><h4>Lakukan</h4><ul><li>Panggil atasan dengan <b>nama keluarga + jabatan</b>.</li><li>Rekan setingkat atau junior dipanggil <span class="jp">〜さん</span> <span class="yomi">(-san)</span>.</li><li>Pakai bahasa sopan (<span class="jp">です／ます</span>) kepada atasan.</li></ul></div>
+      <div class="box"><h4>Hindari</h4><ul><li>Memanggil atasan hanya dengan nama kecil.</li><li>Menambahkan "-san" setelah jabatan, misalnya <span class="jp">部長さん</span>.</li><li>Menyebut jabatan sendiri saat memperkenalkan diri dengan -san.</li></ul></div>
+    </div>
+    <p>Saat bicara tentang atasan sendiri kepada orang luar perusahaan, jabatan disebut tanpa -san dan tanpa kata hormat berlebih. Contohnya: <span class="jp">部長の田中は席を外しております</span> <span class="yomi">(Buchō no Tanaka wa seki o hazushite orimasu)</span>, "Kepala departemen kami, Tanaka, sedang tidak di tempat". Ini aturan <span class="jp">内と外</span> <span class="yomi">(uchi to soto)</span>, yaitu membedakan "dalam" dan "luar" perusahaan.</p>
+  </div>
+
+</div>
+
+<section class="summary" id="ringkasan">
+  <div class="narrow">
+    <div class="no">RINGKASAN</div>
+    <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:18px">Sepuluh hal yang perlu diingat tentang struktur organisasi</h2>
+    <ol class="steps">
+      <li><div><b>Shachō</b> adalah pimpinan tertinggi dan pengambil keputusan akhir.</div></li>
+      <li><div><b>Fuku-shachō</b> adalah wakilnya. Awalan <b>fuku (副)</b> selalu berarti "wakil".</div></li>
+      <li><div>Urutan direksi: kaichō, shachō, fuku-shachō, senmu, jōmu, torishimariyaku.</div></li>
+      <li><div>Lapisan tengah: <b>buchō → kachō → kakarichō → shunin</b>.</div></li>
+      <li><div>Atasan langsungmu sering <b>kachō atau kakarichō</b>. Laporkan ke mereka lebih dulu.</div></li>
+      <li><div><b>Keiri</b> mencatat uang yang sudah terjadi, <b>zaimu</b> mengelola uang ke depan.</div></li>
+      <li><div>Bagian keuangan menuntut <b>ketelitian, tenggat tepat, dan kerahasiaan</b>.</div></li>
+      <li><div>Senior dan junior ditentukan oleh <b>tahun masuk</b>, bukan umur.</div></li>
+      <li><div>Keputusan melalui <b>nemawashi dan ringi</b>, bertahap dari bawah ke atas.</div></li>
+      <li><div>Panggil atasan dengan <b>nama keluarga + jabatan</b>, tanpa "-san".</div></li>
+    </ol>
+  </div>
+</section>
+
+<div class="wrap" style="padding-bottom:70px">
+  <div class="contact">
+    <div>
+      <h2>Siap belajar budaya dan bahasa Jepang?</h2>
+      <p>Pembelajaran maner dan budaya kerja adalah bagian dari program pelatihan kami. Silakan konsultasi kapan saja.</p>
+      <a href="formulir.html" class="btn">Isi Formulir Pendaftaran</a>
+    </div>
+    <div class="cd">
+      <div><span>Telepon / WhatsApp</span><strong>+62 821 3080 7776</strong></div>
+      <div><span>Email</span><strong>info@tekipaki.co.id</strong></div>
+    </div>
+  </div>
+</div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap fb">
+    <span>© 2026 PRIME TEKIPAKI RAYA. Seluruh hak cipta dilindungi.</span>
+    <a href="index.html" style="text-decoration:none">Kembali ke Beranda</a>
+  </div>
+</footer>
+
+<button class="totop" id="totop" type="button" aria-label="Kembali ke atas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<script>
+  const dd=document.getElementById('dd'),mt=document.getElementById('mt');
+  const close=()=>{dd.classList.remove('open');mt.setAttribute('aria-expanded','false');};
+  mt.addEventListener('click',e=>{e.stopPropagation();mt.setAttribute('aria-expanded',dd.classList.toggle('open')?'true':'false');});
+  document.querySelectorAll('#nl a').forEach(a=>a.addEventListener('click',close));
+  document.addEventListener('click',e=>{if(!dd.contains(e.target))close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+
+  document.querySelectorAll('.slot').forEach(slot=>{
+    const key=slot.dataset.key,input=slot.querySelector('input');
+    if(!key||!input)return;
+    const fit=()=>slot.classList.add('has-img');
+    function bind(img){img.addEventListener('load',fit);if(img.complete&&img.naturalWidth)fit();}
+    const first=slot.querySelector('img');
+    if(first)bind(first);
+    function show(url){
+      let img=slot.querySelector('img');
+      if(!img){img=document.createElement('img');img.alt='';slot.insertBefore(img,slot.firstChild);bind(img);}
+      img.src=url;
+    }
+    try{const s=localStorage.getItem('tekipaki-struktur-'+key);if(s)show(s);}catch(e){}
+    input.addEventListener('change',e=>{
+      const f=e.target.files&&e.target.files[0];
+      if(!f||!f.type.startsWith('image/'))return;
+      const r=new FileReader();
+      r.onload=()=>{show(r.result);try{localStorage.setItem('tekipaki-struktur-'+key,r.result);}catch(err){}};
+      r.readAsDataURL(f);
+    });
+  });
+
+  const totop=document.getElementById('totop');
+  const toggleTop=()=>{totop.classList.toggle('show',window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-400);};
+  window.addEventListener('scroll',toggleTop,{passive:true});
+  window.addEventListener('resize',toggleTop);
+  window.addEventListener('load',toggleTop);
+  totop.addEventListener('click',()=>window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'}));
+</script>
+</body>
+</html>
