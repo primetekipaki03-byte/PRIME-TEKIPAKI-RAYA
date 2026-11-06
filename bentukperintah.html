@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerakan, Instruksi & Kecelakaan 現場の動作・指示・事故 | Tekipaki</title>
+
+<style>
+:root{--navy:#001f3f;--gold:#facc15;--text:#001f3f}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
+body{background:#fff;color:var(--text)}
+#navbar{position:sticky;top:0;z-index:999;background:#001530;border-bottom:2px solid rgba(250,204,21,.25);box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.navbar-inner{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;gap:10px}
+.nav-left{display:flex;align-items:center}
+.nav-right{display:flex;gap:8px;align-items:center}
+.home-btn{display:flex;align-items:center;gap:8px;background:var(--gold);color:#001530;text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:bold}
+.home-btn:hover{opacity:.85}
+.home-icon{width:24px;height:24px;border-radius:4px}
+.dropdown{position:relative}
+.dropdown-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 14px;border-radius:8px;font-weight:bold;cursor:pointer}
+.dropdown-btn:hover{background:var(--gold);color:#001530}
+.dropdown-menu{display:none;position:absolute;top:45px;left:0;background:#022655;border-radius:10px;overflow:hidden;min-width:220px;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.dropdown-menu a{display:block;padding:12px 15px;color:#ffd700;text-decoration:none}
+.dropdown-menu a:hover{background:var(--gold);color:#001530}
+.show{display:block}
+.burger-btn{display:none;align-items:center;justify-content:center;flex-shrink:0;background:transparent;border:2px solid var(--gold);color:var(--gold);padding:9px 12px;border-radius:8px;cursor:pointer}
+.burger-btn svg{width:20px;height:20px;display:block}
+.mobile-menu{display:none;flex-direction:column;background:#001530;border-top:1px solid rgba(250,204,21,.25);max-height:calc(100vh - 64px);overflow-y:auto}
+.mobile-menu.show{display:flex}
+.mobile-link{display:block;padding:15px 18px;color:#ffd700;text-decoration:none;font-weight:700;font-size:14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.mobile-acc-btn{width:100%;text-align:left;background:transparent;border:none;color:var(--gold);font-weight:700;font-size:14px;padding:15px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);font-family:inherit}
+.mobile-acc-btn::after{content:'+';font-size:18px}
+.mobile-acc-btn.open::after{content:'\2212'}
+.mobile-acc-panel{display:none;flex-direction:column;background:#0a2242}
+.mobile-acc-panel.show{display:flex}
+.mobile-acc-panel a{padding:13px 32px;color:#ffd700;text-decoration:none;font-size:13px;border-bottom:1px solid rgba(255,255,255,.05)}
+@media(min-width:761px){.mobile-menu{display:none !important}}
+@media(max-width:1000px){.dropdown-btn{font-size:.8rem;padding:7px 10px}}
+@media(max-width:760px){.navbar-inner{padding:10px 14px}.nav-left{flex:1;min-width:0}.nav-right{display:none}.burger-btn{display:flex}}
+header{text-align:center;padding:60px 20px 40px;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--navy) 0%,#062a52 100%)}
+header::before{content:"動作";position:absolute;font-size:340px;font-weight:900;color:rgba(250,204,21,.05);top:-90px;left:50%;transform:translateX(-50%);pointer-events:none;user-select:none;white-space:nowrap}
+.badge{display:inline-block;background:var(--gold);color:#001530;font-weight:bold;font-size:13px;letter-spacing:1px;padding:6px 16px;border-radius:999px;margin-bottom:18px;position:relative}
+header h1{font-size:40px;color:#fff;margin-bottom:12px;position:relative}
+header h1 span{color:var(--gold);display:block;font-size:30px;margin-top:6px}
+header p{font-size:17px;color:#c9d6e8;max-width:620px;margin:0 auto;position:relative}
+.stats-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px;position:relative}
+.stat-pill{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.35);color:var(--gold);padding:8px 18px;border-radius:999px;font-size:14px;font-weight:600}
+.search-wrap{max-width:600px;margin:-26px auto 10px;padding:0 20px;position:relative;z-index:5}
+#searchInput{width:100%;padding:16px 22px;border-radius:16px;border:2px solid var(--navy);font-size:16px;box-shadow:0 10px 24px rgba(0,31,63,.15);outline:none;color:var(--navy)}
+#searchInput:focus{border-color:var(--gold)}
+.no-result{text-align:center;color:#888;padding:40px;display:none}
+.section-title{max-width:1200px;margin:50px auto 5px;padding:0 20px;display:flex;align-items:center;gap:14px}
+.section-title .lvl{background:var(--navy);color:var(--gold);font-weight:bold;font-size:14px;padding:6px 14px;border-radius:8px}
+.section-title .line{flex:1;height:2px;background:linear-gradient(90deg,var(--navy),rgba(0,31,63,.05))}
+footer{text-align:center;padding:30px;color:#666;font-size:14px}
+.filters{max-width:1200px;margin:16px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:8px}
+.f-btn{padding:8px 16px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:999px;font-weight:bold;font-size:13px;cursor:pointer;transition:.2s}
+.f-btn:hover,.f-btn.on{background:var(--navy);color:var(--gold)}
+.cgrid{max-width:1200px;margin:20px auto 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:20px}
+.ccard{border:2px solid var(--navy);border-radius:15px;background:#fff;transition:.25s;overflow:hidden;display:flex;flex-direction:column}
+.ccard:hover{box-shadow:0 12px 24px rgba(0,31,63,.2);transform:translateY(-4px)}
+.ccard .body{padding:18px 20px 20px}
+.imgslot{width:100%;aspect-ratio:16/10;background:#fff;border-bottom:2px solid var(--navy);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.imgslot img{width:100%;height:100%;object-fit:contain}
+.imgslot.empty{background:repeating-linear-gradient(45deg,#f3f7fc,#f3f7fc 12px,#eaf0f8 12px,#eaf0f8 24px);flex-direction:column;gap:6px;color:#8892a3}
+.imgslot.empty .ic{font-size:34px}
+.imgslot.empty .fn{font-size:12px;font-weight:600;background:#fff;border:1px dashed #b9c6da;border-radius:6px;padding:3px 9px;color:#556}
+.ccard .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ccard .kj{font-size:24px;font-weight:bold;color:var(--navy);line-height:1.3}
+.ccard .nm{font-size:13px;color:#8892a3;font-weight:600}
+.ccard .rd{font-size:13px;color:#b8860b;font-weight:600;margin-top:2px}
+.ccard .mn{font-size:15px;color:#333;margin:6px 0 10px;font-weight:600}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:11px;font-weight:bold;padding:3px 10px;border-radius:999px;background:rgba(0,31,63,.08);color:var(--navy)}
+.ex-box{background:#f5f8fc;border-left:4px solid var(--gold);border-radius:8px;padding:12px 14px}
+.ex-box .j{font-size:15px;font-weight:bold;color:var(--navy);line-height:1.6}
+.ex-box .j mark{background:#fff3b0;padding:0 3px;border-radius:4px}
+.ex-box .y{font-size:12px;color:#8892a3;margin-top:4px}
+.ex-box .i{font-size:13px;color:#333;font-style:italic;margin-top:4px}
+.quiz-wrap{max-width:900px;margin:0 auto 50px;padding:0 20px}
+.q-box{border:2px solid var(--navy);border-radius:18px;padding:24px;background:#fafcff}
+.q-box h2{font-size:18px;color:var(--navy);margin-bottom:12px}
+.q-img{max-width:360px;margin:0 auto 14px;border:2px solid var(--navy);border-radius:12px;overflow:hidden;display:none}
+.q-img img{width:100%;display:block}
+.q-text{font-size:30px;font-weight:bold;color:var(--navy);margin-bottom:4px;line-height:1.5;text-align:center}
+.q-id{font-size:14px;color:#8892a3;font-style:italic;margin-bottom:16px;text-align:center}
+.q-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.q-opt{padding:14px;border:2px solid var(--navy);border-radius:12px;background:#fff;color:var(--navy);font-size:16px;font-weight:600;cursor:pointer;transition:.2s}
+.q-opt:hover{background:var(--navy);color:var(--gold)}
+.q-opt.ok{background:#e6f7ec;border-color:#86efac;color:#166534}
+.q-opt.no{background:#fdeaea;border-color:#fca5a5;color:#991b1b}
+.q-foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;flex-wrap:wrap;gap:10px}
+.q-score{font-weight:bold;color:var(--navy)}
+.q-next{border:2px solid var(--navy);background:var(--navy);color:var(--gold);padding:10px 18px;border-radius:10px;font-weight:bold;cursor:pointer}
+@media(max-width:1000px){.cgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.cgrid{grid-template-columns:1fr}.q-opts{grid-template-columns:1fr}header h1{font-size:30px}header h1 span{font-size:22px}header::before{font-size:200px}}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="navbar-inner">
+<div class="nav-left">
+<a href="index.html" class="home-btn">
+<svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3L3 10h2v10h6v-6h2v6h6V10h2L12 3Z"/></svg>
+HOME
+</a>
+</div>
+<div class="nav-right">
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('materi')">MATERI ▼</button>
+    <div class="dropdown-menu" id="materi">
+      <a href="daftarkosakata.html">Kosakata JFT</a>
+      <a href="materitatabahasa.html">Tata Bahasa</a>
+      <a href="materikanji.html">Materi Kanji JLPT</a>
+      <a href="kanjidasar.html">Kanji Flash Card</a>
+      <a href="materikosakata.html">Materi Kosakata JLPT</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('quiz')">QUIZ JFT ▼</button>
+    <div class="dropdown-menu" id="quiz">
+      <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+      <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+      <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+      <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+      <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown('kanjiquiz')">QUIZ KANJI ▼</button>
+    <div class="dropdown-menu" id="kanjiquiz">
+      <a href="quizkanji1.html">QUIZ KANJI 1</a>
+      <a href="quizkanji2.html">QUIZ KANJI 2</a>
+      <a href="quizkanji3.html">QUIZ KANJI 3</a>
+      <a href="quizkanji4.html">QUIZ KANJI 4</a>
+      <a href="quizkanji5.html">QUIZ KANJI 5</a>
+    </div>
+  </div>
+</div>
+<button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Buka menu">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="index.html">HOME</a>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">MATERI</button>
+  <div class="mobile-acc-panel">
+    <a href="daftarkosakata.html">Kosakata JFT</a>
+    <a href="materitatabahasa.html">Tata Bahasa</a>
+    <a href="materikanji.html">Materi Kanji JLPT</a>
+    <a href="kanjidasar.html">Kanji Flash Card</a>
+    <a href="materikosakata.html">Materi Kosakata JLPT</a>
+  </div>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ JFT</button>
+  <div class="mobile-acc-panel">
+    <a href="ujianjfta2test1.html">SOAL JFT A — TEST 1</a>
+    <a href="ujianjfta2test2.html">SOAL JFT A — TEST 2</a>
+    <a href="ujianjfta2test3.html">SOAL JFT A — TEST 3</a>
+    <a href="ujianjfta2test4.html">SOAL JFT A — TEST 4</a>
+    <a href="ujianjfta2test5.html">SOAL JFT A — TEST 5</a>
+  </div>
+  <button class="mobile-acc-btn" onclick="toggleMobileAccordion(this)">QUIZ KANJI</button>
+  <div class="mobile-acc-panel">
+    <a href="quizkanji1.html">QUIZ KANJI 1</a>
+    <a href="quizkanji2.html">QUIZ KANJI 2</a>
+    <a href="quizkanji3.html">QUIZ KANJI 3</a>
+    <a href="quizkanji4.html">QUIZ KANJI 4</a>
+    <a href="quizkanji5.html">QUIZ KANJI 5</a>
+  </div>
+</div>
+</nav>
+
+<header>
+    <span class="badge">動作 · 指示 · 事故</span>
+    <h1>現場の動作・指示・事故 <span>Gerakan, Instruksi &amp; Kecelakaan Kerja</span></h1>
+    <p>Kosakata di lokasi kerja: gerakan tubuh, memindahkan dan merapikan barang, instruksi atasan, serta istilah kecelakaan dan bahaya.</p>
+    <div class="stats-row">
+        <span class="stat-pill" id="totalCount">0 Kata</span>
+        <span class="stat-pill">7 Kelompok</span>
+        <span class="stat-pill">Slot Gambar</span>
+        <span class="stat-pill">Ada Latihan</span>
+    </div>
+</header>
+
+<div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="🔍 Cari... (contoh: jongkok, 押す, tersandung, 倒れる, roboh)" oninput="applyFilter()">
+</div>
+
+<div class="filters" id="filters"></div>
+<div class="cgrid" id="cGrid"></div>
+<p class="no-result" id="noResult">Kata tidak ditemukan.</p>
+
+<div class="section-title">
+    <span class="lvl">LATIHAN</span>
+    <span class="line"></span>
+</div>
+
+<div class="quiz-wrap">
+  <div class="q-box">
+    <h2>Apa arti kata / ungkapan ini dalam bahasa Indonesia?</h2>
+    <div class="q-img" id="qImgBox"><img id="qImg" alt=""></div>
+    <div class="q-text" id="qText"></div>
+    <div class="q-id" id="qId"></div>
+    <div class="q-opts" id="qOpts"></div>
+    <div class="q-foot">
+      <span class="q-score" id="qScore">Skor: 0 / 0</span>
+      <button class="q-next" onclick="newQ()">Soal berikutnya</button>
+    </div>
+  </div>
+</div>
+
+<footer>© Tekipaki Japanese Learning</footer>
+
+<script>
+const CATS = {
+  badan:"Gerakan Tubuh",
+  pindah:"Mengangkat & Memindahkan",
+  rapi:"Menata, Menyambung & Membersihkan",
+  perintah:"Instruksi & Peringatan",
+  jatuh:"Jatuh & Tergelincir",
+  benturan:"Terbentur, Tertimpa, Tertimbun & Terlindas",
+  roboh:"Roboh, Retak & Terguling"
+};
+
+// Cara memasang gambar: isi gambar:"images/namafile.jpg" (simpan foto di folder images).
+// Kalau file belum ada, kartu menampilkan "Belum ada gambar" beserta nama file yang diminta.
+const list = [
+ // ---------- GERAKAN TUBUH ----------
+ { gambar:"images/oritatamu.jpg", jp:"折りたたむ", k:"おりたたむ", r:"oritatamu", m:"melipat", c:"badan", e:["ブルーシートを折りたたむ。","ブルーシートを おりたたむ。","Melipat terpal biru."] },
+ { gambar:"images/mawaru.jpg", jp:"回る", k:"まわる", r:"mawaru", m:"berputar", c:"badan", e:["ハンドルが回るか確認します。","ハンドルが まわるか かくにんします。","Memeriksa apakah setir bisa berputar."] },
+ { gambar:"images/shagamu.jpg", jp:"しゃがむ", k:"", r:"shagamu", m:"jongkok", c:"badan", e:["しゃがむと腰が楽です。","しゃがむと こしが らくです。","Kalau jongkok, pinggang terasa lebih ringan."] },
+ { gambar:"images/fumu.jpg", jp:"踏む", k:"ふむ", r:"fumu", m:"menginjak", c:"badan", e:["釘を踏むと危ないです。","くぎを ふむと あぶないです。","Berbahaya kalau menginjak paku."] },
+ { gambar:"images/noboru.jpg", jp:"登る", k:"のぼる", r:"noboru", m:"memanjat", c:"badan", e:["はしごを登るときは、両手を使います。","はしごを のぼるときは、りょうてを つかいます。","Saat memanjat tangga, memakai kedua tangan."] },
+ { gambar:"images/tobu.jpg", jp:"跳ぶ", k:"とぶ", r:"tobu", m:"melompat", c:"badan", e:["溝を跳ぶと危ないです。","みぞを とぶと あぶないです。","Berbahaya kalau melompati parit."] },
+ { gambar:"images/hayakuaruku.jpg", jp:"もっと早く歩いてください", k:"もっとはやくあるいてください", r:"motto hayaku aruite kudasai", m:"tolong jalan lebih cepat", c:"badan", e:["時間がありません。もっと早く歩いてください。","じかんが ありません。もっと はやく あるいてください。","Tidak ada waktu. Tolong jalan lebih cepat."] },
+
+ // ---------- MENGANGKAT & MEMINDAHKAN ----------
+ { gambar:"images/ryoutemotsu.jpg", jp:"両手で持つ", k:"りょうてでもつ", r:"ryoute de motsu", m:"membawa dengan dua tangan", c:"pindah", e:["重い物は両手で持つ。","おもい ものは りょうてで もつ。","Barang berat dibawa dengan dua tangan."] },
+ { gambar:"images/mochiageru.jpg", jp:"持ち上げる", k:"もちあげる", r:"mochiageru", m:"mengangkat", c:"pindah", e:["箱を持ち上げるときは、腰を低くします。","はこを もちあげるときは、こしを ひくくします。","Saat mengangkat kotak, rendahkan pinggang."] },
+ { gambar:"images/hiku.jpg", jp:"引く", k:"ひく", r:"hiku", m:"menarik", c:"pindah", e:["ロープを引く。","ロープを ひく。","Menarik tali."] },
+ { gambar:"images/osu.jpg", jp:"押す", k:"おす", r:"osu", m:"mendorong", c:"pindah", e:["台車を押す。","だいしゃを おす。","Mendorong troli."] },
+ { gambar:"images/maenidasu.jpg", jp:"前に出す", k:"まえにだす", r:"mae ni dasu", m:"memajukan", c:"pindah", e:["トラックを少し前に出す。","トラックを すこし まえに だす。","Memajukan truk sedikit ke depan."] },
+ { gambar:"images/zurasu.jpg", jp:"ずらす", k:"", r:"zurasu", m:"menggeser", c:"pindah", e:["板を右にずらす。","いたを みぎに ずらす。","Menggeser papan ke kanan."] },
+ { gambar:"images/uragaesu.jpg", jp:"裏返す", k:"うらがえす", r:"uragaesu", m:"dibalikkan (dibalik)", c:"pindah", e:["板を裏返す。","いたを うらがえす。","Membalik papan."] },
+ { gambar:"images/sosogu.jpg", jp:"注ぐ", k:"そそぐ", r:"sosogu", m:"menuang", c:"pindah", e:["型枠にコンクリートを注ぐ。","かたわくに コンクリートを そそぐ。","Menuang beton ke dalam bekisting."] },
+
+ // ---------- MENATA & MERAPIKAN ----------
+ { gambar:"images/shibaru.jpg", jp:"縛る", k:"しばる", r:"shibaru", m:"diikat", c:"rapi", e:["落ちないように、荷物を縛る。","おちないように、にもつを しばる。","Mengikat barang supaya tidak jatuh."] },
+ { gambar:"images/naraberu.jpg", jp:"並べる", k:"ならべる", r:"naraberu", m:"disusun (berjajar)", c:"rapi", e:["材料をきれいに並べる。","ざいりょうを きれいに ならべる。","Menyusun material dengan rapi."] },
+ { gambar:"images/sumi.jpg", jp:"隅", k:"すみ", r:"sumi", m:"pojok", c:"rapi", e:["ゴミは隅に置きます。","ゴミは すみに おきます。","Sampah diletakkan di pojok."] },
+ { gambar:"images/seiton.jpg", jp:"整頓", k:"せいとん", r:"seiton", m:"rapi (tertata)", c:"rapi", e:["道具を整頓します。","どうぐを せいとんします。","Merapikan peralatan."] },
+ { gambar:"images/tsunagu.jpg", jp:"つなぐ", k:"繋ぐ", r:"tsunagu", m:"disambungkan (menyambung)", c:"rapi", e:["ホースを水道につなぐ。","ホースを すいどうに つなぐ。","Menyambungkan selang ke keran air."] },
+ { gambar:"images/wakeru.jpg", jp:"分ける", k:"わける", r:"wakeru", m:"dipisahkan", c:"rapi", e:["ゴミを種類ごとに分ける。","ゴミを しゅるいごとに わける。","Memisahkan sampah menurut jenisnya."] },
+ { gambar:"images/fuku.jpg", jp:"拭く", k:"ふく", r:"fuku", m:"dilap", c:"rapi", e:["雑巾で床を拭く。","ぞうきんで ゆかを ふく。","Mengelap lantai dengan kain pel."] },
+ { gambar:"images/kawakasu.jpg", jp:"乾かす", k:"かわかす", r:"kawakasu", m:"dikeringkan", c:"rapi", e:["濡れた作業服を乾かす。","ぬれた さぎょうふくを かわかす。","Mengeringkan baju kerja yang basah."] },
+ { gambar:"images/massugu.jpg", jp:"まっすぐにする", k:"真っ直ぐにする", r:"massugu ni suru", m:"diluruskan", c:"rapi", e:["曲がった針金をまっすぐにする。","まがった はりがねを まっすぐに する。","Meluruskan kawat yang bengkok."] },
+
+ // ---------- INSTRUKSI & PERINGATAN ----------
+ { gambar:"images/ookiikoe.jpg", jp:"もっと大きい声で話してください", k:"もっとおおきいこえではなしてください", r:"motto ookii koe de hanashite kudasai", m:"tolong bicara lebih keras", c:"perintah", e:["聞こえません。もっと大きい声で話してください。","きこえません。もっと おおきい こえで はなしてください。","Tidak terdengar. Tolong bicara lebih keras."] },
+ { gambar:"images/kurai.jpg", jp:"暗い所", k:"くらいところ", r:"kurai tokoro", m:"tempat gelap", c:"perintah", e:["暗い所では、ライトを使います。","くらい ところでは、ライトを つかいます。","Di tempat gelap, memakai lampu."] },
+ { gambar:"images/yukkuri.jpg", jp:"ゆっくり話してください", k:"ゆっくりはなしてください", r:"yukkuri hanashite kudasai", m:"tolong bicara pelan-pelan", c:"perintah", e:["わかりません。ゆっくり話してください。","わかりません。ゆっくり はなしてください。","Saya tidak mengerti. Tolong bicara pelan-pelan."] },
+ { gambar:"images/bonyari.jpg", jp:"ぼんやりする", k:"", r:"bonyari suru", m:"bengong / melamun", c:"perintah", e:["仕事中にぼんやりするのは危ないです。","しごとちゅうに ぼんやりするのは あぶないです。","Melamun saat bekerja itu berbahaya."] },
+ { gambar:"images/iiwake.jpg", jp:"言い訳をしないでください", k:"いいわけをしないでください", r:"iiwake o shinai de kudasai", m:"jangan banyak alasan", c:"perintah", e:["遅れても、言い訳をしないでください。","おくれても、いいわけを しないでください。","Walau terlambat, jangan banyak alasan."] },
+
+ // ---------- JATUH & TERGELINCIR ----------
+ { gambar:"images/tsumazuku.jpg", jp:"つまずく", k:"", r:"tsumazuku", m:"tersandung", c:"jatuh", e:["ロープにつまずく。","ロープに つまずく。","Tersandung tali."] },
+ { gambar:"images/suberiyasui.jpg", jp:"滑りやすい", k:"すべりやすい", r:"suberiyasui", m:"licin (mudah tergelincir)", c:"jatuh", e:["雨の日は床が滑りやすいです。","あめの ひは ゆかが すべりやすいです。","Saat hujan, lantai licin."] },
+ { gambar:"images/korobu.jpg", jp:"転ぶ", k:"ころぶ", r:"korobu", m:"terjungkal (jatuh)", c:"jatuh", e:["足場で転ぶと危ないです。","あしばで ころぶと あぶないです。","Berbahaya kalau terjungkal di perancah."] },
+
+ // ---------- TERBENTUR & TERTIMPA ----------
+ { gambar:"images/shitajiki.jpg", jp:"下敷きになる", k:"したじきになる", r:"shitajiki ni naru", m:"tertimpa barang", c:"benturan", e:["荷物の下敷きになると危ないです。","にもつの したじきに なると あぶないです。","Berbahaya kalau tertimpa barang."] },
+ { gambar:"images/butsukaru.jpg", jp:"ぶつかる", k:"", r:"butsukaru", m:"menyenggol / menabrak", c:"benturan", e:["通るとき、機械にぶつかる。","とおるとき、きかいに ぶつかる。","Saat lewat, menyenggol mesin."] },
+ { gambar:"images/atamawobutsukeru.jpg", jp:"頭をぶつける", k:"あたまをぶつける", r:"atama o butsukeru", m:"terbentur kepala", c:"benturan", e:["低い梁に頭をぶつける。","ひくい はりに あたまを ぶつける。","Kepala terbentur balok yang rendah."] },
+ { gambar:"images/hikareru.jpg", jp:"ひかれる", k:"轢かれる", r:"hikareru", m:"terlindas", c:"benturan", e:["バックする車にひかれる。","バックする くるまに ひかれる。","Terlindas mobil yang mundur."] },
+ { gambar:"images/umaru.jpg", jp:"埋まる", k:"うまる", r:"umaru", m:"tertimbun", c:"benturan", e:["土砂に埋まる事故が起きました。","どしゃに うまる じこが おきました。","Terjadi kecelakaan tertimbun tanah longsor."] },
+
+ // ---------- ROBOH & TERGULING ----------
+ { gambar:"images/outen.jpg", jp:"横転する", k:"おうてんする", r:"outen suru", m:"terguling", c:"roboh", e:["カーブでトラックが横転する。","カーブで トラックが おうてんする。","Truk terguling di tikungan."] },
+ { gambar:"images/taoreru.jpg", jp:"倒れる", k:"たおれる", r:"taoreru", m:"roboh", c:"roboh", e:["強い風で足場が倒れる。","つよい かぜで あしばが たおれる。","Perancah roboh karena angin kencang."] },
+ { gambar:"images/hibi.jpg", jp:"ひびが入る", k:"ひびがはいる", r:"hibi ga hairu", m:"retak", c:"roboh", e:["壁にひびが入る。","かべに ひびが はいる。","Dinding retak."] }
+];
+
+document.getElementById("totalCount").textContent = list.length + " Kata";
+list.forEach(g => { g.file = g.gambar || ""; });
+
+function norm(s){
+  return String(s).normalize("NFKC").toLowerCase()
+    .replace(/[\u30a1-\u30f6]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60))
+    .replace(/[\s\-、。,.・()（）]/g, "");
+}
+list.forEach(g => { g.s = norm([g.jp, g.k, g.r, g.m, CATS[g.c]].join(" ")); });
+
+// ---------- FILTER ----------
+let curCat = "all";
+const fBox = document.getElementById("filters");
+[["all","Semua"]].concat(Object.keys(CATS).map(k => [k, CATS[k]])).forEach(f => {
+  const b = document.createElement("button");
+  b.className = "f-btn" + (f[0]==="all" ? " on" : "");
+  b.textContent = f[1];
+  b.onclick = () => {
+    curCat = f[0];
+    document.querySelectorAll(".f-btn").forEach(x => x.classList.remove("on"));
+    b.classList.add("on");
+    applyFilter();
+  };
+  fBox.appendChild(b);
+});
+
+const grid = document.getElementById("cGrid");
+const noResult = document.getElementById("noResult");
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+function makeImgSlot(g){
+  const slot = document.createElement("div");
+  slot.className = "imgslot";
+  const showEmpty = () => {
+    slot.className = "imgslot empty";
+    slot.innerHTML = '<span class="ic">📷</span><span class="fn">' + (g.file || "Belum ada gambar") + '</span>';
+  };
+  if(!g.file){ showEmpty(); return slot; }
+  const img = new Image();
+  img.alt = g.jp + " (" + g.m + ")";
+  img.loading = "lazy";
+  img.onerror = showEmpty;
+  img.src = g.file;
+  slot.appendChild(img);
+  return slot;
+}
+
+function render(items){
+  grid.innerHTML = "";
+  items.forEach(g => {
+    const [j,y,i] = g.e;
+    const jh = esc(j).replace(g.jp, "<mark>" + g.jp + "</mark>");
+    const d = document.createElement("div");
+    d.className = "ccard";
+    d.appendChild(makeImgSlot(g));
+    const body = document.createElement("div");
+    body.className = "body";
+    body.innerHTML =
+      '<div class="top"><span class="kj">' + g.jp + '</span></div>' +
+      '<div class="nm">' + g.r + '</div>' +
+      (g.k ? '<div class="rd">' + g.k + '</div>' : '') +
+      '<div class="mn">' + g.m + '</div>' +
+      '<div class="tags"><span class="tag">' + CATS[g.c] + '</span></div>' +
+      '<div class="ex-box"><div class="j">' + jh + '</div><div class="y">' + y + '</div><div class="i">' + i + '</div></div>';
+    d.appendChild(body);
+    grid.appendChild(d);
+  });
+  noResult.style.display = items.length === 0 ? "block" : "none";
+}
+
+function applyFilter(){
+  const q = norm(document.getElementById("searchInput").value);
+  render(list.filter(g => (curCat === "all" || g.c === curCat) && (!q || g.s.includes(q))));
+}
+
+// ---------- LATIHAN ----------
+let score = 0, total = 0, answered = false, answer = "";
+
+function newQ(){
+  answered = false;
+  const g = list[Math.floor(Math.random() * list.length)];
+  answer = g.m;
+  document.getElementById("qText").textContent = g.jp;
+  document.getElementById("qId").textContent = g.k ? g.k + " · " + g.r : g.r;
+
+  const qBox = document.getElementById("qImgBox");
+  const qImg = document.getElementById("qImg");
+  qBox.style.display = "none";
+  qImg.onload = () => { qBox.style.display = "block"; };
+  qImg.onerror = () => { qBox.style.display = "none"; };
+  if(g.file) qImg.src = g.file;
+
+  const others = list.filter(x => x.m !== g.m).sort(() => Math.random() - .5);
+  const opts = [g.m];
+  others.forEach(o => { if(opts.length < 4 && !opts.includes(o.m)) opts.push(o.m); });
+  opts.sort(() => Math.random() - .5);
+  const box = document.getElementById("qOpts");
+  box.innerHTML = "";
+  opts.forEach(o => {
+    const b = document.createElement("button");
+    b.className = "q-opt";
+    b.textContent = o;
+    b.onclick = () => {
+      if(answered) return;
+      answered = true;
+      total++;
+      if(o === answer){ score++; b.classList.add("ok"); }
+      else {
+        b.classList.add("no");
+        box.querySelectorAll(".q-opt").forEach(x => { if(x.textContent === answer) x.classList.add("ok"); });
+      }
+      document.getElementById("qScore").textContent = "Skor: " + score + " / " + total;
+    };
+    box.appendChild(b);
+  });
+}
+
+render(list);
+newQ();
+
+// ---------- DROPDOWN (DESKTOP) ----------
+function toggleDropdown(id){
+    document.querySelectorAll(".dropdown-menu").forEach(function(menu){
+        if(menu.id!=id){ menu.classList.remove("show"); }
+    });
+    document.getElementById(id).classList.toggle("show");
+}
+document.addEventListener("click",function(e){
+    if(!e.target.closest(".dropdown")){
+        document.querySelectorAll(".dropdown-menu").forEach(function(menu){ menu.classList.remove("show"); });
+    }
+});
+
+// ---------- BURGER MENU (MOBILE) ----------
+function toggleMobileMenu(){
+    const menu = document.getElementById("mobileMenu");
+    if(menu) menu.classList.toggle("show");
+}
+function toggleMobileAccordion(btn){
+    const panel = btn.nextElementSibling;
+    const isOpen = btn.classList.contains("open");
+    document.querySelectorAll(".mobile-acc-btn").forEach(function(b){
+        if(b !== btn){
+            b.classList.remove("open");
+            if(b.nextElementSibling) b.nextElementSibling.classList.remove("show");
+        }
+    });
+    btn.classList.toggle("open", !isOpen);
+    if(panel) panel.classList.toggle("show", !isOpen);
+}
+window.addEventListener("resize", function(){
+    document.querySelectorAll(".dropdown-menu").forEach(function(m){ m.classList.remove("show"); });
+    if(window.innerWidth > 760){
+        const mm = document.getElementById("mobileMenu");
+        if(mm) mm.classList.remove("show");
+        document.querySelectorAll(".mobile-acc-btn").forEach(function(b){ b.classList.remove("open"); });
+        document.querySelectorAll(".mobile-acc-panel").forEach(function(p){ p.classList.remove("show"); });
+    }
+});
+</script>
+
+</body>
+</html>
